@@ -97,7 +97,7 @@ Mathematically, it can be represented as follows:
 
 \[mathjax\]
 
-\\begin{equation} y: f(x) = \\frac{1}{1 + e^{-x}} \\end{equation}
+$$\\begin{equation} y: f(x) = \\frac{1}{1 + e^{-x}} \\end{equation}$$
 
 As you can see in the plot, the function slowly increases over time, but the greatest increase can be found around \[latex\]x = 0\[/latex\]. The range of the function is \[latex\](0, 1)\[/latex\]; i.e. towards high values for \[latex\]x\[/latex\] the function therefore approaches 1, but never equals it.
 
@@ -169,7 +169,7 @@ It looks as follows:
 
 And can be represented as follows:
 
-\\begin{equation} f(x) = \\begin{cases} 0, & \\text{if}\\ x < 0 \\\\ x, & \\text{otherwise} \\\\ \\end{cases} \\end{equation}
+$$\\begin{equation} f(x) = \\begin{cases} 0, & \\text{if}\\ x < 0 \\\\ x, & \\text{otherwise} \\\\ \\end{cases} \\end{equation}$$
 
 Or, in plain English, it produces a zero output for all inputs smaller than zero; and \[latex\]x\[/latex\] for all other inputs. Hence, for all \[latex\]inputs <= 0\[/latex\], it produces zero outputs.
 

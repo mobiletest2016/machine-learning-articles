@@ -47,7 +47,7 @@ Note that although activation functions are pretty much nonlinear all the time, 
 
 Now ReLU. It can be expressed as follows:
 
-\\begin{equation} f(x) = \\begin{cases} 0, & \\text{if}\\ x < 0 \\\\ x, & \\text{otherwise} \\\\ \\end{cases} \\end{equation}
+$$\\begin{equation} f(x) = \\begin{cases} 0, & \\text{if}\\ x < 0 \\\\ x, & \\text{otherwise} \\\\ \\end{cases} \\end{equation}$$
 
 And visualized in this way:
 
@@ -79,7 +79,7 @@ This is the premise behind **Leaky ReLU**, one of the possible newer activation 
 
 Mathematically, it is defined as follows (Maas et al., 2013):
 
-\\begin{equation} f(x) = \\begin{cases} 0.01x, & \\text{if}\\ x < 0 \\\\ x, & \\text{otherwise} \\\\ \\end{cases} \\end{equation}
+$$\\begin{equation} f(x) = \\begin{cases} 0.01x, & \\text{if}\\ x < 0 \\\\ x, & \\text{otherwise} \\\\ \\end{cases} \\end{equation}$$
 
 Leaky ReLU can be visualized as follows:
 

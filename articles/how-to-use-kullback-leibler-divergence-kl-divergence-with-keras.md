@@ -51,7 +51,7 @@ As we will see, there are situations when this happens. In those cases, you can 
 
 But what is entropy? Mathematically, it can be defined as follows (Wikipedia, 2001).
 
-\\begin{equation} H(X) = -\\sum p(X)\\log p(X) \\end{equation}
+$$\\begin{equation} H(X) = -\\sum p(X)\\log p(X) \\end{equation}$$
 
 Intuitively, it's the _expected value of the probability of data in some distribution_. In plain English, it's something like this (assuming that \[latex\]log\_2\[/latex\] is used): "the minimum number of bits it would take us to encode our information" (Count Bayesie, 2017).
 
@@ -67,7 +67,7 @@ Well, you can!! 😎
 
 By slightly adapting the formula for entropy, we arrive at the **Kullback-Leibler divergence** (Count Bayesie, 2017)! It can be defined as follows (Wikipedia, 2004):
 
-\\begin{equation} KL (P || Q) = \\sum p(X) \\log ( p(X) \\div q(X) ) \\end{equation}
+$$\\begin{equation} KL (P || Q) = \\sum p(X) \\log ( p(X) \\div q(X) ) \\end{equation}$$
 
 In plain English, this effectively tells you how much entropy you lose or gain when you would change probability distributions (recognize that \[latex\]\\log ( p(X) \\div q(X) ) = \\log p(X) - \\log q(X)\[/latex\], Count Bayesie 2017).
 

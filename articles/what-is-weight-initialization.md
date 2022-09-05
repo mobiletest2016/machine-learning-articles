@@ -53,7 +53,7 @@ Mathematically, one of the neurons in the hidden layers looks as follows:
 
 \[mathjax\]
 
-\\begin{equation} \\begin{split} output &= \\textbf{w}\\cdot\\textbf{x} + b \\\\ &=\\sum\_{i=1}^{n} w\_nx\_n + b \\\\ &= w\_1x\_1 + ... + w\_nx\_n + b \\\\ \\end{split} \\end{equation}
+$$\\begin{equation} \\begin{split} output &= \\textbf{w}\\cdot\\textbf{x} + b \\\\ &=\\sum\_{i=1}^{n} w\_nx\_n + b \\\\ &= w\_1x\_1 + ... + w\_nx\_n + b \\\\ \\end{split} \\end{equation}$$
 
 where \[latex\]\\textbf{w}\[/latex\] represents the **weights vector,** \[latex\]\\textbf{x}\[/latex\] the **input vector** and \[latex\]b\[/latex\] the bias value (which is not a vector but a number, a scalar, instead).
 
@@ -114,7 +114,7 @@ Recall that in a neuron, \[latex\]output = \\textbf{w}\\cdot\\textbf{x} + b\[/la
 
 Or:
 
-\\begin{equation} \\begin{split} output &= \\textbf{w}\\cdot\\textbf{x} + b \\\\ &=\\sum\_{i=1}^{n} w\_nx\_n + b \\\\ &= w\_1x\_1 + ... + w\_nx\_n + b \\\\ \\end{split} \\end{equation}
+$$\\begin{equation} \\begin{split} output &= \\textbf{w}\\cdot\\textbf{x} + b \\\\ &=\\sum\_{i=1}^{n} w\_nx\_n + b \\\\ &= w\_1x\_1 + ... + w\_nx\_n + b \\\\ \\end{split} \\end{equation}$$
 
 Now, if you initialize \[latex\]\\textbf{w}\[/latex\] as an all-zeros vector, a.k.a. a list with zeroes, what do you think happens to \[latex\]w1 ... wn\[/latex\]?
 

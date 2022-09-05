@@ -94,13 +94,13 @@ Core distance is defined as follows. For any point \[latex\]p\[/latex\] with som
 
 \[mathjax\]
 
-\\begin{equation}  
+$$\\begin{equation}  
 \\text{core-dist}\_{\\epsilon , \\text{minPts}}(p) =  
 \\begin{cases}  
 \\text{undefined}, & \\text{if}\\ |N\_{\\epsilon}(p)| < \\text{minPts} \\\\  
 \\text{minPts-th smallest distance in } N\_{\\epsilon}(p), & \\text{otherwise} \\  
 \\end{cases}  
-\\end{equation}
+\\end{equation}$$
 
 In other words, the core distance is undefined if the number of points in the neighborhood (including \[latex\]p\[/latex\] itself) is lower than the minimum number of points required. This makes sense: if the point is no core point, it does not have a core distance.
 
@@ -116,13 +116,13 @@ While the core distance expresses the _minimum distance to keep a point a core p
 
 It is expressed as follows in terms of an arbitrary point \[latex\]o\[/latex\] that is reached from a point \[latex\]p\[/latex\]:
 
-\\begin{equation}  
+$$\\begin{equation}  
 \\text{reach-dist}\_{\\epsilon , \\text{minPts}}(o, p) =  
 \\begin{cases}  
 \\text{undefined}, & \\text{if}\\ |N\_{\\epsilon}(p)| < \\text{minPts} \\\\  
 \\text{max}(\\text{core-dist}\_{\\epsilon , \\text{minPts}}(p), dist(p,o)), & \\text{otherwise} \\  
 \\end{cases}  
-\\end{equation}
+\\end{equation}$$
 
 If \[latex\]p\[/latex\]'s epsilon neighborhood has insufficient points, it is not a core point and hence cannot be used in reaching another point. This is similar to direct reachability and reachability in DBSCAN. For this reason, if this happens, the reachability distance is set to undefined.
 

@@ -37,7 +37,7 @@ All right, let's go! 😎
 
 ReLU - such a nice activation function: it is highly usable, as it generalizes acceptably well to pretty much any machine learning problem. It's also really simple, as it's just a two-path decision given some input:
 
-\\begin{equation} f(x) = \\begin{cases} 0, & \\text{if}\\ x < 0 \\\\ x, & \\text{otherwise} \\\\ \\end{cases} \\end{equation}
+$$\\begin{equation} f(x) = \\begin{cases} 0, & \\text{if}\\ x < 0 \\\\ x, & \\text{otherwise} \\\\ \\end{cases} \\end{equation}$$
 
 The output equals the input for all positive inputs, and zero for all others.
 
@@ -100,7 +100,7 @@ This is what **Parametric Rectified Linear Unit** or **PReLU** is all about. Bei
 
 PReLU is actually not so different from [traditional ReLU](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md):
 
-\\begin{equation} f(x\_i) = \\begin{cases} x\_i, & \\text{if}\\ x\_i > 0 \\\\ \\alpha\_ix\_i, & \\text{otherwise} \\\\ \\end{cases} \\end{equation}
+$$\\begin{equation} f(x\_i) = \\begin{cases} x\_i, & \\text{if}\\ x\_i > 0 \\\\ \\alpha\_ix\_i, & \\text{otherwise} \\\\ \\end{cases} \\end{equation}$$
 
 Note that \[latex\]x\_i\[/latex\] is just one feature from the feature vector \[latex\]\\textbf{x}\[/latex\]. As the authors argue: "\[t\]he subscript _i_ in \[latex\]\\alpha\_i\[/latex\] indicates that we allow the nonlinear activation to vary on different channels" (He et al., 2015). This is called **channel-wise** PReLU and is the default setting. If you choose to learn the same \[latex\]\\alpha\[/latex\] for all features, you use what is known as **channel-shared** PReLU (He et al., 2015).
 

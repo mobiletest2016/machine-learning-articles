@@ -431,7 +431,7 @@ Sometimes, machine learning problems involve the comparison between two probabil
 
 When you wish to compare two probability distributions, you can use the Kullback-Leibler divergence, a.k.a. KL divergence (Wikipedia, 2004):
 
-\\begin{equation} KL (P || Q) = \\sum p(X) \\log ( p(X) \\div q(X) ) \\end{equation}
+$$\\begin{equation} KL (P || Q) = \\sum p(X) \\log ( p(X) \\div q(X) ) \\end{equation}$$
 
 KL divergence is an adaptation of entropy, which is a common metric in the field of information theory (Wikipedia, 2004; Wikipedia, 2001; Count Bayesie, 2017). While intuitively, entropy tells you something about "the quantity of your information", KL divergence tells you something about "the change of quantity when distributions are changed".
 

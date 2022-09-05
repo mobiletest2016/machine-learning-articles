@@ -42,7 +42,7 @@ Let's go! 😎
 
 As you likely know, this is how traditional ReLU activates:
 
-\\begin{equation} f(x) = \\begin{cases} 0, & \\text{if}\\ x < 0 \\\\ x, & \\text{otherwise} \\\\ \\end{cases} \\end{equation}
+$$\\begin{equation} f(x) = \\begin{cases} 0, & \\text{if}\\ x < 0 \\\\ x, & \\text{otherwise} \\\\ \\end{cases} \\end{equation}$$
 
 That is, the output is \[latex\]x\[/latex\] for all \[latex\]x >= 0\[/latex\], while it's zero for all other \[latex\]x\[/latex\].
 
@@ -57,7 +57,7 @@ Since the majority of your neurons will be unresponsive, we call the _neural net
 
 Mathematically, Leaky ReLU is defined as follows (Maas et al., 2013):
 
-\\begin{equation} f(x) = \\begin{cases} 0.01x, & \\text{if}\\ x < 0 \\\\ x, & \\text{otherwise} \\\\ \\end{cases} \\end{equation}
+$$\\begin{equation} f(x) = \\begin{cases} 0.01x, & \\text{if}\\ x < 0 \\\\ x, & \\text{otherwise} \\\\ \\end{cases} \\end{equation}$$
 
 Contrary to traditional ReLU, the outputs of Leaky ReLU are small and nonzero for all \[latex\]x < 0\[/latex\]. This way, the authors of the paper argue that death of neural networks can be avoided. We do have to note, though, that there also exists [quite some criticism](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/leaky-relu-improving-traditional-relu.md/#does-leaky-relu-really-work) as to whether it really works.
 

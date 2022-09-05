@@ -84,7 +84,7 @@ One of the most prominent activation functions that is used today is the **[Rect
 
 \[mathjax\]
 
-\\begin{equation} f(x) = \\begin{cases} 0, & \\text{if}\\ x < 0 \\\\ x, & \\text{otherwise} \\\\ \\end{cases} \\end{equation}
+$$\\begin{equation} f(x) = \\begin{cases} 0, & \\text{if}\\ x < 0 \\\\ x, & \\text{otherwise} \\\\ \\end{cases} \\end{equation}$$
 
 In other words, the output will be zero if `x < 0` and will equal `x` otherwise. Being as simple as implementing [max(x, 0)](https://web.archive.org/web/https://www.machinecurve.com/index.php/question/why-does-relu-equal-max0-x/), ReLU is a very efficient and easy activation function. It is therefore not surprising that it is widely used today.
 
@@ -106,7 +106,7 @@ That's why Klambauer et al. (2017) argue for the **Scaled Exponential Linear Uni
 
 A SELU activation function is defined in the following way:
 
-\\begin{equation} f(x) = \\begin{cases} \\text{scale} \\times \\text{alpha} \\times (exp(x) - 1), & \\text{if}\\ x \\lt 0 \\\\ x, & \\text{otherwise} \\\\ \\end{cases} \\end{equation}
+$$\\begin{equation} f(x) = \\begin{cases} \\text{scale} \\times \\text{alpha} \\times (exp(x) - 1), & \\text{if}\\ x \\lt 0 \\\\ x, & \\text{otherwise} \\\\ \\end{cases} \\end{equation}$$
 
 Here, `alpha=1.67326324` and `scale=1.05070098` (TensorFlow, n.d.).
 

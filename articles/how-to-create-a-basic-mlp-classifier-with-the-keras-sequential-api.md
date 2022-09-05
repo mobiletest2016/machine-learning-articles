@@ -201,7 +201,7 @@ Suppose that the relationships in the real world (which are captured by your tra
 
 However, the MNIST targets, which are just numbers (_and numbers can take any value!)_, are not categorical. With `to_categorical`, we can turn the numbers into categorical data. For example, if we have a trinary classification problem with the possible classes being \[latex\]\\{ 0, 1, 2 \\}\[/latex\], the numbers 0, 1 or 2 are encoded into categorical vectors. One categorical vector looks as follows:
 
-\\begin{equation} \\textbf{y} = \\begin{bmatrix}0 \\\\ 1 \\\\ 0\\end{bmatrix} \\end{equation}
+$$\\begin{equation} \\textbf{y} = \\begin{bmatrix}0 \\\\ 1 \\\\ 0\\end{bmatrix} \\end{equation}$$
 
 ...or in plain English:
 
@@ -257,7 +257,7 @@ Next, we'll convert the data into greyscale. This way, when new colors are added
 
 Finally, we'll do what we discussed before - convert the data into categorical format by means of the `to_categorical` function. Rather than being _scalars_, such as \[latex\]0\[/latex\] of \[latex\]4\[/latex\], one target _vector_ will subsequently look as follows:
 
-\\begin{equation} \\textbf{y} = \\begin{bmatrix}0 \\\\ 0 \\\\ 0 \\\\ 0 \\\\ 0 \\\\ 1 \\\\ 0 \\\\ 0 \\\\ 0 \\\\ 0\\end{bmatrix} \\end{equation}
+$$\\begin{equation} \\textbf{y} = \\begin{bmatrix}0 \\\\ 0 \\\\ 0 \\\\ 0 \\\\ 0 \\\\ 1 \\\\ 0 \\\\ 0 \\\\ 0 \\\\ 0\\end{bmatrix} \\end{equation}$$
 
 Obviously, the target here is 5.
 

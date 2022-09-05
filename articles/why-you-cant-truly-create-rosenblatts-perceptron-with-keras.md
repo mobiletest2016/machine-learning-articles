@@ -44,7 +44,7 @@ Mathematically, a Rosenblatt perceptron can be defined as follows:
 
 \[mathjax\]
 
-\\begin{equation} f(x) = \\begin{cases} 1, & \\text{if}\\ \\textbf{w}\\cdot\\textbf{x}+b > 0 \\\\ 0, & \\text{otherwise} \\\\ \\end{cases} \\end{equation}
+$$\\begin{equation} f(x) = \\begin{cases} 1, & \\text{if}\\ \\textbf{w}\\cdot\\textbf{x}+b > 0 \\\\ 0, & \\text{otherwise} \\\\ \\end{cases} \\end{equation}$$
 
 However, mathematics is useless unless you understand it - which in my opinion cannot be done without building _intuition_ and _visualization_. Only when you can visualize an equation, and thoroughly understand how it works, you can finally enjoy its beauty.
 
@@ -60,16 +60,16 @@ In the maths above, you noticed a weights vector `**w**` and an input vector `**
 
 Let's cover the first part - multiplying the vectors - first. When you do that, it's called a _dot product_. Computing one is actually really simple: the dot product is the sum of the multiplication of the individual vector elements. Visualized, that's `x1` multiplied by `w1`; `x2` and `w2`, et cetera - mathematically:
 
-\\begin{equation} \\begin{split} z &= \\textbf{w}\\cdot\\textbf{x} \\\\ &=\\sum\_{i=1}^{n} w\_nx\_n \\\\ &= w\_1x\_1 + ... + w\_nx\_n \\\\ \\end{split} \\end{equation}
+$$\\begin{equation} \\begin{split} z &= \\textbf{w}\\cdot\\textbf{x} \\\\ &=\\sum\_{i=1}^{n} w\_nx\_n \\\\ &= w\_1x\_1 + ... + w\_nx\_n \\\\ \\end{split} \\end{equation}$$
 
   
 All these individual outputs are summated, as you can see. Subsequently, the bias value is added and the value is passed along to the 'gateway' (real name: unit step) function that assigns it either class 0 or class 1. The output passed to the unit step function looks as follows:
 
-\\begin{equation} \\begin{split} z &= \\textbf{w}\\cdot\\textbf{x} + b \\\\ &=\\sum\_{i=1}^{n} w\_nx\_n + b \\\\ &= w\_1x\_1 + ... + w\_nx\_n + b \\\\ \\end{split} \\end{equation}
+$$\\begin{equation} \\begin{split} z &= \\textbf{w}\\cdot\\textbf{x} + b \\\\ &=\\sum\_{i=1}^{n} w\_nx\_n + b \\\\ &= w\_1x\_1 + ... + w\_nx\_n + b \\\\ \\end{split} \\end{equation}$$
 
 The step function:
 
-\\begin{equation} f(x) = \\begin{cases} 1, & \\text{if}\\ \\textbf{w}\\cdot\\textbf{x}+b > 0 \\\\ 0, & \\text{otherwise} \\\\ \\end{cases} \\end{equation}
+$$\\begin{equation} f(x) = \\begin{cases} 1, & \\text{if}\\ \\textbf{w}\\cdot\\textbf{x}+b > 0 \\\\ 0, & \\text{otherwise} \\\\ \\end{cases} \\end{equation}$$
 
 It is therefore one of the simplest examples of a binary classifier.
 
@@ -189,15 +189,15 @@ The next question is then: the Perceptron step function outputs class 0 for all 
 
 Very simple - because the derivative is always zero, except for \[latex\]x = 0\[/latex\]. Consider one of the classes as the output of a function, say for class = 1, and you will get:
 
-\\begin{equation} \\begin{split} f(x) &= 1 \\end{split} \\end{equation}
+$$\\begin{equation} \\begin{split} f(x) &= 1 \\end{split} \\end{equation}$$
 
 Since \[latex\]x^0\[/latex\] is 1, we can rewrite \[latex\]f(x)\[/latex\] as:
 
-\\begin{equation} \\begin{split} f(x) &= 1 \\cdot x^0 \\\\ &= 1 \\cdot 1 \\\\ &= 1 \\\\ \\end{split} \\end{equation}
+$$\\begin{equation} \\begin{split} f(x) &= 1 \\cdot x^0 \\\\ &= 1 \\cdot 1 \\\\ &= 1 \\\\ \\end{split} \\end{equation}$$
 
 And you will see that the derivative is 0:
 
-\\begin{equation} \\begin{split} f'(x) &= \\frac{df}{dx}(1) \\\\ &= \\frac{df}{dx}(1 \\cdot x^0) \\\\ &= 0 \\cdot (1 \\cdot x^\\text{-1}) \\\\ &= 0 \\end{split} \\end{equation}
+$$\\begin{equation} \\begin{split} f'(x) &= \\frac{df}{dx}(1) \\\\ &= \\frac{df}{dx}(1 \\cdot x^0) \\\\ &= 0 \\cdot (1 \\cdot x^\\text{-1}) \\\\ &= 0 \\end{split} \\end{equation}$$
 
 What's even worse is that the derivative is _undefined_ for \[latex\]x = 0\[/latex\]. This is the case because a function must be differentiable. Since it 'steps' from 0 to 1 at \[latex\]x = 0\[/latex\], the function is not differentiable at this point, rendering the derivative to be undefined. This can be visualized as follows, but obviously then for \[latex\]x = 0\[/latex\]:
 
@@ -219,7 +219,7 @@ But to me, that's okay.
 
 The first candidate is the Sigmoid function, which can be mathematically defined as:
 
-\\begin{equation} \\begin{split} sig(t) = \\frac{\\mathrm{1} }{\\mathrm{1} + e^\\text{-t} } \\end{split} \\end{equation}
+$$\\begin{equation} \\begin{split} sig(t) = \\frac{\\mathrm{1} }{\\mathrm{1} + e^\\text{-t} } \\end{split} \\end{equation}$$
 
 And visualized as follows:
 

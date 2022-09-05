@@ -94,13 +94,13 @@ Mathematically, this is represented as follows:
 
 \[mathjax\]
 
-\\begin{equation} f(x) = \\begin{cases} 1, & \\text{if}\\ \\textbf{w}\\cdot\\textbf{x}+b > 0 \\\\ 0, & \\text{otherwise} \\\\ \\end{cases} \\end{equation}
+$$\\begin{equation} f(x) = \\begin{cases} 1, & \\text{if}\\ \\textbf{w}\\cdot\\textbf{x}+b > 0 \\\\ 0, & \\text{otherwise} \\\\ \\end{cases} \\end{equation}$$
 
 Here, you can see why it is a binary classifier: it simply determines the data to be part of class '0' or class '1'. This is done based on the output of the multiplication of the weights and input vectors, with a bias value added.
 
 When you multiply two vectors, you're computing what is called a dot product. A dot product is the sum of the multiplications of the individual scalars in the vectors, pair-wise. This means that e.g. \[latex\]w\_1x\_1\[/latex\] is computed and summated together with \[latex\]w\_2x\_2\[/latex\], \[latex\]w\_3x\_3\[/latex\] and so on ... until \[latex\]w\_nx\_n\[/latex\]. Mathematically:
 
-\\begin{equation} \\begin{split} &z=\\sum\_{i=1}^{n} w\_nx\_n + b \\\\ &= w\_1x\_1 + ... + w\_nx\_n + b \\\\ \\end{split} \\end{equation}
+$$\\begin{equation} \\begin{split} &z=\\sum\_{i=1}^{n} w\_nx\_n + b \\\\ &= w\_1x\_1 + ... + w\_nx\_n + b \\\\ \\end{split} \\end{equation}$$
 
 When this output value is larger than 0, it's class 1, otherwise it's class 0. In other words: [binary classification](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/3-variants-of-classification-problems-in-machine-learning.md/#variant-1-binary-classification).
 
@@ -128,11 +128,11 @@ This sounds strange, but it is actually a very elegant way of making the equatio
 
 As you recall, this is how the Perceptron can be defined mathematically:
 
-\\begin{equation} f(x) = \\begin{cases} 1, & \\text{if}\\ \\textbf{w}\\cdot\\textbf{x}+b > 0 \\\\ 0, & \\text{otherwise} \\\\ \\end{cases} \\end{equation}
+$$\\begin{equation} f(x) = \\begin{cases} 1, & \\text{if}\\ \\textbf{w}\\cdot\\textbf{x}+b > 0 \\\\ 0, & \\text{otherwise} \\\\ \\end{cases} \\end{equation}$$
 
 Of which \[latex\]\\textbf{w}\\cdot\\textbf{x}+b\[/latex\] could be written as:
 
-\\begin{equation} \\begin{split} &z=\\sum\_{i=1}^{n} w\_nx\_n + b \\\\ &= w\_1x\_1 + ... + w\_nx\_n + b \\\\ \\end{split} \\end{equation}
+$$\\begin{equation} \\begin{split} &z=\\sum\_{i=1}^{n} w\_nx\_n + b \\\\ &= w\_1x\_1 + ... + w\_nx\_n + b \\\\ \\end{split} \\end{equation}$$
 
 We now add the bias to the weights vector as \[latex\]w\_0\[/latex\] and choose \[latex\]x\_0 = 1\[/latex\]. This looks as follows:
 
@@ -140,11 +140,11 @@ We now add the bias to the weights vector as \[latex\]w\_0\[/latex\] and choose 
 
 This allows us to rewrite \[latex\]z\[/latex\] as follows - especially recall that \[latex\]w\_0 = b\[/latex\] and \[latex\]x\_0 = 1\[/latex\]:
 
-\\begin{equation} \\begin{split} & z = \\sum\_{i=0}^{n} w\_nx\_n \\\\ & = w\_0x\_0 + w\_1x\_1 + ... + w\_nx\_n \\\\ & = w\_0x\_0 + w\_1x\_1 + ... + w\_nx\_n \\\\ & = 1b + w\_1x\_1 + ... + w\_nx\_n \\\\ & = w\_1x\_1 + ... + w\_nx\_n + b \\end{split} \\end{equation}
+$$\\begin{equation} \\begin{split} & z = \\sum\_{i=0}^{n} w\_nx\_n \\\\ & = w\_0x\_0 + w\_1x\_1 + ... + w\_nx\_n \\\\ & = w\_0x\_0 + w\_1x\_1 + ... + w\_nx\_n \\\\ & = 1b + w\_1x\_1 + ... + w\_nx\_n \\\\ & = w\_1x\_1 + ... + w\_nx\_n + b \\end{split} \\end{equation}$$
 
 As you can see, it is still equal to the original way of writing it:
 
-\\begin{equation} \\begin{split} &z=\\sum\_{i=1}^{n} w\_nx\_n + b \\\\ &= w\_1x\_1 + ... + w\_nx\_n + b \\\\ \\end{split} \\end{equation}
+$$\\begin{equation} \\begin{split} &z=\\sum\_{i=1}^{n} w\_nx\_n + b \\\\ &= w\_1x\_1 + ... + w\_nx\_n + b \\\\ \\end{split} \\end{equation}$$
 
 This way, we got rid of the bias \[latex\]b\[/latex\] in our main equation, which will greatly help us with what we'll do now: update the weights in order to optimize the model.
 

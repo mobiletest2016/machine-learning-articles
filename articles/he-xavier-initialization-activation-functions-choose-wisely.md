@@ -161,7 +161,7 @@ In his work, Kumar argued that when variance of the layer outputs (and hence the
 
 For "activation functions differentiable at 0", Kumar derives a generic weight initialization strategy. With this strategy, which essentially assumes random initialization from e.g. the standard normal distribution but then with a specific variance that yields output variances of 1, he derives the so-called "Xavier initialization" for the Tanh activation function:
 
-\\begin{equation} v^{2} = 1/N \\end{equation}
+$$\\begin{equation} v^{2} = 1/N \\end{equation}$$
 
 ### He initialization
 
@@ -169,7 +169,7 @@ When your neural network is ReLU activated, He initialization is one of the meth
 
 Although it attempts to do the same, He initialization is different than Xavier initialization (Kumar, 2017; He et al., 2015). This difference is related to the nonlinearities of the ReLU activation function, which make it non-differentiable at \[latex\]x = 0\[/latex\]. However, Kumar indeed proves mathematically that for the ReLU activation function, the best weight initialization strategy is to initialize the weights randomly but with this variance:
 
-\\begin{equation} v^{2} = 2/N \\end{equation}
+$$\\begin{equation} v^{2} = 2/N \\end{equation}$$
 
 ...which is He initialization.
 

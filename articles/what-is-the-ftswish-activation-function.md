@@ -92,15 +92,15 @@ Another activation function was introduced in a research paper entitled "[Flatte
 
 FTSwish can be mathematically defined as follows:
 
-\\begin{equation} FTSwish: f(x) = \\begin{cases} T, & \\text{if}\\ x < 0 \\\\ \\frac{x}{1 + e^{-x}} + T, & \\text{otherwise} \\\\ \\end{cases} \\end{equation}
+$$\\begin{equation} FTSwish: f(x) = \\begin{cases} T, & \\text{if}\\ x < 0 \\\\ \\frac{x}{1 + e^{-x}} + T, & \\text{otherwise} \\\\ \\end{cases} \\end{equation}$$
 
 Where \[latex\]T\[/latex\] is a parameter that is called the _threshold value_, and ensures that the negative part of the equation produces negative values (see e.g. the plot, where \[latex\]T = -1.0\[/latex\]).
 
 Clearly, we recognize the ReLU and Sigmoid activation functions combined in the positive segment:
 
-\\begin{equation} Sigmoid: f(x) = \\frac{1}{1 + e^{-x}} \\end{equation}
+$$\\begin{equation} Sigmoid: f(x) = \\frac{1}{1 + e^{-x}} \\end{equation}$$
 
-\\begin{equation} ReLU: f(x) = \\begin{cases} 0, & \\text{if}\\ x < 0 \\\\ x, & \\text{otherwise} \\\\ \\end{cases} \\end{equation}
+$$\\begin{equation} ReLU: f(x) = \\begin{cases} 0, & \\text{if}\\ x < 0 \\\\ x, & \\text{otherwise} \\\\ \\end{cases} \\end{equation}$$
 
 This way, the authors expect that the function can _both_ benefit from ReLU's and Swish's advantages: sparsity with respect to the negative segment of the function, while the positive segment is smooth in terms of the gradients.
 

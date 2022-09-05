@@ -111,7 +111,7 @@ This is why they propose a new activation function, called the **Exponential Lin
 
 ELU can be written down mathematically as:
 
-\\begin{equation} f(x) = \\begin{cases} x, & \\text{if}\\ x >= 0 \\\\ \\alpha(exp(x) -1), & \\text{otherwise} \\\\ \\end{cases} \\end{equation}
+$$\\begin{equation} f(x) = \\begin{cases} x, & \\text{if}\\ x >= 0 \\\\ \\alpha(exp(x) -1), & \\text{otherwise} \\\\ \\end{cases} \\end{equation}$$
 
 Do note that according to the paper, \[latex\]\\alpha > 0\[/latex\] must hold for ELU to work. This must be the case since \[latex\]\\alpha\[/latex\] represents the absolute value of the negative saturation level; by definition of the formula above this must be larger than zero.
 

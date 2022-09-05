@@ -41,7 +41,7 @@ By design, the network proposed by the authors must have four input neurons, one
 
 The authors call each of those neurons a Chaotic Generalized Luroth Series neuron (GLS), which take real inputs between \[0, 1) and map them to a real output value between \[0, 1) as follows.
 
-\\begin{equation} T(x) = \\begin{cases} \\frac{x}{b}, & \\text{if}\\ 0 <= x < b \\\\ \\frac{(1-x)}{(1-b)}, & \\text{if}\\ b <= x < 1 \\\\ \\end{cases} \\end{equation}
+$$\\begin{equation} T(x) = \\begin{cases} \\frac{x}{b}, & \\text{if}\\ 0 <= x < b \\\\ \\frac{(1-x)}{(1-b)}, & \\text{if}\\ b <= x < 1 \\\\ \\end{cases} \\end{equation}$$
 
 For the \[0, 1\] domain, it visually looks as follows:
 

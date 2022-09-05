@@ -33,7 +33,7 @@ In our blog post "[What is the FTSwish activation function?](https://github.com/
 
 We can define FTSwish as follows:
 
-\\begin{equation} FTSwish: f(x) = \\begin{cases} T, & \\text{if}\\ x < 0 \\\\ \\frac{x}{1 + e^{-x}} + T, & \\text{otherwise} \\\\ \\end{cases} \\end{equation}
+$$\\begin{equation} FTSwish: f(x) = \\begin{cases} T, & \\text{if}\\ x < 0 \\\\ \\frac{x}{1 + e^{-x}} + T, & \\text{otherwise} \\\\ \\end{cases} \\end{equation}$$
 
 It's essentially a combination of the **ReLU** and **Sigmoid** activation functions, with some threshold `T` which ensures that negative inputs always yield nonzero outputs.
 
