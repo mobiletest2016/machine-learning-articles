@@ -113,8 +113,8 @@ It has two subsegments:
 
 BERT specifically comes in two flavors:
 
-- **BERT base** (\[latex\]\\text{BERT}\_\\text{BASE}\[/latex\]), which has 12 Encoder Segments stacked on top of each other, has 768-dimensional intermediate state, and utilizes 12 attention heads (with hence 768/12 = 64-dimensional attention heads).
-- **BERT large** (\[latex\]\\text{BERT}\_\\text{LARGE}\[/latex\]), which has 24 Encoder Segments, 1024-dimensional intermediate state, and 16 attention heads (64-dimensional attention heads again).
+- **BERT base** ($\\text{BERT}\_\\text{BASE}$), which has 12 Encoder Segments stacked on top of each other, has 768-dimensional intermediate state, and utilizes 12 attention heads (with hence 768/12 = 64-dimensional attention heads).
+- **BERT large** ($\\text{BERT}\_\\text{LARGE}$), which has 24 Encoder Segments, 1024-dimensional intermediate state, and 16 attention heads (64-dimensional attention heads again).
 
 The models are huge: the BERT base model has 110 million trainable parameters; the BERT large model has 340 million (Devlin et al., 2018). In comparison, classic vanilla ConvNets have hundreds of thousands [to a few million](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/reducing-trainable-parameters-with-a-dense-free-convnet-classifier.md). Training them hence requires a lot of resources: in the case of [GPT](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/intuitive-introduction-to-openai-gpt.md), it's not strange to find that they have to be pretrained for a month using massive machinery, whereas fine-tuning is more cost efficient.
 
@@ -147,17 +147,17 @@ BERT utilizes WordPiece embeddings for this purpose, having a 30.000 size word v
 
 #### BERT outputs
 
-BERT utilizes the encoder segment, meaning that it outputs some vectors \[latex\]T\_i\[/latex\] for every token. The first vector, \[latex\]T\_0\[/latex\], is also called \[latex\]C\[/latex\] in the BERT paper: it is the "class vector" that contains sentence-level information (or in the case of multiple sentences, information about the sentence pair). All other vectors are vectors representing information about the specific token.
+BERT utilizes the encoder segment, meaning that it outputs some vectors $T\_i$ for every token. The first vector, $T\_0$, is also called $C$ in the BERT paper: it is the "class vector" that contains sentence-level information (or in the case of multiple sentences, information about the sentence pair). All other vectors are vectors representing information about the specific token.
 
 #### Using outputs in language tasks
 
-In other words, structuring BERT this way allows us to perform **sentence-level tasks** and **token-level tasks**. If we use BERT and want to work with sentence-level information, we build on top of the \[latex\]C\[/latex\] token. If we want to perform tasks related to tokens only, we can use the individual tokens. It's a really awesome way to add versatility to a machine learning model.
+In other words, structuring BERT this way allows us to perform **sentence-level tasks** and **token-level tasks**. If we use BERT and want to work with sentence-level information, we build on top of the $C$ token. If we want to perform tasks related to tokens only, we can use the individual tokens. It's a really awesome way to add versatility to a machine learning model.
 
 ### Pre-training step
 
 Now that we understand how inputs are represented in BERT, we can revisit the tasks for pretraining the model. The first, task 1, is a Masked Language Modeling task, or MLM. The second is a Next Sentence Prediction task, or NSP.
 
-Both are necessary for the model to generalize well across a wide set of tasks during fine-tuning: the Masked Language Modeling task, as we shall see, will allow us to learn token-level information and hence information specific to arbitrary words. The Next Sentence Prediction task however will allow the model to learn sentence-level information through the \[latex\]C\[/latex\] token.
+Both are necessary for the model to generalize well across a wide set of tasks during fine-tuning: the Masked Language Modeling task, as we shall see, will allow us to learn token-level information and hence information specific to arbitrary words. The Next Sentence Prediction task however will allow the model to learn sentence-level information through the $C$ token.
 
 Let's now take a look at each of the tasks in more detail.
 

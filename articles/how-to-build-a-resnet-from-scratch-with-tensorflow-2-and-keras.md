@@ -45,7 +45,7 @@ And this goes directly against what should be possible in theory. In fact, a neu
 
 Source: He, K., Zhang, X., Ren, S., & Sun, J. (2016). [Deep residual learning for image recognition.](https://openaccess.thecvf.com/content_cvpr_2016/papers/He_Deep_Residual_Learning_CVPR_2016_paper.pdf) In _Proceedings of the IEEE conference on computer vision and pattern recognition_ (pp. 770-778).
 
-In practice, using today's deep learning libraries, building the skip connection is really easy. The skip connection \[latex\]\\textbf{x}\[/latex\] displayed in the image can simply be added to the output of the regular block. As you will see, however, this sometimes produces issues related to dimensionality and feature map size (i.e., width and height). He et al. describe two ways of resolving this, and you will explore both in the remainder of this tutorial:
+In practice, using today's deep learning libraries, building the skip connection is really easy. The skip connection $\\textbf{x}$ displayed in the image can simply be added to the output of the regular block. As you will see, however, this sometimes produces issues related to dimensionality and feature map size (i.e., width and height). He et al. describe two ways of resolving this, and you will explore both in the remainder of this tutorial:
 
 - An **identity mapping**, which simply maps the input to the output, adding padding or reducing feature map size where necessary.
 - A **projection mapping**, which uses convolutions to generate an output that 'clicks' onto the next residual building block.

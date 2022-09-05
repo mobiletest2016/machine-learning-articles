@@ -31,7 +31,7 @@ Are you ready? Let's take a look!
 
 ## What is regression?
 
-Deep Learning models are systems of trainable components that can learn a _mappable function_. Such a function can be represented as \[latex\]\\textbf{x} \\rightarrow \\text{y}\[/latex\] at a high level, where some input \[latex\]\\textbf{x}\[/latex\] is mapped to an output \[latex\]\\text{y}\[/latex\].
+Deep Learning models are systems of trainable components that can learn a _mappable function_. Such a function can be represented as $\\textbf{x} \\rightarrow \\text{y}$ at a high level, where some input $\\textbf{x}$ is mapped to an output $\\text{y}$.
 
 Given the [universal approximation theorem](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/can-neural-networks-approximate-mathematical-functions.md), they should even be capable of approximating any mathematical function! The exact _mapping_ is learned through the high-level training process, in which example data that contains this mapping is fed through the model, after which the error is computed backwards and the model is optimized.
 
@@ -43,9 +43,9 @@ There is a wide variety of such mappings:
 
 These are all examples of **classification**. They answer whether a particular _instance_ is present or not. Is that cat present? Yes or no. Is that dog present? Yes or no. Does it contain the object? Yes or no. You can compare such problems by assigning certain inputs to one or sometimes multiple bins.
 
-Regression involves the same mappable function, but the output is not a bin-like (i.e. a discrete) value. Rather, the mappable function \[latex\]\\textbf{x} \\rightarrow \\text{y}\[/latex\] also converts the input data \[latex\]\\textbf{x}\[/latex\] to an output \[latex\]\\text{y}\[/latex\], but instead of a discrete value, \[latex\]\\text{y}\[/latex\] is continuous.
+Regression involves the same mappable function, but the output is not a bin-like (i.e. a discrete) value. Rather, the mappable function $\\textbf{x} \\rightarrow \\text{y}$ also converts the input data $\\textbf{x}$ to an output $\\text{y}$, but instead of a discrete value, $\\text{y}$ is continuous.
 
-In other words, \[latex\]\\text{y}\[/latex\] can take any value that belongs to a particular range (for example, the real numbers). In other words, values such as \[latex\]\\text{y} = 7.23\[/latex\] or \[latex\]\\text{y} = -12.77438\[/latex\] are perfectly normal. Learning a model that maps an input \[latex\]\\textbf{x}\[/latex\] to a continuous target variable is a process called **regression**. It is now easy to see why such models are quite frequently used to solve numeric problems - such as predicting the yield of a crop or the expected risk level in a financial model.
+In other words, $\\text{y}$ can take any value that belongs to a particular range (for example, the real numbers). In other words, values such as $\\text{y} = 7.23$ or $\\text{y} = -12.77438$ are perfectly normal. Learning a model that maps an input $\\textbf{x}$ to a continuous target variable is a process called **regression**. It is now easy to see why such models are quite frequently used to solve numeric problems - such as predicting the yield of a crop or the expected risk level in a financial model.
 
 * * *
 

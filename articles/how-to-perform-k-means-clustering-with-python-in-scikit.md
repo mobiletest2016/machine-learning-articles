@@ -79,7 +79,7 @@ plt.show()
 
 ## What is K-means clustering?
 
-Suppose that we have a dataset \[latex\]X\[/latex\], which contains many n-dimensional vectors \[latex\]\\mathbf{x\_1} \\mathbf{x\_2}, ..., \\mathbf{x\_n}\[/latex\]. Say, \[latex\]n = 2\[/latex\], then \[latex\]\\mathbf{x\_1}\[/latex\] could be \[latex\]\[3.12, 4.14\]\[/latex\]. Mapping this one onto a two-dimensional space, i.e. a plane, gives this:
+Suppose that we have a dataset $X$, which contains many n-dimensional vectors $\\mathbf{x\_1} \\mathbf{x\_2}, ..., \\mathbf{x\_n}$. Say, $n = 2$, then $\\mathbf{x\_1}$ could be $\[3.12, 4.14\]$. Mapping this one onto a two-dimensional space, i.e. a plane, gives this:
 
 [![](images/point.png)]
 
@@ -111,9 +111,9 @@ For this, we turn to our good old friend Wikipedia - and cherry pick the most im
 
 Let's break that one apart into pieces that we can understand atomically:
 
-- You have a dataset with some length \[latex\]n\[/latex\].
+- You have a dataset with some length $n$.
 - The goal is clustering, which means that you want to create "groups" of data, like in the scenario above.
-- You have control over the number of groups (clusters) that is created: it'll be \[latex\]k\[/latex\] clusters, configured upfront. As you can imagine, \[latex\] k \\leq n\[/latex\].
+- You have control over the number of groups (clusters) that is created: it'll be $k$ clusters, configured upfront. As you can imagine, $k \\leq n$.
 - Now the abstract part: each sample in your dataset is assigned to the cluster where the distance to the "mean" of that cluster is lowest. With mean, we literally mean the "center point" of the particular cluster. This way, the sample is assigned to the most likely "group" of data points.
 
 Let's take a look at how the algorithm works.
@@ -122,7 +122,7 @@ Let's take a look at how the algorithm works.
 
 For this, we turn to the Scikit-learn website, which explains [it nicely in plain English](https://scikit-learn.org/stable/modules/clustering.html#k-means):
 
-1. **Initialization**: directly after starting it, the initial centroids (cluster centers) are chosen. Scikit-learn supports two ways for doing this: firstly, `random`, which selects \[latex\]k\[/latex\] samples from the dataset at random. Secondly, `k-means++`, which [optimizes this process](https://en.wikipedia.org/wiki/K-means%2B%2B).
+1. **Initialization**: directly after starting it, the initial centroids (cluster centers) are chosen. Scikit-learn supports two ways for doing this: firstly, `random`, which selects $k$ samples from the dataset at random. Secondly, `k-means++`, which [optimizes this process](https://en.wikipedia.org/wiki/K-means%2B%2B).
 2. **Centroid assignment:** each sample in the dataset is assigned to the nearest centroid.
 3. **Centroid correction:** new centroids are created by computing new means for the assignments created in step 2.
 4. **Difference comparison:** for each centroid, the difference between old and new is compared, and the algorithm stops when the difference is lower than a threshold called `inertia`, or `tolerance`. Otherwise, it moves back to step 2.
@@ -137,11 +137,11 @@ While we expressed the algorithm above in very plain ways, we can also express t
 
 How's this value determined? Well, as follows (Scikit-learn, n.d.):
 
-\[latex\]\\sum\_{i=0}^{n}\\min\_{\\mu\_j \\in C}(||x\_i - \\mu\_j||^2)\[/latex\]
+$\\sum\_{i=0}^{n}\\min\_{\\mu\_j \\in C}(||x\_i - \\mu\_j||^2)$
 
 Let's break down the formula.
 
-The first part, the **sigma sign**, essentially tells you that the value is a _sum_ of something for all \[latex\]n\[/latex\] samples in your dataset. Nothing special for now. But what is this something?
+The first part, the **sigma sign**, essentially tells you that the value is a _sum_ of something for all $n$ samples in your dataset. Nothing special for now. But what is this something?
 
 A minimum. To be more precise, a minimum of the **squares** of the difference between **each sample** and the **mean** of a particular cluster.
 
@@ -213,7 +213,7 @@ num_classes = len(cluster_centers)
 Those are really simple:
 
 - We'll be generating 1000 samples in total.
-- They will be spread over 2 clusters, the first of which is located at approximately \[latex\](x, y) = (20, 20)\[/latex\], the other at \[latex\](4, 4)\[/latex\].
+- They will be spread over 2 clusters, the first of which is located at approximately $(x, y) = (20, 20)$, the other at $(4, 4)$.
 - The `num_classes` i.e. the number of clusters is, pretty obviously, the `len(cluster_centers)` - i.e. 2.
 
 We then generate the data:
@@ -223,7 +223,7 @@ We then generate the data:
 X, targets = make_blobs(n_samples = num_samples_total, centers = cluster_centers, n_features = num_classes, center_box=(0, 1), cluster_std = 2)
 ```
 
-Generating the data simply equates calling the `make_blobs` definition from Scikit-learn, which does all the hard work. We specify the centers and number of samples that we configured before, as well as the number of features. We set a standard deviation of 2 - which means that the samples we generate at those two locations are distributed around the centers with a high likelihood of a deviation of \[latex\]\\pm 2\[/latex\].
+Generating the data simply equates calling the `make_blobs` definition from Scikit-learn, which does all the hard work. We specify the centers and number of samples that we configured before, as well as the number of features. We set a standard deviation of 2 - which means that the samples we generate at those two locations are distributed around the centers with a high likelihood of a deviation of $\\pm 2$.
 
 Should you wish to save the data so that you can reuse the _exact_ positions later (e.g. in the cases where you want to generate different visualizations), you might add this code - which simply saves the data and reloads it immediately, for you to apply accordingly. It's not necessary though.
 

@@ -85,7 +85,7 @@ It can be visualized as follows:
 
 Well, what you need to know first is this: **binary crossentropy** works with **binary classification problems**, which is a difficult term for the _simple observation_ that your sample either belongs to class one (e.g. "diabetes") or class zero ("no diabetes"). Binary classification in most cases boils down to a true/false problem, where you want to classify new samples into one class or another.
 
-This also means that in your training set, each feature vector out of the many that your set contain (a feature vector contains the descriptive variables that together represent some relationship about the pattern you wish to discover) belongs to one of two targets: zero or one, or \[latex\]{ 0, 1 }\[/latex\].
+This also means that in your training set, each feature vector out of the many that your set contain (a feature vector contains the descriptive variables that together represent some relationship about the pattern you wish to discover) belongs to one of two targets: zero or one, or ${ 0, 1 }$.
 
 Now, if we take a look at the [high-level machine learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md/#the-high-level-supervised-learning-process) for supervised learning problems (which classification belongs to), we see that training encompasses many _forward passes_ - you essentially feed your training set to the current model, generate predictions, compare them to the actual targets, compute a loss value (hey, that's what we cover today!) and subsequently optimize by slightly adapting the model's internals. That way, you hope that your model improves when you repeat the process, eventually finding a model that performs really well.
 
@@ -116,7 +116,7 @@ The equation looks slightly more complex, and it is, but we can once again expla
 
 What you'll first have to understand that with _categorical_ crossentropy the targets must be _categorical_: that is, they cannot be integer-like (in the MNIST dataset the targets are integers ranging from 0-9) but must say for all possible classes whether the target belongs to the class or not.
 
-We do so by converting the integer targets into _categorical format_, or vectorized format, like \[latex\]\[0, 0, 0, 1, 0, 0, 0, 0, 0, 0\]\[/latex\] for the MNIST dataset - this target represents class 3, by the way.
+We do so by converting the integer targets into _categorical format_, or vectorized format, like $\[0, 0, 0, 1, 0, 0, 0, 0, 0, 0\]$ for the MNIST dataset - this target represents class 3, by the way.
 
 Similar to binary crossentropy, categorical crossentropy is computed for each sample and eventually merged together - hence, the formula above takes once again two inputs: prediction `p` and target `t`, where _both_ are categorical.
 
@@ -126,7 +126,7 @@ Well, you're right - but it's not exactly what happens. Instead of converting th
 
 That's a difficult term which simply tells us that it outputs a vector (hence categorical format!) containing for each class the probability that the sample belongs to the class, all probabilities together being 1 (for 100%).
 
-If for example we have a target \[latex\]\[0, 0, 1\]\[/latex\], a confident and well-trianed ML model would in that case output e.g. \[latex\]\[0, 0.05, 0.95\]\[/latex\], to give just one example.
+If for example we have a target $\[0, 0, 1\]$, a confident and well-trianed ML model would in that case output e.g. $\[0, 0.05, 0.95\]$, to give just one example.
 
 Now that we understand that both inputs to categorical crossentropy are of categorical format, we can proceed with a scrutiny of the actual function.
 
@@ -134,9 +134,9 @@ For the sake of simplicity, here it is again:
 
 ![](images/image-6.png)
 
-The maths tell us that we iterate over all classes \[latex\]C\[/latex\] that our machine learning problem describes.
+The maths tell us that we iterate over all classes $C$ that our machine learning problem describes.
 
-The maths tell us too that some _observation_ is used in the computation -- hence the \[latex\]o,c\[/latex\] with the `t` and `p`.
+The maths tell us too that some _observation_ is used in the computation -- hence the $o,c$ with the `t` and `p`.
 
 But what is an observation? We can look at this from the lens of the Sigma, or the loop / iteration, which simply iterates over all the possible classes.
 
@@ -144,7 +144,7 @@ On each iteration, the particular element in both the _target vector_ and the _p
 
 For each observation, the logarithmic computation is made, which resembles the binary crossentropy one.
 
-However, there is one interesting detail: for all \[latex\]t\[/latex\] unequal to the actual target value, the result of this computation is 0, since \[latex\]t\_{o,c}\[/latex\] is 0 in that case.
+However, there is one interesting detail: for all $t$ unequal to the actual target value, the result of this computation is 0, since $t\_{o,c}$ is 0 in that case.
 
 This way, categorical crossentropy allows us to compute the loss value for multiclass classification problems - while remaining flexible _with respect to the actual target class_.
 
@@ -163,7 +163,7 @@ Although you'll have to find out which one works best for your ML problem by mea
 - Hinge loss will attempt to maximize the margin between your classes, whereas crossentropy loss will attempt to maximize the likelihood of the prediction being the target class (Varma, n.d.). This is a fundamentally different approach: cross entropy requires a probability distribution while hinge loss does not (Why Isn't Cross Entropy Used in SVM?, n.d.).
 - However, both are reported to perform as well as each other( What loss function should I use for binary detection in face/non-face detection in CNN?, n.d.).
 - In terms of interpreting the outputs, you'll likely prefer the crossentropy outputs since they tell you something about how likely the sample belongs to one class. In the binary case, the real number between 0 and 1 tells you something about the binary case, whereas the categorical prediction tells you something about the multiclass case. Hinge loss just generates a number, but does not compare the classes (softmax+cross entropy v.s. square regularized hinge loss for CNNs, n.d.).
-- However, hinge loss - which is simply a \[latex\]max()\[/latex\] function, is easier to compute than crossentropy loss computationally, which requires computing logarithms (Tay, n.d.). The same applies to its derivative: the derivative of a logarithm is more complex than the derivative of a maximum function, which can be rewritten as a [piecewise function](https://ell.stackexchange.com/questions/14700/what-is-the-name-of-the-branched-function-maths-in-correct-english). Hence, you'll get results faster when using hinge loss: "If you need real time decisions with a lesser \[sic\] accuracy depend on it" (Caliskan, n.d.). For crossentropy: "If you have any sexy idea like deep learning try to understand it."
+- However, hinge loss - which is simply a $max()$ function, is easier to compute than crossentropy loss computationally, which requires computing logarithms (Tay, n.d.). The same applies to its derivative: the derivative of a logarithm is more complex than the derivative of a maximum function, which can be rewritten as a [piecewise function](https://ell.stackexchange.com/questions/14700/what-is-the-name-of-the-branched-function-maths-in-correct-english). Hence, you'll get results faster when using hinge loss: "If you need real time decisions with a lesser \[sic\] accuracy depend on it" (Caliskan, n.d.). For crossentropy: "If you have any sexy idea like deep learning try to understand it."
 - Hinge loss also introduces sparsity into your machine learning problem, while crossentropy loss does not (Tay, n.d.).
 
 So in short: if you'll favor sparsity and are not interested in maximum likelihood estimation (in plainer English: if you have a true/false problem, or a one-of-easily-separable-classes problem), it's likely that you'll gain faster and adequate results with hinge loss. Give it a try. If it doesn't work well, switch to crossentropy loss, as "just using this loss function to train your ML model will make it work relatively well" (Pham, n.d.).

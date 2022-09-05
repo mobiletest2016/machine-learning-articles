@@ -93,7 +93,7 @@ When training a neural network, you are performing [supervised learning](https:/
 
 There are [various loss functions](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md) that are used in neural networks. However, in addition to a loss value, we often use the **accuracy**. It is used because it is very intuitive to human beings, and can be defined as follows:
 
-\[latex\]Accuracy = \\frac{TP + TN}{TP + TN + FP + FN}\[/latex\]
+$Accuracy = \\frac{TP + TN}{TP + TN + FP + FN}$
 
 Here:
 
@@ -289,7 +289,7 @@ Often, precision and recall are at odds - and you must trade-off between _high r
 
 The F1 score takes both precision and recall and produces another value:
 
-\[latex\]F1 = 2 \\times \\frac{precision \\times recall}{precision + recall}\[/latex\]
+$F1 = 2 \\times \\frac{precision \\times recall}{precision + recall}$
 
 If you optimize your model with F1 instead of Precision or Recall, you will find that it will attempt to maximize F1 - and hence maximize precision without losing too much on recall, and vice versa. This way, you _can_ keep using imbalanced data, by omitting the faulty evaluation metrics in the first place.
 

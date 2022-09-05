@@ -82,7 +82,7 @@ And, to be speaking most generally, that method is called **feature scaling** - 
 
 There are two primary ways for feature scaling which we will cover in the remainder of this article:
 
-- **Rescaling**, or _min-max normalization:_ we scale the data into one of two ranges: \[latex\]\[0, 1\]\[/latex\] or \[latex\]\[a, b\]\[/latex\], often \[latex\]\[-1, 1\]\[/latex\].
+- **Rescaling**, or _min-max normalization:_ we scale the data into one of two ranges: $\[0, 1\]$ or $\[a, b\]$, often $\[-1, 1\]$.
 - **Standardization**, or _Z-score normalization_: we scale the data so that the mean is zero and variance is 1.
 
 Let's now cover each of the three methods in more detail, find out how they work, and identify when they are used best.
@@ -91,7 +91,7 @@ Let's now cover each of the three methods in more detail, find out how they work
 
 ## Rescaling (min-max normalization)
 
-Rescaling, or **min-max normalization**, is a simple method for bringing your data into one out of two ranges: \[latex\]\[0, 1\]\[/latex\] or \[latex\]\[a, b\]\[/latex\]. It highly involves the minimum and maximum values from the dataset in normalizing the data.
+Rescaling, or **min-max normalization**, is a simple method for bringing your data into one out of two ranges: $\[0, 1\]$ or $\[a, b\]$. It highly involves the minimum and maximum values from the dataset in normalizing the data.
 
 ### How it works - the \[0, 1\] way
 
@@ -101,13 +101,13 @@ Suppose that we have the following array:
 dataset = np.array([1.0, 12.4, 3.9, 10.4])
 ```
 
-Min-max normalization for the range \[latex\]\[0, 1\]\[/latex\] can be defined as follows:
+Min-max normalization for the range $\[0, 1\]$ can be defined as follows:
 
 ```
 normalized_dataset = (dataset - min(dataset)) / (max(dataset) - min(dataset))
 ```
 
-In a naïve way, using Numpy, we can therefore normalize our data into the \[latex\]\[0, 1\]\[/latex\] range in the following way:
+In a naïve way, using Numpy, we can therefore normalize our data into the $\[0, 1\]$ range in the following way:
 
 ```
 import numpy as np
@@ -124,7 +124,7 @@ This indeed yields an array where the lowest value is now `0.0` and the biggest 
 
 ### How it works - the \[a, b\] way
 
-If instead we wanted to scale it to some other arbitrary range - say \[latex\]\[0, 1.5\]\[/latex\], we can apply min-max normalization but then for the \[latex\]\[a, b\]\[/latex\] range, where \[latex\]a\[/latex\] and \[latex\]b\[/latex\] can be chosen yourself.
+If instead we wanted to scale it to some other arbitrary range - say $\[0, 1.5\]$, we can apply min-max normalization but then for the $\[a, b\]$ range, where $a$ and $b$ can be chosen yourself.
 
 We can use the following formula for normalization:
 
@@ -157,7 +157,7 @@ It allows us to fit a scaler with a predefined range to our dataset, and subsequ
 
 - We import `numpy` as a whole and the `MinMaxScaler` from `sklearn.preprocessing`.
 - We define the NumPy array that we just defined before, but now, we have to reshape it: `.reshape(-1, 1)`. This is a Scikit-learn requirement for arrays with just one feature per array item (which in our case is true, because we are using scalar values).
-- We then initialize the `MinMaxScaler` and here we also specify our \[latex\]\[a, b\]\[/latex\] range: `feature_range=(0, 1.5)`. Of course, as \[latex\]\[0, 1\]\[/latex\] is also an \[latex\]\[a, b\]\[/latex\] range, we can implement that one as well using `MinMaxScaler`.
+- We then initialize the `MinMaxScaler` and here we also specify our $\[a, b\]$ range: `feature_range=(0, 1.5)`. Of course, as $\[0, 1\]$ is also an $\[a, b\]$ range, we can implement that one as well using `MinMaxScaler`.
 - We then fit the data to our scaler, using `scaler.fit(dataset)`. This way, it becomes capable of transforming datasets.
 - We finally transform the `dataset` using `scaler.transform(dataset)` and print the result.
 
@@ -282,7 +282,7 @@ With as outcome:
 1.0
 ```
 
-We see that the mean is _really_ close to 0 (\[latex\]3.17 \\times 10^{-17}\[/latex\]) and that standard deviation is one.
+We see that the mean is _really_ close to 0 ($3.17 \\times 10^{-17}$) and that standard deviation is one.
 
 * * *
 
@@ -292,7 +292,7 @@ Many people have the question **when to use normalization, and when to use stand
 
 Most generally, the rule of thumb would be to **use min-max normalization if you want to normalize the data while keeping some differences in scales (because units remain different), and use standardization if you want to make scales comparable (through standard deviations)**.
 
-The example below illustrates the effects of standardization. In it, we create Gaussian data, stretch one of the axes with some value to make them relatively incomparable, and plot the data. This clearly indicates the stretched blobs in an absolute sense. Then, we use standardization and plot the data again. We now see that both the mean has moved to \[latex\](0, 0)\[/latex\] _and_ that when the data is standardized, the variance of the axes is pretty similar!
+The example below illustrates the effects of standardization. In it, we create Gaussian data, stretch one of the axes with some value to make them relatively incomparable, and plot the data. This clearly indicates the stretched blobs in an absolute sense. Then, we use standardization and plot the data again. We now see that both the mean has moved to $(0, 0)$ _and_ that when the data is standardized, the variance of the axes is pretty similar!
 
 If we hadn't applied feature scaling here, algorithms like [PCA](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/introducing-pca-with-python-and-scikit-learn-for-machine-learning.md) would have pretty much fooled us. ;-)
 
@@ -341,7 +341,7 @@ plt.show()
 
 ## Summary
 
-In this article, we looked at Feature Scaling for Machine Learning. More specifically, we looked at Normalization (min-max normalization) which brings the dataset into the \[latex\]\[a, b\]\[/latex\] range. In addition to Normalization, we also looked at Standardization, which allows us to convert the scales into _amounts of standard deviation_, making the axes comparable for e.g. algorithms like PCA.
+In this article, we looked at Feature Scaling for Machine Learning. More specifically, we looked at Normalization (min-max normalization) which brings the dataset into the $\[a, b\]$ range. In addition to Normalization, we also looked at Standardization, which allows us to convert the scales into _amounts of standard deviation_, making the axes comparable for e.g. algorithms like PCA.
 
 We illustrated our reasoning with step-by-step Python examples, including some with standard Scikit-learn functionality.
 

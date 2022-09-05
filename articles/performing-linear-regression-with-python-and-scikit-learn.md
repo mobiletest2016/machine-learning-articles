@@ -53,13 +53,13 @@ In other words, suppose that we have the following dataset:
 | 4 | 2 | 1 | 0.05 |
 | … | … | … | … |
 
-And suppose that our goal is to build a predictive model where we explore whether any or a combination of the variables \[latex\]\\text{projects\_completed}\[/latex\], \[latex\]\\text{successful\_projects}\[/latex\] or \[latex\]\\text{positive\_reviews}\[/latex\] can predict the annual salary increase, i.e. \[latex\]\\text{salary\_increase}\[/latex\].
+And suppose that our goal is to build a predictive model where we explore whether any or a combination of the variables $\\text{projects\_completed}$, $\\text{successful\_projects}$ or $\\text{positive\_reviews}$ can predict the annual salary increase, i.e. $\\text{salary\_increase}$.
 
 In other words, we explore whether:
 
-\[latex\]\\text{\\{projects\_completed, successful\_projects, positive\_reviews\\}} \\rightarrow \\text{salary\_increase}\[/latex\]
+$\\text{\\{projects\_completed, successful\_projects, positive\_reviews\\}} \\rightarrow \\text{salary\_increase}$
 
-Here, \[latex\]\\text{salary\_increase}\[/latex\] is a _continuous variable_, meaning that it can take any 'real value', i.e. any positive and negative number with decimals. Salary increases can be 0.00, even negative (if our salary would decrease, e.g. -0.05), or really positive if performed well (0.12 or 12% to give just one example).
+Here, $\\text{salary\_increase}$ is a _continuous variable_, meaning that it can take any 'real value', i.e. any positive and negative number with decimals. Salary increases can be 0.00, even negative (if our salary would decrease, e.g. -0.05), or really positive if performed well (0.12 or 12% to give just one example).
 
 [Contrary to classification](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/3-variants-of-classification-problems-in-machine-learning.md), where we attempt to assign some inputs to one of multiple categories (and where hence the output is a _discrete_ variable), this is a regression problem. Generating a predictive model here thus means that we attempt to capture patterns which ensure us to make a mapping between input values and a real-valued outcome. In other words, we attempt to estimate the salary increase based on the input variables.
 
@@ -69,21 +69,21 @@ Here, the salary is the dependent variable, whereas the three others are the ind
 
 When we perform the regression in a linear way, i.e. by fitting a straight line through the data, we call our approach a **Linear Regression** problem.
 
-In the example below, you can see what is meant with Linear Regression. You can see a dataset with points in a two-dimensional space, e.g. with variables \[latex\]x\[/latex\] and \[latex\]y\[/latex\]. This regression problem is called a _**Simple**_ **Linear Regression** problem, because there is "one explanatory variable" (i.e., \[latex\]x\[/latex\]; Wikipedia, 2005).
+In the example below, you can see what is meant with Linear Regression. You can see a dataset with points in a two-dimensional space, e.g. with variables $x$ and $y$. This regression problem is called a _**Simple**_ **Linear Regression** problem, because there is "one explanatory variable" (i.e., $x$; Wikipedia, 2005).
 
-In that case, the regression problem can be written as \[latex\]y = \\alpha + \\beta x\[/latex\]. The slope of the line is represented by \[latex\]\\beta\[/latex\] whereas the y-interceptor (i.e. the value for \[latex\]y\[/latex\] where the line crosses the axis). In the image below, the y intercept is 5. If you've had some maths in high school, you likely recognize the function \[latex\] y = ax + b\[/latex\] here. It's exactly the same.
+In that case, the regression problem can be written as $y = \\alpha + \\beta x$. The slope of the line is represented by $\\beta$ whereas the y-interceptor (i.e. the value for $y$ where the line crosses the axis). In the image below, the y intercept is 5. If you've had some maths in high school, you likely recognize the function $y = ax + b$ here. It's exactly the same.
 
 ![](images/1920px-Linear_regression.svg_-1024x677.png)
 
 However, not every Linear Regression problem is a _simple_ one. In those cases, we call the regression problem one of _multiple_ variables, and hence **Multiple Linear Regression**, also known as multivariable linear regression. In that case, we can write the formula as follows (Wikipedia, 2001):
 
-\[latex\]y\_i = \\beta\_0 + \\beta\_1x\_{i1} + … + \\beta\_px\_{ip} + \\epsilon\_i\[/latex\]
+$y\_i = \\beta\_0 + \\beta\_1x\_{i1} + … + \\beta\_px\_{ip} + \\epsilon\_i$
 
-In other words, the outcome is a combination of the input values from the input vector \[latex\]\\textbf{x}\[/latex\] multiplied by the corresponding weights, which have been learned during the fit. Generating the _outcome_ of the function, once fit, is therefore really simple. But let's now take a better look at how the fit is made, because that is the core of the Linear Regression type that we will be using today.
+In other words, the outcome is a combination of the input values from the input vector $\\textbf{x}$ multiplied by the corresponding weights, which have been learned during the fit. Generating the _outcome_ of the function, once fit, is therefore really simple. But let's now take a better look at how the fit is made, because that is the core of the Linear Regression type that we will be using today.
 
 ### Linear Regression Types
 
-Indeed, the _type_ of Linear Regression problem, because there are multiple ways to solve such a problem. The _solving_ here involves estimating the values for \[latex\]B\_i\[/latex\], where \[latex\]i \\in {0, 1, ..., p}\[/latex\]. These are common methods for solving a linear regression problem:
+Indeed, the _type_ of Linear Regression problem, because there are multiple ways to solve such a problem. The _solving_ here involves estimating the values for $B\_i$, where $i \\in {0, 1, ..., p}$. These are common methods for solving a linear regression problem:
 
 - **Least-squares estimation:** in this class of methods, the goal is to minimize the sum of mean squared loss. There are three primary techniques that are in use here: Ordinary Least Squares (OLS), Weighted Least Squares (WLS) and Generalized Least Squares (GLS). We will be using OLS in this article.
 - **Maximum-likelihood estimation:** we can also use a probability based way of estimating should the distribution of the error terms be known.
@@ -93,7 +93,7 @@ Above, you read that we will be using Ordinary Least Squares regression. Let's n
 
 ### How is Ordinary Least Squares Linear Regression performed?
 
-With Ordinary Least Squares regression, the goal is to minimize the sum of mean squared loss by means of some hyperplane. Recall the concept of a hyperplane from [Support Vector Machines](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/using-radial-basis-functions-for-svms-with-python-and-scikit-learn.md): if our feature space has \[latex\]N\[/latex\] dimensions, a hyperplane is \[latex\]N-1\[/latex\]-dimensional. In other words, in the image above, which shows a twodimensional feature space, our hyperplane is the line.
+With Ordinary Least Squares regression, the goal is to minimize the sum of mean squared loss by means of some hyperplane. Recall the concept of a hyperplane from [Support Vector Machines](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/using-radial-basis-functions-for-svms-with-python-and-scikit-learn.md): if our feature space has $N$ dimensions, a hyperplane is $N-1$-dimensional. In other words, in the image above, which shows a twodimensional feature space, our hyperplane is the line.
 
 Indeed, regression always attempts to generate a hyperplane which allows us to produce real-valued output for the input vector that we provide.
 
@@ -134,17 +134,17 @@ As you can see, the (absolute value for the) residual here is relatively large.
 
 ![](images/residual.png)
 
-Residuals are calculated as \[latex\]y\_i - \\hat{y\_i}\[/latex\], where \[latex\]y\_i\[/latex\] is the observed value (the value from the dataset) and \[latex\]\\hat{y\_i}\[/latex\] is the prediction. As you can see, if the line lies above the observed/dataset value, \[latex\]y\_i < \\hat{y\_i}\[/latex\], and \[latex\]y\_i > \\hat{y\_i}\[/latex\] otherwise.
+Residuals are calculated as $y\_i - \\hat{y\_i}$, where $y\_i$ is the observed value (the value from the dataset) and $\\hat{y\_i}$ is the prediction. As you can see, if the line lies above the observed/dataset value, $y\_i < \\hat{y\_i}$, and $y\_i > \\hat{y\_i}$ otherwise.
 
-Now, a naïve approach for computing how good the fit is, is summing together all residuals: \[latex\]\\sum\_{i=0}^{p} y\_i - \\hat{y\_i}\[/latex\]. But is this a good approach?
+Now, a naïve approach for computing how good the fit is, is summing together all residuals: $\\sum\_{i=0}^{p} y\_i - \\hat{y\_i}$. But is this a good approach?
 
 No.
 
 It is quite problematic, to say the least. As you can see, the line is fit somewhere in the middle of the data. Approximately 50% of the samples lie above the fit while the other lies below the fit. If we would just sum all the residuals, we would expect the outcome of the sum to be somewhere close to zero. As if the model is not off for many of the samples. Doesn't work.
 
-Fortunately, some smart people have thought about a relatively easy fix: what if, instead of taking the residual value for each point, we would take the residual value squared? In other words, what if we would take \[latex\](y\_i - \\hat{y\_i})^2\[/latex\] and hence compute \[latex\]\\sum\_{i=0}^{p} (y\_i - \\hat{y\_i})^2\[/latex\] which is known as the **sum of squared resisudals**, **error sum of squares** or **residual sum of squares**?
+Fortunately, some smart people have thought about a relatively easy fix: what if, instead of taking the residual value for each point, we would take the residual value squared? In other words, what if we would take $(y\_i - \\hat{y\_i})^2$ and hence compute $\\sum\_{i=0}^{p} (y\_i - \\hat{y\_i})^2$ which is known as the **sum of squared resisudals**, **error sum of squares** or **residual sum of squares**?
 
-Our problem is solved. And so is the regression problem, because if we minimize this sum and select the argument, i.e. \[latex\]\\text{argmin} \\sum\_{i=0}^{p} (y\_i - \\hat{y\_i})^2\[/latex\], we'll find the set of weights / coefficients / values \[latex\]\\beta\[/latex\] with which we can compute the output value. Since the function has a global minimum, there is a unique set of values with which the sum is minimized (Wikipedia, 2001).
+Our problem is solved. And so is the regression problem, because if we minimize this sum and select the argument, i.e. $\\text{argmin} \\sum\_{i=0}^{p} (y\_i - \\hat{y\_i})^2$, we'll find the set of weights / coefficients / values $\\beta$ with which we can compute the output value. Since the function has a global minimum, there is a unique set of values with which the sum is minimized (Wikipedia, 2001).
 
 We will now take a look at how we can implement OLS based Linear Regression with Python.
 

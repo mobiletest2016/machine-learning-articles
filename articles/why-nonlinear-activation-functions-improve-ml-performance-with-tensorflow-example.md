@@ -42,9 +42,9 @@ As you can imagine, the input layer is capable of accepting input to the model t
 
 The hidden layer(s - just one in this case) attempt to capture patterns hidden within the dataset as a whole through training. Training, as we shall see later in this article, is an iterative optimization process. Patterns are captured by means of [weights](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-weight-initialization.md). When new samples pass through these hidden layers, they thus attempt to 'see' whether certain patterns are present - and if so, the individual components (i.e. neurons) that capture these patterns will 'fire' to the next layer with more strength.
 
-Finally, the output layer generates the final prediction. For example, [in the case of binary classification](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/3-variants-of-classification-problems-in-machine-learning.md), this is a numeric prediction in the range \[latex\]\[0, 1\]\[/latex\] - i.e. a 0% to 100% probability that it's some class. Output \[latex\]0.6666\[/latex\] suggests that it's more likely to be class \[latex\]1\[/latex\], but the model is not entirely sure.
+Finally, the output layer generates the final prediction. For example, [in the case of binary classification](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/3-variants-of-classification-problems-in-machine-learning.md), this is a numeric prediction in the range $\[0, 1\]$ - i.e. a 0% to 100% probability that it's some class. Output $0.6666$ suggests that it's more likely to be class $1$, but the model is not entirely sure.
 
-In the case of [multiclass classification](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/3-variants-of-classification-problems-in-machine-learning.md), it would be a [probability distribution](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-does-the-softmax-activation-function-work.md) over the possible output classes - with each class assigned a probability, all probabilities summed to \[latex\]1\[/latex\].
+In the case of [multiclass classification](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/3-variants-of-classification-problems-in-machine-learning.md), it would be a [probability distribution](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-does-the-softmax-activation-function-work.md) over the possible output classes - with each class assigned a probability, all probabilities summed to $1$.
 
 ### Individual neurons
 
@@ -52,17 +52,17 @@ If you would zoom in to one of the neurons from the neural network displayed abo
 
 ![](images/layer-linear.png)
 
-What is happening inside each individual neuron is that the _vector_ with input data called \[latex\]\\textbf{x}\[/latex\], which can be compared to a Python list, is multiplied with a weights vector \[latex\]\\textbf{w}\[/latex\], after which a bias value \[latex\]b\[/latex\] is added. The output is passed to the next layer.
+What is happening inside each individual neuron is that the _vector_ with input data called $\\textbf{x}$, which can be compared to a Python list, is multiplied with a weights vector $\\textbf{w}$, after which a bias value $b$ is added. The output is passed to the next layer.
 
-Of course, in the input layer, \[latex\]\\textbf{x}\[/latex\] represents the _feature vector_ - i.e., the list of features that together represents one sample - while it represents the output of previous layers in the hidden layers and the output layer.
+Of course, in the input layer, $\\textbf{x}$ represents the _feature vector_ - i.e., the list of features that together represents one sample - while it represents the output of previous layers in the hidden layers and the output layer.
 
-For each neuron, vector \[latex\]\\textbf{w}\[/latex\] represents the patterns within the dataset learnt by each individual neuron; the system as a whole captures all the patterns that can possibly be captured by the neural network.
+For each neuron, vector $\\textbf{w}$ represents the patterns within the dataset learnt by each individual neuron; the system as a whole captures all the patterns that can possibly be captured by the neural network.
 
 This is already a great step forward - a system of neurons can learn increasingly abstract patterns from a dataset: it's Machine Learning taking place!
 
-But our definition of a neuron until now is also problematic. If you remember some of your mathematics, you recall that the function of a straight line is of the form \[latex\]f(x): y = a \\times x + b\[/latex\]. This really looks like the vector multiplication and bias addition mentioned above!
+But our definition of a neuron until now is also problematic. If you remember some of your mathematics, you recall that the function of a straight line is of the form $f(x): y = a \\times x + b$. This really looks like the vector multiplication and bias addition mentioned above!
 
-Indeed, it is exactly the cause of the problem - the weights \[latex\]w\[/latex\] and bias \[latex\]b\[/latex\] that can be learnt by the model effectively allow each neuron to capture a linear pattern - a line. As the system as a whole performs such tasks but then at massive scale, we can easily see that with the neuron setup from above, the system can only learn linear patterns.
+Indeed, it is exactly the cause of the problem - the weights $w$ and bias $b$ that can be learnt by the model effectively allow each neuron to capture a linear pattern - a line. As the system as a whole performs such tasks but then at massive scale, we can easily see that with the neuron setup from above, the system can only learn linear patterns.
 
 In plain English, in case of [classification](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/3-variants-of-classification-problems-in-machine-learning.md), it can only learn to generate a [separation boundary](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-decision-boundary-for-your-keras-model.md) that has the shape of a line. And in the case of regression, the other form of supervised learning where the outcome is a real number (like 2.349839), it can only learn to predict a linear relationship between input variables.
 
@@ -78,15 +78,15 @@ This function takes the neuron output as its input and generates another output 
 
 Or, more mathematically speaking, it maps the input to some output:
 
-\[latex\]layer\_output(\\textbf{x}) = activation(\\textbf{w} \\times \\textbf{x} + b)\[/latex\].
+$layer\_output(\\textbf{x}) = activation(\\textbf{w} \\times \\textbf{x} + b)$.
 
-And this output does not need to be linear! In fact, it is perfectly possible to use an \[latex\]activation\[/latex\] function that is nonlinear.
+And this output does not need to be linear! In fact, it is perfectly possible to use an $activation$ function that is nonlinear.
 
 ### A common activation function: ReLU
 
 One such _nonlinear_ activation function is called the **Rectified Linear Unit**, or ReLU for short.
 
-It is really simple: when the input \[latex\]x < 0\[/latex\], the output is \[latex\]0\[/latex\]. Otherwise, it is \[latex\]x\[/latex\]. Mathematically, it can also be written as \[latex\]activation(x) = max(x,0)\[/latex\] - as it will become 0 for all negative inputs. This mathematical and hence computational simplicity has led ReLU to become one of the most common activation functions used today.
+It is really simple: when the input $x < 0$, the output is $0$. Otherwise, it is $x$. Mathematically, it can also be written as $activation(x) = max(x,0)$ - as it will become 0 for all negative inputs. This mathematical and hence computational simplicity has led ReLU to become one of the most common activation functions used today.
 
 Visually, it looks as follows:
 
@@ -144,7 +144,7 @@ We now show you that it doesn't work by generating a linear TensorFlow model. Le
 
 - We add extra imports, specifically related to `tensorflow` and its Keras API
 - We set configuration options for the Machine Learning model.
-- We create the model - do note that our `Dense` layer (i.e. the blue hidden layer in the plot above) activates _linearly_, that is, it applies \[latex\]f(x) = x\[/latex\] as an activation function.
+- We create the model - do note that our `Dense` layer (i.e. the blue hidden layer in the plot above) activates _linearly_, that is, it applies $f(x) = x$ as an activation function.
 - We compile the model.
 - We start the fitting i.e. training process.
 - We perform light model evaluation activities to see how well it performs on a testing dataset.
@@ -208,7 +208,7 @@ After running this code and letting the training process finish, this is the out
 
 ![](images/linear-1024x514.png)
 
-And it is precisely as expected. Since our neurons activate linearly, i.e. \[latex\]f(x) = x\[/latex\], the neural network as a whole behaves linearly - and can only learn a straight line.
+And it is precisely as expected. Since our neurons activate linearly, i.e. $f(x) = x$, the neural network as a whole behaves linearly - and can only learn a straight line.
 
 That straight line is perfectly visible in the plot above.
 
@@ -218,7 +218,7 @@ Long story short: linearity in a neural network significantly impacts model perf
 
 Let's now replace the model creation part of the code above with the code that follows next. Here, we:
 
-- Replace the `activation` function with ReLU, a.k.a. \[latex\]max(x, 0)\[/latex\].
+- Replace the `activation` function with ReLU, a.k.a. $max(x, 0)$.
 - Add a few extra layers with more neurons per layer in the upstream layers, increasing the detail with which the model will learn a decision boundary (in fact, we're explicitly adding sensitivity to overfitting here, but for the demonstration purpose that is precisely what we want to happen).
 
 ```

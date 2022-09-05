@@ -145,7 +145,7 @@ Next, we create three `ImageDataGenerators` for our training, validation and tes
 
 Image data generators can be used for "\[generating\] batches of tensor image data with real-time data augmentation" (Keras Team n.d.). Generators loop over the data in batches and are hence a useful mechanism for feeding data to the training process that starts later.
 
-- We set `rescale` to `1./255`, meaning that each pixel is multiplied with `1/255`, to ensure that it's in the \[latex\]\[0, 1\]\[/latex\] range. This benefits training (omitting this can even make the model untrainable).
+- We set `rescale` to `1./255`, meaning that each pixel is multiplied with `1/255`, to ensure that it's in the $\[0, 1\]$ range. This benefits training (omitting this can even make the model untrainable).
 - For the training and validation `ImageDataGenerator`, we specify the 20% validation split. Next, we will see how this nicely leads to a training and validation dataset.
 
 ```
@@ -300,7 +300,7 @@ weights = sklearn.utils.class_weight.compute_class_weight('balanced', unique, al
 print(weights)
 ```
 
-Running it gives the following weights. They make sense: if we multiply 179 with \[latex\]\\approx 5.18\[/latex\] and then divide it by \[latex\]\\approx 0.71\[/latex\], we get \[latex\]\\approx 1301\[/latex\]. The same is true for the others. The weights ensure that the classes are balanced.
+Running it gives the following weights. They make sense: if we multiply 179 with $\\approx 5.18$ and then divide it by $\\approx 0.71$, we get $\\approx 1301$. The same is true for the others. The weights ensure that the classes are balanced.
 
 ```
 [5.18621974 0.71355368 0.71136654]

@@ -36,7 +36,7 @@ Ready? Let's take a look! 😎
 
 ## Why you need regularization
 
-Training a neural network involves creating a mapping between an array of input variables \[latex\]\\textbf{x}\[/latex\] to an independent variable, often called \[latex\]\\text{y}\[/latex\]. Recall that a mapping between such variables can be expressed mathematically, and that a mapping is represented by a function - say, \[latex\]f\[/latex\]. In this case, the mapping of the actual function is as follows: \[latex\]\\text{y}: f(\\textbf{x})\[/latex\].
+Training a neural network involves creating a mapping between an array of input variables $\\textbf{x}$ to an independent variable, often called $\\text{y}$. Recall that a mapping between such variables can be expressed mathematically, and that a mapping is represented by a function - say, $f$. In this case, the mapping of the actual function is as follows: $\\text{y}: f(\\textbf{x})$.
 
 The way the mapping is performed is dependent on the way that you create it, or _fit_ it. For example, in the image below, we generated two such mappings using exactly the same input data - the set of points. The first is a polyfit with three degrees of freedom, creating the yellow line. The second has ten degrees of freedom, creating the blue line.
 
@@ -46,7 +46,7 @@ If you said yellow, you're right. Such extremities in mappings that are visible 
 
 ![](images/poly_both.png)
 
-Training a neural network involves using your input data (the set of \[latex\]\\textbf{x}\[/latex\]s) to generate predictions for each sample (the corresponding set of \[latex\]\\text{y}\[/latex\]. The network has trainable components that can jointly attempt to approximate the mapping, \[latex\]\\text{y}: f(\\textbf{x})\[/latex\]. The approximation is then called \[latex\]\\hat{\\text{y}}: f(\\textbf{x})\[/latex\], from _y hat_.
+Training a neural network involves using your input data (the set of $\\textbf{x}$s) to generate predictions for each sample (the corresponding set of $\\text{y}$. The network has trainable components that can jointly attempt to approximate the mapping, $\\text{y}: f(\\textbf{x})$. The approximation is then called $\\hat{\\text{y}}: f(\\textbf{x})$, from _y hat_.
 
 When [feeding forward our samples and optimizing our model](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md/#the-high-level-supervised-learning-process) we do not know whether our model will learn a mapping like the one in yellow or the one in blue. Rather, it will learn a mapping that minimizes the [loss value](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md/#loss). This can lead to a situation where a mapping like the one in blue is learned, while such extremities are unwanted.
 
@@ -66,13 +66,13 @@ Let's get to work! 😎
 
 ## Example of L1 Regularization with PyTorch
 
-Suppose that you are using binary crossentropy loss with your PyTorch based classifier. You want to implement **L1 Regularization**, which effectively involves that \[latex\]\\sum\_f{ \_{i=1}^{n}} | w\_i |\[/latex\] is added to the loss.
+Suppose that you are using binary crossentropy loss with your PyTorch based classifier. You want to implement **L1 Regularization**, which effectively involves that $\\sum\_f{ \_{i=1}^{n}} | w\_i |$ is added to the loss.
 
-Here, \[latex\]n\[/latex\] represents the number of individual weights, and you can see that we iterate over these weights. We then take the absolute value for each value \[latex\]w\_i\[/latex\] and sum everything together.
+Here, $n$ represents the number of individual weights, and you can see that we iterate over these weights. We then take the absolute value for each value $w\_i$ and sum everything together.
 
 In other words, L1 Regularization loss can be implemented as follows:
 
-\[latex\]\\text{full\_loss = original\_loss + } \\sum\_f{ \_{i=1}^{n}} | w\_i |\[/latex\]
+$\\text{full\_loss = original\_loss + } \\sum\_f{ \_{i=1}^{n}} | w\_i |$
 
 Here, `original_loss` is binary crossentropy. However, it can be pretty much any loss function that you desire!
 
@@ -185,7 +185,7 @@ if __name__ == '__main__':
 
 ## Example of L2 Regularization with PyTorch
 
-Implementing **L2 Regularization** with PyTorch is also easy. Understand that in this case, we don't take the absolute value for the weight values, but rather their squares. In other words, we add \[latex\]\\sum\_f{ \_{i=1}^{n}} w\_i^2\[/latex\] to the loss component. In the example below, you can find how L2 Regularization can be used with PyTorch:
+Implementing **L2 Regularization** with PyTorch is also easy. Understand that in this case, we don't take the absolute value for the weight values, but rather their squares. In other words, we add $\\sum\_f{ \_{i=1}^{n}} w\_i^2$ to the loss component. In the example below, you can find how L2 Regularization can be used with PyTorch:
 
 ```
 import os
@@ -301,9 +301,9 @@ optimizer = torch.optim.Adam(mlp.parameters(), lr=1e-4, weight_decay=1.0)
 
 ## Example of Elastic Net (L1+L2) Regularization with PyTorch
 
-It is also possible to perform **Elastic Net Regularization** with PyTorch. This type of regularization essentially computes a **weighted combination of L1 and L2 loss**, with the weights of both summing to `1.0`. In other words, we add \[latex\]\\lambda\_{L1} \\times \\sum\_f{ \_{i=1}^{n}} | w\_i | + \\lambda\_{L2} \\times \\sum\_f{ \_{i=1}^{n}} w\_i^2\[/latex\] to the loss component:
+It is also possible to perform **Elastic Net Regularization** with PyTorch. This type of regularization essentially computes a **weighted combination of L1 and L2 loss**, with the weights of both summing to `1.0`. In other words, we add $\\lambda\_{L1} \\times \\sum\_f{ \_{i=1}^{n}} | w\_i | + \\lambda\_{L2} \\times \\sum\_f{ \_{i=1}^{n}} w\_i^2$ to the loss component:
 
-\[latex\]\\text{full\_loss = original\_loss + } \\lambda\_{L1} \\times \\sum\_f{ \_{i=1}^{n}} | w\_i | + \\lambda\_{L2} \\times \\sum\_f{ \_{i=1}^{n}} w\_i^2 \[/latex\]
+$\\text{full\_loss = original\_loss + } \\lambda\_{L1} \\times \\sum\_f{ \_{i=1}^{n}} | w\_i | + \\lambda\_{L2} \\times \\sum\_f{ \_{i=1}^{n}} w\_i^2$
 
 In this example, Elastic Net (L1 + L2) Regularization is implemented with PyTorch:
 

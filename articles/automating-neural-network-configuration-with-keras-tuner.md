@@ -116,7 +116,7 @@ Indeed, in the case of a 2D space - where the axes represent e.g. the _hyperpara
 
 ![](images/searchspace.png)
 
-Here, all the intersections between the two axes (dimensions) are possible combinations of hyperparameters that can be selected for the model. For example, learning rate \[latex\]LR\[/latex\] and number of layers \[latex\]N\[/latex\] can be \[latex\](LR = 10^{-3}, N = 4)\[/latex\], but also \[latex\](LR = 10^{-2}, N = 2)\[/latex\] is possible, and so on. Here, we have two dimensions (which benefits visualization), but the more tunable options you add to your model, the more dimensions will be added to your search space.
+Here, all the intersections between the two axes (dimensions) are possible combinations of hyperparameters that can be selected for the model. For example, learning rate $LR$ and number of layers $N$ can be $(LR = 10^{-3}, N = 4)$, but also $(LR = 10^{-2}, N = 2)$ is possible, and so on. Here, we have two dimensions (which benefits visualization), but the more tunable options you add to your model, the more dimensions will be added to your search space.
 
 Hopefully, you are now aware about how a search space is constructed by yourself when you want Keras Tuner to look for a most optimal set of hyperparameters and parameters for your neural network.
 
@@ -203,7 +203,7 @@ In brief, what it does:
 - Defining all the hyperparameters that we will not be tuning today, and other configuration options.
 - Loading the [MNIST dataset](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets.md), and reshaping it into Conv2D-compatible format.
 - Cast the data into `float32` format which allows GPU owners to train their models faster.
-- Scaling the data into the \[latex\]\[0, 1\]\[/latex\] range which benefits the training process.
+- Scaling the data into the $\[0, 1\]$ range which benefits the training process.
 
 ### Defining the model-building function
 

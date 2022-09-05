@@ -144,7 +144,7 @@ If you don't have this package yet: it can be installed easily, using `pip insta
 
 Next, we have to do three things:
 
-- [Scale the data](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-normalize-or-standardize-a-dataset-in-python.md) to the \[latex\]\[0, 1\]\[/latex\] range, which helps the optimization process.
+- [Scale the data](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-normalize-or-standardize-a-dataset-in-python.md) to the $\[0, 1\]$ range, which helps the optimization process.
 - Reshape the 2D grayscale data (which has dimensions for `width` and `height` only) into a 3D object, because the [Conv2D](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras.md) accepts arrays with 3D inputs (`width`, `height` and `color channels` only). We'll therefore reshape each sample into `(width, height, 1)`, which does not change anything semantically.
 - Convert our target values to [one-hot encoded format](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/one-hot-encoding-for-machine-learning-with-tensorflow-and-keras.md), which makes them compatible with our usage of categorical crossentropy loss.
 

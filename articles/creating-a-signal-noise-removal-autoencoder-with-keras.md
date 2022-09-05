@@ -23,7 +23,7 @@ However, these tricks work by knowing a few things about the noise up front. In 
 
 [![](images/x2noise-300x225.png)]
 
-_A noisy \[latex\]x^2\[/latex\] sample. We'll try to remove the noise with an autoencoder._
+_A noisy $x^2$ sample. We'll try to remove the noise with an autoencoder._
 
 Autoencoders can be used for this purpose. By feeding them noisy data as inputs and clean data as outputs, it's possible to make them recognize _the ideosyncratic noise for the training data_. This way, autoencoders can serve as denoisers.
 
@@ -31,9 +31,9 @@ But what are autoencoders exactly? And why does the way they work make them suit
 
 We'll answer these questions in today's blog. First, we'll provide a recap on autoencoders - to (re)gain a theoretical understanding of what they are and how they work. This includes a discussion on why they can be applied to noise removal. Subsequently, we implement an autoencoder to demonstrate this, by means of a three-step process:
 
-- We generate a large dataset of \[latex\]x^2\[/latex\] samples.
-- We generate a large dataset of \[latex\]x^2\[/latex\] samples to which Gaussian (i.e., random) noise has been added.
-- We create an autoencoder which learns to transform noisy \[latex\]x^2\[/latex\] inputs into the original sine, i.e. _which removes the noise_ - also for new data!
+- We generate a large dataset of $x^2$ samples.
+- We generate a large dataset of $x^2$ samples to which Gaussian (i.e., random) noise has been added.
+- We create an autoencoder which learns to transform noisy $x^2$ inputs into the original sine, i.e. _which removes the noise_ - also for new data!
 
 Ready?
 
@@ -65,7 +65,7 @@ _When autoencoders are used to reconstruct inputs from an encoded state._
 
 For example, autoencoders are learnt for noise removal, but also for dimensionality reduction (Keras Blog , n.d.; we then use them to convert the input data into low-dimensional format, which might benefit training lower-dimensionality model types such as [SVMs](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/intuitively-understanding-svm-and-svr.md)).
 
-Note that the red parts in the block above - that is, the encoder and the decoder, are _learnt based on data_ (Keras Blog, n.d.). This means that, contrary to more abstract mathematical functions (e.g. filters), they are highly specialized in _one domain_ (e.g. signal noise removal at \[latex\]x^2\[/latex\] plots as we will do next) while they perform very poorly in another (e.g. when using the same autoencoder for image noise removal).
+Note that the red parts in the block above - that is, the encoder and the decoder, are _learnt based on data_ (Keras Blog, n.d.). This means that, contrary to more abstract mathematical functions (e.g. filters), they are highly specialized in _one domain_ (e.g. signal noise removal at $x^2$ plots as we will do next) while they perform very poorly in another (e.g. when using the same autoencoder for image noise removal).
 
 * * *
 
@@ -85,7 +85,7 @@ In the next part, we'll show you how to use the Keras deep learning framework fo
 
 ### The data
 
-First, the data. As _pure signals_ (and hence autoencoder targets), we're using pure \[latex\]x^2\[/latex\] samples from a small domain. When plotted, a sample looks like this:
+First, the data. As _pure signals_ (and hence autoencoder targets), we're using pure $x^2$ samples from a small domain. When plotted, a sample looks like this:
 
 [![](images/x2sample.png)]
 
@@ -173,7 +173,7 @@ total_num_elements = int(num_elements / interval_per_element)
 starting_point = int(0 - 0.5*total_num_elements)
 ```
 
-`num_elements` represents the _width_ of your domain. `interval_per_element` represents the step size that the iterator will take when generating the sample. In this case, the domain \[latex\](0, 1\]\[/latex\] will thus contain 100 samples (as \[latex\]1/interval per element = 1/0.01 = 100\[/latex\]). That's what's represented in `total_num_elements`.
+`num_elements` represents the _width_ of your domain. `interval_per_element` represents the step size that the iterator will take when generating the sample. In this case, the domain $(0, 1\]$ will thus contain 100 samples (as $1/interval per element = 1/0.01 = 100$). That's what's represented in `total_num_elements`.
 
 The starting point determines where to start the generation process.
 
@@ -188,7 +188,7 @@ num_samples_visualize = 1
 
 Next step, creating some data! 😁
 
-We'll first specify the lists that contain our data and the sub-sample data (one sample in `samples` contains multiple `xs` and `ys`; when \[latex\]totalnumelements = 100\[/latex\], that will be 100 of them each):
+We'll first specify the lists that contain our data and the sub-sample data (one sample in `samples` contains multiple `xs` and `ys`; when $totalnumelements = 100$, that will be 100 of them each):
 
 ```
 # Containers for samples and subsamples
@@ -342,7 +342,7 @@ num_samples_visualize = 1
 noise_factor = 0.05
 ```
 
-`num_samples_visualize` is the number of samples we wish to visualize once the noising process finishes, and `noise_factor` is the amount of noise we'll be adding to our samples (\[latex\]0 = no noise; 1 = full noise\[/latex\]).
+`num_samples_visualize` is the number of samples we wish to visualize once the noising process finishes, and `noise_factor` is the amount of noise we'll be adding to our samples ($0 = no noise; 1 = full noise$).
 
 ### Loading data
 
@@ -372,7 +372,7 @@ for i in range(0, len(x_val)):
 
 First, we define a new list that will contain our noisy samples. Subsequently, we iterate over each sample (reporting progress every 100 samples). We then do a couple of things:
 
-- We assign the pure sample (i.e., the \[latex\]x^2\[/latex\] plot wihtout noise) to the `pure` variable.
+- We assign the pure sample (i.e., the $x^2$ plot wihtout noise) to the `pure` variable.
 - Subsequently, we generate Gaussian noise using `np.random.normal`, with the same shape as `pure`'s.
 - Next, we add the noise to the pure sample, using the `noise_factor`.
 - Finally, we append the sample's domain and the noisy sample to the `noisy_samples` array.
@@ -488,7 +488,7 @@ max_norm_value = 2.0
 
 Here are some insights about the model configuration:
 
-- The `input_shape`, in line with Conv1D input, is thus \[latex\] (150, 1)\[/latex\].
+- The `input_shape`, in line with Conv1D input, is thus $(150, 1)$.
 - The batch size is 150. This number seemed to work well, offering a nice balance between loss value and prediction time.
 - The number of epochs is fairly low, but pragmatic: the autoencoder did not improve substantially anymore after this number.
 - We use 30% of the total data, i.e. 30k samples, as testing data.
@@ -514,7 +514,7 @@ Next, we'll reshape the data. We do so for each sample. This includes the follow
 
 _Binary crossentropy loss values for target = 1, in the prediction range \[0, 1\]._
 
-- First, given the way how [binary crossentropy loss works](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md/#binary-crossentropy), we normalize our samples to fall in the range \[latex\]\[0, 1\]\[/latex\]. Without this normalization step, odd loss values (extremely negative ones, impossible with BCE loss) start popping up (Quetzalcohuatl, n.d.).
+- First, given the way how [binary crossentropy loss works](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md/#binary-crossentropy), we normalize our samples to fall in the range $\[0, 1\]$. Without this normalization step, odd loss values (extremely negative ones, impossible with BCE loss) start popping up (Quetzalcohuatl, n.d.).
 - We subsequently add the noisy and pure samples to the specific `*_r` arrays.
 
 ```
@@ -732,7 +732,7 @@ for i in np.arange(0, num_reconstructions):
 
 Next, the results 😎
 
-After the fifth epoch, validation loss \[latex\]\\approx 0.3556\[/latex\]. This is high, but acceptable. What's more important is to find out how well the model works when visualizing the test set predictions.
+After the fifth epoch, validation loss $\\approx 0.3556$. This is high, but acceptable. What's more important is to find out how well the model works when visualizing the test set predictions.
 
 Here they are:
 

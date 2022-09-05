@@ -62,7 +62,7 @@ Bingo! Generators can help us train with large data files. Nice :)
 
 ## Example model
 
-Let's now take a look at an example with Keras. Suppose that we have this massive but simple dataset - 500.000.000 rows of simple \[latex\]x \\rightarrow y\[/latex\] mappings:
+Let's now take a look at an example with Keras. Suppose that we have this massive but simple dataset - 500.000.000 rows of simple $x \\rightarrow y$ mappings:
 
 ```
 
@@ -77,7 +77,7 @@ x,y
 
 This file might be called e.g. `five_hundred.csv`.
 
-As you might expect, this is the linear function \[latex\]y: f(x) = x\[/latex\]. It's one of the most simple regression scenarios that you can encounter.
+As you might expect, this is the linear function $y: f(x) = x$. It's one of the most simple regression scenarios that you can encounter.
 
 Now, let's build a model for this dataset just like we always do - with one exception: we use a generator to load the data rather than loading it in memory. Here's what we'll do:
 

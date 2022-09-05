@@ -53,7 +53,7 @@ These essentially tell us something about our target classes, but from the outpu
 
 ### Multiclass classification = generating probabilities
 
-In a way, however, _predicting_ which target class some input belongs to is related to a _probability distribution_. For the setting above, if you would know the probabilities of the value being any of the four possible outcomes, you could simply take the \[latex\]argmax\[/latex\] of these discrete probabilities and find the class outcome. Hence, if we could convert the logits above into a probability distribution, that would be awesome - we'd be there!
+In a way, however, _predicting_ which target class some input belongs to is related to a _probability distribution_. For the setting above, if you would know the probabilities of the value being any of the four possible outcomes, you could simply take the $argmax$ of these discrete probabilities and find the class outcome. Hence, if we could convert the logits above into a probability distribution, that would be awesome - we'd be there!
 
 Let's explore this idea a little bit further :)
 
@@ -73,7 +73,7 @@ For reasons of clarity: in percentual terms, 1 = 100%, and 0.25 would be 25%.
 
 Now, the third axiom is not so much of interest for today's blog post, but the first two are.
 
-From them, it follows that _the odds of something to occur_ must be a positive real number, e.g. \[latex\]0.238\[/latex\]. Since the sum of probabilities must be equal to \[latex\]1\[/latex\], no probability can be \[latex\]> 1\[/latex\]. Hence, any probability therefore lies somewhere in the range \[latex\]\[0, 1\]\[/latex\].
+From them, it follows that _the odds of something to occur_ must be a positive real number, e.g. $0.238$. Since the sum of probabilities must be equal to $1$, no probability can be $> 1$. Hence, any probability therefore lies somewhere in the range $\[0, 1\]$.
 
 Okay, we can work with that. However, there's one more explanation left before we can explore possible approaches towards converting the logits into a multiclass probability distribution: the difference between a _continuous_ and a _discrete_ probability distribution.
 
@@ -109,14 +109,14 @@ But how do we convert the logits into a probability distribution? We use Softmax
 
 The Softmax function allows us to express our inputs as a discrete probability distribution. Mathematically, this is defined as follows:
 
-\[latex\]Softmax(x \_i ) = \\frac{exp(x\_i)}{\\sum{\_j}^ {} {} exp(x\_j))}\[/latex\]
+$Softmax(x \_i ) = \\frac{exp(x\_i)}{\\sum{\_j}^ {} {} exp(x\_j))}$
 
 Intuitively, this can be defined as follows: for each value (i.e. input) in our input vector, the Softmax value is the _exponent of the individual input_ divided by a sum of _the exponents of all the inputs_.
 
 This ensures that multiple things happen:
 
 - Negative inputs will be converted into nonnegative values, thanks to the exponential function.
-- Each input will be in the interval \[latex\](0, 1)\[/latex\].
+- Each input will be in the interval $(0, 1)$.
 - As the _denominator_ in each Softmax computation is the same, the values become proportional to each other, which makes sure that together they sum to 1.
 
 This, in return, allows us to "interpret them as probabilities" (Wikipedia, 2006). Larger input values correspond to larger probabilities, at exponential scale, once more due to the exponential function.
@@ -129,23 +129,23 @@ We can now convert our logits into a discrete probability distribution:
 
 | **Logit value** | Softmax computation | Softmax outcome |
 | --- | --- | --- |
-| 2.0 | \[latex\] \\frac{exp(x\_i)}{\\sum{\_j}^ {} {} exp(x\_j))} = \\frac{exp(2.0)}{exp(2.0) + exp(4.3) + exp(1.2) + exp(-3.1)} \[/latex\] | 0.087492 |
-| 4.3 | \[latex\] \\frac{exp(x\_i)}{\\sum{\_j}^ {} {} exp(x\_j))} = \\frac{exp(4.3)}{exp(2.0) + exp(4.3) + exp(1.2) + exp(-3.1)} \[/latex\] | 0.872661 |
-| 1.2 | \[latex\] \\frac{exp(x\_i)}{\\sum{\_j}^ {} {} exp(x\_j))} = \\frac{exp(1.2)}{exp(2.0) + exp(4.3) + exp(1.2) + exp(-3.1)} \[/latex\] | 0.039312 |
-| \-3.1 | \[latex\] \\frac{exp(x\_i)}{\\sum{\_j}^ {} {} exp(x\_j))} = \\frac{exp(-3.1)}{exp(2.0) + exp(4.3) + exp(1.2) + exp(-3.1)} \[/latex\] | 0.000292 |
+| 2.0 | $\\frac{exp(x\_i)}{\\sum{\_j}^ {} {} exp(x\_j))} = \\frac{exp(2.0)}{exp(2.0) + exp(4.3) + exp(1.2) + exp(-3.1)}$ | 0.087492 |
+| 4.3 | $\\frac{exp(x\_i)}{\\sum{\_j}^ {} {} exp(x\_j))} = \\frac{exp(4.3)}{exp(2.0) + exp(4.3) + exp(1.2) + exp(-3.1)}$ | 0.872661 |
+| 1.2 | $\\frac{exp(x\_i)}{\\sum{\_j}^ {} {} exp(x\_j))} = \\frac{exp(1.2)}{exp(2.0) + exp(4.3) + exp(1.2) + exp(-3.1)}$ | 0.039312 |
+| \-3.1 | $\\frac{exp(x\_i)}{\\sum{\_j}^ {} {} exp(x\_j))} = \\frac{exp(-3.1)}{exp(2.0) + exp(4.3) + exp(1.2) + exp(-3.1)}$ | 0.000292 |
 | **Sum** |  | 0.999757 |
 | **(rounded)** |  | 1 |
 
 Let's see if the outcome adheres to Kolmogorov's probability axioms that we discussed above, to verify whether it really _is_ a valid probability distribution :)
 
 1. **Each probability must be a nonzero real number**. This is true for our outcomes: each is real-valued, and nonzero.
-2. **The sum of probablities must be 1**. This is also true for our outcomes: the sum of cutoff values is \[latex\]\\approx 1\[/latex\], due to the nature of real-valued numbers. The _true_ sum is 1.
+2. **The sum of probablities must be 1**. This is also true for our outcomes: the sum of cutoff values is $\\approx 1$, due to the nature of real-valued numbers. The _true_ sum is 1.
 
-In fact, for our logits scenario, any input would satisfy these values. First of all, the denominator for any of the inputs would be the same, so they are normalized into the \[latex\](0, 1)\[/latex\] range, summing together to 1. What's more, as we can see, due to the nature of the exponential function, any input indeed yields a nonzero real number when fed to the Softmax function:
+In fact, for our logits scenario, any input would satisfy these values. First of all, the denominator for any of the inputs would be the same, so they are normalized into the $(0, 1)$ range, summing together to 1. What's more, as we can see, due to the nature of the exponential function, any input indeed yields a nonzero real number when fed to the Softmax function:
 
 [![](images/softmax_logits.png)]
 
-This also explains why our \[latex\]logit = 4.3\[/latex\] produces such a large probability of \[latex\]p \\approx 0.872661\[/latex\] :)
+This also explains why our $logit = 4.3$ produces such a large probability of $p \\approx 0.872661$ :)
 
 This, in return, means: hooray, we can use Softmax for generating a probability distribution! 🎉
 
@@ -171,13 +171,13 @@ Recall that we have a neural network with a logits layer that has these outputs:
 
 If you're thinking very strictly today, you may wonder about this: why don't we simply take the `argmax` value as our activation function? Doesn't it provide you with the same result?
 
-That is, with \[latex\]\\textbf{x} = \[2.0, 4.3, 1.2, -3.1\]\[/latex\] being the input to some `argmax` function, the output would be \[latex\]\[0, 1, 0, 0\]\[/latex\]. This is great, because we now have the output value!
+That is, with $\\textbf{x} = \[2.0, 4.3, 1.2, -3.1\]$ being the input to some `argmax` function, the output would be $\[0, 1, 0, 0\]$. This is great, because we now have the output value!
 
 But is it correct?
 
 We don't know, as we don't know what our input is. If we did, we could check.
 
-Now suppose that we input an image that should have been class 4. This is problematic, as our output is \[latex\]\[0, 1, 0, 0\]\[/latex\] - or class 2!
+Now suppose that we input an image that should have been class 4. This is problematic, as our output is $\[0, 1, 0, 0\]$ - or class 2!
 
 We'd need to improve!
 
@@ -193,11 +193,11 @@ Now, you may wonder: all right, I believe that I can't use argmax. But why do I 
 
 That is, instead of writing...
 
-\[latex\] \\frac{exp(x\_i)}{\\sum{\_j}^ {} {} exp(x\_j))} = \\frac{exp(2.0)}{exp(2.0) + exp(4.3) + exp(1.2) + exp(-3.1)} \[/latex\]
+$\\frac{exp(x\_i)}{\\sum{\_j}^ {} {} exp(x\_j))} = \\frac{exp(2.0)}{exp(2.0) + exp(4.3) + exp(1.2) + exp(-3.1)}$
 
 ...you would want to write...
 
-\[latex\]\\frac{2.0}{2.0 + 4.3 + 1.2 + -3.1}\[/latex\]
+$\\frac{2.0}{2.0 + 4.3 + 1.2 + -3.1}$
 
 It makes perfect sense, but let's now take a look at what we _want_ our output to be. Even though we don't use it, don't we want our output to be like argmax? That the actual class arrives on top?
 
@@ -207,34 +207,34 @@ With argmax, they would convert to:
 
 | **Logit value** | Argmax computation | Argmax outcome |
 | --- | --- | --- |
-| 2.0 | \[latex\]argmax(2.0, 4.3, 1.2, -3.1)\[/latex\] | \[latex\]\[0, 1, 0, 0\]\[/latex\] |
-| 4.3 | \[latex\]argmax(2.0, 4.3, 1.2, -3.1)\[/latex\] | \[latex\]\[0, 1, 0, 0\]\[/latex\] |
-| 1.2 | \[latex\]argmax(2.0, 4.3, 1.2, -3.1)\[/latex\] | \[latex\]\[0, 1, 0, 0\]\[/latex\] |
-| \-3.1 | \[latex\]argmax(2.0, 4.3, 1.2, -3.1)\[/latex\] | \[latex\]\[0, 1, 0, 0\]\[/latex\] |
+| 2.0 | $argmax(2.0, 4.3, 1.2, -3.1)$ | $\[0, 1, 0, 0\]$ |
+| 4.3 | $argmax(2.0, 4.3, 1.2, -3.1)$ | $\[0, 1, 0, 0\]$ |
+| 1.2 | $argmax(2.0, 4.3, 1.2, -3.1)$ | $\[0, 1, 0, 0\]$ |
+| \-3.1 | $argmax(2.0, 4.3, 1.2, -3.1)$ | $\[0, 1, 0, 0\]$ |
 
-As we saw before, our Softmax converts to \[latex\]\[0.09, 0.87, 0.04, 0.00\]\[/latex\]. This is really close!
+As we saw before, our Softmax converts to $\[0.09, 0.87, 0.04, 0.00\]$. This is really close!
 
 But what would happen with "normal", or exponent-free, division?
 
 | **Logit value** | Regular division | Argmax outcome |
 | --- | --- | --- |
-| 2.0 | \[latex\]\\frac{2.0}{2.0 + 4.3 + 1.2 + -3.1}\[/latex\] | 0.454 |
-| 4.3 | \[latex\]\\frac{4.3}{2.0 + 4.3 + 1.2 + -3.1}\[/latex\] | 0.978 |
-| 1.2 | \[latex\]\\frac{1.2}{2.0 + 4.3 + 1.2 + -3.1}\[/latex\] | 0.273 |
-| \-3.1 | \[latex\]\\frac{-3.1}{2.0 + 4.3 + 1.2 + -3.1}\[/latex\] | \-0.704 ??? 😕 |
+| 2.0 | $\\frac{2.0}{2.0 + 4.3 + 1.2 + -3.1}$ | 0.454 |
+| 4.3 | $\\frac{4.3}{2.0 + 4.3 + 1.2 + -3.1}$ | 0.978 |
+| 1.2 | $\\frac{1.2}{2.0 + 4.3 + 1.2 + -3.1}$ | 0.273 |
+| \-3.1 | $\\frac{-3.1}{2.0 + 4.3 + 1.2 + -3.1}$ | \-0.704 ??? 😕 |
 
 As we can see, the values no longer make sense, and do even no longer adhere to Kolmogorov's axioms to represent a valid probability distribution!
 
 Hence, we use Softmax.
 
-Now, one final question: why do we use the base of the natural logarithm \[latex\]e\[/latex\] with Softmax? Why don't we use a constant, say, \[latex\]f(x) = 3^x\[/latex\] instead of \[latex\]f(x) = e^x\[/latex\]?
+Now, one final question: why do we use the base of the natural logarithm $e$ with Softmax? Why don't we use a constant, say, $f(x) = 3^x$ instead of $f(x) = e^x$?
 
 This has to do with the derivatives (Vega, n.d.; CliffsNotes, n.d.):
 
-- For \[latex\]f(x) = e^x\[/latex\], the derivative is \[latex\]f'(x) = e^x\[/latex\].
-- For \[latex\]f(x) = a^x\[/latex\], where \[latex\]a\[/latex\] is some constant, the derivative is \[latex\]f'(x) = (\\ln(a)) \* a^x\[/latex\].
+- For $f(x) = e^x$, the derivative is $f'(x) = e^x$.
+- For $f(x) = a^x$, where $a$ is some constant, the derivative is $f'(x) = (\\ln(a)) \* a^x$.
 
-The derivative for \[latex\]e^x\[/latex\] is thus much nicer, and hence preferred.
+The derivative for $e^x$ is thus much nicer, and hence preferred.
 
 ### Maximizing logit values for class outcomes
 
@@ -451,7 +451,7 @@ Of course, in practice, your machine learning models will be more complex - and 
 
 This blog post revolved around the Softmax activation function. What is it? How does it work? Why is it useful for neural networks? And how can we implement it in practice, using Keras? Those are the questions that we answered.
 
-In doing so, we saw that Softmax is an activation function which converts its inputs - likely the logits, a.k.a. the outputs of the last layer of your neural network when no activation function is applied yet - into a discrete probability distribution over the target classes. Softmax ensures that the criteria of probability distributions - being that probabilities are nonnegative realvalued numbers and that the sum of probabilities equals 1 - are satisfied. This is great, as we can now create models that learn to maximize logit outputs for inputs that belong to a particular class, and by consequence also maximize the probability distribution. Simply taking \[latex\]argmax\[/latex\] then allows us to pick the class prediction, e.g. showing it on-screen in object detectors, image classifiers and text classifiers.
+In doing so, we saw that Softmax is an activation function which converts its inputs - likely the logits, a.k.a. the outputs of the last layer of your neural network when no activation function is applied yet - into a discrete probability distribution over the target classes. Softmax ensures that the criteria of probability distributions - being that probabilities are nonnegative realvalued numbers and that the sum of probabilities equals 1 - are satisfied. This is great, as we can now create models that learn to maximize logit outputs for inputs that belong to a particular class, and by consequence also maximize the probability distribution. Simply taking $argmax$ then allows us to pick the class prediction, e.g. showing it on-screen in object detectors, image classifiers and text classifiers.
 
 I hope you've learnt something today. If you did, I'd appreciate if you left a comment in the comments section below! 😊 Please do the same if you have any questions or when you have remarks, as I'll try to read everything and answer whenever possible.
 

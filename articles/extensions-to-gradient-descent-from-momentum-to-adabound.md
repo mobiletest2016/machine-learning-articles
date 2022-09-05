@@ -137,7 +137,7 @@ Adadelta provides a fix for this problem (Zeiler, 2012). It does so by following
 
 Yep, according to Zeiler (2012): the older the gradient update, the less interesting it is.
 
-Adadelta, by consequence, uses a decaying average of some \[latex\]w\[/latex\] previous gradients. If \[latex\]w = 5\[/latex\], for example, only the last 5 gradient updates would be used in the computation, of which the last is most relevant, followed by the second last, and so on (Ruder, 2016). What's more, given the maths behind Adadelta, it's no longer necessary to provide a learning rate a priori (Zeiler, 2012).
+Adadelta, by consequence, uses a decaying average of some $w$ previous gradients. If $w = 5$, for example, only the last 5 gradient updates would be used in the computation, of which the last is most relevant, followed by the second last, and so on (Ruder, 2016). What's more, given the maths behind Adadelta, it's no longer necessary to provide a learning rate a priori (Zeiler, 2012).
 
 ### RMSprop
 
@@ -160,18 +160,18 @@ What is a norm, you might now think - that's what I did, at least, when I was co
 Essentially, a norm is a _function_ that maps some input to some output. In the case of norms, it assigns a positive length to any vector in some vector space (Wikipedia, 2004). Essentially, norms therefore tell us something about the length of a vector in a certain mathematical space (Karthick, n.d.). Beyond this, norms must also satisfy other properties which ensure that norms do return particular vector lengths given their space (Wikipedia, 2004):
 
 - If the output of the norm is zero, the input must be the zero vector (a vector without any length). Any positive vectors cannot have zero norms. This ensures that any non-zero vector gets assigned a length in their respective space.
-- It is _absolutely homogeneous_. That is, if the vector is multiplied with some integer \[latex\]n\[/latex\] (e.g. \[latex\]n = 2\[/latex\]), the norm is multiplied with \[latex\]n\[/latex\] as well.
+- It is _absolutely homogeneous_. That is, if the vector is multiplied with some integer $n$ (e.g. $n = 2$), the norm is multiplied with $n$ as well.
 - The norm of two vectors that are added together is smaller than the two individual norms added together.
 
 Multiple norms exist, such as the L0 norm (which essentially tells you something about the number of non-zero elements in a vector; Vishnu, n.d.), the L1 norm (which in any space produces the _taxicab norm_ or a block-style length for the vector), the L2 norm (which produces the shortest possible distance or Euclidian distance), and so on.
 
-This can be generalized to the _p-norm_, which essentially computes the L-norm for some \[latex\]p\[/latex\] (p = 2 is the Euclidian norm, and so on).
+This can be generalized to the _p-norm_, which essentially computes the L-norm for some $p$ (p = 2 is the Euclidian norm, and so on).
 
 [![](images/1280px-Manhattan_distance.svg_-1024x1024.png)]
 
 L1 norm (red, blue and yellow) versus L2 norm (green) / public domain.
 
-When you let p approach infinity, you'll get what is known as the max norm or infinity norm. Given some vector \[latex\]\\textbf{x} = \\{ x\_1, x\_2, ..., x\_n \\}\[/latex\], the infinity norm gives you the _maximum element in the vector_.
+When you let p approach infinity, you'll get what is known as the max norm or infinity norm. Given some vector $\\textbf{x} = \\{ x\_1, x\_2, ..., x\_n \\}$, the infinity norm gives you the _maximum element in the vector_.
 
 Now this is exactly the difference between Adam and the Adamax optimizer, which is essentially a generalization of the L2 norm into the L-infinity norm.
 

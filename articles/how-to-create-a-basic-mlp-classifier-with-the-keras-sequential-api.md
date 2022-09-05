@@ -199,7 +199,7 @@ Suppose that the relationships in the real world (which are captured by your tra
 
 \[mathjax\]
 
-However, the MNIST targets, which are just numbers (_and numbers can take any value!)_, are not categorical. With `to_categorical`, we can turn the numbers into categorical data. For example, if we have a trinary classification problem with the possible classes being \[latex\]\\{ 0, 1, 2 \\}\[/latex\], the numbers 0, 1 or 2 are encoded into categorical vectors. One categorical vector looks as follows:
+However, the MNIST targets, which are just numbers (_and numbers can take any value!)_, are not categorical. With `to_categorical`, we can turn the numbers into categorical data. For example, if we have a trinary classification problem with the possible classes being $\\{ 0, 1, 2 \\}$, the numbers 0, 1 or 2 are encoded into categorical vectors. One categorical vector looks as follows:
 
 $$\\begin{equation} \\textbf{y} = \\begin{bmatrix}0 \\\\ 1 \\\\ 0\\end{bmatrix} \\end{equation}$$
 
@@ -255,7 +255,7 @@ The next step is to `reshape` the data: we argued that the 28x28 must be convert
 
 Next, we'll convert the data into greyscale. This way, when new colors are added to the dataset, the model does not get into trouble - it has simply been trained in a color-agnostic way.
 
-Finally, we'll do what we discussed before - convert the data into categorical format by means of the `to_categorical` function. Rather than being _scalars_, such as \[latex\]0\[/latex\] of \[latex\]4\[/latex\], one target _vector_ will subsequently look as follows:
+Finally, we'll do what we discussed before - convert the data into categorical format by means of the `to_categorical` function. Rather than being _scalars_, such as $0$ of $4$, one target _vector_ will subsequently look as follows:
 
 $$\\begin{equation} \\textbf{y} = \\begin{bmatrix}0 \\\\ 0 \\\\ 0 \\\\ 0 \\\\ 0 \\\\ 1 \\\\ 0 \\\\ 0 \\\\ 0 \\\\ 0\\end{bmatrix} \\end{equation}$$
 
@@ -310,7 +310,7 @@ model.add(Dense(num_classes, activation='softmax'))
 
 Question: have you got any idea about the shape of the data that we'll feed into the MLP once we fit the data?
 
-\[latex\](784, )\[/latex\].
+$(784, )$.
 
 We'll feed it a one-dimensional feature vector that contains 784 features.
 

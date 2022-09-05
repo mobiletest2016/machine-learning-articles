@@ -180,17 +180,17 @@ Now, as we can see, while a simple hold-out split based approach can be effectiv
 
 ### K-fold Cross Validation
 
-A more expensive and less naïve approach would be to perform K-fold Cross Validation. Here, you set some value for \[latex\]K\[/latex\] and (hey, what's in a name 😋) the dataset is split into \[latex\]K\[/latex\] partitions of equal size. \[latex\]K - 1\[/latex\] are used for training, while one is used for testing. This process is repeated \[latex\]K\[/latex\] times, with a different partition used for testing each time.
+A more expensive and less naïve approach would be to perform K-fold Cross Validation. Here, you set some value for $K$ and (hey, what's in a name 😋) the dataset is split into $K$ partitions of equal size. $K - 1$ are used for training, while one is used for testing. This process is repeated $K$ times, with a different partition used for testing each time.
 
-For example, this would be the scenario for our dataset with \[latex\]K = 5\[/latex\] (i.e., once again the 80/20 split, but then 5 times!):
+For example, this would be the scenario for our dataset with $K = 5$ (i.e., once again the 80/20 split, but then 5 times!):
 
 [![](images/KTraintest.png)]
 
-For each split, the same model is trained, and performance is displayed per fold. For evaluation purposes, you can obviously also average it across all folds. While this produces better estimates, K-fold Cross Validation also increases training cost: in the \[latex\]K = 5\[/latex\] scenario above, the model must be trained for 5 times.
+For each split, the same model is trained, and performance is displayed per fold. For evaluation purposes, you can obviously also average it across all folds. While this produces better estimates, K-fold Cross Validation also increases training cost: in the $K = 5$ scenario above, the model must be trained for 5 times.
 
 Let's now extend our viewpoint with a few variations of K-fold Cross Validation :)
 
-If you have no computational limitations whatsoever, you might wish to try a special case of K-fold Cross Validation, called Leave One Out Cross Validation (or LOOCV, Khandelwal 2019). LOOCV means \[latex\]K = N\[/latex\], where \[latex\]N\[/latex\] is the number of samples in your dataset. As the number of models trained is maximized, the precision of the model performance average is maximized too, but so is the cost of training due to the sheer amount of models that must be trained.
+If you have no computational limitations whatsoever, you might wish to try a special case of K-fold Cross Validation, called Leave One Out Cross Validation (or LOOCV, Khandelwal 2019). LOOCV means $K = N$, where $N$ is the number of samples in your dataset. As the number of models trained is maximized, the precision of the model performance average is maximized too, but so is the cost of training due to the sheer amount of models that must be trained.
 
 If you have a binary classification problem, you might also wish to take a look at Stratified Cross Validation (Khandelwal, 2019). It extends K-fold Cross Validation by ensuring an equal distribution of the target classes over the splits. This ensures that your classification problem is balanced. It doesn't work for multiclass classification due to the way that samples are distributed.
 
@@ -358,7 +358,7 @@ We also add a new configuration value:
 num_folds = 10
 ```
 
-This will ensure that our \[latex\]K = 10\[/latex\].
+This will ensure that our $K = 10$.
 
 What's more, directly after the "normalize data" step, we add two empty lists for storing the results of cross validation:
 
@@ -457,7 +457,7 @@ print('------------------------------------------------------------------------'
 
 #### Full model code
 
-Altogether, this is the new code for your K-fold Cross Validation scenario with \[latex\]K = 10\[/latex\]:
+Altogether, this is the new code for your K-fold Cross Validation scenario with $K = 10$:
 
 \[affiliatebox\]
 
@@ -685,7 +685,7 @@ However, that's entirely up to you! :)
 
 In this blog post, we looked at the concept of model evaluation: what is it? Why would we need it in the first place? And how to do so objectively? If we can't evaluate models without introducing bias of some sort, there's no point in evaluating at all, is there?
 
-We introduced simple hold-out splits for this purpose, and showed that while they are efficient in terms of the required computational resources, they are also naïve. K-fold Cross Validation is \[latex\]K\[/latex\] times more expensive, but can produce significantly better estimates because it trains the models for \[latex\]K\[/latex\] times, each time with a different train/test split.
+We introduced simple hold-out splits for this purpose, and showed that while they are efficient in terms of the required computational resources, they are also naïve. K-fold Cross Validation is $K$ times more expensive, but can produce significantly better estimates because it trains the models for $K$ times, each time with a different train/test split.
 
 To illustrate this further, we provided an example implementation for the Keras deep learning framework using TensorFlow 2.0. Using a Convolutional Neural Network for CIFAR-10 classification, we generated evaluations that performed in the range of 60-70% accuracies.
 

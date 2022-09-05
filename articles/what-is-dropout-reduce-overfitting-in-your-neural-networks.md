@@ -62,11 +62,11 @@ Note that the connections or synapses are removed as well, and that hence no dat
 
 ...but only very briefly! This process repeats every epoch (or even every minibatch! - Srivastava et al. 2014) and hence sampling thinned networks happens very often. This should lead to significantly lower generalization error rates (i.e., overfitting), as "the presence of neurons is made unreliable" (Srivastava et al., 2014).
 
-This removal of neurons and synapses during training is performed at random, with a parameter \[latex\]p\[/latex\] that is tunable (or, given empirical tests, best set to 0.5 for hidden layers and close to 1.0 for the input layer). This effectively means that, according to the authors, the "thinned" network is sampled from the global architecture, and used for training.
+This removal of neurons and synapses during training is performed at random, with a parameter $p$ that is tunable (or, given empirical tests, best set to 0.5 for hidden layers and close to 1.0 for the input layer). This effectively means that, according to the authors, the "thinned" network is sampled from the global architecture, and used for training.
 
 At test time, "it is not feasible to explicitly average the predictions from exponentially many thinned models" (Srivastava et al., 2014). That's true: it would become a computational burden when hundreds of thousands of epochs/minibatches have to be averaged, especially when networks become really large.
 
-Fortunately, there is a solution - which is simple, but produces the same result. By using one neural network, where the weight outputs are scaled down according to the \[latex\]p\[/latex\] with which a unit was retained during training. This means that the expected output at training time is the same as the true output at test time, resolving the computational issue and making Dropout usable in practice.
+Fortunately, there is a solution - which is simple, but produces the same result. By using one neural network, where the weight outputs are scaled down according to the $p$ with which a unit was retained during training. This means that the expected output at training time is the same as the true output at test time, resolving the computational issue and making Dropout usable in practice.
 
 ### Bernoulli variables
 
@@ -86,11 +86,11 @@ Dropout neuron (assumed to be without bias)
 
 Mathematically, this involves so-called Bernoulli random variables:
 
-> In probability theory and statistics, the Bernoulli distribution, named after Swiss mathematician Jacob Bernoulli, is the discrete probability distribution of a random variable which takes the value 1 with probability \[latex\]p\[/latex\].
+> In probability theory and statistics, the Bernoulli distribution, named after Swiss mathematician Jacob Bernoulli, is the discrete probability distribution of a random variable which takes the value 1 with probability $p$.
 > 
 > [Wikipedia on the Bernoulli distribution](https://en.wikipedia.org/wiki/Bernoulli_distribution)
 
-To create Dropout, Srivastava et al. (2014) attached Bernoulli variables to the network's neurons (by multiplying them with neural outputs), "each of which \[have\] probability \[latex\]p\[/latex\] of being 1". The \[latex\]p\[/latex\] value here is selected by the machine learning engineer, usually based on some validation set, or naïvely set to 0.5.
+To create Dropout, Srivastava et al. (2014) attached Bernoulli variables to the network's neurons (by multiplying them with neural outputs), "each of which \[have\] probability $p$ of being 1". The $p$ value here is selected by the machine learning engineer, usually based on some validation set, or naïvely set to 0.5.
 
 Inside the network, the Bernoulli variable and its value of 1 or 0 determines whether a neuron is 'dropped out' during this epoch or minibatch feedforward operation. This, in effect, leads to the 'thinned network' that Srivastava et al. (2014) talk about.
 
@@ -112,7 +112,7 @@ Training neural networks to which Dropout has been attached is pretty much equal
 
 Additionally, methods that improve classic SGD - like [momentum](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md/#momentum) - can be used as well, and show similar improvements as with regular neural networks (Srivastava et al., 2014).
 
-What the authors also found to be useful during training is applying _max-norm regularization_, which means constraining the norm of the incoming weight to be bounded by some maximum value \[latex\]c\[/latex\]. This value must be set by the engineer upfront, and determined using a validation set (Srivastava et al., 2014).
+What the authors also found to be useful during training is applying _max-norm regularization_, which means constraining the norm of the incoming weight to be bounded by some maximum value $c$. This value must be set by the engineer upfront, and determined using a validation set (Srivastava et al., 2014).
 
 Combining Dropout with max-norm regularization improves performance compared to using Dropout alone, but the authors reported even better results when Dropout and max-norm regularization are combined with two other things:
 
@@ -130,7 +130,7 @@ According to Srivastava et al. (2014), this can possibly be justified by the fol
 
 With any improvement in machine learning, it's nice to have a theoretical improvement - but it's also important to test whether it really works. Srivastava et al. (2014) performed multiple tests to find out whether Dropout works. Firstly, they used various standard datasets (such as the MNIST dataset) to test whether Dropout improves model performance across a wide range of classification problems.
 
-Secondly, they checked how it performed with a variety of other regularizers (yielding the insight that max-norm regularization together with Dropout works best - but let's take a look at these results in more detail later), and thirdly, Srivastava et al. (2014) investigated which dropout rates (i.e., which parameter \[latex\]p\[/latex\]) work best and how data size impacts Dropout performance. Let's take a look!
+Secondly, they checked how it performed with a variety of other regularizers (yielding the insight that max-norm regularization together with Dropout works best - but let's take a look at these results in more detail later), and thirdly, Srivastava et al. (2014) investigated which dropout rates (i.e., which parameter $p$) work best and how data size impacts Dropout performance. Let's take a look!
 
 [![](images/mnist.png)]
 
@@ -176,19 +176,19 @@ Hence, when applying Dropout, it might also be a good idea to perform max-norm r
 
 ### When does Dropout work best? About Dropout rate and Dataset size
 
-Another question they tried to answer: does the _dropout rate_ (i.e., the \[latex\]p\[/latex\] parameter) and/or _dataset size_ impact the performance of Dropout and the neural networks it is attached to?
+Another question they tried to answer: does the _dropout rate_ (i.e., the $p$ parameter) and/or _dataset size_ impact the performance of Dropout and the neural networks it is attached to?
 
 The question must be answered with **yes**.
 
-#### What is the best value for \[latex\]p\[/latex\]?
+#### What is the best value for $p$?
 
-First, the parameter \[latex\]p\[/latex\]. By now, we can recall that it is tunable, and must in fact be set up front by the machine learning engineer. The fact that it is tunable leads to the same errors as why [fixed learning rates aren't a good idea](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/problems-with-fixed-and-decaying-learning-rates.md): you simply don't know which \[latex\]p\[/latex\] fits the data best.
+First, the parameter $p$. By now, we can recall that it is tunable, and must in fact be set up front by the machine learning engineer. The fact that it is tunable leads to the same errors as why [fixed learning rates aren't a good idea](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/problems-with-fixed-and-decaying-learning-rates.md): you simply don't know which $p$ fits the data best.
 
-Hence, the authors argue, selecting a value for \[latex\]p\[/latex\] must be done by some initial tests with a validation set.
+Hence, the authors argue, selecting a value for $p$ must be done by some initial tests with a validation set.
 
 They did so as well - in order to see whether interesting patterns could be found.
 
-And they did find such a pattern: across multiple scenarios, a value of \[latex\]p \\approx 0.5\[/latex\] for the hidden layers seems to result in the best performance when applying Dropout (Srivastava et al., 2014). This is true for all layers except the input one, where \[latex\]p\[/latex\] must be \[latex\]\\approx 1.0\[/latex\]. The latter is presumably the case because the input layer takes the input data, and it's difficult to find patterns when data is dropped at random.
+And they did find such a pattern: across multiple scenarios, a value of $p \\approx 0.5$ for the hidden layers seems to result in the best performance when applying Dropout (Srivastava et al., 2014). This is true for all layers except the input one, where $p$ must be $\\approx 1.0$. The latter is presumably the case because the input layer takes the input data, and it's difficult to find patterns when data is dropped at random.
 
 #### How does Dropout perform with respect to dataset size?
 
@@ -202,13 +202,13 @@ Hence, there exists a sweet spot, when Dropout is necessary and when it's smart 
 
 ## Gaussian Dropout: Gaussian instead of Bernoulli variables
 
-We recall from above that Dropout works with Bernoulli variables which take 1 with probability \[latex\]p\[/latex\] and 0 with the rest, being \[latex\]1 - p\[/latex\].
+We recall from above that Dropout works with Bernoulli variables which take 1 with probability $p$ and 0 with the rest, being $1 - p$.
 
 This idea can be generalized to multiplying the activations with random variables from other distributions (Srivastava et al., 2014). In their work, Srivastava et al. found that the Gaussian distribution and hence Gaussian variables work just as well - and perhaps even better.
 
-Applying Gaussian variables can be done in a similar way: thinning networks at training time, and using weighted activations at test and production time (as with regular Dropout). However, the authors choose to use Gaussian Dropout differently - i.e., multiplicatively. Instead of thinning and weighting, Gaussian Dropout is weighted at training time, when activated values that are not dropped are multiplied by \[latex\]1/p\[/latex\] instead of \[latex\]1\[/latex\] (with regular Bernoulli Dropout). They are not modified at test time. This equals the previous scenario.
+Applying Gaussian variables can be done in a similar way: thinning networks at training time, and using weighted activations at test and production time (as with regular Dropout). However, the authors choose to use Gaussian Dropout differently - i.e., multiplicatively. Instead of thinning and weighting, Gaussian Dropout is weighted at training time, when activated values that are not dropped are multiplied by $1/p$ instead of $1$ (with regular Bernoulli Dropout). They are not modified at test time. This equals the previous scenario.
 
-Gaussian Dropout must be configured by some \[latex\]\\sigma\[/latex\], which in Srivastava et al.'s experiments was set to \[latex\]\\sqrt{(1-p)/p}\[/latex\], where \[latex\]p\[/latex\] is the configuration of the Bernoulli variant (i.e., in naïve cases \[latex\]p \\approx 0.5\[/latex\] for hidden layers and \[latex\]\\approx 1.0\[/latex\] for the input layer).
+Gaussian Dropout must be configured by some $\\sigma$, which in Srivastava et al.'s experiments was set to $\\sqrt{(1-p)/p}$, where $p$ is the configuration of the Bernoulli variant (i.e., in naïve cases $p \\approx 0.5$ for hidden layers and $\\approx 1.0$ for the input layer).
 
 ## Summary
 

@@ -53,7 +53,7 @@ An example from my [TensorBoard](https://github.com/mobiletest2016/machine-learn
 
 As you know, the dot product between the weight vector and the input (or transformed input) vector produced by the neuron itself is linear. It flows through an [activation function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/overview-of-activation-functions-for-neural-networks.md) to, generally, make it non-linear. But neural networks don't care what kind of function you choose for activating neuron output.
 
-You can thus choose to use \[latex\]f(x) = x\[/latex\], i.e. the identity function, as your activation function.
+You can thus choose to use $f(x) = x$, i.e. the identity function, as your activation function.
 
 But this is often a really bad idea.
 
@@ -63,11 +63,11 @@ And it all has to do with the gradient of this linear activation function:
 
 Yep, it's 1.
 
-The formula of \[latex\] f'(x) \[/latex\] when \[latex\] f(x) = x \[/latex\]?
+The formula of $f'(x)$ when $f(x) = x$?
 
 \[ad\]
 
-\[latex\] f'(x) = 1 \\times x^0 = 1 \* 1 = 1 \[/latex\]
+$f'(x) = 1 \\times x^0 = 1 \* 1 = 1$
 
 **You will thus find the same gradient for any neuron output when you use the linear activation function, namely 1.**
 

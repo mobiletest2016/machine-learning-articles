@@ -84,9 +84,9 @@ An excerpt from the corpus, [found here](https://twitter.com/theshawwn/status/13
 
 > _April Johnson had been crammed inside an apartment in San Francisco for two years, as the owners of the building refurbished it, where they took a large three story prewar home and turned it into units small enough where she felt a dog’s kennel felt larger than where she was living and it would be a step up. And with the walls so thin, all she could do was listen to the latest developments of her new neighbors. Their latest and only developments were the sex they appeared to be having late at night on the sofa, on the kitchen table, on the floor, and in the shower. But tonight the recent development occurred in the bed. If she had her way she would have preferred that they didn’t use the bed for sex because for some reason it was next to the paper thin wall which separated her apartment from theirs._
 
-Once more: pretraining happens in an unsupervised way, meaning that there are no labels whatsoever in order to help us steer the training process into the right direction. What we can do with our large corpus of tokens \[latex\]\\{T\_1, ..., T\_n\\}\[/latex\] however is applying a (sliding) **context window** of length \[latex\]k\[/latex\]. In other words, we can structure our text into the following windows: \[latex\]\\{T\_1, T\_2, T\_3\\}\[/latex\], \[latex\]\\{T\_2, T\_3, T\_4\\}\[/latex\], and so on, here with \[latex\]k = 3\[/latex\].
+Once more: pretraining happens in an unsupervised way, meaning that there are no labels whatsoever in order to help us steer the training process into the right direction. What we can do with our large corpus of tokens $\\{T\_1, ..., T\_n\\}$ however is applying a (sliding) **context window** of length $k$. In other words, we can structure our text into the following windows: $\\{T\_1, T\_2, T\_3\\}$, $\\{T\_2, T\_3, T\_4\\}$, and so on, here with $k = 3$.
 
-If we then feed a context window to the GPT model, we can predict the next token - e.g. \[latex\]T\_4\[/latex\] in the case of the \[latex\]\\{T\_1, T\_2, T\_3\\}\[/latex\] window:
+If we then feed a context window to the GPT model, we can predict the next token - e.g. $T\_4$ in the case of the $\\{T\_1, T\_2, T\_3\\}$ window:
 
 ![](images/Diagram-38-1024x505.png)
 
@@ -100,10 +100,10 @@ This function is a really complex way of writing down the following:
 
 [![](images/bce-1-1024x421.png)]
 
-- For each token \[latex\]T\_i\[/latex\] (in the formula also called \[latex\]u\_i\[/latex\]) in the corpus \[latex\]U\[/latex\], [we compute log loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-binary-categorical-crossentropy-with-keras.md) of the probability that it occurs given the context window \[latex\]u\_{i-k} \\rightarrow u\_{1-1}\[/latex\], i.e. the \[latex\]k\[/latex\] tokens prior to token \[latex\]i\[/latex\].
-- In plain English, this means: we let the model output the probability that token \[latex\]u\_i\[/latex\] is the next token given the context window of length \[latex\]k\[/latex\], and compute log loss for this probability, indicating how off the prediction is.
+- For each token $T\_i$ (in the formula also called $u\_i$) in the corpus $U$, [we compute log loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-binary-categorical-crossentropy-with-keras.md) of the probability that it occurs given the context window $u\_{i-k} \\rightarrow u\_{1-1}$, i.e. the $k$ tokens prior to token $i$.
+- In plain English, this means: we let the model output the probability that token $u\_i$ is the next token given the context window of length $k$, and compute log loss for this probability, indicating how off the prediction is.
     - In the image on the right, you can see that when the prediction is 100% correct, loss is 0; when it gets worse, loss increases exponentially.
-- If we sum this together for all tokens \[latex\]i \\in U\[/latex\], we get the loss as a whole and we can perform backpropagation based error computation and subsequent optimization. In fact, GPT is optimized with [Adam](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md/#adam) with a learning rate schedule with a maximum rate of 2.5e-4.
+- If we sum this together for all tokens $i \\in U$, we get the loss as a whole and we can perform backpropagation based error computation and subsequent optimization. In fact, GPT is optimized with [Adam](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md/#adam) with a learning rate schedule with a maximum rate of 2.5e-4.
 
 Radford et al. (2018) ran the training process for 100 epochs with a [minibatch](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md) approach using 64 randomly sampled batches of 512 tokens per batch.
 
@@ -117,7 +117,7 @@ Let's now take a look at how we can use the pretrained model for fine-tuning.
 
 ### Fine-tuning task
 
-Once the GPT model has been pretrained, it can be finetuned. This involves a labeled dataset, which Radford et al. (2018) call \[latex\]C\[/latex\]. Each instance contains a sequence of tokens \[latex\]\\{x^2, x^2, ..., x^m\\}\[/latex\], as well as a label \[latex\]y\[/latex\]. The sequence is passed through the pretrained Transformer architecture, which then is passed through a linear layer with weights \[latex\]W\_y\[/latex\] and [Softmax activation](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-does-the-softmax-activation-function-work.md) for [multiclass prediction](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/3-variants-of-classification-problems-in-machine-learning.md).
+Once the GPT model has been pretrained, it can be finetuned. This involves a labeled dataset, which Radford et al. (2018) call $C$. Each instance contains a sequence of tokens $\\{x^2, x^2, ..., x^m\\}$, as well as a label $y$. The sequence is passed through the pretrained Transformer architecture, which then is passed through a linear layer with weights $W\_y$ and [Softmax activation](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-does-the-softmax-activation-function-work.md) for [multiclass prediction](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/3-variants-of-classification-problems-in-machine-learning.md).
 
 ![](images/image-1.png)
 

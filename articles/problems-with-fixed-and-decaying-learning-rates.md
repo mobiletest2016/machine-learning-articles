@@ -55,7 +55,7 @@ Test loss: 0.02863448634357819 / Test accuracy: 0.9919000267982483
 
 ### Too large fixed learning rate: overshooting loss minimum
 
-Now, what happens when we set the learning rate to \[latex\]0.5\[/latex\], which the machine learning community considers a really large one?
+Now, what happens when we set the learning rate to $0.5$, which the machine learning community considers a really large one?
 
 (Note that in this case, 50% of the computed gradient change is actually used to change the model's weights!)
 
@@ -71,7 +71,7 @@ Loss, initially, was really large - and while indeed, the loss decreases substan
 
 Now, what happens if we decrease the learning rate to a value that is still large - but generally speaking, acceptably large?
 
-That is, we're now using a learning rate of \[latex\]0.01\[/latex\]:
+That is, we're now using a learning rate of $0.01$:
 
 [![](images/fixed_lr_large.png)]
 
@@ -96,7 +96,7 @@ You may now think: okay, but what happens when I _decrease_ instead of _increase
 
 Let's find out.
 
-We'll first use a learning rate of \[latex\]0.00001\[/latex\]. Note that our baseline learning rate is \[latex\]0.001\[/latex\], so ours is now 100 times smaller.
+We'll first use a learning rate of $0.00001$. Note that our baseline learning rate is $0.001$, so ours is now 100 times smaller.
 
 [![](images/fixed_lr_small.png)]
 
@@ -131,7 +131,7 @@ We can thus conclude that while fixed learning rates benefit you in terms of _si
 
 ### Model code
 
-This is the code that we used for our model, more speifically for our baseline setting. It uses the [Adam adaptive optimizer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md) and its default learning rate of \[latex\]0.001\[/latex\]. Note that you can adapt the learning rate under 'Fit data to model'.
+This is the code that we used for our model, more speifically for our baseline setting. It uses the [Adam adaptive optimizer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md) and its default learning rate of $0.001$. Note that you can adapt the learning rate under 'Fit data to model'.
 
 ```
 '''
@@ -350,7 +350,7 @@ Like this:
 
 [![](images/clr.png)]
 
-The bounds can be determined by means of the LR Range Test: in the case above, e.g. \[latex\]10^-2\[/latex\] and \[latex\]10^-1\[/latex\].
+The bounds can be determined by means of the LR Range Test: in the case above, e.g. $10^-2$ and $10^-1$.
 
 How does this benefit you compared to a 'traditional' learning rate, you may now wonder?
 

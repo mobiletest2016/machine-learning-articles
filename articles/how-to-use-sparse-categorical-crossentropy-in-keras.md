@@ -86,10 +86,10 @@ We'll have to convert it into categorical format first - with one-hot encoding, 
 
 You'll effectively transform your targets into this:
 
-- For class 0: \[latex\]\[1, 0, 0, 0\]\[/latex\];
-- For class 1: \[latex\]\[0, 1, 0, 0\]\[/latex\];
-- For class 2: \[latex\]\[0, 0, 1, 0\]\[/latex\];
-- For class 3: \[latex\]\[0, 0, 0, 1\]\[/latex\].
+- For class 0: $\[1, 0, 0, 0\]$;
+- For class 1: $\[0, 1, 0, 0\]$;
+- For class 2: $\[0, 0, 1, 0\]$;
+- For class 3: $\[0, 0, 0, 1\]$.
 
 Note that when you have more classes, the trick goes on and on - you simply create **n**\-dimensional vectors, where **n** equals the unique number of classes in your dataset.
 

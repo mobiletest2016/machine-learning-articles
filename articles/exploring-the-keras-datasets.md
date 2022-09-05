@@ -685,7 +685,7 @@ from tensorflow.keras.datasets import boston_housing
 
 The dataset contains 506 observations that relate certain characteristics with the price of houses (in $1000s) in Boston in some period. As we can see:
 
-- The minimum house price is $5000, while the maximum house price is $50.000. This may sound weird, but it's not: house prices have risen over the decades, and the study that produced this data is from 1978 (Harrison & Rubinfeld, 1978). Actually, around 1978 prices of \[latex\]\\approx $ 50.000\[/latex\] were quite the median value, so this dataset seems to contain relatively cheaper houses (or the Boston area was cheaper back then - I don't know; Martin, 2017).
+- The minimum house price is $5000, while the maximum house price is $50.000. This may sound weird, but it's not: house prices have risen over the decades, and the study that produced this data is from 1978 (Harrison & Rubinfeld, 1978). Actually, around 1978 prices of $\\approx $ 50.000$ were quite the median value, so this dataset seems to contain relatively cheaper houses (or the Boston area was cheaper back then - I don't know; Martin, 2017).
 - The mean house price was $22.533.
 - Variance in house prices is $84.587.
 

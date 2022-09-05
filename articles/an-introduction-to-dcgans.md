@@ -74,14 +74,14 @@ After "extensive model exploration" they identified "a family of architectures \
 When converted into best practices, this is a list that when used should improve any GAN compared to vanilla ones from the early days:
 
 1. **Minimizing fully connected layers:** Remove fully connected hidden layers for deeper architectures, [relying on Global Average Pooling instead](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/reducing-trainable-parameters-with-a-dense-free-convnet-classifier.md). If you cannot do that, make sure to add Dense layers only to the input of the Generator and the output of the Discriminator.
-    - The first layer of the Generator must be a Dense layer because it must be able to take samples from the latent distribution \[latex\]Z\[/latex\] as its input.
+    - The first layer of the Generator must be a Dense layer because it must be able to take samples from the latent distribution $Z$ as its input.
     - The final layer of the Discriminator must be a Dense layer because it must be able to convert inputs to a probability value.
 2. **Allowing the network to learn its own downsampling and upsampling.** This is achieved through replacing _deterministic pooling functions_ (like [max pooling](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-are-max-pooling-average-pooling-global-max-pooling-and-global-average-pooling.md)) with strided convolutions in the Discriminator and fractional-strided convolutions in the Generator.
 3. **Applying Batch Normalization.** Ensuring that the data distributions within each layer remain in check means that the weights updates oscillate less during training, and by consequence training is more stable.
 4. **Use Rectified Linear Unit in the Generator.** The ReLU activation function is used in the generator, except for the last layer, which uses Tanh.
 5. **Use Leaky ReLU in the Discriminator.** This was found to work well, in contrast to the Goodfellow et al. (2014) approach, which used maxout. Radford et al. (2015) set the slope of the leak to 0.2.
 
-For the record: for training their DCGANs, they used minibatch SGD with Adam optimization, a batch size of 128, weight init from a zero-centered Normal distribution with 0.02 stddev. Learning rate for Adam was set to 0.0002 (contrary to default 0.001) and the momentum term \[latex\]\\beta\_1\[/latex\] was reduced to 0.5 from 0.9.
+For the record: for training their DCGANs, they used minibatch SGD with Adam optimization, a batch size of 128, weight init from a zero-centered Normal distribution with 0.02 stddev. Learning rate for Adam was set to 0.0002 (contrary to default 0.001) and the momentum term $\\beta\_1$ was reduced to 0.5 from 0.9.
 
 Best practices, always nice!
 

@@ -116,11 +116,11 @@ Now, if some people (or in our case, neural network weights) do not contribute s
 
 In TensorFlow, we'll prune our models using **magnitude-based pruning**. This method, which is really simple, removes the smallest weight after each epoch (Universität Tubingen, n.d.). In fact, the pruning method is so simple that it compares the absolute size of the weight with some threshold lambda (Nervana Systems, n.d.):
 
-\[latex\]thresh(w\_i)=\\left\\lbrace \\matrix{{{w\_i: \\; if \\;|w\_i| \\; \\gt}\\;\\lambda}\\cr {0: \\; if \\; |w\_i| \\leq \\lambda} } \\right\\rbrace\[/latex\]
+$thresh(w\_i)=\\left\\lbrace \\matrix{{{w\_i: \\; if \\;|w\_i| \\; \\gt}\\;\\lambda}\\cr {0: \\; if \\; |w\_i| \\leq \\lambda} } \\right\\rbrace$
 
 According to Universität Tubingen (n.d.), this method often yields quite good results - no worse than more advanced methods.
 
-Why this method works is because of the effect of weights that are set to zero. As we recall, within a neuron, some input vector \[latex\]\\textbf{x}\[/latex\] is multiplied with the weights vector \[latex\]\\textbf{w}\[/latex\]. If the weights in the vector are set to zero, the outcome will always be zero. This, in effect, ensures that the neuron no longer contributes to model performance.
+Why this method works is because of the effect of weights that are set to zero. As we recall, within a neuron, some input vector $\\textbf{x}$ is multiplied with the weights vector $\\textbf{w}$. If the weights in the vector are set to zero, the outcome will always be zero. This, in effect, ensures that the neuron no longer contributes to model performance.
 
 Why, was the question I now had. Why does setting model weights to zero help optimize a model, and make it smaller? Gale et al. (2019) answer this question: "models can be stored and transmitted compactly using sparse matrix formats". This benefits from the fact that "\[sparse\] data is by nature more easily [compressed](https://en.wikipedia.org/wiki/Data_compression) and thus requires significantly less [storage](https://en.wikipedia.org/wiki/Computer_data_storage)." (Wikipedia, 2003). In addition, beyond compression, computation-wise programming code (such as computing `x`+`y`) can be made faster (e.g., it can be omitted if `x` or `y` are sparse, or both - `x+0` = `x`, and so on), benefiting processing - _inference_, in our case.
 

@@ -221,7 +221,7 @@ class NeuralNetwork(pl.LightningModule):
 
 Recall that a loss function computes the aggregate error when a set of predictions is passed - by comparing them to the ground truth for the samples. In the `training_step`, we can create such functionality in the following way:
 
-- We first decompose the batch (i.e. the input sample/target combinations) into `x` and `y`, where obviously, \[latex\]\\text{x} \\rightarrow \\text{y}\[/latex\].
+- We first decompose the batch (i.e. the input sample/target combinations) into `x` and `y`, where obviously, $\\text{x} \\rightarrow \\text{y}$.
 - We then reshape `x` so that it can be processed by our neural network.
 - We generate `y_hat`, which is the set of predictions for `x`, by feeding `x` forward through our neural network defined in `self.layers`. Note that you will see the creation of `self.layers` in the full code example below.
 - We then compute binary crossentropy loss between `y_hat` (predictions) and `y` (ground truth), log the loss, and return it. Based on this loss, PyTorch Lightning will handle the gradients computation and subsequent optimization (with the optimizer defined in `configure_optimizers`, see the full code example below).

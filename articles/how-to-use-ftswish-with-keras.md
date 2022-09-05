@@ -68,14 +68,14 @@ def ftswish(x):
 
 Let's break the definition down into understandable steps:
 
-- The value for `t` is the threshold value \[latex\]T\[/latex\], which in our case is -1.0. It ensures that negative inputs saturate to this value. Its value can be different, but take a look at the derivative plot to ensure that you'll have a smooth one.
+- The value for `t` is the threshold value $T$, which in our case is -1.0. It ensures that negative inputs saturate to this value. Its value can be different, but take a look at the derivative plot to ensure that you'll have a smooth one.
 - Next, the `def` (definition) ensures that we can use `ftswish` as some kind of function - mapping some input to an output. It also means that we can simply feed it to Keras later, to be used in processing.
 - Note that FTSwish _combines_ ReLU and Sigmoid with a threshold value for _positive_ inputs, in a way that it can be broken apart in a multiplication:
     - `K.relu` is the ReLU part.
     - `K.sigmoid` is the Sigmoid part.
     - Multiplying them yields the ReLU/Sigmoid part of the FTSwish activation function.
     - Adding the threshold is simply adding `t` to the outcome of the multiplication.
-- Note that `ReLU`, which is \[latex\]0\[/latex\] for negative inputs and \[latex\]x\[/latex\] for others, can be rewritten to \[latex\]max(0, x)\[/latex\] (indeed: \[latex\]x = 4\[/latex\] yields outputs of 4, while \[latex\]x = -2\[/latex\] yields 0. This is in line with the ReLU definition). Hence, given the formula for FTSwish above, we can rewrite it to a `max` between `t` (the negative output) and the ReLU/Sigmoid combination (the positive output).
+- Note that `ReLU`, which is $0$ for negative inputs and $x$ for others, can be rewritten to $max(0, x)$ (indeed: $x = 4$ yields outputs of 4, while $x = -2$ yields 0. This is in line with the ReLU definition). Hence, given the formula for FTSwish above, we can rewrite it to a `max` between `t` (the negative output) and the ReLU/Sigmoid combination (the positive output).
 - We're using `K` instead of `np` because we're performing these operations on multidimensional tensors.
 
 * * *
@@ -198,7 +198,7 @@ input_train = input_train.astype('float32')
 input_test = input_test.astype('float32')
 ```
 
-This is followed by normalizing our data to be in the \[latex\]\[-1, 1\]\[/latex\] range, which is appreciated by the neural network during optimization:
+This is followed by normalizing our data to be in the $\[-1, 1\]$ range, which is appreciated by the neural network during optimization:
 
 ```
 # Normalize data

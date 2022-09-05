@@ -18,7 +18,7 @@ tags:
 
 Deep neural networks perform linear operations to combine weight vectors with input vectors. The values that are the outputs of these combinations are subsequently fed to [activation functions](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md) which map the linear input into nonlinear output.
 
-The Rectified Linear Unit or ReLU activation function is very popular today. It activates to zero for all inputs lower than zero, and activates linearly (i.e. \[latex\]f(x) = x\[/latex\] for all \[latex\]x >= 0\[/latex\]).
+The Rectified Linear Unit or ReLU activation function is very popular today. It activates to zero for all inputs lower than zero, and activates linearly (i.e. $f(x) = x$ for all $x >= 0$).
 
 Nevertheless, it has some challenges - to which [the Swish activation function was found to be a solution](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-swish-could-perform-better-than-relu.md). Increasing in popularity, studies have emerged that empirically investigate the effectiveness of Swish. Does it really result in better model performance? If not, why is this the case? How could even Swish be improved?
 
@@ -68,7 +68,7 @@ The activation function and its first-order derivative can be visualized as foll
 
 [![](images/sigmoid_deriv-1024x511.png)]
 
-As you can see, computed gradients for Sigmoid will never be larger than \[latex\]\\approx 0.25\[/latex\], and in many cases the gradients will be very small.
+As you can see, computed gradients for Sigmoid will never be larger than $\\approx 0.25$, and in many cases the gradients will be very small.
 
 Since optimizing multiple layers of a neural network essentially chains together computed gradients from loss value to layer, with all intermediate layers included, the gradients for upstream layers get really small, slowing down the learning process the more upstream you get. Adding more and more layers will thus essentially create a network that learns slowly or cannot even converge anymore - _say hello to the vanishing gradients problem_.
 
@@ -80,7 +80,7 @@ We can generate the same plot for the Swish activation function (Serengil, 2018;
 
 [![](images/swish_deriv-1024x511.png)]
 
-Even though the vanishing gradients problem is much less severe in case of Swish, only inputs of \[latex\]x >= 2\[/latex\] result in gradients of 1 and (sometimes) higher. In any other case, the gradient will still cause the chain to get smaller with increasing layers.
+Even though the vanishing gradients problem is much less severe in case of Swish, only inputs of $x >= 2$ result in gradients of 1 and (sometimes) higher. In any other case, the gradient will still cause the chain to get smaller with increasing layers.
 
 Hence, indeed - as Roy et al. (2019) argue: Swish does not fully avoid the vanishing gradients problem.
 
@@ -90,7 +90,7 @@ Hence, indeed - as Roy et al. (2019) argue: Swish does not fully avoid the vanis
 
 To reduce the impact of this problem, they introduce the LiSHT activation function, or the **Linearly Scaled Hyperbolic Tangent**. This activation function simply uses the `tanh` function and scales it linearly, as follows:
 
-\[latex\]LiSHT(x) = x \\times tanh(x)\[/latex\]
+$LiSHT(x) = x \\times tanh(x)$
 
 When we compare it with traditional ReLU and Swish, we get this plot:
 

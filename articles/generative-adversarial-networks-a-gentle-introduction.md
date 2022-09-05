@@ -73,34 +73,34 @@ We use this order: first, we're going to take a look at the Generator. This is f
 
 ### Latent space, priors and image generation: the Generator
 
-The first element of any GAN, and maybe the most important part, is the **Generator**. Visualized in red below, a Generator can be defined as \[latex\]G\[/latex\] mathematically. \[latex\]G\[/latex\] is usually a neural network based model. Even more specifically, it can be defined as \[latex\]G(\\textbf{z}, \\theta\_g)\[/latex\]. Let's break this apart into a variety of components.
+The first element of any GAN, and maybe the most important part, is the **Generator**. Visualized in red below, a Generator can be defined as $G$ mathematically. $G$ is usually a neural network based model. Even more specifically, it can be defined as $G(\\textbf{z}, \\theta\_g)$. Let's break this apart into a variety of components.
 
 ![](images/image-2-1024x454.png)
 
 The generator part of a GAN.
 
-First, \[latex\]\\theta\_g\[/latex\]. These are simply the parameters of the neural network; its weights. As they can be trained (and hence updated), the parameters are specified specifically, because they are not fixed all the time.
+First, $\\theta\_g$. These are simply the parameters of the neural network; its weights. As they can be trained (and hence updated), the parameters are specified specifically, because they are not fixed all the time.
 
-Secondly, \[latex\]\\textbf{z}\[/latex\]. Beyond the parameters, it is the other input to the Generator. In the image above, we can see that the only input to a Generator is a _noise vector_. Recall that Generators of a GAN battle against Discriminators. However, in order to do so, we'll have to generate an image. We cannot generate an output of a model without any input, and that's why we have to input _something_. And that something is random noise. (And we shall see that the battle between both ensures that random noise will be capable of producing very high-quality stuff later.)
+Secondly, $\\textbf{z}$. Beyond the parameters, it is the other input to the Generator. In the image above, we can see that the only input to a Generator is a _noise vector_. Recall that Generators of a GAN battle against Discriminators. However, in order to do so, we'll have to generate an image. We cannot generate an output of a model without any input, and that's why we have to input _something_. And that something is random noise. (And we shall see that the battle between both ensures that random noise will be capable of producing very high-quality stuff later.)
 
-Anyway, let's get back on topic. \[latex\]\\textbf{z}\[/latex\] is the noise. We also call this noise vector a _latent vector_. Latent means "hidden" (Quora, n.d.). It is called that way because it comes from a latent or "hidden" probability distribution \[latex\]p\_\\textbf{z}\[/latex\]. It provides the probabilities that if we sample randomly, we get \[latex\]\\textbf{z}\[/latex\]. For any \[latex\]\\textbf{z}\[/latex\], we can define its probability \[latex\]p\_\\textbf{z}(\\textbf{z})\[/latex\]. We call this the _prior_.
+Anyway, let's get back on topic. $\\textbf{z}$ is the noise. We also call this noise vector a _latent vector_. Latent means "hidden" (Quora, n.d.). It is called that way because it comes from a latent or "hidden" probability distribution $p\_\\textbf{z}$. It provides the probabilities that if we sample randomly, we get $\\textbf{z}$. For any $\\textbf{z}$, we can define its probability $p\_\\textbf{z}(\\textbf{z})$. We call this the _prior_.
 
 ![](images/image-3-1024x350.png)
 
-Note that the probability distribution can be any continuous distribution (StackExchange, n.d.). Often, however, the Gaussian distribution with \[latex\](\\mu = 0.0, \\sigma = 1.0)\[/latex\] is chosen for two reasons (Goodfellow et al., 2014):
+Note that the probability distribution can be any continuous distribution (StackExchange, n.d.). Often, however, the Gaussian distribution with $(\\mu = 0.0, \\sigma = 1.0)$ is chosen for two reasons (Goodfellow et al., 2014):
 
 1. The unit variance means that each element in the noise vector can be a different feature of the output image.
 2. The zero mean means that we can "walk" over our latent space and generate new images with some continuity between them.
 
-Okay, back to the generator - \[latex\]G(\\textbf{z}, \\theta\_g)\[/latex\]. It maps any \[latex\]\\textbf{z}\[/latex\] (latent vector) to "data space" (via a data vector, \[latex\]\\textbf{x}\[/latex\], using the network and its weights. Data space here means the space with all possible output images. The neural network \[latex\]G\[/latex\] and the parameters \[latex\]\\theta\_g\[/latex\] determine how the mapping is made; \[latex\]\\textbf{z}\[/latex\] provides the sample that is mapped.
+Okay, back to the generator - $G(\\textbf{z}, \\theta\_g)$. It maps any $\\textbf{z}$ (latent vector) to "data space" (via a data vector, $\\textbf{x}$, using the network and its weights. Data space here means the space with all possible output images. The neural network $G$ and the parameters $\\theta\_g$ determine how the mapping is made; $\\textbf{z}$ provides the sample that is mapped.
 
 So, to summarize, for each iteration - and sample - we randomly draw a latent vector from our latent space. It's fed to the Generator, and we receive an image. This image is picked up by the Discriminator.
 
 ### Checking for counterfeiting: the Discriminator
 
-The Discriminator, or \[latex\]D\[/latex\], learns to detect whether an image created by generator \[latex\]G\[/latex\] is real or not. Let's take a look at how it does that.
+The Discriminator, or $D$, learns to detect whether an image created by generator $G$ is real or not. Let's take a look at how it does that.
 
-First of all, we know that \[latex\]G\[/latex\] generates an image. This image, \[latex\]\\textbf{x}\[/latex\], is fed to the Discriminator - \[latex\]D(\\textbf{x}\[/latex\]. The Discriminator is also a neural network. Instead of an image, however, it outputs the probability that \[latex\]\\textbf{x}\[/latex\] comes from the data rather than the probability distribution \[latex\]p\_g\[/latex\] (Goodfellow et al., 2014). In other words, that it is "real" (and thus from the real images) rather than "counterfeit") (from the Generator's distribution, \[latex\]p\_g\[/latex\]).
+First of all, we know that $G$ generates an image. This image, $\\textbf{x}$, is fed to the Discriminator - $D(\\textbf{x}$. The Discriminator is also a neural network. Instead of an image, however, it outputs the probability that $\\textbf{x}$ comes from the data rather than the probability distribution $p\_g$ (Goodfellow et al., 2014). In other words, that it is "real" (and thus from the real images) rather than "counterfeit") (from the Generator's distribution, $p\_g$).
 
 Quite simple!
 
@@ -110,13 +110,13 @@ Quite simple!
 
 Okay, now we know how the Generator works (TL/DR: mapping vectors sampled from a latent space to an output) as well as how the Discriminator works (TL/DR: outputting the probability that its input is from data space / real rather than from generator space / counterfeit).
 
-In other words, we know that \[latex\]D\[/latex\] is trained to _maximize_ the probability of assigning the correct label to training examples and samples from G ("distinguish real from fake"). \[latex\]G\[/latex\], on the other hand, is trained to minimize \[latex\]log(1-D(G(\\textbf{z})))\[/latex\] ("fool \[latex\]D\[/latex\] with my image \[latex\]G(\\textbf{z})\[/latex\]").
+In other words, we know that $D$ is trained to _maximize_ the probability of assigning the correct label to training examples and samples from G ("distinguish real from fake"). $G$, on the other hand, is trained to minimize $log(1-D(G(\\textbf{z})))$ ("fool $D$ with my image $G(\\textbf{z})$").
 
-By consequence, the battle between the Generator and the Discriminator is a minimax game ("minimizing the performance of G while maximizing the performance of D"). Although this sounds counterintuitive at first, it is easy to see that G thus faces an uphill battle and that it has to work _really hard_ to fool the police \[latex\]D\[/latex\]. Just like any counterfeiter these days. This is good, because only such pressure ensures that \[latex\]G\[/latex\] will learn to generate scary stuff.
+By consequence, the battle between the Generator and the Discriminator is a minimax game ("minimizing the performance of G while maximizing the performance of D"). Although this sounds counterintuitive at first, it is easy to see that G thus faces an uphill battle and that it has to work _really hard_ to fool the police $D$. Just like any counterfeiter these days. This is good, because only such pressure ensures that $G$ will learn to generate scary stuff.
 
-The game can be illustrated by the formula below, which we adapted from Goodfellow et al. (2014) - remarks by me. We add the expected loss value for the Discriminator given the \[latex\]\\textbf{x}\[/latex\] generated by \[latex\]G\[/latex\] ("how well the Discriminator works on real data") to the expected loss value for the Discriminator given how the Generator processed the sampled vector \[latex\]\\textbf{z}\[/latex\]. In other words, how bad the Discriminator works on counterfeit data.
+The game can be illustrated by the formula below, which we adapted from Goodfellow et al. (2014) - remarks by me. We add the expected loss value for the Discriminator given the $\\textbf{x}$ generated by $G$ ("how well the Discriminator works on real data") to the expected loss value for the Discriminator given how the Generator processed the sampled vector $\\textbf{z}$. In other words, how bad the Discriminator works on counterfeit data.
 
-The game minimizes this loss for the Generator (minimize how well \[latex\]D\[/latex\] works on real data and how good it is on counterfeit data jointly) and maximizes the loss for the Discriminator (maximize how poor it performs jointly). As with any battle, balance between the parties will emerge. And precisely this game is why G will be capable of generating real images.
+The game minimizes this loss for the Generator (minimize how well $D$ works on real data and how good it is on counterfeit data jointly) and maximizes the loss for the Discriminator (maximize how poor it performs jointly). As with any battle, balance between the parties will emerge. And precisely this game is why G will be capable of generating real images.
 
 ![](images/image-1-1024x401.png)
 
@@ -134,13 +134,13 @@ This is the training algorithm from Goodfellow et al. (2014):
 
 - For _some number of training iterations_, do:
     - For _k steps_, do:
-        - Sample a minibatch of _m_ noisy samples \[latex\]\\{\\textbf{z}^{(1)}, \\textbf{z}^{(2)}, ..., \\textbf{z}^{(m)}\\}\[/latex\] from the noise prior, \[latex\]p\_g(\\textbf{z})\[/latex\].
-        - Sample a minibatch of _m_ real data examples \[latex\]\\{\\textbf{x}^{(1)}, \\textbf{x}^{(2)}, ..., \\textbf{x}^{(m)}\\}\[/latex\] from the data generating distribution, \[latex\]p\_{data}(\\textbf{x})\[/latex\].
-        - Update the Discriminator \[latex\]D\[/latex\] by performing gradient ascent using the average loss according to the minimax formula above, for each pair \[latex\]\\{\\textbf{z}^{(i)}, \\textbf{x}^{(i)}\\}\[/latex\], where \[latex\]0 < i < m\[/latex\].
-    - Sample a minibatch of _m_ noisy samples \[latex\]\\{\\textbf{z}^{(1)}, \\textbf{z}^{(2)}, ..., \\textbf{z}^{(m)}\\}\[/latex\] from the noise prior, \[latex\]p\_g(\\textbf{z})\[/latex\].
-    - Update the Generator \[latex\]G\[/latex\] by performing gradient descent using the average loss according to the _expected generator loss_ from the formula above, for each pair \[latex\]\\textbf{z}^{(i)}\[/latex\], where \[latex\]0 < i < m\[/latex\].
+        - Sample a minibatch of _m_ noisy samples $\\{\\textbf{z}^{(1)}, \\textbf{z}^{(2)}, ..., \\textbf{z}^{(m)}\\}$ from the noise prior, $p\_g(\\textbf{z})$.
+        - Sample a minibatch of _m_ real data examples $\\{\\textbf{x}^{(1)}, \\textbf{x}^{(2)}, ..., \\textbf{x}^{(m)}\\}$ from the data generating distribution, $p\_{data}(\\textbf{x})$.
+        - Update the Discriminator $D$ by performing gradient ascent using the average loss according to the minimax formula above, for each pair $\\{\\textbf{z}^{(i)}, \\textbf{x}^{(i)}\\}$, where $0 < i < m$.
+    - Sample a minibatch of _m_ noisy samples $\\{\\textbf{z}^{(1)}, \\textbf{z}^{(2)}, ..., \\textbf{z}^{(m)}\\}$ from the noise prior, $p\_g(\\textbf{z})$.
+    - Update the Generator $G$ by performing gradient descent using the average loss according to the _expected generator loss_ from the formula above, for each pair $\\textbf{z}^{(i)}$, where $0 < i < m$.
 
-As you can see, the Discriminator is updated for \[latex\]k\[/latex\] steps and only then the Generator is updated. This process is repeated continuously. \[latex\]k\[/latex\] can be set to 1, but usually larger values are better (Goodfellow et al., 2014). Any gradient-based learning rule can be used for optimization. Goodfellow et al. (2014) used momentum.
+As you can see, the Discriminator is updated for $k$ steps and only then the Generator is updated. This process is repeated continuously. $k$ can be set to 1, but usually larger values are better (Goodfellow et al., 2014). Any gradient-based learning rule can be used for optimization. Goodfellow et al. (2014) used momentum.
 
 * * *
 

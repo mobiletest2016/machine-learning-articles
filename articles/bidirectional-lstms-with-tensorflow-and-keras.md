@@ -58,19 +58,19 @@ A **[Long Short-Term Memory](https://github.com/mobiletest2016/machine-learning-
 
 It is especially problematic when your neural network is recurrent, because the type of backpropagation involved there involves unrolling the network for each input token, effectively chaining copies of the same model. The longer the sequence, the worse the vanishing gradients problem is. We therefore don't use classic or vanilla RNNs so often anymore.
 
-LSTMs fix this problem by separating _memory_ from the _hidden outputs_. An LSTM consists of memory cells, one of which is visualized in the image below. As you can see, the output from the previous layer \[latex\]h\[t-1\]\[/latex\] and to the next layer \[latex\]h\[t\]\[/latex\] is separated from the memory, which is noted as \[latex\]c\[/latex\]. Interactions between the previous output and current input with the memory take place in three segments or _gates_:
+LSTMs fix this problem by separating _memory_ from the _hidden outputs_. An LSTM consists of memory cells, one of which is visualized in the image below. As you can see, the output from the previous layer $h\[t-1\]$ and to the next layer $h\[t\]$ is separated from the memory, which is noted as $c$. Interactions between the previous output and current input with the memory take place in three segments or _gates_:
 
-- The **forget gate**, which is the first segment. It feeds both the previous output and the current input through a [Sigmoid](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md) (\[latex\]\\sigma\[/latex\]) function, then multiplying the result with memory. It thus removes certain short-term elements from memory.
+- The **forget gate**, which is the first segment. It feeds both the previous output and the current input through a [Sigmoid](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md) ($\\sigma$) function, then multiplying the result with memory. It thus removes certain short-term elements from memory.
 - The **input** or **update gate**, which is the second segment. It also utilizes a Sigmoid function and learns what must be added memory, updating it based on the current input and the output from the previous layer. In addition, this Sigmoid activated data is multiplied with a [Tanh](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/implementing-relu-sigmoid-and-tanh-in-keras.md) generated output from memory and input, normalizing the memory update and keeping memory values low.
 - The **output gate**, which is the third segment. It utilizes a Sigmoid activated combination from current input and previous output and multiplies it with a [Tanh-normalized](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md) representation from memory. The output is then presented and is used in the next cell, which is a copy of the current one with the same parameters.
 
-While many [nonlinear operations](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-nonlinear-activation-functions-improve-ml-performance-with-tensorflow-example.md) are present within the memory cell, the memory flow from \[latex\]c\[t-1\]\[/latex\] to \[latex\]c\[t\]\[/latex\] is _linear_ - the multiplication and addition operations are linear operations. By consequence, through a smart implementation, the gradient in this segment is always kept at `1.0` and hence vanishing gradients no longer occur. This aspect of the LSTM is therefore called a **Constant Error Carrousel**, or CEC.
+While many [nonlinear operations](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-nonlinear-activation-functions-improve-ml-performance-with-tensorflow-example.md) are present within the memory cell, the memory flow from $c\[t-1\]$ to $c\[t\]$ is _linear_ - the multiplication and addition operations are linear operations. By consequence, through a smart implementation, the gradient in this segment is always kept at `1.0` and hence vanishing gradients no longer occur. This aspect of the LSTM is therefore called a **Constant Error Carrousel**, or CEC.
 
 [![](images/LSTM-5.png)]
 
 ### How unidirectionality can limit your LSTM
 
-Suppose that you are processing the sequence \[latex\]\\text{I go eat now}\[/latex\] through an LSTM for the purpose of translating it into French. Recall that processing such data happens on a per-token basis; each token is fed through the LSTM cell which processes the input token and passes the hidden state on to itself. When unrolled (as if you utilize many copies of the same LSTM model), this process looks as follows:
+Suppose that you are processing the sequence $\\text{I go eat now}$ through an LSTM for the purpose of translating it into French. Recall that processing such data happens on a per-token basis; each token is fed through the LSTM cell which processes the input token and passes the hidden state on to itself. When unrolled (as if you utilize many copies of the same LSTM model), this process looks as follows:
 
 [![](images/unidirectional-1024x414.png)]
 
@@ -82,7 +82,7 @@ Yes: you will read the sentence from the left to the right, and then also approa
 
 ### From unidirectional to bidirectional LSTMs
 
-In those cases, you might wish to use a Bidirectional LSTM instead. With such a network, sequences are processed in both a left-to-right _and_ a right-to-left fashion. In other words, the phrase \[latex\]\\text{I go eat now}\[/latex\] is processed as \[latex\]\\text{I} \\rightarrow \\text{go} \\rightarrow \\text{eat} \\rightarrow \\text{now}\[/latex\] and as \[latex\]\\text{I} \\leftarrow \\text{go} \\leftarrow \\text{eat} \\leftarrow \\text{now}\[/latex\].
+In those cases, you might wish to use a Bidirectional LSTM instead. With such a network, sequences are processed in both a left-to-right _and_ a right-to-left fashion. In other words, the phrase $\\text{I go eat now}$ is processed as $\\text{I} \\rightarrow \\text{go} \\rightarrow \\text{eat} \\rightarrow \\text{now}$ and as $\\text{I} \\leftarrow \\text{go} \\leftarrow \\text{eat} \\leftarrow \\text{now}$.
 
 This provides more context for the tasks that require both directions for better understanding.
 
@@ -90,9 +90,9 @@ This provides more context for the tasks that require both directions for better
 
 While conceptually bidirectional LSTMs work in a bidirectional fashion, they are not bidirectional in practice. Rather, they are just two unidirectional LSTMs for which the output is combined. Outputs can be combined in multiple ways (TensorFlow, n.d.):
 
-- **Vector summation**. Here, the output equals \[latex\]\\text{LSTM}\_\\rightarrow + \\text{LSTM}\_\\leftarrow\[/latex\].
-- **Vector averaging**. Here, the output equals \[latex\]\\frac{1}{2}(\\text{LSTM}\_\\rightarrow + \\text{LSTM}\_\\leftarrow)\[/latex\]
-- **Vector multiplication.** Here, the output equals \[latex\]\\text{LSTM}\_\\rightarrow \\times \\text{LSTM}\_\\leftarrow\[/latex\].
+- **Vector summation**. Here, the output equals $\\text{LSTM}\_\\rightarrow + \\text{LSTM}\_\\leftarrow$.
+- **Vector averaging**. Here, the output equals $\\frac{1}{2}(\\text{LSTM}\_\\rightarrow + \\text{LSTM}\_\\leftarrow)$
+- **Vector multiplication.** Here, the output equals $\\text{LSTM}\_\\rightarrow \\times \\text{LSTM}\_\\leftarrow$.
 - **Vector concatenation**. Here, the output vector is twice the dimensionality of the input vectors, because they are concatenated rather than combined.
 
 * * *

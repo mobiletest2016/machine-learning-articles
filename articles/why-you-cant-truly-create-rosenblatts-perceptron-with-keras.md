@@ -146,9 +146,9 @@ Let's take the first row.
 6,148,72,35,0,33.6,0.627,50,1
 ```
 
-The numbers \[latex\]\\{6, 148, ..., 50\\}\[/latex\] represent the feature vector \[latex\]\\mathbf{x\_0} = \\{6, 148, 72, 35, 0, 33.6, 0.627, 50\\}\[/latex\]. This feature vector is part of your training set which is the Pima dataset - or \[latex\]\\mathbf{x\_0} \\in X\[/latex\].
+The numbers $\\{6, 148, ..., 50\\}$ represent the feature vector $\\mathbf{x\_0} = \\{6, 148, 72, 35, 0, 33.6, 0.627, 50\\}$. This feature vector is part of your training set which is the Pima dataset - or $\\mathbf{x\_0} \\in X$.
 
-There is however one value left: \[latex\]1\[/latex\]. This is actually the _desired outcome_, or the class to which this feature vector belongs. The total number of desired outcomes is 2, as the set is \[latex\]Y = \\{ 0, 1 \\}\[/latex\] or, in plainer English: \[latex\]Y = \\{ \\text{no diabetes}, \\text{diabetes} \\}\[/latex\]. Recall why this is the case: the objective of the Pima dataset is to "to diagnostically predict whether or not a patient has diabetes".
+There is however one value left: $1$. This is actually the _desired outcome_, or the class to which this feature vector belongs. The total number of desired outcomes is 2, as the set is $Y = \\{ 0, 1 \\}$ or, in plainer English: $Y = \\{ \\text{no diabetes}, \\text{diabetes} \\}$. Recall why this is the case: the objective of the Pima dataset is to "to diagnostically predict whether or not a patient has diabetes".
 
 This also explains why you'll do this:
 
@@ -158,7 +158,7 @@ X = dataset[:, 0:8]
 Y = dataset[:, 8]
 ```
 
-In Python, what you're writing for \[latex\]X\[/latex\] is this: for the entire `dataset`, take all rows (`:`) as well as columns 0 up to 8 (excluding 8). Assign the output to `X`. By consequence, `X` - or your set of feature vectors - therefore contains the _actual features_, excluding the targets (which are in column 8).
+In Python, what you're writing for $X$ is this: for the entire `dataset`, take all rows (`:`) as well as columns 0 up to 8 (excluding 8). Assign the output to `X`. By consequence, `X` - or your set of feature vectors - therefore contains the _actual features_, excluding the targets (which are in column 8).
 
 Obviously, it's now easy to understand what happens for the desired outcomes or target set `Y`: you'll take the 8th column for all rows.
 
@@ -185,13 +185,13 @@ So I started looking around for clues, and then I found this:
   
 Today's neural networks, which are supported by Keras, apparently use an entirely different method for optimization, I found. Whereas the Rosenblatt Perceptron updates the weights by pushing them slightly into the right direction (i.e. the [Perceptron Learning Rule](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/linking-maths-and-intuition-rosenblatts-perceptron-in-python.md)), today's neural networks don't do that. Instead, they compute the loss with a so-called loss function, which is differentiable. By minimizing this gradient, the algorithms find the way to the best-performing model. We call this (Stochastic) Gradient Descent. Instead of pushing the weights into the right direction, it's like descending a mountainous path, where your goal is to go to the valley - changing the model weights as you go.
 
-The next question is then: the Perceptron step function outputs class 0 for all values \[latex\]\\leq 0\[/latex\] and 1 for the rest. Why cannot this be used as a loss function, then?
+The next question is then: the Perceptron step function outputs class 0 for all values $\\leq 0$ and 1 for the rest. Why cannot this be used as a loss function, then?
 
-Very simple - because the derivative is always zero, except for \[latex\]x = 0\[/latex\]. Consider one of the classes as the output of a function, say for class = 1, and you will get:
+Very simple - because the derivative is always zero, except for $x = 0$. Consider one of the classes as the output of a function, say for class = 1, and you will get:
 
 $$\\begin{equation} \\begin{split} f(x) &= 1 \\end{split} \\end{equation}$$
 
-Since \[latex\]x^0\[/latex\] is 1, we can rewrite \[latex\]f(x)\[/latex\] as:
+Since $x^0$ is 1, we can rewrite $f(x)$ as:
 
 $$\\begin{equation} \\begin{split} f(x) &= 1 \\cdot x^0 \\\\ &= 1 \\cdot 1 \\\\ &= 1 \\\\ \\end{split} \\end{equation}$$
 
@@ -199,7 +199,7 @@ And you will see that the derivative is 0:
 
 $$\\begin{equation} \\begin{split} f'(x) &= \\frac{df}{dx}(1) \\\\ &= \\frac{df}{dx}(1 \\cdot x^0) \\\\ &= 0 \\cdot (1 \\cdot x^\\text{-1}) \\\\ &= 0 \\end{split} \\end{equation}$$
 
-What's even worse is that the derivative is _undefined_ for \[latex\]x = 0\[/latex\]. This is the case because a function must be differentiable. Since it 'steps' from 0 to 1 at \[latex\]x = 0\[/latex\], the function is not differentiable at this point, rendering the derivative to be undefined. This can be visualized as follows, but obviously then for \[latex\]x = 0\[/latex\]:
+What's even worse is that the derivative is _undefined_ for $x = 0$. This is the case because a function must be differentiable. Since it 'steps' from 0 to 1 at $x = 0$, the function is not differentiable at this point, rendering the derivative to be undefined. This can be visualized as follows, but obviously then for $x = 0$:
 
 [![](images/1024px-Right-continuous.svg_-1024x853.png)]
 
@@ -225,7 +225,7 @@ And visualized as follows:
 
 [![](images/sigmoid-1024x511.png)]
 
-Across a slight interval around \[latex\]x = 0\[/latex\], the Sigmoid function transitions from 0 to 1. It's a differentiable function and is therefore suitable for this Perceptron.
+Across a slight interval around $x = 0$, the Sigmoid function transitions from 0 to 1. It's a differentiable function and is therefore suitable for this Perceptron.
 
 But can we find an even better one?
 

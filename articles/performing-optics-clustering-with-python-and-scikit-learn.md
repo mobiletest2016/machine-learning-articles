@@ -46,7 +46,7 @@ In other words, suppose that we have a dataset like this one:
 
 Intuitively, we can already see that there are two groups of data: one towards the bottom left part of the plot, another towards the upper right part of the plot.
 
-But the machine doesn't know this yet. Rather, it just has an array with samples and their corresponding \[latex\]X\[0\]\[/latex\] and \[latex\]X\[1\]\[/latex\] positions, allowing us to generate the plot.
+But the machine doesn't know this yet. Rather, it just has an array with samples and their corresponding $X\[0\]$ and $X\[1\]$ positions, allowing us to generate the plot.
 
 Clustering algorithms are designed to select points which look like each other (and hence have high similarity) and assign them to the same group. In other words, if such an algorithm is deployed for the dataset visualized above, the desired end goal is that it finds the samples in the left corner so similar with respect to the ones in the right corner that it assigns group 0 to the bottom left ones, and 1 to the upper right ones.
 
@@ -72,17 +72,17 @@ Let's first take a look at the components of the OPTICS method.
 
 #### Epsilon parameter
 
-The first parameter is the epsilon parameter, or \[latex\]\\epsilon\[/latex\]. It is a distance parameter in the sense that for any point \[latex\]p\[/latex\], the epsilon defines a distance around the point, like this:
+The first parameter is the epsilon parameter, or $\\epsilon$. It is a distance parameter in the sense that for any point $p$, the epsilon defines a distance around the point, like this:
 
 ![](images/samples-1.png)
 
 #### MinPts parameter
 
-Another parameter is \[latex\]\\text{minPts}\[/latex\], or the _minimum amount of points_ parameter. It is used together with epsilon because it illustrates how many points must be within the \[latex\]\\epsilon\[/latex\] distance of a point \[latex\]p\[/latex\] (including the point) in order to form a cluster.
+Another parameter is $\\text{minPts}$, or the _minimum amount of points_ parameter. It is used together with epsilon because it illustrates how many points must be within the $\\epsilon$ distance of a point $p$ (including the point) in order to form a cluster.
 
 #### Core points
 
-When the point \[latex\]p\[/latex\] has \[latex\]\\text{minPts}\[/latex\] within its \[latex\]\\epsilon\[/latex\] distance including itself, we say that it is a core point and that it has sufficient amount of points in its \[latex\]\\epsilon \\text{-neighborhood}\[/latex\] for becoming one. A core point always represents a cluster. Possibly, it is still in formation, meaning that it will merge with other clusters later. We'll see how this happens when we take a look at the OPTICS algorithm.
+When the point $p$ has $\\text{minPts}$ within its $\\epsilon$ distance including itself, we say that it is a core point and that it has sufficient amount of points in its $\\epsilon \\text{-neighborhood}$ for becoming one. A core point always represents a cluster. Possibly, it is still in formation, meaning that it will merge with other clusters later. We'll see how this happens when we take a look at the OPTICS algorithm.
 
 ![](images/corepoints.png)
 
@@ -90,7 +90,7 @@ When the point \[latex\]p\[/latex\] has \[latex\]\\text{minPts}\[/latex\] within
 
 If you have read the article about [DBSCAN](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/performing-dbscan-clustering-with-python-and-scikit-learn.md), you might have thought that many of these concepts are familiar. And in fact, they are! All concepts covered so far are also components of the DBSCAN algorithm. The next one, **core distance**, is however unique to OPTICS. Let's take a look.
 
-Core distance is defined as follows. For any point \[latex\]p\[/latex\] with some epsilon \[latex\]\\epsilon\[/latex\] and hence an epsilon neighborhood \[latex\]N\_\\epsilon(p)\[/latex\]:
+Core distance is defined as follows. For any point $p$ with some epsilon $\\epsilon$ and hence an epsilon neighborhood $N\_\\epsilon(p)$:
 
 \[mathjax\]
 
@@ -102,9 +102,9 @@ $$\\begin{equation}
 \\end{cases}  
 \\end{equation}$$
 
-In other words, the core distance is undefined if the number of points in the neighborhood (including \[latex\]p\[/latex\] itself) is lower than the minimum number of points required. This makes sense: if the point is no core point, it does not have a core distance.
+In other words, the core distance is undefined if the number of points in the neighborhood (including $p$ itself) is lower than the minimum number of points required. This makes sense: if the point is no core point, it does not have a core distance.
 
-In the other case, however, it's the \[latex\]\\text{minPts-th smallest distance in } N\_{\\epsilon}(p)\[/latex\]. This is a very generic description of the point in the epsilon neighborhood located farthest away from the core point; in the case of \[latex\]\\text{minPts} = 3\[/latex\], it would be the 3rd smallest distance. For this reason, the core distance also describes the **minimum value for epsilon in order to keep the point a core point.** Using the distance, in the algorithm, we can keep merging clusters by (1) knowing that they are close to a core point and hence reachable thus part of the cluster, and (2) do so in an extensive way, growing the cluster time after time.
+In the other case, however, it's the $\\text{minPts-th smallest distance in } N\_{\\epsilon}(p)$. This is a very generic description of the point in the epsilon neighborhood located farthest away from the core point; in the case of $\\text{minPts} = 3$, it would be the 3rd smallest distance. For this reason, the core distance also describes the **minimum value for epsilon in order to keep the point a core point.** Using the distance, in the algorithm, we can keep merging clusters by (1) knowing that they are close to a core point and hence reachable thus part of the cluster, and (2) do so in an extensive way, growing the cluster time after time.
 
 If this is a bit abstract to you, don't worry - we'll get back to this when describing the algorithm!
 
@@ -114,7 +114,7 @@ If this is a bit abstract to you, don't worry - we'll get back to this when desc
 
 While the core distance expresses the _minimum distance to keep a point a core point_, the **reachability distance** expresses the distance which is reachable from a core point.
 
-It is expressed as follows in terms of an arbitrary point \[latex\]o\[/latex\] that is reached from a point \[latex\]p\[/latex\]:
+It is expressed as follows in terms of an arbitrary point $o$ that is reached from a point $p$:
 
 $$\\begin{equation}  
 \\text{reach-dist}\_{\\epsilon , \\text{minPts}}(o, p) =  
@@ -124,9 +124,9 @@ $$\\begin{equation}
 \\end{cases}  
 \\end{equation}$$
 
-If \[latex\]p\[/latex\]'s epsilon neighborhood has insufficient points, it is not a core point and hence cannot be used in reaching another point. This is similar to direct reachability and reachability in DBSCAN. For this reason, if this happens, the reachability distance is set to undefined.
+If $p$'s epsilon neighborhood has insufficient points, it is not a core point and hence cannot be used in reaching another point. This is similar to direct reachability and reachability in DBSCAN. For this reason, if this happens, the reachability distance is set to undefined.
 
-If it is a core point, the reachability distance is either the core distance or the distance between \[latex\]p\[/latex\] and \[latex\]o\[/latex\], whichever is bigger. In other words, any point within either the core or reachability distance can be reached from that particular core point. This allows us to continue constructing clusters.
+If it is a core point, the reachability distance is either the core distance or the distance between $p$ and $o$, whichever is bigger. In other words, any point within either the core or reachability distance can be reached from that particular core point. This allows us to continue constructing clusters.
 
 In the example below, the reachability distance from the core point to point 1 equals the core distance, because it is bigger. However, for a random point R, the reachability distance equals the _distance_ to that point, because that one is bigger than the core distance.
 
@@ -156,12 +156,12 @@ The main part of the OPTICS algorithm is the **main loop** (Wikipedia, 2009). It
 - The function `OPTICS` can be called with a database (`DB`), and values for epsilon and minimum amount of points.
 - For each point in the database, we first set reachability distance to `undefined`; we must compute it later.
 - Then, for each unprocessed point, we perform the following:
-    - We get the \[latex\]\\epsilon \\text{-neighborhood}\[/latex\] for the point.
+    - We get the $\\epsilon \\text{-neighborhood}$ for the point.
     - We mark p as processed (we looked at it).
     - We push p to the ordered list (it's the first point we're looking at).
     - We now look at the core distance of p: if it's not undefined (i.e. if it is a core point), we will look further. If it is no core point, we move on to the next unprocessed point.
         - For core points, we initialize an empty priority queue i.e. a queue where the most important values are read from first. We then call the update function which we will discuss in the next section, which orders the priority queue based on reachability distance.
-        - For the ordered priority queue (where we shall see that lowest reachability distance from the core point \[latex\]p\[/latex\] and hence the closest points are covered first), for each point, we get its neighbors. We then mark the point \[latex\]q\[/latex\] as processed and output it to the ordered list. If it's a core point as well, we can extend the priority queue as the clusters are close to each other and likely belong to the same bigger cluster. Extending the priority queue through update means that more points are added to the reachability-distance ordered Seeds list.
+        - For the ordered priority queue (where we shall see that lowest reachability distance from the core point $p$ and hence the closest points are covered first), for each point, we get its neighbors. We then mark the point $q$ as processed and output it to the ordered list. If it's a core point as well, we can extend the priority queue as the clusters are close to each other and likely belong to the same bigger cluster. Extending the priority queue through update means that more points are added to the reachability-distance ordered Seeds list.
     - In other words, the algorithm keeps expanding on a particular point _until_ none of the unprocessed points have a core distance anymore (i.e. aren't core points). These are the outliers.
 
 ```
@@ -191,7 +191,7 @@ Above, at two places, a call is made to an `update` function which updates the S
 
 Updating happens in the following way:
 
-- First of all, for the point \[latex\]p\[/latex\]for which the neighborhood is passed along, the core distance is computed. In other words, we then know what the minimum distance is to keep the neighborhood a true neighborhood.
+- First of all, for the point $p$for which the neighborhood is passed along, the core distance is computed. In other words, we then know what the minimum distance is to keep the neighborhood a true neighborhood.
 - For each point in the neighborhood, if not processed, we compute the reachability distance. If it's undefined (i.e. because the point has never been touched before) we set the reachability distance and insert it to the priority queue at precisely that distance.
 - If it is already set, though, we update the queue and move it forward if the new reachability distance is lower than the old one.
 

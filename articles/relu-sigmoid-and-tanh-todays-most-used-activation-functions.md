@@ -99,11 +99,11 @@ Mathematically, it can be represented as follows:
 
 $$\\begin{equation} y: f(x) = \\frac{1}{1 + e^{-x}} \\end{equation}$$
 
-As you can see in the plot, the function slowly increases over time, but the greatest increase can be found around \[latex\]x = 0\[/latex\]. The range of the function is \[latex\](0, 1)\[/latex\]; i.e. towards high values for \[latex\]x\[/latex\] the function therefore approaches 1, but never equals it.
+As you can see in the plot, the function slowly increases over time, but the greatest increase can be found around $x = 0$. The range of the function is $(0, 1)$; i.e. towards high values for $x$ the function therefore approaches 1, but never equals it.
 
 The Sigmoid function allows you to do multiple things. First, as we recall from our post on [why true Rosenblatt perceptrons cannot be created in Keras](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-you-cant-truly-create-rosenblatts-perceptron-with-keras.md), step functions used in those ancient neurons are not differentiable and hence gradient descent for optimization cannot be applied. Second, when we implemented the Rosenblatt perceptron ourselves with the [Perceptron Learning Rule](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/linking-maths-and-intuition-rosenblatts-perceptron-in-python.md), we noticed that in a binary classification problem, the decision boundary is optimized per neuron and will find one of the possible boundaries if they exist. This gets easier with the Sigmoid function, since it is more smooth (Majidi, n.d.).
 
-Additionally, and perhaps primarily, we use the Sigmoid function because it outputs between \[latex\](0, 1)\[/latex\]. When estimating a probability, this is perfect, because probabilities have a very similar range of \[latex\]\[0, 1\]\[/latex\] (Sharma, 2019). Especially in binary classification problems, when we effectively estimate the probability that the output is of some class, Sigmoid functions allow us to give a very weighted estimate. The output \[latex\]0.623\[/latex\] between classes A and B would indicate "slightly more of B". With a step function, the output would have likely been \[latex\]1\[/latex\], and the nuance disappears.
+Additionally, and perhaps primarily, we use the Sigmoid function because it outputs between $(0, 1)$. When estimating a probability, this is perfect, because probabilities have a very similar range of $\[0, 1\]$ (Sharma, 2019). Especially in binary classification problems, when we effectively estimate the probability that the output is of some class, Sigmoid functions allow us to give a very weighted estimate. The output $0.623$ between classes A and B would indicate "slightly more of B". With a step function, the output would have likely been $1$, and the nuance disappears.
 
 * * *
 
@@ -115,17 +115,17 @@ Another widely used activation function is the tangens hyperbolicus, or hyperbol
 
 It works similar to the Sigmoid function, but has some differences.
 
-First, the change in output accelerates close to \[latex\]x = 0\[/latex\], which is similar with the Sigmoid function.
+First, the change in output accelerates close to $x = 0$, which is similar with the Sigmoid function.
 
-It does also share its asymptotic properties with Sigmoid: although for very large values of \[latex\]x\[/latex\] the function approaches 1, it never actually equals it.
+It does also share its asymptotic properties with Sigmoid: although for very large values of $x$ the function approaches 1, it never actually equals it.
 
-On the lower side of the domain, however, we see a difference in the range: rather than approaching \[latex\]0\[/latex\] as minimum value, it approaches \[latex\]-1\[/latex\].
+On the lower side of the domain, however, we see a difference in the range: rather than approaching $0$ as minimum value, it approaches $-1$.
 
 ### Differences between tanh and Sigmoid
 
 You may now probably wonder what the differences are between tanh and Sigmoid. I did too.
 
-Obviously, the range of the activation function differs: \[latex\](0, 1)\[/latex\] vs \[latex\](-1, 1)\[/latex\], as we have seen before.
+Obviously, the range of the activation function differs: $(0, 1)$ vs $(-1, 1)$, as we have seen before.
 
 Although this difference seems to be very small, it might have a large effect on model performance; specifically, how fast your model converges towards the most optimal solution (LeCun et al., 1998).
 
@@ -145,7 +145,7 @@ First of all, we'll have to talk about _model sparsity_ (DaemonMaker, n.d.). The
 
 And _complexity_ can be viewed as the _number of unimportant neurons_ that are still in your model. The fewer of them, the better - or _sparser_ - your model is.
 
-Sigmoid and Tanh essentially produce non-sparse models because their neurons pretty much always produce an output value: when the ranges are \[latex\](0, 1)\[/latex\] and \[latex\](-1, 1)\[/latex\], respectively, the output either cannot be zero or is zero with very low probability.
+Sigmoid and Tanh essentially produce non-sparse models because their neurons pretty much always produce an output value: when the ranges are $(0, 1)$ and $(-1, 1)$, respectively, the output either cannot be zero or is zero with very low probability.
 
 Hence, if certain neurons are less important in terms of their weights, they cannot be 'removed', and the model is not sparse.
 
@@ -153,7 +153,7 @@ Another possible issue with the output ranges of those activation functions is t
 
 Neural networks however comprise many layers of neurons. We would essentially have to repeat this process over and over again for every layer with respect to the downstream ones, and subsequently chain them. That's what backpropagation is. Subsequently, we can optimize our models with gradient descent or a similar optimizer.
 
-When neuron outputs are very small (i.e. \[latex\] -1 < output < 1\[/latex\]), the chains produced during optimization will get smaller and smaller towards the upstream layers. This will cause them to learn very slowly, and make it questionable whether they will converge to their optimum at all: enter the _vanishing gradients problem_.
+When neuron outputs are very small (i.e. $-1 < output < 1$), the chains produced during optimization will get smaller and smaller towards the upstream layers. This will cause them to learn very slowly, and make it questionable whether they will converge to their optimum at all: enter the _vanishing gradients problem_.
 
 A more detailed review on this problem can be found [here](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/random-initialization-vanishing-and-exploding-gradients.md).
 
@@ -171,7 +171,7 @@ And can be represented as follows:
 
 $$\\begin{equation} f(x) = \\begin{cases} 0, & \\text{if}\\ x < 0 \\\\ x, & \\text{otherwise} \\\\ \\end{cases} \\end{equation}$$
 
-Or, in plain English, it produces a zero output for all inputs smaller than zero; and \[latex\]x\[/latex\] for all other inputs. Hence, for all \[latex\]inputs <= 0\[/latex\], it produces zero outputs.
+Or, in plain English, it produces a zero output for all inputs smaller than zero; and $x$ for all other inputs. Hence, for all $inputs <= 0$, it produces zero outputs.
 
 ### Sparsity
 
@@ -179,11 +179,11 @@ This benefits sparsity substantially: in almost half the cases, now, the neuron 
 
 ### Fewer vanishing gradients
 
-It also reduces the impact of vanishing gradients, because the gradient is always a constant: the derivative of \[latex\]f(x) = 0\[/latex\] is 0 while the derivative of \[latex\]f(x) = x\[/latex\] is 1. Models hence learn faster and more evenly.
+It also reduces the impact of vanishing gradients, because the gradient is always a constant: the derivative of $f(x) = 0$ is 0 while the derivative of $f(x) = x$ is 1. Models hence learn faster and more evenly.
 
 ### Computational requirements
 
-Additionally, ReLU does need much fewer computational resources than the Sigmoid and Tanh functions (Jaideep, n.d.). The function that essentially needs to be executed to arrive at ReLU is a `max` function: \[latex\]max(0, x)\[/latex\] produces 0 when \[latex\]x < 0\[/latex\] and x when \[latex\]x >= 0\[/latex\]. That's ReLU!
+Additionally, ReLU does need much fewer computational resources than the Sigmoid and Tanh functions (Jaideep, n.d.). The function that essentially needs to be executed to arrive at ReLU is a `max` function: $max(0, x)$ produces 0 when $x < 0$ and x when $x >= 0$. That's ReLU!
 
 Now compare this with the formulas of the Sigmoid and tanh functions presented above: those contain exponents. Computing the output of a max function is much simpler and less computationally expensive than computing the output of exponents. For one calculation, this does not matter much, but note that in deep learning many such calculations are made. Hence, ReLU reduces your need for computational requirements.
 
@@ -194,7 +194,7 @@ This does however not mean that ReLU itself does not have certain challenges:
 - Firstly, it tends to produce very large values given its non-boundedness on the upside of the domain (Jaideep, n.d.). Theoretically, infinite inputs produce infinite outputs.
 - Secondly, you will face the _dying ReLU problem_ (Jaideep, n.d.). If a neuron's weights are moved towards the zero output, it may be the case that they eventually will no longer be capable of recovering from this. They will then continually output zeros. This is especially the case when your network is poorly initialized, or when your data is poorly normalized, because the first rounds of optimization will produce large weight swings. When too many neurons output zero, you end up with a dead neural network - the dying ReLU problem.
 - Thirdly: Small values, even the non-positive ones, may be of value; they can help capture patterns underlying the dataset. With ReLU, this cannot be done, since all outputs smaller than zero are zero.
-- Fourthly, the transition point from \[latex\]f(x) = 0\[/latex\] to \[latex\]f(x) = x\[/latex\] is not smooth. This will impact the loss landscape during optimization, which will not be smooth either. This may (slightly albeit significantly) hamper model optimization and slightly slow down convergence.
+- Fourthly, the transition point from $f(x) = 0$ to $f(x) = x$ is not smooth. This will impact the loss landscape during optimization, which will not be smooth either. This may (slightly albeit significantly) hamper model optimization and slightly slow down convergence.
 
 To name just a few.
 

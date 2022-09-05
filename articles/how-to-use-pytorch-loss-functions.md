@@ -61,7 +61,7 @@ The first category of loss functions that we will take a look at is the one of *
 
 ### Binary Cross-entropy loss, on Sigmoid (`nn.BCELoss`) example
 
-**Binary cross-entropy** **loss** or **BCE Loss** compares a target \[latex\]t\[/latex\] with a prediction \[latex\]p\[/latex\] in a logarithmic and hence exponential fashion. In neural network implementations, the value for \[latex\]t\[/latex\] is either 0 or 1, while \[latex\]p\[/latex\] can take any value between 0 and 1. This is the formula for binary cross-entropy loss:
+**Binary cross-entropy** **loss** or **BCE Loss** compares a target $t$ with a prediction $p$ in a logarithmic and hence exponential fashion. In neural network implementations, the value for $t$ is either 0 or 1, while $p$ can take any value between 0 and 1. This is the formula for binary cross-entropy loss:
 
 ![](images/image-5-1024x122.png)
 
@@ -174,7 +174,7 @@ if __name__ == '__main__':
 
 ### Binary Cross-entropy loss, on logits (`nn.BCEWithLogitsLoss`)
 
-Simple binary cross-entropy loss (represented by `nn.BCELoss` in PyTorch) computes BCE loss on the predictions \[latex\]p\[/latex\] generated in the range `[0, 1]`.
+Simple binary cross-entropy loss (represented by `nn.BCELoss` in PyTorch) computes BCE loss on the predictions $p$ generated in the range `[0, 1]`.
 
 However, it is possible to generate more numerically stable variant of binary cross-entropy loss by _combining_ the Sigmoid and the BCE Loss into one loss function:
 

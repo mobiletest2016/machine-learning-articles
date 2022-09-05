@@ -119,7 +119,7 @@ That's a fair question. What I want to do is to illustrate why a large dataset -
 
 Suppose that you have the following feature vector:
 
-\[latex\]\\textbf{x} = \[1.23, -3.00, 45.2, 9.3, 0.1, 12.3, 8.999, 1.02, -2.45, -0.26, 1.24\]\[/latex\]
+$\\textbf{x} = \[1.23, -3.00, 45.2, 9.3, 0.1, 12.3, 8.999, 1.02, -2.45, -0.26, 1.24\]$
 
 This feature vector is 11-dimensional.
 
@@ -168,13 +168,13 @@ Now that we are aware of the two approaches, it's time to get to the point. We'l
 
 Well, that's quite a technical description, isn't it. And what are "principal components"?
 
-> The principal components of a collection of points in a real p-space are a sequence of \[latex\]p\[/latex\] direction vectors, where the \[latex\]i^{th}\[/latex\] vector is the direction of a line that best fits the data while being orthogonal to the first \[latex\]i - 1\[/latex\] vectors.
+> The principal components of a collection of points in a real p-space are a sequence of $p$ direction vectors, where the $i^{th}$ vector is the direction of a line that best fits the data while being orthogonal to the first $i - 1$ vectors.
 > 
 > Wikipedia (2002)
 
 I can perfectly get it when you still have no idea what PCA is after reading those two quotes. I had the same. For this reason, let's break down stuff step-by-step.
 
-**The goal of PCA:** finding a set of vectors (principal components) that best describe the spread and direction of your data across its many dimensions, allowing you to subsequently pick the top-\[latex\]n\[/latex\] best-describing ones for reducing the dimensionality of your feature space.
+**The goal of PCA:** finding a set of vectors (principal components) that best describe the spread and direction of your data across its many dimensions, allowing you to subsequently pick the top-$n$ best-describing ones for reducing the dimensionality of your feature space.
 
 **The steps of PCA:**
 
@@ -276,7 +276,7 @@ Once we have chosen the number of eigenvectors that we will use for dimensionali
 
 This means that we will be changing the axes so that they are now equal to the eigenvectors.
 
-In the example below, we can project our data to one eigenvector. We can see that only the \[latex\]x\[/latex\] axis has values after projecting, and that hence our feature space has been reduced to one dimension.
+In the example below, we can project our data to one eigenvector. We can see that only the $x$ axis has values after projecting, and that hence our feature space has been reduced to one dimension.
 
 We have thus used PCA for dimensionality reduction.
 
@@ -288,8 +288,8 @@ Above, we covered the general steps of performing Principal Component Analysis. 
 
 1. Decomposing the dataset into a set of eigenpairs.
 2. Sorting the eigenpairs in descending order of importance.
-3. Selecting \[latex\]n\[/latex\] most important eigenpairs, where \[latex\]n\[/latex\] is the desired number of dimensions.
-4. Projecting the data to the \[latex\]n\[/latex\] eigenpairs so that their directions equal the ones of our axes.
+3. Selecting $n$ most important eigenpairs, where $n$ is the desired number of dimensions.
+4. Projecting the data to the $n$ eigenpairs so that their directions equal the ones of our axes.
 
 In step (1), we simply mentioned that we can express the spread of our data by means of eigenpairs. On purpose, we didn't explain _how_ this can be done, for the sake of simplicity.
 
@@ -303,20 +303,20 @@ In the next sections, we will take a look at clear and step-by-step examples of 
 
 ## PCA-EIG: Eigenvector Decomposition with Python Step-by-Step
 
-One of the ways in which PCA can be performed is by means of **Eigenvector Decomposition (EIG)**. More specifically, we can use the covariance matrix of our \[latex\]N\[/latex\]-dimensional dataset and decompose it into \[latex\]N\[/latex\] eigenpairs. We can do this as follows:
+One of the ways in which PCA can be performed is by means of **Eigenvector Decomposition (EIG)**. More specifically, we can use the covariance matrix of our $N$-dimensional dataset and decompose it into $N$ eigenpairs. We can do this as follows:
 
-1. **Standardizing the dataset:** EIG based PCA only works well if the dataset is centered and has a mean of zero (i.e. \[latex\]\\mu = 0.0\[/latex\]). We will use [standardization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-normalize-or-standardize-a-dataset-in-python.md) for this purpose, which also scales the data to a standard deviation of one (\[latex\]\\sigma = 1.0\[/latex\]).
+1. **Standardizing the dataset:** EIG based PCA only works well if the dataset is centered and has a mean of zero (i.e. $\\mu = 0.0$). We will use [standardization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-normalize-or-standardize-a-dataset-in-python.md) for this purpose, which also scales the data to a standard deviation of one ($\\sigma = 1.0$).
 2. **Computing the covariance matrix of the variables:** a covariance matrix indicates how much variance each individual variable has, and how much they 'covary' - in other words, how much certain variables move together.
 3. **Decomposing the covariance matrix into eigenpairs:** mathematically, we can rewrite the covariance matrix so that we can get a set of eigenvectors and eigenvalues, or eigenpairs.
 4. **Sorting the eigenpairs in decreasing order of importance**, to find the principal directions in your dataset which contribute to the spread most significantly.
-5. **Selecting the variance contribution of your principal directions and selecting \[latex\]n\[/latex\] principal components:** if we know the relative contributions to the spread for each principal direction, we can perform dimensionality reduction by selecting only the \[latex\]n\[/latex\] most contributing principal components.
+5. **Selecting the variance contribution of your principal directions and selecting $n$ principal components:** if we know the relative contributions to the spread for each principal direction, we can perform dimensionality reduction by selecting only the $n$ most contributing principal components.
 6. **Building the projection matrix** for projecting our original dataset onto the principal components.
 
 We can see that steps (1), (4), (5) and (6) are general - we also saw them above. Steps (2) and (3) are specific to PCA-EIG and represent the core of what makes eigenvector decomposition based PCA unique. We will now cover each step in more detail, including step-by-step examples with Python. Note that the example in this section makes use of native / vanilla Python deliberately, and that Scikit-learn based implementations of e.g. [standardization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-normalize-or-standardize-a-dataset-in-python.md) and PCA will be used in another section.
 
 ### Using the multidimensional Iris dataset
 
-If we want to show how PCA works, we must use a dataset where the number of dimensions \[latex\]> 2\[/latex\]. Fortunately, Scikit-learn provides the Iris dataset, which can be used to classify three groups of Iris flowers based on four characteristics (and hence features or dimensions): petal length, petal width, sepal length and sepal width.
+If we want to show how PCA works, we must use a dataset where the number of dimensions $> 2$. Fortunately, Scikit-learn provides the Iris dataset, which can be used to classify three groups of Iris flowers based on four characteristics (and hence features or dimensions): petal length, petal width, sepal length and sepal width.
 
 This code can be used for visualizing two dimensions every time:
 
@@ -385,7 +385,7 @@ The images illustrate that two of the Iris flowers cannot be linearly separated,
 
 ### Performing standardization
 
-We first add Python code for [standardization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-normalize-or-standardize-a-dataset-in-python.md), which brings our data to \[latex\]\\mu = 0.0, \\sigma = 1.0\[/latex\] by performing \[latex\]x = \\frac{x - \\mu}{\\sigma}\[/latex\] for each dimension (MachineCurve, 2020).
+We first add Python code for [standardization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-normalize-or-standardize-a-dataset-in-python.md), which brings our data to $\\mu = 0.0, \\sigma = 1.0$ by performing $x = \\frac{x - \\mu}{\\sigma}$ for each dimension (MachineCurve, 2020).
 
 ```
 # Perform standardization
@@ -426,30 +426,30 @@ The next step is computing the covariance matrix for our dataset.
 
 If you're not into mathematics, I can understand that you don't know what this is yet. Let's therefore briefly take a look at a few aspects related to a covariance matrix before we move on, based on Lambers (n.d.).
 
-**A variable:** such as \[latex\]X\[/latex\]. A mathematical representation of one dimension of the data set. For example, if \[latex\]X\[/latex\] represents \[latex\]\\text{petal width}\[/latex\], numbers such as \[latex\]1.19, 1.20, 1.21, 1.18, 1.16, ...\[/latex\] which represent the petal width for one flower can all be described by variable \[latex\]X\[/latex\].
+**A variable:** such as $X$. A mathematical representation of one dimension of the data set. For example, if $X$ represents $\\text{petal width}$, numbers such as $1.19, 1.20, 1.21, 1.18, 1.16, ...$ which represent the petal width for one flower can all be described by variable $X$.
 
-**Variable mean:** the average value for the variable. Computed as the sum of all available values divided by the number of values summed together. As petal width represents `dim=3` in the visualization above, with a mean of \[latex\]\\approx 1.1993\[/latex\], we can see how the numbers above fit.
+**Variable mean:** the average value for the variable. Computed as the sum of all available values divided by the number of values summed together. As petal width represents `dim=3` in the visualization above, with a mean of $\\approx 1.1993$, we can see how the numbers above fit.
 
-**Variance:** describing the "spread" of data around the variable. Computed as the sum of squared differences between each number and the mean, i.e. the sum of \[latex\](x - \\mu)^2\[/latex\] for each number.
+**Variance:** describing the "spread" of data around the variable. Computed as the sum of squared differences between each number and the mean, i.e. the sum of $(x - \\mu)^2$ for each number.
 
-**Covariance:** describing the _joint variability_ (or joint spread) of two variables. For each pair of numbers from both variables, covariance is computed as \[latex\]Cov(x, y) = (x - \\mu\_x)(y - \\mu\_y)\[/latex\].
+**Covariance:** describing the _joint variability_ (or joint spread) of two variables. For each pair of numbers from both variables, covariance is computed as $Cov(x, y) = (x - \\mu\_x)(y - \\mu\_y)$.
 
-**Covariance matrix for \[latex\]n\[/latex\] variables:** a matrix representing covariances for each pair of variables from some set of variables (dimensions) \[latex\]V = \[X, Y, Z, ....\]\[/latex\].
+**Covariance matrix for $n$ variables:** a matrix representing covariances for each pair of variables from some set of variables (dimensions) $V = \[X, Y, Z, ....\]$.
 
-A covariance matrix for two dimensions \[latex\]X\[/latex\] and \[latex\]Y\[/latex\] looks as follows:
+A covariance matrix for two dimensions $X$ and $Y$ looks as follows:
 
-\[latex\]\\begin{pmatrix}Cov(X, X) & Cov(X, Y)\\\\ Cov(Y, X) & Cov(Y, Y)\\end{pmatrix}\[/latex\]
+$\\begin{pmatrix}Cov(X, X) & Cov(X, Y)\\\\ Cov(Y, X) & Cov(Y, Y)\\end{pmatrix}$
 
 Fortunately, there are some properties which make covariance matrices interesting for PCA (Lambers, n.d.):
 
-- \[latex\]Cov(X, X) = Var(X)\[/latex\]
-- \[latex\]Cov(X, Y) = Cov(Y, X)\[/latex\].
+- $Cov(X, X) = Var(X)$
+- $Cov(X, Y) = Cov(Y, X)$.
 
-By consequence, our covariance matrix is a symmetrical and square, \[latex\]n \\times n\[/latex\] matrix and can hence also be written as follows:
+By consequence, our covariance matrix is a symmetrical and square, $n \\times n$ matrix and can hence also be written as follows:
 
-\[latex\]\\begin{pmatrix}Var(X) & Cov(X, Y)\\\\ Cov(Y, X) & Var(Y)\\end{pmatrix}\[/latex\]
+$\\begin{pmatrix}Var(X) & Cov(X, Y)\\\\ Cov(Y, X) & Var(Y)\\end{pmatrix}$
 
-We can compute the covariance matrix by generating a \[latex\]n \\times n\[/latex\] matrix and then filling it by iterating over its rows and columns, setting the value to the average covariance for each respective number from both variables:
+We can compute the covariance matrix by generating a $n \\times n$ matrix and then filling it by iterating over its rows and columns, setting the value to the average covariance for each respective number from both variables:
 
 ```
 # Compute covariance matrix
@@ -489,9 +489,9 @@ The great thing of EIG-PCA is that we can **decompose the covariance matrix into
 
 We can do this as follows:
 
-\[latex\]\\mathbf C = \\mathbf V \\mathbf L \\mathbf V^\\top\[/latex\]
+$\\mathbf C = \\mathbf V \\mathbf L \\mathbf V^\\top$
 
-Here, \[latex\]\\mathbf V\[/latex\] is a matrix of _eigenvectors_ where each column is an eigenvector, \[latex\]\\mathbf L\[/latex\] is a diagonal matrix with eigenvalues and \[latex\]\\mathbf V^\\top\[/latex\] is the transpose of \[latex\]\\mathbf V\[/latex\].
+Here, $\\mathbf V$ is a matrix of _eigenvectors_ where each column is an eigenvector, $\\mathbf L$ is a diagonal matrix with eigenvalues and $\\mathbf V^\\top$ is the transpose of $\\mathbf V$.
 
 We can use NumPy's `numpy.linalg.eig` to compute the eigenvectors for this square array:
 
@@ -526,7 +526,7 @@ print(np.sum(var_contrib))
 > 1.0
 ```
 
-In other words, the first principal dimension contributes for 73%; the second one for 23%. If we therefore reduce the dimensionality to two, we get to keep approximately \[latex\]73 + 23 = 96%\[/latex\] of the variance explanation.
+In other words, the first principal dimension contributes for 73%; the second one for 23%. If we therefore reduce the dimensionality to two, we get to keep approximately $73 + 23 = 96%$ of the variance explanation.
 
 ### Sorting the eigenpairs in decreasing order of importance
 
@@ -550,7 +550,7 @@ This yields sorted eigenpairs, as we can see from the eigenvalues:
 
 ### Selecting n principal components
 
-Above, we saw that 96% of the variance can be explained by only two of the dimensions. We can therefore reduce the dimensionality of our feature space from \[latex\]n = 4\[/latex\] to \[latex\]n = 2\[/latex\] without losing much of the information.
+Above, we saw that 96% of the variance can be explained by only two of the dimensions. We can therefore reduce the dimensionality of our feature space from $n = 4$ to $n = 2$ without losing much of the information.
 
 ### Building the projection matrix
 
@@ -592,7 +592,7 @@ Note that here as well, we'll use a vanilla / native Python approach to performi
 
 ### Starting with the standardized Iris dataset
 
-In the PCA-SVD approach, we also use the Iris dataset as an example. Using the code below, we'll load the Iris data and perform [standardization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-normalize-or-standardize-a-dataset-in-python.md), which means that your mean will become \[latex\]\\mu = 0.0\[/latex\] and your standard deviation will become \[latex\]\\sigma = 1.0\[/latex\].
+In the PCA-SVD approach, we also use the Iris dataset as an example. Using the code below, we'll load the Iris data and perform [standardization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-normalize-or-standardize-a-dataset-in-python.md), which means that your mean will become $\\mu = 0.0$ and your standard deviation will become $\\sigma = 1.0$.
 
 ```
 from sklearn import datasets
@@ -638,9 +638,9 @@ u, s, vh = np.linalg.svd(X.T, full_matrices=True)
 
 In SVD, we decompose a matrix into three components:
 
-- **Unitary arrays** \[latex\]U\[/latex\]
-- **Vectors with the singular values** \[latex\]s\[/latex\]
-- **Unitary arrays** \[latex\]vh\[/latex\]
+- **Unitary arrays** $U$
+- **Vectors with the singular values** $s$
+- **Unitary arrays** $vh$
 
 Here, the columns of the unitary arrays give results equal to the eigenvectors of the covariance matrix in the PCA-EIG approach, and the singular value vectors are equal to the square roots of the eigenvalues of the covariance matrix (StackExchange, n.d.).
 
@@ -674,7 +674,7 @@ In the PCA-EIG scenario, you had to sort eigenpairs in descending order of the e
 
 ### Selecting n components
 
-Here, too, we can simply select \[latex\]n\[/latex\] components. As with the PCA-EIG scenario, here we also take \[latex\]n = 2\[/latex\] and hence reduce our dimensionality from 4 to 2.
+Here, too, we can simply select $n$ components. As with the PCA-EIG scenario, here we also take $n = 2$ and hence reduce our dimensionality from 4 to 2.
 
 ### Building the projection matrix
 

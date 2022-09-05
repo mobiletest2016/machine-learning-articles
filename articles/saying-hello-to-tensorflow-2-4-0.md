@@ -122,7 +122,7 @@ Earlier this year, **TensorFloat-32 was introduced** and was made the new math m
 
 Floating-point math utilizes a significand, base and exponent to represent a number (Wikipedia, n.d.):
 
-\[latex\]significand \\times base^{exponent}\[/latex\]
+$significand \\times base^{exponent}$
 
 TensorFloat-32 (TF32) improves upon regular 32-bits floating-point numbers (FP32) by reducing the bit size for the float significand (a.k.a. mantissa) and exponent, making computation less resource intensive, boosting speed and capabilities of a GPU.
 

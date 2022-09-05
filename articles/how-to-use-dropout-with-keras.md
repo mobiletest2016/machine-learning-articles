@@ -33,7 +33,7 @@ In our blog post ["What is Dropout? Reduce overfitting in your neural networks"]
 
 ![](images/dropout.png)
 
-Dropping out neurons happens by attaching Bernoulli variables to the neural outputs (Srivastava et al., 2014). These variables, which take the value of \[latex\]1\[/latex\] with probability \[latex\]p\[/latex\] and 0 with \[latex\]1-p\[/latex\], help reduce overfitting by "making the presence of other (..) units unreliable". This way, neural networks cannot generate what Srivastava et al. call complex co-adaptations that do not generalize to unseen data.
+Dropping out neurons happens by attaching Bernoulli variables to the neural outputs (Srivastava et al., 2014). These variables, which take the value of $1$ with probability $p$ and 0 with $1-p$, help reduce overfitting by "making the presence of other (..) units unreliable". This way, neural networks cannot generate what Srivastava et al. call complex co-adaptations that do not generalize to unseen data.
 
 By consequence, the occurrence of overfitting is reduced.
 
@@ -43,8 +43,8 @@ Let's now continue with some Dropout best practices. If you wish to understand t
 
 When working on software projects, and hence when working on machine learning development, it's always best to take a look at some best practices. Srivastava et al. (2014), who discussed Dropout in their work ["Dropout: A Simple Way to Prevent Neural Networks from Overfitting"](http://jmlr.org/papers/v15/srivastava14a.html), empirically found some best practices which we'll take into account in today's model:
 
-- While it's best to determine the value for parameter \[latex\]p\[/latex\] with a validation set, it's perfectly fine to set it to \[latex\]p \\approx 0.5\[/latex\]. This value has shown the best empirical results when being tested with the MNIST dataset.
-- To avoid holes in your input data, the authors argued that you best set \[latex\]p\[/latex\] for the input layer to \[latex\]1.0\[/latex\] - effectively the same as not applying Dropout there.
+- While it's best to determine the value for parameter $p$ with a validation set, it's perfectly fine to set it to $p \\approx 0.5$. This value has shown the best empirical results when being tested with the MNIST dataset.
+- To avoid holes in your input data, the authors argued that you best set $p$ for the input layer to $1.0$ - effectively the same as not applying Dropout there.
 - Dropout seems to work best when a combination of max-norm regularization (in Keras, with the [MaxNorm constraint](https://keras.io/constraints.md/#maxnorm)), high learning rates that [decay](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/problems-with-fixed-and-decaying-learning-rates.md/#what-is-learning-rate-decay) to smaller values, and high momentum is used as well.
 
 Any optimizer can be used. Given the benefits of the [Adam optimizer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md/#adam) (momentum-like optimization with locally adapted weights), we're using that one today, as well as the best practices mentioned above.
@@ -59,11 +59,11 @@ keras.layers.Dropout(rate, noise_shape=None, seed=None)
 
 It can be added to a Keras deep learning model with `model.add` and contains the following attributes:
 
-- **Rate**: the parameter \[latex\]p\[/latex\] which determines the odds of dropping out neurons. When you did not validate which \[latex\]p\[/latex\] works best for you with a validation set, recall that it's best to set it to \[latex\]rate \\approx 0.5\[/latex\] for hidden layers and \[latex\]rate \\approx 0.1\[/latex\] for the input layer (note that \[latex\]rate \\approx 0.1\[/latex\] equals \[latex\]p \\approx 0.9\[/latex\] - Keras turns the logic upside down, making _rate_ the odds of _dropping out_ rather than _keeping_ neurons!)
+- **Rate**: the parameter $p$ which determines the odds of dropping out neurons. When you did not validate which $p$ works best for you with a validation set, recall that it's best to set it to $rate \\approx 0.5$ for hidden layers and $rate \\approx 0.1$ for the input layer (note that $rate \\approx 0.1$ equals $p \\approx 0.9$ - Keras turns the logic upside down, making _rate_ the odds of _dropping out_ rather than _keeping_ neurons!)
 - **Noise shape:** if you wish to share noise across one of (batch, timesteps, features), you can set the noise shape for this purpose. [Read more about noise shape here.](https://stackoverflow.com/questions/46585069/keras-dropout-with-noise-shape)
 - **Seed**: if you wish to fixate the pseudo-random generator that determines whether the Bernoulli variables are 1 or 0 (e.g., to rule out issues with the number generator), then you can set some seed by specifying an integer value here.
 
-**Important:** once more, the drop rate (or 'rate') in Keras determines the odds of dropping out neurons - instead of keeping them. In effect, with respect to the parameter \[latex\]p\[/latex\] defined by Srivastava et al. (2014) when discussing Dropout, `rate` thus effectively means \[latex\]1-p\[/latex\]. If 75% of the neurons are kept with \[latex\]p = 0.75\[/latex\], `rate` must be \[latex\]0.25\[/latex\].
+**Important:** once more, the drop rate (or 'rate') in Keras determines the odds of dropping out neurons - instead of keeping them. In effect, with respect to the parameter $p$ defined by Srivastava et al. (2014) when discussing Dropout, `rate` thus effectively means $1-p$. If 75% of the neurons are kept with $p = 0.75$, `rate` must be $0.25$.
 
 ## Designing a ConvNet classifier with Dropout
 
@@ -85,7 +85,7 @@ Next, the architecture of our model. Today, it looks like this:
 
 This architecture, which contains two Conv2D layers followed by Max Pooling, as well as two Densely-connected layers, worked best in some empirical testing up front - so I chose it to use in the real training process.
 
-Note that Dropout is applied with \[latex\]rate = 0.50\[/latex\], and that - which is not visible in this diagram - max-norm regularization is applied as well, in each layer (also the Dense ones). The Conv2D layers learn 64 filters each and convolve with a 3x3 kernel over the input. The max pooling pool size will be 2 x 2 pixels.
+Note that Dropout is applied with $rate = 0.50$, and that - which is not visible in this diagram - max-norm regularization is applied as well, in each layer (also the Dense ones). The Conv2D layers learn 64 filters each and convolve with a 3x3 kernel over the input. The max pooling pool size will be 2 x 2 pixels.
 
 The activation functions in the hidden layer are [ReLU](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md), and by consequence, we use [He uniform init](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/he-xavier-initialization-activation-functions-choose-wisely.md) as our weight initialization strategy.
 
@@ -344,7 +344,7 @@ The model with Dropout, however, shows no signs of overfitting, and loss keeps d
 
 Let's now take a look what happens when we apply max-norm regularization versus when we leave it out.
 
-As you can see, the difference is less significant than with the Dropout/No-dropout case, but it still matters. Our \[latex\]norm = 2.0\[/latex\] max-norm regularization (i.e., our MaxNorm Keras constraint) ensures that overfitting does not happen, whereas the no-max-norm case starts overfitting slightly. Indeed, Srivastava et al.'s (2014) results can be confirmed: adding max-norm regularization to Dropout leads to even better performance.
+As you can see, the difference is less significant than with the Dropout/No-dropout case, but it still matters. Our $norm = 2.0$ max-norm regularization (i.e., our MaxNorm Keras constraint) ensures that overfitting does not happen, whereas the no-max-norm case starts overfitting slightly. Indeed, Srivastava et al.'s (2014) results can be confirmed: adding max-norm regularization to Dropout leads to even better performance.
 
 - [![](images/acc-3-1024x537.png)]
     

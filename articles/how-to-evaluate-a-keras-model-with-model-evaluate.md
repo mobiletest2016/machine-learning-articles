@@ -90,7 +90,7 @@ We first create the following TensorFlow model.
 
 - We import the TensorFlow imports that we need. We also use the [extra\_keras\_datasets](https://github.com/christianversloot/extra_keras_datasets) module as we are training the model on the [EMNIST](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/making-more-datasets-available-for-keras.md) dataset.
 - We specify some configuration options for the model.
-- We load the EMNIST dataset, reshape the data (to make it compatible with TensorFlow), convert the data into `float32` format ([read here why](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tensorflow-model-optimization-an-introduction-to-quantization.md/#float32-in-your-ml-model-why-its-great)), and then scale the data to the \[latex\]\[0, 1\]\[/latex\] range.
+- We load the EMNIST dataset, reshape the data (to make it compatible with TensorFlow), convert the data into `float32` format ([read here why](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tensorflow-model-optimization-an-introduction-to-quantization.md/#float32-in-your-ml-model-why-its-great)), and then scale the data to the $\[0, 1\]$ range.
 - We then create and compile the model, and fit the data, i.e. construct and complete the training process.
 
 Click [here](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras.md) if you wish to understand creating a Convolutional Neural Network in more detail.

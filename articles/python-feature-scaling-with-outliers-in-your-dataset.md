@@ -42,7 +42,7 @@ input_train = input_train / 255
 input_test = input_test / 255
 ```
 
-These lines rescale the (in this case) grayscale input data from the \[latex\]\[0, 255\]\[/latex\] range into the \[latex\]\[0, 1\]\[/latex\] range. It is one of the methods of **Feature Scaling**, which is often necessary for your Machine Learning projects. It involves reducing the _range_ (i.e. the minimum and maximum values) to a small interval, without losing the relationships between the individual samples. In fact, in many cases, you get really weird performance (close-to-zero accuracy or infinite loss with Neural Networks, for example) if you don't apply it.
+These lines rescale the (in this case) grayscale input data from the $\[0, 255\]$ range into the $\[0, 1\]$ range. It is one of the methods of **Feature Scaling**, which is often necessary for your Machine Learning projects. It involves reducing the _range_ (i.e. the minimum and maximum values) to a small interval, without losing the relationships between the individual samples. In fact, in many cases, you get really weird performance (close-to-zero accuracy or infinite loss with Neural Networks, for example) if you don't apply it.
 
 But why do you have to apply it in the first place? What makes Machine Learning algorithms or more specifically the datasets so dependent on Feature Scaling?
 
@@ -56,7 +56,7 @@ Let's take a look at the individual reasons in more detail now, and then introdu
 
 ### Feature Selection and Extraction
 
-Suppose that you have a dataset where two variables are candidates for being the _predictor variable_, i.e. the independent value which is used in the \[latex\]\\text{independent variable} \\rightarrow \\text{dependent variable}\[/latex\] relationship of a predictive model.
+Suppose that you have a dataset where two variables are candidates for being the _predictor variable_, i.e. the independent value which is used in the $\\text{independent variable} \\rightarrow \\text{dependent variable}$ relationship of a predictive model.
 
 If we would plot those variables, without knowing what they represent, the plot could look like this:
 
@@ -82,7 +82,7 @@ Another reason why you should consider applying Feature Scaling is due to the co
 
 **Some Machine Learning algorithms are dependent on Feature Scaling should they converge to an optimal solution well, or converge at all.**
 
-For example, some algorithms utilize distance metrics for learning the [decision boundary](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-decision-boundary-for-your-keras-model.md) of the model. You can imagine that in a variable \[latex\]X\_1\[/latex\] with a range of \[latex\]\[0, 102500\]\[/latex\] the distances are much bigger compared to a variable \[latex\]X\_2\[/latex\] with a \[latex\]\[0, 1\]\[/latex\] range. Now, should they both be used in generating a prediction (e.g. in a relationship that looks like \[latex\]{{X\_1}, {X\_2}} \\rightarrow y\[/latex\], then much more emphasis will be put on the distances measured for \[latex\]X\_1\[/latex\].
+For example, some algorithms utilize distance metrics for learning the [decision boundary](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-decision-boundary-for-your-keras-model.md) of the model. You can imagine that in a variable $X\_1$ with a range of $\[0, 102500\]$ the distances are much bigger compared to a variable $X\_2$ with a $\[0, 1\]$ range. Now, should they both be used in generating a prediction (e.g. in a relationship that looks like ${{X\_1}, {X\_2}} \\rightarrow y$, then much more emphasis will be put on the distances measured for $X\_1$.
 
 This significantly distorts the impact of the other, smaller-range variables, and is another reason why you may wish to apply Feature Scaling.
 
@@ -96,7 +96,7 @@ Here's the catch when you use a non-scaled dataset with regularization: applying
 
 Above, we saw that Feature Scaling can be applied to [normalize or standardize](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-normalize-or-standardize-a-dataset-in-python.md) your features. As the names already suggest, there are two main candidates for normalization and standardization:
 
-- **Min-max normalization:** here, the values are scaled to a \[latex\]\[0, 1\]\[/latex\] range (or possibly an \[latex\]\[a, b\]\[/latex\] range) using the minimum and maximum values. Although simple and very efficient, the means and standard deviations of the variables are still unequal, meaning that they remain a bit incompatible, although the situation improves a lot.
+- **Min-max normalization:** here, the values are scaled to a $\[0, 1\]$ range (or possibly an $\[a, b\]$ range) using the minimum and maximum values. Although simple and very efficient, the means and standard deviations of the variables are still unequal, meaning that they remain a bit incompatible, although the situation improves a lot.
 - **Standardization** (or **z-score normalization**): here, for all variables, the mean is brought to zero and the standard deviation to one. This makes the scales fully compatible because the values now express the _differences from the mean in standard deviations_, which are always the same. The technique is best applied with Gaussian data, although it can also work with other data in many cases. Just see for yourself which one works best.
 
 You can click on the referenced link above to dive into Normalization and Standardization in more detail. In the remainder of this article, we will look at why Feature Scaling using Standardization can become problematic when your dataset contains (extreme) outliers, and how to handle these situations.
@@ -112,7 +112,7 @@ In the article referenced above, we saw that datasets can become surprisingly co
 - ![](images/gauss1.png)
     
 
-As expected, the entire feature space would now be centered around \[latex\](\\mu = 0, \\sigma = 1)\[/latex\]. The new range is approximately \[latex\]\[-3.66, 3.16\]\[/latex\].
+As expected, the entire feature space would now be centered around $(\\mu = 0, \\sigma = 1)$. The new range is approximately $\[-3.66, 3.16\]$.
 
 ```
 print(np.mean(X1))
@@ -131,7 +131,7 @@ Now let's take a look at what happens when we regenerate the dataset but then in
 - ![](images/outliers2-1.png)
     
 
-The `StandardScaler` used for applying Standardization to this dataset nicely generates a standard dataset centered around \[latex\](\\mu = 0, \\sigma = 1)\[/latex\].
+The `StandardScaler` used for applying Standardization to this dataset nicely generates a standard dataset centered around $(\\mu = 0, \\sigma = 1)$.
 
 But this is misleading if we look at the new range!
 
@@ -141,7 +141,7 @@ But this is misleading if we look at the new range!
 Range: [-3.549687574954954, 4.685632224899642]
 ```
 
-\[latex\]\[-3.55, 4.69\]\[/latex\]? Compare this to the range of the dataset without outliers, which was \[latex\]\[-3.66, 3.16\]\[/latex\].
+$\[-3.55, 4.69\]$? Compare this to the range of the dataset without outliers, which was $\[-3.66, 3.16\]$.
 
 If this looks strange to you, it is because it _is_. After standardization, it looks like as if the dataset never had outliers in the first place: the 'lowest' values have scantily moved, while the outliers were moved _significantly_ towards zero mean and unit variance. We now have a distorted dataset which could potentially allow you to detect patterns which are not there, by masking the presence of outliers!
 
@@ -170,7 +170,7 @@ Using the `RobustScaler` in Scikit-learn, we can overcome this problem, by scali
 
 ### Using the RobustScaler with Python for Scikit-learn and TensorFlow models
 
-Applying Robust Scaling with the `RobustScaler` is really easy and works both for Scikit-learn and TensorFlow models. Suppose that we generate the originally Gaussian data from the plots above, and then stretch one of the axes by `2.63` and then stretch 20% of the data more by multiplying it with a number between \[latex\]\[10, 25\]\[/latex\]. We then have a dataset available in `X1` which is also what we would have when e.g. training a [Scikit-learn](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/using-error-correcting-output-codes-for-multiclass-svm-classification.md) or a [TensorFlow](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras.md) model.
+Applying Robust Scaling with the `RobustScaler` is really easy and works both for Scikit-learn and TensorFlow models. Suppose that we generate the originally Gaussian data from the plots above, and then stretch one of the axes by `2.63` and then stretch 20% of the data more by multiplying it with a number between $\[10, 25\]$. We then have a dataset available in `X1` which is also what we would have when e.g. training a [Scikit-learn](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/using-error-correcting-output-codes-for-multiclass-svm-classification.md) or a [TensorFlow](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras.md) model.
 
 ```
 # Imports

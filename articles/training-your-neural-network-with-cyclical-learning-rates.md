@@ -72,7 +72,7 @@ This is where the learning rate enters the picture. With the learning rate, you 
 
 _Weight update = Previous weights - Learning rate x Gradient_
 
-By setting the learning rate to small values (e.g. \[latex\]0.001\[/latex\]), you ensure that steps are small enough in order to converge towards the minimum and arrive at a position close to a minimum. If you set it too large (e.g. \[latex\]0.5\[/latex\]), you might overshoot the minimum every time. However, it would speed up learning in the beginning, while you're still at the top of the mountain and can afford to take large steps. This is precisely the problem [why fixed learning rates aren't a good idea](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/problems-with-fixed-and-decaying-learning-rates.md), and why you need to be careful with decaying learning rates as well.
+By setting the learning rate to small values (e.g. $0.001$), you ensure that steps are small enough in order to converge towards the minimum and arrive at a position close to a minimum. If you set it too large (e.g. $0.5$), you might overshoot the minimum every time. However, it would speed up learning in the beginning, while you're still at the top of the mountain and can afford to take large steps. This is precisely the problem [why fixed learning rates aren't a good idea](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/problems-with-fixed-and-decaying-learning-rates.md), and why you need to be careful with decaying learning rates as well.
 
 * * *
 
@@ -137,7 +137,7 @@ In his paper, Smith (2017) describes three types of CLRs. The first is a linear 
 
 [![](images/triangular.png)]
 
-As you can see, the learning rate moves back and forth between a low one (\[latex\]bound\_{min} = 0.05\[/latex\]) and quite a high one (\[latex\]bound\_{max} = 1.50\[/latex\]). The same is true for the next one, except that movement is _smooth_ here - it's a sinusoidal one:
+As you can see, the learning rate moves back and forth between a low one ($bound\_{min} = 0.05$) and quite a high one ($bound\_{max} = 1.50$). The same is true for the next one, except that movement is _smooth_ here - it's a sinusoidal one:
 
 [![](images/sinusoidal.png)]
 
@@ -176,7 +176,7 @@ According to Smith (2017), choosing a cycle length for CLRs is pretty easy:
 
 **You compute the number of iterations in an epoch and set the cycle length - i.e. the `stepsize` input parameter - to 2 to 10 times this value.**
 
-As we know, one epoch is the full forward pass of all the samples in your training set. So, for example, if your training set has 60.000 images, and you use a batch size of 250, your step size must be configured to be within \[latex\]2 \* \\frac{60.000}{250} = 2 \* 240 = 480\[/latex\] and \[latex\]10 \* \\frac{60.000}{250} = 10 \* 240 = 2400\[/latex\] .
+As we know, one epoch is the full forward pass of all the samples in your training set. So, for example, if your training set has 60.000 images, and you use a batch size of 250, your step size must be configured to be within $2 \* \\frac{60.000}{250} = 2 \* 240 = 480$ and $10 \* \\frac{60.000}{250} = 10 \* 240 = 2400$ .
 
 ### How to find minimum and maximum bounds for Cyclical Learning Rates?
 
@@ -328,7 +328,7 @@ end_lr = 1e0
 no_epochs = 10
 ```
 
-We will try to find the best learning rate within the range between \[latex\]10^{-4}\[/latex\] and \[latex\]10^0 = 1\[/latex\]. We do so in ten epochs.
+We will try to find the best learning rate within the range between $10^{-4}$ and $10^0 = 1$. We do so in ten epochs.
 
 We then define the Learning Rate Range Test as `lr_finder` and add it as a Keras callback to `model.fit`:
 
@@ -344,9 +344,9 @@ Now, when we run the Python file (i.e. `python base-model.py`), the training pro
 
 [![](images/lrf_mnist-1024x512.png)]
 
-Interpreting this plot leads to the conclusion that a decrease in loss (i.e., model improvement) starts immediately - which means that we'll choose \[latex\]10^{-4}\[/latex\] as the lower bound for our cyclical learning rate.
+Interpreting this plot leads to the conclusion that a decrease in loss (i.e., model improvement) starts immediately - which means that we'll choose $10^{-4}$ as the lower bound for our cyclical learning rate.
 
-We observe a plateau around \[latex\]10^{-2}\[/latex\], after which loss values become unstable. Hence, we choose this as the value for our upper bound, and set the bounds accordingly next.
+We observe a plateau around $10^{-2}$, after which loss values become unstable. Hence, we choose this as the value for our upper bound, and set the bounds accordingly next.
 
 ### Applying CLRs in the Keras model
 

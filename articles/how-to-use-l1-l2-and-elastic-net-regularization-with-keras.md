@@ -72,9 +72,9 @@ Here, we'll therefore cover these basics in order to provide a recap. Firstly, w
 
 ### The need for regularization
 
-Training a supervised machine learning model equals learning a mapping for a function \[latex\]\\hat{y}: f(\\textbf{x})\[/latex\], where \[latex\]\\textbf{x}\[/latex\] is an input vector and \[latex\]\\hat{y}\[/latex\] is the predicted output value. Given the fact that it's supervised, you have the "ground truth" \[latex\]y\[/latex\] available for all \[latex\]\\textbf{x}\[/latex\] in your training set and hence, your definition of a well-performing machine learning model is to achieve \[latex\]\\hat{y} \\approx y\[/latex\] for your entire training set.
+Training a supervised machine learning model equals learning a mapping for a function $\\hat{y}: f(\\textbf{x})$, where $\\textbf{x}$ is an input vector and $\\hat{y}$ is the predicted output value. Given the fact that it's supervised, you have the "ground truth" $y$ available for all $\\textbf{x}$ in your training set and hence, your definition of a well-performing machine learning model is to achieve $\\hat{y} \\approx y$ for your entire training set.
 
-This can be achieved by going through the iterative [high-level supervised machine learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md/#the-high-level-supervised-learning-process), which means that you feed your training set to the model, generate predictions, compare these with ground truth, summarize them in a [loss value](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md/#loss), which you then use to [optimize](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md) the weights of your model, before starting a new iteration. This way, you might be able to find a mapping for which \[latex\]\\hat{y} \\approx y\[/latex\] is true to a great extent.
+This can be achieved by going through the iterative [high-level supervised machine learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md/#the-high-level-supervised-learning-process), which means that you feed your training set to the model, generate predictions, compare these with ground truth, summarize them in a [loss value](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md/#loss), which you then use to [optimize](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md) the weights of your model, before starting a new iteration. This way, you might be able to find a mapping for which $\\hat{y} \\approx y$ is true to a great extent.
 
 [![](images/poly_both.png)]
 
@@ -88,15 +88,15 @@ Yes, to some extent: by adding **a regularizer**, you may enforce the training p
 
 ### Loss based regularizer
 
-From above, we know that the supervised machine learning process produces some loss value. Let's now take a look at this loss value in a bit more detail, as it's important to understand what a regularizer does. The first step is to define the loss value at a high level; say, it's \[latex\]L(f, \\textbf{x}, y)\[/latex\], where \[latex\]f\[/latex\] is the model, \[latex\]\\textbf{x}\[/latex\] some input vector and \[latex\]y\[/latex\] the corresponding ground truth value.
+From above, we know that the supervised machine learning process produces some loss value. Let's now take a look at this loss value in a bit more detail, as it's important to understand what a regularizer does. The first step is to define the loss value at a high level; say, it's $L(f, \\textbf{x}, y)$, where $f$ is the model, $\\textbf{x}$ some input vector and $y$ the corresponding ground truth value.
 
-Now, the loss value is determined by a _loss function_. Loss functions provide a mathematical way of comparing two values. Exemplary ones are [binary crossentropy](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-binary-categorical-crossentropy-with-keras.md) (which compares a ground truth value with a predicted output) and [hinge loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-hinge-squared-hinge-loss-with-keras.md). But as we don't want to get into too much detail here, we simply define the output of the loss function as \[latex\]L\_{function}(f, \\textbf{x}, y)\[/latex\]. So:
+Now, the loss value is determined by a _loss function_. Loss functions provide a mathematical way of comparing two values. Exemplary ones are [binary crossentropy](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-binary-categorical-crossentropy-with-keras.md) (which compares a ground truth value with a predicted output) and [hinge loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-hinge-squared-hinge-loss-with-keras.md). But as we don't want to get into too much detail here, we simply define the output of the loss function as $L\_{function}(f, \\textbf{x}, y)$. So:
 
-\[latex\] L(f, \\textbf{x}, y) = L\_{function}(f, \\textbf{x}, y)\[/latex\]
+$L(f, \\textbf{x}, y) = L\_{function}(f, \\textbf{x}, y)$
 
 The objective during training is to minimize this value, and hence the function:
 
-\[latex\] \\min L(f, \\textbf{x}, y) = \\min L\_{function}(f, \\textbf{x}, y)\[/latex\]
+$\\min L(f, \\textbf{x}, y) = \\min L\_{function}(f, \\textbf{x}, y)$
 
 Now back to the regularizer. The _goal for using it_ is to _produce simpler models which scale to more generic data_. This means that you'll have to do something with the _weights_ of your model, and the only way of doing is is during the _optimization step_.
 
@@ -104,43 +104,43 @@ However, measuring the need for regularizing is not something we want to do _dur
 
 Can't we do something similar with a regularizer?
 
-Yes, we can: there's no argument as to why we cannot provide a measurement for the _need for regularization_ directly in advance of regularization. In fact, we can even add it to the loss value \[latex\] L(f, \\textbf{x}, y)\[/latex\]! This way, the need for regularization given some model weights is taken into account during optimization, together with the comparison between ground truth and predicted value. This way, you may actually arrive at models which are simple _and_ where \[latex\]\\hat{y} \\approx y\[/latex\].
+Yes, we can: there's no argument as to why we cannot provide a measurement for the _need for regularization_ directly in advance of regularization. In fact, we can even add it to the loss value $L(f, \\textbf{x}, y)$! This way, the need for regularization given some model weights is taken into account during optimization, together with the comparison between ground truth and predicted value. This way, you may actually arrive at models which are simple _and_ where $\\hat{y} \\approx y$.
 
 We do so as follows:
 
-\[latex\] L(f, \\textbf{x}, y) = L\_{function}(f, \\textbf{x}, y) + R(f)\[/latex\]
+$L(f, \\textbf{x}, y) = L\_{function}(f, \\textbf{x}, y) + R(f)$
 
 After which the minimization operation becomes:
 
-\[latex\] \\min L(f, \\textbf{x}, y) = \\min ( L\_{function}(f, \\textbf{x}, y) + R(f) )\[/latex\]
+$\\min L(f, \\textbf{x}, y) = \\min ( L\_{function}(f, \\textbf{x}, y) + R(f) )$
 
-Let's now take a look at two possible instantiations for \[latex\]R(f)\[/latex\], i.e. two actual regularizers: L1 (or Lasso) regularization and L2 (or Ridge) regularization.
+Let's now take a look at two possible instantiations for $R(f)$, i.e. two actual regularizers: L1 (or Lasso) regularization and L2 (or Ridge) regularization.
 
 ### L1 and L2 Regularization
 
-When L1 Regularization is applied to one of the layers of your neural network, \[latex\]R(f)\[/latex\] is instantiated as \[latex\] \\sum\_f{ \_{i=1}^{n}} | w\_i | \[/latex\], where \[latex\]w\_i\[/latex\] is the value for one of your \[latex\]n\[/latex\] weights in that particular layer. This instantiation computes the L1 norm for a vector, which is also called "taxicab norm" as it computes and adds together the lengths between the origin and the value along the axis for a particular dimension.
+When L1 Regularization is applied to one of the layers of your neural network, $R(f)$ is instantiated as $\\sum\_f{ \_{i=1}^{n}} | w\_i |$, where $w\_i$ is the value for one of your $n$ weights in that particular layer. This instantiation computes the L1 norm for a vector, which is also called "taxicab norm" as it computes and adds together the lengths between the origin and the value along the axis for a particular dimension.
 
 [![](images/l1_component.png)]
 
-Applying L1 regularization ensures that given a relatively constant \[latex\] L\_{function}(f, \\textbf{x}, y) \[/latex\] your weights take very small values of \[latex\]\\approx 0\[/latex\], as the L1 value for \[latex\]x = 0\[/latex\] is lowest. Indeed, likely, your weights will even [become _zero_](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-are-l1-l2-and-elastic-net-regularization-in-neural-networks.md/#on-model-sparsity), due to the fact that the L1 derivative is constant. Applying L1 to your neural networks layers thus pushes them to drop out weights that do not contribute to their predictive power significantly enough, and thus leads to sparse models.
+Applying L1 regularization ensures that given a relatively constant $L\_{function}(f, \\textbf{x}, y)$ your weights take very small values of $\\approx 0$, as the L1 value for $x = 0$ is lowest. Indeed, likely, your weights will even [become _zero_](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-are-l1-l2-and-elastic-net-regularization-in-neural-networks.md/#on-model-sparsity), due to the fact that the L1 derivative is constant. Applying L1 to your neural networks layers thus pushes them to drop out weights that do not contribute to their predictive power significantly enough, and thus leads to sparse models.
 
 However, it may be that you don't want models to be sparse. This may be the case if you face the "small, fat data problem", where you don't have a lot of samples, but the samples you've got are high-dimensional. Another case would be correlative data: if your features contain weights which have high pairwise correlation coefficients, dropping out the effect of certain variables through dropping out weights would be a bad idea, as you would effectively lose information.
 
-In this case, L2 regularization may be applied. For L2, \[latex\]R(f)\[/latex\] is instantiated as \[latex\] \\sum\_f{ \_{i=1}^{n}} w\_i^2 \[/latex\], where \[latex\]w\_i\[/latex\] is the value for one of your \[latex\]n\[/latex\] weights in that particular layer. As it's quadratic, it produces a characteristic plot:
+In this case, L2 regularization may be applied. For L2, $R(f)$ is instantiated as $\\sum\_f{ \_{i=1}^{n}} w\_i^2$, where $w\_i$ is the value for one of your $n$ weights in that particular layer. As it's quadratic, it produces a characteristic plot:
 
 [![](images/l2_comp.png)]
 
-Applying L2 regularization does lead to models where the weights will get relatively small values, i.e. where they are simple. This is similar to applying L1 regularization. However, contrary to L1, L2 regularization [does not push your weights to be _exactly zero_](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-are-l1-l2-and-elastic-net-regularization-in-neural-networks.md/#why-l1-yields-sparsity-and-l2-likely-does-not). This is also caused by the derivative: contrary to L1, where the derivative is a constant (it's either +1 or -1), the L2 derivative is \[latex\]2x\[/latex\]. This means that the closer you get to zero, the smaller the derivative gets, and hence the smaller the update. As with the case of dividing \[latex\]1\[/latex\] by \[latex\]2\[/latex\], then \[latex\]\\frac{1}{2}\[/latex\] by \[latex\]2\[/latex\], then \[latex\]\\frac{1}{4}\[/latex\] by \[latex\]2\[/latex\], and so on, you never reach _zero_, but the values get _really small_. For the situations where L1 cannot be applied, L2 is a good candidate for regularization.
+Applying L2 regularization does lead to models where the weights will get relatively small values, i.e. where they are simple. This is similar to applying L1 regularization. However, contrary to L1, L2 regularization [does not push your weights to be _exactly zero_](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-are-l1-l2-and-elastic-net-regularization-in-neural-networks.md/#why-l1-yields-sparsity-and-l2-likely-does-not). This is also caused by the derivative: contrary to L1, where the derivative is a constant (it's either +1 or -1), the L2 derivative is $2x$. This means that the closer you get to zero, the smaller the derivative gets, and hence the smaller the update. As with the case of dividing $1$ by $2$, then $\\frac{1}{2}$ by $2$, then $\\frac{1}{4}$ by $2$, and so on, you never reach _zero_, but the values get _really small_. For the situations where L1 cannot be applied, L2 is a good candidate for regularization.
 
 ### Elastic Net Regularization
 
 However, applying L2 yields one disbenefit: interpretability. What's more, it may be the case that you do not exactly know which regularizer to apply, as you don't have sufficient prior knowledge about your dataset. Finally, it can also be that you find insufficient results with either one, but think you could benefit from something in between.
 
-Say hello to Elastic Net Regularization, which was introduced by Zou & Hastie (2005). It effectively instantiates \[latex\]R(f)\[/latex\] as a linear combination of L1 and L2 regularization:
+Say hello to Elastic Net Regularization, which was introduced by Zou & Hastie (2005). It effectively instantiates $R(f)$ as a linear combination of L1 and L2 regularization:
 
-\[latex\] L(f, \\textbf{x}, y) = L\_{function}(f, \\textbf{x}, y) + \\lambda\_1 \\sum\_f{ \_{i=1}^{n}} | w\_i | + \\lambda\_2 \\sum\_f{ \_{i=1}^{n}} w\_i^2 \[/latex\]
+$L(f, \\textbf{x}, y) = L\_{function}(f, \\textbf{x}, y) + \\lambda\_1 \\sum\_f{ \_{i=1}^{n}} | w\_i | + \\lambda\_2 \\sum\_f{ \_{i=1}^{n}} w\_i^2$
 
-In the original paper, \[latex\]\\lambda\_1\[/latex\] can also be defined as \[latex\]1 - \\alpha\[/latex\] and \[latex\]\\lambda\_2\[/latex\] as \[latex\]\\alpha\[/latex\]. This makes the impact of both relative to each other, with \[latex\]\\alpha = 1\[/latex\] giving L2 regularization and \[latex\]\\alpha = 0\[/latex\] giving L1 regularization. All the values in between produce something that mimics one of them.
+In the original paper, $\\lambda\_1$ can also be defined as $1 - \\alpha$ and $\\lambda\_2$ as $\\alpha$. This makes the impact of both relative to each other, with $\\alpha = 1$ giving L2 regularization and $\\alpha = 0$ giving L1 regularization. All the values in between produce something that mimics one of them.
 
 According to Zou & Hastie (2015) and many practitioners, Elastic Net Regularization produces better results and can be used more naïvely, e.g. when little prior knowledge is available about the dataset.
 
@@ -150,9 +150,9 @@ Now that we know some details about the regularizers, let's find out how they ar
 
 ### Which lambda values do I need?
 
-It's very difficult, if not impossible, to give an answer to this question, as the most suitable values for \[latex\]\\lambda/latex\] are data-dependent (Google Developers, n.d.).
+It's very difficult, if not impossible, to give an answer to this question, as the most suitable values for $\\lambda/latex\] are data-dependent (Google Developers, n.d.).
 
-However, it's best to use values \[latex\]> 0\[/latex\] (otherwise, the regularizer would be dead). Also, it's best not to use lambdas that are too high (risking underfitting) but neither lambdas that are too low (making the regularizer ineffective, increasing the odds of overfitting) (Google Developers, n.d.). However, generally speaking, they should be rather lower than higher. For example, as we shall see, the default value within the Keras framework is \[latex\]\\lambda = 0.01\[/latex\] (TensorFlow, 2021).
+However, it's best to use values $> 0$ (otherwise, the regularizer would be dead). Also, it's best not to use lambdas that are too high (risking underfitting) but neither lambdas that are too low (making the regularizer ineffective, increasing the odds of overfitting) (Google Developers, n.d.). However, generally speaking, they should be rather lower than higher. For example, as we shall see, the default value within the Keras framework is $\\lambda = 0.01$ (TensorFlow, 2021).
 
 * * *
 
@@ -551,13 +551,13 @@ plt.show()
 
 ## Results
 
-The results, which were obtained with regularizers having \[latex\]\\lambda = 0.01\[/latex\] (except for one, the Extended L2 regularizer), suggest a few things:
+The results, which were obtained with regularizers having $\\lambda = 0.01$ (except for one, the Extended L2 regularizer), suggest a few things:
 
 - **On no regularization:** results are quite good. It serves as a baseline and has these evaluation metrics: `Test loss: 0.4031164909011506 / Test accuracy: 0.8728723526000977`.
 - **On L1 regularization:** For EMNIST data, the assumption that sparsity must be introduce to the model seems to be **false**. I'm not sure, but perhaps this can be generalized to many image related problems (do you have any experience? Tell me by leaving a comment!). As we can see, both L1 Kernel/Bias and Activity regularization produce very poor results.
 - **On L2 regularization**: results are good, with accuracies of 85%+ with the activity regularizer. Results are a bit lower with the kernel/bias regularizers. The evaluation metrics for the L2 activity regularizer based model: `Test loss: 0.37115383783553507 / Test accuracy: 0.8901063799858093`.
-- **On L2 regularization vs No regularization:** L2 regularization with \[latex\]\\lambda = 0.01\[/latex\] results in a model that has a lower test loss and a higher accuracy (a 2 percentage points increase).
-- **On extended L2 regularization:** to find out whether this effect gets stronger with an increased impact of the regularizer, we retrained the L2 Activity regularized model with \[latex\]\\lambda = 0.10\[/latex\]. The evaluation metrics : `Test loss: 0.5058084676620808 / Test accuracy: 0.8836702108383179`. Loss is clearly worse.
+- **On L2 regularization vs No regularization:** L2 regularization with $\\lambda = 0.01$ results in a model that has a lower test loss and a higher accuracy (a 2 percentage points increase).
+- **On extended L2 regularization:** to find out whether this effect gets stronger with an increased impact of the regularizer, we retrained the L2 Activity regularized model with $\\lambda = 0.10$. The evaluation metrics : `Test loss: 0.5058084676620808 / Test accuracy: 0.8836702108383179`. Loss is clearly worse.
 - **On Elastic Net regularization:** here, results are poor as well. Apparently, here the false sparsity assumption also results in very poor data due to the L1 component of the Elastic Net regularizer. Fortunate that L2 works!
 
 Next, you'll find all the `history` based [plots of the training process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-training-process-in-keras.md) for each regularizer / regularizer combination created above.
@@ -599,7 +599,7 @@ Next, you'll find all the `history` based [plots of the training process](https:
 
 ### Extended L2 Activity regularization
 
-Here, \[latex\]\\lambda = 0.10\[/latex\], to find out whether the increased impact of the regularizer improves the model.
+Here, $\\lambda = 0.10$, to find out whether the increased impact of the regularizer improves the model.
 
 - [![](images/extended_a.png)]
     

@@ -140,7 +140,7 @@ You can imagine that given your model's weights, it will be relatively poor in h
 
 And although it can learn to reverse to the more generic process over time, you can see that with relative instability in your dataset (which can even happen within relatively normalized datasets, due to such effects happening in downstream layers), model optimization will oscillate quite heavily. And this is bad, because it slows down the training process.
 
-**Batch Normalization** is a normalization technique that can be applied at the layer level. Put simply, it normalizes "the inputs to each layer to a learnt representation likely close to \[latex\](\\mu = 0.0, \\sigma = 1.0)\[/latex\]. By consequence, all the layer inputs are normalized, and significant outliers are less likely to impact the training process in a negative way. And if they do, their impact will be much lower than without using Batch Normalization.
+**Batch Normalization** is a normalization technique that can be applied at the layer level. Put simply, it normalizes "the inputs to each layer to a learnt representation likely close to $(\\mu = 0.0, \\sigma = 1.0)$. By consequence, all the layer inputs are normalized, and significant outliers are less likely to impact the training process in a negative way. And if they do, their impact will be much lower than without using Batch Normalization.
 
 > Training Deep Neural Networks is complicated by the fact that the distribution of each layer’s inputs changes during training, as the parameters of the previous layers change. This slows down the training by requiring lower learning rates and careful parameter initialization, and makes it notoriously hard to train models with saturating nonlinearities. We refer to this phenomenon as internal covariate shift, and address the problem by normalizing layer inputs. Our method draws its strength from making normalization a part of the model architecture and performing the normalization for each training mini-batch. Batch Normalization allows us to use much higher learning rates and be less careful about initialization, and in some cases eliminates the need for Dropout. Applied to a stateof-the-art image classification model, Batch Normalization achieves the same accuracy with 14 times fewer training steps, and beats the original model by a significant margin. Using an ensemble of batch-normalized networks, we improve upon the best published result on ImageNet classification: reaching 4.82% top-5 test error, exceeding the accuracy of human raters.
 > 
@@ -182,17 +182,17 @@ Let's summarize:
 
 #### 4D, 3D and 2D inputs to BatchNormalization
 
-Now, what is a "4D input"? PyTorch describes it as follows: \[latex\](N, C, H, W)\[/latex\]
+Now, what is a "4D input"? PyTorch describes it as follows: $(N, C, H, W)$
 
-- Here, \[latex\]N\[/latex\] stands for the number of samples in a batch.
-- \[latex\]C\[/latex\] represents the number of channels.
-- \[latex\]H\[/latex\] represents height and \[latex\]W\[/latex\] width.
+- Here, $N$ stands for the number of samples in a batch.
+- $C$ represents the number of channels.
+- $H$ represents height and $W$ width.
 
-In other words, a 4D input to a `nn.BatchNorm2d` layer represents a set of \[latex\]N\[/latex\] objects that each have a height and a width, always a number of channels >= 1. What comes to mind when reading that?
+In other words, a 4D input to a `nn.BatchNorm2d` layer represents a set of $N$ objects that each have a height and a width, always a number of channels >= 1. What comes to mind when reading that?
 
 Indeed, images do.
 
-A "2D or 3D input" goes as follows: \[latex\](N, C, L)\[/latex\] (here, the C is optional).
+A "2D or 3D input" goes as follows: $(N, C, L)$ (here, the C is optional).
 
 `nn.BatchNorm1d` represents lower-dimensional inputs: a number of inputs, possibly a number of channels and a content per object. These are regular, one-dimensional arrays, like the ones produced by [Dense layers](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-basic-mlp-classifier-with-the-keras-sequential-api.md) in a neural network.
 

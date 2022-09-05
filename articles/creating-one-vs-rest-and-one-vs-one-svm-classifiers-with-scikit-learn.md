@@ -48,11 +48,11 @@ Implementing a multiclass classifier is easy when you are using Neural networks.
 
 ## Why you cannot create multiclass SVMs natively
 
-Take a look at the figure below. You see samples from two classes - black and white - plotted in a scatter plot, which visualizes a two-dimensional feature space. In addition, you see three decision boundaries: \[latex\]H\_1\[/latex\], \[latex\]H\_2\[/latex\] and \[latex\]H\_3\[/latex\]. The first is not capable of adequately separating the classes. The second is, and the third is as well.
+Take a look at the figure below. You see samples from two classes - black and white - plotted in a scatter plot, which visualizes a two-dimensional feature space. In addition, you see three decision boundaries: $H\_1$, $H\_2$ and $H\_3$. The first is not capable of adequately separating the classes. The second is, and the third is as well.
 
 But which one is best if you are training a Support Vector Machine?
 
-Spoiler alert: it's \[latex\]H\_3\[/latex\]. The reason why is because SVMs are **maximum-margin classifiers**, which means that they attempt to generate a decision boundary that is _equidistant_ from the two classes of data.
+Spoiler alert: it's $H\_3$. The reason why is because SVMs are **maximum-margin classifiers**, which means that they attempt to generate a decision boundary that is _equidistant_ from the two classes of data.
 
 > A point is said to be **equidistant** from a set of objects if the distances between that point and each object in the set are equal.
 > 

@@ -43,7 +43,7 @@ However, if data is nonlinear, we face problems. Linear neuron outputs ensure th
 
 Activation functions come to the rescue by adding nonlinearity. They're placed directly after the neural outputs and do nothing else but converting some input to some output. Because the mathematical functions used are nonlinear, the output is nonlinear - which is exactly what we want, since now the system behaves nonlinearly and nonlinear data is supported!
 
-Note that although activation functions are pretty much nonlinear all the time, it's of course also possible to use the identity function \[latex\]f(x) = x\[/latex\] as an activation function. It would be pointless, but it can be done.
+Note that although activation functions are pretty much nonlinear all the time, it's of course also possible to use the identity function $f(x) = x$ as an activation function. It would be pointless, but it can be done.
 
 Now ReLU. It can be expressed as follows:
 
@@ -53,11 +53,11 @@ And visualized in this way:
 
 [![](images/relu-1024x511.png)]
 
-For all values \[latex\]\\geq 0\[/latex\], it behaves linearly, but essentially behaves nonlinearly by outputting zeroes for all negative inputs.
+For all values $\\geq 0$, it behaves linearly, but essentially behaves nonlinearly by outputting zeroes for all negative inputs.
 
 Hence, it can be used as a nonlinear activation function.
 
-It's grown very popular and may be the most popular activation used today - it is more popular than the older [Sigmoid and Tanh](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md) activation functions - for the reason that it can be computed relatively inexpensively. Computing ReLU is equal to computing \[latex\]ReLU(x) = max(0, x)\[/latex\], which is much less expensive than the exponents or trigonometric operations necessary otherwise.
+It's grown very popular and may be the most popular activation used today - it is more popular than the older [Sigmoid and Tanh](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md) activation functions - for the reason that it can be computed relatively inexpensively. Computing ReLU is equal to computing $ReLU(x) = max(0, x)$, which is much less expensive than the exponents or trigonometric operations necessary otherwise.
 
 * * *
 
@@ -65,7 +65,7 @@ It's grown very popular and may be the most popular activation used today - it i
 
 However, it's not the silver bullet and every time you'll run into trouble when using ReLU. It doesn't happen often - which makes it highly generalizable across machine learning domains and machine learning problems - but you may run into some issues.
 
-Firstly, ReLU is not continuously differentiable. At \[latex\]x = 0\[/latex\], the breaking point between \[latex\]x\[/latex\] and 0, the gradient cannot be computed. This is not too problematic, but can very lightly impact training performance.
+Firstly, ReLU is not continuously differentiable. At $x = 0$, the breaking point between $x$ and 0, the gradient cannot be computed. This is not too problematic, but can very lightly impact training performance.
 
 Secondly, and more gravely, ReLU sets all values < 0 to zero. This is beneficial in terms of sparsity, as the network will adapt to ensure that the most important neurons have values of > 0. However, this is a problem as well, since the gradient of 0 is 0 and hence neurons arriving at large negative values cannot recover from being stuck at 0. The neuron effectively dies and hence the problem is known as the _dying ReLU problem_. You're especially vulnerable to it when your neurons are not initialized properly or when your data is not normalized very well, causing significant weight swings during the first phases of optimizing your model. The impact of this problem may be that your network essentially stops learning and underperforms.
 
@@ -85,7 +85,7 @@ Leaky ReLU can be visualized as follows:
 
 [![](images/leaky_relu.png)]
 
-If you compare this with the image for traditional ReLU above, you'll see that for all \[latex\]inputs < 0\[/latex\], the outputs are slightly descending. The thesis is that these small numbers reduce the death of ReLU activated neurons. This way, you'll have to worry less about the initialization of your neural network and the normalization of your data. Although these topics remain important, they are slightly less critical.
+If you compare this with the image for traditional ReLU above, you'll see that for all $inputs < 0$, the outputs are slightly descending. The thesis is that these small numbers reduce the death of ReLU activated neurons. This way, you'll have to worry less about the initialization of your neural network and the normalization of your data. Although these topics remain important, they are slightly less critical.
 
 * * *
 

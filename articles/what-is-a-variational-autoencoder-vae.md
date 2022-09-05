@@ -113,7 +113,7 @@ Yes: generating new content with traditional autoencoders is quite challenging, 
 
 ### How classic autoencoders map input to the latent space
 
-To illustrate the point, I've trained a classic autoencoder where the encoded state has only 2 dimensions. This allows us to plot digits with Matplotlib. Do note that going from 784 to 2 dimensions is a substantial reduction and will likely lead to too much information loss than strictly necessary (indeed, the loss value stalled at around \[latex\]\\approx 0.25\[/latex\], while in a similar network a loss of \[latex\]\\approx 0.09\[/latex\] could be achieved).
+To illustrate the point, I've trained a classic autoencoder where the encoded state has only 2 dimensions. This allows us to plot digits with Matplotlib. Do note that going from 784 to 2 dimensions is a substantial reduction and will likely lead to too much information loss than strictly necessary (indeed, the loss value stalled at around $\\approx 0.25$, while in a similar network a loss of $\\approx 0.09$ could be achieved).
 
 The plot of our encoded space - or latent space - looks as follows. Each color represents a class:
 
@@ -180,7 +180,7 @@ Let's now take a look at a class of autoencoders that _does work_ well with gene
 
 They achieve this through two main differences (Shafkat, 2018; Rocca, 2019; Jordan, 2018A):
 
-- Firstly, recall that classic autoencoders output one value per dimension when mapping input data to latent state. VAEs don't do this: rather, they output a Gaussian probability distribution with some mean \[latex\]\\mu\[/latex\] and standard deviation \[latex\]\\sigma\[/latex\] for every dimension. For example, when the latent state space has seven dimensions, you'd thus get seven probability distributions that together represent state, as a probability distribution across space.
+- Firstly, recall that classic autoencoders output one value per dimension when mapping input data to latent state. VAEs don't do this: rather, they output a Gaussian probability distribution with some mean $\\mu$ and standard deviation $\\sigma$ for every dimension. For example, when the latent state space has seven dimensions, you'd thus get seven probability distributions that together represent state, as a probability distribution across space.
 - Secondly, contrary to classic autoencoders - which minimize reconstruction loss only - VAEs minimize a combination of reconstruction loss and a probability comparison loss called [Kullback-Leibler divergence](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-kullback-leibler-divergence-kl-divergence-with-keras.md). This enforces the regularization we so deeply need.
 
 These two differences allow them to be both _continuous_ and, quite often, _complete_, making VAEs candidates for generative processes.
@@ -193,31 +193,31 @@ Recall that classic autoencoders encode their inputs as a single point in some m
 
 [![](images/classic-autoencoder.png)]
 
-VAEs don't do this, and this is their first difference: yes, they still encode inputs to some multidimensional space, but they encode inputs as a _distribution over the latent space_ (Rocca, 2019). As part of this, the encoder doesn't output _one vector_ of size \[latex\]N\[/latex\], but instead _two vectors_ of size \[latex\]N\[/latex\]. The first is a vector of means, \[latex\]\\mu\[/latex\], and the second a vector of standard deviations, \[latex\]\\sigma\[/latex\].
+VAEs don't do this, and this is their first difference: yes, they still encode inputs to some multidimensional space, but they encode inputs as a _distribution over the latent space_ (Rocca, 2019). As part of this, the encoder doesn't output _one vector_ of size $N$, but instead _two vectors_ of size $N$. The first is a vector of means, $\\mu$, and the second a vector of standard deviations, $\\sigma$.
 
 [![](images/vae-encoder.png)]
 
-The _encoder_ segment of our VAE is what Kingma & Welling (2013) call the _recognition model:_ it's a learnt approximation ("what must encoding \[latex\]z\[/latex\] be given input \[latex\]x\[/latex\]?") of the _true_ posterior \[latex\]p(z | x)\[/latex\]. Since the approximation is learnt, we don't know its exact distribution, but we _do_ know that the true posterior would be Gaussian, so that the \[latex\]z\[/latex\] from our true posterior would be \[latex\]z \\sim \\mathcal{N}(\\mu,\\,\\sigma^{2})\\,\[/latex\] ("z is part of a Gaussian a.k.a. normal distribution with mean \[latex\]\\mu\[/latex\] and standard deviation \[latex\]\\sigma\[/latex\]", Kingma & Welling 2013).
+The _encoder_ segment of our VAE is what Kingma & Welling (2013) call the _recognition model:_ it's a learnt approximation ("what must encoding $z$ be given input $x$?") of the _true_ posterior $p(z | x)$. Since the approximation is learnt, we don't know its exact distribution, but we _do_ know that the true posterior would be Gaussian, so that the $z$ from our true posterior would be $z \\sim \\mathcal{N}(\\mu,\\,\\sigma^{2})\\,$ ("z is part of a Gaussian a.k.a. normal distribution with mean $\\mu$ and standard deviation $\\sigma$", Kingma & Welling 2013).
 
-By consequence, we assume that the _approximated_ posterior distribution (the distribution generated by the encoder) is also distributed \[latex\]\\mathcal{N}(\\mu,\\,\\sigma^{2})\\,\[/latex\]. This, in return, means that we can effectively combine the two vectors into one, if we assume that each element in the new vector is a random variable \[latex\]X \\sim \\mathcal{N}(\\mu,\\,\\sigma^{2})\\,\[/latex\] with the \[latex\]\\mu\[/latex\]s and \[latex\]\\sigma\[/latex\]s being the values from the vectors.
+By consequence, we assume that the _approximated_ posterior distribution (the distribution generated by the encoder) is also distributed $\\mathcal{N}(\\mu,\\,\\sigma^{2})\\,$. This, in return, means that we can effectively combine the two vectors into one, if we assume that each element in the new vector is a random variable $X \\sim \\mathcal{N}(\\mu,\\,\\sigma^{2})\\,$ with the $\\mu$s and $\\sigma$s being the values from the vectors.
 
 So:
 
 [![](images/vae-encoder-x.png)]
 
-When we know the encoding of our input, we can randomly sample from all the variables \[latex\]X\[/latex\], selecting a number from the distribution with which the encoding was made. We then feed this number to the decoder, which decodes it into - hopefully 😀 - interpretable output (Shafkat, 2018).
+When we know the encoding of our input, we can randomly sample from all the variables $X$, selecting a number from the distribution with which the encoding was made. We then feed this number to the decoder, which decodes it into - hopefully 😀 - interpretable output (Shafkat, 2018).
 
 [![](images/vae-encoder-decoder-1024x229.png)]
 
 The fact that we sample randomly means that what we feed to the decoder is different every time (i.e., at every epoch during training, and at every inference in production, Jordan 2018A). This means that the reconstructed output is slightly different every time (Shafkat, 2018).
 
-It's important to understand this property, which is visualized below for a two-dimensional latent space with two Gaussian distributions (red and blue) generating a range of possible sampled \[latex\]X\[/latex\]s (the area in green):
+It's important to understand this property, which is visualized below for a two-dimensional latent space with two Gaussian distributions (red and blue) generating a range of possible sampled $X$s (the area in green):
 
 [![](images/MultivariateNormal.png)]
 
 _Even though this work is licensed under CC0, I'd wish to pay thanks to Wikipedia user 'BScan' for creating it: ["Illustration of a multivariate gaussian distribution and its marginals."](https://en.wikipedia.org/wiki/Multivariate_normal_distribution#/media/File:MultivariateNormal.png)_
 
-As we can see, the mean values \[latex\]\\mu\[/latex\] for our distributions determine the average center of the range of values, while the \[latex\]\\sigma\[/latex\]s determine the area in green (Shafkat, 2018).
+As we can see, the mean values $\\mu$ for our distributions determine the average center of the range of values, while the $\\sigma$s determine the area in green (Shafkat, 2018).
 
 Now why is this difference - _probability distributions instead of points_ - important? Let's explore.
 
@@ -231,7 +231,7 @@ Having the VAE encoder output a probability distribution over the latent space e
 
 Now imagine what happens when you feed dozens of samples (or, with the size of today's datasets, likely thousands or tens of thousands of samples) to the encoder. Given its learnt internals, it will produce a vector of means and standard deviations for each of them.
 
-Now imagine that for each vector, we draw the variables \[latex\]X\[/latex\] once, generating various points in the latent space. But now imagine that we do so an infinite amount of times, but _without removing the earlier points_. What you'll get is an area in space that becomes entirely filled, with only the bounds unfilled.
+Now imagine that for each vector, we draw the variables $X$ once, generating various points in the latent space. But now imagine that we do so an infinite amount of times, but _without removing the earlier points_. What you'll get is an area in space that becomes entirely filled, with only the bounds unfilled.
 
 Why this happens is simple: the probability distributions that were encoded by the encoder overlap, and so do the points - especially when you don't stop sampling :-)
 
@@ -256,7 +256,7 @@ Thus:
 
 Fortunately, there is a workaround: adding the [Kullback-Leibler divergence](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-kullback-leibler-divergence-kl-divergence-with-keras.md) to the loss function. This divergence, which is also called KL divergence, essentially computes the "divergence" between two probability distributions (i.e., how much they look _not_ like each other).
 
-If we add it to the loss function (currently with reconstruction loss only) to be minimized by the neural network, and configure it to compare the probability distribution generated by the encoder with the standard Gaussian \[latex\]\\mathcal{N}(0, 1^{2})\\,\[/latex\], we get the following plot when retraining the model:
+If we add it to the loss function (currently with reconstruction loss only) to be minimized by the neural network, and configure it to compare the probability distribution generated by the encoder with the standard Gaussian $\\mathcal{N}(0, 1^{2})\\,$, we get the following plot when retraining the model:
 
 [![](images/rlkl_2d-1024x853.png)]
 
@@ -264,9 +264,9 @@ It's clear that _continuity_ is still enforced: zeroes and ones are still on opp
 
 However, what also becomes visible is that the _completeness_ principle is now also met to a great extent!
 
-This happens because the KL divergence loss term increases when the probability distribution generated by the encoder diverges from the \[latex\]\\mathcal{N}(0, 1^{2})\\,\[/latex\] standard normal distribution. Effectively, this means that the neural network is regularized to learn an encoder that produces a probability distribution with \[latex\]\\mu \\approx 0\[/latex\] and \[latex\]\\sigma \\approx 1\[/latex\], "pushing" the probability distributions and hence the sampled \[latex\]X\[/latex\]s close together.
+This happens because the KL divergence loss term increases when the probability distribution generated by the encoder diverges from the $\\mathcal{N}(0, 1^{2})\\,$ standard normal distribution. Effectively, this means that the neural network is regularized to learn an encoder that produces a probability distribution with $\\mu \\approx 0$ and $\\sigma \\approx 1$, "pushing" the probability distributions and hence the sampled $X$s close together.
 
-And this is visible in the illustration above: the entire latent space is built around the point \[latex\](0, 0)\[/latex\] with the majority of samples being within the \[latex\]\[-1, +1\]\[/latex\] domain and range. There are much fewer holes now, making the global space much more _complete_.
+And this is visible in the illustration above: the entire latent space is built around the point $(0, 0)$ with the majority of samples being within the $\[-1, +1\]$ domain and range. There are much fewer holes now, making the global space much more _complete_.
 
 ### Recap: why does this help content generation?
 
@@ -310,7 +310,7 @@ _The script to generate these plots was created by François Chollet and can be 
 
 Now, let's see if we can improve when we regularize even further.
 
-As with the Dropout best practices, [we applied Dropout](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-dropout-reduce-overfitting-in-your-neural-networks.md) with \[latex\]p = 0.5\[/latex\] in the hidden layers and max-norm regularization with \[latex\]maxnormvalue = 2.0\[/latex\]. It seems to improve the model's ability to discriminate between classes, which also becomes clear from the samples across latent space:
+As with the Dropout best practices, [we applied Dropout](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-dropout-reduce-overfitting-in-your-neural-networks.md) with $p = 0.5$ in the hidden layers and max-norm regularization with $maxnormvalue = 2.0$. It seems to improve the model's ability to discriminate between classes, which also becomes clear from the samples across latent space:
 
 - [![](images/fmnist_dmax_space.png)]
     

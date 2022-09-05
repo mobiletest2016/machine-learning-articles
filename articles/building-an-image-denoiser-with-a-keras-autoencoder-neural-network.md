@@ -77,7 +77,7 @@ MNIST (the abbreviation for **"Modified National Institute of Standards and Tech
 
 The dataset contains 60.000 training samples and 10.000 testing samples.
 
-Today, we'll be trying to learn an _image noise remover_ (or _denoiser_) based on this dataset. This means that we'll have to add noise to the data, after which we can feed both the noisy and the pure data to an autoencoder which learns noise removal. For the sake of clarity, this is what a pure and a noisy sample looks like (with 55% of the generated amount of Gaussian noise of \[latex\](0, 1)\[/latex\] mean/stddev applied to the image):
+Today, we'll be trying to learn an _image noise remover_ (or _denoiser_) based on this dataset. This means that we'll have to add noise to the data, after which we can feed both the noisy and the pure data to an autoencoder which learns noise removal. For the sake of clarity, this is what a pure and a noisy sample looks like (with 55% of the generated amount of Gaussian noise of $(0, 1)$ mean/stddev applied to the image):
 
 - [![](images/1-6.png)]
     
@@ -94,7 +94,7 @@ Second: the model. As we're trying to remove noise from images, it makes sense t
 
 Below, you can see what it looks like. Obviously, it has an input layer, to receive the inputs, before the encoding and decoding segments are added.
 
-The two two-dimensional convolutional layers (Conv2D layers) form the part of the autoencoder that learn the encoder. The first layer learns 64 features and the other 32 features. A kernel size of 3x3 pixels is used, together with max-norm regularization (\[latex\]normsize = 2.0\[/latex\]). Since we use [ReLU activation](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/implementing-relu-sigmoid-and-tanh-in-keras.md), [we use He init](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/he-xavier-initialization-activation-functions-choose-wisely.md).
+The two two-dimensional convolutional layers (Conv2D layers) form the part of the autoencoder that learn the encoder. The first layer learns 64 features and the other 32 features. A kernel size of 3x3 pixels is used, together with max-norm regularization ($normsize = 2.0$). Since we use [ReLU activation](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/implementing-relu-sigmoid-and-tanh-in-keras.md), [we use He init](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/he-xavier-initialization-activation-functions-choose-wisely.md).
 
 ![](images/model-6.png)
 
@@ -182,9 +182,9 @@ Step three: loading and preparing the dataset.
 We do so in a few steps:
 
 - First, we use `load_data()` to download the MNIST dataset or to retrieve it from cache. This allows us to load the data into four variables (two for training/testing data; two for inputs and targets) easily.
-- Then, we reshape the data based on a channels-first/channels-last strategy. Image data must always contain a third dimension which represents the number of channels present in your image. For example, RGB data has 3 channels. Today, we only use one, but have to specify it anyway. The unfortunate thing, however, is that the backends use different strategies: some backends use a shape that presents channels first (e.g. \[latex\](1, 28, 28)\[/latex\]) while others present them last (\[latex\](28, 28, 1)\[/latex\]). Depending on what strategy your backend is using (hence, we need to import the backend into `K`!), we reshape your data into the correct format, so that the model becomes backend-agnostic 😀 Note that the Keras team wrote the code for doing so, and that they must be thanked.
+- Then, we reshape the data based on a channels-first/channels-last strategy. Image data must always contain a third dimension which represents the number of channels present in your image. For example, RGB data has 3 channels. Today, we only use one, but have to specify it anyway. The unfortunate thing, however, is that the backends use different strategies: some backends use a shape that presents channels first (e.g. $(1, 28, 28)$) while others present them last ($(28, 28, 1)$). Depending on what strategy your backend is using (hence, we need to import the backend into `K`!), we reshape your data into the correct format, so that the model becomes backend-agnostic 😀 Note that the Keras team wrote the code for doing so, and that they must be thanked.
 - Next, we parse the int numbers into floats, specifically the `float32` datatype. Presumably, this speeds up the training process.
-- Finally, we normalize the data into the range \[latex\]\[0, 1\]\[/latex\].
+- Finally, we normalize the data into the range $\[0, 1\]$.
 
 ```
 # Load MNIST dataset
@@ -423,7 +423,7 @@ for i in range(0, number_of_visualizations):
 
 Next up, the interesting part - the results 😁
 
-And I must say that I'm really happy with how well the autoencoder has learnt to denoise MNIST images 🎉 With a loss value of \[latex\]\\approx 0.095\[/latex\], it performs quite well - but hey, it's better to see how it works visually. Therefore, let's skip to the example visualizations:
+And I must say that I'm really happy with how well the autoencoder has learnt to denoise MNIST images 🎉 With a loss value of $\\approx 0.095$, it performs quite well - but hey, it's better to see how it works visually. Therefore, let's skip to the example visualizations:
 
 - [![](images/1-5.png)]
     

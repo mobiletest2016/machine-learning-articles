@@ -55,9 +55,9 @@ A loss landscape is a representation in some space of your loss value. Below, yo
 
 _Two landscapes with saddle points. On the left, it's most visible - while on the right, it's in between two maxima. | Left: By [Nicoguaro](//commons.wikimedia.org/wiki/User:Nicoguaro "User:Nicoguaro") - Own work, [CC BY 3.0](https://creativecommons.org/licenses/by/3.0 "Creative Commons Attribution 3.0"), [Link](https://commons.wikimedia.org/w/index.php?curid=20570051) | Right: By [Nicoguaro](//commons.wikimedia.org/wiki/User:Nicoguaro "User:Nicoguaro") - Own work, [CC BY 4.0](https://creativecommons.org/licenses/by/4.0 "Creative Commons Attribution 4.0"), [Link](https://commons.wikimedia.org/w/index.php?curid=48854962)_
 
-The loss landscapes, here, are effectively the \[latex\]z\[/latex\] values for the \[latex\]x\[/latex\] and \[latex\]y\[/latex\] inputs to the fictional loss function used to generate them.
+The loss landscapes, here, are effectively the $z$ values for the $x$ and $y$ inputs to the fictional loss function used to generate them.
 
-Now, if they are the output of a _function_, it may be the case that we can compute the _derivative_ of that function as well. And by consequence, we can compute the _gradient_ for that particular \[latex\](x, y)\[/latex\] position too, a.k.a. the direction and speed of change at that point.
+Now, if they are the output of a _function_, it may be the case that we can compute the _derivative_ of that function as well. And by consequence, we can compute the _gradient_ for that particular $(x, y)$ position too, a.k.a. the direction and speed of change at that point.
 
 **Saddle points are points in your loss landscape where the gradient is zero, but which are no extremum** (Wikipedia, 2004). That is, the gradient is zero but they don't represent minima or maxima.
 

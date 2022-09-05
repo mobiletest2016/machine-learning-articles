@@ -13,7 +13,7 @@ In the [paper](https://www.sciencedirect.com/science/article/pii/089360808990020
 
 ...and it made the authors wonder about what neural networks can achieve, since pretty much anything can be translated into models and by consequence mathematical formulae.
 
-When reading the paper, I felt like experimenting a little with this property of neural networks, and to try and find out whether with sufficient data functions such as \[latex\]x^2\[/latex\], \[latex\]sin(x)\[/latex\] and \[latex\]1/x\[/latex\] can be approximated.
+When reading the paper, I felt like experimenting a little with this property of neural networks, and to try and find out whether with sufficient data functions such as $x^2$, $sin(x)$ and $1/x$ can be approximated.
 
 Let's see if we can!
 
@@ -29,7 +29,7 @@ Let's see if we can!
 
 ## The experiment
 
-For the experiment, I used the following code for approximating \[latex\]x^2\[/latex\]:
+For the experiment, I used the following code for approximating $x^2$:
 
 ```
 # Imports
@@ -64,7 +64,7 @@ And it runs on GPU, which is very nice.
 
 Specifically, for Keras, I'm importing the `Sequential` model type and the `Dense` layer type. The Sequential model type requires the engineer to 'stack' the individual layers on top of each other (as you will see next), while the Dense or Densely-connected layer means that each individual neuron is connected to all neurons in the following layer.
 
-Next, I load the training data. Rather simply, I'm generating 25.000 numbers in the range \[-50, 50\]. Subsequently, I'm also generating the targets for the individual numbers by applying `x**2` or \[latex\]x^2\[/latex\].
+Next, I load the training data. Rather simply, I'm generating 25.000 numbers in the range \[-50, 50\]. Subsequently, I'm also generating the targets for the individual numbers by applying `x**2` or $x^2$.
 
 Then, I define the model - it's a Sequential one with three hidden layers: all of them are Dense with 40, 20 and 10 neurons, respectively. The input layer has simply one neuron (every `x` is just a number) and the output layer has only one as well (since we regress to `y`, which is also just a number). Note that all layers use `ReLU` as an activation function except for the last one, standard with regression.
 
@@ -76,14 +76,14 @@ Next, we fit the data in 15 epochs and generate predictions for 4 values. Let's 
 
 ### The two other functions
 
-I used the same code for \[latex\]sin(x)\[/latex\] and \[latex\]1/x\[/latex\], however I did change the assignment of \[latex\]y\[/latex\] as follows, together with the expected values for the predictions:
+I used the same code for $sin(x)$ and $1/x$, however I did change the assignment of $y$ as follows, together with the expected values for the predictions:
 
-- **sin(x):** \[latex\]y = np.sin(x)\[/latex\]; expected values approximately -0.544, -0.959, -0.873 and 0.420.
-- **1/x:** \[latex\]y = 1/x\[/latex\]; expected values approximately 0.10, 0.20, 0.005 and 0.077.
+- **sin(x):** $y = np.sin(x)$; expected values approximately -0.544, -0.959, -0.873 and 0.420.
+- **1/x:** $y = 1/x$; expected values approximately 0.10, 0.20, 0.005 and 0.077.
 
 ## The results
 
-For \[latex\]x^2\[/latex\], these were the expected results: `100, 25, 40000, 169`.
+For $x^2$, these were the expected results: `100, 25, 40000, 169`.
 
 Those are the actual results:
 
@@ -115,11 +115,11 @@ plt.ylabel('Approximated y')
 plt.show()
 ```
 
-When you plot the functions, you get pretty decent results for \[latex\]x^2\[/latex\]:
+When you plot the functions, you get pretty decent results for $x^2$:
 
 [![](images/x2_approximated-1024x537.jpeg)]
 
-For \[latex\]sin(x)\[/latex\], results are worse:
+For $sin(x)$, results are worse:
 
 [![](images/sinx_approximated-1024x537.jpeg)]
 
@@ -131,7 +131,7 @@ That's already much better, but still insufficient. Perhaps, the cause is differ
 
 \[ad\]
 
-And finally, this is what \[latex\]1/x\[/latex\] looks like:
+And finally, this is what $1/x$ looks like:
 
 [![](images/1x_approximated-1024x537.jpeg)]
 
@@ -151,7 +151,7 @@ Third, I did not account for overfitting whatsoever. I just let the models run, 
 
 \[ad\]
 
-Fourth, perhaps as a result of (3), the models seem to perform quite well _around_ the domain of the training data (i.e. the \[-50, +50\] interval), but generalization remains difficult. On the other hand, that could be expected; the `40000` value for the first \[latex\]x^2\[/latex\] was anything but \[latex\]  
-\-50 < x < 50\[/latex\].
+Fourth, perhaps as a result of (3), the models seem to perform quite well _around_ the domain of the training data (i.e. the \[-50, +50\] interval), but generalization remains difficult. On the other hand, that could be expected; the `40000` value for the first $x^2$ was anything but $
+\-50 < x < 50$.
 
 Altogether, this was a nice experiment for during the evening, showing that you can use neural networks for approximating mathematical functions - if you take into account that it's slightly more complex than you imagine at first, it can be done.

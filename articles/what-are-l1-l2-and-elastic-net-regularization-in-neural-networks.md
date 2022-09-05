@@ -30,9 +30,9 @@ Are you ready? Let's go! 😎
 
 ## The need for regularization during model training
 
-When you are training a machine learning model, at a high level, you're learning a function \[latex\]\\hat{y}: f(x) \[/latex\] which transforms some _input_ value \[latex\]x\[/latex\] (often a vector, so \[latex\]\\textbf{x}\[/latex\]) into some output value \[latex\]\\hat{y}\[/latex\] (often a scalar value, such as a class when classifying and a real number when regressing). \\
+When you are training a machine learning model, at a high level, you're learning a function $\\hat{y}: f(x)$ which transforms some _input_ value $x$ (often a vector, so $\\textbf{x}$) into some output value $\\hat{y}$ (often a scalar value, such as a class when classifying and a real number when regressing). \\
 
-Contrary to a regular mathematical function, the exact mapping (to \[latex\]y\[/latex\]) is not known in advance, but is learnt based on the input-output mappings present in your training data (so that \[latex\]\\hat{y} \\approx y\[/latex\] - hence the name, machine learning :)
+Contrary to a regular mathematical function, the exact mapping (to $y$) is not known in advance, but is learnt based on the input-output mappings present in your training data (so that $\\hat{y} \\approx y$ - hence the name, machine learning :)
 
 This understanding brings us to the need for regularization.
 
@@ -103,23 +103,23 @@ Let's take a look at some foundations of regularization, before we continue to t
 
 Before we do so, however, we must first deepen our understanding of the concept of regularization in conceptual and mathematical terms.
 
-Say, for example, that you are training a machine learning model, which is essentially a function \[latex\]\\hat{y}: f(\\textbf{x})\[/latex\] which maps some input vector \[latex\]\\textbf{x}\[/latex\] to some output \[latex\]\\hat{y}\[/latex\].
+Say, for example, that you are training a machine learning model, which is essentially a function $\\hat{y}: f(\\textbf{x})$ which maps some input vector $\\textbf{x}$ to some output $\\hat{y}$.
 
-From previously, we know that during training, there exists a true target \[latex\]y\[/latex\] to which \[latex\]\\hat{y}\[/latex\] can be compared.
+From previously, we know that during training, there exists a true target $y$ to which $\\hat{y}$ can be compared.
 
-Say that some function \[latex\]L\[/latex\] computes the loss between \[latex\]y\[/latex\] and \[latex\]\\hat{y}\[/latex\] (or \[latex\]f(\\textbf{x})\[/latex\]). For one sample \[latex\]\\textbf{x}\_i\[/latex\] with corresponding target \[latex\]y\_i\[/latex\], loss can then be computed as \[latex\]L(\\hat{y}\_i, y\_i) = L(f(\\textbf{x}\_i), y\_i)\[/latex\].
+Say that some function $L$ computes the loss between $y$ and $\\hat{y}$ (or $f(\\textbf{x})$). For one sample $\\textbf{x}\_i$ with corresponding target $y\_i$, loss can then be computed as $L(\\hat{y}\_i, y\_i) = L(f(\\textbf{x}\_i), y\_i)$.
 
-Total loss can be computed by summing over all the input samples \[latex\]\\textbf{x}\_i ... \\textbf{x}\_n\[/latex\] in your training set, and subsequently performing a minimization operation on this value:
+Total loss can be computed by summing over all the input samples $\\textbf{x}\_i ... \\textbf{x}\_n$ in your training set, and subsequently performing a minimization operation on this value:
 
-\[latex\]\\min\_f \\sum\_{i=1}^{n} L(f(\\textbf{x}\_i), y\_i) \[/latex\]
+$\\min\_f \\sum\_{i=1}^{n} L(f(\\textbf{x}\_i), y\_i)$
 
 ### Adding a regularizer
 
-Before, we wrote about regularizers that they "are attached to your _loss value_ often". Indeed, adding some regularizer \[latex\]R(f)\[/latex\] - "regularization for some function \[latex\]f\[/latex\]" - is easy:
+Before, we wrote about regularizers that they "are attached to your _loss value_ often". Indeed, adding some regularizer $R(f)$ - "regularization for some function $f$" - is easy:
 
-\[latex\] L(f(\\textbf{x}\_i), y\_i) = \\sum\_{i=1}^{n} L\_{ losscomponent}(f(\\textbf{x}\_i), y\_i) + \\lambda R(f) \[/latex\]
+$L(f(\\textbf{x}\_i), y\_i) = \\sum\_{i=1}^{n} L\_{ losscomponent}(f(\\textbf{x}\_i), y\_i) + \\lambda R(f)$
 
-...where \[latex\]\\lambda\[/latex\] is a hyperparameter, to be configured by the machine learning engineer, that determines the relative importance of the regularization component compared to the loss component.
+...where $\\lambda$ is a hyperparameter, to be configured by the machine learning engineer, that determines the relative importance of the regularization component compared to the loss component.
 
 The above means that the loss _and_ the regularization components are minimized, not the loss component alone. Let's take a look at some scenarios:
 
@@ -129,7 +129,7 @@ The above means that the loss _and_ the regularization components are minimized,
 
 ### Instantiating the regularizer function R(f)
 
-Now, you likely understand that you'll want to have your outputs for \[latex\]R(f)\[/latex\] to minimize as well. But what is this function? What does it look like? It turns out to be that there is a wide range of possible instantiations for the regularizer.
+Now, you likely understand that you'll want to have your outputs for $R(f)$ to minimize as well. But what is this function? What does it look like? It turns out to be that there is a wide range of possible instantiations for the regularizer.
 
 In the machine learning community, three regularizers are very common:
 
@@ -147,9 +147,9 @@ Next, we'll cover the three of them.
 
 The L1 norm of a vector, which is also called the taxicab norm, computes the absolute value of each vector dimension, and adds them together (Wikipedia, 2004). As computing the norm effectively means that you'll travel the full distance from the starting to the ending point for each dimension, adding it to the distance traveled already, the travel pattern resembles that of a taxicab driver which has to drive the blocks of e.g. New York City; hence the name (Wikipedia, 2004).
 
-In terms of maths, this can be expressed as \[latex\] R(f) = \\sum\_f{ \_{i=1}^{n}} | w\_i |\[/latex\], where this is an iteration over the \[latex\]n\[/latex\] dimensions of some vector \[latex\]\\textbf{w}\[/latex\].
+In terms of maths, this can be expressed as $R(f) = \\sum\_f{ \_{i=1}^{n}} | w\_i |$, where this is an iteration over the $n$ dimensions of some vector $\\textbf{w}$.
 
-Visually, and hence intuitively, the process goes as follows. Suppose that we have this two-dimensional vector \[latex\]\[2, 4\]\[/latex\]:
+Visually, and hence intuitively, the process goes as follows. Suppose that we have this two-dimensional vector $\[2, 4\]$:
 
 [![](images/empty_vector.png)]
 
@@ -163,23 +163,23 @@ Then the second:
 
 The L1 norm for our vector is thus 6, as you can see:
 
-\[latex\] \\sum\_{i=1}^{n} | w\_i | = | 4 | + | 2 | = 4 + 2 = 6\[/latex\]
+$\\sum\_{i=1}^{n} | w\_i | = | 4 | + | 2 | = 4 + 2 = 6$
 
 Adding L1 Regularization to our loss value thus produces the following formula:
 
-\[latex\] L(f(\\textbf{x}\_i), y\_i) = \\sum\_{i=1}^{n} L\_{ losscomponent}(f(\\textbf{x}\_i), y\_i) + \\lambda \\sum\_{i=1}^{n} | w\_i | \[/latex\]
+$L(f(\\textbf{x}\_i), y\_i) = \\sum\_{i=1}^{n} L\_{ losscomponent}(f(\\textbf{x}\_i), y\_i) + \\lambda \\sum\_{i=1}^{n} | w\_i |$
 
-...where \[latex\]w\_i\[/latex\] are the values of your model's weights.
+...where $w\_i$ are the values of your model's weights.
 
 This way, our loss function - and hence our optimization problem - now also includes information about the _complexity_ of our weights.
 
 ### On negative vectors
 
-Say we had a negative vector instead, e.g. \[latex\]\[-1, -2.5\]\[/latex\]:
+Say we had a negative vector instead, e.g. $\[-1, -2.5\]$:
 
 ![](images/neg_vec.png)
 
-As you can derive from the formula above, L1 Regularization takes some value related to the weights, and adds it to the same values for the other weights. As you know, "some value" is the absolute value of the weight or \[latex\]| w\_i |\[/latex\], and we take it for a reason:
+As you can derive from the formula above, L1 Regularization takes some value related to the weights, and adds it to the same values for the other weights. As you know, "some value" is the absolute value of the weight or $| w\_i |$, and we take it for a reason:
 
 [![](images/l1_component.png)]
 
@@ -195,11 +195,11 @@ This is the derivative for L1 Regularization:
 
 [![](images/l1_deriv.png)]
 
-It's either -1 or +1, and is undefined at \[latex\]x = 0\[/latex\].
+It's either -1 or +1, and is undefined at $x = 0$.
 
 Now suppose that we have trained a neural network for the first time. We have a loss value which we can use to compute the weight change. Obviously, this weight change will be computed with respect to the _loss component_, but this time, the _regularization component_ (in our case, L1 loss) would also play a role.
 
-If our loss component were static for some reason (just a thought experiment), our obvious goal would be to bring the regularization component to zero. As you can see, this would be done in small but constant steps, eventually allowing the value to reach minimum regularization loss, at \[latex\]x = 0\[/latex\]. This would essentially "drop" a weight from participating in the prediction, as it's set at _zero_. This is also known as the "model sparsity" principle of L1 loss.
+If our loss component were static for some reason (just a thought experiment), our obvious goal would be to bring the regularization component to zero. As you can see, this would be done in small but constant steps, eventually allowing the value to reach minimum regularization loss, at $x = 0$. This would essentially "drop" a weight from participating in the prediction, as it's set at _zero_. This is also known as the "model sparsity" principle of L1 loss.
 
 This theoretical scenario is however not necessarily true in real life. Besides the regularization loss component, the normal loss component participates as well in generating the loss value, and subsequently in gradient computation for optimization. This means that the theoretically constant steps in one direction, i.e. sparse models, are less "straight" in practice. Nevertheless, since the regularization loss component still plays a significant role in computing loss and hence optimization, L1 loss will _still tend to push weights to zero and hence produce sparse models_ (Caspersen, n.d.; Neil G., n.d.).
 
@@ -207,7 +207,7 @@ This theoretical scenario is however not necessarily true in real life. Besides 
 
 Unfortunately, besides the benefits that can be gained from using L1 regularization, the technique also comes at a cost:
 
-1. Lasso does not work that well in a high-dimensional case, i.e. where the number of _samples_ is lower than the number of _dimensions_ (Tripathi, n.d.; Wikipedia, 2011). This is also called the "large \[latex\]p\[/latex\], small \[latex\]n\[/latex\] case" or the "short, fat data problem", and it's not good because L1 regularization can only select \[latex\]n\[/latex\] variables at most (Duke University, n.d.; Tripathi, n.d.).
+1. Lasso does not work that well in a high-dimensional case, i.e. where the number of _samples_ is lower than the number of _dimensions_ (Tripathi, n.d.; Wikipedia, 2011). This is also called the "large $p$, small $n$ case" or the "short, fat data problem", and it's not good because L1 regularization can only select $n$ variables at most (Duke University, n.d.; Tripathi, n.d.).
 2. Secondly, the main benefit of L1 regularization - i.e., that it results in sparse models - could be a disadvantage as well. For example, when you don't need variables to drop out - e.g., because you already performed variable selection - L1 might induce too much sparsity in your model (Kochede, n.d.). The same is true if the relevant information is "smeared out" over many variables, in a correlative way (cbeleites, 2013; Tripathi, n.d.). In this case, having variables dropped out removes essential information. On the contrary, when your information is primarily present in a few variables only, it makes total sense to induce sparsity and hence use L1.
 3. Even when you _do_ want variables to drop out, it is reported that L1 regularization does not work as well as, for example, L2 Regularization and Elastic Net Regularization (Tripathi, n.d.). We will cover both of them next.
 
@@ -219,17 +219,17 @@ Therefore, always make sure to decide whether you need L1 regularization based o
 
 Another type of regularization is **L2 Regularization**, also called **Ridge**, which utilizes the L2 norm of the vector:
 
-\[latex\] R(f) = \\sum\_f{ \_{i=1}^{n}} w\_i^2\[/latex\]
+$R(f) = \\sum\_f{ \_{i=1}^{n}} w\_i^2$
 
 When added to the regularization equation, you get this:
 
-\[latex\] L(f(\\textbf{x}\_i), y\_i) = \\sum\_{i=1}^{n} L\_{ losscomponent}(f(\\textbf{x}\_i), y\_i) + \\lambda \\sum\_{i=1}^{n} w\_i^2 \[/latex\]
+$L(f(\\textbf{x}\_i), y\_i) = \\sum\_{i=1}^{n} L\_{ losscomponent}(f(\\textbf{x}\_i), y\_i) + \\lambda \\sum\_{i=1}^{n} w\_i^2$
 
 Visually, it looks as follows:
 
 [![](images/l2_comp.png)]
 
-As you can see, L2 regularization also stimulates your values to approach zero (as the loss for the regularization component is zero when \[latex\]x = 0\[/latex\]), and hence stimulates them towards being very small values.
+As you can see, L2 regularization also stimulates your values to approach zero (as the loss for the regularization component is zero when $x = 0$), and hence stimulates them towards being very small values.
 
 However, unlike L1 regularization, it does not push the values to be _exactly zero_.
 
@@ -239,11 +239,11 @@ Let's recall the gradient for L1 regularization:
 
 [![](images/l1_deriv.png)]
 
-Regardless of the value of \[latex\]x\[/latex\], the gradient is a constant - either plus or minus one.
+Regardless of the value of $x$, the gradient is a constant - either plus or minus one.
 
 This is also true for very small values, and hence, the expected weight update suggested by the regularization component is quite static over time. This, combined with the fact that the normal loss component will ensure some oscillation, stimulates the weights to take zero values whenever they do not contribute significantly enough.
 
-However, the situation is different for L2 loss, where the derivative is \[latex\]2x\[/latex\]:
+However, the situation is different for L2 loss, where the derivative is $2x$:
 
 ![](images/l2_deriv.png)
 
@@ -278,25 +278,25 @@ Say hello to **Elastic Net Regularization** (Zou & Hastie, 2005). It's a linear 
 
 ### Naïve Elastic Net
 
-In their work "Regularization and variable selection via the elastic net", Zou & Hastie (2005) introduce the Naïve Elastic Net as a linear combination between L1 and L2 regularization. With hyperparameters \[latex\]\\lambda\_1 = (1 - \\alpha) \[/latex\] and \[latex\]\\lambda\_2 = \\alpha\[/latex\], the elastic net penalty (or regularization loss component) is defined as:
+In their work "Regularization and variable selection via the elastic net", Zou & Hastie (2005) introduce the Naïve Elastic Net as a linear combination between L1 and L2 regularization. With hyperparameters $\\lambda\_1 = (1 - \\alpha)$ and $\\lambda\_2 = \\alpha$, the elastic net penalty (or regularization loss component) is defined as:
 
-\[latex\](1 - \\alpha) | \\textbf{w} |\_1 + \\alpha | \\textbf{w} |^2 \[/latex\]
+$(1 - \\alpha) | \\textbf{w} |\_1 + \\alpha | \\textbf{w} |^2$
 
-Here, the first part is the L1 penalty \[latex\] \\sum\_{i=1}^{n} | w\_i | \[/latex\], while the second part is the L2 penalty \[latex\] \\sum\_f{ \_{i=1}^{n}} w\_i^2 \[/latex\]. The hyperparameter to be tuned in the Naïve Elastic Net is the value for \[latex\]\\alpha\[/latex\] where, \[latex\]\\alpha \\in \[0, 1\]\[/latex\].
+Here, the first part is the L1 penalty $\\sum\_{i=1}^{n} | w\_i |$, while the second part is the L2 penalty $\\sum\_f{ \_{i=1}^{n}} w\_i^2$. The hyperparameter to be tuned in the Naïve Elastic Net is the value for $\\alpha$ where, $\\alpha \\in \[0, 1\]$.
 
 With Elastic Net Regularization, the total value that is to be minimized thus becomes:
 
-\[latex\] L(f(\\textbf{x}\_i), y\_i) = \\sum\_{i=1}^{n} L\_{ losscomponent}(f(\\textbf{x}\_i), y\_i) + (1 - \\alpha) \\sum\_{i=1}^{n} | w\_i | + \\alpha \\sum\_{i=1}^{n} w\_i^2 \[/latex\]
+$L(f(\\textbf{x}\_i), y\_i) = \\sum\_{i=1}^{n} L\_{ losscomponent}(f(\\textbf{x}\_i), y\_i) + (1 - \\alpha) \\sum\_{i=1}^{n} | w\_i | + \\alpha \\sum\_{i=1}^{n} w\_i^2$
 
-As you can see, for \[latex\]\\alpha = 1\[/latex\], Elastic Net performs Ridge (L2) regularization, while for \[latex\]\\alpha = 0\[/latex\] Lasso (L1) regularization is performed. Tuning the alpha parameter allows you to balance between the two regularizers, possibly based on prior knowledge about your dataset. Visually, we can see this here:
+As you can see, for $\\alpha = 1$, Elastic Net performs Ridge (L2) regularization, while for $\\alpha = 0$ Lasso (L1) regularization is performed. Tuning the alpha parameter allows you to balance between the two regularizers, possibly based on prior knowledge about your dataset. Visually, we can see this here:
 
 [![](images/penalty-values.png)]
 
-Do note that frameworks often allow you to specify \[latex\]\\lambda\_1\[/latex\] and \[latex\]\\lambda\_2\[/latex\] manually. The penalty term then equals:
+Do note that frameworks often allow you to specify $\\lambda\_1$ and $\\lambda\_2$ manually. The penalty term then equals:
 
-\[latex\]\\lambda\_1| \\textbf{w} |\_1 + \\lambda\_2| \\textbf{w} |^2 \[/latex\]
+$\\lambda\_1| \\textbf{w} |\_1 + \\lambda\_2| \\textbf{w} |^2$
 
-The Elastic Net works well in many cases, especially when the final outcome is close to either L1 or L2 regularization only (i.e., \[latex\]\\alpha \\approx 0\[/latex\] or \[latex\]\\alpha \\approx 1\[/latex\]), but performs less adequately when the hyperparameter tuning is different. That's why the authors call it naïve (Zou & Hastie, 2005). The cause for this is "double shrinkage", i.e., the fact that both L2 (first) and L1 (second) regularization tend to make the weights as small as possible. As this may introduce unwanted side effects, performance can get lower. Fortunately, the authors also provide a fix, which resolves this problem. I'd like to point you to the Zou & Hastie (2005) paper for the discussion about correcting it.
+The Elastic Net works well in many cases, especially when the final outcome is close to either L1 or L2 regularization only (i.e., $\\alpha \\approx 0$ or $\\alpha \\approx 1$), but performs less adequately when the hyperparameter tuning is different. That's why the authors call it naïve (Zou & Hastie, 2005). The cause for this is "double shrinkage", i.e., the fact that both L2 (first) and L1 (second) regularization tend to make the weights as small as possible. As this may introduce unwanted side effects, performance can get lower. Fortunately, the authors also provide a fix, which resolves this problem. I'd like to point you to the Zou & Hastie (2005) paper for the discussion about correcting it.
 
 * * *
 
@@ -336,7 +336,7 @@ If you have some resources to spare, you may also perform some **validation acti
 
 Firstly, and obviously, if you choose to validate, it's important to _validate the method you want to use_. If, when using a representative dataset, you find that some regularizer doesn't work, the odds are that it will neither for a larger dataset.
 
-Secondly, when you find a method about which you're confident, it's time to estimate _the impact of the_ _hyperparameter_. The hyperparameter, which is \[latex\]\\lambda\[/latex\] in the case of L1 and L2 regularization and \[latex\]\\alpha \\in \[0, 1\]\[/latex\] in the case of Elastic Net regularization (or \[latex\]\\lambda\_1\[/latex\] and \[latex\]\\lambda\_2\[/latex\] separately), effectively determines the impact of the _regularizer_ on the loss value that is optimized during training. The stronger you regularize, the sparser your model will get (with L1 and Elastic Net), but this comes at the cost of underperforming when it is too large (Yadav, 2018).
+Secondly, when you find a method about which you're confident, it's time to estimate _the impact of the_ _hyperparameter_. The hyperparameter, which is $\\lambda$ in the case of L1 and L2 regularization and $\\alpha \\in \[0, 1\]$ in the case of Elastic Net regularization (or $\\lambda\_1$ and $\\lambda\_2$ separately), effectively determines the impact of the _regularizer_ on the loss value that is optimized during training. The stronger you regularize, the sparser your model will get (with L1 and Elastic Net), but this comes at the cost of underperforming when it is too large (Yadav, 2018).
 
 ### What are your computational requirements?
 

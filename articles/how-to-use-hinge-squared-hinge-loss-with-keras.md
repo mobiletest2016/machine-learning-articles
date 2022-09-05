@@ -66,17 +66,17 @@ In our blog post on loss functions, we defined the **hinge loss** as follows (Wi
 
 Maths can look very frightning, but the explanation of the above formula is actually really easy.
 
-When you're training a machine learning model, you effectively feed forward your data, generating predictions, which you then compare with the actual targets to generate some cost value - that's the loss value. In the case of using the hinge loss formula for generating this value, you compare the prediction (\[latex\]y\[/latex\]) with the actual target for the prediction (\[latex\]t\[/latex\]), substract this value from 1 and subsequently compute the maximum value between 0 and the result of the earlier computation.
+When you're training a machine learning model, you effectively feed forward your data, generating predictions, which you then compare with the actual targets to generate some cost value - that's the loss value. In the case of using the hinge loss formula for generating this value, you compare the prediction ($y$) with the actual target for the prediction ($t$), substract this value from 1 and subsequently compute the maximum value between 0 and the result of the earlier computation.
 
-For every sample, our target variable \[latex\]t\[/latex\] is either +1 or -1.
+For every sample, our target variable $t$ is either +1 or -1.
 
 This means that:
 
-- When \[latex\]t = y\[/latex\], e.g. \[latex\]t = y = 1\[/latex\], loss is \[latex\]max(0, 1 - 1) = max(0, 0) = 0\[/latex\] - or perfect.
-- When \[latex\]t\[/latex\] is very different than \[latex\]y\[/latex\], say \[latex\]t = 1\[/latex\] while \[latex\]y = -1\[/latex\], loss is \[latex\]max(0, 2) = 2\[/latex\].
-- When \[latex\]t\[/latex\] is not exactly correct, but only slightly off (e.g. \[latex\]t = 1\[/latex\] while \[latex\]y = 0.9\[/latex\], loss would be \[latex\]max(0, 0.1) = 0.1).
+- When $t = y$, e.g. $t = y = 1$, loss is $max(0, 1 - 1) = max(0, 0) = 0$ - or perfect.
+- When $t$ is very different than $y$, say $t = 1$ while $y = -1$, loss is $max(0, 2) = 2$.
+- When $t$ is not exactly correct, but only slightly off (e.g. $t = 1$ while $y = 0.9$, loss would be $max(0, 0.1) = 0.1).
 
-This looks as follows if the target is \[latex\]+1\[/latex\] - for all targets >= 1, loss is zero (the prediction is correct or even overly correct), whereas loss increases when the predictions are incorrect.
+This looks as follows if the target is $+1$ - for all targets >= 1, loss is zero (the prediction is correct or even overly correct), whereas loss increases when the predictions are incorrect.
 
 [![](images/hinge_loss-1024x507.jpeg)]
 
@@ -88,11 +88,11 @@ Suppose that you need to draw a very fine decision boundary. In that case, you w
 
 [![](images/hinge_squared-1024x511.png)]
 
-Squared hinge loss is nothing else but a square of the output of the hinge's \[latex\]max(...)\[/latex\] function. It generates a loss function as illustrated above, compared to regular hinge loss.
+Squared hinge loss is nothing else but a square of the output of the hinge's $max(...)$ function. It generates a loss function as illustrated above, compared to regular hinge loss.
 
 As you can see, larger errors are punished more significantly than with traditional hinge, whereas smaller errors are punished slightly lightlier.
 
-Additionally, especially around \[latex\]target = +1.0\[/latex\] in the situation above (if your target were \[latex\]-1.0\[/latex\], it would apply there too) the loss function of traditional hinge loss behaves relatively non-smooth, like the ReLU activation function does so around \[latex\]x = 0\[/latex\]. Although it is very unlikely, it might impact how your model optimizes since the loss landscape is not smooth. With squared hinge, the function is smooth - but it is more sensitive to larger errors (outliers).
+Additionally, especially around $target = +1.0$ in the situation above (if your target were $-1.0$, it would apply there too) the loss function of traditional hinge loss behaves relatively non-smooth, like the ReLU activation function does so around $x = 0$. Although it is very unlikely, it might impact how your model optimizes since the loss landscape is not smooth. With squared hinge, the function is smooth - but it is more sensitive to larger errors (outliers).
 
 Therefore, choose carefully! 😉
 
@@ -160,13 +160,13 @@ Targets_training = targets[training_split:]
 Targets_testing = targets[:training_split]
 ```
 
-We first call `make_circles` to generate `num_samples_total` (1000 as configured) for our machine learning problem. `make_circles` does what it suggests: it generates two circles, a larger one and a smaller one, which are separable - and hence perfect for machine learning blog posts 😄 The `factor` parameter, which should be \[latex\]0 < factor < 1\[/latex\], determines how close the circles are to each other. The lower the value, the farther the circles are positioned from each other.
+We first call `make_circles` to generate `num_samples_total` (1000 as configured) for our machine learning problem. `make_circles` does what it suggests: it generates two circles, a larger one and a smaller one, which are separable - and hence perfect for machine learning blog posts 😄 The `factor` parameter, which should be $0 < factor < 1$, determines how close the circles are to each other. The lower the value, the farther the circles are positioned from each other.
 
 We next convert all zero targets into -1. Why? Very simple: `make_circles` generates targets that are either 0 or 1, which is very common in those scenarios. Zero or one would in plain English be 'the larger circle' or 'the smaller circle', but since targets are numeric in Keras they are 0 and 1.
 
 Hinge loss doesn't work with zeroes and ones. Instead, targets must be either +1 or -1. Hence, we'll have to convert all zero targets into -1 in order to support Hinge loss.
 
-Finally, we split the data into training and testing data, for both the feature vectors (the \[latex\]X\[/latex\] variables) and the targets.
+Finally, we split the data into training and testing data, for both the feature vectors (the $X$ variables) and the targets.
 
 ### Visualizing the data
 

@@ -78,7 +78,7 @@ Bias involves an _assumption of the Machine Learning model that the target funct
 
 High bias, by making a lot of assumptions about the target function, simplifies the model and makes the fit less computationally intensive.
 
-For example, linear regression is a high-bias model, as it attempts to learn fit data to a function of the form \[latex\]y = a \\times x + b\[/latex\], and nothing else:
+For example, linear regression is a high-bias model, as it attempts to learn fit data to a function of the form $y = a \\times x + b$, and nothing else:
 
 ![](images/linear-1024x514.png)
 

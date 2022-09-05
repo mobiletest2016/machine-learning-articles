@@ -48,9 +48,9 @@ When people speak about applying Machine Learning to the field of Natural Langua
 
 A fully recurrent network. Created by [fdeloche](https://commons.wikimedia.org/wiki/User:Ixnay) at [Wikipedia](https://en.wikipedia.org/wiki/Recurrent_neural_network#/media/File:Recurrent_neural_network_unfold.svg), licensed as [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0). No changes were made.
 
-After tokenizing a sequence such as a phrase, we can feed individual tokens (e.g. words) to the network; tokens here are visualized by the green circles \[latex\]x\_t\[/latex\]. These are input to a network with a hidden state \[latex\]h\[/latex\], which based on this hidden state generate an output token \[latex\]o\[/latex\]. What's more, the output of the hidden state is passed back into the hidden state. This way, we can both generate output values _and_ have some kind of a memory.
+After tokenizing a sequence such as a phrase, we can feed individual tokens (e.g. words) to the network; tokens here are visualized by the green circles $x\_t$. These are input to a network with a hidden state $h$, which based on this hidden state generate an output token $o$. What's more, the output of the hidden state is passed back into the hidden state. This way, we can both generate output values _and_ have some kind of a memory.
 
-Especially when you unfold this structure showing the parsing of subsequent tokens \[latex\]x\_{t-1}\[/latex\] etc., we see that hidden state passes across tokens in a left-to-right fashion. Each token can use information from the previous steps and hence benefit from additional context when transducing (e.g. translating) a token.
+Especially when you unfold this structure showing the parsing of subsequent tokens $x\_{t-1}$ etc., we see that hidden state passes across tokens in a left-to-right fashion. Each token can use information from the previous steps and hence benefit from additional context when transducing (e.g. translating) a token.
 
 > The structure of the network is similar to that of a standard multilayer perceptron, with the distinction that we allow connections among hidden units associated with a time delay. Through these connections the model can retain information about the past, enabling it to discover temporal correlations between events that are far away from each other in the data.
 > 
@@ -64,9 +64,9 @@ While being a relatively great step forward, especially with larger sequences, c
 
 ### Why vanishing gradients?
 
-The vanishing gradients problem in classic RNNs occurs because they were trained with a backpropagation variant called **Backpropagation through time** (BPTT; Wikipedia, 2010). To understand how BPTT works, we'll have to take a look at recurrent neural networks again. In the figure below, we can see a recurrent network, handling an input \[latex\]a\_t\[/latex\] for some time step and generates a prediction \[latex\]y\_{t+1}\[/latex\] for the next timestep. The hidden state of the previous attempt is passed to the network as well and is often a vector of zeroes at \[latex\]t = 0\[/latex\] (Wikipedia, 2010).
+The vanishing gradients problem in classic RNNs occurs because they were trained with a backpropagation variant called **Backpropagation through time** (BPTT; Wikipedia, 2010). To understand how BPTT works, we'll have to take a look at recurrent neural networks again. In the figure below, we can see a recurrent network, handling an input $a\_t$ for some time step and generates a prediction $y\_{t+1}$ for the next timestep. The hidden state of the previous attempt is passed to the network as well and is often a vector of zeroes at $t = 0$ (Wikipedia, 2010).
 
-When unfolded through time, we can see the chained passages of inputs \[latex\]a\_t\[/latex\] across the entire time domain. We also see the hidden state changing over time, being used continuously for generating the subsequent input. Effectively, we're 'copying' the network, but every copy of the network has the same parameters (Wikipedia, 2010). We can then simply apply backpropagation for computing the gradients, like we're used to.
+When unfolded through time, we can see the chained passages of inputs $a\_t$ across the entire time domain. We also see the hidden state changing over time, being used continuously for generating the subsequent input. Effectively, we're 'copying' the network, but every copy of the network has the same parameters (Wikipedia, 2010). We can then simply apply backpropagation for computing the gradients, like we're used to.
 
 ![](images/Unfold_through_time.png)
 
@@ -82,7 +82,7 @@ In other words, if we have to chain the derivative of Sigmoid across three time 
 
 ## Introducing Long Short-Term Memory Networks
 
-In their 1997 work, Hochreiter & Schmidhuber introduce the **Long Short-Term Memory**, or LSTM. In the work, the authors explore Hochreiter's 1991 thesis which among others investigates the problem with vanishing gradients in classic RNNs. They explore why they happen and identify a solution: the so-called **Constant Error Carrousel** (CEC). We'll explore why it solves vanishing gradients in more detail later, but it boils down to one thing: because the memory is constructed using linear operations, the derivative is always \[latex\]1.0\[/latex\] (because the derivative of \[latex\]f = c \\times x\[/latex\] equals 1.0).
+In their 1997 work, Hochreiter & Schmidhuber introduce the **Long Short-Term Memory**, or LSTM. In the work, the authors explore Hochreiter's 1991 thesis which among others investigates the problem with vanishing gradients in classic RNNs. They explore why they happen and identify a solution: the so-called **Constant Error Carrousel** (CEC). We'll explore why it solves vanishing gradients in more detail later, but it boils down to one thing: because the memory is constructed using linear operations, the derivative is always $1.0$ (because the derivative of $f = c \\times x$ equals 1.0).
 
 ### The contemporary LSTM architecture
 
@@ -93,7 +93,7 @@ Let's however first take a look at the architecture of a contemporary LSTM netwo
 3. An **update (or input) gate** which helps us add certain things to memory.
 4. An **output gate** which helps us generate an output prediction based on the input and existing memory (i.e. based on input and updated context).
 
-All functionality within an LSTM is grouped into a cell-like structure called a **memory cell**. Similar to classic recurrent networks, the output of the cell flows back into the cell when the next prediction takes place. Or, when unrolled, like the recurrent network above, the output of one copy of an identical cell is passed to another copy of that cell. In the image below, this is visualized by the horizontal streams of _outputs_ \[latex\]h\[t\]\[/latex\] and of _memory_ \[latex\]c\[t\]\[/latex\].
+All functionality within an LSTM is grouped into a cell-like structure called a **memory cell**. Similar to classic recurrent networks, the output of the cell flows back into the cell when the next prediction takes place. Or, when unrolled, like the recurrent network above, the output of one copy of an identical cell is passed to another copy of that cell. In the image below, this is visualized by the horizontal streams of _outputs_ $h\[t\]$ and of _memory_ $c\[t\]$.
 
 [![](images/LSTM-1024x657.png)]
 
@@ -107,9 +107,9 @@ In the classic network, the _output_ is used for providing context for the next 
 
 This is visible in the image above:
 
-- Here, the input to the LSTM at any point in time is displayed as \[latex\]x\[t\]\[/latex\].
-- The output is visualized as \[latex\]h\[t\]\[/latex\]. In fact, it's recurrent, as it accepts the output from the previous cell (or, to be more precise, another copy of the identical cell) and passes it onto the next one.
-- The same is true for the memory \[latex\]c\[t\]\[/latex\], which is newly available and was not available in previous networks.
+- Here, the input to the LSTM at any point in time is displayed as $x\[t\]$.
+- The output is visualized as $h\[t\]$. In fact, it's recurrent, as it accepts the output from the previous cell (or, to be more precise, another copy of the identical cell) and passes it onto the next one.
+- The same is true for the memory $c\[t\]$, which is newly available and was not available in previous networks.
 
 The idea here is that while outputs can provide quite some context about what has happened directly before, a longer-term memory is necessary for providing additional (i.e. longer-term) context. This is why the outputs and the memory are no longer tightly integrated with LSTMs. Now, the drawback of separating memory from cell outputs is that you'll have to keep both in sync.
 
@@ -123,11 +123,11 @@ Suppose you are feeding the sequence `I am going to the gym` to the model, where
 
 In the previous run, you have applied the LSTM model to `<I>` and you will now be processing `<am>`. This means that you'll have the following setting:
 
-- The value for \[latex\]x\[t\]\[/latex\] will be the tokenized version of `<am>`.
-- The value for \[latex\]h\[t-1\]\[/latex\] will be the (translated) tokenized output of `<I>`.
-- The value for \[latex\]c\[t-1\]\[/latex\] will be some representation of long-term memory, which at that point only includes (part of) the representation of `<I>`.
+- The value for $x\[t\]$ will be the tokenized version of `<am>`.
+- The value for $h\[t-1\]$ will be the (translated) tokenized output of `<I>`.
+- The value for $c\[t-1\]$ will be some representation of long-term memory, which at that point only includes (part of) the representation of `<I>`.
 
-Why it's likely that it's only _part of_ the representation is because the tokenized input will impact both the **output** \[latex\]h\[t\]\[/latex\] and the **memory** \[latex\]c\[t\]\[/latex\].
+Why it's likely that it's only _part of_ the representation is because the tokenized input will impact both the **output** $h\[t\]$ and the **memory** $c\[t\]$.
 
 The first way in which this will happen is through the **forget gate**, which has been selected in green below. The gate is composed of multiple components, from top to bottom:
 
@@ -137,7 +137,7 @@ The first way in which this will happen is through the **forget gate**, which ha
 
 ![](images/LSTM-1-1024x657.png)
 
-The previous output \[latex\]h\[t-1\]\[/latex\] and current input \[latex\]\[x\[t\]\[/latex\] are first added together by means of matrix addition, after (learned) weight matrices have been applied to both inputs. These learned weights determine the strength of the forget gate by putting more attention on the current input or the previous output. The result is then added to a [Sigmoid activation function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md), of which we know that it maps all inputs to a value between 0.0 and 1.0.
+The previous output $h\[t-1\]$ and current input $\[x\[t\]$ are first added together by means of matrix addition, after (learned) weight matrices have been applied to both inputs. These learned weights determine the strength of the forget gate by putting more attention on the current input or the previous output. The result is then added to a [Sigmoid activation function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md), of which we know that it maps all inputs to a value between 0.0 and 1.0.
 
 In other words, the current and previous input together with the learned weights determine what must be 'forgotten', because when certain elements in the matrices that are the outcome of the addition are < 0, they are likely to be more forgotten (since the output of the Sigmoid activation is closer to 0.0 than to 1.0). If instead outcomes are >= 0, they are more likely to be _omitted_ from the removal process.
 
@@ -153,11 +153,11 @@ The gate itself is a bit more complex than the forget gate, but don't worry, wit
 
 Recall that this is our point in time:
 
-- The value for \[latex\]x\[t\]\[/latex\] will be the tokenized version of `<am>`.
-- The value for \[latex\]h\[t-1\]\[/latex\] will be the (translated) tokenized output of `<I>`.
-- The value for \[latex\]c\[t-1\]\[/latex\] will be some representation of long-term memory, which at that point only includes (part of) the representation of `<I>`.
+- The value for $x\[t\]$ will be the tokenized version of `<am>`.
+- The value for $h\[t-1\]$ will be the (translated) tokenized output of `<I>`.
+- The value for $c\[t-1\]$ will be some representation of long-term memory, which at that point only includes (part of) the representation of `<I>`.
 
-As you can see, it's composed of two components: a [Sigmoid activation](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md) of a joint learned weighted input based on the previous output \[latex\]h\[t-1\]\[/latex\] and current input \[latex\]x\[t\]\[/latex\] and a [Tanh activation](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md) that accepts another joint learned weighted input based on the two inputs. The outcomes of these activations are first Hadamard matrix multiplied, and subsequently added into memory by means of matrix addition.
+As you can see, it's composed of two components: a [Sigmoid activation](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md) of a joint learned weighted input based on the previous output $h\[t-1\]$ and current input $x\[t\]$ and a [Tanh activation](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md) that accepts another joint learned weighted input based on the two inputs. The outcomes of these activations are first Hadamard matrix multiplied, and subsequently added into memory by means of matrix addition.
 
 [![](images/LSTM-2-1024x657.png)]
 
@@ -168,7 +168,7 @@ I can imagine that it's still a bit vague what is happening here. Let's break do
 - [![](images/tanh_and_deriv-1024x511.jpeg)]
     
 
-Let's first take a look at the **Tanh function**. As we can see, the function maps all inputs to a value between -1.0 and +1.0. In other words, it [normalizes](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-normalize-or-standardize-a-dataset-in-python.md) any input to the \[latex\]\[-1.0, 1.0\]\[/latex\] range. Feeding the joined weighted combination of previous outputs and current inputs to Tanh therefore ensures some normalization of input values. This benefits the stability of the training process. It doesn't however truly serve as an _update_, because with Tanh, all new information will be added.
+Let's first take a look at the **Tanh function**. As we can see, the function maps all inputs to a value between -1.0 and +1.0. In other words, it [normalizes](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-normalize-or-standardize-a-dataset-in-python.md) any input to the $\[-1.0, 1.0\]$ range. Feeding the joined weighted combination of previous outputs and current inputs to Tanh therefore ensures some normalization of input values. This benefits the stability of the training process. It doesn't however truly serve as an _update_, because with Tanh, all new information will be added.
 
 That's why here too, we apply a **Sigmoid function**. As we know that it maps to 0.0 to +1.0 instead, we can see that it learns to select the most important aspects of the combination of previous output and current input. The outcome of the Sigmoid activation is Hadamard matrix multiplied with the Tanh outcome before it is added to memory.
 
@@ -180,7 +180,7 @@ Great stuff!
 
 Last but not least is the **output gate**, which is visualized in green below.
 
-Its sole responsibility is formulating the _output_ \[latex\]h\[t\]\[/latex\] of the memory cell given the previous output and the current input \[latex\]h\[t-1\]\[/latex\] and \[latex\]x\[t\]\[/latex\]. This gate is nevertheless really important, because it'll determine both the correctness of the prediction (i.e. the output) and the stability of all subsequent productions simply because its prediction is re-used in the next one.
+Its sole responsibility is formulating the _output_ $h\[t\]$ of the memory cell given the previous output and the current input $h\[t-1\]$ and $x\[t\]$. This gate is nevertheless really important, because it'll determine both the correctness of the prediction (i.e. the output) and the stability of all subsequent productions simply because its prediction is re-used in the next one.
 
 Once again, we see a Tanh and Sigmoid activated Hadamard matrix multiplication. This time, though, the inputs flow from a different direction.
 
@@ -209,17 +209,17 @@ I can imagine that this is hard to grasp, so let's break it down into separate c
 
 Let's take a close look at the way in which the memory is updated in one token pass first. Put simply, it's a linear operation that is written mathematically this way:
 
-\[latex\]c\_t = f\_t \\circ c\_{t-1} + i\_t \\circ \\tilde{c}\_t\[/latex\]
+$c\_t = f\_t \\circ c\_{t-1} + i\_t \\circ \\tilde{c}\_t$
 
-Here, \[latex\]f\_t\[/latex\] represents the activation value for the _forget gate_, which is Hadamard matrix multiplied with the value for \[latex\]c\[t-1\]\[/latex\] (we know that from above).
+Here, $f\_t$ represents the activation value for the _forget gate_, which is Hadamard matrix multiplied with the value for $c\[t-1\]$ (we know that from above).
 
-Here, \[latex\]i\_t \\circ \\tilde{c}\_t\[/latex\] is the Hadamard matrix multiplication between the Sigmoid-activated and Tanh-activated outputs from the _update gate_, which are then simply matrix added into memory.
+Here, $i\_t \\circ \\tilde{c}\_t$ is the Hadamard matrix multiplication between the Sigmoid-activated and Tanh-activated outputs from the _update gate_, which are then simply matrix added into memory.
 
 In other words, it represents the operations that we intuitively understood above.
 
 #### The memory activation function is the identity function
 
-In addition, no [nonlinear activation function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-nonlinear-activation-functions-improve-ml-performance-with-tensorflow-example.md) is present within this memory flow, contrary to classic RNNs, which are often Sigmoid activated. In other words: the activation function can be described as the identity function, or \[latex\]f(x) = x\[/latex\] (ManiacMalko, n.d.). As the gradient of it is 1.0, we can see that errors can flow freely between copies of the same memory cell withint vanishing (as happens when gradients are < 1.0 e.g. in the Sigmoid case).
+In addition, no [nonlinear activation function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-nonlinear-activation-functions-improve-ml-performance-with-tensorflow-example.md) is present within this memory flow, contrary to classic RNNs, which are often Sigmoid activated. In other words: the activation function can be described as the identity function, or $f(x) = x$ (ManiacMalko, n.d.). As the gradient of it is 1.0, we can see that errors can flow freely between copies of the same memory cell withint vanishing (as happens when gradients are < 1.0 e.g. in the Sigmoid case).
 
 This change compared to classic RNNs resolves the vanishing gradients problem in LSTMs.
 

@@ -55,7 +55,7 @@ Mathematically, one of the neurons in the hidden layers looks as follows:
 
 $$\\begin{equation} \\begin{split} output &= \\textbf{w}\\cdot\\textbf{x} + b \\\\ &=\\sum\_{i=1}^{n} w\_nx\_n + b \\\\ &= w\_1x\_1 + ... + w\_nx\_n + b \\\\ \\end{split} \\end{equation}$$
 
-where \[latex\]\\textbf{w}\[/latex\] represents the **weights vector,** \[latex\]\\textbf{x}\[/latex\] the **input vector** and \[latex\]b\[/latex\] the bias value (which is not a vector but a number, a scalar, instead).
+where $\\textbf{w}$ represents the **weights vector,** $\\textbf{x}$ the **input vector** and $b$ the bias value (which is not a vector but a number, a scalar, instead).
 
 When they are input, they are multiplied by means of a **dot product.** This essentially computes an element-wise vector multiplication of which subsequently the new vector elements are summated.
 
@@ -110,17 +110,17 @@ Of course, it is possible to initialize all neurons with all-zero weight vectors
 
 Here's why:
 
-Recall that in a neuron, \[latex\]output = \\textbf{w}\\cdot\\textbf{x} + b\[/latex\].
+Recall that in a neuron, $output = \\textbf{w}\\cdot\\textbf{x} + b$.
 
 Or:
 
 $$\\begin{equation} \\begin{split} output &= \\textbf{w}\\cdot\\textbf{x} + b \\\\ &=\\sum\_{i=1}^{n} w\_nx\_n + b \\\\ &= w\_1x\_1 + ... + w\_nx\_n + b \\\\ \\end{split} \\end{equation}$$
 
-Now, if you initialize \[latex\]\\textbf{w}\[/latex\] as an all-zeros vector, a.k.a. a list with zeroes, what do you think happens to \[latex\]w1 ... wn\[/latex\]?
+Now, if you initialize $\\textbf{w}$ as an all-zeros vector, a.k.a. a list with zeroes, what do you think happens to $w1 ... wn$?
 
 Exactly, they're all zero.
 
-And since anything multiplied by zero is zero, you see that with zero initialization, the input vector \[latex\]\\textbf{x}\[/latex\] no longer plays a role in computing the output of the neuron.
+And since anything multiplied by zero is zero, you see that with zero initialization, the input vector $\\textbf{x}$ no longer plays a role in computing the output of the neuron.
 
 Zero initialization would thus produce poor models that, generally speaking, do not perform better than linear ones (Doshi, 2019).
 
@@ -135,7 +135,7 @@ With random initialization, you'll therefore see an exponentially decreasing los
 There's however two types of problems that you can encouunter when you initialize your weights randomly: the _vanishing gradients problem_ and the _exploding gradients problem_. If you initialize your weights randomly, two scenarios may occur:
 
 - Your weights are very small. Backpropagation, which computes the error backwards, chains various numbers from the loss towards the updateable layer. Since 0.1 x 0.1 x 0.1 x 0.1 is very small, the actual gradient to be taken at that layer is really small (0.0001). Consequently, with random initialization, in the case of very small weights - you may encounter _vanishing gradients_. That is, the farther from the end the update takes place, the slower it goes. This might yield that your model does not reach its optimum in the time you'll allow it to train.
-- In another case, you experience the _exploding gradients_ scenario. In that case, your initialized weights are _very much off_, perhaps because they are really large, and by consequence a large weight swing must take place. Similarly, if this happens throughout many layers, the weight swing may be large: \[latex\]10^6 \\cdot 10^6 \\cdot 10^6 \\cdot 10^6 = 10^\\text{24}\[/latex\]. Two things may happen then: first, because of the large weight swing, you may simply not reach the optimum for that particular neuron (which often requires taking small steps). Second, weight swings can yield number overflows in e.g. Python, so that the language can no longer process those large numbers. The result, `NaN`s (Not a Number), will reduce the power of your network.
+- In another case, you experience the _exploding gradients_ scenario. In that case, your initialized weights are _very much off_, perhaps because they are really large, and by consequence a large weight swing must take place. Similarly, if this happens throughout many layers, the weight swing may be large: $10^6 \\cdot 10^6 \\cdot 10^6 \\cdot 10^6 = 10^\\text{24}$. Two things may happen then: first, because of the large weight swing, you may simply not reach the optimum for that particular neuron (which often requires taking small steps). Second, weight swings can yield number overflows in e.g. Python, so that the language can no longer process those large numbers. The result, `NaN`s (Not a Number), will reduce the power of your network.
 
 So although random initialization is much better than all-zeros initialization, you'll see that it can be improved even further.
 

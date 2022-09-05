@@ -42,11 +42,11 @@ Here you've got one, although it's very generic:
 
 [![](images/CNN.png)]
 
-What you see on the left is an RGB input image - width \[latex\]W\[/latex\], height \[latex\]H\[/latex\] and three channels. Hence, this layer is likely the _first layer in your model_; in any other scenario, you'd have feature maps as the input to your layer.
+What you see on the left is an RGB input image - width $W$, height $H$ and three channels. Hence, this layer is likely the _first layer in your model_; in any other scenario, you'd have feature maps as the input to your layer.
 
-Now, what is a feature map? That's the yellow block in the image. It's a collection of \[latex\]N\[/latex\] one-dimensional "maps" that each represent a particular "feature" that the model has spotted within the image. This is why convolutional layers are known as feature extractors.
+Now, what is a feature map? That's the yellow block in the image. It's a collection of $N$ one-dimensional "maps" that each represent a particular "feature" that the model has spotted within the image. This is why convolutional layers are known as feature extractors.
 
-Now, this is very nice - but how do we get from input (whether image or feature map) to a feature map? This is through _kernels_, or _filters_, actually. These filters - you configure some number \[latex\]N\[/latex\] per convolutional layer - "slide" (strictly: convolve) over your input data, and have the same number of "channel" dimensions as your input data, but have much smaller widths and heights. For example, for the scenario above, a filter may be 3 x 3 pixels wide and high, but always has 3 channels as our input has 3 channels too.
+Now, this is very nice - but how do we get from input (whether image or feature map) to a feature map? This is through _kernels_, or _filters_, actually. These filters - you configure some number $N$ per convolutional layer - "slide" (strictly: convolve) over your input data, and have the same number of "channel" dimensions as your input data, but have much smaller widths and heights. For example, for the scenario above, a filter may be 3 x 3 pixels wide and high, but always has 3 channels as our input has 3 channels too.
 
 Now, when they slide over the input - from left to right horizontally, then moving down vertically after a row has been fully captured - they perform _element-wise multiplications_ between what's "currently under investigation" within the input data and the _weights present within the filter_. These weights are equal to the weights of a "classic" neural network, but are structured in a different way. Hence, optimization a ConvNet involves computing [a loss value](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md) for the model and subsequently using [an optimizer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md) to change the weights.
 
@@ -56,7 +56,7 @@ Through these weights, as you may guess, the model learns to detect the presence
 
 [![](images/pad-nopad-conv-1-300x300.jpg)]
 
-If the width and/or height of your kernels is \[latex\]> 1\[/latex\], you'll see that the width and height of the feature map being output gets smaller. This occurs due to the fact that the feature map slides over the input and computes the element-wise multiplications, but is too large in order to inspect the "edges" of the input. This is illustrated in the image to the right, where the "red" position is impossible to take and the "green" one is part of the path of the convolution operation.
+If the width and/or height of your kernels is $> 1$, you'll see that the width and height of the feature map being output gets smaller. This occurs due to the fact that the feature map slides over the input and computes the element-wise multiplications, but is too large in order to inspect the "edges" of the input. This is illustrated in the image to the right, where the "red" position is impossible to take and the "green" one is part of the path of the convolution operation.
 
 As it cannot capture the edges, it won't be able to effectively "end" at the final position of your row, resulting in a smaller output width and/or height.
 
@@ -185,7 +185,7 @@ This becomes clear when we actually visualize the padding when it is applied:
 Replication padding looks like reflection padding, but is slightly different (TensorFlow, n.d.). Rather than _reflecting_ like a _mirror_, you simply take a copy, and mirror it. Like this:
 
 - You're at the first row again, at the right. You find a 1. What is the next value?
-- Simple: you copy the entire row, mirror it, and start adding it as padding values horizontally. So, for row 1 with \[latex\]\[3, 5, 1\]\[/latex\], this will be \[latex\]\[1, 5, 3\]\[/latex\] being added. As you can see, since we only pad 2 elements in width, there are 1 and 5, but 3 falls off the padding.
+- Simple: you copy the entire row, mirror it, and start adding it as padding values horizontally. So, for row 1 with $\[3, 5, 1\]$, this will be $\[1, 5, 3\]$ being added. As you can see, since we only pad 2 elements in width, there are 1 and 5, but 3 falls off the padding.
 
 ![](images/replication_pad.png)
 

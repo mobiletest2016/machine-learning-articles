@@ -67,7 +67,7 @@ Don't be scared, it's actually really easy to interpret it :-)
 
 \[mathjax\]
 
-What you see is the _probability distribution_ of the uniform distribution, and it essentially says this: when I draw a number randomly, the odds are \[latex\]1/(b-a)\[/latex\] that they are in the range \[latex\]a <= x <= b\[/latex\] and 0 if they are outside this range.
+What you see is the _probability distribution_ of the uniform distribution, and it essentially says this: when I draw a number randomly, the odds are $1/(b-a)$ that they are in the range $a <= x <= b$ and 0 if they are outside this range.
 
 Fun fact: this is a continuous distribution. That is, there is an infinite amount of real numbers in the interval specified above. By consequence, the probability that you find a certain _number_ is 0. [Read here why](https://stats.stackexchange.com/questions/60702/why-is-the-probability-zero-for-any-given-value-of-a-normal-distribution).
 
@@ -77,7 +77,7 @@ Usually, it is possible to give as input the following variables when configurin
 - The **maximum value** that should be selected.
 - A **seed number** to fix the random number generator. Seeding is sometimes necessary because random number generators aren't random; they're [pseudo-random](https://curiosity.com/topics/why-computers-can-never-generate-truly-random-numbers-curiosity/). Hence, you'll want to have the same peculiarities of pseudo-randomness (i.e., deviations from true randomness) every time you use the generator, because otherwise your weights may share different peculiarities.
 
-The maximum value in this case is \[latex\]a\[/latex\] and the maximum value is \[latex\]b\[/latex\].
+The maximum value in this case is $a$ and the maximum value is $b$.
 
 ### Normal distribution
 
@@ -166,12 +166,12 @@ As you can see, optimizing a neural network thus comprises a:
 
 Chaining gradients by multiplying them to find the gradient for an arbitrary layer presents you with a weird peculiarity: the so-called vanishing gradients problem.
 
-As you can see from the normal distribution, to give but one example, is that the majority of the values are relatively low, say within +3 and -1. In fact, the odds are largest that you randomly select a number that is larger than -1 and smaller than 1, i.e. \[latex\]  
-\-0.9999999999(..) < x < 0.99999999999(..)\[/latex\]
+As you can see from the normal distribution, to give but one example, is that the majority of the values are relatively low, say within +3 and -1. In fact, the odds are largest that you randomly select a number that is larger than -1 and smaller than 1, i.e. $
+\-0.9999999999(..) < x < 0.99999999999(..)$
 
 ![](images/1920px-Normal_Distribution_PDF.svg_-1024x654.png)
 
-Suppose that all your neurons output \[latex\]0.1\[/latex\] - a bit strange, but it makes reasoning about vanishing gradients easier. Suppose that you have some layers and a gradient improvement of 0.03. Five layers upstream, with an activation function that outputs between 0 and 1, the gradient improvement for the sixth given the others could be something like 0.1 x 0.1 x 0.1 x 0.1 x 0.1 x 0.03.
+Suppose that all your neurons output $0.1$ - a bit strange, but it makes reasoning about vanishing gradients easier. Suppose that you have some layers and a gradient improvement of 0.03. Five layers upstream, with an activation function that outputs between 0 and 1, the gradient improvement for the sixth given the others could be something like 0.1 x 0.1 x 0.1 x 0.1 x 0.1 x 0.03.
 
 And that's a very small number.
 

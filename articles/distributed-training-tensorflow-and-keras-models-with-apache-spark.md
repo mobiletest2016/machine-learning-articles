@@ -199,7 +199,7 @@ Personally, I think this is a great way of aligning the benefits of Apache Spark
 
 - Distributed data parallel training of your Keras model (animation above).
 - Distributed hyperparameter optimization for your Keras model (that is, finding the best set of hyperparameters automatically, such as with [Keras Tuner](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/automating-neural-network-configuration-with-keras-tuner.md), but then distributed).
-- Distributed training of ensemble models, by means of hyperparameter optimization and subsequently ensembling on \[latex\]N\[/latex\] best-performing models.
+- Distributed training of ensemble models, by means of hyperparameter optimization and subsequently ensembling on $N$ best-performing models.
 
 While it [used to be impossible](https://github.com/maxpumperla/elephas/issues/139) to perform regression tasks in previous versions of Elephas, [it was added](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/distributed-training-tensorflow-and-keras-models-with-apache-spark.md/#comment-12187) in [version 0.4.5](https://github.com/danielenricocahall/elephas/releases/tag/0.4.5) released in early 2021.
 

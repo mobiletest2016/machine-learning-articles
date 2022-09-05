@@ -52,7 +52,7 @@ Following the [high-level supervised machine learning process](https://github.co
 
 Now take a look at the neural network from a per-layer point of view. Each layer takes some input, performs a linear operation using the input vector and the weights vector, feeds the data into a nonlinear activation function, and passes the data to the next layer or the output.
 
-Neural networks train fast if the distribution of the data remains the same, and especially if it is normalized to the range of \[latex\](\\mu = 0, \\sigma = 1)\[/latex\]. This is not the case when no Batch Normalization is applied: by training the network (i.e. changing the weights of the individual neurons), the outputs for every layer change, which means that the distribution of input data for every layer will change during every iteration.
+Neural networks train fast if the distribution of the data remains the same, and especially if it is normalized to the range of $(\\mu = 0, \\sigma = 1)$. This is not the case when no Batch Normalization is applied: by training the network (i.e. changing the weights of the individual neurons), the outputs for every layer change, which means that the distribution of input data for every layer will change during every iteration.
 
 We call this _internal covariate shift_ (Ioffe & Szegedy, 2015). It is bad, because it can slow down learning. Fortunately, it can be avoided - and Batch Normalization is a way of doing so.
 
@@ -60,20 +60,20 @@ We call this _internal covariate shift_ (Ioffe & Szegedy, 2015). It is bad, beca
 
 As we saw before, neural networks train fast if the distribution of the input data remains similar over time. Batch Normalization helps you do this by doing two things: _normalizing the input value_ and _scaling and shifting it_.
 
-**Normalizing the value:** \[latex\]\\hat{x}\_B^{(k)} \\leftarrow \\frac{x\_B{ ^{(k)} } - \\mu\_B^{(k)}}{\\sqrt{ \\sigma^2{ \_B^{(k)} } + \\epsilon}}\[/latex\]
+**Normalizing the value:** $\\hat{x}\_B^{(k)} \\leftarrow \\frac{x\_B{ ^{(k)} } - \\mu\_B^{(k)}}{\\sqrt{ \\sigma^2{ \_B^{(k)} } + \\epsilon}}$
 
-Every input \[latex\]x\_B{ ^{(k)}}\[/latex\] is normalized by first subtracting input sample mean \[latex\] \\mu\_B^{(k)} \[/latex\] and then dividing by \[latex\] \\sqrt{ \\sigma^2{ \_B^{(k)} } + \\epsilon} \[/latex\], which is the square root of the variance of the input sample, plus some \[latex\] \\epsilon \[/latex\]. Do note:
+Every input $x\_B{ ^{(k)}}$ is normalized by first subtracting input sample mean $\\mu\_B^{(k)}$ and then dividing by $\\sqrt{ \\sigma^2{ \_B^{(k)} } + \\epsilon}$, which is the square root of the variance of the input sample, plus some $\\epsilon$. Do note:
 
-- Whenever we mention "sample" we mean just _one dimension_ of the feature vectors in our minibatch, as normalization is done _per dimension_. This means, for e.g. the feature vector \[latex\]\[2.31, 5.12, 0.12\]\[/latex\], Batch Normalization is applied _three times_, so once per dimension.
-- Contrary to _true_ \[latex\](0, 1)\[/latex\] normalization, a small value represented by \[latex\]\\epsilon\[/latex\] is added to the square root, to ensure that the denominator is nonzero - avoiding division by zero errors.
+- Whenever we mention "sample" we mean just _one dimension_ of the feature vectors in our minibatch, as normalization is done _per dimension_. This means, for e.g. the feature vector $\[2.31, 5.12, 0.12\]$, Batch Normalization is applied _three times_, so once per dimension.
+- Contrary to _true_ $(0, 1)$ normalization, a small value represented by $\\epsilon$ is added to the square root, to ensure that the denominator is nonzero - avoiding division by zero errors.
 
-**Scaling and shifting:** \[latex\]y\_i \\leftarrow \\gamma\\hat{x} \_B ^{(k)} + \\beta\[/latex\].
+**Scaling and shifting:** $y\_i \\leftarrow \\gamma\\hat{x} \_B ^{(k)} + \\beta$.
 
-With some activation functions (such as the Sigmoid activation function), normalizing inputs to have the \[latex\](0, 1)\[/latex\] distribution may result in a different issue: they'll activate almost linearly as they primarily activate in the linear segment of the activation function.
+With some activation functions (such as the Sigmoid activation function), normalizing inputs to have the $(0, 1)$ distribution may result in a different issue: they'll activate almost linearly as they primarily activate in the linear segment of the activation function.
 
 [Here](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-batch-normalization-for-training-neural-networks.md/#scaling-and-shifting), I explain this in more detail, and why this needs to be avoided.
 
-By _scaling_ the value with some \[latex\]\\gamma\[/latex\] and _shifting_ the value with some \[latex\]\\beta\[/latex\], this problem can be avoided. The values for these are learnt during training.
+By _scaling_ the value with some $\\gamma$ and _shifting_ the value with some $\\beta$, this problem can be avoided. The values for these are learnt during training.
 
 ### Batch Normalization in the Keras API
 
@@ -87,9 +87,9 @@ Put simply, Batch Normalization can be added as easily as adding a `BatchNormali
 
 - **Axis**: the axis of your data which you like Batch Normalization to be applied on. Usually, this is not of importance, but if you have a channels-first Conv layer, it must be set to 1.
 - **Momentum**: the momentum that is to be used on the moving mean and the moving variance.
-- **Epsilon**: the value for \[latex\]\\epsilon\[/latex\] that is to be used in the normalization step, to avoid division by zero (also see the Batch Normalization formula above).
-- **Center**: if `True`, the value for \[latex\]\\beta\[/latex\] is used; if `False`, it's ignored.
-- **Scale**: if `True`, the value for \[latex\]\\gamma\[/latex\] is used; if `False`, it's ignored.
+- **Epsilon**: the value for $\\epsilon$ that is to be used in the normalization step, to avoid division by zero (also see the Batch Normalization formula above).
+- **Center**: if `True`, the value for $\\beta$ is used; if `False`, it's ignored.
+- **Scale**: if `True`, the value for $\\gamma$ is used; if `False`, it's ignored.
 - **Beta initializer, regularizer and constraint:** these define the Keras initializer, regularizer and constraints for the _beta_ i.e. the center factor. They give you more control over how the network learns the values during training.
 - **Gamma initializer, regularizer and constraint:** these define the Keras initializer, regularizer and constraints for the _gamma_ i.e. the scaling factor. They give you more control over how the network learns the values during training.
 - **Moving mean initializer, moving variance initializer:** these define the Keras initializers for the moving mean and moving variance.

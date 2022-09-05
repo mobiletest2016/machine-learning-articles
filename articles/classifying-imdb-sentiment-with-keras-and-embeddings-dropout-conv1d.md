@@ -89,15 +89,15 @@ For example, if you have these two short phrases (lowercase intended):
 
 You'd have 5 words, and one-hot encoding your vector would thus have five dimensions, and you'd have these vectors, each representing one word:
 
-\[latex\]\[1, 0, 0, 0, 0\] \\rightarrow \\text{hi}\[/latex\]
+$\[1, 0, 0, 0, 0\] \\rightarrow \\text{hi}$
 
-\[latex\]\[0, 1, 0, 0, 0\] \\rightarrow \\text{there} \[/latex\]
+$\[0, 1, 0, 0, 0\] \\rightarrow \\text{there}$
 
-\[latex\]\[0, 0, 1, 0, 0\] \\rightarrow \\text{i} \[/latex\]
+$\[0, 0, 1, 0, 0\] \\rightarrow \\text{i}$
 
-\[latex\]\[0, 0, 0, 1, 0\] \\rightarrow \\text{am} \[/latex\]
+$\[0, 0, 0, 1, 0\] \\rightarrow \\text{am}$
 
-\[latex\]\[0, 0, 0, 0, 1\] \\rightarrow \\text{chris} \[/latex\]
+$\[0, 0, 0, 0, 1\] \\rightarrow \\text{chris}$
 
 Now, this will work well!
 
@@ -277,7 +277,7 @@ As you can see, the first layer is an `Embedding` layer which learns the word em
 
 Dropout is added after every layer of interest in order to add [noise through Bernoulli variables](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-dropout-reduce-overfitting-in-your-neural-networks.md), hopefully to avoid or reduce overfitting.
 
-Following the Embedding layer is a `Conv1D` layer with 32 filters of size 2. Then, we use `MaxPooling1D` to boost spatial hierarchies within your model - see the article [about pooling](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-are-max-pooling-average-pooling-global-max-pooling-and-global-average-pooling.md) for more information. Finally, we use `Flatten` to reduce dimensionality of the data and `Dense` for generating a `Sigmoid`\-activated classification (that is, a classification within the range \[latex\](0, 1)\[/latex\]).
+Following the Embedding layer is a `Conv1D` layer with 32 filters of size 2. Then, we use `MaxPooling1D` to boost spatial hierarchies within your model - see the article [about pooling](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-are-max-pooling-average-pooling-global-max-pooling-and-global-average-pooling.md) for more information. Finally, we use `Flatten` to reduce dimensionality of the data and `Dense` for generating a `Sigmoid`\-activated classification (that is, a classification within the range $(0, 1)$).
 
 ### Model compilation, fitting & summary
 
@@ -431,7 +431,7 @@ Let's now take a look at some results after you ran the model with `python imdb.
 
 First, the validation plots - i.e., the plots with validation loss and validation accuracy. Clearly, they indicate that [overfitting](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-dropout-reduce-overfitting-in-your-neural-networks.md/#how-well-does-your-model-perform-underfitting-and-overfitting) occurs: the loss minimum is reported straight at the beginning of the process, after which loss increases again ([check here how to detect underfitting and overfitting on loss plots](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/finding-optimal-learning-rates-with-the-learning-rate-range-test.md/#overfitting-and-underfitting-checking-your-validation-loss)).
 
-While this is bad - and perhaps can be overcome by tuning learning rates, using different optimizers, preparing the data or model architecture differently, training for longer and considering this as a temporary worse loss - we don't really care for now, haha :P Especially because accuracy at that point is \[latex\]\\approx 86\\%\[/latex\].
+While this is bad - and perhaps can be overcome by tuning learning rates, using different optimizers, preparing the data or model architecture differently, training for longer and considering this as a temporary worse loss - we don't really care for now, haha :P Especially because accuracy at that point is $\\approx 86\\%$.
 
 Instead, the scope of our blog post - to create an IMDB sentiment classifier - was achieved :)
 

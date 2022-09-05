@@ -285,7 +285,7 @@ We can now add code which truly loads our data based on the definition we create
 (X_train, y_train), (X_test, y_test) = load_data()
 ```
 
-We must normalize it to the \[latex\]\[0, 1\]\[/latex\] range:
+We must normalize it to the $\[0, 1\]$ range:
 
 ```
 # Normalize data

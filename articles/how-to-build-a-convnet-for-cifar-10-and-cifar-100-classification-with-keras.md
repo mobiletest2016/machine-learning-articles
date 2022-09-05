@@ -61,15 +61,15 @@ Here is what a convolutional layer does, and why it is such a good feature extra
 
 [![](images/CNN.png)]
 
-The input to this convolutional layer is a \[latex\]H \\times W\[/latex\] image, where \[latex\]H\[/latex\] is the height and \[latex\]W\[/latex\] is the width of this image. These days, most images are RGB - red, green and blue - and hence have 3 image channels. This is not different in the scenario above.
+The input to this convolutional layer is a $H \\times W$ image, where $H$ is the height and $W$ is the width of this image. These days, most images are RGB - red, green and blue - and hence have 3 image channels. This is not different in the scenario above.
 
-Now, the convolutional layer works with \[latex\]N\[/latex\] so called "kernels". The value for \[latex\]N\[/latex\] can be configured by the machine learning engineer. These kernels, which have a fixed \[latex\]H\_{kernel}\[/latex\] and \[latex\]W\_{kernel}\[/latex\] that are often much smaller than the input (e.g. 3x3), have the same amount of channels as the input data (3 in our case). They are initialized with "weights", and this is what makes learning possible (as we will see later).
+Now, the convolutional layer works with $N$ so called "kernels". The value for $N$ can be configured by the machine learning engineer. These kernels, which have a fixed $H\_{kernel}$ and $W\_{kernel}$ that are often much smaller than the input (e.g. 3x3), have the same amount of channels as the input data (3 in our case). They are initialized with "weights", and this is what makes learning possible (as we will see later).
 
 Now, this "kernel" (which is 5 x 5 pixels in the schematic drawing below) slides (or "convolves") over the input data. In doing so, for each position it takes, it multiplies the weight at some point with the corresponding pixel in your input data, element-wise. This means that all the individual multiplications are added together, and that the output of that particular kernel-input multiplication is 1 pixel:
 
 [![](images/Cnn_layer-1.jpg)]
 
-Now, sliding over the entire image horizontally and vertically, it produces many of such "outputs" - rendering the output on the right in the image above. This output, which is called a "feature map", is smaller than the input data, and essentially contains the input data in a more "abstract" fashion. Now, as there are \[latex\]N\[/latex\] kernels, there will be \[latex\]N\[/latex\] such feature maps produced by a convolutional layer.
+Now, sliding over the entire image horizontally and vertically, it produces many of such "outputs" - rendering the output on the right in the image above. This output, which is called a "feature map", is smaller than the input data, and essentially contains the input data in a more "abstract" fashion. Now, as there are $N$ kernels, there will be $N$ such feature maps produced by a convolutional layer.
 
 ### Feature detection and the "smaller parts"
 
@@ -93,7 +93,7 @@ Thus, even though you have a spatial hierarchy, it's not very _sharp_. This, in 
 
 What's more, it's still not "translation invariant", which means that it's also sensitive to the _orientation, size, and position_ of the particular element. In the case of the four, if the top part were cut off and the bottom part was shifted to the top, leaving blank space at the bottom, the network may now not detect it as a 4 anymore.
 
-Adding **pooling layers** may [help you resolve this issue](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-are-max-pooling-average-pooling-global-max-pooling-and-global-average-pooling.md). Similar to convolutional layers, pooling layers slide over the inputs, but instead of multiplying the parts with some learnt weights, they compute a hard value such as \[latex\]max()\[/latex\].
+Adding **pooling layers** may [help you resolve this issue](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-are-max-pooling-average-pooling-global-max-pooling-and-global-average-pooling.md). Similar to convolutional layers, pooling layers slide over the inputs, but instead of multiplying the parts with some learnt weights, they compute a hard value such as $max()$.
 
 - [![](images/Max-Pooling-1.png)]
     
@@ -265,7 +265,7 @@ The next step is to determine the shape of one sample. This is required by Keras
 input_shape = (img_width, img_height, img_num_channels)
 ```
 
-Next, two technical things. Firstly, we'll convert our data into `float32` format, which presumably speeds up training. Then, we normalize the data, into the \[latex\]\[-1, 1\]\[/latex\] range.
+Next, two technical things. Firstly, we'll convert our data into `float32` format, which presumably speeds up training. Then, we normalize the data, into the $\[-1, 1\]$ range.
 
 ```
 # Parse numbers as floats
@@ -310,7 +310,7 @@ Once the model is compiled, we _do_ have a model, but it's not yet trained. We c
 
 Here, it also becomes clear why we decided to use _sparse_ categorical crossentropy instead of _true_ categorical crossentropy. Categorical crossentropy requires our data to be categorical, which can e.g. be achieved with `to_categorical` i.e. one-hot encoding of your target vectors.
 
-Our data is not categorical by nature: our targets are integers in the range \[latex\]\[0, 9\]\[/latex\]. But why convert them, I'd argue, if there is a loss function which does the same as _true_ categorical crossentropy but works with integer targets? Indeed, [_sparse_ categorical crossentropy](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-sparse-categorical-crossentropy-in-keras.md) is this activation function. Hence, we choose it over the other one :)
+Our data is not categorical by nature: our targets are integers in the range $\[0, 9\]$. But why convert them, I'd argue, if there is a loss function which does the same as _true_ categorical crossentropy but works with integer targets? Indeed, [_sparse_ categorical crossentropy](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-sparse-categorical-crossentropy-in-keras.md) is this activation function. Hence, we choose it over the other one :)
 
 ```
 # Compile the model
@@ -463,7 +463,7 @@ Let's now take a look how to create a Keras model for the CIFAR-100 dataset :)
 
 ### From CIFAR-10 to CIFAR-100
 
-In order to ensure that this blog post stays within check in terms of length, we'll take the model we just created for the CIFAR-10 dataset as our base model. In fact, this is smart for another reason: the CIFAR-100 dataset, like the CIFAR-10 one, has 60.000 samples of shape \[latex\](32, 32, 3)\[/latex\].
+In order to ensure that this blog post stays within check in terms of length, we'll take the model we just created for the CIFAR-10 dataset as our base model. In fact, this is smart for another reason: the CIFAR-100 dataset, like the CIFAR-10 one, has 60.000 samples of shape $(32, 32, 3)$.
 
 Essentially, moving from CIFAR-10 to CIFAR-100 is thus very easy! First, let's change the import so that it supports CIFAR-100:
 

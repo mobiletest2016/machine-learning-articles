@@ -59,11 +59,11 @@ Of course, for the third step, there are many different approaches for improving
 
 Then, using an [optimizer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md), we can actually change the weights.
 
-Such operations do however require that data is available in numeric format. The neuron weights are expressed as numbers. For example, this can be a weights vector: \[latex\]\[2.61, 3.92, -2.4, 0.11, 1.11\]\[/latex\]. This also means that in step (1), feeding forward samples to models, computations must be made with respect to these weight vectors, in order to learn patterns. In fact, this is the case. An input vector \[latex\]\\textbf{x}\[/latex\] to a neuron is multiplied with the weights vector \[latex\]\\textbf{b}\[/latex\], after which a bias value - \[latex\]b\[/latex\] - is added. This output is then fed through an [activation function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-nonlinear-activation-functions-improve-ml-performance-with-tensorflow-example.md) and serves as one of the output values of the Neural layer.
+Such operations do however require that data is available in numeric format. The neuron weights are expressed as numbers. For example, this can be a weights vector: $\[2.61, 3.92, -2.4, 0.11, 1.11\]$. This also means that in step (1), feeding forward samples to models, computations must be made with respect to these weight vectors, in order to learn patterns. In fact, this is the case. An input vector $\\textbf{x}$ to a neuron is multiplied with the weights vector $\\textbf{b}$, after which a bias value - $b$ - is added. This output is then fed through an [activation function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-nonlinear-activation-functions-improve-ml-performance-with-tensorflow-example.md) and serves as one of the output values of the Neural layer.
 
 ![](images/layer-act-1024x227.png)
 
-The point, here, is that in order to make the computation, the input / feature vector \[latex\]\\textbf{x}\[/latex\] must contain numbers. If it contains text, it will fail: there is no way in which we can multiply numbers (the weights vector) with text (the feature vector).
+The point, here, is that in order to make the computation, the input / feature vector $\\textbf{x}$ must contain numbers. If it contains text, it will fail: there is no way in which we can multiply numbers (the weights vector) with text (the feature vector).
 
 The problem is that there are many cases where data comes in the form of text - take for example the case of **categorical data** (Wikipedia, 2012). When data is of this type, it assigns 'groups' to samples - e.g. in the case of a health check. The _group_ variable here is categorical with the possible values being _Healthy_ and _Unhealthy_.
 
@@ -73,7 +73,7 @@ The problem is that there are many cases where data comes in the form of text - 
 
 If you are somewhat creative, you can already start to see the relationships between the previous two sections. Here is the primary one: if you want to express categorical data into numeric format, you can use one-hot encoding for doing so.
 
-Let's take the _Group_ example from the previous section to illustrate how. The case is pretty simple, actually: we can represent the Group values as a set of two bits. For example, if the person is Unhealthy, the category can be expressed as \[latex\]\[0 \\ 1\]\[/latex\], while Healthy can be expressed as \[latex\]\[1 \\ 0\]\[/latex\]. Naturally, we see that we now have a numeric (vector based) representation of our categories, which we can use in our Machine Learning model.
+Let's take the _Group_ example from the previous section to illustrate how. The case is pretty simple, actually: we can represent the Group values as a set of two bits. For example, if the person is Unhealthy, the category can be expressed as $\[0 \\ 1\]$, while Healthy can be expressed as $\[1 \\ 0\]$. Naturally, we see that we now have a numeric (vector based) representation of our categories, which we can use in our Machine Learning model.
 
 Long story short: one-hot encoding is of great help when solving [classification problems](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/3-variants-of-classification-problems-in-machine-learning.md).
 
@@ -86,15 +86,15 @@ However, there is a catch when it comes to one-hot encoding your data. Suppose t
 
 Applying one-hot encoding to the text can be done as follows:
 
-\[latex\]\[1, 0, 0, 0, 0\] \\rightarrow \\text{hi}\[/latex\]
+$\[1, 0, 0, 0, 0\] \\rightarrow \\text{hi}$
 
-\[latex\]\[0, 1, 0, 0, 0\] \\rightarrow \\text{there} \[/latex\]
+$\[0, 1, 0, 0, 0\] \\rightarrow \\text{there}$
 
-\[latex\]\[0, 0, 1, 0, 0\] \\rightarrow \\text{i} \[/latex\]
+$\[0, 0, 1, 0, 0\] \\rightarrow \\text{i}$
 
-\[latex\]\[0, 0, 0, 1, 0\] \\rightarrow \\text{am} \[/latex\]
+$\[0, 0, 0, 1, 0\] \\rightarrow \\text{am}$
 
-\[latex\]\[0, 0, 0, 0, 1\] \\rightarrow \\text{chris} \[/latex\]
+$\[0, 0, 0, 0, 1\] \\rightarrow \\text{chris}$
 
 If your corpus is big, this will become problematic, because you get one-hot encoded vectors with _many_ dimensions (here, there are just five). Hence, one-hot encoding is as limited as it is promising: while it can help you fix the issue of textual data with a relatively lower-dimensional case, it is best not to use it when you have many categories or when you want to convert text into numbers. In those cases, learning an [Embedding](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/classifying-imdb-sentiment-with-keras-and-embeddings-dropout-conv1d.md) can be the way to go.
 

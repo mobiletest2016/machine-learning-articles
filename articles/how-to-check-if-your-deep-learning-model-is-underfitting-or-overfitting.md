@@ -69,11 +69,11 @@ With these three steps, you'll eventually get a model that is optimized for the 
 
 ## Overfitting and underfitting Machine Learning models
 
-Suppose that we have the following observations, where a relationship \[latex\]\\text{X} \\rightarrow \\text{y}\[/latex\] exists:
+Suppose that we have the following observations, where a relationship $\\text{X} \\rightarrow \\text{y}$ exists:
 
 ![](images/30samples.png)
 
-We can generate a predictive model that captures this relationship and allows us to predict any value for \[latex\]\\text{y}\[/latex\] within the domain of \[latex\]\\text{x}\[/latex\] displayed in the plot:
+We can generate a predictive model that captures this relationship and allows us to predict any value for $\\text{y}$ within the domain of $\\text{x}$ displayed in the plot:
 
 ![](images/30good.png)
 
@@ -91,7 +91,7 @@ Sometimes, your Deep Learning model is not able to capture the relationship betw
 > 
 > Wikipedia (2003)
 
-In the case of our Deep Learning model, the relationship between \[latex\]\\text{X} \\rightarrow \\text{y}\[/latex\] cannot be captured properly if the model is underfit, and a plot of the fit would look like this:
+In the case of our Deep Learning model, the relationship between $\\text{X} \\rightarrow \\text{y}$ cannot be captured properly if the model is underfit, and a plot of the fit would look like this:
 
 ![](images/30under.png)
 
@@ -116,7 +116,7 @@ If we visualize what overfitting means for our setting, we get the following vis
 
 ![](images/30over.png)
 
-Here, we can clearly see that our models capture much of the noise: what should be a smooth, quadratic rise (the function we actually visualized is the function \[latex\]x^2\[/latex\] at the domain \[latex\]x \\in \[0, 10\]\[/latex\]) is now a noisy one. We therefore have introduced noise into our model which is not present in our 'real world' (i.e., in \[latex\]x^2\[/latex\])!
+Here, we can clearly see that our models capture much of the noise: what should be a smooth, quadratic rise (the function we actually visualized is the function $x^2$ at the domain $x \\in \[0, 10\]$) is now a noisy one. We therefore have introduced noise into our model which is not present in our 'real world' (i.e., in $x^2$)!
 
 In the real world, the odds are relatively low that you will produce a model that is _underfit_. Overfitting is the problem: today's real-world datasets are often highly complex and have many variables. Capturing noise is really easy these days!
 

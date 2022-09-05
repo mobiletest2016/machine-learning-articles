@@ -34,7 +34,7 @@ Let's go! :-) After reading this article, you will understand...
 
 **Update 05/Feb/2021:** ensured that article is up to date.
 
-**Update 07/Oct/2020:** clarified the meaning of \[latex\]N\[/latex\] in the initialization strategies.
+**Update 07/Oct/2020:** clarified the meaning of $N$ in the initialization strategies.
 
 * * *
 
@@ -167,7 +167,7 @@ $$\\begin{equation} v^{2} = 1/N \\end{equation}$$
 
 When your neural network is ReLU activated, He initialization is one of the methods you can choose to bring the variance of those outputs to approximately one (He et al., 2015).
 
-Although it attempts to do the same, He initialization is different than Xavier initialization (Kumar, 2017; He et al., 2015). This difference is related to the nonlinearities of the ReLU activation function, which make it non-differentiable at \[latex\]x = 0\[/latex\]. However, Kumar indeed proves mathematically that for the ReLU activation function, the best weight initialization strategy is to initialize the weights randomly but with this variance:
+Although it attempts to do the same, He initialization is different than Xavier initialization (Kumar, 2017; He et al., 2015). This difference is related to the nonlinearities of the ReLU activation function, which make it non-differentiable at $x = 0$. However, Kumar indeed proves mathematically that for the ReLU activation function, the best weight initialization strategy is to initialize the weights randomly but with this variance:
 
 $$\\begin{equation} v^{2} = 2/N \\end{equation}$$
 
@@ -179,13 +179,13 @@ $$\\begin{equation} v^{2} = 2/N \\end{equation}$$
 
 Weight initialization is very important, as "all you need is a good init" (Mishkin & Matas, 2015). It's however important to choose a proper weight initialization strategy in order to maximize model performance. We've seen that such strategies are dependent on the activation functions that are used in the model.
 
-For Tanh based activating neural nets, the Xavier initialization seems to be a good strategy, which essentially performs random initialization from a distribution with a variance of \[latex\]1/N\[/latex\].
+For Tanh based activating neural nets, the Xavier initialization seems to be a good strategy, which essentially performs random initialization from a distribution with a variance of $1/N$.
 
-Here, \[latex\]N\[/latex\] is the number of input neurons to a particular layer.
+Here, $N$ is the number of input neurons to a particular layer.
 
 For Sigmoid based activation functions, this is not the case, as was derived in the Kumar paper (Kumar, 2017).
 
-ReLU activating networks, which are pretty much the standard ones today, benefit from the He initializer - which does the same thing, but with a different variance, namely \[latex\]2/N\[/latex\].
+ReLU activating networks, which are pretty much the standard ones today, benefit from the He initializer - which does the same thing, but with a different variance, namely $2/N$.
 
 This way, your weight init strategy is pinpointed to your neural net's ideosyncrasies, which at least theoretically makes it better. I'm looking forward to hearing from your experience as to whether you also see these results in practice. Leave a comment below if you're feeling like sharing 👇
 

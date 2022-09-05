@@ -36,11 +36,11 @@ Suppose that you are training a [convolutional neural network](https://github.co
 
 [![](images/CNN-1.png)]
 
-In the drawing above, some input data (which is likely an RGB image) of height \[latex\]H\[/latex\] and width \[latex\]W\[/latex\] is fed to a convolutional layer. This layer, which slides (or "convolves") \[latex\]N\[/latex\] kernels of size 3x3x3 over the input, produces \[latex\]N\[/latex\] so-called "feature maps" as output. Through the _weights_ of the kernels, which have been [optimized](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md) based on the training dataset, the neural network learns to recognize featues in the input image.
+In the drawing above, some input data (which is likely an RGB image) of height $H$ and width $W$ is fed to a convolutional layer. This layer, which slides (or "convolves") $N$ kernels of size 3x3x3 over the input, produces $N$ so-called "feature maps" as output. Through the _weights_ of the kernels, which have been [optimized](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md) based on the training dataset, the neural network learns to recognize featues in the input image.
 
 Note that often, a convolutional neural network consists of quite a few convolutional layers stacked on top of each other. In this case, the feature map that is the output of the first layer, is used as the input of the second, and so on.
 
-Now, due to the way such layers work, the size of one feature map (e.g. \[latex\]H\_{fm}\[/latex\] and \[latex\]W\_{fm}\[/latex\] in the image above) [is _smaller_](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-padding-in-a-neural-network.md/#conv-layers-might-induce-spatial-hierarchy) than the size of the input to the layer (\[latex\]H\[/latex\] and \[latex\]W\[/latex\]). However, sometimes, you don't want this to happen. Rather, you wish that the size of the feature map is equal - or perhaps larger - than the size of your input data.
+Now, due to the way such layers work, the size of one feature map (e.g. $H\_{fm}$ and $W\_{fm}$ in the image above) [is _smaller_](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-padding-in-a-neural-network.md/#conv-layers-might-induce-spatial-hierarchy) than the size of the input to the layer ($H$ and $W$). However, sometimes, you don't want this to happen. Rather, you wish that the size of the feature map is equal - or perhaps larger - than the size of your input data.
 
 Padding can be used to achieve this. By wrapping the outcome in some "frame", you can ensure that the size of the outputs are equal to those of the input. However, what does this frame look like? In our [article about padding](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-padding-in-a-neural-network.md), we saw that zeros are often used for this. However, we also saw that this might result in worse performance due to the fact that zero padding is claimed to interfere with the distribution of your dataset. _Reflection padding_ and _replication padding_ are introduced as possible fixes for this issue, together with _constant padding_.
 
@@ -60,11 +60,11 @@ Let's take a look at what constant padding does by means of this schematic drawi
 
 [![](images/constantpad.jpg)]
 
-As you can see, the feature maps that are the output of the `Conv2D` layer that is applied to the input data, are smaller than the input data itself. This is perfectly normal, and normally, one would apply [zero padding](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-padding-with-keras.md/#how-to-use-same-zero-padding-with-keras). However, can't we pad with a constant value \[latex\]c\[/latex\] instead of zeros?
+As you can see, the feature maps that are the output of the `Conv2D` layer that is applied to the input data, are smaller than the input data itself. This is perfectly normal, and normally, one would apply [zero padding](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-padding-with-keras.md/#how-to-use-same-zero-padding-with-keras). However, can't we pad with a constant value $c$ instead of zeros?
 
 Yes!
 
-This is what constant padding does: the "frame" around the feature maps which ensures that their size equals the size of the input data, is filled with the specified \[latex\]c\[/latex\]. Let's now take a look at Keras implementations for 1D and 2D data :)
+This is what constant padding does: the "frame" around the feature maps which ensures that their size equals the size of the input data, is filled with the specified $c$. Let's now take a look at Keras implementations for 1D and 2D data :)
 
 ### Keras ConstantPadding1D
 
@@ -166,11 +166,11 @@ The second type of padding that we'll make available for Keras: **reflection pad
 
 ### What is reflection padding?
 
-In order to understand reflection padding, it's important that we first take a look at this schematic drawing of \[latex\](1, 2)\[/latex\] padding which, by coincidence ;-), we call "reflection padding":
+In order to understand reflection padding, it's important that we first take a look at this schematic drawing of $(1, 2)$ padding which, by coincidence ;-), we call "reflection padding":
 
 [![](images/reflection_pad.jpg)]
 
-Let's now take a look at the first row of our unpadded input, i.e. the yellow box. It's \[latex\]\[3, 5, 1\]\[/latex\]. Reflection padding essentially uses the contents of this row for padding the values directly next to it. For example, move to the right, i.e. from 3 to 1. Then, move one additional box to the right - you'll find a 5. Hey, that's the middle value of our row. Then, you'll find a 3. Hey, that's the first value! And so on. You see the same happening on the left, and on top.
+Let's now take a look at the first row of our unpadded input, i.e. the yellow box. It's $\[3, 5, 1\]$. Reflection padding essentially uses the contents of this row for padding the values directly next to it. For example, move to the right, i.e. from 3 to 1. Then, move one additional box to the right - you'll find a 5. Hey, that's the middle value of our row. Then, you'll find a 3. Hey, that's the first value! And so on. You see the same happening on the left, and on top.
 
 Reflection padding thus "reflects" the row into the padding. This is useful because it ensures that your outputs will transition "smoothly" into the padding. Possibly, this improves the performance of your model, because padded inputs will still look like the original ones in terms of data distribution (Liu et al., 2018).
 
@@ -258,7 +258,7 @@ However, it does so in a slightly different way:
 
 [![](images/replication_pad.png)]
 
-Instead of a pure _reflection_, like Reflection Padding, _replication_ padding makes a copy of the input, reverses it, and then apply it. Take a look at the first row again: \[latex\]\[3, 5, 1\]\[/latex\] -> \[latex\]\[1, 5, 3\]\[/latex\], after which it's applied. In the results, you should thus see a more broad "transition zone" from _input_ to _padding_.
+Instead of a pure _reflection_, like Reflection Padding, _replication_ padding makes a copy of the input, reverses it, and then apply it. Take a look at the first row again: $\[3, 5, 1\]$ -> $\[1, 5, 3\]$, after which it's applied. In the results, you should thus see a more broad "transition zone" from _input_ to _padding_.
 
 In TensorFlow, replication padding is not known by the name "replication padding". Instead, in TF, it's called "symmetric padding". Hence, we'll use `SYMMETRIC` as our padding mode throughout the 1D and 2D examples that will follow next.
 

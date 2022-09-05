@@ -98,7 +98,7 @@ $$\\begin{equation} f(x) = \\begin{cases} 1, & \\text{if}\\ \\textbf{w}\\cdot\\t
 
 Here, you can see why it is a binary classifier: it simply determines the data to be part of class '0' or class '1'. This is done based on the output of the multiplication of the weights and input vectors, with a bias value added.
 
-When you multiply two vectors, you're computing what is called a dot product. A dot product is the sum of the multiplications of the individual scalars in the vectors, pair-wise. This means that e.g. \[latex\]w\_1x\_1\[/latex\] is computed and summated together with \[latex\]w\_2x\_2\[/latex\], \[latex\]w\_3x\_3\[/latex\] and so on ... until \[latex\]w\_nx\_n\[/latex\]. Mathematically:
+When you multiply two vectors, you're computing what is called a dot product. A dot product is the sum of the multiplications of the individual scalars in the vectors, pair-wise. This means that e.g. $w\_1x\_1$ is computed and summated together with $w\_2x\_2$, $w\_3x\_3$ and so on ... until $w\_nx\_n$. Mathematically:
 
 $$\\begin{equation} \\begin{split} &z=\\sum\_{i=1}^{n} w\_nx\_n + b \\\\ &= w\_1x\_1 + ... + w\_nx\_n + b \\\\ \\end{split} \\end{equation}$$
 
@@ -130,15 +130,15 @@ As you recall, this is how the Perceptron can be defined mathematically:
 
 $$\\begin{equation} f(x) = \\begin{cases} 1, & \\text{if}\\ \\textbf{w}\\cdot\\textbf{x}+b > 0 \\\\ 0, & \\text{otherwise} \\\\ \\end{cases} \\end{equation}$$
 
-Of which \[latex\]\\textbf{w}\\cdot\\textbf{x}+b\[/latex\] could be written as:
+Of which $\\textbf{w}\\cdot\\textbf{x}+b$ could be written as:
 
 $$\\begin{equation} \\begin{split} &z=\\sum\_{i=1}^{n} w\_nx\_n + b \\\\ &= w\_1x\_1 + ... + w\_nx\_n + b \\\\ \\end{split} \\end{equation}$$
 
-We now add the bias to the weights vector as \[latex\]w\_0\[/latex\] and choose \[latex\]x\_0 = 1\[/latex\]. This looks as follows:
+We now add the bias to the weights vector as $w\_0$ and choose $x\_0 = 1$. This looks as follows:
 
 ![](images/Perceptron_with_bias-1024x907.png)
 
-This allows us to rewrite \[latex\]z\[/latex\] as follows - especially recall that \[latex\]w\_0 = b\[/latex\] and \[latex\]x\_0 = 1\[/latex\]:
+This allows us to rewrite $z$ as follows - especially recall that $w\_0 = b$ and $x\_0 = 1$:
 
 $$\\begin{equation} \\begin{split} & z = \\sum\_{i=0}^{n} w\_nx\_n \\\\ & = w\_0x\_0 + w\_1x\_1 + ... + w\_nx\_n \\\\ & = w\_0x\_0 + w\_1x\_1 + ... + w\_nx\_n \\\\ & = 1b + w\_1x\_1 + ... + w\_nx\_n \\\\ & = w\_1x\_1 + ... + w\_nx\_n + b \\end{split} \\end{equation}$$
 
@@ -146,7 +146,7 @@ As you can see, it is still equal to the original way of writing it:
 
 $$\\begin{equation} \\begin{split} &z=\\sum\_{i=1}^{n} w\_nx\_n + b \\\\ &= w\_1x\_1 + ... + w\_nx\_n + b \\\\ \\end{split} \\end{equation}$$
 
-This way, we got rid of the bias \[latex\]b\[/latex\] in our main equation, which will greatly help us with what we'll do now: update the weights in order to optimize the model.
+This way, we got rid of the bias $b$ in our main equation, which will greatly help us with what we'll do now: update the weights in order to optimize the model.
 
 * * *
 
@@ -157,24 +157,24 @@ We'll use what is called the _Perceptron Learning Rule_ for that purpose. But fi
 We'll have to make a couple assumptions at first:
 
 1. There is the weights vector `w` which, at the beginning, is [uninitialized](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-weight-initialization.md).
-2. You have a set of training values, such as \[latex\]T = \\{ (x\_1, d\_1), (x\_2, d\_2), ..., (x\_n, d\_n) \\}\[/latex\]. Here, \[latex\]x\_n\[/latex\] is a specific feature vector, while \[latex\]d\_n\[/latex\] is the corresponding target value.
-3. We ensure that \[latex\]w\_0 = b\[/latex\] and \[latex\]x\_0 = 1\[/latex\].
-4. We will have to configure a _[learning rate](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-a-learning-rate-in-a-neural-network.md)_ or \[latex\]r\[/latex\], or by how much the model weights improve. This is a number between 0 and 1. We use \[latex\]r = 0.1\[/latex\] in the Python code that follows next.
+2. You have a set of training values, such as $T = \\{ (x\_1, d\_1), (x\_2, d\_2), ..., (x\_n, d\_n) \\}$. Here, $x\_n$ is a specific feature vector, while $d\_n$ is the corresponding target value.
+3. We ensure that $w\_0 = b$ and $x\_0 = 1$.
+4. We will have to configure a _[learning rate](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-a-learning-rate-in-a-neural-network.md)_ or $r$, or by how much the model weights improve. This is a number between 0 and 1. We use $r = 0.1$ in the Python code that follows next.
 
 This is the pseudocode:
 
 1. Initialize the weights vector `**w**` to zeroes or random numbers.
-2. For every \[latex\](x\_n, d\_n)\[/latex\] in \[latex\]D\[/latex\]:
-    1. Compute the output value for the input vector \[latex\]x\_n\[/latex\]. Mathematically, that's \[latex\]d'\_n: f(x\_n) = w\_nx\_n\[/latex\].
-    2. Compare the output value \[latex\]d'\_n\[/latex\] with target value \[latex\]d\_n\[/latex\].
-    3. Update the weights according to the Perceptron Learning Rule: \[latex\]w\_\\text{n,i}(t+1) = w\_\\text{n,i}(t) + r \\cdot (d\_n - d'\_n) \\cdot x\_\\text{n,i}\[/latex\] for all features (scalars) \[latex\]0 \\leq i \\leq|w\_n|\[/latex\].
+2. For every $(x\_n, d\_n)$ in $D$:
+    1. Compute the output value for the input vector $x\_n$. Mathematically, that's $d'\_n: f(x\_n) = w\_nx\_n$.
+    2. Compare the output value $d'\_n$ with target value $d\_n$.
+    3. Update the weights according to the Perceptron Learning Rule: $w\_\\text{n,i}(t+1) = w\_\\text{n,i}(t) + r \\cdot (d\_n - d'\_n) \\cdot x\_\\text{n,i}$ for all features (scalars) $0 \\leq i \\leq|w\_n|$.
 
 Or, in plain English:
 
 - First [initialize the weights](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-weight-initialization.md) randomly or to zeroes.
 - Iterate over every feature in the data set.
 - Compute the output value.
-- Compare if it matches, and 'push' the weights into the right direction (i.e. the \[latex\]d\_n - d'\_n\[/latex\] part) slightly with respect to \[latex\]x\_\\text{n,i}\[/latex\], as much as the learning rate \[latex\]r\[/latex\] allows.
+- Compare if it matches, and 'push' the weights into the right direction (i.e. the $d\_n - d'\_n$ part) slightly with respect to $x\_\\text{n,i}$, as much as the learning rate $r$ allows.
 
 This means that the weights are updated for every sample from the dataset.
 
@@ -204,7 +204,7 @@ class RBPerceptron:
 Next, we want to allow the engineer using our Perceptron to configure it before he or she starts the training process. We would like them to be able to configure two variables:
 
 - The number of epochs, or rounds, before the model stops the training process.
-- The learning rate \[latex\]r\[/latex\], i.e. the determinant for the size of the weight updates.
+- The learning rate $r$, i.e. the determinant for the size of the weight updates.
 
 We'll do that as follows:
 
@@ -245,21 +245,21 @@ All right, the next part - the training definition:
     return self
 ```
 
-The definition it self must once again have a `self` reference, which is provided. However, it also requires the engineer to pass two attributes: `X`, or the set of input samples \[latex\]x\_1 ... x\_n\[/latex\], as well as `D`, which are their corresponding targets.
+The definition it self must once again have a `self` reference, which is provided. However, it also requires the engineer to pass two attributes: `X`, or the set of input samples $x\_1 ... x\_n$, as well as `D`, which are their corresponding targets.
 
-Within the definition, we first initialize the weights vector as discussed above. That is, we assign it with zeroes, and it is `num_features + 1` long. This way, it can both capture the features \[latex\]x\_1 ... x\_n\[/latex\] as well as the bias \[latex\]b\[/latex\] which was assigned to \[latex\]x\_0\[/latex\].
+Within the definition, we first initialize the weights vector as discussed above. That is, we assign it with zeroes, and it is `num_features + 1` long. This way, it can both capture the features $x\_1 ... x\_n$ as well as the bias $b$ which was assigned to $x\_0$.
 
 Next, the training process. This starts by creating a `for` statement that simply ensures that the program iterates over the `number_of_epochs` that were configured by the user.
 
-During one iteration, or epoch, every combination of \[latex\](x\_i, d\_i)\[/latex\] is iterated over. In line with the pseudocode algorithm, a prediction is generated, the difference is computed, and the weights are updated accordingly.
+During one iteration, or epoch, every combination of $(x\_i, d\_i)$ is iterated over. In line with the pseudocode algorithm, a prediction is generated, the difference is computed, and the weights are updated accordingly.
 
 After the training process has finished, the model itself is returned. This is not necessary, but is relatively convenient for later use by the ML engineer.
 
 ### Generating predictions
 
-Finally, the model must also be capable of generating predictions, i.e. computing the dot product \[latex\]\\textbf{w}\\cdot\\textbf{x}\[/latex\] (where \[latex\]b\[/latex\] is included as \[latex\]w\_0\[/latex\]).
+Finally, the model must also be capable of generating predictions, i.e. computing the dot product $\\textbf{w}\\cdot\\textbf{x}$ (where $b$ is included as $w\_0$).
 
-We do this relatively elegantly, thanks to another example of the Perceptron algorithm provided by [Sebastian Raschka](https://sebastianraschka.com/Articles/2015_singlelayer_neurons.html#artificial-neurons-and-the-mcculloch-pitts-model): we first compute the dot product for all weights except \[latex\]w\_0\[/latex\] and subsequently add this one as the bias weight. Most elegantly, however, is how the prediction is generated: with `np.where`. This allows an engineer to generate predictions for a batch of samples \[latex\]x\_i\[/latex\] at once. It looks as follows:
+We do this relatively elegantly, thanks to another example of the Perceptron algorithm provided by [Sebastian Raschka](https://sebastianraschka.com/Articles/2015_singlelayer_neurons.html#artificial-neurons-and-the-mcculloch-pitts-model): we first compute the dot product for all weights except $w\_0$ and subsequently add this one as the bias weight. Most elegantly, however, is how the prediction is generated: with `np.where`. This allows an engineer to generate predictions for a batch of samples $x\_i$ at once. It looks as follows:
 
 ```
   # Generate prediction

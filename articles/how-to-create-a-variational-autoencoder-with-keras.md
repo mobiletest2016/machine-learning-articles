@@ -41,7 +41,7 @@ Contrary to a [normal autoencoder](https://github.com/mobiletest2016/machine-lea
 
 [![](images/vae-encoder-decoder-1024x229.png)]
 
-Sampling from the distribution gives a point in latent space that, given the distribution, is oriented around some mean value \[latex\]\\mu\[/latex\] and standard deviation \[latex\]\\sigma\[/latex\], like the points in this two-dimensional distribution:
+Sampling from the distribution gives a point in latent space that, given the distribution, is oriented around some mean value $\\mu$ and standard deviation $\\sigma$, like the points in this two-dimensional distribution:
 
 [![](images/MultivariateNormal.png)]
 
@@ -162,7 +162,7 @@ Trainable params: 24,641
 Non-trainable params: 1,704
 ```
 
-From the final summary, we can see that indeed, the VAE takes in samples of shape \[latex\](28, 28, 1)\[/latex\] and returns samples in the same format. Great! 😊
+From the final summary, we can see that indeed, the VAE takes in samples of shape $(28, 28, 1)$ and returns samples in the same format. Great! 😊
 
 Let's now start working on our model. Open up your Explorer / Finder, navigate to some folder, and create a new Python file, e.g. `variational_autoencoder.py`. Now, open this file in your code editor, and let's start coding! 😎
 
@@ -291,13 +291,13 @@ Let's now take a look at the individual lines of code in more detail.
 
 - The first layer is the `Input` layer. It accepts data with `input_shape = (28, 28, 1)` and is named _encoder\_input_. It's actually a pretty dumb layer, haha 😂
 - Next up is a [two-dimensional convolutional layer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/convolutional-neural-networks-and-their-components-for-computer-vision.md), or Conv2D in Keras terms. It learns 8 filters by deploying a 3 x 3 kernel which it convolves over the input. It has a stride of two which means that it skips over the input during the convolution as well, speeding up the learning process. It employs 'same' padding and [ReLU activation](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md). Do note that officially, it's best to use [He init](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/he-xavier-initialization-activation-functions-choose-wisely.md) with ReLU activating layers. However, since the dataset is relatively small, it shouldn't be too much of a problem if you don't.
-- Subsequently, we use Batch Normalization. This layer ensures that the outputs of the Conv2D layer that are input to the next Conv2D layer have a steady mean and variance, likely \[latex\]\\mu = 0.0, \\sigma = 1.0\[/latex\] (plus some \[latex\]\\epsilon\[/latex\], an error term to ensure numerical stability). This benefits the learning process.
+- Subsequently, we use Batch Normalization. This layer ensures that the outputs of the Conv2D layer that are input to the next Conv2D layer have a steady mean and variance, likely $\\mu = 0.0, \\sigma = 1.0$ (plus some $\\epsilon$, an error term to ensure numerical stability). This benefits the learning process.
 - Once again, a Conv2D layer. It learns 16 filters and for the rest is equal to the first Conv2D layer.
 - BatchNormalization once more.
 - Next up, a `Flatten` layer. It's a relatively dumb layer too, and only serves to flatten the multidimensional data from the convolutional layers into one-dimensional shape. This has to be done because the densely-connected layers that we use next require data to have this shape.
 - The next layer is a Dense layer with 20 output neurons. It's the autoencoder bottleneck we've been talking about.
 - BatchNormalization once more.
-- The next two layers, `mu` and `sigma`, are actually not separate from each other - look at the previous layer they are linked to (both `x`, i.e. the Dense(20) layer). The first outputs the mean values \[latex\]\\mu\[/latex\] of the encoded input and the second one outputs the stddevs \[latex\]\\sigma\[/latex\]. With these, we can sample the random variables that constitute the point in latent space onto which some input is mapped.
+- The next two layers, `mu` and `sigma`, are actually not separate from each other - look at the previous layer they are linked to (both `x`, i.e. the Dense(20) layer). The first outputs the mean values $\\mu$ of the encoded input and the second one outputs the stddevs $\\sigma$. With these, we can sample the random variables that constitute the point in latent space onto which some input is mapped.
 
 That's for the layers of our encoder 😄 The next step is to retrieve the shape of the _final Conv2D output_:
 
@@ -316,9 +316,9 @@ While for a mathematically sound explanation of the so-called "reparameterizatio
 
 If you use neural networks (or, to be more precise, gradient descent) for optimizing the variational autoencoder, you effectively minimize some expected loss value, which can be estimated with Monte-Carlo techniques (Huang, n.d.). However, this requires that the loss function is differentiable, which is not necessarily the case, because it is dependent on the parameter of some probability distribution that we don't know about. In this case, it's possible to rewrite the equation, but then it _no longer has the form of an expectation_, making it impossible to use the Monte-Carlo techniques usable before.
 
-However, if we can _reparameterize_ the sample fed to the function into the shape \[latex\]\\mu + \\sigma^2 \\times \\epsilon\[/latex\], it now becomes possible to use gradient descent for estimating the gradients accurately (Gunderson, n.d.; Huang, n.d.).
+However, if we can _reparameterize_ the sample fed to the function into the shape $\\mu + \\sigma^2 \\times \\epsilon$, it now becomes possible to use gradient descent for estimating the gradients accurately (Gunderson, n.d.; Huang, n.d.).
 
-And that's precisely what we'll do in our code. We "sample" the value for \[latex\]z\[/latex\] from the computed \[latex\]\\mu\[/latex\] and \[latex\]\\sigma\[/latex\] values by resampling into `mu + K.exp(sigma / 2) * eps`.
+And that's precisely what we'll do in our code. We "sample" the value for $z$ from the computed $\\mu$ and $\\sigma$ values by resampling into `mu + K.exp(sigma / 2) * eps`.
 
 ```
 # Define sampling with reparameterization trick
@@ -467,7 +467,7 @@ Some credits first, though: the code for the two visualizers was originally crea
 
 ### Visualizing inputs mapped onto latent space
 
-Visualizing inputs mapped onto the latent space is simply taking some input data, feeding it to the encoder, taking the mean values \[latex\]\\mu\[/latex\] for the predictions, and plotting them in a scatter plot:
+Visualizing inputs mapped onto the latent space is simply taking some input data, feeding it to the encoder, taking the mean values $\\mu$ for the predictions, and plotting them in a scatter plot:
 
 ```
 # =================
@@ -489,7 +489,7 @@ def viz_latent_space(encoder, data):
 
 ### Visualizing samples from the latent space
 
-Visualizing samples from the latent space entails a bit more work. First, we'll have to create a figure filled with zeros, as well as a linear space around \[latex\](\\mu = 0, \\sigma = 1)\[/latex\] we can iterate over (from \[latex\]domain = range = \[-4, +4\]\[/latex\]). We take a sample from the grid (determined by our current \[latex\]x\[/latex\] and \[latex\]y\[/latex\] positions) and feed it to the decoder. We then replace the zeros in our `figure` with the output, and finally plot the entire figure on screen. This includes reshaping one-dimensional (i.e., grayscale) input if necessary.
+Visualizing samples from the latent space entails a bit more work. First, we'll have to create a figure filled with zeros, as well as a linear space around $(\\mu = 0, \\sigma = 1)$ we can iterate over (from $domain = range = \[-4, +4\]$). We take a sample from the grid (determined by our current $x$ and $y$ positions) and feed it to the decoder. We then replace the zeros in our `figure` with the output, and finally plot the entire figure on screen. This includes reshaping one-dimensional (i.e., grayscale) input if necessary.
 
 ```
 
@@ -738,7 +738,7 @@ Training the model for 100 epochs yields this visualization of the latent space:
 
 [![](images/mnist_100_latentspace.png)]
 
-As we can see, around \[latex\](0, 0)\[/latex\] our latent space is pretty continuous as well as complete. Somewhere around \[latex\](0, -1.5)\[/latex\] we see some holes, as well as near the edges (e.g. \[latex\](3, -3)\[/latex\]). We can see these issues in the actual sampling too:
+As we can see, around $(0, 0)$ our latent space is pretty continuous as well as complete. Somewhere around $(0, -1.5)$ we see some holes, as well as near the edges (e.g. $(3, -3)$). We can see these issues in the actual sampling too:
 
 [![](images/mnist_digits.png)]
 

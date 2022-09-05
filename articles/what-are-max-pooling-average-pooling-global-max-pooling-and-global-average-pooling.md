@@ -38,9 +38,9 @@ Suppose that you're training a [convolutional neural network](https://github.com
 
 [![](images/CNN-1.jpg)]
 
-The inputs for this layer are images, of height \[latex\]H\[/latex\], width \[latex\]W\[/latex\] and with three channels. Thus, they're likely RGB images. Using a 3x3x3 kernel, a convolution operation is performed over the input image, generating \[latex\]N\[/latex\] so-called "feature maps" of size \[latex\]H\_{fm} \\times W\_{fm}\[/latex\]. One feature map learns one particular feature present in the image. Through [activating](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-do-convnets-see-visualizing-filters-with-activation-maximization.md), these feature maps contribute to the outcome prediction during training, and for new data as well. \[latex\]N\[/latex\] can be configured by the machine learning engineer prior to starting the training process.
+The inputs for this layer are images, of height $H$, width $W$ and with three channels. Thus, they're likely RGB images. Using a 3x3x3 kernel, a convolution operation is performed over the input image, generating $N$ so-called "feature maps" of size $H\_{fm} \\times W\_{fm}$. One feature map learns one particular feature present in the image. Through [activating](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-do-convnets-see-visualizing-filters-with-activation-maximization.md), these feature maps contribute to the outcome prediction during training, and for new data as well. $N$ can be configured by the machine learning engineer prior to starting the training process.
 
-In the case of the SVHN dataset mentioned above, where the images are 32 x 32 pixels, the first convolution operation (assuming a stride of 1 and no padding whatsoever) would produce feature maps of 30 x 30 pixels; say we set \[latex\]N = 64\[/latex\], then 64 such maps would be produced in this first layer (Chollet, 2017).
+In the case of the SVHN dataset mentioned above, where the images are 32 x 32 pixels, the first convolution operation (assuming a stride of 1 and no padding whatsoever) would produce feature maps of 30 x 30 pixels; say we set $N = 64$, then 64 such maps would be produced in this first layer (Chollet, 2017).
 
 ### Downsampling your inputs
 
@@ -83,9 +83,9 @@ Suppose that this is one of the 4 x 4 pixels feature maps from our ConvNet:
 
 [![](images/Max-Pooling.png)]
 
-If we want to downsample it, we can use a pooling operation what is known as "max pooling" (more specifically, this is _two-dimensional_ max pooling). In this pooling operation, a \[latex\]H \\times W\[/latex\] "block" slides over the input data, where \[latex\]H\[/latex\] is the height and \[latex\]W\[/latex\] the width of the block. The stride (i.e. how much it steps during the sliding operation) is often equal to the pool size, so that its effect equals a reduction in height and width.
+If we want to downsample it, we can use a pooling operation what is known as "max pooling" (more specifically, this is _two-dimensional_ max pooling). In this pooling operation, a $H \\times W$ "block" slides over the input data, where $H$ is the height and $W$ the width of the block. The stride (i.e. how much it steps during the sliding operation) is often equal to the pool size, so that its effect equals a reduction in height and width.
 
-For each block, or "pool", the operation simply involves computing the \[latex\]max\[/latex\] value, like this:
+For each block, or "pool", the operation simply involves computing the $max$ value, like this:
 
 [![](images/Max-Pooling-1.png)]
 

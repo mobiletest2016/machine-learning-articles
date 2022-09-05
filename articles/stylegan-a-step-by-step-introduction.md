@@ -55,12 +55,12 @@ The figure below shows you the high-level architecture of StyleGAN, as found in 
 
 There are two vertical blocks involved:
 
-- The **mapping network**, called \[latex\]f\[/latex\], is visible on the left. It maps a (normalized) latent vector \[latex\]\\textbf{z} \\in Z\[/latex\] into another vector \[latex\]\\textbf{w}\[/latex\] from an intermediate latent space, called \[latex\]W\[/latex\]. This mapping network is a simple set of fully-connected feedforward layers.
-- The **synthesis network**, called \[latex\]g\[/latex\] and visible on the right, uses \[latex\]\\textbf{w}\[/latex\] to generate a "style" that controls the image synthesis process. It begins with a Constant, \[latex\]4 \\times 4 \\times 512\[/latex\] dimensional vector. Scaled noise samples (\[latex\]\\text{B}\[/latex\]) are generated and added to this Constant tensor. Subsequently, the style (\[latex\]\\text{A}\[/latex\]) is added via Adaptive Instance Normalization (AdaIN) operations, after which a convolution operation is applied. This is followed by another noise addition and AdaIN-based styling operation. We then arrive at an image at a 4x4 pixel resolution. In the next block, the image is upsampled, and the same is performed again, arriving at an 8x8 pixel resolution. This is repeated until the image is 1024x1024 pixels.
+- The **mapping network**, called $f$, is visible on the left. It maps a (normalized) latent vector $\\textbf{z} \\in Z$ into another vector $\\textbf{w}$ from an intermediate latent space, called $W$. This mapping network is a simple set of fully-connected feedforward layers.
+- The **synthesis network**, called $g$ and visible on the right, uses $\\textbf{w}$ to generate a "style" that controls the image synthesis process. It begins with a Constant, $4 \\times 4 \\times 512$ dimensional vector. Scaled noise samples ($\\text{B}$) are generated and added to this Constant tensor. Subsequently, the style ($\\text{A}$) is added via Adaptive Instance Normalization (AdaIN) operations, after which a convolution operation is applied. This is followed by another noise addition and AdaIN-based styling operation. We then arrive at an image at a 4x4 pixel resolution. In the next block, the image is upsampled, and the same is performed again, arriving at an 8x8 pixel resolution. This is repeated until the image is 1024x1024 pixels.
 
-Clearly, we can already see a big difference between classic GANs and StyleGAN. The latent vector \[latex\]\\textbf{z}\[/latex\] is no longer used directly in the image synthesis process. Interestingly, and even surprising the authors of the StyleGAN paper, starting with a Constant tensor was possible and even produced good results.
+Clearly, we can already see a big difference between classic GANs and StyleGAN. The latent vector $\\textbf{z}$ is no longer used directly in the image synthesis process. Interestingly, and even surprising the authors of the StyleGAN paper, starting with a Constant tensor was possible and even produced good results.
 
-Rather than being the foundation of the image synthesis process, \[latex\]\\textbf{z}\[/latex\] is now used to generate styles that _control_ the synthesis process.
+Rather than being the foundation of the image synthesis process, $\\textbf{z}$ is now used to generate styles that _control_ the synthesis process.
 
 If you do not understand everything that was written above, don't worry. It's an extreme summarization and only highlights what happens at a high level. If you want to dive into StyleGAN in depth, let's now spend some time looking at the details. If, however, you're having trouble understanding basic GAN concepts such as a _latent space_ or _latent vector_, it may be best to read the [introduction to GANs article](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/generative-adversarial-networks-a-gentle-introduction.md) first.
 
@@ -76,15 +76,15 @@ We will now look at the mapping and synthesis networks and their individual comp
 
 ### The mapping network f
 
-We start with the mapping network, also called \[latex\]f\[/latex\]. It takes a latent vector \[latex\]\\textbf{z}\[/latex\] sampled from the original latent distribution and performs a learned mapping to an intermediate latent vector, \[latex\]\\textbf{w}\[/latex\]. This mapping is performed with a stack of fully-connected layers in a neural network.
+We start with the mapping network, also called $f$. It takes a latent vector $\\textbf{z}$ sampled from the original latent distribution and performs a learned mapping to an intermediate latent vector, $\\textbf{w}$. This mapping is performed with a stack of fully-connected layers in a neural network.
 
 #### Sampling latent vectors z
 
 ![](images/sample_normalization.png)
 
-Before any forward pass - whether during training or inference - the latent vector \[latex\]\\textbf{z}\[/latex\] is **sampled from the original latent distribution**.
+Before any forward pass - whether during training or inference - the latent vector $\\textbf{z}$ is **sampled from the original latent distribution**.
 
-A standard normal distribution is used for mapping the latent vectors \[latex\]\\textbf{z}\[/latex\] in StyleGAN. This is a common distribution to sample from when it comes to GANs.
+A standard normal distribution is used for mapping the latent vectors $\\textbf{z}$ in StyleGAN. This is a common distribution to sample from when it comes to GANs.
 
 According to the paper, its latent space is 512-dimensional (Karras et al., 2018).
 
@@ -96,7 +96,7 @@ If you use a _standard normal_ _distribution_ in your StyleGAN implementation, i
 
 #### The stack of fully-connected feedforward layers to generate intermediate latent vector w
 
-Your (potentially normalized) sampled latent vector \[latex\]\\textbf{z}\[/latex\] is now ready for input. **It's fed to the actual _mapping network_**, which is a neural network with 8 trainable [fully connected (or Dense) layers](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-basic-mlp-classifier-with-the-keras-sequential-api.md) a.k.a. a Multilayer Perceptron or MLP. It produces another vector, an intermediate latent vector \[latex\]\\textbf{w}\[/latex\]. This is the latent vector that will be used by the synthesis network for generating the output image.
+Your (potentially normalized) sampled latent vector $\\textbf{z}$ is now ready for input. **It's fed to the actual _mapping network_**, which is a neural network with 8 trainable [fully connected (or Dense) layers](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-basic-mlp-classifier-with-the-keras-sequential-api.md) a.k.a. a Multilayer Perceptron or MLP. It produces another vector, an intermediate latent vector $\\textbf{w}$. This is the latent vector that will be used by the synthesis network for generating the output image.
 
 The mapping is nonlinear, meaning that each fully-connected layer has an activation function, typically a ReLU or LeakyReLU one.
 
@@ -114,23 +114,23 @@ For this, we'll have to take a look at a concept called _entanglement_. When som
 
 If a latent space were _disentangled_, it would contain of linear subspaces (Karras et al., 2018). In normal English, this means that there are parts of the dimensions of the latent space that control certain aspects of the image.
 
-For example, if our 512-dimensional latent space \[latex\]Z\[/latex\] would be fully disentangled and were to be part of a GAN trained on faces, dimension 1 would control glasses, dimension 2 hair, dimension 3 face shape, and so on. By simply moving in one dimension, one would have full control over a minor part, and generating images of choice would be really easy.
+For example, if our 512-dimensional latent space $Z$ would be fully disentangled and were to be part of a GAN trained on faces, dimension 1 would control glasses, dimension 2 hair, dimension 3 face shape, and so on. By simply moving in one dimension, one would have full control over a minor part, and generating images of choice would be really easy.
 
 Unfortunately, GANs usually don't have disentangled spaces. We saw it before - classic GANs offer the machine learning engineer little control over its latent space. This is a simpler way of writing that latent spaces are entangled.
 
-The authors propose that having a mapping network convert the originally sampled latent vector \[latex\]\\textbf{z}\[/latex\] into an intermediate vector \[latex\]\\textbf{w}\[/latex\] from a learned and intermediate latent distribution \[latex\]W\[/latex\] ensures that sampling for the synthesis process is not done from a _fixed distribution_ - such a the standard normal distribution with all its characteristics and ideosyncrasies. Rather, it is performed from a _learned distribution_. This learned distribution is learned in such a way, that it is as disentangled as possible, which originates from pressure from the Generator because it produces better outcomes doing so (Karras et al., 2018).
+The authors propose that having a mapping network convert the originally sampled latent vector $\\textbf{z}$ into an intermediate vector $\\textbf{w}$ from a learned and intermediate latent distribution $W$ ensures that sampling for the synthesis process is not done from a _fixed distribution_ - such a the standard normal distribution with all its characteristics and ideosyncrasies. Rather, it is performed from a _learned distribution_. This learned distribution is learned in such a way, that it is as disentangled as possible, which originates from pressure from the Generator because it produces better outcomes doing so (Karras et al., 2018).
 
 Indeed, having such a network improves all metrics that describe distribution entanglement and the eventual synthesis performed from the learned latent distribution compared with the data distribution from the real images. As 8 layers in the mapping network produced the best result, 8 layers are chosen (Karras et al., 2018).
 
 #### So, in other words
 
-- A latent vector \[latex\]\\textbf{z}\[/latex\] is sampled from a chosen distribution, usually a standard normal distribution, and is 512-dimensional.
-- It's fed through a 8-layer nonlinear MLP, producing a 512-dimensional intermediate latent vector \[latex\]\\textbf{w}\[/latex\] that will be used by the synthesis network to control the styles of the image being generated.
+- A latent vector $\\textbf{z}$ is sampled from a chosen distribution, usually a standard normal distribution, and is 512-dimensional.
+- It's fed through a 8-layer nonlinear MLP, producing a 512-dimensional intermediate latent vector $\\textbf{w}$ that will be used by the synthesis network to control the styles of the image being generated.
 - The nonlinear learned mapping is necessary to reduce entanglement of the latent space used by the synthesis network (generator). This allows StyleGAN to significantly improve control over the latent space as well as to produce better results.
 
 ### The synthesis network g
 
-Now that we understand why the _mapping network_ produces an intermediate latent vector, and how it does that, it's time to see how it's used for generating the output image. In other words, let's take a look at the **synthesis network**. This network is also called \[latex\]g\[/latex\].
+Now that we understand why the _mapping network_ produces an intermediate latent vector, and how it does that, it's time to see how it's used for generating the output image. In other words, let's take a look at the **synthesis network**. This network is also called $g$.
 
 ![](images/StyleGAN.drawio-1.png)
 
@@ -195,11 +195,11 @@ This vector is fed to what is called **A** in the overview below - the learned _
 > 
 > https://en.wikipedia.org/wiki/Affine\_transformation
 
-If, for example we would have the vector \[latex\]\\begin{bmatrix}2 \\\\ 3 \\end{bmatrix}\[/latex\], an affine transform would be able to produce vector \[latex\]\\begin{bmatrix}4 \\\\ 6 \\end{bmatrix}\[/latex\] (a scale 2 with the same _lines_ in space but only longer, and hence no _distances_ preserved).
+If, for example we would have the vector $\\begin{bmatrix}2 \\\\ 3 \\end{bmatrix}$, an affine transform would be able to produce vector $\\begin{bmatrix}4 \\\\ 6 \\end{bmatrix}$ (a scale 2 with the same _lines_ in space but only longer, and hence no _distances_ preserved).
 
 Conceptually, this means that affine transforms can _change the image components without overhauling the image_, because the affine transformation outputs must be "connected with" the input, being the latent vector **w**.
 
-The input vector **w** is transformed into style \[latex\]\\textbf{y}\[/latex\] where \[latex\]\\textbf{y} = (\\textbf{y}\_s, \\textbf{y}\_b)\[/latex\]. These are the _scale_ and _bias_ components of the style, respectively (and you will learn below how they are used). They have the same shape as the synthesis Tensor they will control.
+The input vector **w** is transformed into style $\\textbf{y}$ where $\\textbf{y} = (\\textbf{y}\_s, \\textbf{y}\_b)$. These are the _scale_ and _bias_ components of the style, respectively (and you will learn below how they are used). They have the same shape as the synthesis Tensor they will control.
 
 The affine transformations are learned during training and hence are the components that can be used to _control_ the image synthesis process for the lower-granularity components, such as the hair style, skin color, and so forth - whereas, remember, the randomness is used to control the _position_ of for example the indivudial hairs.
 
@@ -218,9 +218,9 @@ This is what AdaIN looks like:
 
 ![](images/image-2.png)
 
-Here, \[latex\]\\textbf{x}\_i\[/latex\] is the \[latex\]i\[/latex\]th feature map from the input Tensor (i.e., the \[latex\]i\[/latex\]th element from the vector), and \[latex\]\\textbf{y}\[/latex\] is the affine transformation generated style.
+Here, $\\textbf{x}\_i$ is the $i$th feature map from the input Tensor (i.e., the $i$th element from the vector), and $\\textbf{y}$ is the affine transformation generated style.
 
-You can see in the middle part that the feature map is first normalized (or rather, [standardized](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-normalize-or-standardize-a-dataset-in-python.md)) to zero mean, unit variance - and subsequently _scaled_ by the \[latex\]i\[/latex\]th element from the style's scale component, and the \[latex\]i\[/latex\]th bias component is added subsequently.
+You can see in the middle part that the feature map is first normalized (or rather, [standardized](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-normalize-or-standardize-a-dataset-in-python.md)) to zero mean, unit variance - and subsequently _scaled_ by the $i$th element from the style's scale component, and the $i$th bias component is added subsequently.
 
 In other words, AdaIN ensures that the generated _styles_ can **control** the (normalized) synthesis input by changing scale and/or bias. This is how styles control the image synthesis process on the noise-added input Tensor!
 

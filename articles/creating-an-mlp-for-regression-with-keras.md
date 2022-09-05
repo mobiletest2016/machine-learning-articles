@@ -263,7 +263,7 @@ We then specify three densely-connected layers of neurons: one with 16 outputs, 
 
 The input layer is specified by the input shape and therefore contains 3 neurons; one per input feature.
 
-Note that we're using ReLU based activation because it is [one of the standard activation functions](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-swish-could-perform-better-than-relu.md/#todays-activation-functions) used today. However, note as well that for the final layer we're no longer using `Softmax`, as with the MLP classifier. Instead, we're using the identity function or \[latex\]f(x) = x\[/latex\] for generating the prediction. Using the linear function allows us to generate a real-valued or numeric prediction, which is exactly what we need.
+Note that we're using ReLU based activation because it is [one of the standard activation functions](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-swish-could-perform-better-than-relu.md/#todays-activation-functions) used today. However, note as well that for the final layer we're no longer using `Softmax`, as with the MLP classifier. Instead, we're using the identity function or $f(x) = x$ for generating the prediction. Using the linear function allows us to generate a real-valued or numeric prediction, which is exactly what we need.
 
 ### Hyperparameter configuration and fitting the data
 
@@ -279,12 +279,12 @@ Contrary to the MLP based classifier, in which we used categorical crossentropy 
 
 Instead, we want to generate a real-valued or numeric prediction and see how much it deviates from the actual outcome.
 
-Some loss functions are available for this, which are based on the error \[latex\]\\text{E = prediction - real outcome}\[/latex\] (Grover, 2019). Those include:
+Some loss functions are available for this, which are based on the error $\\text{E = prediction - real outcome}$ (Grover, 2019). Those include:
 
-- The **mean squared error** (MSE), which computes the squared error (\[latex\]error^2\[/latex\]) for all the predictions made, and subsequently averages them by dividing it by the number of predictions.
-- The **mean absolute error** (MAE), which instead of computing the squared error computes the absolute error (\[latex\]|error|\[/latex\]) for all predictions made and subsequently averages them in the same way.
+- The **mean squared error** (MSE), which computes the squared error ($error^2$) for all the predictions made, and subsequently averages them by dividing it by the number of predictions.
+- The **mean absolute error** (MAE), which instead of computing the squared error computes the absolute error ($|error|$) for all predictions made and subsequently averages them in the same way.
 
-To illlustrate how they work, we'll use an example: if there are two errors, e.g. \[latex\]-4\[/latex\] and \[latex\]4\[/latex\], the MSE will produce 16 twice, while the MAE produces 4 twice.
+To illlustrate how they work, we'll use an example: if there are two errors, e.g. $-4$ and $4$, the MSE will produce 16 twice, while the MAE produces 4 twice.
 
 They both have their [benefits and drawbacks](https://heartbeat.fritz.ai/5-regression-loss-functions-all-machine-learners-should-know-4fb140e9d4b0), but generally, the MAE is used in situations in which outliers can be present (Grover, 2019).
 

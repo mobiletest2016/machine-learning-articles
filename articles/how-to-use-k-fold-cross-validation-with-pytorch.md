@@ -46,7 +46,7 @@ After reading this tutorial, you will...
 
 Model evaluation is often performed with a hold-out split, where an often 80/20 split is made and where 80% of your dataset is used for training the model. and 20% for evaluating the model. While this is a simple approach, it is also very naïve, since it assumes that data is representative across the splits, that it's not a time series dataset and that there are no redundant samples within the datasets.
 
-K-fold Cross Validation is a more robust evaluation technique. It splits the dataset in \[latex\]k-1\[/latex\] training batches and 1 testing batch across \[latex\]k\[/latex\] folds, or situations. Using the training batches, you can then train your model, and subsequently evaluate it with the testing batch. This allows you to train the model for multiple times with different dataset configurations. Even better, it allows you to be more confident in your model evaluation results.
+K-fold Cross Validation is a more robust evaluation technique. It splits the dataset in $k-1$ training batches and 1 testing batch across $k$ folds, or situations. Using the training batches, you can then train your model, and subsequently evaluate it with the testing batch. This allows you to train the model for multiple times with different dataset configurations. Even better, it allows you to be more confident in your model evaluation results.
 
 Below, you will see a **full example of using K-fold Cross Validation with PyTorch**, using Scikit-learn's `KFold` functionality. It can be used on the go. If you want to understand things in more detail, however, it's best to continue reading the rest of the tutorial as well! 🚀
 
@@ -272,7 +272,7 @@ And precisely that is what **K-fold Cross Validation** is all about.
 
 ![](images/KTraintest.png)
 
-In K-fold Cross Validation, you set a number \[latex\]k\[/latex\] to any integer value \[latex\]> 1\[/latex\], and \[latex\]k\[/latex\] splits will be generated. Each split has \[latex\]1/k\[/latex\] samples that belong to a test dataset, while the rest of your data can be used for training purposes.
+In K-fold Cross Validation, you set a number $k$ to any integer value $> 1$, and $k$ splits will be generated. Each split has $1/k$ samples that belong to a test dataset, while the rest of your data can be used for training purposes.
 
 As in each split a different part of the training data will be used for validation purposes, you effectively train and evaluate your model multiple times, allowing you to tell whether it works with more confidence than with a simple hold-out split.
 
@@ -390,7 +390,7 @@ Actually, it's that easy! :)
 
 Below, we define some preparation steps that are executed prior to starting the training process across the set of folds. You can see that we run everything within the `__main__` name, meaning that this code only runs when we execute the Python file. In this part, we do the following things:
 
-1. We set the configuration options. We'll generate 5 folds (by setting \[latex\]k = 5\[/latex\]), we train for 1 epoch (normally, this value is much higher, but here we only want to illustrate K-fold CV to work), and we set `nn.CrossEntropyLoss` as our loss function.
+1. We set the configuration options. We'll generate 5 folds (by setting $k = 5$), we train for 1 epoch (normally, this value is much higher, but here we only want to illustrate K-fold CV to work), and we set `nn.CrossEntropyLoss` as our loss function.
 2. We define a dictionary that will store the results for every fold.
 3. We set a fixed random number seed, meaning that all our pseudo random number initializers will be initialized using the same initialization token.
 
@@ -415,7 +415,7 @@ We then load the MNIST dataset. If you're used to working with the PyTorch datas
 
 We simply merge together the `train=True` and `train=False` parts of the MNIST dataset, which is already split in a simple hold-out split by PyTorch's `torchvision`.
 
-And we don't want that - recall that K-fold Cross Validation generates the train/test splits across \[latex\]k\[/latex\] folds, where \[latex\]k-1\[/latex\] parts are used for training your model and 1 part for model evaluation.
+And we don't want that - recall that K-fold Cross Validation generates the train/test splits across $k$ folds, where $k-1$ parts are used for training your model and 1 part for model evaluation.
 
 To solve this, we simply load both parts, and then concatenate them in a `ConcatDataset` object. Don't worry about shuffling the data - you'll see that this is taken care of next.
 
@@ -872,7 +872,7 @@ I'd love to know what you think about this too, as this is a strategy that confu
 
 ## Recap
 
-In this tutorial, we looked at applying K-fold Cross Validation with the PyTorch framework for deep learning. We saw that K-fold Cross Validation generates \[latex\]k\[/latex\] different situations called _folds_ using your dataset, where the data is split in \[latex\]k-1\[/latex\] training batches and 1 test batch per fold. K-fold Cross Validation can be used for evaluating your PyTorch model more thoroughly, giving you more confidence in the fact that performance hasn't been skewed by a weird outlier in your dataset.
+In this tutorial, we looked at applying K-fold Cross Validation with the PyTorch framework for deep learning. We saw that K-fold Cross Validation generates $k$ different situations called _folds_ using your dataset, where the data is split in $k-1$ training batches and 1 test batch per fold. K-fold Cross Validation can be used for evaluating your PyTorch model more thoroughly, giving you more confidence in the fact that performance hasn't been skewed by a weird outlier in your dataset.
 
 Besides theoretical stuff, we also provided a PyTorch example that shows how you can apply K-fold Cross Validation with the framework combined with Scikit-learn's `KFold` functionality. I hope that you have learned something from it. If you did, please feel free to leave a message in the comments section below 💬 I'd love to hear from you.
 

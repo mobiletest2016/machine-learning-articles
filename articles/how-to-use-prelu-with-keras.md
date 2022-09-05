@@ -53,7 +53,7 @@ With traditional activation functions, such as the Sigmoid function, this gradie
 
 [![](images/sigmoid_deriv-1024x511.png)]
 
-In fact, the maximum output for any input is \[latex\]\\approx 0.25\[/latex\], while in most cases it is even smaller.
+In fact, the maximum output for any input is $\\approx 0.25$, while in most cases it is even smaller.
 
 A gradient is always generated with respect to the error generated based on the predictions at the model's tail. For upstream layers, this means that _all the gradients of the layers in between layer X and the error must be included_. In mathematical terms, this means that they are chained - multiplied - by the backpropagation algorithm, for finding the gradient at some layer. This is exactly the problem: when the gradients are 0.25 at max, chaining four gradients results in a 0.25^4 = 0.00390625 gradient at max.
 
@@ -69,7 +69,7 @@ The gradient is either _zero_ or _one_. No more vanishing gradients! 😁
 
 ...but I'm sorry to spoil the fun here 😐
 
-Can you imagine what happens when the input at some layer is \[latex\]\\leq 0\[/latex\]?
+Can you imagine what happens when the input at some layer is $\\leq 0$?
 
 Indeed, the gradient for that layer is zero - **and so are all the gradients for the upstream layers, as the zero is included in the chain from error to layer gradient**.
 
@@ -88,11 +88,11 @@ Kaiming He and others, in one of the landmark papers of machine learning researc
 - Tremendous improvements in recognition performance have been reported for computer vision models in the years prior to the paper.
 - One of the primary drivers of these improvements is the ReLU activation function, which is a significant improvement over traditional Sigmoid and Tanh.
 - Nevertheless, ReLU is not problem-free.
-- One attempt to fix this problem - with [Leaky ReLU](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/using-leaky-relu-with-keras.md) - is not sufficient: while it indeed resolves the _dying ReLU problem_ by setting the inputs \[latex\]<= 0\[/latex\] to very small but nonzero values, empirical testing hasn't resulted in significant performance improvements.
+- One attempt to fix this problem - with [Leaky ReLU](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/using-leaky-relu-with-keras.md) - is not sufficient: while it indeed resolves the _dying ReLU problem_ by setting the inputs $<= 0$ to very small but nonzero values, empirical testing hasn't resulted in significant performance improvements.
 
-The authors argue that this might occur because the \[latex\]\\alpha\[/latex\] parameter, which configures the steepness of the nonzero negative outputs, must be set by the user before starting the training process.
+The authors argue that this might occur because the $\\alpha$ parameter, which configures the steepness of the nonzero negative outputs, must be set by the user before starting the training process.
 
-Why, they argued, can't this parameter be learnt during training? And, even better, why - for every neuron - can't we learn \[latex\]\\alpha\[/latex\] _per input element_, instead of a global alpha for all the input dimensions?
+Why, they argued, can't this parameter be learnt during training? And, even better, why - for every neuron - can't we learn $\\alpha$ _per input element_, instead of a global alpha for all the input dimensions?
 
 This is what **Parametric Rectified Linear Unit** or **PReLU** is all about. Being a generalization of Leaky ReLU, the alpha value need no longer to be configured by the user, but is learnt during training instead. It is therefore entirely dependent on the data, and not on the engineer's guess, and hence it is estimated that this variant of ReLU both avoids the dying ReLU problem and shows performance improvements.
 
@@ -102,19 +102,19 @@ PReLU is actually not so different from [traditional ReLU](https://github.com/mo
 
 $$\\begin{equation} f(x\_i) = \\begin{cases} x\_i, & \\text{if}\\ x\_i > 0 \\\\ \\alpha\_ix\_i, & \\text{otherwise} \\\\ \\end{cases} \\end{equation}$$
 
-Note that \[latex\]x\_i\[/latex\] is just one feature from the feature vector \[latex\]\\textbf{x}\[/latex\]. As the authors argue: "\[t\]he subscript _i_ in \[latex\]\\alpha\_i\[/latex\] indicates that we allow the nonlinear activation to vary on different channels" (He et al., 2015). This is called **channel-wise** PReLU and is the default setting. If you choose to learn the same \[latex\]\\alpha\[/latex\] for all features, you use what is known as **channel-shared** PReLU (He et al., 2015).
+Note that $x\_i$ is just one feature from the feature vector $\\textbf{x}$. As the authors argue: "\[t\]he subscript _i_ in $\\alpha\_i$ indicates that we allow the nonlinear activation to vary on different channels" (He et al., 2015). This is called **channel-wise** PReLU and is the default setting. If you choose to learn the same $\\alpha$ for all features, you use what is known as **channel-shared** PReLU (He et al., 2015).
 
 This brings us to the following insights:
 
-- When all \[latex\]a\_i\[/latex\] values (or the global alpha, if channel-shared PReLU is used) are learnt to **zeros**, PReLU effectively behaves like traditional ReLU.
+- When all $a\_i$ values (or the global alpha, if channel-shared PReLU is used) are learnt to **zeros**, PReLU effectively behaves like traditional ReLU.
 - When they are learnt to _small values_, you effectively have Leaky ReLU (see the image below for an example).
 - In any other case, you benefit from the generalization: you don't have traditional ReLU nor Leaky ReLU, but have a variant that is better suited to your input data.
 
 [![](images/leaky_relu.png)]
 
-Learning the values for \[latex\]\\alpha\[/latex\] takes place by adding a few extra parameters to the network. In computational terms, the effects on resource requirements are negligible, and especially so in the channel-shared variant (meaning that only one parameter needs to be added). Traditional backpropagation is used for computing the alpha gradients, and optimization is performed with [momentum gradient descent](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md/#momentum) (He et al., 2015). In Keras, that would be the optimizer of your choice instead, I'd guess.
+Learning the values for $\\alpha$ takes place by adding a few extra parameters to the network. In computational terms, the effects on resource requirements are negligible, and especially so in the channel-shared variant (meaning that only one parameter needs to be added). Traditional backpropagation is used for computing the alpha gradients, and optimization is performed with [momentum gradient descent](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md/#momentum) (He et al., 2015). In Keras, that would be the optimizer of your choice instead, I'd guess.
 
-As with any set of weights, the \[latex\]\\alpha\[/latex\] values must be initialized when the training process commences. The weight initialization strategy used by the authors is to initialize all \[latex\]\\alpha\[/latex\]s to 0.25. Backprop and the optimizer will then take over.
+As with any set of weights, the $\\alpha$ values must be initialized when the training process commences. The weight initialization strategy used by the authors is to initialize all $\\alpha$s to 0.25. Backprop and the optimizer will then take over.
 
 ### Empirical performance tests by the authors
 
@@ -152,7 +152,7 @@ keras.layers.PReLU(alpha_initializer='zeros', alpha_regularizer=None, alpha_cons
 
 As you can see, the PReLU layer comes with an initializer, regularizer and constraint possibility, as well as something called `shared_axes`:
 
-- With the **initializer**, or `alpha_initializer`, you define how the \[latex\]\\alpha\[/latex\] weights are initialized. You can use any of the [Keras initializers](https://keras.io/initializers/) for this purpose - and even define your own one. He et al. (2015) use \[latex\]\\alpha = 0.25\[/latex\].
+- With the **initializer**, or `alpha_initializer`, you define how the $\\alpha$ weights are initialized. You can use any of the [Keras initializers](https://keras.io/initializers/) for this purpose - and even define your own one. He et al. (2015) use $\\alpha = 0.25$.
 - With the **regularizer**, or `alpha_regularizer`, it's possible to _regulate_ weight swings by applying penalties to outliers. You can use any of the [Keras regularizers](https://keras.io/regularizers.md) for this purpose. He et al. (2015) do not use a regularizer, as they argue that some of them - especially L2 regularization - "tends to push \[alphas\] to zero, and thus biases PReLU towards ReLU". Combined L1 and L2 and/or L1, L2 regularization may also bias the activation function towards [Leaky ReLU](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/using-leaky-relu-with-keras.md) (Uthmān, 2017).
 - With the **constraint**, or `alpha_constraint`, you can set fixed limits to the network parameters during training. You can use any of the [Keras constraints](https://keras.io/constraints/) for this purpose. He et al. (2015) do not use constraints to allow the activation function to be non-monotonic.
 - With **shared\_axes**, you can share axes over space. This is useful when you wish to share axes over e.g. the filters present in ConvNets.

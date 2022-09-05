@@ -150,7 +150,7 @@ Activation functions come to the rescue in this case. Stacked directly after the
 
 ### ReLU, Sigmoid and Tanh are commonly used
 
-There are many activation functions. In fact, any activation function can be used - even \[latex\]f(x) = x\[/latex\], the linear or identity function. While you don't gain anything compared to using no activation function with that function, it shows that pretty much anything is possible when it comes to activation functions.
+There are many activation functions. In fact, any activation function can be used - even $f(x) = x$, the linear or identity function. While you don't gain anything compared to using no activation function with that function, it shows that pretty much anything is possible when it comes to activation functions.
 
 The key consideration that you have to make when creating and using an activation function is the function's computational efficiency. For example, if you would design an activation function that trumps any such function in performance, it doesn't really matter if it is _really_ slow to compute. In those cases, it's more likely that you can gain similar results in the same time span, but then with more iterations and fewer resources.
 

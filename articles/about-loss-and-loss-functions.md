@@ -134,11 +134,11 @@ The **Mean Absolute Percentage Error**, or MAPE, really looks like the MAE, even
 
 ![](images/image-18-1024x269.png)
 
-When using the MAPE, we don't compute the absolute error, but rather, the _mean error percentage with respect to the actual values_. That is, suppose that my prediction is 12 while the actual target is 10, the MAPE for this prediction is \[latex\]| (10 - 12 ) / 10 | = 0.2\[/latex\].
+When using the MAPE, we don't compute the absolute error, but rather, the _mean error percentage with respect to the actual values_. That is, suppose that my prediction is 12 while the actual target is 10, the MAPE for this prediction is $| (10 - 12 ) / 10 | = 0.2$.
 
-Similar to the MAE, we sum the error over all the samples, but subsequently face a different computation: \[latex\]100\\% / n\[/latex\]. This looks difficult, but we can once again separate this computation into more easily understandable parts. More specifically, we can write it as a multiplication of \[latex\]100\\%\[/latex\] and \[latex\]1 / n\[/latex\] instead. When multiplying the latter with the sum, you'll find the same result as dividing it by `n`, which we did with the MAE. That's great.
+Similar to the MAE, we sum the error over all the samples, but subsequently face a different computation: $100\\% / n$. This looks difficult, but we can once again separate this computation into more easily understandable parts. More specifically, we can write it as a multiplication of $100\\%$ and $1 / n$ instead. When multiplying the latter with the sum, you'll find the same result as dividing it by `n`, which we did with the MAE. That's great.
 
-The only thing left now is multiplying the whole with 100%. Why do we do that? Simple: because our _computed error_ is a ratio and not a percentage. Like the example above, in which our error was 0.2, we don't want to find the ratio, but the percentage instead. \[latex\]0.2 \\times 100\\%\[/latex\] is ... unsurprisingly ... \[latex\]20\\%\[/latex\]! Hence, we multiply the mean ratio error with the percentage to find the MAPE! :-)
+The only thing left now is multiplying the whole with 100%. Why do we do that? Simple: because our _computed error_ is a ratio and not a percentage. Like the example above, in which our error was 0.2, we don't want to find the ratio, but the percentage instead. $0.2 \\times 100\\%$ is ... unsurprisingly ... $20\\%$! Hence, we multiply the mean ratio error with the percentage to find the MAPE! :-)
 
 Why use MAPE if you can also use MAE?
 
@@ -190,8 +190,8 @@ The [TensorFlow docs](https://www.tensorflow.org/api_docs/python/tf/keras/losses
 
 Well, that's great. It seems to be an improvement over MSE, or L2 loss. Recall that MSE is an improvement over MAE (L1 Loss) if your data set contains quite large errors, as it captures these better. However, this also means that it is much more sensitive to errors than the MAE. Logcosh helps against this problem:
 
-- For relatively small errors (even with the _relatively small but larger errors_, which is why MSE can be better for your ML problem than MAE) it outputs approximately equal to \[latex\]x^2 / 2\[/latex\] - which is pretty equal to the \[latex\]x^2\[/latex\] output of the MSE.
-- For larger errors, i.e. outliers, where MSE would produce extremely large errors (\[latex\](10^6)^2 = 10^12\[/latex\]), the Logcosh approaches \[latex\]|x| - log(2)\[/latex\]. It's like (as well as unlike) the MAE, but then somewhat corrected by the `log`.
+- For relatively small errors (even with the _relatively small but larger errors_, which is why MSE can be better for your ML problem than MAE) it outputs approximately equal to $x^2 / 2$ - which is pretty equal to the $x^2$ output of the MSE.
+- For larger errors, i.e. outliers, where MSE would produce extremely large errors ($(10^6)^2 = 10^12$), the Logcosh approaches $|x| - log(2)$. It's like (as well as unlike) the MAE, but then somewhat corrected by the `log`.
 
 Hence: indeed, if you have _both larger errors_ that must be detected _as well as outliers_, which you perhaps cannot remove from your dataset, consider using Logcosh! It's available in many frameworks like TensorFlow as we saw above, but also in [Keras](http://keras.io/losses#logcosh).
 
@@ -209,25 +209,25 @@ Or, visually:
 
 When interpreting the formula, we see two parts:
 
-- \[latex\]1/2 \\times (t-p)^2\[/latex\], when \[latex\]|t-p| \\leq \\delta\[/latex\]. This sounds very complicated, but we can break it into parts easily.
-    - \[latex\]|t-p|\[/latex\] is the _absolute error_: the difference between target \[latex\]t\[/latex\] and prediction \[latex\]p\[/latex\].
+- $1/2 \\times (t-p)^2$, when $|t-p| \\leq \\delta$. This sounds very complicated, but we can break it into parts easily.
+    - $|t-p|$ is the _absolute error_: the difference between target $t$ and prediction $p$.
     - We square it and divide it by two.
-    - We however only do so when the absolute error is smaller than or equal to some \[latex\]\\delta\[/latex\], also called delta, which **you** can configure! We'll see next why this is nice.
-- When the absolute error is _larger than_ \[latex\]\\delta\[/latex\], we compute the error as follows: \[latex\]\\delta \\times |t-p| - (\\delta^2 / 2)\[/latex\].
+    - We however only do so when the absolute error is smaller than or equal to some $\\delta$, also called delta, which **you** can configure! We'll see next why this is nice.
+- When the absolute error is _larger than_ $\\delta$, we compute the error as follows: $\\delta \\times |t-p| - (\\delta^2 / 2)$.
     - Let's break this apart again. We multiply the delta with the absolute error and remove half of delta square.
 
 **What is the effect of all this mathematical juggling?**
 
 Look at the visualization above.
 
-For relatively small deltas (in our case, with \[latex\]\\delta = 0.25\[/latex\], you'll see that the loss function becomes relatively flat. It takes quite a long time before loss increases, even when predictions are getting larger and larger.
+For relatively small deltas (in our case, with $\\delta = 0.25$, you'll see that the loss function becomes relatively flat. It takes quite a long time before loss increases, even when predictions are getting larger and larger.
 
-For larger deltas, the slope of the function increases. As you can see, the larger the delta, the slower the _increase of this slope:_ eventually, for really large \[latex\]\\delta\[/latex\] the slope of the loss tends to converge to some maximum.
+For larger deltas, the slope of the function increases. As you can see, the larger the delta, the slower the _increase of this slope:_ eventually, for really large $\\delta$ the slope of the loss tends to converge to some maximum.
 
 If you look closely, you'll notice the following:
 
-- With small \[latex\]\\delta\[/latex\], the loss becomes relatively insensitive to larger errors and outliers. This might be good if you have them, but bad if on average your errors are small.
-- With large \[latex\]\\delta\[/latex\], the loss becomes increasingly sensitive to larger errors and outliers. That might be good if your errors are small, but you'll face trouble when your dataset contains outliers.
+- With small $\\delta$, the loss becomes relatively insensitive to larger errors and outliers. This might be good if you have them, but bad if on average your errors are small.
+- With large $\\delta$, the loss becomes increasingly sensitive to larger errors and outliers. That might be good if your errors are small, but you'll face trouble when your dataset contains outliers.
 
 Hey, haven't we seen that before?
 
@@ -237,7 +237,7 @@ Grover (2019) writes about this [nicely](https://heartbeat.fritz.ai/5-regression
 
 > Huber loss approaches MAE when 𝛿 ~ 0 and MSE when 𝛿 ~ ∞ (large numbers.)
 
-That's what this \[latex\]\\delta\[/latex\] is for! You are now in control about the 'degree' of MAE vs MSE-ness you'll introduce in your loss function. When you face large errors due to outliers, you can try again with a lower \[latex\]\\delta\[/latex\]; if your errors are too small to be picked up by your Huber loss, you can increase the delta instead.
+That's what this $\\delta$ is for! You are now in control about the 'degree' of MAE vs MSE-ness you'll introduce in your loss function. When you face large errors due to outliers, you can try again with a lower $\\delta$; if your errors are too small to be picked up by your Huber loss, you can increase the delta instead.
 
 And there's another thing, which we also mentioned when discussing the MAE: it produces large gradients when you optimize your model by means of gradient descent, even when your errors are small (Grover, 2019). This is bad for model performance, as you will likely overshoot the mathematical optimum for your model. You don't face this problem with MSE, as it tends to decrease towards the actual minimum (Grover, 2019). If you switch to Huber loss from MAE, you might find it to be an additional benefit.
 
@@ -245,7 +245,7 @@ Here's why: Huber loss, like MSE, decreases as well when it approaches the mathe
 
 **Then why isn't this the perfect loss function?**
 
-Because the benefit of the \[latex\]\\delta\[/latex\] is also becoming your bottleneck (Grover, 2019). As you have to configure them manually (or perhaps using some automated tooling), you'll have to spend time and resources on finding the most optimum \[latex\]\\delta\[/latex\] for your dataset. This is an iterative problem that, in the extreme case, may become impractical at best and costly at worst. However, in most cases, it's best just to experiment - perhaps, you'll find better results!
+Because the benefit of the $\\delta$ is also becoming your bottleneck (Grover, 2019). As you have to configure them manually (or perhaps using some automated tooling), you'll have to spend time and resources on finding the most optimum $\\delta$ for your dataset. This is an iterative problem that, in the extreme case, may become impractical at best and costly at worst. However, in most cases, it's best just to experiment - perhaps, you'll find better results!
 
 \[ad\]
 
@@ -276,27 +276,27 @@ The **hinge loss** is defined as follows (Wikipedia, 2011):
 
 ![](images/image-1.png)
 
-It simply takes the maximum of either 0 or the computation \[latex\] 1 - t \\times y\[/latex\], where `t` is the machine learning output value (being between -1 and +1) and `y` is the true target (-1 or +1).
+It simply takes the maximum of either 0 or the computation $1 - t \\times y$, where `t` is the machine learning output value (being between -1 and +1) and `y` is the true target (-1 or +1).
 
-When the target equals the prediction, the computation \[latex\]t \\times y\[/latex\] is always one: \[latex\]1 \\times 1 = -1 \\times -1 = 1)\[/latex\]. Essentially, because then \[latex\]1 - t \\times y = 1 - 1 = 1\[/latex\], the `max` function takes the maximum \[latex\]max(0, 0)\[/latex\], which of course is 0.
+When the target equals the prediction, the computation $t \\times y$ is always one: $1 \\times 1 = -1 \\times -1 = 1)$. Essentially, because then $1 - t \\times y = 1 - 1 = 1$, the `max` function takes the maximum $max(0, 0)$, which of course is 0.
 
 That is: when the actual target meets the prediction, the loss is zero. Negative loss doesn't exist. When the target != the prediction, the loss value increases.
 
-For `t = 1`, or \[latex\]1\[/latex\] is your target, hinge loss looks like this:
+For `t = 1`, or $1$ is your target, hinge loss looks like this:
 
 [![](images/hinge_loss-1024x507.jpeg)]
 
-Let's now consider three scenarios which can occur, given our target \[latex\]t = 1\[/latex\] (Kompella, 2017; Wikipedia, 2011):
+Let's now consider three scenarios which can occur, given our target $t = 1$ (Kompella, 2017; Wikipedia, 2011):
 
-- The prediction is correct, which occurs when \[latex\]y \\geq 1.0\[/latex\].
-- The prediction is very incorrect, which occurs when \[latex\]y < 0.0\[/latex\] (because the sign swaps, in our case from positive to negative).
-- The prediction is not correct, but we're getting there (\[latex\] 0.0 \\leq y < 1.0\[/latex\]).
+- The prediction is correct, which occurs when $y \\geq 1.0$.
+- The prediction is very incorrect, which occurs when $y < 0.0$ (because the sign swaps, in our case from positive to negative).
+- The prediction is not correct, but we're getting there ($0.0 \\leq y < 1.0$).
 
-In the first case, e.g. when \[latex\]y = 1.2\[/latex\], the output of \[latex\]1 - t \\ times y\[/latex\] will be \[latex\] 1 - ( 1 \\times 1.2 ) = 1 - 1.2 = -0.2\[/latex\]. Loss, then will be \[latex\]max(0, -0.2) = 0\[/latex\]. Hence, for all correct predictions - even if they are _too correct_, loss is zero. In the _too correct_ situation, the classifier is simply very sure that the prediction is correct (Peltarion, n.d.).
+In the first case, e.g. when $y = 1.2$, the output of $1 - t \\ times y$ will be $1 - ( 1 \\times 1.2 ) = 1 - 1.2 = -0.2$. Loss, then will be $max(0, -0.2) = 0$. Hence, for all correct predictions - even if they are _too correct_, loss is zero. In the _too correct_ situation, the classifier is simply very sure that the prediction is correct (Peltarion, n.d.).
 
-In the second case, e.g. when \[latex\]y = -0.5\[/latex\], the output of the loss equation will be \[latex\]1 - (1 \\ times -0.5) = 1 - (-0.5) = 1.5\[/latex\], and hence the loss will be \[latex\]max(0, 1.5) = 1.5\[/latex\]. Very wrong predictions are hence penalized significantly by the hinge loss function.
+In the second case, e.g. when $y = -0.5$, the output of the loss equation will be $1 - (1 \\ times -0.5) = 1 - (-0.5) = 1.5$, and hence the loss will be $max(0, 1.5) = 1.5$. Very wrong predictions are hence penalized significantly by the hinge loss function.
 
-In the third case, e.g. when \[latex\]y = 0.9\[/latex\], loss output function will be \[latex\]1 - (1 \\times 0.9) = 1 - 0.9 = 0.1\[/latex\]. Loss will be \[latex\]max(0, 0.1) = 0.1\[/latex\]. We're getting there - and that's also indicated by the small but nonzero loss.
+In the third case, e.g. when $y = 0.9$, loss output function will be $1 - (1 \\times 0.9) = 1 - 0.9 = 0.1$. Loss will be $max(0, 0.1) = 0.1$. We're getting there - and that's also indicated by the small but nonzero loss.
 
 What this essentially sketches is a _margin_ that you try to _maximize_: when the prediction is correct or even too correct, it doesn't matter much, but when it's not, we're trying to correct. The correction process keeps going until the prediction is fully correct (or when the human tells the improvement to stop). We're thus finding the most optimum decision boundary and are hence performing a maximum-margin operation.
 
@@ -304,7 +304,7 @@ It is therefore not surprising that hinge loss is one of the most commonly used 
 
 #### Squared hinge
 
-The **squared hinge loss** is like the hinge formula displayed above, but then the \[latex\]max()\[/latex\] function output is _squared_.
+The **squared hinge loss** is like the hinge formula displayed above, but then the $max()$ function output is _squared_.
 
 This helps achieving two things:
 
@@ -325,9 +325,9 @@ However, in neural networks and hence gradient based optimization problems, we'r
 
 What this means in plain English is this:
 
-**For all \[latex\]y\[/latex\] (output) values unequal to \[latex\]t\[/latex\], compute the loss. Eventually, sum them together to find the multiclass hinge loss.**
+**For all $y$ (output) values unequal to $t$, compute the loss. Eventually, sum them together to find the multiclass hinge loss.**
 
-Note that this does not mean that you sum over _all possible values for y_ (which would be all real-valued numbers except \[latex\]t\[/latex\]), but instead, you compute the sum over _all the outputs generated by your ML model during the forward pass_. That is, all the predictions. Only for those where \[latex\]y \\neq t\[/latex\], you compute the loss. This is obvious from an efficiency point of view: where \[latex\]y = t\[/latex\], loss is always zero, so no \[latex\]max\[/latex\] operation needs to be computed to find zero after all.
+Note that this does not mean that you sum over _all possible values for y_ (which would be all real-valued numbers except $t$), but instead, you compute the sum over _all the outputs generated by your ML model during the forward pass_. That is, all the predictions. Only for those where $y \\neq t$, you compute the loss. This is obvious from an efficiency point of view: where $y = t$, loss is always zero, so no $max$ operation needs to be computed to find zero after all.
 
 Keras implements the multiclass hinge loss as [categorical hinge loss](https://keras.io/losses/#categorical_hinge), requiring to change your targets into categorical format (one-hot encoded format) first by means of `to_categorical`.
 
@@ -345,7 +345,7 @@ It can be visualized in this way:
 
 And, like before, let's now explain it in more intuitive ways.
 
-The \[latex\]t\[/latex\] in the formula is the _target_ (0 or 1) and the \[latex\]p\[/latex\] is the prediction (a real-valued number between 0 and 1, for example 0.12326).
+The $t$ in the formula is the _target_ (0 or 1) and the $p$ is the prediction (a real-valued number between 0 and 1, for example 0.12326).
 
 When you input both into the formula, loss will be computed related to the target and the prediction. In the visualization above, where the target is 1, it becomes clear that loss is 0. However, when moving to the left, loss tends to increase (ML Cheatsheet documentation, n.d.). What's more, it increases increasingly fast. Hence, it not only tends to _punish wrong predictions_, but also _wrong predictions that are extremely confident_ (i.e., if the model is very confident that it's 0 while it's 1, it gets punished much harder than when it thinks it's somewhere in between, e.g. 0.5). This latter property makes the binary cross entropy a valued loss function in classification problems.
 
@@ -381,9 +381,9 @@ That dataset would look like this:
 
 However, categorical crossentropy cannot simply use _integers_ as targets, because its formula doesn't support this. Instead, we must apply _one-hot encoding_, which transforms the integer targets into categorial vectors, which are just vectors that displays all categories and whether it's some class or not:
 
-- 0: \[latex\]\[1, 0, 0\]\[/latex\]
-- 1: \[latex\]\[0, 1, 0\]\[/latex\]
-- 2: \[latex\]\[0, 0, 1\]\[/latex\]
+- 0: $\[1, 0, 0\]$
+- 1: $\[0, 1, 0\]$
+- 2: $\[0, 0, 1\]$
 
 \[ad\]
 
@@ -399,9 +399,9 @@ Let's look at the formula again and recall that we iterate over all the possible
 
 ![](images/image-6.png)
 
-Now suppose that our trained model outputs for the set of features \[latex\]{ ... }\[/latex\] or a very similar one that has target \[latex\]\[0, 1, 0\]\[/latex\] a probability distribution of \[latex\]\[0.25, 0.50, 0.25\]\[/latex\] - that's what these models do, they pick no class, but instead compute the probability that it's a particular class in the categorical vector.
+Now suppose that our trained model outputs for the set of features ${ ... }$ or a very similar one that has target $\[0, 1, 0\]$ a probability distribution of $\[0.25, 0.50, 0.25\]$ - that's what these models do, they pick no class, but instead compute the probability that it's a particular class in the categorical vector.
 
-Computing the loss, for \[latex\]c = 1\[/latex\], what is the target value? It's 0: in \[latex\]\\textbf{t} = \[0, 1, 0\]\[/latex\], the target value for class 0 is 0.
+Computing the loss, for $c = 1$, what is the target value? It's 0: in $\\textbf{t} = \[0, 1, 0\]$, the target value for class 0 is 0.
 
 What is the prediction? Well, following the same logic, the prediction is 0.25.
 
@@ -435,7 +435,7 @@ $$\\begin{equation} KL (P || Q) = \\sum p(X) \\log ( p(X) \\div q(X) ) \\end{equ
 
 KL divergence is an adaptation of entropy, which is a common metric in the field of information theory (Wikipedia, 2004; Wikipedia, 2001; Count Bayesie, 2017). While intuitively, entropy tells you something about "the quantity of your information", KL divergence tells you something about "the change of quantity when distributions are changed".
 
-Your goal in machine learning problems is to ensure that \[latex\]change \\approx 0\[/latex\].
+Your goal in machine learning problems is to ensure that $change \\approx 0$.
 
 Is KL divergence used in practice? Yes! _Generative machine learning models_ work by drawing a sample from encoded, latent space, which effectively represents a latent probability distribution. In other scenarios, you might wish to perform _multiclass classification_ with neural networks that use Softmax activation in their output layer, effectively generating a probability distribution across the classes. And so on. In those cases, you can use KL divergence loss during training. It compares the probability distribution represented by your training data with the probability distribution generated during your [forward pass](#forward-pass), and computes the _divergence_ (the difference, although when you swap distributions, the value changes due to non-symmetry of KL divergence - hence it's not _entirely_ the difference) between the two probability distributions. This is your loss value. Minimizing the loss value thus essentially steers your neural network towards the probability distribution represented in your training set, which is what you want.
 

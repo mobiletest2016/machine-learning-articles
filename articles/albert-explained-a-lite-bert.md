@@ -60,7 +60,7 @@ While this allows us to build models that really work well, this also comes at a
 > 
 > Lam et al. (2019)
 
-Recall that BERT comes in two flavors: a \[latex\]\\text{BERT}\_\\text{BASE}\[/latex\] model that has 110 million trainable parameters, and a \[latex\]\\text{BERT}\_\\text{LARGE}\[/latex\] model that has 340 million ones (Devlin et al., 2018).
+Recall that BERT comes in two flavors: a $\\text{BERT}\_\\text{BASE}$ model that has 110 million trainable parameters, and a $\\text{BERT}\_\\text{LARGE}$ model that has 340 million ones (Devlin et al., 2018).
 
 This is _huge!_ Compare this to relatively simple ConvNets, [which if really small](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/creating-a-signal-noise-removal-autoencoder-with-keras.md) can be < 100k parameters in size.
 
@@ -92,17 +92,17 @@ The first key difference between the BERT and ALBERT models is that **parameters
 > 
 > Wikipedia (2002)
 
-Factorization of these parameters is achieved by taking the matrix representing the weights of the word embeddings \[latex\]E\[/latex\] and decomposing it into two different matrices. Instead of projecting the one-hot encoded vectors directly onto the hidden space, they are first projected on some-kind of lower-dimensional embedding space, which is then projected to the hidden space (Lan et al, 2019). Normally, this should not produce a different result, but let's wait.
+Factorization of these parameters is achieved by taking the matrix representing the weights of the word embeddings $E$ and decomposing it into two different matrices. Instead of projecting the one-hot encoded vectors directly onto the hidden space, they are first projected on some-kind of lower-dimensional embedding space, which is then projected to the hidden space (Lan et al, 2019). Normally, this should not produce a different result, but let's wait.
 
 Another thing that actually ensures that this change reduces the number of parameters is that the authors suggest to reduce the size of the embedding matrix. In BERT, the shape of the vocabulary/embedding matrix E equals that of the matrix for the hidden state H. According to the authors, this makes no sense from both a theoretical and a practical point of view.
 
-First of all, theoretically, the matrix E captures context-independent information (i.e. a general word encoding) whereas the hidden representation H captures context-dependent information (i.e. related to the dataset with which is trained). According to Lan et al. (2019), BERT's performance emerges from using context to learn context-dependent representations. The context-independent aspects are not really involved. For this reason, they argue, \[latex\]\\text{H >> E}\[/latex\] (H must be a lot greater than E) in order to make things more efficient.
+First of all, theoretically, the matrix E captures context-independent information (i.e. a general word encoding) whereas the hidden representation H captures context-dependent information (i.e. related to the dataset with which is trained). According to Lan et al. (2019), BERT's performance emerges from using context to learn context-dependent representations. The context-independent aspects are not really involved. For this reason, they argue, $\\text{H >> E}$ (H must be a lot greater than E) in order to make things more efficient.
 
-The authors argue that this is also true from a practical point of view. When \[latex\]\\text{E = H}\[/latex\], increasing the hidden state (and hence the capability for BERT to capture more contextual details) also increases the size of the matrix for E, which makes no sense, as it's context-independent. By consequence, models with billions of parameters become possible, most of which are updated only sparsely during training (Lan et al, 2019).
+The authors argue that this is also true from a practical point of view. When $\\text{E = H}$, increasing the hidden state (and hence the capability for BERT to capture more contextual details) also increases the size of the matrix for E, which makes no sense, as it's context-independent. By consequence, models with billions of parameters become possible, most of which are updated only sparsely during training (Lan et al, 2019).
 
 In other words, a case can be made that this is not really a good idea.
 
-Recall that ALBERT solves this issue by decomposing the embedding parameters into two smaller matrices, allowing a two-step mapping between the original word vectors and the space of the hidden state. In terms of computational cost, this no longer means \[latex\]\\text{O(VxH)}\[/latex\] but rather \[latex\]\\text{O(VxE + ExH)}\[/latex\], which brings a significant reduction when \[latex\]\\text{H >> E}\[/latex\].
+Recall that ALBERT solves this issue by decomposing the embedding parameters into two smaller matrices, allowing a two-step mapping between the original word vectors and the space of the hidden state. In terms of computational cost, this no longer means $\\text{O(VxH)}$ but rather $\\text{O(VxE + ExH)}$, which brings a significant reduction when $\\text{H >> E}$.
 
 ### Key difference 2: cross-layer parameter sharing
 

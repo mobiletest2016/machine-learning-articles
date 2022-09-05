@@ -41,11 +41,11 @@ If you have read some other articles on MachineCurve (if not: [click](https://gi
 
 ![](images/feed-1024x404.jpg)
 
-We also know that step (1), feeding forward the samples through the model, involves a system of linear computations (\[latex\]\\textbf{w} \\times \\textbf{x} + b\[/latex\]) and mapping those to [nonlinear outputs](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-nonlinear-activation-functions-improve-ml-performance-with-tensorflow-example.md). Here, \[latex\]\\textbf{w}\[/latex\] represents the so-called _weights vector_, which captures (parts of) the patterns that have been learned by the Machine Learning model. \[latex\]\\textbf{x}\[/latex\] is also called the feature vector and represents a _row_ from the input dataset. Bias is expressed as \[latex\]b\[/latex\], and the activation function is often [Rectified Linear Unit](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md) these days.
+We also know that step (1), feeding forward the samples through the model, involves a system of linear computations ($\\textbf{w} \\times \\textbf{x} + b$) and mapping those to [nonlinear outputs](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-nonlinear-activation-functions-improve-ml-performance-with-tensorflow-example.md). Here, $\\textbf{w}$ represents the so-called _weights vector_, which captures (parts of) the patterns that have been learned by the Machine Learning model. $\\textbf{x}$ is also called the feature vector and represents a _row_ from the input dataset. Bias is expressed as $b$, and the activation function is often [Rectified Linear Unit](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md) these days.
 
 ![](images/layer-act-1024x227.png)
 
-Clearly, from this overview, we can see that the linear operation involves a multiplication of two vectors and the addition of a scalar value. This all suggests that both \[latex\]\\textbf{w}\[/latex\], \[latex\]\\textbf{x}\[/latex\] and \[latex\]b\[/latex\] must be numeric. And indeed: there is no such thing as a text-number vector multiplication that is used within Neural Networks, and hence _indeed_ all data must be numeric.
+Clearly, from this overview, we can see that the linear operation involves a multiplication of two vectors and the addition of a scalar value. This all suggests that both $\\textbf{w}$, $\\textbf{x}$ and $b$ must be numeric. And indeed: there is no such thing as a text-number vector multiplication that is used within Neural Networks, and hence _indeed_ all data must be numeric.
 
 There are many features that are numeric by nature:
 
@@ -67,16 +67,16 @@ But not all data is numeric. For example, if we have a feature called _Healthine
 
 In other words, we can express the categories into 'sets of bits' (recall that they can only take values between 0 and 1) so that for each set of bits, only one bit is true all the time, while all the others are zero. For example, for our Healthiness case, we can express the categories with two bits:
 
-- \[latex\]\\text{Healthy} \\rightarrow \[0 \\ 1\]\[/latex\]
-- \[latex\]\\text{Unhealthy} \\rightarrow \[1 \\ 0\]\[/latex\]
+- $\\text{Healthy} \\rightarrow \[0 \\ 1\]$
+- $\\text{Unhealthy} \\rightarrow \[1 \\ 0\]$
 
 Really simple!
 
 If we want to express more categories, we can simply add more bits. E.g. if we wanted to add the 'Unknown category', we would simply increase the number of bits that represent the one-hot encoding:
 
-- \[latex\]\\text{Healthy} \\rightarrow \[0 \\ 0 \\ 1\]\[/latex\]
-- \[latex\]\\text{Unhealthy} \\rightarrow \[0 \\ 1 \\ 0\]\[/latex\]
-- \[latex\]\\text{Unknown} \\rightarrow \[1 \\ 0 \\ 0\]\[/latex\]
+- $\\text{Healthy} \\rightarrow \[0 \\ 0 \\ 1\]$
+- $\\text{Unhealthy} \\rightarrow \[0 \\ 1 \\ 0\]$
+- $\\text{Unknown} \\rightarrow \[1 \\ 0 \\ 0\]$
 
 ### Training Neural Networks with Categorical Crossentropy Loss
 
@@ -88,7 +88,7 @@ As we can read on the page about [loss functions](https://github.com/mobiletest2
 
 For this reason, it is desirable to work with _categorical_ (and hence one-hot encoded) target data when we are using categorical crossentropy loss. This requires that we convert the targets into this format prior to training the Neural Network.
 
-If we don't have one-hot encoded targets in the dataset, but integers instead to give just one example, it could be a good idea to use a different loss function. For example, [sparse categorical crossentropy loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-sparse-categorical-crossentropy-in-keras.md) works with categorical targets where the targets are expressed as integer values, to give just an example. If you have a binary classification problem, and hence work with a [Sigmoid activation function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md) generating a prediction \[latex\] p \\in \[0, 1\]\[/latex\], you will want to use [binary crossentropy loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-binary-categorical-crossentropy-with-keras.md) instead.
+If we don't have one-hot encoded targets in the dataset, but integers instead to give just one example, it could be a good idea to use a different loss function. For example, [sparse categorical crossentropy loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-sparse-categorical-crossentropy-in-keras.md) works with categorical targets where the targets are expressed as integer values, to give just an example. If you have a binary classification problem, and hence work with a [Sigmoid activation function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md) generating a prediction $p \\in \[0, 1\]$, you will want to use [binary crossentropy loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-binary-categorical-crossentropy-with-keras.md) instead.
 
 One simple rule to remember: use categorical crossentropy loss when your Neural Network dataset has one-hot encoded target values!
 
@@ -139,7 +139,7 @@ If we run it, we see this text appear on screen after a while:
 (10000,)
 ```
 
-In other words, we can see that our [training set](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-easily-create-a-train-test-split-for-your-machine-learning-model.md) contains 60000 28x28 samples (as the shape of one input value seems to be \[latex\](28, 28)\[/latex\], we also see that our images are grayscale - if they were RGB, shape would have been \[latex\](28, 28, 3)\[/latex\] per sample and hence \[latex\](60000, 28, 28, 3)\[/latex\] for the whole array). Our testing set contains 10000 samples of the same format.
+In other words, we can see that our [training set](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-easily-create-a-train-test-split-for-your-machine-learning-model.md) contains 60000 28x28 samples (as the shape of one input value seems to be $(28, 28)$, we also see that our images are grayscale - if they were RGB, shape would have been $(28, 28, 3)$ per sample and hence $(60000, 28, 28, 3)$ for the whole array). Our testing set contains 10000 samples of the same format.
 
 ### Inspecting a sample in more detail
 
@@ -158,7 +158,7 @@ The output is as follows:
 ()
 ```
 
-We can see that the _actual_ \[latex\]y\[/latex\] value for index 128 is 1 - meaning that it represents the number 1. The shape is \[latex\]()\[/latex\] and hence we are _really_ talking about a scalar value.
+We can see that the _actual_ $y$ value for index 128 is 1 - meaning that it represents the number 1. The shape is $()$ and hence we are _really_ talking about a scalar value.
 
 If we would create a Neural Network, the best choice for this dataset would be to apply [sparse categorical crossentropy loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-sparse-categorical-crossentropy-in-keras.md) - for the simple reason that we don't have to apply one-hot encoding if we use that loss function. Because we do want to show you how one-hot encoding works with TensorFlow and Keras, we do use [categorical crossentropy loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-categorical-multiclass-hinge-with-keras.md) instead, so we must apply one-hot encoding to the samples.
 
@@ -191,7 +191,7 @@ The output for this part is now as follows:
 (10,)
 ```
 
-We can clearly see that our target vector has ten values (by means of the \[latex\](10,)\[/latex\] shape), one for each individual digit. The first is one while the others are zero, indicating that we are talking about the number 1, but then in one-hot encoded format. Exactly the same as our original integer value!
+We can clearly see that our target vector has ten values (by means of the $(10,)$ shape), one for each individual digit. The first is one while the others are zero, indicating that we are talking about the number 1, but then in one-hot encoded format. Exactly the same as our original integer value!
 
 ### Creating a ConvNet that classifies the MNIST digits
 

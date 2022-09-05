@@ -41,7 +41,7 @@ While recurrent networks were able to boost the state-of-the-art in Natural Lang
 2. The same is true for memory: the hidden state is passed to the next prediction step, meaning that most of the contextual information available is related to what the model has seen in the short term. With classic RNNs, models therefore face a long-term memory issue, in that they are good at short-term memory but very bad at longer-term memory.
 3. Processing happens sequentially. That is, each word in a phrase has to be passed through the recurrent network, after which a prediction is returned. As recurrent networks _can_ be intensive in terms of the computational requirements, it can take a while before an output prediction is generated. This is an inherent problem with recurrent networks.
 
-Fortunately, in the 2010s, **[Long Short-Term Memory](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/a-gentle-introduction-to-long-short-term-memory-networks-lstm.md)** networks (LSTMs, top right) and **Gated Recurrent Units** (GRUs, bottom) were researched and applied to resolve many of the three issues above. LSTMs in particular, through the cell like structure where memory is retained, are robust to the vanishing gradients problem. What's more, because memory is now maintained separately from the previous cell output (the \[latex\]c\_{t}\[/latex\] flow in the LSTM image below, for example), both are capable of storing longer-term memory.
+Fortunately, in the 2010s, **[Long Short-Term Memory](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/a-gentle-introduction-to-long-short-term-memory-networks-lstm.md)** networks (LSTMs, top right) and **Gated Recurrent Units** (GRUs, bottom) were researched and applied to resolve many of the three issues above. LSTMs in particular, through the cell like structure where memory is retained, are robust to the vanishing gradients problem. What's more, because memory is now maintained separately from the previous cell output (the $c\_{t}$ flow in the LSTM image below, for example), both are capable of storing longer-term memory.
 
 Especially when the **attention mechanism** was invented on top of it, where instead of the hidden state a weighted context vector is provided that weighs the outputs of all previous prediction steps, long-term memory issues were diminishing rapidly. The only standing problem remained that processing had to be performed sequentially, imposing a significant resource bottleneck on training a model for Natural Language Processing.
 
@@ -87,7 +87,7 @@ Suppose that our goal is to build a language model capable of translating German
 
 Transformers work differently because they use an encoder-decoder architecture. Think about it as if you're working with two translator. The first translator is capable of translating German into some intermediary, universal language. Another translator is capable of translating that language into English. However, at every translation task, you'll let translations pass through the intermediary language first. This will work as well as the classic approaches (in terms of whether the model yields any usable result). However, it is also scalable: we can use the intermediary language to train a model for summarizing text, for example. We don't need to train for the first translation task anymore.
 
-In different articles, we shall see that this pretraining and fine-tuning dogma is very prevalent today, especially with the BERT like architectures, which take the encoder segment from the original Transformer, pretrain it on a massive dataset and allow people to perform fine-tuning to various tasks themselves. However, for now, we'll stick to the original Transformer. In it, the \[latex\]\\text{German} \\rightarrow \\text{Intermediary language}\[/latex\] translation task would be performed by the encoder segment, in this analogy yielding the intermediary state as the _intermediary language_. The \[latex\]\\text{Intermediary language} \\rightarrow \\text{English}\[/latex\] translation task is then performed by the decoder segment.
+In different articles, we shall see that this pretraining and fine-tuning dogma is very prevalent today, especially with the BERT like architectures, which take the encoder segment from the original Transformer, pretrain it on a massive dataset and allow people to perform fine-tuning to various tasks themselves. However, for now, we'll stick to the original Transformer. In it, the $\\text{German} \\rightarrow \\text{Intermediary language}$ translation task would be performed by the encoder segment, in this analogy yielding the intermediary state as the _intermediary language_. The $\\text{Intermediary language} \\rightarrow \\text{English}$ translation task is then performed by the decoder segment.
 
 Let's now take a look at both segments in more detail.
 
@@ -104,7 +104,7 @@ The encoder segment of a Transformer is responsible for converting inputs into s
 - **The actual encoder segment**, which learns to output an attended representation of the input vectors, and is composed of the following sub segments:
     - The **multi-head attention segment**, which performs multi-head self-attention, adds the residual connection and then performs layer normalization.
     - The **feed forward segment**, which generates the encoder output for each token.
-    - The encoder segment can be repeated \[latex\]N\[/latex\] times; Vaswani et al. (2017) chose \[latex\]N = 6\[/latex\].
+    - The encoder segment can be repeated $N$ times; Vaswani et al. (2017) chose $N = 6$.
 
 Let's now take a look at each of the encoder's individual components in more detail.
 
@@ -149,11 +149,11 @@ A plot from the Word2Vec 10K dataset, with three [principal components](https://
 
 Vanilla Transformers use a [learned input embedding layer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/classifying-imdb-sentiment-with-keras-and-embeddings-dropout-conv1d.md) (Vaswani et al., 2017). This means that the embedding is learned on the fly [rather than using a pretrained embedding](https://wikipedia2vec.github.io/wikipedia2vec/pretrained.md), such as a pretrained Word2Vec embedding, which can also be an option. Learning the embedding on the fly ensures that each word can be mapped to a vector properly, improving effectiveness (not missing out any word).
 
-The learned embedding produces vectors of dimension \[latex\]d\_{\\text{model}}\[/latex\], where Vaswani et al. (2017) set \[latex\]d\_{\\text{model}} = 512\[/latex\]. \[latex\]d\_{\\text{model}}\[/latex\] is also the output of all the sub layers in the model.
+The learned embedding produces vectors of dimension $d\_{\\text{model}}$, where Vaswani et al. (2017) set $d\_{\\text{model}} = 512$. $d\_{\\text{model}}$ is also the output of all the sub layers in the model.
 
 ![](images/Diagram-4-1.png)
 
-According to Vaswani et al. (2017), the weight matrix between the input embedding and output embedding layers is shared, as well as the pre-softmax linear transformation. Weights are also multiplied by \[latex\]\\sqrt{d\_{\\text{model}}}\[/latex\] for stability. Sharing weights is a design decision, which is not strictly necessary and _can_ be counter to performance, as illustrated by this answer:
+According to Vaswani et al. (2017), the weight matrix between the input embedding and output embedding layers is shared, as well as the pre-softmax linear transformation. Weights are also multiplied by $\\sqrt{d\_{\\text{model}}}$ for stability. Sharing weights is a design decision, which is not strictly necessary and _can_ be counter to performance, as illustrated by this answer:
 
 > **The source and target embeddings can be shared or not**. This is a design decision. They are normally shared if the token vocabulary is shared, and this normally happens when you have languages with the same script (i.e. the Latin alphabet). If your source and target languages are e.g. English and Chinese, which have different writing systems, your token vocabularies would probably not be shared, and then the embeddings wouldn't be shared either.
 > 
@@ -167,7 +167,7 @@ With Transformers, this is no longer the case, as we know that such models have 
 
 ![](images/Diagram-5.png)
 
-Using **positional encodings**, we add a vector indicating the relative position of a word to the word vectors generated by the embedding layer. This is a simple vector multiplication: \[latex\]\\textbf{v}\_{encoded} = \\textbf{v}\_{embedding} + \\textbf{v}\_{encoding}\[/latex\]. You can imagine this as a restructuring operation where common vectors are positioned more closely together.
+Using **positional encodings**, we add a vector indicating the relative position of a word to the word vectors generated by the embedding layer. This is a simple vector multiplication: $\\textbf{v}\_{encoded} = \\textbf{v}\_{embedding} + \\textbf{v}\_{encoding}$. You can imagine this as a restructuring operation where common vectors are positioned more closely together.
 
 Vaswani et al. (2017) use a maths based (more specifically a sine and cosine based) approach to positional encoding. By letting the position and dimension flow through a sine or cosine function depending on its oddity or evenness, we can generate positional encodings that we can use to position-encode the embeddings output. The outcome of this step is a vector which has much of the information of the embedding retained, but then with some information about relative positions (i.e. how words are related) added.
 
@@ -175,12 +175,12 @@ Vaswani et al. (2017) use a maths based (more specifically a sine and cosine bas
 
 Generating the input embedding and applying positional encoding were the preparatory steps, allowing us to use textual data in our Transformer model. It's now time to look at the _actual_ encoder segment.
 
-We must note first that whatever we'll discuss here can be repeated \[latex\]N\[/latex\] times; stacked, if you will. When stacking encoders, the output of each encoder is used as input for the next encoder, generating an ever-more abstract encoding. While stacking encoders can definitely improve model performance through generalization, it is also computationally intensive. Vaswani et al. (2017) chose to set \[latex\]N = 6\[/latex\] and hence use 6 encoders stacked on top of each other.
+We must note first that whatever we'll discuss here can be repeated $N$ times; stacked, if you will. When stacking encoders, the output of each encoder is used as input for the next encoder, generating an ever-more abstract encoding. While stacking encoders can definitely improve model performance through generalization, it is also computationally intensive. Vaswani et al. (2017) chose to set $N = 6$ and hence use 6 encoders stacked on top of each other.
 
 Each encoder segment is built from the following components:
 
 - A **multi-head attention block**. This block allows us to perform self-attention over each sequence (i.e., for each phrase that we feed the model, determine on a per-token (per-word) basis which other tokens (words) from the phrase are relevant to that token; thus where to attend to when reading that token/word).
-- A **feed-forward block**. After generating attention for each token (word), we must generate a \[latex\]d\_{\\text{model}} \\text{-dimensional}\[/latex\] and thus 512-dimensional vector that encodes the token. The feed forward block is responsible for performing this.
+- A **feed-forward block**. After generating attention for each token (word), we must generate a $d\_{\\text{model}} \\text{-dimensional}$ and thus 512-dimensional vector that encodes the token. The feed forward block is responsible for performing this.
 - **Residual** **connections**. A residual connection is a connection that does not flow through a complex block. We can see two residual connections here: one flowing from the input to the first Add & Norm block; another one from there to the second block. Residual connections allow the models to optimize more efficiently, because technically speaking gradients can flow freely from the end of the model to the start.
 - **Add & Norm blocks**. In these blocks, the output from either the Multi-head attention block or the Feed-forward block is merged with the residual (by means of addition), the result of which is subsequently layer normalized.
 
@@ -226,7 +226,7 @@ A score matrix can look as follows:
 
 It illustrates the importance of certain words in a phrase given one word in a phrase in an absolute sense. However, they are not yet comparable. Traditionally, a [Softmax function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-does-the-softmax-activation-function-work.md) can be used to generate (pseudo-)probabilities and hence make the values comparable.
 
-However, if you take a look at the flow image above, you can see that prior to applying Softmax we first apply a scaling function. We apply this scaling because of the possible sensitivity of Softmax to vanishing gradients, which is what we don't want. We scale by dividing all values by \[latex\]\\sqrt{d\_k}\[/latex\], where \[latex\]d\_k\[/latex\] is the dimensionality of the queries and keys.
+However, if you take a look at the flow image above, you can see that prior to applying Softmax we first apply a scaling function. We apply this scaling because of the possible sensitivity of Softmax to vanishing gradients, which is what we don't want. We scale by dividing all values by $\\sqrt{d\_k}$, where $d\_k$ is the dimensionality of the queries and keys.
 
 We then compute the Softmax outputs, which immediately shows for a word which other words from the phrase are important in the context of that word.
 
@@ -253,7 +253,7 @@ In human language, you can visualize this as if you are looking at the same prob
 
 Each individual combination of building blocks is called an **attention head**. Since multiple attention heads are present in one encoder segment, this block is called a **multi-head attention block**. It performs scaled dot-product attention for every block, then concatenates all the outputs and lets it flow through a Linear layer, which once again produces a 512-dimensional output value.
 
-Note that the dimensionality of every attention head is \[latex\]d\_\\text{model}/h\[/latex\] where \[latex\]h\[/latex\] is the number of attention heads. Vaswani et al. (2017) used a model dimensionality of 512, and used 8 parallel heads, so head dimensionality in their case was \[latex\]512/8 = 64\[/latex\].
+Note that the dimensionality of every attention head is $d\_\\text{model}/h$ where $h$ is the number of attention heads. Vaswani et al. (2017) used a model dimensionality of 512, and used 8 parallel heads, so head dimensionality in their case was $512/8 = 64$.
 
 #### Adding residual and Layer Normalization
 
@@ -303,7 +303,7 @@ Exactly the same sine- and cosine-based [positional encoding](#positional-encodi
 
 ### N times the decoder segment
 
-The first two elements of the decoder segment were equal in functionality to the first two elements of the encoder segment. Now is where we'll take a look at (a few) differences, because we're going to look at the **decoder segment** - which is also replicated \[latex\]N\[/latex\] times (with \[latex\]N = 6\[/latex\] in Vaswani et al.'s work).
+The first two elements of the decoder segment were equal in functionality to the first two elements of the encoder segment. Now is where we'll take a look at (a few) differences, because we're going to look at the **decoder segment** - which is also replicated $N$ times (with $N = 6$ in Vaswani et al.'s work).
 
 The decoder segment is composed of three sub segments:
 
@@ -311,7 +311,7 @@ The decoder segment is composed of three sub segments:
 - A **multi-head attention segment**, where self-attention is applied to the encoded inputs (serving as queries and keys) and the combination of masked multi-head attention outputs / input residual, being the gateway where encoded inputs and target outputs are merged.
 - A **feedforward segment**, which is applied position-wise to each token passed along.
 
-Finally, there is a small additional appendix - a **linear layer** and a **Softmax activation function**. These will take the output of the decoder segment and transform it into a logits output (i.e. a value based output for each of the tokens in the vocabulary) and a [pseudoprobability output](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-does-the-softmax-activation-function-work.md) which assigns probabilities to each of the possible token outputs given the logit values. By simply taking the \[latex\]\\text{argmax}\[/latex\] value from these outputs, we can identify the word that is the most likely prediction here.
+Finally, there is a small additional appendix - a **linear layer** and a **Softmax activation function**. These will take the output of the decoder segment and transform it into a logits output (i.e. a value based output for each of the tokens in the vocabulary) and a [pseudoprobability output](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-does-the-softmax-activation-function-work.md) which assigns probabilities to each of the possible token outputs given the logit values. By simply taking the $\\text{argmax}$ value from these outputs, we can identify the word that is the most likely prediction here.
 
 We'll take a look at all these aspects in more detail now.
 
@@ -393,7 +393,7 @@ The results of this network are added with another residual and subsequently a f
 
 After the residual was added and the layer was normalized (visible in the figure as **Add & Norm**), we can start working towards the actual prediction of a token (i.e., a word). This is achieved by means of a linear layer and a Softmax activation function. In this linaer layer, which shares the weight matrix with the embedding layers, logits are generated - i.e. the importance of each token given the encoded inputs and the decoded outputs. With a [Softmax function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-does-the-softmax-activation-function-work.md), we can generate output (pseudo)probabilities for all the tokens in our vocabulary.
 
-Selecting the token prediction is then really simple. By taking the maximum argument (\[latex\]\\text{argmax}\[/latex\]) value, we can select the token that should be predicted next given the inputs and outputs sent into the model.
+Selecting the token prediction is then really simple. By taking the maximum argument ($\\text{argmax}$) value, we can select the token that should be predicted next given the inputs and outputs sent into the model.
 
 ![](images/Diagram-23.png)
 

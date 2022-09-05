@@ -133,7 +133,7 @@ That is, they can be split into smaller convolutions that, when convolved sequen
 
 In [_A Basic Introduction to Separable Convolutions_](https://towardsdatascience.com/a-basic-introduction-to-separable-convolutions-b99ec3102728), Chi-Feng Wang argues that "\[o\]ne of the most famous convolutions that can be separated spatially is the Sobel kernel, used to detect edges":
 
-\[latex\] \\begin{bmatrix} -1 & 0 & 1 \\\\ -2 & 0 & 2 \\\\ -1 & 0 & 1 \\end{bmatrix} = \\begin{bmatrix} 1 \\\\ 2 \\\\ 1 \\end{bmatrix} \\times \\begin{bmatrix} -1 & 0 & 1 \\end{bmatrix} \[/latex\]
+$\\begin{bmatrix} -1 & 0 & 1 \\\\ -2 & 0 & 2 \\\\ -1 & 0 & 1 \\end{bmatrix} = \\begin{bmatrix} 1 \\\\ 2 \\\\ 1 \\end{bmatrix} \\times \\begin{bmatrix} -1 & 0 & 1 \\end{bmatrix}$
 
 ### Convolution with normal kernel
 

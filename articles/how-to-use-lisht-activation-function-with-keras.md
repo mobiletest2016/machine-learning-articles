@@ -137,7 +137,7 @@ plt.show()
 
 LiSHT is a relatively new activation function, proposed by Roy et al. in their early 2019 [paper on ArXiv](https://arxiv.org/abs/1901.05894). It stands for a **Linearly Scaled Hyperbolic Tangent** and is non-parametric in the sense that `tanh(x)` is scaled linearly with `x` without the need for manual configuration by means of some parameter.
 
-Its formula - \[latex\]LiSHT(x) = x \\times tanh(x)\[/latex\] leads to the following visualization, where LiSHT is visualized in green:
+Its formula - $LiSHT(x) = x \\times tanh(x)$ leads to the following visualization, where LiSHT is visualized in green:
 
 [![](images/lisht_visualized-1024x511.png)]
 
@@ -232,7 +232,7 @@ def LiSHT(x):
   return x * tensorflow.math.tanh(x)
 ```
 
-Quite simple, actually - we transform some input \[latex\]x\[/latex\] into an output that follows the LiSHT equation of \[latex\]x \\times tanh(x)\[/latex\].
+Quite simple, actually - we transform some input $x$ into an output that follows the LiSHT equation of $x \\times tanh(x)$.
 
 For doing so, we use `tensorflow.math` based `tanh` because it can run with Tensors adequately.
 

@@ -77,9 +77,9 @@ First of all, as with any clustering algorithm, Affinity Propagation is iterativ
 
 ### Two types of messages are propagated
 
-During each iteration, each sample broadcasts two types of messages to the other samples (Scikit-learn, n.d.). The first is called the **responsibility** \[latex\]r(i,k)\[/latex\] - which is the "evidence that sample \[latex\]k\[/latex\] should be the exemplar for sample \[latex\]i\[/latex\]" (Scikit-learn, n.d.). I always remember it as follows: the greater the _expected group leadership_ of \[latex\]k\[/latex\], the greater the _responsibility_ for the group. That's how you know that the responsibility from the point of \[latex\]i\[/latex\] always tells you something about the importance of \[latex\]k\[/latex\] for the group.
+During each iteration, each sample broadcasts two types of messages to the other samples (Scikit-learn, n.d.). The first is called the **responsibility** $r(i,k)$ - which is the "evidence that sample $k$ should be the exemplar for sample $i$" (Scikit-learn, n.d.). I always remember it as follows: the greater the _expected group leadership_ of $k$, the greater the _responsibility_ for the group. That's how you know that the responsibility from the point of $i$ always tells you something about the importance of $k$ for the group.
 
-The other type of message that is sent is the **availability**. This is the opposite of the responsibility: how certain \[latex\]i\[/latex\] is that it should choose \[latex\]k\[/latex\] as the exemplar, i.e. _how available it is to join a particular group_ (Scikit-learn, n.d.). In the high school case, say that you want to join a semi-cool group (some availability), while you're more willing to join the really cool group, your availability is much higher for the really cool one. The responsibility tells you something about whose acceptance you need to join the group, i.e. the most likely group leader i.e. exemplar.
+The other type of message that is sent is the **availability**. This is the opposite of the responsibility: how certain $i$ is that it should choose $k$ as the exemplar, i.e. _how available it is to join a particular group_ (Scikit-learn, n.d.). In the high school case, say that you want to join a semi-cool group (some availability), while you're more willing to join the really cool group, your availability is much higher for the really cool one. The responsibility tells you something about whose acceptance you need to join the group, i.e. the most likely group leader i.e. exemplar.
 
 ### Computing the scores for responsibility and availability
 
@@ -89,29 +89,29 @@ Let's now take an even closer look at the concepts of responsibility and availab
 
 Here's the formula for responsibility (Scikit-learn, n.d.):
 
-\[latex\]r(i, k) \\leftarrow s(i, k) - max \[ a(i, k') + s(i, k') \\forall k' \\neq k \]\[/latex\]
+$r(i, k) \\leftarrow s(i, k) - max \[ a(i, k') + s(i, k') \\forall k' \\neq k \]$
 
-Let's now decompose this formula into plain English. We start at the left. Here, \[latex\]r(i,k)\[/latex\] is once again the _responsibility_ that sample \[latex\]k\[/latex\] is the exemplar for sample \[latex\]i\[/latex\]. But what determines it? Two components: \[latex\]s(i, k)\[/latex\] and \[latex\]max \[ a(i, k') + s(i, k') \\forall k' \\neq k \]\[/latex\].
+Let's now decompose this formula into plain English. We start at the left. Here, $r(i,k)$ is once again the _responsibility_ that sample $k$ is the exemplar for sample $i$. But what determines it? Two components: $s(i, k)$ and $max \[ a(i, k') + s(i, k') \\forall k' \\neq k \]$.
 
-The first is the _similarity_ between samples \[latex\]i\[/latex\] and \[latex\]k\[/latex\]. If they are highly similar, the odds are very big that \[latex\]k\[/latex\] should be \[latex\]i\[/latex\]'s exemplar. However, this is not the full story, as we cannot look at similarity _only_ - as the other samples will also try to convince that they are the more suitable exemplars for \[latex\]i\[/latex\]. Hence, the similarity is _relative_, and that's why we need to subtract that big \[latex\]max\[/latex\] value. It looks complex, but it simply boils down to "the maximum availability and similarity of all the other samples \[latex\]k'\[/latex\], where \[latex\]k'\[/latex\] is never \[latex\]k\[/latex\]". We simply subtract the similarity _and_ the willingness of \[latex\]k\[/latex\]'s "biggest competitor" in order to show its relative strength as an exemplar.
+The first is the _similarity_ between samples $i$ and $k$. If they are highly similar, the odds are very big that $k$ should be $i$'s exemplar. However, this is not the full story, as we cannot look at similarity _only_ - as the other samples will also try to convince that they are the more suitable exemplars for $i$. Hence, the similarity is _relative_, and that's why we need to subtract that big $max$ value. It looks complex, but it simply boils down to "the maximum availability and similarity of all the other samples $k'$, where $k'$ is never $k$". We simply subtract the similarity _and_ the willingness of $k$'s "biggest competitor" in order to show its relative strength as an exemplar.
 
 #### Availability
 
 Looks complex, but is actually relatively easy. And so is the formula for the availability (Scikit-learn, n.d.):
 
-\[latex\]a(i, k) \\leftarrow min \[0, r(k, k) + \\sum\_{i'~s.t.~i' \\notin {i, k}}{r(i', k)}\]\[/latex\]
+$a(i, k) \\leftarrow min \[0, r(k, k) + \\sum\_{i'~s.t.~i' \\notin {i, k}}{r(i', k)}\]$
 
-As we can see, the availability is determined as the minimum value between 0 and the responsibility of \[latex\]k\[/latex\] to \[latex\]k\[/latex\] (i.e. how important it considers itself to be an exemplar or a group leader) and the sum of the responsibilities for all other samples \[latex\]i'\[/latex\] to \[latex\]k\[/latex\], where \[latex\]i'\[/latex\] is neither \[latex\]i\[/latex\] or \[latex\]k\[/latex\]. Thus, in terms of group formation, a sample will become more available to a potential exemplar if itself thinks it's highly important and so do the other samples around.
+As we can see, the availability is determined as the minimum value between 0 and the responsibility of $k$ to $k$ (i.e. how important it considers itself to be an exemplar or a group leader) and the sum of the responsibilities for all other samples $i'$ to $k$, where $i'$ is neither $i$ or $k$. Thus, in terms of group formation, a sample will become more available to a potential exemplar if itself thinks it's highly important and so do the other samples around.
 
 ### Updating the scores: how clusters are formed
 
 Now that we know about the formulae for responsibility and availability, let's take a look at how scores are updated after every iteration (Scikit-learn, n.d.):
 
-\[latex\]r\_{t+1}(i, k) = \\lambda\\cdot r\_{t}(i, k) + (1-\\lambda)\\cdot r\_{t+1}(i, k)\[/latex\]
+$r\_{t+1}(i, k) = \\lambda\\cdot r\_{t}(i, k) + (1-\\lambda)\\cdot r\_{t+1}(i, k)$
 
-\[latex\]a\_{t+1}(i, k) = \\lambda\\cdot a\_{t}(i, k) + (1-\\lambda)\\cdot a\_{t+1}(i, k)\[/latex\]
+$a\_{t+1}(i, k) = \\lambda\\cdot a\_{t}(i, k) + (1-\\lambda)\\cdot a\_{t+1}(i, k)$
 
-Very simple: every update, we take \[latex\]\\lambda\[/latex\] of the old value and merge it with \[latex\](1-\\lambda)\[/latex\] of the new value. This lambda, which is also called "damping value", is a smoothing factor to ensure a smooth transition; it avoids large oscillations during the optimization process.
+Very simple: every update, we take $\\lambda$ of the old value and merge it with $(1-\\lambda)$ of the new value. This lambda, which is also called "damping value", is a smoothing factor to ensure a smooth transition; it avoids large oscillations during the optimization process.
 
 Altogether, Affinity Propagation is therefore an algorithm which:
 
@@ -140,9 +140,9 @@ from sklearn.datasets import make_blobs
 from sklearn.cluster import AffinityPropagation
 ```
 
-We then add a few configuration options: the number of samples in total we generate, the centers of the clusters, as well as the number of classes that we will generate samples for. Those are all to be used in `make_blobs`, which generates the clusters and assigns them to \[latex\]X\[/latex\] and \[latex\]targets\[/latex\], respectively.
+We then add a few configuration options: the number of samples in total we generate, the centers of the clusters, as well as the number of classes that we will generate samples for. Those are all to be used in `make_blobs`, which generates the clusters and assigns them to $X$ and $targets$, respectively.
 
-We save them with Numpy and subsequently load them and assign them to \[latex\]X\[/latex\] again. Those two lines of code aren't necessary for your model to run, but if you want to compare across settings, you likely don't want to generate samples at random every time. By saving them once, and subsequently commenting out `save` and `make_blobs`, you'll load them from file again and again :)
+We save them with Numpy and subsequently load them and assign them to $X$ again. Those two lines of code aren't necessary for your model to run, but if you want to compare across settings, you likely don't want to generate samples at random every time. By saving them once, and subsequently commenting out `save` and `make_blobs`, you'll load them from file again and again :)
 
 ```
 # Configuration options

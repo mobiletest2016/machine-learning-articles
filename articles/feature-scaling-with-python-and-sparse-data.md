@@ -37,11 +37,11 @@ Suppose that we have the following dataset:
 
 It visualizes two variables and two classes of variables.
 
-We can use both variables to tell us something about the class: the variables closest to \[latex\](X, Y) = (2, 8)\[/latex\] likely belong to the purple-black class, while variables towards the edge belong to the yellow class.
+We can use both variables to tell us something about the class: the variables closest to $(X, Y) = (2, 8)$ likely belong to the purple-black class, while variables towards the edge belong to the yellow class.
 
 In other words, we can create a classifier that helps us determine what class a new sample belongs to. When we train a classifier, it will attempt to learn from the variables. Depending on the algorithm, there are various issues that can possibly occur when doing that:
 
-1. When our classifier involves a _distance_ computation for class computation, e.g. when we use Radial Basis Function networks, our classifier will possibly be distorted by large distances, especially if the distances for one variable are large (e.g. it ranges from \[latex\]\[0, 1000000\]\[/latex\]) and low for another one (e.g. \[latex\]\[0, 1\]\[/latex\]. If not made comparable, it thinks that the distances from the first variable are way more important, because the deltas are larger.
+1. When our classifier involves a _distance_ computation for class computation, e.g. when we use Radial Basis Function networks, our classifier will possibly be distorted by large distances, especially if the distances for one variable are large (e.g. it ranges from $\[0, 1000000\]$) and low for another one (e.g. $\[0, 1\]$. If not made comparable, it thinks that the distances from the first variable are way more important, because the deltas are larger.
 2. When our classifier utilizes _[regularization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/which-regularizer-do-i-need-for-training-my-neural-network.md)_ for reducing model complexity, we can get ourselves into trouble as well, because the [most common regularizers](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-are-l1-l2-and-elastic-net-regularization-in-neural-networks.md) are based on distance metrics. Here, the same thing goes wrong.
 3. Sometimes, especially when we are using traditional Machine Learning algorithms, we don't want too many variables in our feature space - because of the _[curse of dimensionality](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-normalize-or-standardize-a-dataset-in-python.md)._ In those cases, we want to select the variables that contribute most first. Algorithms we can use for this purpose, such as Principal Component Analysis, rely on the _variance_ of the variables for picking the most important ones.
 
@@ -65,7 +65,7 @@ So it seems to be the case that the first variable was not more important than t
 
 The process of standardization is part of a class of techniques called **Feature Scaling** techniques. They involve methods to make variable scales comparable, and involve two mainly used techniques:
 
-1. **Normalization**, or _min-max normalization_, uses the minimum and maximum values from the dataset to normalize the variables into the \[latex\]\[0, 1\]\[/latex\] or \[latex\]\[a, b\]\[/latex\] ranges depending on your choice.
+1. **Normalization**, or _min-max normalization_, uses the minimum and maximum values from the dataset to normalize the variables into the $\[0, 1\]$ or $\[a, b\]$ ranges depending on your choice.
 2. **Standardization**, or _Z-score normalization,_ converts the scale into the deviation in standard intervals from the mean for each variable. We already saw what could happen when applying standardization before.
 
 If you want to understand Feature Scaling techniques in more detail, it would be good to read [this article first](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-normalize-or-standardize-a-dataset-in-python.md) before moving on.
@@ -125,7 +125,7 @@ This would be the output:
 
 Not good!
 
-As you can see, all values formerly 0 have turned into \[latex\]\\approx -0.431\[/latex\]. By consequence, the scalars from feature 1 are not sparse anymore - and the entire dataset has become dense!
+As you can see, all values formerly 0 have turned into $\\approx -0.431$. By consequence, the scalars from feature 1 are not sparse anymore - and the entire dataset has become dense!
 
 If your Machine Learning setting depends on sparse data, e.g. when it needs to fit into memory, applying standardization entirely removes the benefits that would become present in another case (StackOverflow, n.d.).
 
@@ -188,7 +188,7 @@ Especially because the output would be the same if we applied the `MinMaxScaler`
  [0. ]]
 ```
 
-Now, here's the catch - all values in the original input array to the scaler were positive. This means that the minimum value is zero and that, because it scales by minimum and maximum value, all values will be in the range \[latex\]\[0, 1\]\[/latex\]. Since the maximum absolute value here equals the overall maximum value.
+Now, here's the catch - all values in the original input array to the scaler were positive. This means that the minimum value is zero and that, because it scales by minimum and maximum value, all values will be in the range $\[0, 1\]$. Since the maximum absolute value here equals the overall maximum value.
 
 What if we used a dataset where negative values are present?
 

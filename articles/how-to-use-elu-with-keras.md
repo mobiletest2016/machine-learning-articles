@@ -24,7 +24,7 @@ ELU, which we cover subsequently, attempts to resolve this problem by introducin
 
 ## Recap: what was the point with ReLU, again?
 
-Rectified Linear Unit, or [ReLU](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md) for short, is one of the most widely used activation functions these days. It works really well and due to the fact that it can be used across various machine learning problems it has grown into what it is today. It is also a really simple activation function, outputting zero for all \[latex\]x < 0\[/latex\] and outputting \[latex\]x\[/latex\] (i.e., the input) in all the other cases.
+Rectified Linear Unit, or [ReLU](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md) for short, is one of the most widely used activation functions these days. It works really well and due to the fact that it can be used across various machine learning problems it has grown into what it is today. It is also a really simple activation function, outputting zero for all $x < 0$ and outputting $x$ (i.e., the input) in all the other cases.
 
 [![](images/relu_and_deriv-1024x511.jpeg)]
 
@@ -84,8 +84,8 @@ Fortunately, new activation functions are to the rescue.
 
 These functions all _change the ReLU formula_ slightly in order to overcome some of the problems:
 
-- **[Leaky ReLU](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/using-leaky-relu-with-keras.md)** sets the negative part of the formula to really small but nonzero outputs (the inputs are being multiplied by some parameter \[latex\]\\alpha\[/latex\]), which means that dying neurons are no longer present.
-- **[PReLU](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-prelu-with-keras.md)** recognizes that setting \[latex\]\\alpha\[/latex\] manually in advance of training means that certain assumptions about the data and the model have to be made. Such assumptions may not hold or may not be fully perfect for the particular ML problem, which means that performance may deteriorate. PReLU generalizes Leaky ReLU to a situation where \[latex\]\\alpha\[/latex\] is made input-specific and becomes trainable. As with Leaky ReLU, this avoids the dying ReLU problem.
+- **[Leaky ReLU](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/using-leaky-relu-with-keras.md)** sets the negative part of the formula to really small but nonzero outputs (the inputs are being multiplied by some parameter $\\alpha$), which means that dying neurons are no longer present.
+- **[PReLU](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-prelu-with-keras.md)** recognizes that setting $\\alpha$ manually in advance of training means that certain assumptions about the data and the model have to be made. Such assumptions may not hold or may not be fully perfect for the particular ML problem, which means that performance may deteriorate. PReLU generalizes Leaky ReLU to a situation where $\\alpha$ is made input-specific and becomes trainable. As with Leaky ReLU, this avoids the dying ReLU problem.
 
 Unfortunately, while they do contribute towards a better activation function, the functions do still not solve all the well-known issues.
 
@@ -97,7 +97,7 @@ What this means can be derived from the visualization above. For positive inputs
 
 But what happens if, for example, we input -5.000.000? While this does not happen quite often - we hope - the input would still be very negative.
 
-The risk of this happening increases when the Leaky ReLU \[latex\]\\alpha\[/latex\] is increased (steepening the curve) or when the same happens with the learned PReLU \[latex\]\\alpha\[/latex\]s.
+The risk of this happening increases when the Leaky ReLU $\\alpha$ is increased (steepening the curve) or when the same happens with the learned PReLU $\\alpha$s.
 
 _Any noise will this interfere with training, and this is a new problem introduced by Leaky ReLU and PReLU, according to Clevert et al._
 
@@ -113,7 +113,7 @@ ELU can be written down mathematically as:
 
 $$\\begin{equation} f(x) = \\begin{cases} x, & \\text{if}\\ x >= 0 \\\\ \\alpha(exp(x) -1), & \\text{otherwise} \\\\ \\end{cases} \\end{equation}$$
 
-Do note that according to the paper, \[latex\]\\alpha > 0\[/latex\] must hold for ELU to work. This must be the case since \[latex\]\\alpha\[/latex\] represents the absolute value of the negative saturation level; by definition of the formula above this must be larger than zero.
+Do note that according to the paper, $\\alpha > 0$ must hold for ELU to work. This must be the case since $\\alpha$ represents the absolute value of the negative saturation level; by definition of the formula above this must be larger than zero.
 
 This looks as follows:
 
@@ -123,7 +123,7 @@ And this is the gradient function:
 
 [![](images/elu_deriv.png)]
 
-As you can see, the _vanishing gradients_ and the _dying neurons_ are gone (gradient plot) - and the function saturates to \[latex\]f(x) = -1.0\[/latex\], as configured with \[latex\]\\alpha = 1.0\[/latex\]. According to Clevert et al. (2015), this makes ELU "well suited for deep neural networks with many layers (...) \[enabling\] faster learning \[as well through mean activations close to zero\]".
+As you can see, the _vanishing gradients_ and the _dying neurons_ are gone (gradient plot) - and the function saturates to $f(x) = -1.0$, as configured with $\\alpha = 1.0$. According to Clevert et al. (2015), this makes ELU "well suited for deep neural networks with many layers (...) \[enabling\] faster learning \[as well through mean activations close to zero\]".
 
 ### Empirical tests with ELU
 
@@ -247,7 +247,7 @@ plt.show()
 
 These are the differences:
 
-- We configure an `elu_alpha` value in the model configuration section, which simply specifies the \[latex\]\\alpha\[/latex\] value for the ELU activation layers.
+- We configure an `elu_alpha` value in the model configuration section, which simply specifies the $\\alpha$ value for the ELU activation layers.
 - We apply [He initialization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/he-xavier-initialization-activation-functions-choose-wisely.md) to the Conv2D and Dense layers, in line with Clevert et al. (2015) given the findings of He et al. (2015).
 
 Generating the evaluation metrics & visualizations is also in line with what we've seen in the blog about [visualizing the training process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-training-process-in-keras.md):
@@ -277,7 +277,7 @@ plt.show()
 
 ## Results
 
-I've trained this architecture both with ELU (\[latex\]\\alpha = 1.0\[/latex\]) and with traditional ReLU, for both Xavier/Glorot (standard) weight initialization and He initialization (as recommended for ReLUs).
+I've trained this architecture both with ELU ($\\alpha = 1.0$) and with traditional ReLU, for both Xavier/Glorot (standard) weight initialization and He initialization (as recommended for ReLUs).
 
 ### ReLU/ELU with Xavier/Glorot init
 

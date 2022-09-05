@@ -61,7 +61,7 @@ Firstly, there is the one-dimensional variant:
 tensorflow.keras.layers.Cropping1D(cropping=(1, 1))
 ```
 
-It has one simple attribute: `cropping`, which specifies "how many units should be trimmed off at the beginning and end of the cropping dimension" (Keras, n.d.). That is, if your input is an array of shape \[latex\](20, )\[/latex\] and you apply a `cropping` of \[latex\](2, 5)\[/latex\], then it will be \[latex\](13, )\[/latex\] with 2 values cut off the front and 5 off the back. You could also provide `cropping` as an integer `i`, which then equates to `(i, i)`.
+It has one simple attribute: `cropping`, which specifies "how many units should be trimmed off at the beginning and end of the cropping dimension" (Keras, n.d.). That is, if your input is an array of shape $(20, )$ and you apply a `cropping` of $(2, 5)$, then it will be $(13, )$ with 2 values cut off the front and 5 off the back. You could also provide `cropping` as an integer `i`, which then equates to `(i, i)`.
 
 Secondly, there is two-dimensional variant:
 
@@ -314,7 +314,7 @@ input_train = input_train.astype('float32')
 input_test = input_test.astype('float32')
 ```
 
-The next step is to divide the data points by 255 in order to normalize the data into the \[latex\]\[0, 1\]\[/latex\] range:
+The next step is to divide the data points by 255 in order to normalize the data into the $\[0, 1\]$ range:
 
 ```
 # Normalize data

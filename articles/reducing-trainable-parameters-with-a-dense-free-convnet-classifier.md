@@ -85,8 +85,8 @@ Global Average Pooling can be used to replace these Dense layers in classifiers.
 
 By removing the Dense and Flatten layers, we have a model left with a set of convolutional layers that serve as feature extractors. Now, we can do this:
 
-- Add another Conv layer with active padding, which learns \[latex\]N\[/latex\] feature maps, where \[latex\]N\[/latex\] is the number of target classes.
-- Add a Global Average Pooling layer, which transforms the \[latex\]W x H\[/latex\] feature maps into 1 x 1 maps, effectively producing "class predictions" that are not yet interrelated (like in the final Dense layer before they are fed to Softmax).
+- Add another Conv layer with active padding, which learns $N$ feature maps, where $N$ is the number of target classes.
+- Add a Global Average Pooling layer, which transforms the $W x H$ feature maps into 1 x 1 maps, effectively producing "class predictions" that are not yet interrelated (like in the final Dense layer before they are fed to Softmax).
 - Add a Softmax layer, which generates a multiclass probability distribution over the feature maps and by consequence the target classes.
 
 There we go: we have a ConvNet for classification which does not use Dense layers! As we'll see, it significantly reduces the number of trainable parameters, and yields quite adequate results. However, let's first introduce the dataset and full model architecture :)
@@ -188,7 +188,7 @@ input_train = input_train.astype('float32')
 input_test = input_test.astype('float32')
 ```
 
-And subsequently normalize the data to bring it closer to the \[latex\] \[-1, 1\] \[/latex\] range:
+And subsequently normalize the data to bring it closer to the $\[-1, 1\]$ range:
 
 ```
 # Normalize data

@@ -54,7 +54,7 @@ In that previous blog, we looked at _hinge loss_ and _squared hinge loss_ - whic
 
 Hinge loss and squared hinge loss can be used for [binary classification problems](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/3-variants-of-classification-problems-in-machine-learning.md).
 
-Unfortunately, many of today's problems aren't binary, but rather, multiclass: the number of possible target classes is \[latex\]> 2\[/latex\].
+Unfortunately, many of today's problems aren't binary, but rather, multiclass: the number of possible target classes is $> 2$.
 
 And hinge and squared hinge do not accommodate for this.
 
@@ -70,13 +70,13 @@ _Multiclass hinge_ was introduced by researchers Weston and Watkins (Wikipedia, 
 
 What this means in plain English is this:
 
-**For a prediction \[latex\]y\[/latex\], take all \[latex\]y\[/latex\] values unequal to \[latex\]t\[/latex\], and compute the individual losses. Eventually, sum them together to find the multiclass hinge loss.**
+**For a prediction $y$, take all $y$ values unequal to $t$, and compute the individual losses. Eventually, sum them together to find the multiclass hinge loss.**
 
 The name _categorical hinge loss_, which is also used in place of multiclass hinge loss, already implies what's happening here:
 
-We first convert our regular targets into categorical data. That is, if we have three possible target classes {0, 1, 2}, an arbitrary target (e.g. 2) would be converted into categorical format (in that case, \[latex\]\[0, 0, 1\]\[/latex\]).
+We first convert our regular targets into categorical data. That is, if we have three possible target classes {0, 1, 2}, an arbitrary target (e.g. 2) would be converted into categorical format (in that case, $\[0, 0, 1\]$).
 
-Next, _for any sample_, our DL model generates a multiclass probability distribution over all possible target classes. That is, for the total probability of 100% (or, statistically, \[latex\]1\[/latex\]) it generates the probability that any of the possible categorical classes is the actual target class (in the scenario above, e.g. \[latex\]\[0.25, 0.25, 0.50\]\[/latex\] - which would mean _class two_, but with some uncertainty.
+Next, _for any sample_, our DL model generates a multiclass probability distribution over all possible target classes. That is, for the total probability of 100% (or, statistically, $1$) it generates the probability that any of the possible categorical classes is the actual target class (in the scenario above, e.g. $\[0.25, 0.25, 0.50\]$ - which would mean _class two_, but with some uncertainty.
 
 Computing the loss - the difference between _actual target and predicted targets_ - is then equal to computing the hinge loss for _taking the prediction for all the computed classes, except for the target class, since loss is always 0 there_. The hinge loss computation itself is similar to the [traditional hinge loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-hinge-squared-hinge-loss-with-keras.md).
 
@@ -169,9 +169,9 @@ feature_vector_length = len(X_training[0])
 input_shape = (feature_vector_length,)
 ```
 
-We use Scikit-learns `make_blobs` function to generate data. It simply does as it suggests: it generates blobs of data, or clusters of data, where you specify them to be. Specifically, it generates `num_samples_total` (3000, see model configuration section) in our case, splits them across three clusters centered at \[latex\]{ (0, 0), (15, 15), (0,15) }\[/latex\]. The standard deviation in a cluster is approximately 1.5 to ensure that they are actually separable.
+We use Scikit-learns `make_blobs` function to generate data. It simply does as it suggests: it generates blobs of data, or clusters of data, where you specify them to be. Specifically, it generates `num_samples_total` (3000, see model configuration section) in our case, splits them across three clusters centered at ${ (0, 0), (15, 15), (0,15) }$. The standard deviation in a cluster is approximately 1.5 to ensure that they are actually separable.
 
-Next, we must convert our target values (which are one of \[latex\]{ 0, 1, 2 }\[/latex\]) into [categorical format](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras.md/#preparing-target-vectors-with-to_categorical) since our _categorical hinge loss_ requires categorical format (and hence no integer targets such as \[latex\]2\[/latex\], but categorical vectors like \[latex\]\[0, 0, 1\]\[/latex\].
+Next, we must convert our target values (which are one of ${ 0, 1, 2 }$) into [categorical format](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras.md/#preparing-target-vectors-with-to_categorical) since our _categorical hinge loss_ requires categorical format (and hence no integer targets such as $2$, but categorical vectors like $\[0, 0, 1\]$.
 
 Subsequently, we can split our feature vectors and target vectors according to the `training_split` we configured in our model configuration. Note that we add `.astype(np.integer`) to the testing targets. We do this because when visualizing categorical data, the Mlxtend library requires the vector contents to be _integers_ (instead of floating point numbers).
 
@@ -256,7 +256,7 @@ What it will do is this: it takes the testing data (both features and targets) a
 
 [Visualizing the decision boundaries](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-decision-boundary-for-your-keras-model.md) of the model (remember, we have a three-class classification problem!) is the next step.
 
-I must admit, I had a little help from dr. Sebastian Raschka here, the creator of Mlxtend (also see [https://github.com/rasbt/mlxtend/issues/607](https://github.com/rasbt/mlxtend/issues/607)). As noted before, we had to convert our targets into categorical format, or e.g. \[latex\]target = 2\[/latex\] into \[latex\]target = \[0, 0, 1\]\[/latex\]. Mlxtend does not natively support this, but fortunately, Raschka helped out by creating a helper class that embeds the model yet converts the way it makes predictions (back into non-categorical format). This looks as follows:
+I must admit, I had a little help from dr. Sebastian Raschka here, the creator of Mlxtend (also see [https://github.com/rasbt/mlxtend/issues/607](https://github.com/rasbt/mlxtend/issues/607)). As noted before, we had to convert our targets into categorical format, or e.g. $target = 2$ into $target = \[0, 0, 1\]$. Mlxtend does not natively support this, but fortunately, Raschka helped out by creating a helper class that embeds the model yet converts the way it makes predictions (back into non-categorical format). This looks as follows:
 
 ```
 '''

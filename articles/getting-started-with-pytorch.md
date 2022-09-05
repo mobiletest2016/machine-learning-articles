@@ -377,7 +377,7 @@ We first decompose the batch into `x` and `y` values, which contain the inputs a
 
 ### Configuring the optimizers
 
-We can then configure the optimizer. In this case, we use the Adam optimizer - which is a very common optimizer - and return it in our `configure_optimizers` definition. We set the default learning rate to \[latex\]10^-4\[/latex\] and let it use the model's parameters.
+We can then configure the optimizer. In this case, we use the Adam optimizer - which is a very common optimizer - and return it in our `configure_optimizers` definition. We set the default learning rate to $10^-4$ and let it use the model's parameters.
 
 ```
   def configure_optimizers(self):

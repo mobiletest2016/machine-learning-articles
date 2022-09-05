@@ -275,7 +275,7 @@ def contracting_path(x):
 
 In the `contracting_path` definition, you were using `compute_number_of_filters` to compute the number of filters that must be used / feature maps that must be generated at a specific convolutional block.
 
-This utility function is actually really simple: you take the number of filters in your first convolutional block (which, per your model configuration is 64) and multiply it with \[latex\]2^{\\text{level}}\[/latex\]. For example, at the third level (with index = 2) your convolutional block has \[latex\]64 \\times 2^2 = 256\[/latex\] filters.
+This utility function is actually really simple: you take the number of filters in your first convolutional block (which, per your model configuration is 64) and multiply it with $2^{\\text{level}}$. For example, at the third level (with index = 2) your convolutional block has $64 \\times 2^2 = 256$ filters.
 
 ```
 def compute_number_of_filters(block_number):

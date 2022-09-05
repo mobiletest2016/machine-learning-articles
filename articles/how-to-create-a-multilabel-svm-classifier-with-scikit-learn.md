@@ -35,7 +35,7 @@ Imagine that you're an employee working in a factory. Your task is to monitor a 
 
 In other words, the labels yellow and square are attached to the yellow squares, while blue and circular end up with the blue circles.
 
-This is a human-powered **multilabel classifier**. Human beings inspect objects, attach \[latex\]N\[/latex\] labels to them (here \[latex\]N = 2\[/latex\]), and pass them on - possibly into a bucket or onto another conveyor belt for packaging. So far, so good.
+This is a human-powered **multilabel classifier**. Human beings inspect objects, attach $N$ labels to them (here $N = 2$), and pass them on - possibly into a bucket or onto another conveyor belt for packaging. So far, so good.
 
 ![](images/whatisclassification6.png)
 
@@ -57,9 +57,9 @@ A [Support Vector Machine](https://github.com/mobiletest2016/machine-learning-ar
 
 All right, that's quite a lot of complexity, so let's break it apart into plainer English.
 
-In the figure below, you can see three decision boundaries \[latex\]H\_1\[/latex\], \[latex\]H\_2\[/latex\] and \[latex\]H\_3\[/latex\]. These decision boundaries are also called hyperplanes because they are `N-1` dimensional compared to the feature space itself. In other words, in the figure below, we have a two-dimensional feature space (axes \[latex\]X\_1\[/latex\] and \[latex\]X\_2\[/latex\]) and have three one-dimensional lines (i.e. hyperplane) that serve as candidate decision boundaries: indeed, \[latex\]H\_1\[/latex\], \[latex\]H\_2\[/latex\] and \[latex\]H\_3\[/latex\].
+In the figure below, you can see three decision boundaries $H\_1$, $H\_2$ and $H\_3$. These decision boundaries are also called hyperplanes because they are `N-1` dimensional compared to the feature space itself. In other words, in the figure below, we have a two-dimensional feature space (axes $X\_1$ and $X\_2$) and have three one-dimensional lines (i.e. hyperplane) that serve as candidate decision boundaries: indeed, $H\_1$, $H\_2$ and $H\_3$.
 
-\[latex\]H\_1\[/latex\] is actually no decision boundary at all, because it cannot distinguish between the classes. The other two _are_ decision boundaries, because they can successfully be used to separate the classes from each other. But which is best? Obviously, that's \[latex\]H\_3\[/latex\], even intuitively. But why is that the case? Let's look at the decision boundary in more detail.
+$H\_1$ is actually no decision boundary at all, because it cannot distinguish between the classes. The other two _are_ decision boundaries, because they can successfully be used to separate the classes from each other. But which is best? Obviously, that's $H\_3$, even intuitively. But why is that the case? Let's look at the decision boundary in more detail.
 
 If you look at the line more closely, you can see that it is precisely in the middle of the area between the samples from each class _that are closest to each other_. These samples are called the _support vectors_, and hence the name _Support Vector_ Machine. They effectively support the algorithm in learning the decision boundary. Now, recall that the line is precisely in the middle of the area in between those support vectors. This means that the line is _equidistant_ to the two classes, meaning that on both ends the distance is the same. This in return means that our decision boundary is of _maximum margin_ - it has the highest margin between the classes and is hence (one of the two) best decision boundaries that can be found.
 

@@ -71,7 +71,7 @@ First of all, L1 Regularization, which is also called Lasso Regularization. By c
 
 #### L2 Regularization
 
-Secondly, there is L2 Regularization (a.k.a. Ridge Regularization), which is based on the summated squares of the weights. Although it does enforce simple models through small weight values, it doesn't produce sparse models, as the derivative - \[latex\]2x\[/latex\] - produces smaller and smaller gradients (and hence changes) when \[latex\]x\[/latex\] approaches zero. It can thus be useful to use L2 if you have correlative data, or when you think sparsity won't work for your ML problem at hand.
+Secondly, there is L2 Regularization (a.k.a. Ridge Regularization), which is based on the summated squares of the weights. Although it does enforce simple models through small weight values, it doesn't produce sparse models, as the derivative - $2x$ - produces smaller and smaller gradients (and hence changes) when $x$ approaches zero. It can thus be useful to use L2 if you have correlative data, or when you think sparsity won't work for your ML problem at hand.
 
 [![](images/l2_comp.png)]
 
@@ -136,7 +136,7 @@ _Adding L2 Regularization to a Keras model._
 
 If you can answer them positively, it's time to start some validation activities. First of all, you'll need a baseline model, with which you can compare the effects of training models with a regularizer. Quite unsurprisingly, such a baseline model could be one where no regularization is applied. Hence, the first step is to train such a baseline model with your sub sample. Do make sure to evaluate it with testing data as well, to see how well it generalizes.
 
-Afterwards, the validation process can start. I always think it's best to start with Elastic Net based regularization here, as it combines L1 and L2. Apply it to the layers of your choice, set the hyperparameters \[latex\]\\lambda\_1\[/latex\] and \[latex\]\\lambda\_2\[/latex\] (or \[latex\]\\alpha\[/latex\], depending on your approach), and train the model - once again with your sub sample. After training, make sure to generate evaluation metrics as well. Then, you might play around a bit in terms of settings and retrain for a couple of times, but depending on the results this might be not even necessary. Move on to question 4.
+Afterwards, the validation process can start. I always think it's best to start with Elastic Net based regularization here, as it combines L1 and L2. Apply it to the layers of your choice, set the hyperparameters $\\lambda\_1$ and $\\lambda\_2$ (or $\\alpha$, depending on your approach), and train the model - once again with your sub sample. After training, make sure to generate evaluation metrics as well. Then, you might play around a bit in terms of settings and retrain for a couple of times, but depending on the results this might be not even necessary. Move on to question 4.
 
 #### No - move on to question 3
 

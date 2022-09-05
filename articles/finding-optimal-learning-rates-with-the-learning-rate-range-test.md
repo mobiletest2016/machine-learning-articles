@@ -244,7 +244,7 @@ One such Learning Rate Range Test could, theoretically, yield the following plot
 
 It's a real plot generated with a ConvNet tested for MNIST data.
 
-We see the fastest learning rate descent at \[latex\]\\approx 10^{-1.95}\[/latex\]: in the first plot, the descent is steepest there. The second plot confirms this as it displays the lowest _loss delta_, i.e. where "negative change in loss value" (= improvement) was highest given change of learning rate. By consequence, we would choose this learning rate :)
+We see the fastest learning rate descent at $\\approx 10^{-1.95}$: in the first plot, the descent is steepest there. The second plot confirms this as it displays the lowest _loss delta_, i.e. where "negative change in loss value" (= improvement) was highest given change of learning rate. By consequence, we would choose this learning rate :)
 
 * * *
 
@@ -288,7 +288,7 @@ from keras_lr_finder import LRFinder
 
 ### Test configuration
 
-Next, we set the configuration for our test scenario. We'll use batches of 250 samples for testing. Our images are 28 x 28 pixels and are one-channeled, as the MNIST dataset is grayscale. The number of classes equals 10, while we'll test for 5 epochs (unless one of the abort conditions, such as a loss value that goes out of the roof, occurs before then). Our estimated start learning rate is \[latex\]10^{-4}\[/latex\] while we stop at \[latex\]10^0\[/latex\]. When generating a plot of our test results, we use a moving average of 20 loss values for smoothing the line, to make our results more interpretable.
+Next, we set the configuration for our test scenario. We'll use batches of 250 samples for testing. Our images are 28 x 28 pixels and are one-channeled, as the MNIST dataset is grayscale. The number of classes equals 10, while we'll test for 5 epochs (unless one of the abort conditions, such as a loss value that goes out of the roof, occurs before then). Our estimated start learning rate is $10^{-4}$ while we stop at $10^0$. When generating a plot of our test results, we use a moving average of 20 loss values for smoothing the line, to make our results more interpretable.
 
 ```
 # Model configuration
@@ -449,7 +449,7 @@ Open up that command prompt again, `cd` to the folder where your `.py` file is l
 
 _Note that yours won't be exactly the same due to the fact that machine learning models are stochastic, e.g. due to random or pseudo-random initialization of your weight vectors during model initialization._
 
-The results are very clear: for this training setting, Adam performs substantially better. We can observe that it reaches a lower loss value compared to SGD (first plot), and that it does so in a much shorter time (second plot - the negative delta occurs at a lower learning rate). Likely, this is how we benefit from the fact that Adam performs [local parameter updates](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md/#adam), whereas SGD does not. If we had to choose between these two optimizers, it would clearly be Adam with a learning rate of \[latex\]\\approx 10^{-3.95}\[/latex\].
+The results are very clear: for this training setting, Adam performs substantially better. We can observe that it reaches a lower loss value compared to SGD (first plot), and that it does so in a much shorter time (second plot - the negative delta occurs at a lower learning rate). Likely, this is how we benefit from the fact that Adam performs [local parameter updates](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md/#adam), whereas SGD does not. If we had to choose between these two optimizers, it would clearly be Adam with a learning rate of $\\approx 10^{-3.95}$.
 
 ### Full code
 

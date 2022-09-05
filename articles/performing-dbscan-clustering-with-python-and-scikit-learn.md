@@ -95,11 +95,11 @@ _Spatial_ clustering means that it performs clustering by performing actions in 
 
 ### The concepts of DBScan
 
-Before we start looking at these concepts, we must generate an imaginary dataset first. Here it is. Suppose that we are dealing with a two-dimensional feature space where our samples can be expressed as points (i.e. as \[latex\](X\_1, X\_2)\[/latex\] coordinates). It could then look like this:  
+Before we start looking at these concepts, we must generate an imaginary dataset first. Here it is. Suppose that we are dealing with a two-dimensional feature space where our samples can be expressed as points (i.e. as $(X\_1, X\_2)$ coordinates). It could then look like this:  
 
 ![](images/samples.png)
 
-When performing DBSCAN, two parameters must be provided before the algorithm is run. The first is the **epsilon value**, or \[latex\]\\epsilon\[/latex\]. This value indicates some distance around a point, which can be visualized as a circle with a diamater of \[latex\]\\epsilon\[/latex\] around a point. Note that each point has the same epsilon, but that we draw the circle for just one point below.
+When performing DBSCAN, two parameters must be provided before the algorithm is run. The first is the **epsilon value**, or $\\epsilon$. This value indicates some distance around a point, which can be visualized as a circle with a diamater of $\\epsilon$ around a point. Note that each point has the same epsilon, but that we draw the circle for just one point below.
 
 The second is the **minimum number of samples**. This number indicates the minimum number of samples (including the point itself) that should be within the epsilon range (i.e., the circle) for a point to be considered a _core point_. We will now look at what these are.
 
@@ -107,7 +107,7 @@ The second is the **minimum number of samples**. This number indicates the minim
 
 #### Core Points
 
-Suppose that we have some epsilon \[latex\]\\epsilon\[/latex\] and set the minimum number of points to 3. We will now look at two points of the dataset. On the left, we look at the above point, while on the right, we look at one of the middle points.
+Suppose that we have some epsilon $\\epsilon$ and set the minimum number of points to 3. We will now look at two points of the dataset. On the left, we look at the above point, while on the right, we look at one of the middle points.
 
 > A point _p_ is a _core point_ if at least minPts points are within distance _ε_ of it (including _p_).
 > 
@@ -119,7 +119,7 @@ The great thing of core points is that they are likely part of a cluster, becaus
 
 ![](images/corepoints.png)
 
-If the dataset were larger (e.g. because we zoomed into a particular area), and another point would be inspected, we could arrive at the conclusion that it is not a core point. The example below illustrates why: there are only two points, including itself, in the \[latex\]\\epsilon\[/latex\] based vicinity of the point. Since \[latex\]\\text{minPts} = 3\[/latex\] and \[latex\]2 < 3\[/latex\], this is not a core point.
+If the dataset were larger (e.g. because we zoomed into a particular area), and another point would be inspected, we could arrive at the conclusion that it is not a core point. The example below illustrates why: there are only two points, including itself, in the $\\epsilon$ based vicinity of the point. Since $\\text{minPts} = 3$ and $2 < 3$, this is not a core point.
 
 ![](images/corepoints-1.png)
 
@@ -135,8 +135,8 @@ In the example above, we saw that the extra point we were looking at is not a co
 
 It seems to be the case:
 
-- The closest point to the point we were looking at is a core point, since its \[latex\]\\epsilon\[/latex\] circle contains 4 points, which exceeds the minimum of 3.
-- The point itself lies within the \[latex\]\\epsilon\[/latex\] circle for the closest core point.
+- The closest point to the point we were looking at is a core point, since its $\\epsilon$ circle contains 4 points, which exceeds the minimum of 3.
+- The point itself lies within the $\\epsilon$ circle for the closest core point.
 
 This means that it is directly reachable.
 
@@ -170,15 +170,15 @@ In other words, if we cannot draw a path from a core point to another point (i.e
 
 Now that we know about all the DBSCAN concepts, i.e. the _what_, we can now dive into the _how_. In other words, it's time to look at how DBSCAN works. Funnily, despite the complex name, the algorithm is really simple (Wikipedia, 2007):
 
-1. We set values for \[latex\]\\epsilon\[/latex\] and \[latex\]\\text{minPts}\[/latex\].
+1. We set values for $\\epsilon$ and $\\text{minPts}$.
 2. We randomly select a point from the samples that has not been checked before.
-3. We retrieve the \[latex\]\\epsilon-\\text{neighborhood}\[/latex\] for this point. If it equals or exceeds \[latex\]\\text{minPts}\[/latex\], we signal it as a cluster. Otherwise, we label it as noise.
-4. We signal the \[latex\]\\epsilon-\\text{neighborhood}\[/latex\] as being part of the cluster. This means that for each point of that neighborhood, its own \[latex\]\\epsilon-\\text{neighborhood}\[/latex\] is added to the cluster as well, and so on, and so on. We continue until no further point can be added to the cluster. Note that the point originally labeled as noise can now also become part of this cluster (it may be part of the \[latex\]\\epsilon-\\text{neighborhood}\[/latex\] of one of the other points), or of another cluster later, because:
+3. We retrieve the $\\epsilon-\\text{neighborhood}$ for this point. If it equals or exceeds $\\text{minPts}$, we signal it as a cluster. Otherwise, we label it as noise.
+4. We signal the $\\epsilon-\\text{neighborhood}$ as being part of the cluster. This means that for each point of that neighborhood, its own $\\epsilon-\\text{neighborhood}$ is added to the cluster as well, and so on, and so on. We continue until no further point can be added to the cluster. Note that the point originally labeled as noise can now also become part of this cluster (it may be part of the $\\epsilon-\\text{neighborhood}$ of one of the other points), or of another cluster later, because:
 5. We now start at (2) again, unless all points have been checked and labeled.
 
-By searching for clusters cluster-by-cluster, we can slowly but surely build one cluster, and do not necessarily end up with too many cluster indications that are actually part of the same cluster. Of course, this is something that we can control by setting \[latex\]\\epsilon\[/latex\] and \[latex\]\\text{minPts}\[/latex\] and is depending on the dataset (requiring your own exploratory data analysis first). In addition, labeling points as noise means that after clustering has finished, we can simply show and count the points that remain labeled as noise, and possibly remove them from our dataset.
+By searching for clusters cluster-by-cluster, we can slowly but surely build one cluster, and do not necessarily end up with too many cluster indications that are actually part of the same cluster. Of course, this is something that we can control by setting $\\epsilon$ and $\\text{minPts}$ and is depending on the dataset (requiring your own exploratory data analysis first). In addition, labeling points as noise means that after clustering has finished, we can simply show and count the points that remain labeled as noise, and possibly remove them from our dataset.
 
-If for some \[latex\]\\epsilon\[/latex\] the value for \[latex\]\\text{minPts} = 4\[/latex\], this would be the outcome: many core points, some points that are not core points but directly reachable from core points and hence part of the cluster, and some points that are not reachable and hence outliers. In other words, we have one cluster here, including the green and red points, where the two blue ones are outliers.
+If for some $\\epsilon$ the value for $\\text{minPts} = 4$, this would be the outcome: many core points, some points that are not core points but directly reachable from core points and hence part of the cluster, and some points that are not reachable and hence outliers. In other words, we have one cluster here, including the green and red points, where the two blue ones are outliers.
 
 ![](images/samples-2-1.png)
 
@@ -248,7 +248,7 @@ db = DBSCAN(eps=epsilon, min_samples=min_samples).fit(X)
 labels = db.labels_
 ```
 
-In our case, printing the number of clusters and number of noisy samples yields 2 clusters with 0 noisy samples due to our selection of \[latex\]\\epsilon = 1.0; \\text{minPts} = 13\[/latex\]. In your case, the results will likely be different. Shuffling around with epsilon values (i.e. making the circle bigger) or minimum number of samples (depending on the density of your clusters) will yield other results then!
+In our case, printing the number of clusters and number of noisy samples yields 2 clusters with 0 noisy samples due to our selection of $\\epsilon = 1.0; \\text{minPts} = 13$. In your case, the results will likely be different. Shuffling around with epsilon values (i.e. making the circle bigger) or minimum number of samples (depending on the density of your clusters) will yield other results then!
 
 ```
 no_clusters = len(np.unique(labels) )
@@ -329,7 +329,7 @@ plt.show()
 
 ## Removing noise from the dataset after clustering
 
-If we adapt the value for \[latex\]\\epsilon\[/latex\] and set it to 0.3, we get different results:
+If we adapt the value for $\\epsilon$ and set it to 0.3, we get different results:
 
 ```
 Estimated no. of clusters: 3
@@ -368,9 +368,9 @@ plt.show()
 
 In this article, we looked at DBSCAN based clustering in multiple ways. Firstly, we looked at cluster analysis or clustering in general - what is it? What is it used for? As we could see in this article, there are some interesting areas where such techniques can be employed.
 
-We then introduced DBSCAN, which stands for density-based spatial clustering of applications with noise, and is a widely used clustering algorithm. We looked at the algorithm and the conceptual building blocks first. We saw that core points are named so if at least \[latex\]\\text{minPts}\[/latex\] points are located at less than \[latex\]\\epsilon\[/latex\] distance from the point. All the points within this circle are directly reachable. If we can construct a path from a point to another, non-directly reachable point, through other core points, the point is finally said to be reachable. All points that are not reachable are considered to be outliers, or noise.
+We then introduced DBSCAN, which stands for density-based spatial clustering of applications with noise, and is a widely used clustering algorithm. We looked at the algorithm and the conceptual building blocks first. We saw that core points are named so if at least $\\text{minPts}$ points are located at less than $\\epsilon$ distance from the point. All the points within this circle are directly reachable. If we can construct a path from a point to another, non-directly reachable point, through other core points, the point is finally said to be reachable. All points that are not reachable are considered to be outliers, or noise.
 
-The algorithm itself is then really simple. Starting from one point, it attempts to build a cluster by grouping its \[latex\]\\epsilon-\\text{neighborhoods}\[/latex\], i.e. directly reachable points for the point. If no such point is available, it is labeled as noise. If some are available, for these points, their directly reachable points are added, and so on, until the cluster cannot be expanded any further. Then, it selects another non-visited point and performs the same steps, until all points have been visited. We then know the clusters and the noisy points.
+The algorithm itself is then really simple. Starting from one point, it attempts to build a cluster by grouping its $\\epsilon-\\text{neighborhoods}$, i.e. directly reachable points for the point. If no such point is available, it is labeled as noise. If some are available, for these points, their directly reachable points are added, and so on, until the cluster cannot be expanded any further. Then, it selects another non-visited point and performs the same steps, until all points have been visited. We then know the clusters and the noisy points.
 
 Knowing about the building blocks and how the algorithm works conceptually, we then moved on and provided a Python implementation for DBSCAN using Scikit-learn. We saw that with only a few lines of Python code, we were able to generate a dataset, apply DBSCAN clustering to it, visualize the clusters, and even remove the noisy points. The latter makes our dataset cleaner without losing much of the core information available in the clusters.
 

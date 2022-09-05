@@ -44,7 +44,7 @@ As you likely know, this is how traditional ReLU activates:
 
 $$\\begin{equation} f(x) = \\begin{cases} 0, & \\text{if}\\ x < 0 \\\\ x, & \\text{otherwise} \\\\ \\end{cases} \\end{equation}$$
 
-That is, the output is \[latex\]x\[/latex\] for all \[latex\]x >= 0\[/latex\], while it's zero for all other \[latex\]x\[/latex\].
+That is, the output is $x$ for all $x >= 0$, while it's zero for all other $x$.
 
 Generally, this works very well in many neural networks - and in fact, since this makes the model a lot sparser, the training process tends to be impacted only by the features in your dataset that actually contribute to the model's decision power.
 
@@ -59,7 +59,7 @@ Mathematically, Leaky ReLU is defined as follows (Maas et al., 2013):
 
 $$\\begin{equation} f(x) = \\begin{cases} 0.01x, & \\text{if}\\ x < 0 \\\\ x, & \\text{otherwise} \\\\ \\end{cases} \\end{equation}$$
 
-Contrary to traditional ReLU, the outputs of Leaky ReLU are small and nonzero for all \[latex\]x < 0\[/latex\]. This way, the authors of the paper argue that death of neural networks can be avoided. We do have to note, though, that there also exists [quite some criticism](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/leaky-relu-improving-traditional-relu.md/#does-leaky-relu-really-work) as to whether it really works.
+Contrary to traditional ReLU, the outputs of Leaky ReLU are small and nonzero for all $x < 0$. This way, the authors of the paper argue that death of neural networks can be avoided. We do have to note, though, that there also exists [quite some criticism](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/leaky-relu-improving-traditional-relu.md/#does-leaky-relu-really-work) as to whether it really works.
 
 * * *
 
@@ -82,11 +82,11 @@ It is defined as follows:
 tf.keras.layers.LeakyReLU(alpha=0.3)
 ```
 
-Contrary to our definition above (where \[latex\]\\alpha = 0.01\[/latex\], Keras by default defines alpha as 0.3). This does not matter, and perhaps introduces more freedom: it allows you to experiment with some \[latex\]\\alpha\[/latex\] to find which works best for you.
+Contrary to our definition above (where $\\alpha = 0.01$, Keras by default defines alpha as 0.3). This does not matter, and perhaps introduces more freedom: it allows you to experiment with some $\\alpha$ to find which works best for you.
 
 What it does? Simple - take a look at the definition from the API docs: `f(x) = alpha * x for x < 0`, `f(x) = x for x >= 0` .
 
-Alpha _is the slope of the curve for all \[latex\]x < 0\[/latex\]._
+Alpha _is the slope of the curve for all $x < 0$._
 
 **One important thing before we move to implementation!**
 
@@ -169,7 +169,7 @@ The width and height of the handwritten digits provided by the MNIST dataset are
 
 We will use a [minibatch approach](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md) (although strictly speaking, we don't use Gradient Descent but Adam for optimization), with a `batch_size` of 250. We train the model for a fixed amount of iterations, with `no_epochs = 25`, and have 10 classes. This makes sense, as digits range from 0 to 9, which are ten in total.
 
-20% of our training data will be used for validation purposes, and hence the `validation_split` is 0.2. Verbosity mode is set to True (by means of 'one'), which means that all output is returned to the terminal when running the model. Finally, we set the \[latex\]\\alpha\[/latex\] value for Leaky ReLU; in our case to 0.1. Note that (1) any alpha value is possible _if_ it is equal or larger than zero, and (2) that you may also specify different alpha values for each layer you add Leaky ReLU to. This is however up to you.
+20% of our training data will be used for validation purposes, and hence the `validation_split` is 0.2. Verbosity mode is set to True (by means of 'one'), which means that all output is returned to the terminal when running the model. Finally, we set the $\\alpha$ value for Leaky ReLU; in our case to 0.1. Note that (1) any alpha value is possible _if_ it is equal or larger than zero, and (2) that you may also specify different alpha values for each layer you add Leaky ReLU to. This is however up to you.
 
 ### Data preparation
 
@@ -227,7 +227,7 @@ Subsequently, we `Flatten` our input into onedimensional format to allow the `De
 
 A few important observations:
 
-- Note that by omitting any activation function for the `Conv2D` layers and the first `Dense` layer, we're essentially telling Keras to use a linear activation function instead. This activates as \[latex\]f(x) = x\[/latex\]. [Normally, this is a bad idea](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-you-shouldnt-use-a-linear-activation-function.md), but today it is not, as we directly apply Leaky ReLU afterwards.
+- Note that by omitting any activation function for the `Conv2D` layers and the first `Dense` layer, we're essentially telling Keras to use a linear activation function instead. This activates as $f(x) = x$. [Normally, this is a bad idea](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-you-shouldnt-use-a-linear-activation-function.md), but today it is not, as we directly apply Leaky ReLU afterwards.
 - The `input_shape` parameter is based on our dataset.
 - As discussed before, Leaky ReLU is applied by specifying an extra layer to the model stack, _not by specifying some `activation=''` in the layer you're applying it on!_
 

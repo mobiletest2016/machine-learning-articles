@@ -40,7 +40,7 @@ It is perhaps less known that Support Vector Machines can be used for regression
 
 Before we can understand why SVMs are usable for regression, it's best if we take a look at how they can be used for classification tasks. From the articles linked above, we know that Support Vector Machines are **maximum-margin models** when they are applied to classification problems: when learning a decision boundary, they attempt to generate a boundary such that it maximizes its distance to class 0, but also its distance to class 1. This property is called _equidistance_ and ensures that we have the best possible decision boundary for our dataset.
 
-If you look closely at the decision boundaries plotted in the figure below, we can see that \[latex\]H\_1\[/latex\] is no decision boundary it all (it is not capable of separating class 0 and class 1), \[latex\]H\_2\[/latex\] works but is a bit short in relation to class 0, while \[latex\]H\_3\[/latex\] maximizes the distance between the two classes.
+If you look closely at the decision boundaries plotted in the figure below, we can see that $H\_1$ is no decision boundary it all (it is not capable of separating class 0 and class 1), $H\_2$ works but is a bit short in relation to class 0, while $H\_3$ maximizes the distance between the two classes.
 
 ![](images/Svm_separating_hyperplanes_SVG.svg_-1024x886.png)
 
@@ -60,16 +60,16 @@ Regression, however, is a continuous problem: one input value is mapped to a rea
 
 This puts extra emphasis on the correctness _and_ time-complexity of the boundary, but it is possible to use Support Vector Machines to perform what is known as **Support Vector Regression** (SVR). A penalty-free area is captured around the maximum-margin decision boundary, called the _error tube_, where errors are accepted; this is a consequence of the fact that it must learn to compute continuous outputs. The goal of SVR is to find a tube that is as small as possible, without compromising much in model complexity and training time.
 
-Imagine that all the samples in the figure above don't belong to a particular class - but they just are what they are, samples, and they represent some \[latex\]x \\rightarrow y\[/latex\] mapping from one continuous input to a continuous output value. Obviously, when performing a regression task, you want the regressed function to be somewhere in the middle of the samples. This makes Support Vector Machines a good fit for (linear, and if not linear using some kernel function with the kernel trick) regression problems: using support vectors near the middle of your dataset, it will regress a function that maps those inputs to outputs.
+Imagine that all the samples in the figure above don't belong to a particular class - but they just are what they are, samples, and they represent some $x \\rightarrow y$ mapping from one continuous input to a continuous output value. Obviously, when performing a regression task, you want the regressed function to be somewhere in the middle of the samples. This makes Support Vector Machines a good fit for (linear, and if not linear using some kernel function with the kernel trick) regression problems: using support vectors near the middle of your dataset, it will regress a function that maps those inputs to outputs.
 
 ### Epsilon-SVR and nu-SVR
 
-There are in fact two types of Support Vector Regression: epsilon-based SVR (\[latex\]\\epsilon\[/latex\]-SVR) and nu-SVR (\[latex\]\\nu\[/latex\]-SVR). They differ by means of the control that they offer you over the regression problem (StackExchange, n.d.):
+There are in fact two types of Support Vector Regression: epsilon-based SVR ($\\epsilon$-SVR) and nu-SVR ($\\nu$-SVR). They differ by means of the control that they offer you over the regression problem (StackExchange, n.d.):
 
 - When using **nu-SVR**, you have control over the _total number of support vectors used_ but not necessarily over the error that is acceptable (often yielding smaller but possibly worse models).
 - When using **epsilon-SVR**, you have control over the _error_ _that is acceptable_ but not necessarily over the number of support vectors used (often yielding better but large models).
 
-> Depending of what I want, I choose between the two. If I am really desperate for a small solution (fewer support vectors) I choose \[latex\]\\nu\[/latex\]-SVR and **hope** to obtain a decent model. But if I really want to control the amount of error in my model and go for the best performance, I choose \[latex\]\\epsilon\[/latex\]-SVR and **hope** that the model is not too complex (lots of support vectors).
+> Depending of what I want, I choose between the two. If I am really desperate for a small solution (fewer support vectors) I choose $\\nu$-SVR and **hope** to obtain a decent model. But if I really want to control the amount of error in my model and go for the best performance, I choose $\\epsilon$-SVR and **hope** that the model is not too complex (lots of support vectors).
 > 
 > StackExchange, n.d.
 
@@ -145,7 +145,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20, random
 
 We can then move forward and construct the SVR regressor:
 
-- Here, we set the value for \[latex\]\\epsilon\[/latex\] (epsilon) to `0.2`. It specifies the width of the 'error tube' where no penalty is assigned to mispredictions, effectively allowing us to take values close to the edges of the error tube as support vectors.
+- Here, we set the value for $\\epsilon$ (epsilon) to `0.2`. It specifies the width of the 'error tube' where no penalty is assigned to mispredictions, effectively allowing us to take values close to the edges of the error tube as support vectors.
 - If we want to apply regularization, we can also apply values for `C` - more information [here](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVR.html).
 
 ```

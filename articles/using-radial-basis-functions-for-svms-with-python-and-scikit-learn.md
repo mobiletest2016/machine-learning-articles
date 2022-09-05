@@ -49,7 +49,7 @@ Suppose that we have a dataset as the one pictured on the right. We can see two 
 We can now create a **linear** **classifier** using **Support Vector Machines**. The code below illustrates how we can do this.
 
 - **We perform some imports.** First of all, for visualization purposes, we import `matplotlib.pyplot`. Then, we also import `numpy`, for numbers processing. From `sklearn`, we import a lot of functions: `make_blobs` for generating the blobs we see on the right, `SVC` which represents a Support Vector Machine Classifier, `train_test_split` for [generating a training and testing set](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-easily-create-a-train-test-split-for-your-machine-learning-model.md), and two `metrics` for plotting a [confusion matrix](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-confusion-matrix-with-scikit-learn.md) and displaying accuracy score. Finally, we import `plot_decision_regions` from [Mlxtend](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-decision-boundary-for-your-keras-model.md) to plot the decision boundary of our model.
-- **We specify configuration options**. These are mainly related to the dataset that is created for our model. Our blobs will have a total of 2500 samples, there will be two clusters with centers at \[latex\](3, 3)\[/latex\] and \[latex\](5, 5)\[/latex\] (this matches with the image!) and hence an equal number of classes.
+- **We specify configuration options**. These are mainly related to the dataset that is created for our model. Our blobs will have a total of 2500 samples, there will be two clusters with centers at $(3, 3)$ and $(5, 5)$ (this matches with the image!) and hence an equal number of classes.
 - **We generate and process the dataset**. This involves invoking `make_blobs` to generate the linearly separable clusters and generating the [train/test split](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-easily-create-a-train-test-split-for-your-machine-learning-model.md).
 - **We create and train the Support Vector Machine**. This involves initializing the `SVC` and fitting the _training_ data to it. Note explicitly that we use a _linear_ kernel. In other words, we create a SVM that works with linear data - and this is a crucial fact for the rest of this article!
 - **We evaluate the model**. We generate a [confusion matrix](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-confusion-matrix-with-scikit-learn.md), compute accuracy based on [predictions](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-predict-new-samples-with-your-keras-model.md), and [plot the decision boundary](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-decision-boundary-for-your-keras-model.md) for our model.
@@ -199,11 +199,11 @@ In the article about [Support Vector Machines](https://github.com/mobiletest2016
 
 Let's first cover these terms in more detail, but we'll do so briefly, so that we can move on with full understanding.
 
-- Support Vector Machines will attempt to learn a _hyperplane_ that separates the data. A hyperplane is always an \[latex\]N-1\[/latex\] dimensional object. Let's take a look at the figure above. We know that our feature space (e.g. all the axes onto which we map our samples) represents two dimensions (and hence there are two features per sample: \[latex\]X\_1\[/latex\] and \[latex\]X\_2\[/latex\]). This can be visualized as a plane. Our _hyperplane_ is therefore \[latex\]N-1 = 2-1 = 1\\text{-dimensional}\[/latex\], and represents a line.
-- They will do so by means of _support vectors_. These are feature vectors (or their processed variants, e.g. when using [PCA](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/introducing-pca-with-python-and-scikit-learn-for-machine-learning.md)) that are closest to the hyperplane. They help support the position of the hyperplane by giving input about the _margin_ between them and the hyperplane. The goal is to find a hyperplane (a line, in this case) which maximizes the margin between the _support vectors of each class_ and the hyperplane. In other words, \[latex\]H\_3\[/latex\] is the best hyperplane because it uses few support vectors _and_ ensures that it is as far away from both classes as possible.
+- Support Vector Machines will attempt to learn a _hyperplane_ that separates the data. A hyperplane is always an $N-1$ dimensional object. Let's take a look at the figure above. We know that our feature space (e.g. all the axes onto which we map our samples) represents two dimensions (and hence there are two features per sample: $X\_1$ and $X\_2$). This can be visualized as a plane. Our _hyperplane_ is therefore $N-1 = 2-1 = 1\\text{-dimensional}$, and represents a line.
+- They will do so by means of _support vectors_. These are feature vectors (or their processed variants, e.g. when using [PCA](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/introducing-pca-with-python-and-scikit-learn-for-machine-learning.md)) that are closest to the hyperplane. They help support the position of the hyperplane by giving input about the _margin_ between them and the hyperplane. The goal is to find a hyperplane (a line, in this case) which maximizes the margin between the _support vectors of each class_ and the hyperplane. In other words, $H\_3$ is the best hyperplane because it uses few support vectors _and_ ensures that it is as far away from both classes as possible.
 - Support Vector Machines are _kernel methods_. They are so because they require _linear separability_ for the hyperplane learning to work well. We saw this in the example above: if our data is linearly separable, it will learn to distinguish between the classes perfectly. If it's not linearly separable, performance goes south. With a _[kernel function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/intuitively-understanding-svm-and-svr.md/#what-if-data-is-not-linearly-separable-kernels)_, however, we can try and make our dataset as linearly separable as possible! Kernel functions map our input to another space where linear separability is sometimes possible, but do so in a smart way using what is known as the _[kernel trick](https://en.wikipedia.org/wiki/Kernel_method#Mathematics:_the_kernel_trick)_, avoiding the actual computational cost.
 
-Contrary to neural networks, which learn their mappings themselves, kernel functions are not learned - they must be provided. This is why we explicitly stated that our `kernel='linear'` in the example above. We wanted to use a linear kernel, which essentially maps inputs to outputs \[latex\]\\textbf{x} \\rightarrow \\textbf{y}\[/latex\] as follows: \[latex\]\\textbf{y}: f(\\textbf{x}) = \\textbf{x}\[/latex\]. In other words, it makes a linear mapping. It allowed us to demonstrate the linearity requirement of a SVM when no kernel or a linear kernel is used.
+Contrary to neural networks, which learn their mappings themselves, kernel functions are not learned - they must be provided. This is why we explicitly stated that our `kernel='linear'` in the example above. We wanted to use a linear kernel, which essentially maps inputs to outputs $\\textbf{x} \\rightarrow \\textbf{y}$ as follows: $\\textbf{y}: f(\\textbf{x}) = \\textbf{x}$. In other words, it makes a linear mapping. It allowed us to demonstrate the linearity requirement of a SVM when no kernel or a linear kernel is used.
 
 ![](images/Svm_separating_hyperplanes_SVG.svg_-1024x886.png)
 
@@ -221,7 +221,7 @@ Now, for some datasets, so-called **Radial Basis Functions** can be used as kern
 > 
 > Wikipedia (2005)
 
-In other words, if we choose some point, the _output_ of an RBF will be the distance between that point and some fixed point. In other words, we can create a \[latex\]z\[/latex\] dimension with the outputs of this RBF, which essentially get a 'height' based on how far the point is from some point.
+In other words, if we choose some point, the _output_ of an RBF will be the distance between that point and some fixed point. In other words, we can create a $z$ dimension with the outputs of this RBF, which essentially get a 'height' based on how far the point is from some point.
 
 There are in fact many RBF implementations that can be used (Wikipedia, 2005). Scikit-learn implements what is known as the "squared-exponential kernel" (Scikit-learn, n.d.).
 
@@ -229,11 +229,11 @@ There are in fact many RBF implementations that can be used (Wikipedia, 2005). S
 
 This **squared-exponential kernel** can be expressed mathematically as follows (Scikit-learn, n.d.):
 
-\[latex\]k(x\_i, x\_j) = \\exp\\left(- \\frac{d(x\_i, x\_j)^2}{2l^2} \\right)\[/latex\]
+$k(x\_i, x\_j) = \\exp\\left(- \\frac{d(x\_i, x\_j)^2}{2l^2} \\right)$
 
-Here, \[latex\]d(\\cdot,\\cdot)\[/latex\] is the [Euclidian distance](https://en.wikipedia.org/wiki/Euclidean_distance) between two points, and the \[latex\]l\[/latex\] stands for the length scale of the kernel (Scikit-learn, n.d.), which tells us something about the wiggliness of the mapping of our kernel function.
+Here, $d(\\cdot,\\cdot)$ is the [Euclidian distance](https://en.wikipedia.org/wiki/Euclidean_distance) between two points, and the $l$ stands for the length scale of the kernel (Scikit-learn, n.d.), which tells us something about the wiggliness of the mapping of our kernel function.
 
-In other words, the bigger the distance \[latex\]d(x\_i, x\_j)\[/latex\], the larger the value that goes into the exponent, and the lower the \[latex\]z\[/latex\] value will be:
+In other words, the bigger the distance $d(x\_i, x\_j)$, the larger the value that goes into the exponent, and the lower the $z$ value will be:
 
 ```
 >>> import numpy as np
@@ -255,9 +255,9 @@ Let's now apply the RBF kernel to our nonlinear dataset. Recall that our dataset
 
 We can visualize what happens with our dataset in a third axis (which the SVM can use easily for linear separability with the kernel trick) with the following code.
 
-- We import many things that we need: the MatplotLib 3D plot facilities, the RBF kernel, and the [Z-score normalizer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-normalize-or-standardize-a-dataset-in-python.md) with which we can rescale the dataset to \[latex\](\\mu = 0.0, \\sigma = 1.0)\[/latex\].
+- We import many things that we need: the MatplotLib 3D plot facilities, the RBF kernel, and the [Z-score normalizer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-normalize-or-standardize-a-dataset-in-python.md) with which we can rescale the dataset to $(\\mu = 0.0, \\sigma = 1.0)$.
 - We then create the 3D Plot, specify the colors definition, generate and scale the data - just as we are familiar with from other articles and the sections above.
-- We then generate the \[latex\]z\[/latex\] component for our data by calling the RBF with the default length scale of `1.0`.
+- We then generate the $z$ component for our data by calling the RBF with the default length scale of `1.0`.
 - We then plot the data into a 3D scatter chart.
 
 ```
