@@ -1,4 +1,4 @@
-<h3>This is a clone of <a href="https://github.com//machine-learning-articles">https://github.com//machine-learning-articles<a/></h3>
+<h3>This is a clone of <a href="https://github.com/christianversloot/machine-learning-articles">https://github.com/christianversloot/machine-learning-articles<a/></h3>
 
 
 # Machine learning articles
@@ -8,7 +8,7 @@ I wrote these articles about machine learning in the peroid between May 2019 and
 
 # Index:
 
-[The differences between AI, machine learning & more](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/the-differences-between-artificial-intelligencemachine-learning-more.md)
+[The differences between AI, machine learning & more](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/the-differences-between-artificial-intelligence-machine-learning-more.md)
 
 
 [What is deep learning exactly?](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-deep-learning-exactly.md)
@@ -23,7 +23,7 @@ I wrote these articles about machine learning in the peroid between May 2019 and
 [Why Swish could perform better than ReLu](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-swish-could-perform-better-than-relu.md)
 
 
-[Could chaotic neurons reduce machine learning data hunger?](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/could-chaotic-neurons-reducemachine-learning-data-hunger.md)
+[Could chaotic neurons reduce machine learning data hunger?](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/could-chaotic-neurons-reduce-machine-learning-data-hunger.md)
 
 
 [Why you shouldn't use a linear activation function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-you-shouldnt-use-a-linear-activation-function.md)
@@ -38,7 +38,7 @@ I wrote these articles about machine learning in the peroid between May 2019 and
 [CNNs and feature extraction? The curse of data sparsity.](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/cnns-and-feature-extraction-the-curse-of-data-sparsity.md)
 
 
-[Commoditizing AI? The state of automated machine learning.](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/commoditizing-ai-the-state-of-automatedmachine-learning.md)
+[Commoditizing AI? The state of automated machine learning.](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/commoditizing-ai-the-state-of-automated-machine-learning.md)
 
 
 [Linking maths and intuition: Rosenblatt's Perceptron in Python](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/linking-maths-and-intuition-rosenblatts-perceptron-in-python.md)
@@ -308,7 +308,7 @@ I wrote these articles about machine learning in the peroid between May 2019 and
 [How to use H5Py and Keras to train with data from HDF5 files?](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-h5py-and-keras-to-train-with-data-from-hdf5-files.md)
 
 
-[Storing web app machine learning predictions in a SQL database](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/storing-web-appmachine-learning-predictions-in-a-sql-database.md)
+[Storing web app machine learning predictions in a SQL database](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/storing-web-app-machine-learning-predictions-in-a-sql-database.md)
 
 
 [K-means Clustering tutorial: example with Scikit-learn](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-perform-k-means-clustering-with-python-in-scikit.md)
@@ -338,7 +338,7 @@ I wrote these articles about machine learning in the peroid between May 2019 and
 [How to visualize support vectors of your SVM classifier?](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-support-vectors-of-your-svm-classifier.md)
 
 
-[Best Machine Learning & Artificial Intelligence Books Available in 2021](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/bestmachine-learning-artificial-intelligence-books.md)
+[Best Machine Learning & Artificial Intelligence Books Available in 2021](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/best-machine-learning-artificial-intelligence-books.md)
 
 
 [Automating neural network configuration with Keras Tuner](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/automating-neural-network-configuration-with-keras-tuner.md)
@@ -368,7 +368,7 @@ I wrote these articles about machine learning in the peroid between May 2019 and
 [TensorFlow Cloud: easy cloud-based training of your Keras model](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tensorflow-cloud-easy-cloud-based-training-of-your-keras-model.md)
 
 
-[3 Variants of Classification Problems in Machine Learning](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/3-variants-of-classification-problems-inmachine-learning.md)
+[3 Variants of Classification Problems in Machine Learning](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/3-variants-of-classification-problems-in-machine-learning.md)
 
 
 [Tutorial: building a Hot Dog - Not Hot Dog classifier with TensorFlow and Keras](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tutorial-building-a-hot-dog-not-hot-dog-classifier-with-tensorflow-and-keras.md)
@@ -377,7 +377,7 @@ I wrote these articles about machine learning in the peroid between May 2019 and
 [Distributed training: TensorFlow and Keras models with Apache Spark](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/distributed-training-tensorflow-and-keras-models-with-apache-spark.md)
 
 
-[Your First Machine Learning Project with TensorFlow 2.0 and Keras](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/your-firstmachine-learning-project-with-tensorflow-and-keras.md)
+[Your First Machine Learning Project with TensorFlow 2.0 and Keras](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/your-first-machine-learning-project-with-tensorflow-and-keras.md)
 
 
 [Using Teachable Machine for creating TensorFlow models](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/using-teachable-machine-for-creating-tensorflow-models.md)
@@ -416,7 +416,7 @@ I wrote these articles about machine learning in the peroid between May 2019 and
 [Creating a Multilabel Neural Network Classifier with Tensorflow 2.0 and Keras](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/creating-a-multilabel-neural-network-classifier-with-tensorflow-and-keras.md)
 
 
-[How to create a train/test split for your Machine Learning model?](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-easily-create-a-train-test-split-for-yourmachine-learning-model.md)
+[How to create a train/test split for your Machine Learning model?](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-easily-create-a-train-test-split-for-your-machine-learning-model.md)
 
 
 [How to perform Multioutput Regression with SVMs in Python](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-perform-multioutput-regression-with-svms-in-python.md)
@@ -431,10 +431,10 @@ I wrote these articles about machine learning in the peroid between May 2019 and
 [Feature Scaling with Python and Sparse Data](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/feature-scaling-with-python-and-sparse-data.md)
 
 
-[One-Hot Encoding for Machine Learning with Python and Scikit-learn](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/one-hot-encoding-formachine-learning-with-python-and-scikit-learn.md)
+[One-Hot Encoding for Machine Learning with Python and Scikit-learn](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/one-hot-encoding-for-machine-learning-with-python-and-scikit-learn.md)
 
 
-[One-Hot Encoding for Machine Learning with TensorFlow 2.0 and Keras](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/one-hot-encoding-formachine-learning-with-tensorflow-and-keras.md)
+[One-Hot Encoding for Machine Learning with TensorFlow 2.0 and Keras](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/one-hot-encoding-for-machine-learning-with-tensorflow-and-keras.md)
 
 
 [Using Radial Basis Functions for SVMs with Python and Scikit-learn](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/using-radial-basis-functions-for-svms-with-python-and-scikit-learn.md)
@@ -446,7 +446,7 @@ I wrote these articles about machine learning in the peroid between May 2019 and
 [Using Deep Learning for Classifying Mail Digits](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/using-deep-learning-for-classifying-mail-digits.md)
 
 
-[Introducing PCA with Python and Scikit-learn for Machine Learning](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/introducing-pca-with-python-and-scikit-learn-formachine-learning.md)
+[Introducing PCA with Python and Scikit-learn for Machine Learning](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/introducing-pca-with-python-and-scikit-learn-for-machine-learning.md)
 
 
 [DBSCAN clustering tutorial: example with Scikit-learn](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/performing-dbscan-clustering-with-python-and-scikit-learn.md)
@@ -461,22 +461,22 @@ I wrote these articles about machine learning in the peroid between May 2019 and
 [From vanilla RNNs to Transformers: a history of Seq2Seq learning](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/from-vanilla-rnns-to-transformers-a-history-of-seq2seq-learning.md)
 
 
-[How to perform Text Summarization with Python, HuggingFace Transformers and Machine Learning](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/easy-text-summarization-with-huggingface-transformers-andmachine-learning.md)
+[How to perform Text Summarization with Python, HuggingFace Transformers and Machine Learning](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/easy-text-summarization-with-huggingface-transformers-and-machine-learning.md)
 
 
-[Question Answering with Python, HuggingFace Transformers and Machine Learning](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/easy-question-answering-withmachine-learning-and-huggingface-transformers.md)
+[Question Answering with Python, HuggingFace Transformers and Machine Learning](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/easy-question-answering-with-machine-learning-and-huggingface-transformers.md)
 
 
-[How to perform Sentiment Analysis with Python, HuggingFace Transformers and Machine Learning](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/easy-sentiment-analysis-withmachine-learning-and-huggingface-transformers.md)
+[How to perform Sentiment Analysis with Python, HuggingFace Transformers and Machine Learning](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/easy-sentiment-analysis-with-machine-learning-and-huggingface-transformers.md)
 
 
-[Introduction to Transformers in Machine Learning](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/introduction-to-transformers-inmachine-learning.md)
+[Introduction to Transformers in Machine Learning](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/introduction-to-transformers-in-machine-learning.md)
 
 
 [A gentle introduction to Long Short-Term Memory Networks (LSTM)](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/a-gentle-introduction-to-long-short-term-memory-networks-lstm.md)
 
 
-[Differences between Autoregressive, Autoencoding and Sequence-to-Sequence Models in Machine Learning](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/differences-between-autoregressive-autoencoding-and-sequence-to-sequence-models-inmachine-learning.md)
+[Differences between Autoregressive, Autoencoding and Sequence-to-Sequence Models in Machine Learning](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/differences-between-autoregressive-autoencoding-and-sequence-to-sequence-models-in-machine-learning.md)
 
 
 [Intuitive Introduction to OpenAI GPT](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/intuitive-introduction-to-openai-gpt.md)
@@ -530,10 +530,10 @@ I wrote these articles about machine learning in the peroid between May 2019 and
 [How to predict new samples with your PyTorch model?](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-predict-new-samples-with-your-pytorch-model.md)
 
 
-[Easy Named Entity Recognition with Machine Learning and HuggingFace Transformers](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/easy-named-entity-recognition-withmachine-learning-and-huggingface-transformers.md)
+[Easy Named Entity Recognition with Machine Learning and HuggingFace Transformers](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/easy-named-entity-recognition-with-machine-learning-and-huggingface-transformers.md)
 
 
-[Easy Machine Translation with Machine Learning and HuggingFace Transformers](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/easy-machine-translation-withmachine-learning-and-huggingface-transformers.md)
+[Easy Machine Translation with Machine Learning and HuggingFace Transformers](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/easy-machine-translation-with-machine-learning-and-huggingface-transformers.md)
 
 
 [What is the BART Transformer in NLP?](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-the-bart-transformer-in-nlp.md)
@@ -545,22 +545,22 @@ I wrote these articles about machine learning in the peroid between May 2019 and
 [Wav2vec 2: Transformers for Speech Recognition](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/wav2vec-2-transformers-for-speech-recognition.md)
 
 
-[Easy Speech Recognition with Machine Learning and HuggingFace Transformers](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/easy-speech-recognition-withmachine-learning-and-huggingface-transformers.md)
+[Easy Speech Recognition with Machine Learning and HuggingFace Transformers](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/easy-speech-recognition-with-machine-learning-and-huggingface-transformers.md)
 
 
 [What is ConvBERT and how does it work?](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-convbert-and-how-does-it-work.md)
 
 
-[Easy Masked Language Modeling with Machine Learning and HuggingFace Transformers](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/easy-masked-language-modeling-withmachine-learning-and-huggingface-transformers.md)
+[Easy Masked Language Modeling with Machine Learning and HuggingFace Transformers](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/easy-masked-language-modeling-with-machine-learning-and-huggingface-transformers.md)
 
 
-[Easy Causal Language Modeling with Machine Learning and HuggingFace Transformers](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/easy-causal-language-modeling-withmachine-learning-and-huggingface-transformers.md)
+[Easy Causal Language Modeling with Machine Learning and HuggingFace Transformers](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/easy-causal-language-modeling-with-machine-learning-and-huggingface-transformers.md)
 
 
 [The TAPAS Transformer: Table Parsing with BERT](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/the-tapas-transformer-table-parsing-with-bert.md)
 
 
-[Easy Table Parsing with TAPAS, Machine Learning and HuggingFace Transformers](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/easy-table-parsing-with-tapasmachine-learning-and-huggingface-transformers.md)
+[Easy Table Parsing with TAPAS, Machine Learning and HuggingFace Transformers](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/easy-table-parsing-with-tapas-machine-learning-and-huggingface-transformers.md)
 
 
 [Longformer: Transformers for Long Sequences](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/longformer-transformers-for-long-sequences.md)
@@ -572,7 +572,7 @@ I wrote these articles about machine learning in the peroid between May 2019 and
 [DialoGPT: Transformers for Dialogues](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/dialogpt-transformers-for-dialogues.md)
 
 
-[Easy Chatbot with DialoGPT, Machine Learning and HuggingFace Transformers](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/easy-chatbot-with-dialogptmachine-learning-and-huggingface-transformers.md)
+[Easy Chatbot with DialoGPT, Machine Learning and HuggingFace Transformers](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/easy-chatbot-with-dialogpt-machine-learning-and-huggingface-transformers.md)
 
 
 [Generative Adversarial Networks, a gentle introduction](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/generative-adversarial-networks-a-gentle-introduction.md)
@@ -599,7 +599,7 @@ I wrote these articles about machine learning in the peroid between May 2019 and
 [Convolutional Neural Networks with PyTorch](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/convolutional-neural-networks-with-pytorch.md)
 
 
-[Easy grammar error detection & correction with Machine Learning](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/easy-grammar-error-detection-correction-withmachine-learning.md)
+[Easy grammar error detection & correction with Machine Learning](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/easy-grammar-error-detection-correction-with-machine-learning.md)
 
 
 [Creating DCGAN with PyTorch](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/creating-dcgan-with-pytorch.md)
@@ -641,7 +641,7 @@ I wrote these articles about machine learning in the peroid between May 2019 and
 [How to use Upsample for upsampling with PyTorch](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-upsample-for-upsampling-with-pytorch.md)
 
 
-[Easy Object Detection with Python, HuggingFace Transformers and Machine Learning](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/easy-object-detection-with-python-huggingface-transformers-andmachine-learning.md)
+[Easy Object Detection with Python, HuggingFace Transformers and Machine Learning](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/easy-object-detection-with-python-huggingface-transformers-and-machine-learning.md)
 
 
 [Quick and easy GPU & TPU acceleration for PyTorch with HuggingFace Accelerate](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/quick-and-easy-gpu-tpu-acceleration-for-pytorch-with-huggingface-accelerate.md)
