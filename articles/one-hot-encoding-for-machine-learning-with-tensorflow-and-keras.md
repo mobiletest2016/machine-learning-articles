@@ -82,7 +82,7 @@ If we want to express more categories, we can simply add more bits. E.g. if we w
 
 When we are training a Neural Network with TensorFlow, we always use `categorical_crossentropy_loss` when we are working with categorical data (and often, are trying to solve a [multiclass classification problem](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/3-variants-of-classification-problems-in-machine-learning.md)).
 
-As we can read on the page about [loss functions](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#categorical-crossentropy), **categorical crossentropy loss** uses the prediction from our model for the true target to compute _how bad the model performs_. As we can read on that page as well, we see that this loss function requires data to be categorical - and hence, one-hot encoded.
+As we can read on the page about [loss functions](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md/#categorical-crossentropy), **categorical crossentropy loss** uses the prediction from our model for the true target to compute _how bad the model performs_. As we can read on that page as well, we see that this loss function requires data to be categorical - and hence, one-hot encoded.
 
 ### How One-Hot Encoding fits CCE Loss
 

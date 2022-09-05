@@ -48,7 +48,7 @@ In another screen, you can see how loss has evolved over the epochs:
 
 ![](images/image-1-1024x505.png)
 
-[And so on. And so on.](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-tensorboard-with-keras/#viewing-model-performance-in-tensorboard)
+[And so on. And so on.](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-tensorboard-with-keras.md/#viewing-model-performance-in-tensorboard)
 
 Installing TensorBoard must be done separately to your PyTorch install. Doing so is not difficult, fortunately, and can be done by simply executing `pip` via `pip install tensorboard`.
 
@@ -66,7 +66,7 @@ Great!
 
 This means that we can create a `SummaryWriter` (or, fully: `torch.utils.tensorboard.writer.SummaryWriter`) and use it to write away the data that we want.
 
-Recall from the article [linked above](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-tensorboard-with-keras/#viewing-model-performance-in-tensorboard) that TensorBoard provides a variety of tabs:
+Recall from the article [linked above](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-tensorboard-with-keras.md/#viewing-model-performance-in-tensorboard) that TensorBoard provides a variety of tabs:
 
 - The **scalar tab** for showing how the training process happened over time by means of displaying scalars (e.g., in a line plot).
 - The **images tab** for showing images written away during the training process.

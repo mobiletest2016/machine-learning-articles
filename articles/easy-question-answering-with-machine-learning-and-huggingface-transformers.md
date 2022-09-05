@@ -61,7 +61,7 @@ Transformers are a smart combination of two segments that work together nicely d
 
 This finally solved one of the remaining key issues with language models at the time.
 
-Click [here](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/from-vanilla-rnns-to-transformers-a-history-of-seq2seq-learning/#attention-is-all-you-need-transformers) if you want to read more about vanilla Transformers. Here, we're going to continue by looking at the BERT architecture.
+Click [here](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/from-vanilla-rnns-to-transformers-a-history-of-seq2seq-learning.md/#attention-is-all-you-need-transformers) if you want to read more about vanilla Transformers. Here, we're going to continue by looking at the BERT architecture.
 
 ### BERT: Bidirectional Encoder Representations from Transformer
 

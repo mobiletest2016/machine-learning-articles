@@ -97,7 +97,7 @@ We created a Multilayer Perceptron for classifying data (MNIST data, to be speci
 
 Firstly, the final activation function. For classification MLPs, we used the `Softmax` activation function for the multiclass classification problem that we intended to solve. This does not work for regression MLPs. While you want to compute the probability that a sample belongs to any of the predetermined classes during classification (i.e., what Softmax does), you want something different during regression. In fact, what you want is to predict a real-valued number, like '24.05'. You therefore cannot use Softmax during regression. You'll simply use the linear activation function instead for the final layer.
 
-(For the same reason, you don't [convert your data](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-basic-mlp-classifier-with-the-keras-sequential-api/#loading-your-data) with `to_categorical` during regression).
+(For the same reason, you don't [convert your data](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-basic-mlp-classifier-with-the-keras-sequential-api.md/#loading-your-data) with `to_categorical` during regression).
 
 Secondly, the loss function that you'll define is different. For multiclass classification problems, categorical crossentropy was your loss function of preference (Chollet, 2017). Binary crossentropy would be the one for binary classification. However, once again, you're regressing this time - and you cannot use crossentropy, which essentially attempts to compare probability distributions (or, by the analogy from our previous blog, purple elephants) and see how much they are alike. Instead, you'll use the mean average error or mean squared error, or similar loss functions. These simply compute the difference between the prediction and the expected value and perform some operations to make the outcome better for optimization. We'll cover them in more detail later.
 
@@ -263,7 +263,7 @@ We then specify three densely-connected layers of neurons: one with 16 outputs, 
 
 The input layer is specified by the input shape and therefore contains 3 neurons; one per input feature.
 
-Note that we're using ReLU based activation because it is [one of the standard activation functions](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-swish-could-perform-better-than-relu/#todays-activation-functions) used today. However, note as well that for the final layer we're no longer using `Softmax`, as with the MLP classifier. Instead, we're using the identity function or \[latex\]f(x) = x\[/latex\] for generating the prediction. Using the linear function allows us to generate a real-valued or numeric prediction, which is exactly what we need.
+Note that we're using ReLU based activation because it is [one of the standard activation functions](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-swish-could-perform-better-than-relu.md/#todays-activation-functions) used today. However, note as well that for the final layer we're no longer using `Softmax`, as with the MLP classifier. Instead, we're using the identity function or \[latex\]f(x) = x\[/latex\] for generating the prediction. Using the linear function allows us to generate a real-valued or numeric prediction, which is exactly what we need.
 
 ### Hyperparameter configuration and fitting the data
 

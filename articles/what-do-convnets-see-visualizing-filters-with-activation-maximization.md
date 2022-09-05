@@ -43,7 +43,7 @@ The input might be a W x H RGB image, meaning that the input to the ConvNet is t
 
 Once the data is input, it passes through **N kernels** (where N is an integer number, such as 3) or **filters** that have the same dimension. These kernels slide over the input data, performing element-wise multiplications, generating **N feature maps** of width Wfm and height Hfm, depending on the size of the kernel.
 
-This convolutional operation is often followed by pooling operations, possibly by other convolutional operations, and likely, finally, by densely-connected neural operations, to generate a prediction. It is hence part of the [high-level supervised learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process).
+This convolutional operation is often followed by pooling operations, possibly by other convolutional operations, and likely, finally, by densely-connected neural operations, to generate a prediction. It is hence part of the [high-level supervised learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md/#the-high-level-supervised-learning-process).
 
 This also sheds light on how ConvNets actually learn. We saw that for any input, the kernels help determine the feature map. The kernels thus contain the patterns that the model has learnt. As after training the kernels are kept constant, they drive the predictions for all the inputs when a model is put into production (possibly augmented with the weights from the densely-connected layers - it's important to know that convolutions and Dense layers are often combined in ConvNets.)
 

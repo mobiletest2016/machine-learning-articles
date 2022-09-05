@@ -15,7 +15,7 @@ tags:
   - "tensorflow"
 ---
 
-In machine learning, when performing supervised learning, you'll have to load your dataset from somewhere - and then [feed it to the machine learning model](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process). Now, there are multiple ways for loading data.
+In machine learning, when performing supervised learning, you'll have to load your dataset from somewhere - and then [feed it to the machine learning model](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md/#the-high-level-supervised-learning-process). Now, there are multiple ways for loading data.
 
 A CSV file is one example, as well as a text file. It works really well if you're looking for simplicity: loading a dataset from a text-based file is really easy with Python.
 
@@ -96,7 +96,7 @@ Today's dataset will be the MNIST one, which we know pretty well by now - it's a
 
 [![](images/mnist-visualize.png)]
 
-Now, let’s take a look if we can create a simple [Convolutional Neural Network](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-conv2d-with-keras.md) which operates with the [MNIST dataset](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets/#mnist-database-of-handwritten-digits), stored in HDF5 format.
+Now, let’s take a look if we can create a simple [Convolutional Neural Network](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-conv2d-with-keras.md) which operates with the [MNIST dataset](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets.md/#mnist-database-of-handwritten-digits), stored in HDF5 format.
 
 Fortunately, this dataset is readily available at [Kaggle for download](https://www.kaggle.com/benedictwilkinsai/mnist-hd5f), so make sure to create an account there and download the **train.hdf5** and **test.hdf5** files.
 

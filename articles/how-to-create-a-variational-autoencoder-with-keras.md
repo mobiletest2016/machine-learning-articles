@@ -37,7 +37,7 @@ If you are already familiar with variational autoencoders or wish to find the im
 
 ### How do VAEs work?
 
-Contrary to a [normal autoencoder](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-a-variational-autoencoder-vae/#about-normal-autoencoders), which learns to encode some input into a point in _latent space_, Variational Autoencoders (VAEs) learn to encode multivariate probability distributions into latent space, given their configuration usually Gaussian ones:
+Contrary to a [normal autoencoder](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-a-variational-autoencoder-vae.md/#about-normal-autoencoders), which learns to encode some input into a point in _latent space_, Variational Autoencoders (VAEs) learn to encode multivariate probability distributions into latent space, given their configuration usually Gaussian ones:
 
 [![](images/vae-encoder-decoder-1024x229.png)]
 
@@ -416,7 +416,7 @@ We the instantiate the model: `i` are our inputs indeed, and `vae_outputs` are t
 
 ### Defining custom VAE loss function
 
-Now that we have defined our model, we can proceed with model configuration. Usually, with neural networks, this is done with `model.compile`, where a loss function is specified such as [binary crossentropy](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-binary-categorical-crossentropy-with-keras.md). However, when we look [at how VAEs are optimized](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-a-variational-autoencoder-vae/#second-difference-kl-divergence-reconstruction-error-for-optimization), we see that it's not a simple loss function that is used: we use reconstruction loss (in our case, binary crossentropy loss) _together with_ [KL divergence loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-kullback-leibler-divergence-kl-divergence-with-keras.md) to ensure that our latent space is both **[continuous and complete](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-a-variational-autoencoder-vae/#continuity-and-completeness)**.
+Now that we have defined our model, we can proceed with model configuration. Usually, with neural networks, this is done with `model.compile`, where a loss function is specified such as [binary crossentropy](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-binary-categorical-crossentropy-with-keras.md). However, when we look [at how VAEs are optimized](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-a-variational-autoencoder-vae.md/#second-difference-kl-divergence-reconstruction-error-for-optimization), we see that it's not a simple loss function that is used: we use reconstruction loss (in our case, binary crossentropy loss) _together with_ [KL divergence loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-kullback-leibler-divergence-kl-divergence-with-keras.md) to ensure that our latent space is both **[continuous and complete](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-a-variational-autoencoder-vae.md/#continuity-and-completeness)**.
 
 We define it as follows:
 

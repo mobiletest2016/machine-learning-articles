@@ -23,7 +23,7 @@ Ever since that particular breakthrough in 2012, deep learning has been an impor
 
 ...and there are many more!
 
-Despite the progress made so far, deep learning is still a computationally expensive field. Training neural networks [involves feeding forward data, computing the error or loss and subsequently optimizing](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process) the model with [gradient descent](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md) or [adaptive optimizers](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md).
+Despite the progress made so far, deep learning is still a computationally expensive field. Training neural networks [involves feeding forward data, computing the error or loss and subsequently optimizing](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md/#the-high-level-supervised-learning-process) the model with [gradient descent](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md) or [adaptive optimizers](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md).
 
 Especially in settings where your model is large - and deep learning models _are_ large, with sometimes hundreds of layers in just one model, yielding millions and millions of trainable parameters - training a model does (1) take a lot of time, (2) requires GPU powered resources which are expensive, and (3) consumes a lot of electricity.
 
@@ -33,7 +33,7 @@ More specifically, we'll look at a few things. Firstly, we discuss the differenc
 
 It's promising to become quite a read, but I'm sure that it'll provide you with a nice overview of what's out there. Let's go! 😎
 
-**Update 07/Jan/2021:** the [Elephas project](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/distributed-training-tensorflow-and-keras-models-with-apache-spark/#elephas-distributed-deep-learning-with-keras-spark) was taken over by [@danielenricocahall](https://github.com/danielenricocahall). References were updated to accommodate for this. In addition, the new Elephas release now also supports regression models 🚀 This was adapted in the text.
+**Update 07/Jan/2021:** the [Elephas project](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/distributed-training-tensorflow-and-keras-models-with-apache-spark.md/#elephas-distributed-deep-learning-with-keras-spark) was taken over by [@danielenricocahall](https://github.com/danielenricocahall). References were updated to accommodate for this. In addition, the new Elephas release now also supports regression models 🚀 This was adapted in the text.
 
 * * *
 
@@ -140,7 +140,7 @@ The benefit of Spark is that it is capable of generating a Resilient Distributed
 
 The fact that Spark is capable of distributing processing jobs into essentially small packages, makes one wonder if it cannot be used for _machine learning_ too! The reasoning why this could possibly work is simple: supervised machine learning is
 
-The fact that Spark is capable of distributing processing jobs into essentially small packages, makes one wonder if it cannot be used for _machine learning_ too! The reasoning why this could possibly work is simple: supervised machine learning [is essentially solving an optimization problem, iteratively.](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process) Feeding forward the training samples produces an error score, which is subsequently used to optimize the [weights](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-weight-initialization.md) of the individual neurons. It should therefore be possible to distribute this process over many machines.
+The fact that Spark is capable of distributing processing jobs into essentially small packages, makes one wonder if it cannot be used for _machine learning_ too! The reasoning why this could possibly work is simple: supervised machine learning [is essentially solving an optimization problem, iteratively.](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md/#the-high-level-supervised-learning-process) Feeding forward the training samples produces an error score, which is subsequently used to optimize the [weights](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-weight-initialization.md) of the individual neurons. It should therefore be possible to distribute this process over many machines.
 
 Is it? Let's take a look at some methods for distributing deep learning using Apache Spark.
 
@@ -201,7 +201,7 @@ Personally, I think this is a great way of aligning the benefits of Apache Spark
 - Distributed hyperparameter optimization for your Keras model (that is, finding the best set of hyperparameters automatically, such as with [Keras Tuner](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/automating-neural-network-configuration-with-keras-tuner.md), but then distributed).
 - Distributed training of ensemble models, by means of hyperparameter optimization and subsequently ensembling on \[latex\]N\[/latex\] best-performing models.
 
-While it [used to be impossible](https://github.com/maxpumperla/elephas/issues/139) to perform regression tasks in previous versions of Elephas, [it was added](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/distributed-training-tensorflow-and-keras-models-with-apache-spark/#comment-12187) in [version 0.4.5](https://github.com/danielenricocahall/elephas/releases/tag/0.4.5) released in early 2021.
+While it [used to be impossible](https://github.com/maxpumperla/elephas/issues/139) to perform regression tasks in previous versions of Elephas, [it was added](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/distributed-training-tensorflow-and-keras-models-with-apache-spark.md/#comment-12187) in [version 0.4.5](https://github.com/danielenricocahall/elephas/releases/tag/0.4.5) released in early 2021.
 
 #### Creating a model with Keras and Elephas
 
@@ -295,7 +295,7 @@ In fact, that's what its [GitHub page](https://github.com/intel-analytics/BigDL)
 
 Where `elephas` and `dist-keras` focus on Keras models, BigDL works a bit differently. Instead of focusing on an existing framework for deep learning, it requires people to write models directly against Spark - that is, by using `pyspark`. In doing so, it attempts to replicate what we know as the Sequential API from Keras, which should make it fairly easy for people used to the Keras way of working to implement models with BigDL.
 
-While the former may sound strange at first, it does in fact come with great benefits. Since Spark is not effectively 'abused' to run Keras models in a data parallel way, but instead runs as _direct transformations_ of inputs to outputs (essentially replicating the mathematical operations performed by e.g. [Convolutional layers](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tutorial-building-a-hot-dog-not-hot-dog-classifier-with-tensorflow-and-keras/#what-is-a-convnet) directly in Spark), it becomes possible to train with _extremely_ large datasets currently stored on Hadoop (or S3). This is not possible with Elephas, to give just one example: here, an existing dataset had to be converted into an RDD and then run on the Spark cluster.
+While the former may sound strange at first, it does in fact come with great benefits. Since Spark is not effectively 'abused' to run Keras models in a data parallel way, but instead runs as _direct transformations_ of inputs to outputs (essentially replicating the mathematical operations performed by e.g. [Convolutional layers](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tutorial-building-a-hot-dog-not-hot-dog-classifier-with-tensorflow-and-keras.md/#what-is-a-convnet) directly in Spark), it becomes possible to train with _extremely_ large datasets currently stored on Hadoop (or S3). This is not possible with Elephas, to give just one example: here, an existing dataset had to be converted into an RDD and then run on the Spark cluster.
 
 As such, BigDL also allows you to train your deep learning model in a data parallel way, but is Spark-native rather than Keras-based.
 

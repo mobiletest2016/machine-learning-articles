@@ -30,7 +30,7 @@ Let's take a look! :)
 
 ## Error in supervised machine learning: what is it?
 
-From the article about loss and loss functions, we know about the [high-level supervised machine learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process):
+From the article about loss and loss functions, we know about the [high-level supervised machine learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md/#the-high-level-supervised-learning-process):
 
 1. Samples from a labeled dataset are inserted into the model - this is called "feeding the samples forward".
 2. The machine learning model generates a prediction for each sample.
@@ -164,7 +164,7 @@ If your train a machine learning model, through picking a [loss function](https:
 
 This loss value can be decomposed into bias and variance error by means of Sebastian Raschka's [Mlxtend](http://rasbt.github.io/mlxtend.md) Python library, with which one can also [plot the decision boundary of a classifier](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-decision-boundary-for-your-keras-model.md).
 
-More specifically, this can be done by means of the `bias_variance_decomp` functionality available in the library. Let's see how it works with the TensorFlow model listed here. It is the [MLP classifier that we created](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/creating-an-mlp-for-regression-with-keras.md) with the Chennai Reservoir Level Dataset ([click here for the dataset](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/creating-an-mlp-for-regression-with-keras/#getting-familiar-with-the-data-the-chennai-water-crisis)).
+More specifically, this can be done by means of the `bias_variance_decomp` functionality available in the library. Let's see how it works with the TensorFlow model listed here. It is the [MLP classifier that we created](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/creating-an-mlp-for-regression-with-keras.md) with the Chennai Reservoir Level Dataset ([click here for the dataset](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/creating-an-mlp-for-regression-with-keras.md/#getting-familiar-with-the-data-the-chennai-water-crisis)).
 
 - We import a variety of functionality: the bias-variance decomposition functionality from Mlxtend, some TensorFlow things, NumPy and generating a train/test split from Scikit-learn.
 - We then load the data from a CSV file and shuffle the dataset.

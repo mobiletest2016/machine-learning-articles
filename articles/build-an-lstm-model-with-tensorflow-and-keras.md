@@ -179,7 +179,7 @@ Now that we understand how LSTMs work and how they are represented within Tensor
 
 1. Importing the Keras functionality that we need into the Python script.
 2. Listing the configuration for our LSTM model and preparing for training.
-3. Loading and preparing a dataset; we'll use the [IMDB dataset](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets/#imdb-movie-reviews-sentiment-classification) today.
+3. Loading and preparing a dataset; we'll use the [IMDB dataset](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets.md/#imdb-movie-reviews-sentiment-classification) today.
 4. Defining the Keras model.
 5. Compiling the Keras model.
 6. Training the Keras model.

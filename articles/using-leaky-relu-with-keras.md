@@ -59,7 +59,7 @@ Mathematically, Leaky ReLU is defined as follows (Maas et al., 2013):
 
 \\begin{equation} f(x) = \\begin{cases} 0.01x, & \\text{if}\\ x < 0 \\\\ x, & \\text{otherwise} \\\\ \\end{cases} \\end{equation}
 
-Contrary to traditional ReLU, the outputs of Leaky ReLU are small and nonzero for all \[latex\]x < 0\[/latex\]. This way, the authors of the paper argue that death of neural networks can be avoided. We do have to note, though, that there also exists [quite some criticism](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/leaky-relu-improving-traditional-relu/#does-leaky-relu-really-work) as to whether it really works.
+Contrary to traditional ReLU, the outputs of Leaky ReLU are small and nonzero for all \[latex\]x < 0\[/latex\]. This way, the authors of the paper argue that death of neural networks can be avoided. We do have to note, though, that there also exists [quite some criticism](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/leaky-relu-improving-traditional-relu.md/#does-leaky-relu-really-work) as to whether it really works.
 
 * * *
 
@@ -410,7 +410,7 @@ I'd say they perform equally well. Although the traditional ReLU model seems to 
 
 ## Summary
 
-By consequence, we can perhaps argue - in line with the [criticism we saw before](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/leaky-relu-improving-traditional-relu/#does-leaky-relu-really-work) - that in most cases, Leaky ReLU does not perform better than traditional ReLU. This makes sense, as the leaky variant is only expected to work much better in the cases when you experience many dead neurons.
+By consequence, we can perhaps argue - in line with the [criticism we saw before](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/leaky-relu-improving-traditional-relu.md/#does-leaky-relu-really-work) - that in most cases, Leaky ReLU does not perform better than traditional ReLU. This makes sense, as the leaky variant is only expected to work much better in the cases when you experience many dead neurons.
 
 Nevertheless, it can be used with Keras, as we have seen in this blog post. We first introduced the concept of Leaky ReLU by recapping on how it works, comparing it with traditional ReLU in the process. Subsequently, we looked at the Keras API and how Leaky ReLU is implemented there. We then used this knowledge to create an actual Keras model, which we also used in practice. By training on the MNIST dataset, we also investigated how well it performs and compared it with traditional ReLU, as we've seen above.
 

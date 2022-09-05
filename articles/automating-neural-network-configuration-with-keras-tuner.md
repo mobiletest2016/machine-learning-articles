@@ -33,7 +33,7 @@ We'll first cover the supervised machine learning process and illustrate hyperpa
 
 Let's take a step back. Before we can understand automated parameter and hyperparameter tuning, we must first take a look at what it is in the first place.
 
-That's why we'll take a look at the [high-level supervised machine learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process) that we're using to explain how training a neural network works throughout this website.
+That's why we'll take a look at the [high-level supervised machine learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md/#the-high-level-supervised-learning-process) that we're using to explain how training a neural network works throughout this website.
 
 Here it is:
 
@@ -81,7 +81,7 @@ Here, the architectural choices you make (such as the number of filters for a `C
 
 However, things don't end there. Rather, in step (2), you'll _configure_ the model during instantiation by setting a wide range of configuration options. Those options include, but are not limited to:
 
-- The **optimizer** that is used during training: e.g., whether you are using [Gradient Descent](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md) or an adaptive optimizer like [Adam](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound/#adam).
+- The **optimizer** that is used during training: e.g., whether you are using [Gradient Descent](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md) or an adaptive optimizer like [Adam](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md/#adam).
 - The **learning rate** that is used during optimization: i.e., what fraction of the error contribution found will be used for optimization for a particular neuron.
 - The **batch size** that will be used during the forward pass.
 - The **number of iterations** (or epochs) that will be used for training the neural network

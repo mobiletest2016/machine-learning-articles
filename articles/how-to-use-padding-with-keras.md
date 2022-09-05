@@ -33,9 +33,9 @@ However, sometimes you don't want this to happen: you want the size of your inpu
 
 [![](images/reflection_pad.jpg)]
 
-[Reflection padding](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-padding-in-a-neural-network/#reflection-padding) can be used for this purpose.
+[Reflection padding](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-padding-in-a-neural-network.md/#reflection-padding) can be used for this purpose.
 
-In a different scenario, you have one dimensional data representing a time series. Two values in your _feature data_ causally determine a _target_, i.e., together they produce the outcome. However, if you train a `Conv1D` model with both the _inputs_ and the _targets_, effectively, the target will "predate" the input data. As this is weird, [causal padding](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-padding-in-a-neural-network/#causal-padding) can be applied in order to add zeroes to your input data, as you can see here:
+In a different scenario, you have one dimensional data representing a time series. Two values in your _feature data_ causally determine a _target_, i.e., together they produce the outcome. However, if you train a `Conv1D` model with both the _inputs_ and the _targets_, effectively, the target will "predate" the input data. As this is weird, [causal padding](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-padding-in-a-neural-network.md/#causal-padding) can be applied in order to add zeroes to your input data, as you can see here:
 
 ![](images/Causalpad-4-1024x262.jpg)
 

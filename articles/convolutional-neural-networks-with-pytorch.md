@@ -46,7 +46,7 @@ Source: [gwding/draw\_convnet](https://github.com/gwding/draw_convnet)
 We'll now briefly cover the inner workings of such a network, and why it can be a better tool for image problems. We don't cover this topic extensively, because this article focuses on building a ConvNet with PyTorch. If you wish to understand ConvNets in more detail, we'd love to point you to these articles:
 
 - [Convolutional Neural Networks and their components for computer vision](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/convolutional-neural-networks-and-their-components-for-computer-vision.md)
-- [How to build a ConvNet for CIFAR-10 and CIFAR-100 classification with Keras?](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-build-a-convnet-for-cifar-10-and-cifar-100-classification-with-keras/#why-convolutional-neural-networks-suit-image-classification)
+- [How to build a ConvNet for CIFAR-10 and CIFAR-100 classification with Keras?](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-build-a-convnet-for-cifar-10-and-cifar-100-classification-with-keras.md/#why-convolutional-neural-networks-suit-image-classification)
 
 ### A ConvNet, structured
 

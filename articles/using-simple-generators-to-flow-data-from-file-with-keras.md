@@ -162,7 +162,7 @@ model.add(Dense(1, activation='linear'))
 
 ### Compiling the model
 
-This latter fact gets even more clear when we look at the `compile` function for our model. As our loss, we use the mean absolute error, which is a typical [loss function for regression problems](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#loss-functions-for-regression). Additionally, we specify the mean squared error, which is one too. Adam is [used for optimizing the model](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound/#adam) - which is a common choice, especially when you don't really care about optimizers, as we do now (it's not the goal of today's blog post), Adam is an adequate choice.
+This latter fact gets even more clear when we look at the `compile` function for our model. As our loss, we use the mean absolute error, which is a typical [loss function for regression problems](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md/#loss-functions-for-regression). Additionally, we specify the mean squared error, which is one too. Adam is [used for optimizing the model](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md/#adam) - which is a common choice, especially when you don't really care about optimizers, as we do now (it's not the goal of today's blog post), Adam is an adequate choice.
 
 ```
 # Compile the model
@@ -251,7 +251,7 @@ However, we successfully completed our code! 🎉
 
 In the model above, I'm working with a generator that flows training data into the model during the forward pass executed by the `.fit` operation when training. Unsurprisingly, some people have asked in the comments section of this post if it is possible to use a generator for validation data too, and if so, how.
 
-Remember that validation data is used during the training process in order to identify whether the machine learning model [has started overfitting](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-dropout-reduce-overfitting-in-your-neural-networks/#how-well-does-your-model-perform-underfitting-and-overfitting). Testing data, in the end, is used to test whether your model generalizes to data that it hasn't seen before.
+Remember that validation data is used during the training process in order to identify whether the machine learning model [has started overfitting](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-dropout-reduce-overfitting-in-your-neural-networks.md/#how-well-does-your-model-perform-underfitting-and-overfitting). Testing data, in the end, is used to test whether your model generalizes to data that it hasn't seen before.
 
 I thought this wouldn't be possible, as the TensorFlow documentation clearly states this:
 

@@ -306,7 +306,7 @@ input_test = input_test.reshape(input_test.shape[0], img_width, img_height, 1)
 input_shape = (img_width, img_height, 1)
 ```
 
-We subsequently cast the numbers into `float32` type. This makes learning more [precise](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tensorflow-model-optimization-an-introduction-to-quantization/#float32-in-your-ml-model-why-its-great):
+We subsequently cast the numbers into `float32` type. This makes learning more [precise](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tensorflow-model-optimization-an-introduction-to-quantization.md/#float32-in-your-ml-model-why-its-great):
 
 ```
 # Parse numbers as floats
@@ -362,7 +362,7 @@ It works as follows:
 
 ### Model compilation & data fitting
 
-The next step is model compilation, or "configuring" the model skeleton. For this, we use [categorical crossentropy loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-binary-categorical-crossentropy-with-keras.md) and the [Adam optimizer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound/#adam). Accuracy is added as a more intuitive metric.
+The next step is model compilation, or "configuring" the model skeleton. For this, we use [categorical crossentropy loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-binary-categorical-crossentropy-with-keras.md) and the [Adam optimizer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md/#adam). Accuracy is added as a more intuitive metric.
 
 ```
 # Compile the model

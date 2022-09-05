@@ -51,7 +51,7 @@ Okay, let's go! 😊
 
 If we're going to build an autoencoder, we must know what they are.
 
-In our blog post **"Conv2DTranspose: using 2D transposed convolutions with Keras"**, we already [covered the high-level principles](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/conv2dtranspose-using-2d-transposed-convolutions-with-keras/#what-is-an-autoencoder) behind autoencoders, but it's wise to repeat them here.
+In our blog post **"Conv2DTranspose: using 2D transposed convolutions with Keras"**, we already [covered the high-level principles](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/conv2dtranspose-using-2d-transposed-convolutions-with-keras.md/#what-is-an-autoencoder) behind autoencoders, but it's wise to repeat them here.
 
 We can visualize the flow of an autoencoder as follows:
 
@@ -514,7 +514,7 @@ Next, we'll reshape the data. We do so for each sample. This includes the follow
 
 _Binary crossentropy loss values for target = 1, in the prediction range \[0, 1\]._
 
-- First, given the way how [binary crossentropy loss works](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#binary-crossentropy), we normalize our samples to fall in the range \[latex\]\[0, 1\]\[/latex\]. Without this normalization step, odd loss values (extremely negative ones, impossible with BCE loss) start popping up (Quetzalcohuatl, n.d.).
+- First, given the way how [binary crossentropy loss works](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md/#binary-crossentropy), we normalize our samples to fall in the range \[latex\]\[0, 1\]\[/latex\]. Without this normalization step, odd loss values (extremely negative ones, impossible with BCE loss) start popping up (Quetzalcohuatl, n.d.).
 - We subsequently add the noisy and pure samples to the specific `*_r` arrays.
 
 ```

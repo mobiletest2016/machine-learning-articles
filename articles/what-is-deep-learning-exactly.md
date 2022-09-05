@@ -90,7 +90,7 @@ For the deep learning methods, things are a bit different. If we wish to demonst
 
 I think you did immediately notice that an artificial neural network consists of multiple layers :-) There is one input layer, one output layer and some hidden layers in between.
 
-These layers, and the nodes within these layers, they are all connected. In most cases, [this happens in a feed-forward fashion](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process), as you can notice in the image above, but some network architectures exist in which certain information from the past is used to make better predictions in future layers.
+These layers, and the nodes within these layers, they are all connected. In most cases, [this happens in a feed-forward fashion](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md/#the-high-level-supervised-learning-process), as you can notice in the image above, but some network architectures exist in which certain information from the past is used to make better predictions in future layers.
 
 ### Converting input to output: neural network
 
@@ -132,7 +132,7 @@ y: A(x) = c \* x.
 
 With a certain weight c (which does not matter for the example), function A produces output value y for the input value x. However, as we can see, this output value is proportional to the input value. If c = 1, we can see that A(1) = 1, A(2) = 2 et cetera.
 
-Nonlinear functions do not work this way. Their input is not necessarily proportional to the input value (but may be for some ranges within the possible input values). For example, one of the most-used nonlinear activation functions is the so-called [**_ReLu_** _activation function_](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions/#rectified-linear-unit-relu). If the x values are < 0, the output is 0, else the output is x. This means that for x >= 0, the output is proportional to the input, but if an input scalar x is < 0, it is not proportional.
+Nonlinear functions do not work this way. Their input is not necessarily proportional to the input value (but may be for some ranges within the possible input values). For example, one of the most-used nonlinear activation functions is the so-called [**_ReLu_** _activation function_](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md/#rectified-linear-unit-relu). If the x values are < 0, the output is 0, else the output is x. This means that for x >= 0, the output is proportional to the input, but if an input scalar x is < 0, it is not proportional.
 
 So, in nonlinear models, the weighted product calculated by the neuron is then put through an activation function that is nonlinear. Its output, if activated, is sent to the connected neurons in the subsequent layer.
 

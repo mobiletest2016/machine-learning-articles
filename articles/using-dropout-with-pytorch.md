@@ -49,7 +49,7 @@ In their paper [“Dropout: A Simple Way to Prevent Neural Networks from Overfi
 > 
 > [What is Dropout? Reduce overfitting in your neural networks](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-dropout-reduce-overfitting-in-your-neural-networks.md)
 
-When certain neurons are dropped, no data flows through them anymore. Dropout is modeled as [Bernoulli variables](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-dropout-reduce-overfitting-in-your-neural-networks/#bernoulli-variables), which are either zero (0) or one (1). They can be configured with a variable, \[latex\]p\[/latex\], which illustrates the probability (between 0 and 1) with which neurons are dropped.
+When certain neurons are dropped, no data flows through them anymore. Dropout is modeled as [Bernoulli variables](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-dropout-reduce-overfitting-in-your-neural-networks.md/#bernoulli-variables), which are either zero (0) or one (1). They can be configured with a variable, \[latex\]p\[/latex\], which illustrates the probability (between 0 and 1) with which neurons are dropped.
 
 When neurons are dropped, they are not dropped permanently: instead, at every epoch (or even minibatch) the network randomly selects neurons that are dropped this time. Neurons that had been dropped before can be activated again during future iterations.
 

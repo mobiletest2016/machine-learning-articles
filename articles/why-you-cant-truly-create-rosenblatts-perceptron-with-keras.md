@@ -257,7 +257,7 @@ model = Sequential()
 model.add(Dense())
 ```
 
-We can now add the activation function and the initializer. Since _zero initialization_ (which is what one can do with the [real Rosenblatt Perceptron](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/linking-maths-and-intuition-rosenblatts-perceptron-in-python/#training-the-model)) is **not a good idea with SGD** (I'll cover this in another post), I'll initialize them with the default Keras initializer, being `glorot_uniform` (or Xavier uniform).
+We can now add the activation function and the initializer. Since _zero initialization_ (which is what one can do with the [real Rosenblatt Perceptron](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/linking-maths-and-intuition-rosenblatts-perceptron-in-python.md/#training-the-model)) is **not a good idea with SGD** (I'll cover this in another post), I'll initialize them with the default Keras initializer, being `glorot_uniform` (or Xavier uniform).
 
 Let's add the `hard_sigmoid` activation function to the imports:
 

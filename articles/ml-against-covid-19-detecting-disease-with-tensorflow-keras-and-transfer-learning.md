@@ -114,8 +114,8 @@ from tensorflow.keras.preprocessing.image import ImageDataGenerator
 Next, it's time to define some options for model configuration.
 
 - Our `target_size_scalar` variable will later be used to specify width and height of the images _after_ they will be resized from 1024 x 1024 pixels.
-- Our [batch size](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants/#minibatch-gradient-descent) is set to 250.
-- The number of epochs (i.e. [iterations](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process)) is set to 1000, but the number of iterations will be lower because we use Early Stopping.
+- Our [batch size](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md/#minibatch-gradient-descent) is set to 250.
+- The number of epochs (i.e. [iterations](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md/#the-high-level-supervised-learning-process)) is set to 1000, but the number of iterations will be lower because we use Early Stopping.
 - The number of classes is 3.
 - 20% of our data will be used for validation purposes.
 - Verbosity, i.e. model output in your terminal, is set to 1, or `True`.

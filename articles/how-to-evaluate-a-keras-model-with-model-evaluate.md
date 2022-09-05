@@ -35,7 +35,7 @@ Let's take a look! 😎
 
 Great question - why do we need to evaluate TensorFlow/Keras models in the first place?
 
-To answer it, we must take a look at how a supervised machine learning model [is trained](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process). Following the supervised learning process linked before, we note that samples from a _training set_ are fed forward, after which an average error value is computed and subsequently used for model [optimization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md).
+To answer it, we must take a look at how a supervised machine learning model [is trained](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md/#the-high-level-supervised-learning-process). Following the supervised learning process linked before, we note that samples from a _training set_ are fed forward, after which an average error value is computed and subsequently used for model [optimization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md).
 
 The samples in a training set are often derived from some kind of population. For example, if we want to measure voting behavior in a population, we often take a representative sample. We therefore don't measure the behavior of the entire population - which would be really inefficient - but instead assume that if our sample is large enough, its distribution approaches the distribution of the entire population.
 
@@ -90,7 +90,7 @@ We first create the following TensorFlow model.
 
 - We import the TensorFlow imports that we need. We also use the [extra\_keras\_datasets](https://github.com/christianversloot/extra_keras_datasets) module as we are training the model on the [EMNIST](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/making-more-datasets-available-for-keras.md) dataset.
 - We specify some configuration options for the model.
-- We load the EMNIST dataset, reshape the data (to make it compatible with TensorFlow), convert the data into `float32` format ([read here why](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tensorflow-model-optimization-an-introduction-to-quantization/#float32-in-your-ml-model-why-its-great)), and then scale the data to the \[latex\]\[0, 1\]\[/latex\] range.
+- We load the EMNIST dataset, reshape the data (to make it compatible with TensorFlow), convert the data into `float32` format ([read here why](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tensorflow-model-optimization-an-introduction-to-quantization.md/#float32-in-your-ml-model-why-its-great)), and then scale the data to the \[latex\]\[0, 1\]\[/latex\] range.
 - We then create and compile the model, and fit the data, i.e. construct and complete the training process.
 
 Click [here](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras.md) if you wish to understand creating a Convolutional Neural Network in more detail.

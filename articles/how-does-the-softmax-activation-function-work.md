@@ -242,7 +242,7 @@ All right. We can use Softmax to generate a discrete probability distribution ov
 
 Now, before we'll work on an example model with Keras, it's time to briefly stop and think about what happens during optimization.
 
-As you likely know, during the forward pass in the [high-level supervised machine learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process), your training data is fed to the model. The predictions are compared with the ground truth, i.e. the targets, and eventually summarized in a loss value. Based on this loss value, backpropagation computes the gradient for improvement, and the optimizer subsequently performs this improvement based on its ideosyncrasies. This iterative process stops when the model performs adequately enough.
+As you likely know, during the forward pass in the [high-level supervised machine learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md/#the-high-level-supervised-learning-process), your training data is fed to the model. The predictions are compared with the ground truth, i.e. the targets, and eventually summarized in a loss value. Based on this loss value, backpropagation computes the gradient for improvement, and the optimizer subsequently performs this improvement based on its ideosyncrasies. This iterative process stops when the model performs adequately enough.
 
 So far so good, but what happens when you design a neural network with `num_classes` output neurons, as well as a Softmax layer?
 

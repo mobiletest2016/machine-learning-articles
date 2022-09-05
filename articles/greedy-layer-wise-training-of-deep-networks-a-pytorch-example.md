@@ -162,7 +162,7 @@ It's pretty simple - the global configuration specifies the number of layers tha
 
 The **model configuration** is a bit more complex - it specifies all the settings that are necessary for successsfully training your model. In addition, these settings are _model specific_ rather than specific to the _training process_.
 
-For example, through the `width`, `height` and `channels`, the shape of your image Tensor is represented. Indeed, a CIFAR-10 sample is a 32 x 32 pixels image with 3 channels. The number of classes in the output is 10, and we use a 250-sample batch size when training. We also specify (but not initialize!) the loss function and optimizer. We use `CrossEntropyLoss` for [computing how poorly the model performs.](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#loss)
+For example, through the `width`, `height` and `channels`, the shape of your image Tensor is represented. Indeed, a CIFAR-10 sample is a 32 x 32 pixels image with 3 channels. The number of classes in the output is 10, and we use a 250-sample batch size when training. We also specify (but not initialize!) the loss function and optimizer. We use `CrossEntropyLoss` for [computing how poorly the model performs.](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md/#loss)
 
 > This criterion combines [`nn.LogSoftmax()`](https://pytorch.org/docs/stable/nn.html#logsoftmax) and [`nn.NLLLoss()`](https://pytorch.org/docs/stable/nn.html#nllloss) in one single class.
 > 

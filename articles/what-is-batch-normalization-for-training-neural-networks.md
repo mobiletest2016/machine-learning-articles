@@ -40,9 +40,9 @@ Suppose that you have a neural network, such as this one that has been equipped 
 
 [![](images/dropout.png)]
 
-As you might recall from the [high-level supervised machine learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process), training a neural network includes a _feedforward operation_ on your training set. During this operation, the data is fed to the neural network, which generates a prediction for each sample that can be compared to the _target data_, a.k.a. the ground truth.
+As you might recall from the [high-level supervised machine learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md/#the-high-level-supervised-learning-process), training a neural network includes a _feedforward operation_ on your training set. During this operation, the data is fed to the neural network, which generates a prediction for each sample that can be compared to the _target data_, a.k.a. the ground truth.
 
-This results in a [loss value](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#loss) that is computed by some [loss function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#loss-functions).
+This results in a [loss value](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md/#loss) that is computed by some [loss function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md/#loss-functions).
 
 Based on the loss function, backpropagation will compute what is known as the _gradient_ to improve the loss, while [gradient descent](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md) or an [adaptive optimizer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md) will actually change the weights of the neurons of your neural network. Based on this change, the model is expected to perform better during the next iteration, in which the process is repeated.
 

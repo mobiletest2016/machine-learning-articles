@@ -39,7 +39,7 @@ Hence, for today's ML projects: it's perfectly fine to use Sigmoid, if you consi
 
 [![](images/sigmoid_and_deriv-1024x511.jpeg)]
 
-**Read more:** [ReLU, Sigmoid and Tanh: today’s most used activation functions](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions/#sigmoid)
+**Read more:** [ReLU, Sigmoid and Tanh: today’s most used activation functions](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md/#sigmoid)
 
 * * *
 
@@ -51,7 +51,7 @@ Even though it _does_ provide symmetry around the origin, it's still sensitive t
 
 [![](images/tanh_and_deriv-1024x511.jpeg)]
 
-**Read more:** [ReLU, Sigmoid and Tanh: today’s most used activation functions](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions/#tangens-hyperbolicus-tanh)
+**Read more:** [ReLU, Sigmoid and Tanh: today’s most used activation functions](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md/#tangens-hyperbolicus-tanh)
 
 * * *
 
@@ -67,7 +67,7 @@ Nevertheless, ReLU is still the way to go in many cases these days.
 
 [![](images/relu_and_deriv-1024x511.jpeg)]
 
-**Read more:** [ReLU, Sigmoid and Tanh: today’s most used activation functions](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions/#rectified-linear-unit-relu)
+**Read more:** [ReLU, Sigmoid and Tanh: today’s most used activation functions](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md/#rectified-linear-unit-relu)
 
 * * *
 

@@ -223,7 +223,7 @@ feature_vector_length = 784
 num_classes = 10
 ```
 
-One MNIST sample is an image of 28 by 28 pixels. An interesting observation that I made a while ago is that MLPs don't support multidimensional data like images natively. What you'll have to do is to _flatten_ the image, in the sense that you'll just take all the rows and put them into a massive row. Since 28 times 28 is 784, our feature vector ([which with the Pima dataset SLP was only 8](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-you-cant-truly-create-rosenblatts-perceptron-with-keras/#loading-dependencies-and-data)) will contain 784 features (pixels).
+One MNIST sample is an image of 28 by 28 pixels. An interesting observation that I made a while ago is that MLPs don't support multidimensional data like images natively. What you'll have to do is to _flatten_ the image, in the sense that you'll just take all the rows and put them into a massive row. Since 28 times 28 is 784, our feature vector ([which with the Pima dataset SLP was only 8](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-you-cant-truly-create-rosenblatts-perceptron-with-keras.md/#loading-dependencies-and-data)) will contain 784 features (pixels).
 
 The MNIST dataset contains 60.000 images in its training set. Each image belongs to one of ten classes. Hence, the `num_classes` is 10.
 
@@ -318,7 +318,7 @@ That's why we assign `feature_vector_length` converted into tuple format to `inp
 
 As discussed before, the Keras Sequential API is used for creating the model. We'll next add three hidden layers to our MLP:
 
-- The first has 350 output neurons and takes the input of 784 input neurons, which are represented by an input layer specified by the `input_shape` argument. We activate using Rectified Linear Unit (ReLU), which is one of the [standard activation functions](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-swish-could-perform-better-than-relu/#todays-activation-functions) used today. Below, you'll see how it activates.
+- The first has 350 output neurons and takes the input of 784 input neurons, which are represented by an input layer specified by the `input_shape` argument. We activate using Rectified Linear Unit (ReLU), which is one of the [standard activation functions](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-swish-could-perform-better-than-relu.md/#todays-activation-functions) used today. Below, you'll see how it activates.
 - The second has 50 output neurons and activates by means of ReLU. You'll by now notice that we somehow funnel the information into a very dense format. This way, the model will be capable of learning the most important patterns, which helps generalizing to new data.
 - Finally, there's an output layer, which has `num_classes` output neurons and activates by means of `Softmax`. The number of neurons equals the number of scalars in your output vector. Since that data must be categorical for categorical cross entropy, and thus the number of scalar values in your target vector equals the number of classes, it makes sense why `num_classes` is used. Softmax, the activation function, is capable of generating a so-called multiclass probability distribution. That is, it computes the probability that a certain feature vector belongs to one class.
 

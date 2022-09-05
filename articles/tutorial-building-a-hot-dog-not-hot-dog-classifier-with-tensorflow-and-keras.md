@@ -76,7 +76,7 @@ Altogether, a ConvNet is a neural network that can do two things really well if 
 1. **Generate predictions for new input samples.**
 2. **Extract relevant features from the input data to generate those predictions.**
 
-It is not surprising to find (1) with this class of machine learning models, or with any machine learning model, because it is the essence of the [supervised machine learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process): training a model with some data in order to make it capable of generating new predictions.
+It is not surprising to find (1) with this class of machine learning models, or with any machine learning model, because it is the essence of the [supervised machine learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md/#the-high-level-supervised-learning-process): training a model with some data in order to make it capable of generating new predictions.
 
 Number (2) is more intriguing, especially if you look at it with the lens of the Computer Vision field, because in the pre-CNN era CV models were not capable of doing this. In fact, researchers and engineers employed a wide variety of [feature extraction techniques](https://en.wikipedia.org/wiki/Feature_extraction) in order to reduce the dimensionality of the input data. As you can imagine, a 200 x 200 pixels RGB image has 40.000 pixels times 3 channels = 120.000 _features_ that the model should be taking into account. In the pre-CNN era, this was a serious bottleneck, and dimensionality had to be reduced - requiring manual work and tweaking.
 

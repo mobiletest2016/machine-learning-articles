@@ -39,7 +39,7 @@ If you're familiar with machine learning (and likely you are when reading this t
 
 And this goes directly against what should be possible in theory. In fact, a neural network with more layers is increasingly able to learn the feature representations that are necessary for achieving good performance. But adding layers made performance worse. Strange, isn't it?
 
-[Shattering gradients](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/resnet-a-simple-introduction/#shattering-gradients-problem), where neural network gradients resemble white noise during optimization, may lie at the basis of this problem. And [residual networks](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/resnet-a-simple-introduction/#introducing-residual-networks-resnets) or [ResNets](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/resnet-a-simple-introduction/#introducing-residual-networks-resnets) for short help overcome this problem. A ResNet is a neural network that is composed of _residual building blocks_: weighted layers to which a _skip connection_ is added. This skip connection allows information to pass more freely, and gradients to be more realistic. The image below shows a residual building block:
+[Shattering gradients](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/resnet-a-simple-introduction.md/#shattering-gradients-problem), where neural network gradients resemble white noise during optimization, may lie at the basis of this problem. And [residual networks](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/resnet-a-simple-introduction.md/#introducing-residual-networks-resnets) or [ResNets](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/resnet-a-simple-introduction.md/#introducing-residual-networks-resnets) for short help overcome this problem. A ResNet is a neural network that is composed of _residual building blocks_: weighted layers to which a _skip connection_ is added. This skip connection allows information to pass more freely, and gradients to be more realistic. The image below shows a residual building block:
 
 ![](images/image-3.png)
 
@@ -50,7 +50,7 @@ In practice, using today's deep learning libraries, building the skip connection
 - An **identity mapping**, which simply maps the input to the output, adding padding or reducing feature map size where necessary.
 - A **projection mapping**, which uses convolutions to generate an output that 'clicks' onto the next residual building block.
 
-If you're interested in the theory behind ResNets, you can [read this article](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/resnet-a-simple-introduction/#introducing-residual-networks-resnets). Let's now take a closer look at building a simple ResNet. In today's tutorial, we're going to use TensorFlow 2 and Keras for doing so.
+If you're interested in the theory behind ResNets, you can [read this article](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/resnet-a-simple-introduction.md/#introducing-residual-networks-resnets). Let's now take a closer look at building a simple ResNet. In today's tutorial, we're going to use TensorFlow 2 and Keras for doing so.
 
 * * *
 

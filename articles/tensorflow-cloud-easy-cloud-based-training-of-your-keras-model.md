@@ -104,7 +104,7 @@ Let's now take a look at those APIs, or primarily, the TensorFlow Cloud `run` AP
 Within the `tensorflow_cloud` module that will be available upon installing TensorFlow Cloud (we will get to that later), a definition called `run` is available in order to let your model train in the cloud. This definition will do multiple things:
 
 1. Making your Keras code cloud ready (TensorFlow/cloud, n.d.)
-2. Packaging your model code into a [Docker container](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/easy-install-of-jupyter-notebook-with-tensorflow-and-docker/#what-is-docker) which can be deployed in the cloud for training.
+2. Packaging your model code into a [Docker container](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/easy-install-of-jupyter-notebook-with-tensorflow-and-docker.md/#what-is-docker) which can be deployed in the cloud for training.
 3. Subsequently, deploying this container and training the model with the TensorFlow training (distribution) strategy of your choice.
 4. Write logs to a cloud-hosted [TensorBoard](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-tensorboard-with-keras.md).
 

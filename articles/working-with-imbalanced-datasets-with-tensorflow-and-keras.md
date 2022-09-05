@@ -89,7 +89,7 @@ Let's now take a look at why you must be careful when creating a Machine Learnin
 
 ## What's wrong with imbalanced datasets?
 
-When training a neural network, you are performing [supervised learning](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process). This effectively involves feeding samples from a training dataset forward, generating predictions, which can be compared to the dataset's corresponding labels: the ground truth. This results in a **loss value** that can subsequently be used for [optimizing the model](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md).
+When training a neural network, you are performing [supervised learning](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md/#the-high-level-supervised-learning-process). This effectively involves feeding samples from a training dataset forward, generating predictions, which can be compared to the dataset's corresponding labels: the ground truth. This results in a **loss value** that can subsequently be used for [optimizing the model](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md).
 
 There are [various loss functions](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md) that are used in neural networks. However, in addition to a loss value, we often use the **accuracy**. It is used because it is very intuitive to human beings, and can be defined as follows:
 

@@ -415,7 +415,7 @@ Great! You just completed creating your first Machine Learning model with Tensor
 1. Extending the monitoring (for which you used a simple `model.evaluate` call and validation data) to a more extensive form of monitoring, with [TensorBoard](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-tensorboard-with-keras.md).
 2. Understanding [Convolutional Neural Networks](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/convolutional-neural-networks-and-their-components-for-computer-vision.md) and what they do in more detail.
 3. Reading more about how models are optimized:
-    1. [The high-level supervised machine learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process)
+    1. [The high-level supervised machine learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md/#the-high-level-supervised-learning-process)
     2. [Loss and loss functions](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md)
     3. [Gradient descent based optimization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md)
     4. [Adaptive optimizers](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md)

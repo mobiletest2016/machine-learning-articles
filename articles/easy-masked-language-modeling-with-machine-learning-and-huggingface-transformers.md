@@ -120,7 +120,7 @@ Vaswani et al. showed in a 2017 paper that _Attention is all you need_ - that, b
 
 ### What is BERT?
 
-BERT, which stands for **[Bidirectional Encoder Representations from Transformers](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/intuitive-introduction-to-bert.md)**, is a special type of Transformer model. Using the left part of the Transformer only - i.e., the [encoder segment](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/introduction-to-transformers-in-machine-learning/#what-are-transformers) - it is not a fully Seq2Seq model and must use a special task to generate an encoding during pretraining. As you can see in the image below, it utilizes a Masked Language Modeling task for this purpose.
+BERT, which stands for **[Bidirectional Encoder Representations from Transformers](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/intuitive-introduction-to-bert.md)**, is a special type of Transformer model. Using the left part of the Transformer only - i.e., the [encoder segment](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/introduction-to-transformers-in-machine-learning.md/#what-are-transformers) - it is not a fully Seq2Seq model and must use a special task to generate an encoding during pretraining. As you can see in the image below, it utilizes a Masked Language Modeling task for this purpose.
 
 - In BERT, inputs are separated into two segments per sequence: a sentence A and a sentence B.
 - There is a separator token separating both sequences.

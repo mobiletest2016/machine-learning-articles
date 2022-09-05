@@ -55,7 +55,7 @@ tf.distribute.experimental.ParameterServerStrategy(
 )
 ```
 
-Generally, if you would use a cluster of machines for training your neural network, you would do so in a data-parallel way, by splitting your dataset into multiple batches, [training instances of the same model with those batches](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/distributed-training-tensorflow-and-keras-models-with-apache-spark/#data-parallelism-vs-model-parallelism), and subsequently aggregating the parameters changes into a change in the full model.
+Generally, if you would use a cluster of machines for training your neural network, you would do so in a data-parallel way, by splitting your dataset into multiple batches, [training instances of the same model with those batches](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/distributed-training-tensorflow-and-keras-models-with-apache-spark.md/#data-parallelism-vs-model-parallelism), and subsequently aggregating the parameters changes into a change in the full model.
 
 This can be done **synchronously** and **asynchronously**, which differs in the way how model variables of the _full model_ are updated.
 
@@ -73,7 +73,7 @@ This greatly boosts parallel training, especially now that Amazon has released [
 
 ### Into stable: MultiWorkerMirroredStrategy
 
-A synchronous method that [used to be experimental](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tensorflow-cloud-easy-cloud-based-training-of-your-keras-model/#multiworkermirroredstrategy), called the `MultiWorkerMirroredStrategy`, is being moved from experimental into stable (TensorFlow, n.d.):
+A synchronous method that [used to be experimental](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tensorflow-cloud-easy-cloud-based-training-of-your-keras-model.md/#multiworkermirroredstrategy), called the `MultiWorkerMirroredStrategy`, is being moved from experimental into stable (TensorFlow, n.d.):
 
 ```
 tf.distribute.MultiWorkerMirroredStrategy(

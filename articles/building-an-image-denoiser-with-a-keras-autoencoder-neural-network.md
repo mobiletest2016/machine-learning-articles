@@ -266,7 +266,7 @@ Train on 48000 samples, validate on 12000 samples
 
 ### Model compilation & starting the training process
 
-Step six: compiling the model and starting the training the process. Compiling the model is just a difficult combination of words for setting some configuration values; these are the so-called hyperparameters. We have to choose an optimizer ([for which we use the Adam optimizer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound/#adam) given its benefits compared with traditional SGD) and a [loss function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md) (binary crossentropy loss).
+Step six: compiling the model and starting the training the process. Compiling the model is just a difficult combination of words for setting some configuration values; these are the so-called hyperparameters. We have to choose an optimizer ([for which we use the Adam optimizer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md/#adam) given its benefits compared with traditional SGD) and a [loss function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md) (binary crossentropy loss).
 
 ```
 # Compile and fit data

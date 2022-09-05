@@ -112,7 +112,7 @@ This brings us to the following insights:
 
 [![](images/leaky_relu.png)]
 
-Learning the values for \[latex\]\\alpha\[/latex\] takes place by adding a few extra parameters to the network. In computational terms, the effects on resource requirements are negligible, and especially so in the channel-shared variant (meaning that only one parameter needs to be added). Traditional backpropagation is used for computing the alpha gradients, and optimization is performed with [momentum gradient descent](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound/#momentum) (He et al., 2015). In Keras, that would be the optimizer of your choice instead, I'd guess.
+Learning the values for \[latex\]\\alpha\[/latex\] takes place by adding a few extra parameters to the network. In computational terms, the effects on resource requirements are negligible, and especially so in the channel-shared variant (meaning that only one parameter needs to be added). Traditional backpropagation is used for computing the alpha gradients, and optimization is performed with [momentum gradient descent](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md/#momentum) (He et al., 2015). In Keras, that would be the optimizer of your choice instead, I'd guess.
 
 As with any set of weights, the \[latex\]\\alpha\[/latex\] values must be initialized when the training process commences. The weight initialization strategy used by the authors is to initialize all \[latex\]\\alpha\[/latex\]s to 0.25. Backprop and the optimizer will then take over.
 

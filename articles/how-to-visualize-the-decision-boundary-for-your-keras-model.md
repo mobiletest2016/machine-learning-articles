@@ -163,7 +163,7 @@ Targets_training = targets[training_split:]
 Targets_testing = targets[:training_split]
 ```
 
-Scikit-learn's `make_blobs` generates numbers as targets, starting at 0. However, we will use [Hinge loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#hinge) in an attempt to maximize the decision boundary between our clusters. This should be possible given its separability. Hinge loss does not understand a target value of 0; rather, targets must be -1 or +1. Hence, we next convert all zero targets into minus one.
+Scikit-learn's `make_blobs` generates numbers as targets, starting at 0. However, we will use [Hinge loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md/#hinge) in an attempt to maximize the decision boundary between our clusters. This should be possible given its separability. Hinge loss does not understand a target value of 0; rather, targets must be -1 or +1. Hence, we next convert all zero targets into minus one.
 
 We finally split between training and testing data given the number of splitoff values that we configured earlier.
 
@@ -208,7 +208,7 @@ We configure the input shape and next define the model architecture - we use Ker
 
 Do note that since we use the ReLU [activation function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md), we cannot use Glorot uniform initialization - the default choice in Keras. Rather, we must [use He initialization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/he-xavier-initialization-activation-functions-choose-wisely.md), and choose to do so with a uniform distribution.
 
-Next, we compile the model, using [squared hinge](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#squared-hinge) as our loss function, Adam as our optimizer (it's the de facto standard one used today) and accuracy as an additional metric - pretty much the choices I always make when creating models with Keras.
+Next, we compile the model, using [squared hinge](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md/#squared-hinge) as our loss function, Adam as our optimizer (it's the de facto standard one used today) and accuracy as an additional metric - pretty much the choices I always make when creating models with Keras.
 
 Next, we fit the training data to the model, perform 50 iterations (or epochs) with batch sizes of 25, and use 20% of our 750 training samples for validating the outcomes of the training process after every epoch. Verbosity is set to 1 to show what happens during training.
 
@@ -518,9 +518,9 @@ Raschka, S. (2018). MLxtend: Providing machine learning and data science utilit
 
 Intuitively understanding SVM and SVR – MachineCurve. (2019, September 20). Retrieved from [https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/intuitively-understanding-svm-and-svr/](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/intuitively-understanding-svm-and-svr.md)
 
-About loss and loss functions: Hinge loss – MachineCurve. (2019, October 4). Retrieved from [https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#hinge](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#hinge)
+About loss and loss functions: Hinge loss – MachineCurve. (2019, October 4). Retrieved from [https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md/#hinge](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md/#hinge)
 
-About loss and loss functions: Squared hinge loss – MachineCurve. (2019, October 4). Retrieved from [https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#squared-hinge](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#squared-hinge)
+About loss and loss functions: Squared hinge loss – MachineCurve. (2019, October 4). Retrieved from [https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md/#squared-hinge](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md/#squared-hinge)
 
 ReLU, Sigmoid and Tanh: today's most used activation functions – MachineCurve. (2019, September 4). Retrieved from [https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions/](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md)
 

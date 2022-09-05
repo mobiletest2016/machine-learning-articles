@@ -285,7 +285,7 @@ Okay, so far we understand how the encoder segment works - i.e. how inputs are c
     - The **masked multi-head attention segment**, which performs multi-head self-attention on the outputs, but does so in a masked way, so that positions depend on the past only.
     - The **multi-head attention segment**, which performs multi-head self-attention on a combination of the (_encoded_) inputs and the outputs, so that the model learns to correlate encoded inputs with desired outputs.
     - The **feed forward segment**, which processes each token individually.
-- Finally, there is a **linear** layer which generates [logits](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-does-the-softmax-activation-function-work/#logits-layer-and-logits) and a **Softmax** layer which generates [pseudoprobabilities](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-does-the-softmax-activation-function-work/#logits-layer-and-logits). By taking the argmax value of this prediction, we know which token should be taken and added to the tokens already predicted.
+- Finally, there is a **linear** layer which generates [logits](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-does-the-softmax-activation-function-work.md/#logits-layer-and-logits) and a **Softmax** layer which generates [pseudoprobabilities](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-does-the-softmax-activation-function-work.md/#logits-layer-and-logits). By taking the argmax value of this prediction, we know which token should be taken and added to the tokens already predicted.
 
 Let's now take a look at each of the decoder's individual components in more detail.
 

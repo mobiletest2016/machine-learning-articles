@@ -107,7 +107,7 @@ We next import the dependencies - note that they are available as `sklearn` rath
 - From `sklearn.multioutput` we import `MultiOutputRegressor` - it's the wrapper we discussed in the previous section.
 - As we will convert an SVR model into a multioutput regressor, we must import `SVR` from `sklearn.svm`.
 - After generating the dataset with `make_regression`, we must split it into [train/test sets](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-easily-create-a-train-test-split-for-your-machine-learning-model.md). We can do so using `sklearn.model_selection`'s `train_test_split`.
-- Finally, we import `mean_squared_error` and `mean_absolute_error` from `sklearn.metrics` for evaluating our model. Those are default [error functions for regression problems](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#loss-functions-for-regression).
+- Finally, we import `mean_squared_error` and `mean_absolute_error` from `sklearn.metrics` for evaluating our model. Those are default [error functions for regression problems](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md/#loss-functions-for-regression).
 
 ```
 from sklearn.datasets import make_regression
@@ -164,7 +164,7 @@ mor = MultiOutputRegressor(svr)
 
 ### Fitting and evaluating the regressor
 
-Finally, we can fit the training data (`X_train`) and `y_train`) to our `MultiOutputRegressor`. This starts the training process. Once fitting the data is complete, we can generate `y_pred` prediction values for our testing inputs `X_test`. Using the [mean squared error and mean absolute error](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#loss-functions-for-regression), we can then evaluate model performance:
+Finally, we can fit the training data (`X_train`) and `y_train`) to our `MultiOutputRegressor`. This starts the training process. Once fitting the data is complete, we can generate `y_pred` prediction values for our testing inputs `X_test`. Using the [mean squared error and mean absolute error](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md/#loss-functions-for-regression), we can then evaluate model performance:
 
 ```
 # Train the regressor

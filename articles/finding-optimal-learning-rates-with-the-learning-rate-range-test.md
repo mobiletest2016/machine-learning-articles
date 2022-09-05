@@ -38,7 +38,7 @@ Let's go! 😎
 
 ## On optimizing supervised machine learning models
 
-Let's take a look at the [high-level supervised machine learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process):
+Let's take a look at the [high-level supervised machine learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md/#the-high-level-supervised-learning-process):
 
 ![](images/High-level-training-process-1024x973.jpg)
 
@@ -46,7 +46,7 @@ Training such models goes through a simple, sequential and cyclical process:
 
 1. The _features_, i.e. the inputs, predictors or independent variables, are fed to the machine learning model. The model will generate predictions for the data, e.g. the class it thinks that the features belong to.
 2. These predictions are compared with the _targets_, which represent the ground truth for the features. That is, they are the _actual_ classes in the classification scenario above.
-3. The difference between the predictions and the actual targets can be captured in the loss value. Depending on your machine learning problem, [you can choose from a wide range of loss functions](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#loss-functions).
+3. The difference between the predictions and the actual targets can be captured in the loss value. Depending on your machine learning problem, [you can choose from a wide range of loss functions](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md/#loss-functions).
 4. Based on the loss value, the model computes the best way of making it better - i.e., it computes gradients using backpropagation.
 5. Based on these gradients, an optimizer (such as [gradient descent](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md) or [an adaptive optimizer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md)) will adapt the model accordingly.
 6. The process starts again. Likely, and hopefully, the model performs slightly better this time.
@@ -188,7 +188,7 @@ Let's now introduce the concept of a _decaying learning rate_. Eventually, we'll
 
 Instead of a fixed learning rate, wouldn't it be good if we could reduce it over time?
 
-That is, apply [learning rate decay](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/problems-with-fixed-and-decaying-learning-rates/#what-is-learning-rate-decay)?
+That is, apply [learning rate decay](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/problems-with-fixed-and-decaying-learning-rates.md/#what-is-learning-rate-decay)?
 
 Indeed, this seems to be an approach to reducing the negative impact of a fixed learning rate. By using a so-called "decay scheme", which decides how the learning rate decays over time, you can exhibit control over the learning rate for an arbitrary epoch.
 
@@ -270,7 +270,7 @@ Now, keep your command prompt open, and generate a new file, e.g. `touch lr-find
 
 The first thing I always do is to import everything we need:
 
-- The [MNIST dataset](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets/#mnist-database-of-handwritten-digits), which we'll use today;
+- The [MNIST dataset](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets.md/#mnist-database-of-handwritten-digits), which we'll use today;
 - The Sequential API, which allows us to stack layers nicely;
 - The Dense, Flatten, Conv2D and MaxPooling2D layers, as we'll find optimal learning rates for a ConvNet that classifies the MNIST data;
 - [Sparse categorical crossentropy](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-sparse-categorical-crossentropy-in-keras.md), which is our loss function for today;
@@ -449,7 +449,7 @@ Open up that command prompt again, `cd` to the folder where your `.py` file is l
 
 _Note that yours won't be exactly the same due to the fact that machine learning models are stochastic, e.g. due to random or pseudo-random initialization of your weight vectors during model initialization._
 
-The results are very clear: for this training setting, Adam performs substantially better. We can observe that it reaches a lower loss value compared to SGD (first plot), and that it does so in a much shorter time (second plot - the negative delta occurs at a lower learning rate). Likely, this is how we benefit from the fact that Adam performs [local parameter updates](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound/#adam), whereas SGD does not. If we had to choose between these two optimizers, it would clearly be Adam with a learning rate of \[latex\]\\approx 10^{-3.95}\[/latex\].
+The results are very clear: for this training setting, Adam performs substantially better. We can observe that it reaches a lower loss value compared to SGD (first plot), and that it does so in a much shorter time (second plot - the negative delta occurs at a lower learning rate). Likely, this is how we benefit from the fact that Adam performs [local parameter updates](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md/#adam), whereas SGD does not. If we had to choose between these two optimizers, it would clearly be Adam with a learning rate of \[latex\]\\approx 10^{-3.95}\[/latex\].
 
 ### Full code
 

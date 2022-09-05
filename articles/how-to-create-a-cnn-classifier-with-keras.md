@@ -258,7 +258,7 @@ input_test = input_test / 255
 
 We first reshape our input data (the feature vectors). As you can see with the `input_shape`, it's the way your data must be built up to be handled correctly by the framework.
 
-We then parse the numbers as floats, especially 32-bit floats. This [optimizes the trade-off between memory and number precision](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tensorflow-model-optimization-an-introduction-to-quantization/#float32-in-your-ml-model-why-its-great) over e.g. integers and 64-bit floats.
+We then parse the numbers as floats, especially 32-bit floats. This [optimizes the trade-off between memory and number precision](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tensorflow-model-optimization-an-introduction-to-quantization.md/#float32-in-your-ml-model-why-its-great) over e.g. integers and 64-bit floats.
 
 Finally, we convert the numbers to greyscale by dividing all (numeric!) image samples by 255. This allows them to be converted to the interval \[0, 1\] - or, greyscale. Why we do this? Because we don't care about the color of a number, only about the number itself.
 
@@ -303,7 +303,7 @@ model.add(Dense(no_classes, activation='softmax'))
 
 We first define the `model` itself to be using the `Sequential` API, or, a stack of layers that together compose the Convolutional Neural Network.
 
-We start off with a two-dimensional convolutional layer, or a Conv2D layer. It learns 32 [filters](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/convolutional-neural-networks-and-their-components-for-computer-vision/#convolutional-layers), or feature maps, based on the data. The kernel, or the small image that slides over the larger one, is 3x3 pixels. As expected, we use the [ReLU](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md) activation function for nonlinearity. In the first layer, we also specify the `input_shape` of our data, as determined by reshape.
+We start off with a two-dimensional convolutional layer, or a Conv2D layer. It learns 32 [filters](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/convolutional-neural-networks-and-their-components-for-computer-vision.md/#convolutional-layers), or feature maps, based on the data. The kernel, or the small image that slides over the larger one, is 3x3 pixels. As expected, we use the [ReLU](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md) activation function for nonlinearity. In the first layer, we also specify the `input_shape` of our data, as determined by reshape.
 
 The Conv2D layer is followed by a [MaxPooling2D](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-are-max-pooling-average-pooling-global-max-pooling-and-global-average-pooling.md) layer with a pool size of 2 x 2. That is, we further summarize the derivation of the Conv2D layer by applying max pooling with another image sliding over the filters that is 2x2 pixels. For every _slide_, it takes the maximum value (hence max pooling) within the 2x2 box and passes it on. Hence, each 2x2 = 4 pixel wide slide is turned into a one-pixel output. This greatly reduces memory requirements while keeping mostly intact your model performance.
 

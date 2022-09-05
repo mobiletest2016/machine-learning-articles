@@ -11,7 +11,7 @@ tags:
 
 Training a deep learning model is both simple and complex at the same time. It's simple because with libraries like TensorFlow 2.0 (`tensorflow.keras`, specifically) it's very easy to get started. But while creating a first model is easy, fine-tuning it while knowing what you are doing is a bit more complex.
 
-For example, you will need some knowledge on the [supervised learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process), gradient descent or other optimization, regularization, and a lot of other contributing factors.
+For example, you will need some knowledge on the [supervised learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md/#the-high-level-supervised-learning-process), gradient descent or other optimization, regularization, and a lot of other contributing factors.
 
 Tweaking and tuning a deep learning models therefore benefits from two things: insight into what is happening and automated control to avoid the need for human intervention where possible. In Keras, this can be achieved with the `tensorflow.keras.callbacks` API. In this article, we will look into Callbacks in more detail. We will first illustrate what they are by displaying where they play a role in the supervised machine learning process. Then, we cover the Callbacks API - and for each callback, illustrate what it can be used for together with a small example. Finally, we will show how you can create your own Callback with the `tensorflow.keras.callbacks.Base` class.
 
@@ -27,7 +27,7 @@ Let's take a look :)
 
 ## Callbacks and their role in the training process
 
-In our article about the [supervised machine learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process), we saw how a supervised machine learning model is trained:
+In our article about the [supervised machine learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md/#the-high-level-supervised-learning-process), we saw how a supervised machine learning model is trained:
 
 1. A machine learning model (today, often a neural network) is [initialized](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-weight-initialization.md).
 2. Samples from the training set are fed forward, through the model, resulting in a set of predictions.
@@ -525,7 +525,7 @@ There are two callbacks that are part of the `tensorflow.keras.callbacks` API bu
 
 They are the `History` and `BaseLogger` callbacks.
 
-- The `History` callback generates a `History` [object](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-training-process-in-keras/#the-history-object) when calling `model.fit`.
+- The `History` callback generates a `History` [object](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-training-process-in-keras.md/#the-history-object) when calling `model.fit`.
 - The `BaseLogger` callback accumulates basic metrics to display later.
 
 * * *

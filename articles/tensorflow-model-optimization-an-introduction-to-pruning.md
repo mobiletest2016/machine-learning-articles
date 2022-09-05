@@ -95,7 +95,7 @@ I can imagine that it's difficult to visualize this if you don't fully understan
 
 ### Neural network maths: features and weights
 
-Taken from our blog post about loss and loss functions, we can sketch a [high-level machine learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process) for supervised learning scenarios - such as training a classifier or a regression model:
+Taken from our blog post about loss and loss functions, we can sketch a [high-level machine learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md/#the-high-level-supervised-learning-process) for supervised learning scenarios - such as training a classifier or a regression model:
 
 ![](images/High-level-training-process-1024x973.jpg)
 
@@ -521,7 +521,7 @@ In short, once the model has been pruned - i.e., stripped off non-contributing w
 
 ### Adding quantization to our Keras example
 
-Let's now take a look how we can add quantization to a pruned TensorFlow model. More specifically, we'll add [dynamic range quantization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tensorflow-model-optimization-an-introduction-to-quantization/#post-training-dynamic-range-quantization), which quantizes the weights, but not necessarily model activations.
+Let's now take a look how we can add quantization to a pruned TensorFlow model. More specifically, we'll add [dynamic range quantization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tensorflow-model-optimization-an-introduction-to-quantization.md/#post-training-dynamic-range-quantization), which quantizes the weights, but not necessarily model activations.
 
 Adding quantization first requires you to add a `TFLite` converter. This converter converts your TensorFlow model into TensorFlow Lite equivalent, which is what quantization will run against. Converting the model into a Lite model allows us to specify a model optimizer - `DEFAULT` or dynamic range quantization, in our case. Finally, we `convert()` the model:
 

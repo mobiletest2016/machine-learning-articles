@@ -45,9 +45,9 @@ When working on software projects, and hence when working on machine learning de
 
 - While it's best to determine the value for parameter \[latex\]p\[/latex\] with a validation set, it's perfectly fine to set it to \[latex\]p \\approx 0.5\[/latex\]. This value has shown the best empirical results when being tested with the MNIST dataset.
 - To avoid holes in your input data, the authors argued that you best set \[latex\]p\[/latex\] for the input layer to \[latex\]1.0\[/latex\] - effectively the same as not applying Dropout there.
-- Dropout seems to work best when a combination of max-norm regularization (in Keras, with the [MaxNorm constraint](https://keras.io/constraints/#maxnorm)), high learning rates that [decay](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/problems-with-fixed-and-decaying-learning-rates/#what-is-learning-rate-decay) to smaller values, and high momentum is used as well.
+- Dropout seems to work best when a combination of max-norm regularization (in Keras, with the [MaxNorm constraint](https://keras.io/constraints.md/#maxnorm)), high learning rates that [decay](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/problems-with-fixed-and-decaying-learning-rates.md/#what-is-learning-rate-decay) to smaller values, and high momentum is used as well.
 
-Any optimizer can be used. Given the benefits of the [Adam optimizer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound/#adam) (momentum-like optimization with locally adapted weights), we're using that one today, as well as the best practices mentioned above.
+Any optimizer can be used. Given the benefits of the [Adam optimizer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md/#adam) (momentum-like optimization with locally adapted weights), we're using that one today, as well as the best practices mentioned above.
 
 ## Dropout in the Keras API
 
@@ -353,7 +353,7 @@ As you can see, the difference is less significant than with the Dropout/No-drop
 
 ### Dropout with Adam vs Dropout with SGD
 
-Well, the results for this one clearly indicate that Adam performs much better when Dropout is applied, compared to traditional SGD. Likely, this is the case because Adam [combines momentum and local parameter updates](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound/#adam) - benefiting the training process irrespective of Dropout.
+Well, the results for this one clearly indicate that Adam performs much better when Dropout is applied, compared to traditional SGD. Likely, this is the case because Adam [combines momentum and local parameter updates](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md/#adam) - benefiting the training process irrespective of Dropout.
 
 - ![](images/acc-4-1024x537.png)
     

@@ -637,7 +637,7 @@ Test loss: 0.823152067565918 / Test accuracy: 0.7271000146865845
 
 We can now inspect model performance in TensorBoard!
 
-Once the [training process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process) is finished, execute this command in the same terminal:
+Once the [training process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md/#the-high-level-supervised-learning-process) is finished, execute this command in the same terminal:
 
 ```
 tensorboard --logdir=./logs

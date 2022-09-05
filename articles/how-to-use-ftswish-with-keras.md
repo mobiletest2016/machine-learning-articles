@@ -128,7 +128,7 @@ validation_split = 0.2
 verbosity = 1
 ```
 
-The [CIFAR-10 dataset](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets/#cifar-10-small-image-classification) which we're using today contains 32 x 32 pixels images across 10 different classes. Hence, `img_width = img_height = 32`, and `no_classes = 10`. The `batch_size` is 250 which is a fairly OK setting based on experience ([click here to find out why to balance between high batch sizes and memory requirements](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md)). We train for 100 `epochs`, and use 20% of our training data for validation purposes. We output everything on screen by setting `verbosity` to True.
+The [CIFAR-10 dataset](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets.md/#cifar-10-small-image-classification) which we're using today contains 32 x 32 pixels images across 10 different classes. Hence, `img_width = img_height = 32`, and `no_classes = 10`. The `batch_size` is 250 which is a fairly OK setting based on experience ([click here to find out why to balance between high batch sizes and memory requirements](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md)). We train for 100 `epochs`, and use 20% of our training data for validation purposes. We output everything on screen by setting `verbosity` to True.
 
 ### Loading & preparing the data
 
@@ -259,7 +259,7 @@ model.compile(loss=keras.losses.categorical_crossentropy,
 
 Because we are facing a multiclass classification problem with one-hot encoded vectors (by virtue of calling `to_categorical`), we'll be using [categorical crossentropy](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-binary-categorical-crossentropy-with-keras.md). If you wish to skip the conversion to categorical targets, you might want to replace this with [sparse categorical crossentropy](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-sparse-categorical-crossentropy-in-keras.md), which supports integer targets.
 
-For optimization, we use the [Adam optimizer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound/#adam) - the default choice for today's neural networks. Finally, we specify `accuracy` as an additional metric, which is more intuitive than crossentropy loss.
+For optimization, we use the [Adam optimizer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md/#adam) - the default choice for today's neural networks. Finally, we specify `accuracy` as an additional metric, which is more intuitive than crossentropy loss.
 
 ### Fitting the data
 

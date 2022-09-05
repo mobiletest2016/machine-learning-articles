@@ -76,9 +76,9 @@ class RBPerceptron:
 
 ## A small introduction - what is a Perceptron?
 
-A Perceptron is a [binary classifier](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/3-variants-of-classification-problems-in-machine-learning/#variant-1-binary-classification) that was invented by [Frank Rosenblatt](https://en.wikipedia.org/wiki/Frank_Rosenblatt) in 1958, working on a research project for Cornell Aeronautical Laboratory that was US government funded. It was based on the recent advances with respect to mimicing the human brain, in particular the MCP architecture that was recently invented by McCulloch and Pitts.
+A Perceptron is a [binary classifier](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/3-variants-of-classification-problems-in-machine-learning.md/#variant-1-binary-classification) that was invented by [Frank Rosenblatt](https://en.wikipedia.org/wiki/Frank_Rosenblatt) in 1958, working on a research project for Cornell Aeronautical Laboratory that was US government funded. It was based on the recent advances with respect to mimicing the human brain, in particular the MCP architecture that was recently invented by McCulloch and Pitts.
 
-This architecture attempted to mimic the way neurons operate in the brain: given certain inputs, they fire, and their firing behavior can change over time. By [allowing the same to happen in an artificial neuron](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-nonlinear-activation-functions-improve-ml-performance-with-tensorflow-example/#individual-neurons), researchers at the time argued, machines could become capable of approximating human intelligence.
+This architecture attempted to mimic the way neurons operate in the brain: given certain inputs, they fire, and their firing behavior can change over time. By [allowing the same to happen in an artificial neuron](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-nonlinear-activation-functions-improve-ml-performance-with-tensorflow-example.md/#individual-neurons), researchers at the time argued, machines could become capable of approximating human intelligence.
 
 ...well, that was a slight overestimation, I'd say 😄 Nevertheless, the Perceptron lies at the basis of where we've come today. It's therefore a very interesting topic to study deeper. Next, I will therefore scrutinize its mathematical building blocks, before moving on to implementing one in Python.
 
@@ -86,7 +86,7 @@ This architecture attempted to mimic the way neurons operate in the brain: given
 
 ### Mathematical building blocks
 
-When you [train a supervised machine learning model](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process), it must somehow capture the information that you're giving it. The Perceptron does this by means of a _[weights vector](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-weight-initialization.md)_, or `**w**` that determines the exact position of the [decision boundary](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-decision-boundary-for-your-keras-model.md) and is learnt from the data.
+When you [train a supervised machine learning model](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md/#the-high-level-supervised-learning-process), it must somehow capture the information that you're giving it. The Perceptron does this by means of a _[weights vector](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-weight-initialization.md)_, or `**w**` that determines the exact position of the [decision boundary](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-decision-boundary-for-your-keras-model.md) and is learnt from the data.
 
 If you input new data, say in an _input vector_ `**x**`, you'll simply have to pinpoint this vector with respect to the learnt weights, to decide on the class.
 
@@ -102,7 +102,7 @@ When you multiply two vectors, you're computing what is called a dot product. A 
 
 \\begin{equation} \\begin{split} &z=\\sum\_{i=1}^{n} w\_nx\_n + b \\\\ &= w\_1x\_1 + ... + w\_nx\_n + b \\\\ \\end{split} \\end{equation}
 
-When this output value is larger than 0, it's class 1, otherwise it's class 0. In other words: [binary classification](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/3-variants-of-classification-problems-in-machine-learning/#variant-1-binary-classification).
+When this output value is larger than 0, it's class 1, otherwise it's class 0. In other words: [binary classification](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/3-variants-of-classification-problems-in-machine-learning.md/#variant-1-binary-classification).
 
 ### The Perceptron, visually
 

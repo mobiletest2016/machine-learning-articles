@@ -55,18 +55,18 @@ In a different article, we already looked at building a [classification model](h
 
 1. Firstly, we will make sure that we **import all the dependencies** needed for today's code.
 2. Secondly, we're going to ensure that we have our **training data** available. This data, which is the [Boston Housing Dataset](https://www.tensorflow.org/api_docs/python/tf/keras/datasets/boston_housing), provides a set of variables that may together ensure that a price prediction (the target variable) becomes possible.
-3. Subsequently, the **neural network** will be created. This will be a **Multilayer Perceptron** based model, which is essentially a stack of layers containing neurons that can be [trained](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process).
+3. Subsequently, the **neural network** will be created. This will be a **Multilayer Perceptron** based model, which is essentially a stack of layers containing neurons that can be [trained](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md/#the-high-level-supervised-learning-process).
 4. The training dataset, which is by now represented as a `torch.utils.data.Dataset`, will need to be used in the model. The fourth step is to ensure that the **dataset is prepared into a `DataLoader`**, which ensures that data is shuffled and batched appropriately.
 5. Then, we **pick a loss function and initialize it**. We also **init the model and the optimizer** (Adam).
-6. Finally, we create the **training loop**, which effectively contains the [high-level training process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process) captured in code.
+6. Finally, we create the **training loop**, which effectively contains the [high-level training process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md/#the-high-level-supervised-learning-process) captured in code.
 
 Let's get to work! 👩‍💻 Create a file or Notebook, e.g. `regression-mlp.py`, and write along :)
 
 ### Today's dataset
 
-The **[Boston House Prices Regression dataset](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets/#boston-housing-price-regression-dataset)** contains 506 observations that relate certain characteristics with the price of houses (in $1000s) in Boston in some period.
+The **[Boston House Prices Regression dataset](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets.md/#boston-housing-price-regression-dataset)** contains 506 observations that relate certain characteristics with the price of houses (in $1000s) in Boston in some period.
 
-Some observations about this data (from [this article](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets/#boston-housing-price-regression-dataset)):
+Some observations about this data (from [this article](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets.md/#boston-housing-price-regression-dataset)):
 
 > The minimum house price is $5000, while the maximum house price is $50.000. This may sound weird, but it’s not: house prices have risen over the decades, and the study that produced this data is from 1978 (Harrison & Rubinfeld, 1978). Actually, around 1978 prices of ≈$50.000 were quite the median value, so this dataset seems to contain relatively cheaper houses (or the Boston area was cheaper back then – I don’t know; Martin, 2017).
 > 
@@ -230,7 +230,7 @@ Now that we have a PyTorch-compatible dataset, it still cannot be used directly.
 
 Recall from the high-level supervised training process that a loss function is used to compare model predictions and true targets - essentially computing **how poor the model performs**.
 
-Picking a [loss function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-pytorch-loss-functions/#pytorch-regression-loss-function-examples) thus has to be done relative to the characteristics of your data. For example, if your dataset has many outliers, [Mean Squared Error](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-pytorch-loss-functions/#mean-squared-error-mse-loss-nn-mseloss) loss may not be a good idea. In that case, [L1 or Mean Average Error loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-pytorch-loss-functions/#mean-absolute-error-mae-l1-loss-nn-l1loss) can be a better choice. In other words, first perform Exploratory Data Analysis on the variables you will be working with. Are there many outliers? Are the values close together? Depending on that, you will be able to pick an appropriate loss function to start with. Trial and error will tell whether you'll need to change after training a few times.
+Picking a [loss function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-pytorch-loss-functions.md/#pytorch-regression-loss-function-examples) thus has to be done relative to the characteristics of your data. For example, if your dataset has many outliers, [Mean Squared Error](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-pytorch-loss-functions.md/#mean-squared-error-mse-loss-nn-mseloss) loss may not be a good idea. In that case, [L1 or Mean Average Error loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-pytorch-loss-functions.md/#mean-absolute-error-mae-l1-loss-nn-l1loss) can be a better choice. In other words, first perform Exploratory Data Analysis on the variables you will be working with. Are there many outliers? Are the values close together? Depending on that, you will be able to pick an appropriate loss function to start with. Trial and error will tell whether you'll need to change after training a few times.
 
 ### Initializing the model, loss function and optimizer
 

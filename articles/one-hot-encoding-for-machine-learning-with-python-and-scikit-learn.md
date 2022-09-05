@@ -139,7 +139,7 @@ Unhealthy one-hot encoded: [[0. 1.]]
 
 ### One-Hot Encoding Dataset Targets
 
-Let's now take a look at a real-world dataset. We can load the [MNIST dataset](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets/#mnist-database-of-handwritten-digits), which is a dataset of handwritten numbers, as follows:
+Let's now take a look at a real-world dataset. We can load the [MNIST dataset](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets.md/#mnist-database-of-handwritten-digits), which is a dataset of handwritten numbers, as follows:
 
 ```
 from tensorflow.keras.datasets import mnist

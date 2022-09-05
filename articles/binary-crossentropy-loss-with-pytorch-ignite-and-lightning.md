@@ -109,7 +109,7 @@ From our article about the [various classification problems](https://github.com/
 
 ### High-level training process
 
-We also know from our article about [loss functions](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md) and the [high-level supervised machine learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process) that when you train a neural network, these are the steps that the process will go through:
+We also know from our article about [loss functions](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md) and the [high-level supervised machine learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md/#the-high-level-supervised-learning-process) that when you train a neural network, these are the steps that the process will go through:
 
 1. **Feeding forward data through the model.** The result is a set of predictions with one prediction per input sample.
 2. **Comparing the predictions with the ground truth**. Here, we compute the differences between the prediction and the _true_ sample. We converge these differences in one value, which we call the _loss value_.

@@ -46,7 +46,7 @@ Do we remember that fancy numbers dataset?
 
 ![](images/mnist.png)
 
-Indeed, it's the [MNIST](http://yann.lecun.com/exdb/mnist.md) dataset: "a training set of 60,000 examples, and a test set of 10,000 examples". It [contains handwritten digits](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets/#mnist-database-of-handwritten-digits), thus numbers from 0-9.
+Indeed, it's the [MNIST](http://yann.lecun.com/exdb/mnist.md) dataset: "a training set of 60,000 examples, and a test set of 10,000 examples". It [contains handwritten digits](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets.md/#mnist-database-of-handwritten-digits), thus numbers from 0-9.
 
 To give you a baseline of what a CNN can do with such a dataset, you will next see the result of training a CNN based on a [default Keras example script](https://github.com/keras-team/keras/blob/master/examples/mnist_cnn.py):
 

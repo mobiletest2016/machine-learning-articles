@@ -260,7 +260,7 @@ Let's now take a look at how we can evaluate a model that was created with PyTor
 
 ### The model we will evaluate
 
-This is the model that we want to evaluate. If you want to understand how it works, make sure to [read this tutorial](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/creating-a-multilayer-perceptron-with-pytorch-and-lightning/#classic-pytorch_1) too.
+This is the model that we want to evaluate. If you want to understand how it works, make sure to [read this tutorial](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/creating-a-multilayer-perceptron-with-pytorch-and-lightning.md/#classic-pytorch_1) too.
 
 ```
 import os

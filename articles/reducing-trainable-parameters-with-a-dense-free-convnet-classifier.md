@@ -60,7 +60,7 @@ As a result of these pools, their sliding process and the cheap operation, they 
 
 [![](images/Max-Pooling-2.png)]
 
-_Side note: there are additional benefits when using Max Pooling. Take a look at the [blog post scrutinizing it in more detail](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-are-max-pooling-average-pooling-global-max-pooling-and-global-average-pooling/#max-pooling) if you wish to understand which ones they are._
+_Side note: there are additional benefits when using Max Pooling. Take a look at the [blog post scrutinizing it in more detail](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-are-max-pooling-average-pooling-global-max-pooling-and-global-average-pooling.md/#max-pooling) if you wish to understand which ones they are._
 
 ### What does Global Average Pooling do?
 

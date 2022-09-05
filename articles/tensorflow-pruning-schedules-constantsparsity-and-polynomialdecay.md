@@ -20,7 +20,7 @@ This is problematic when you want to generate predictions in the field that are 
 
 They are interesting paths to making it possible to run your models at the edge, so I'd recommend the linked articles if you wish to read more. In this blog post, however, we'll take a more in-depth look at pruning in TensorFlow. More specifically, we'll first take a look at pruning by providing a brief and high-level recap. This allows the reader who hasn't read the posts linked before to get an idea what we're talking about. Subsequently, we'll be looking at the TensorFlow Model Optimization API, and specifically the `tfmot.sparsity.keras.PruningSchedule` functionality, which allows us to use preconfigured or custom-designed pruning schedules.
 
-Once we understand `PruningSchedule`, it's time to take a look at two methods for pruning that come with the TensorFlow Model Optimization toolkit: the `ConstantSparsity` method and the `PolynomialDecay` method for pruning. We then converge towards a practical example with Keras by using `ConstantSparsity` to make our model sparser. If you want to get an example for `PolynomialDecay`, click [here](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tensorflow-model-optimization-an-introduction-to-pruning/#pruning-a-keras-example) instead.
+Once we understand `PruningSchedule`, it's time to take a look at two methods for pruning that come with the TensorFlow Model Optimization toolkit: the `ConstantSparsity` method and the `PolynomialDecay` method for pruning. We then converge towards a practical example with Keras by using `ConstantSparsity` to make our model sparser. If you want to get an example for `PolynomialDecay`, click [here](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tensorflow-model-optimization-an-introduction-to-pruning.md/#pruning-a-keras-example) instead.
 
 Enough introduction for now! Let's start :)
 
@@ -32,7 +32,7 @@ Enough introduction for now! Let's start :)
 
 ## A brief recap on Pruning
 
-If we train a machine learning model by means of a training, validation and testing dataset, we're following a methodology that is called [supervised learning](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process). If you look at the name, it already tells you much about how it works: by _supervising_ the learning process, you'll allow the model to learn generate successful predictions for new situations. Supervision, here, means to let the model learn and check its predictions with the true outcome later. It is a highly effective form of machine learning and is used very often in today's machine learning settings.
+If we train a machine learning model by means of a training, validation and testing dataset, we're following a methodology that is called [supervised learning](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md/#the-high-level-supervised-learning-process). If you look at the name, it already tells you much about how it works: by _supervising_ the learning process, you'll allow the model to learn generate successful predictions for new situations. Supervision, here, means to let the model learn and check its predictions with the true outcome later. It is a highly effective form of machine learning and is used very often in today's machine learning settings.
 
 ### Training a machine learning model: the iterative learning process
 
@@ -48,7 +48,7 @@ Repeating this process allows us to continuously adapt our weights until the los
 
 ### Model optimization: pruning and quantization
 
-Many of today's state-of-the-art machine learning architectures are [really big](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tensorflow-model-optimization-an-introduction-to-pruning/#the-need-for-model-optimization) - 100 MB is no exception, and some architectures are 500 MB when they are trained. As we understand from the introduction and the linked article, it's highly impractical if not impossible to run those models adequately on embedded hardware, such as devices in the field.
+Many of today's state-of-the-art machine learning architectures are [really big](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tensorflow-model-optimization-an-introduction-to-pruning.md/#the-need-for-model-optimization) - 100 MB is no exception, and some architectures are 500 MB when they are trained. As we understand from the introduction and the linked article, it's highly impractical if not impossible to run those models adequately on embedded hardware, such as devices in the field.
 
 They will then either be too _slow_ or they _cannot be loaded altogether_.
 
@@ -113,7 +113,7 @@ This code is executed _upon the start of every batch_. To illustrate, if your tr
 
 In it, the pruning step is increased by one: `self.step = self.step + 1`.
 
-This means that every _batch_ during your training process represents a pruning step. This is also why in the pruning article, [we configured the end\_step](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tensorflow-model-optimization-an-introduction-to-pruning/#loading-and-configuring-pruning) as follows:
+This means that every _batch_ during your training process represents a pruning step. This is also why in the pruning article, [we configured the end\_step](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tensorflow-model-optimization-an-introduction-to-pruning.md/#loading-and-configuring-pruning) as follows:
 
 ```
 end_step = np.ceil(num_images / batch_size).astype(np.int32) * pruning_epochs
@@ -177,7 +177,7 @@ It seems that there has been no extensive investigation into what pruning schedu
 
 In my point of view - and I will test my point of view later in this blog - I think this partially occurs because how polynomial decay is implemented. Their training process started at a low sparsity level (0%, in fact) and was then increased (to 50/75/87.5% for three scenarios, respectively). In all scenarios, sparsity increase started at the 2000th step, in order to allow the model to start its path towards convergence without being hurt by sparsity inducing methods already.
 
-The effect of this strategy is that while the model already starts converging, sparsity is introduced slowly. Model weights can take into account this impact and become robust to the effect of weights being dropped, similar to [quantization-aware training](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tensorflow-model-optimization-an-introduction-to-quantization/#quantization-aware-training) in the case of quantization. I personally think that this is a better strategy compared to a `ConstantSparsity`, which immediately increases sparsity levels from 0% to the constant sparsity level that was configured.
+The effect of this strategy is that while the model already starts converging, sparsity is introduced slowly. Model weights can take into account this impact and become robust to the effect of weights being dropped, similar to [quantization-aware training](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tensorflow-model-optimization-an-introduction-to-quantization.md/#quantization-aware-training) in the case of quantization. I personally think that this is a better strategy compared to a `ConstantSparsity`, which immediately increases sparsity levels from 0% to the constant sparsity level that was configured.
 
 * * *
 
@@ -187,7 +187,7 @@ Next, we will provide an example that trains a model with `ConstantSparsity` app
 
 We train for 30 epochs, as a ConvNet-based MNIST classifier will always see good performance after only few epochs.
 
-Should you wish to get additional explanation or see the code for `PolynomialDecay`, click [here](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tensorflow-model-optimization-an-introduction-to-pruning/#pruning-a-keras-example). Here is the full code for creating, training, pruning, saving and comparing a pruned Keras model with `ConstantSparsity`:
+Should you wish to get additional explanation or see the code for `PolynomialDecay`, click [here](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tensorflow-model-optimization-an-introduction-to-pruning.md/#pruning-a-keras-example). Here is the full code for creating, training, pruning, saving and comparing a pruned Keras model with `ConstantSparsity`:
 
 ```
 import tensorflow
@@ -318,7 +318,7 @@ Size of gzipped pruned Keras model: 388071.00 bytes
 
 It performs really well, but this is expected from models classifying MNIST digits.
 
-Subsequently retraining the PolynomialDecay based one from the [other post](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tensorflow-model-optimization-an-introduction-to-pruning/#pruning-a-keras-example), but then following the Zhu & Gupta (2017) setting (sparsity at 0% at first, up to 87.5% - equaling the constant sparsity of the other model; beginning at 20% of the training data), this is the outcome of training with polynomial decay:
+Subsequently retraining the PolynomialDecay based one from the [other post](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tensorflow-model-optimization-an-introduction-to-pruning.md/#pruning-a-keras-example), but then following the Zhu & Gupta (2017) setting (sparsity at 0% at first, up to 87.5% - equaling the constant sparsity of the other model; beginning at 20% of the training data), this is the outcome of training with polynomial decay:
 
 ```
 Pruned CNN - Test loss: 0.02177981694244372 / Test accuracy: 0.9926999807357788

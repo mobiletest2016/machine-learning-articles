@@ -45,7 +45,7 @@ Now, what is a ConvNet?
 
 While we already have a [very detailed post on the matter](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/convolutional-neural-networks-and-their-components-for-computer-vision.md), let's repeat what is written there, here - but then briefly.
 
-First of all, a Convolutional Neural Network is no special type of neural network - as with any, it's a set of trainable parameters which is trained through the [supervised machine learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process) with its feedforward operation and subsequent gradient based optimization.
+First of all, a Convolutional Neural Network is no special type of neural network - as with any, it's a set of trainable parameters which is trained through the [supervised machine learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md/#the-high-level-supervised-learning-process) with its feedforward operation and subsequent gradient based optimization.
 
 Except for the fact that within Convolutional Neural Networks, parameters are structured a bit differently than in a regular fully connected network.
 
@@ -61,7 +61,7 @@ On the left, you see the `Inputs` layer, which accepts a 32 x 32 pixel image wit
 
 As you can see, in a loup-like structure, the inputs are reduced in size. This happens by means of the _convolution_ operation - which is a kernel of some by some pixels (5x5 in the `Inputs` layer) that slides over the entire input - horizontally and vertically. Doing so, it multiplies all the kernel images (the _learnt weights_) with the _input it covers_ in element-wise multiplications. The output represents the "loupe result" in the downstream layer. All outputs for an image combined is called a _feature map_, and often, as we can see here too, there are many kernels in a layer - resulting in many feature maps.
 
-Learning is ascribed to the kernels, which have trainable weights that can be adapted to respond to inputs. This happens in the [optimization part of the machine learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#backwards-pass). It closes the cycle between inputs, outputs and subsequent model improvement - it's really that simple conceptually ;-)
+Learning is ascribed to the kernels, which have trainable weights that can be adapted to respond to inputs. This happens in the [optimization part of the machine learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md/#backwards-pass). It closes the cycle between inputs, outputs and subsequent model improvement - it's really that simple conceptually ;-)
 
 As you can understand, the feature maps at the most downstream convolutional layer (possibly followed by [pooling layers](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-are-max-pooling-average-pooling-global-max-pooling-and-global-average-pooling.md)) are a very abstract representation of the original input image. This is beneficial in two ways:
 
@@ -137,7 +137,7 @@ Recall: in a ConvNet, activations are the outputs of layers, and our technique w
 
 As the point of this blog post is to illustrate how `tf-explain` can be used for visualizing activations, I will not focus on creating the neural network itself. Instead, we have another blog post for that - being ["How to use Conv2D with Keras?"](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-conv2d-with-keras.md). Click the link to find a detailed, step-by-step explanation about the model that we will use in this blog post.
 
-In short, our ConvNet will be able to classify the [CIFAR10 dataset](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets/#cifar-10-small-image-classification):
+In short, our ConvNet will be able to classify the [CIFAR10 dataset](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets.md/#cifar-10-small-image-classification):
 
 [![](images/cifar10_visualized.png)]
 
@@ -482,7 +482,7 @@ Great, we have a running training process :) Once it finishes, your activation v
 
 ![](images/act.png)
 
-For the [MNIST dataset](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets/#mnist-database-of-handwritten-digits), and a specific sample of number 4, it looks like this:
+For the [MNIST dataset](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets.md/#mnist-database-of-handwritten-digits), and a specific sample of number 4, it looks like this:
 
 ![](images/act-1.png)
 

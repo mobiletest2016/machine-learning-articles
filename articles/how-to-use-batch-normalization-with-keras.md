@@ -39,7 +39,7 @@ Suppose that you have this neural network, which is composed of Dropout neurons:
 
 [![](images/dropout.png)]
 
-Following the [high-level supervised machine learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process), training such a neural network is a multi-step process:
+Following the [high-level supervised machine learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md/#the-high-level-supervised-learning-process), training such a neural network is a multi-step process:
 
 - Feeding your training data to the network in a _feedforward_ fashion, in which each layer processes your data further.
 - This leads to a prediction for every sample.
@@ -71,7 +71,7 @@ Every input \[latex\]x\_B{ ^{(k)}}\[/latex\] is normalized by first subtracting 
 
 With some activation functions (such as the Sigmoid activation function), normalizing inputs to have the \[latex\](0, 1)\[/latex\] distribution may result in a different issue: they'll activate almost linearly as they primarily activate in the linear segment of the activation function.
 
-[Here](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-batch-normalization-for-training-neural-networks/#scaling-and-shifting), I explain this in more detail, and why this needs to be avoided.
+[Here](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-batch-normalization-for-training-neural-networks.md/#scaling-and-shifting), I explain this in more detail, and why this needs to be avoided.
 
 By _scaling_ the value with some \[latex\]\\gamma\[/latex\] and _shifting_ the value with some \[latex\]\\beta\[/latex\], this problem can be avoided. The values for these are learnt during training.
 
@@ -302,7 +302,7 @@ model.compile(loss=tensorflow.keras.losses.sparse_categorical_crossentropy,
               metrics=['accuracy'])
 ```
 
-As you can see, model compilation is essentially _instantiating_ the model architecture we defined before with the model configuration we set before. We use [sparse categorical crossentropy loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-sparse-categorical-crossentropy-in-keras.md), which combines nicely with our integer target values - so that we don't have to convert these into categorical format before we start training. To optimize the model, we use the [Adam optimizer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound/#adam), and add accuracy as an additional metric.
+As you can see, model compilation is essentially _instantiating_ the model architecture we defined before with the model configuration we set before. We use [sparse categorical crossentropy loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-sparse-categorical-crossentropy-in-keras.md), which combines nicely with our integer target values - so that we don't have to convert these into categorical format before we start training. To optimize the model, we use the [Adam optimizer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md/#adam), and add accuracy as an additional metric.
 
 Then, we fit the data to our model, a.k.a. starting the training process:
 

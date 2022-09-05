@@ -71,7 +71,7 @@ You get the point :)
 
 ## A Keras example
 
-Now, let's take a look if we can create a simple [Convolutional Neural Network](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-conv2d-with-keras.md) which operates with the [MNIST dataset](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets/#mnist-database-of-handwritten-digits), stored in HDF5 format.
+Now, let's take a look if we can create a simple [Convolutional Neural Network](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-conv2d-with-keras.md) which operates with the [MNIST dataset](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets.md/#mnist-database-of-handwritten-digits), stored in HDF5 format.
 
 Fortunately, this dataset is readily available at [Kaggle for download](https://www.kaggle.com/benedictwilkinsai/mnist-hd5f), so make sure to create an account there and download the **train.hdf5** and **test.hdf5** files.
 

@@ -15,7 +15,7 @@ tags:
   - "neural-networks"
 ---
 
-When you train a supervised machine learning model, [you feed forward data](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process), generating predictions on the fly. The comparison of these predictions with the actual targets valid for the samples used during training can be used to [optimize your model](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md).
+When you train a supervised machine learning model, [you feed forward data](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md/#the-high-level-supervised-learning-process), generating predictions on the fly. The comparison of these predictions with the actual targets valid for the samples used during training can be used to [optimize your model](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md).
 
 But how to compare? That's a valid question.
 

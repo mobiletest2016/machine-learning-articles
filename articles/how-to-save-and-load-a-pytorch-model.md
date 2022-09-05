@@ -62,7 +62,7 @@ class MLP(nn.Module):
     return self.layers(x)
 ```
 
-You can then define a [training loop](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/creating-a-multilayer-perceptron-with-pytorch-and-lightning/#defining-the-training-loop) in order to train the model, in this case with the MNIST dataset. Note that we don't repeat creating the training loop here - click the link to see how this can be done.
+You can then define a [training loop](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/creating-a-multilayer-perceptron-with-pytorch-and-lightning.md/#defining-the-training-loop) in order to train the model, in this case with the MNIST dataset. Note that we don't repeat creating the training loop here - click the link to see how this can be done.
 
 After training, it is possible that you have found a model that is useful in the real world.
 

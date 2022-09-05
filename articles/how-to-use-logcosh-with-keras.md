@@ -16,7 +16,7 @@ tags:
 
 There are two main branches in the domain of supervised machine learning problems: _classification_ and _regression_. While you assign a sample to a fixed set of groups with classification, you're doing something very different when regressing. In fact, your regression model estimates a numeric value for the sample, such as the predicted oxygen levels given certain input values (such as the number of people currently in the room).
 
-In order to [train your machine learning model](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process), you need to optimize it. That is, the model will adapt itself iteratively, based on the inputs on the left (which you feed through the model) and [a loss function on the right](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#loss-functions), which computes how much off the model performs to the actual targets.
+In order to [train your machine learning model](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md/#the-high-level-supervised-learning-process), you need to optimize it. That is, the model will adapt itself iteratively, based on the inputs on the left (which you feed through the model) and [a loss function on the right](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md/#loss-functions), which computes how much off the model performs to the actual targets.
 
 For regression problems, there is a wide array of very known loss functions that can be used. MAE, MSE, RMSE, MAPE - they're all usable in such problems, but all have their drawbacks. MAE, for example, is too soft when the average error is small; MSE, on the other hand, lets the computed error explode when you have outliers in your dataset, substantially distorting the computed error.
 
@@ -78,7 +78,7 @@ The [TensorFlow docs](https://www.tensorflow.org/api_docs/python/tf/keras/losses
 
 > `log(cosh(x))` is approximately equal to `(x ** 2) / 2` for small `x` and to `abs(x) - log(2)` for large `x`. This means that 'logcosh' works mostly like the mean squared error, but will not be so strongly affected by the occasional wildly incorrect prediction.
 > 
-> Source: [TensorFlow docs](https://www.tensorflow.org/api_docs/python/tf/keras/losses/logcosh), taken from [About loss and loss functions](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#logcosh)
+> Source: [TensorFlow docs](https://www.tensorflow.org/api_docs/python/tf/keras/losses/logcosh), taken from [About loss and loss functions](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md/#logcosh)
 
 It is therefore something like the MSE when you're training a regression model, but then with a degree of built-in protection against "wildly incorrect predictions" that are likely caused by outlier samples.
 

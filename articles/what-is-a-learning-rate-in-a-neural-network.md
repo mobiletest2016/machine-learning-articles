@@ -45,7 +45,7 @@ Let's go! 😊
 
 ## How models optimize
 
-If we wish to understand what learning rates are and why they are there, we must first take a look at the [high-level machine learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process) for supervised learning scenarios:
+If we wish to understand what learning rates are and why they are there, we must first take a look at the [high-level machine learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md/#the-high-level-supervised-learning-process) for supervised learning scenarios:
 
 [![](images/High-level-training-process-1024x973.jpg)]
 

@@ -209,7 +209,7 @@ If you look closely, you can see that each neuron passes the input to **all** ne
 
 ## Creating an MLP with PyTorch
 
-Now that we understand what an MLP looks like, it is time to build one with PyTorch. Below, we will show you how you can create your own PyTorch based MLP with step-by-step examples. In addition to that, we also show you how to build one with PyTorch Lightning. This is a library on top of PyTorch which allows you to build models with much less overhead ([for example, by automating away explicitly stating the training loop](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/getting-started-with-pytorch/#benefits-of-pytorch-lightning-over-classic-pytorch)).
+Now that we understand what an MLP looks like, it is time to build one with PyTorch. Below, we will show you how you can create your own PyTorch based MLP with step-by-step examples. In addition to that, we also show you how to build one with PyTorch Lightning. This is a library on top of PyTorch which allows you to build models with much less overhead ([for example, by automating away explicitly stating the training loop](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/getting-started-with-pytorch.md/#benefits-of-pytorch-lightning-over-classic-pytorch)).
 
 First, we'll show you how to build an MLP with classic PyTorch, then how to build one with Lightning.
 

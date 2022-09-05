@@ -34,7 +34,7 @@ Another benefit is related to the gradients produced by the ReLU activation func
 
 ### No vanishing gradients
 
-As you might recall from the [high-level supervised machine learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process), during training, your trainingset is _fed forward_, generating predictions based on the current state of the model. These predictions are subsequently converted into a loss value, which can be used to optimize the model's weights - repeating this process over and over again, until you stop training.
+As you might recall from the [high-level supervised machine learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md/#the-high-level-supervised-learning-process), during training, your trainingset is _fed forward_, generating predictions based on the current state of the model. These predictions are subsequently converted into a loss value, which can be used to optimize the model's weights - repeating this process over and over again, until you stop training.
 
 But how to improve? From the article about [gradient descent based optimization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md) or [adaptive optimization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md), we recall that two elements play a role here: first, the optimizer, and second, backpropagation.
 

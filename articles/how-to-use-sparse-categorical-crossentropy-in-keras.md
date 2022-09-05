@@ -80,7 +80,7 @@ Suppose that you have a classification problem where you have four target classe
 
 Your dataset likely comes in this flavor: `{ feature vector } -> target`, where your target is an integer value from { 0, 1, 2, 3 }.
 
-However, as we saw [in another blog on categorical crossentropy](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#categorical-crossentropy), its mathematical structure doesn't allow us to feed it integers directly.
+However, as we saw [in another blog on categorical crossentropy](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md/#categorical-crossentropy), its mathematical structure doesn't allow us to feed it integers directly.
 
 We'll have to convert it into categorical format first - with one-hot encoding, or `to_categorical` in Keras.
 

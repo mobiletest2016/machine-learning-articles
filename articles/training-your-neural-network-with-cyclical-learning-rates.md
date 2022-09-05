@@ -46,7 +46,7 @@ The first thing we need to do before we can introduce Cyclical Learning Rates - 
 
 If you already know what learning rates are, I suggest you skip this section. However, if you're interested in sharpening your understanding, then make sure to read on :)
 
-Training a supervised machine learning model, as we already illustrated above, can be captured in a [few steps](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process) that are easy in theory. One of these steps is computing the _gradient_, i.e. the estimated change, that can be used to change the model - doing so would likely improve it in the next iteration.
+Training a supervised machine learning model, as we already illustrated above, can be captured in a [few steps](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md/#the-high-level-supervised-learning-process) that are easy in theory. One of these steps is computing the _gradient_, i.e. the estimated change, that can be used to change the model - doing so would likely improve it in the next iteration.
 
 The backpropagation, with its "change with respect to layer X (...) with respect to the loss value" logic, is used to compute the gradient for a particular layer. Upstream gradients are often more complex to compute, with problems like the [vanishing gradients problem](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/random-initialization-vanishing-and-exploding-gradients.md) as a result.
 

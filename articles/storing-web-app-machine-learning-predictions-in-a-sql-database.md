@@ -20,7 +20,7 @@ In that blog post, we actually got an MNIST-trained ConvNet running, having it g
 
 Now, while deploying the model with an API is a nice achievement, we can do more. For example, we might be interested in all the predictions that are generated with the machine learning model when it's deployed in the field. We thus have to add some kind of data storage to make this work. Let's do this!
 
-In today's blog post, we'll be using the code [that we created before](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tutorial-how-to-deploy-your-convnet-classifier-with-keras-and-fastapi/#full-model-code) and extend it - by means of a PostgreSQL database, so that we can store the predictions. Now, as this might be new territory for you, let me warn you in advance: PostgreSQL databases, or relational databases in general, aren't good choices when you'll be using your model in high-volume settings - like, big data big settings. They will simply fail and there are other solutions for that. But I do think that stepping from a simple machine learning model to solutions such as CassandraDB or Hadoop based appending is a bridge too far. It simply won't allow you to understand _why_ SQL databases have limits when it comes to vast quantities of data. That's why we'll do this post anyway :)
+In today's blog post, we'll be using the code [that we created before](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tutorial-how-to-deploy-your-convnet-classifier-with-keras-and-fastapi.md/#full-model-code) and extend it - by means of a PostgreSQL database, so that we can store the predictions. Now, as this might be new territory for you, let me warn you in advance: PostgreSQL databases, or relational databases in general, aren't good choices when you'll be using your model in high-volume settings - like, big data big settings. They will simply fail and there are other solutions for that. But I do think that stepping from a simple machine learning model to solutions such as CassandraDB or Hadoop based appending is a bridge too far. It simply won't allow you to understand _why_ SQL databases have limits when it comes to vast quantities of data. That's why we'll do this post anyway :)
 
 So, what we're going to do is this:
 
@@ -40,7 +40,7 @@ I hope it'll benefit you. Let's go! 😎
 
 ## Today's flow: model → deployment → predictions into SQL database
 
-During the supervised machine learning process, you [feed forward](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process) samples, which result in predictions, which results in a loss value, which results in optimization during yet another iteration.
+During the supervised machine learning process, you [feed forward](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md/#the-high-level-supervised-learning-process) samples, which result in predictions, which results in a loss value, which results in optimization during yet another iteration.
 
 Eventually, you end up with a machine learning model that works well - and if you do it well, it works _really_ well. That's the **model** stage of today's flow. We're not going to show you here how you can train a machine learning model. For example, take a look at [this blog post](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-conv2d-with-keras.md) if you wish to understand this in more detail. Rather, we'll be using the end result to demonstrate how to insert the predictions into a database.
 
@@ -95,9 +95,9 @@ Let's now take a look at the diagram in more detail. This is what I came up with
 
 A fairly simple database model. We have two tables: **Inputs** and **Predictions**.
 
-The Inputs table has a primary key (a unique identifier) called `id` and allows us to store the `image`, as text. Why as text, you might wonder? Well: because we'll convert the [input image](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tutorial-how-to-deploy-your-convnet-classifier-with-keras-and-fastapi/#defining-the-prediction-route) into Base64 format - so that we can easily store, retrieve and view it again afterwards.
+The Inputs table has a primary key (a unique identifier) called `id` and allows us to store the `image`, as text. Why as text, you might wonder? Well: because we'll convert the [input image](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tutorial-how-to-deploy-your-convnet-classifier-with-keras-and-fastapi.md/#defining-the-prediction-route) into Base64 format - so that we can easily store, retrieve and view it again afterwards.
 
-Then, the Predictions table. It has a unique identifier as well, but also a foreign key to the Inputs table. It essentially links the Predictions to the Input. It also has a `predictions` attribute of type `json`, which stands for JavaScript Object Notation. We choose this data type because the _structure of our predictions depends on the model we're deploying_. For example, in the [tutorial](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tutorial-how-to-deploy-your-convnet-classifier-with-keras-and-fastapi/#defining-the-prediction-route), we have a model that utilizes [Softmax](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-does-the-softmax-activation-function-work.md) to generate a probability distribution over 10 classes. Not every model does this, so we need a generic data type for storing our predictions. JSON does the trick. Now, you might wonder - why don't you use a SQL array? I thought about this, and chose JSON, because SQL arrays would make it more difficult to deploy regression models, which simply generate a numeric value. However, if you're really keen on SQL arrays, you're free to adapt the code that we will write later! :)
+Then, the Predictions table. It has a unique identifier as well, but also a foreign key to the Inputs table. It essentially links the Predictions to the Input. It also has a `predictions` attribute of type `json`, which stands for JavaScript Object Notation. We choose this data type because the _structure of our predictions depends on the model we're deploying_. For example, in the [tutorial](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tutorial-how-to-deploy-your-convnet-classifier-with-keras-and-fastapi.md/#defining-the-prediction-route), we have a model that utilizes [Softmax](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-does-the-softmax-activation-function-work.md) to generate a probability distribution over 10 classes. Not every model does this, so we need a generic data type for storing our predictions. JSON does the trick. Now, you might wonder - why don't you use a SQL array? I thought about this, and chose JSON, because SQL arrays would make it more difficult to deploy regression models, which simply generate a numeric value. However, if you're really keen on SQL arrays, you're free to adapt the code that we will write later! :)
 
 ### Creating our database and tables in the database
 
@@ -593,7 +593,7 @@ def get_prediction(prediction_id: str):
 
 ## Running it altogether
 
-Let's now see if we can run it :) As with the [FastAPI tutorial](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tutorial-how-to-deploy-your-convnet-classifier-with-keras-and-fastapi.md), we [run it with uvicorn](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tutorial-how-to-deploy-your-convnet-classifier-with-keras-and-fastapi/#running-the-deployed-model). Open up a terminal, `cd` to the directory where your `main.py` file is stored (it's the file we created with the FastAPI instance, so if you don't have it yet because you started here, create one with your code) and execute `uvicorn main:app --reload`. Then, the app should start:
+Let's now see if we can run it :) As with the [FastAPI tutorial](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tutorial-how-to-deploy-your-convnet-classifier-with-keras-and-fastapi.md), we [run it with uvicorn](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tutorial-how-to-deploy-your-convnet-classifier-with-keras-and-fastapi.md/#running-the-deployed-model). Open up a terminal, `cd` to the directory where your `main.py` file is stored (it's the file we created with the FastAPI instance, so if you don't have it yet because you started here, create one with your code) and execute `uvicorn main:app --reload`. Then, the app should start:
 
 ```
 uvicorn main:app --reload
@@ -625,7 +625,7 @@ Time to go!
 
 ### Generating a prediction
 
-Generating a new prediction is not done differently than [previously](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tutorial-how-to-deploy-your-convnet-classifier-with-keras-and-fastapi/#running-the-deployed-model):
+Generating a new prediction is not done differently than [previously](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tutorial-how-to-deploy-your-convnet-classifier-with-keras-and-fastapi.md/#running-the-deployed-model):
 
 [![](images/image-2-1024x248.png)]
 

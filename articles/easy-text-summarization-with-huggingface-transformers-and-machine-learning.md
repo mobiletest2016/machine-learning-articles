@@ -114,7 +114,7 @@ Once we understand all these aspects, we can clearly see _how_ our summarizer wo
 
 Source: Vaswani et al. (2017)
 
-In Natural Language Processing, the state-of-the-art in Machine Learning today involves a wide variety of [Transformer-based models](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/from-vanilla-rnns-to-transformers-a-history-of-seq2seq-learning/#attention-is-all-you-need-transformers).
+In Natural Language Processing, the state-of-the-art in Machine Learning today involves a wide variety of [Transformer-based models](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/from-vanilla-rnns-to-transformers-a-history-of-seq2seq-learning.md/#attention-is-all-you-need-transformers).
 
 A **[Transformer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/introduction-to-transformers-in-machine-learning.md)** is a machine learning architecture that combines an _encoder_ with a _decoder_ and jointly learns them, allowing us to convert input sequences (e.g. phrases) into some _intermediate format_ before we convert it back into human-understandable format.
 

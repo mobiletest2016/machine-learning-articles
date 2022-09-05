@@ -105,7 +105,7 @@ for train, test in kfold.split(inputs, targets):
 
 ## Evaluating and selecting models with K-fold Cross Validation
 
-Training a [supervised machine learning model](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process) involves changing model weights using a _training set_. Later, once training has finished, the trained model is tested with new data - the _testing set_ - in order to find out how well it performs in real life.
+Training a [supervised machine learning model](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md/#the-high-level-supervised-learning-process) involves changing model weights using a _training set_. Later, once training has finished, the trained model is tested with new data - the _testing set_ - in order to find out how well it performs in real life.
 
 When you are satisfied with the performance of the model, you train it again with the entire dataset, in order to finalize it and use it in production (Bogdanovist, n.d.)
 

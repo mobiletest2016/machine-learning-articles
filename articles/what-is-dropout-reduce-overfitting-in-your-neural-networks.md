@@ -34,7 +34,7 @@ Ready? Let's go! 😎
 
 Let's first take a look at what underfitting and overfitting are.
 
-When starting the [training process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process), the weights of your neurons are likely initialized at random or with some other initialization strategy. This means that the error rate, or loss value, will be very high during the first few epochs. Take a look at this diagram, where the loss decreases very rapidly during the first few epochs:
+When starting the [training process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md/#the-high-level-supervised-learning-process), the weights of your neurons are likely initialized at random or with some other initialization strategy. This means that the error rate, or loss value, will be very high during the first few epochs. Take a look at this diagram, where the loss decreases very rapidly during the first few epochs:
 
 ![](images/elu_loss.png)
 
@@ -110,7 +110,7 @@ Dropout, then, prevents these co-adaptations by - as we wrote before - _making t
 
 Training neural networks to which Dropout has been attached is pretty much equal to training neural networks without Dropout. [Stochastic gradient descent](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md) or [similar optimizers](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md) can be used. The only difference, as reported by Srivastava et al. (2014), can be found when using a mini-batch approach: rather than per epoch, thinned networks are sampled per minibatch.
 
-Additionally, methods that improve classic SGD - like [momentum](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound/#momentum) - can be used as well, and show similar improvements as with regular neural networks (Srivastava et al., 2014).
+Additionally, methods that improve classic SGD - like [momentum](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md/#momentum) - can be used as well, and show similar improvements as with regular neural networks (Srivastava et al., 2014).
 
 What the authors also found to be useful during training is applying _max-norm regularization_, which means constraining the norm of the incoming weight to be bounded by some maximum value \[latex\]c\[/latex\]. This value must be set by the engineer upfront, and determined using a validation set (Srivastava et al., 2014).
 
