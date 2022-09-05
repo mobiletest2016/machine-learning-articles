@@ -29,7 +29,7 @@ First of all: you might think that I'm a bit weird for making a classifier that 
 
 https://www.youtube.com/watch?v=pqTntG1RXSY
 
-Here, Jian-Yang, portrayed by Jimmy O. Yang, demonstrates a classifier which, to everyone's surprise, turns out to be a [binary one](https://www.machinecurve.com/index.php/2020/10/19/3-variants-of-classification-problems-in-machine-learning/) that can only distinguish between _hotdogs_ and _everything else_ (that is, not hot dog).
+Here, Jian-Yang, portrayed by Jimmy O. Yang, demonstrates a classifier which, to everyone's surprise, turns out to be a [binary one](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/3-variants-of-classification-problems-in-machine-learning.md) that can only distinguish between _hotdogs_ and _everything else_ (that is, not hot dog).
 
 As creating such a binary classifier should be relatively simple using today's machine learning libraries, we're going to create a similar classifier. Let's see if we can replicate what they did there!
 
@@ -76,7 +76,7 @@ Altogether, a ConvNet is a neural network that can do two things really well if 
 1. **Generate predictions for new input samples.**
 2. **Extract relevant features from the input data to generate those predictions.**
 
-It is not surprising to find (1) with this class of machine learning models, or with any machine learning model, because it is the essence of the [supervised machine learning process](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#the-high-level-supervised-learning-process): training a model with some data in order to make it capable of generating new predictions.
+It is not surprising to find (1) with this class of machine learning models, or with any machine learning model, because it is the essence of the [supervised machine learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process): training a model with some data in order to make it capable of generating new predictions.
 
 Number (2) is more intriguing, especially if you look at it with the lens of the Computer Vision field, because in the pre-CNN era CV models were not capable of doing this. In fact, researchers and engineers employed a wide variety of [feature extraction techniques](https://en.wikipedia.org/wiki/Feature_extraction) in order to reduce the dimensionality of the input data. As you can imagine, a 200 x 200 pixels RGB image has 40.000 pixels times 3 channels = 120.000 _features_ that the model should be taking into account. In the pre-CNN era, this was a serious bottleneck, and dimensionality had to be reduced - requiring manual work and tweaking.
 
@@ -84,9 +84,9 @@ ConvNets changed this in 2012 (Gershgorn, 2017). In an annual image classificati
 
 We're now going to study it from the right towards the left, because we want to look at how it comes at a particular prediction - and those always happen near the end of a neural network. A ConvNet:
 
-- Has an **output layer**, which outputs the predictions of the model. This can either be a [binary prediction or a multiclass/multilabel prediction](https://www.machinecurve.com/index.php/2020/10/19/3-variants-of-classification-problems-in-machine-learning/).
+- Has an **output layer**, which outputs the predictions of the model. This can either be a [binary prediction or a multiclass/multilabel prediction](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/3-variants-of-classification-problems-in-machine-learning.md).
 - Has **dense layers** (or _densely-connected layers_), which take as input some features and generate more abstract representations of the patterns captured within those features. In doing so, they make the output layer capable of generating the correct prediction. In the past, features that were input into the first dense layer were collected by human beings. Today, convolutional layers are used.
-- Those **convolutional layers** are what make the ConvNet a ConvNet rather than a regular neural network. If you know what happens when you let sunlight move through a magnifying glass, you're already on your way to understanding what ConvNets do. If you perform this activity with sunlights, you'll find that light converges into a smaller area - essentially, the light's energy gathers there, and colors are more abstract (no clear shapes can be recognized). The same happens within convolutional layers. Input features are the "light" which are transformed through a 'magnifying glass', after which a smaller and more abstract representation is output. By stacking multiple convolutional layers on top of each other (as you can see in the image above, with two Conv layers and two [Max pooling](https://www.machinecurve.com/index.php/2020/01/30/what-are-max-pooling-average-pooling-global-max-pooling-and-global-average-pooling/) layers from left to right), you can make the model learn extract increasingly abstract features. From those lower-dimensional feature representations (called feature maps), the dense layers can generate their predictions.
+- Those **convolutional layers** are what make the ConvNet a ConvNet rather than a regular neural network. If you know what happens when you let sunlight move through a magnifying glass, you're already on your way to understanding what ConvNets do. If you perform this activity with sunlights, you'll find that light converges into a smaller area - essentially, the light's energy gathers there, and colors are more abstract (no clear shapes can be recognized). The same happens within convolutional layers. Input features are the "light" which are transformed through a 'magnifying glass', after which a smaller and more abstract representation is output. By stacking multiple convolutional layers on top of each other (as you can see in the image above, with two Conv layers and two [Max pooling](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-are-max-pooling-average-pooling-global-max-pooling-and-global-average-pooling.md) layers from left to right), you can make the model learn extract increasingly abstract features. From those lower-dimensional feature representations (called feature maps), the dense layers can generate their predictions.
 - Finally, there is an **input layer** where the original input is presented to the neural network.
 
 As we can see, this stack of various layers puts benefit on top of benefit. Today, we'll be using a stack of layers like this one to generate our Hot Dog - Not Hot Dog model. But first, let's take a look at the dataset that we are using.
@@ -110,7 +110,7 @@ It's often best to install those packages in what is called an _environment_, an
 
 ## Building your model
 
-Time to get ready for building your model! Open up your development environment, load some folder, and create a Python file - say, `hotdog.py`. Obviously, it's also fine to use a [Jupyter Notebook](https://www.machinecurve.com/index.php/2020/10/07/easy-install-of-jupyter-notebook-with-tensorflow-and-docker/), but then it's a notebook rather than an individual Python file that you create.
+Time to get ready for building your model! Open up your development environment, load some folder, and create a Python file - say, `hotdog.py`. Obviously, it's also fine to use a [Jupyter Notebook](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/easy-install-of-jupyter-notebook-with-tensorflow-and-docker.md), but then it's a notebook rather than an individual Python file that you create.
 
 ### Adding the necessary imports
 
@@ -144,7 +144,7 @@ validation_split = 0.2
 verbosity = 1
 ```
 
-As we shall see, we'll be using 25 x 25 pixel images that are grayscale (hence the `1` in the `input_shape`), use a batch size of 10 (our data set will be relatively small), 25 iterations, 2 classes (not hot dog = 0 / hot dog = 1), and 20% of our data will be used for [validation purposes](https://www.machinecurve.com/index.php/2020/02/18/how-to-use-k-fold-cross-validation-with-keras/). We make the training process verbose, meaning that all results will be printed on screen.
+As we shall see, we'll be using 25 x 25 pixel images that are grayscale (hence the `1` in the `input_shape`), use a batch size of 10 (our data set will be relatively small), 25 iterations, 2 classes (not hot dog = 0 / hot dog = 1), and 20% of our data will be used for [validation purposes](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-k-fold-cross-validation-with-keras.md). We make the training process verbose, meaning that all results will be printed on screen.
 
 ### Loading and preprocessing of the dataset
 
@@ -175,7 +175,7 @@ If we look at it, we see that this definition - once used - does a couple of thi
 2. It lists the contents of the folder specified with the previous parameters available in the `hotdog` folder. That's why you had to rename the folder and move it to the folder where your Python script is located!
 3. It loads the image using `imread`, as a grayscale image - by means of the `0` specification. We don't want colors of images to interfere with the prediction, as it's all about shape. This is especially important in the case of small datasets, which can be biased. That's why we load the images as grayscale ones.
 4. We resize the images to 25 x 25 pixels, in line with the model configuration specified above. Resizing is necessary for two reasons. Firstly, images can be really large sometimes, and this can hamper learning. It's usually best to train your models with images relatively small in size. Secondly, your model will accept inputs only when they have the shape of the input specified in the Input layer (which we shall cover next). That's why all images must be using the same number of color channels (that is, either RGB or grayscale, but not both) and be of the same size.
-5. We append the resized image to the list of `instances`, and the corresponding [class number](https://www.machinecurve.com/index.php/2020/10/19/3-variants-of-classification-problems-in-machine-learning/) to the list of `classes`.
+5. We append the resized image to the list of `instances`, and the corresponding [class number](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/3-variants-of-classification-problems-in-machine-learning.md) to the list of `classes`.
 6. We output a tuple with the `instances` and `classes`.
 
 After loading and preprocessing, our images should be both in grayscale and resized. Indeed, they now look as follows:
@@ -201,7 +201,7 @@ def create_model():
   return model
 ```
 
-The steps performed are simple: a `model` is created with the `Sequential` API, three [convolutional layers](https://www.machinecurve.com/index.php/2018/12/07/convolutional-neural-networks-and-their-components-for-computer-vision/) are stacked on top of each other (note the increasing number of feature maps with increasing abstractness; we benefit most from learning the abstract representations), a `Flatten` operation which allows the output feature maps to be input by the `Dense` layers, which finally generate a [multiclass probability distribution using Softmax](https://www.machinecurve.com/index.php/2020/01/08/how-does-the-softmax-activation-function-work/).
+The steps performed are simple: a `model` is created with the `Sequential` API, three [convolutional layers](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/convolutional-neural-networks-and-their-components-for-computer-vision.md) are stacked on top of each other (note the increasing number of feature maps with increasing abstractness; we benefit most from learning the abstract representations), a `Flatten` operation which allows the output feature maps to be input by the `Dense` layers, which finally generate a [multiclass probability distribution using Softmax](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-does-the-softmax-activation-function-work.md).
 
 It finally returns the `model` after creating the skeleton.
 
@@ -218,7 +218,7 @@ def compile_model(model):
   return model
 ```
 
-Here, we specify things like the [loss function](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/) (we use [sparse categorical crossentropy loss](https://www.machinecurve.com/index.php/2019/10/06/how-to-use-sparse-categorical-crossentropy-in-keras/) because our targets, our `y` values, are integers rather than one-hot encoded vectors - it is functionally equal to [categorical crossentropy loss](https://www.machinecurve.com/index.php/2019/10/22/how-to-use-binary-categorical-crossentropy-with-keras/)). We also specify the optimize, which can be [gradient descent-based](https://www.machinecurve.com/index.php/2019/10/24/gradient-descent-and-its-variants/) or [Adaptive](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/), like Adam. In addition, we specify additional metrics. We then return the `model` again to be used by the next step.
+Here, we specify things like the [loss function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md) (we use [sparse categorical crossentropy loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-sparse-categorical-crossentropy-in-keras.md) because our targets, our `y` values, are integers rather than one-hot encoded vectors - it is functionally equal to [categorical crossentropy loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-binary-categorical-crossentropy-with-keras.md)). We also specify the optimize, which can be [gradient descent-based](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md) or [Adaptive](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md), like Adam. In addition, we specify additional metrics. We then return the `model` again to be used by the next step.
 
 ### Running the training process
 
@@ -238,7 +238,7 @@ def train_model(model, X_train, y_train):
   return model
 ```
 
-Here, we accept the `model` as well as the features and corresponding targets from the training set. Using configuration options specified in the model configuration (such as batch size, number of epochs, and verbosity) we start the training process. We do so by calling `model.fit`, which essentially fits the data to the model and attempts to find the [global loss minimum](https://www.machinecurve.com/index.php/2020/02/26/getting-out-of-loss-plateaus-by-adjusting-learning-rates/). Once training has finished, which in our case happens after 25 iterations (or `epochs`), the trained `model` is returned.
+Here, we accept the `model` as well as the features and corresponding targets from the training set. Using configuration options specified in the model configuration (such as batch size, number of epochs, and verbosity) we start the training process. We do so by calling `model.fit`, which essentially fits the data to the model and attempts to find the [global loss minimum](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/getting-out-of-loss-plateaus-by-adjusting-learning-rates.md). Once training has finished, which in our case happens after 25 iterations (or `epochs`), the trained `model` is returned.
 
 ### Generating evaluation metrics
 

@@ -20,9 +20,9 @@ tags:
 
 These past few years, machine learning has boosted the field of Natural Language Processing via Transformers. Whether it's Natural Language Understanding or Natural Language Generation, models like GPT and BERT have ensured that human-like texts and interpretations can be generated on a wide variety of language tasks.
 
-For example, today, we can create pipelines for [sentiment analysis](https://www.machinecurve.com/index.php/2020/12/23/easy-sentiment-analysis-with-machine-learning-and-huggingface-transformers/), [missing text prediction](https://www.machinecurve.com/index.php/2021/03/02/easy-masked-language-modeling-with-machine-learning-and-huggingface-transformers/) and even [speech-to-text](https://www.machinecurve.com/index.php/2021/02/17/easy-speech-recognition-with-machine-learning-and-huggingface-transformers/) with only a few lines of code.
+For example, today, we can create pipelines for [sentiment analysis](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/easy-sentiment-analysis-with-machine-learning-and-huggingface-transformers.md), [missing text prediction](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/easy-masked-language-modeling-with-machine-learning-and-huggingface-transformers.md) and even [speech-to-text](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/easy-speech-recognition-with-machine-learning-and-huggingface-transformers.md) with only a few lines of code.
 
-One of these tasks is human-level response generation. In other words, the creation of chatbots. In this tutorial, we will explore precisely that topic. You will build a chatbot with the DialoGPT model. We already covered the foundations of this approach [in a different article](https://www.machinecurve.com/index.php/question/what-is-dialogpt-and-how-does-it-work/), so click the link if you want to understand it in more detail. Here, you will learn...
+One of these tasks is human-level response generation. In other words, the creation of chatbots. In this tutorial, we will explore precisely that topic. You will build a chatbot with the DialoGPT model. We already covered the foundations of this approach [in a different article](https://web.archive.org/web/https://www.machinecurve.com/index.php/question/what-is-dialogpt-and-how-does-it-work/), so click the link if you want to understand it in more detail. Here, you will learn...
 
 - **How DialoGPT works at a high level.**
 - **How you can build a chatbot with Machine Learning and Transformers.**
@@ -42,13 +42,13 @@ Before we move on to creating code for our chatbot, I think that it's important 
 
 Let's first take a look at what chatbots are. Formally, they belong to the class of models for _neural response generation_, or NRG. In other words, their goal is to predict a response text to some input text, as if two people are chatting.
 
-Traditionally, chatbots have been solved in a recurrent way - with models like [Long Short-Term Memory networks](https://www.machinecurve.com/index.php/2020/12/29/a-gentle-introduction-to-long-short-term-memory-networks-lstm/) or LSTMs. As we know [from our introduction to Transformers](https://www.machinecurve.com/index.php/2020/12/28/introduction-to-transformers-in-machine-learning/), these model approaches have really taken over from LSTMs thanks to the self-attention mechanism. We can therefore ask ourselves whether Transformers can also be used to improve how chatbots work.
+Traditionally, chatbots have been solved in a recurrent way - with models like [Long Short-Term Memory networks](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/a-gentle-introduction-to-long-short-term-memory-networks-lstm.md) or LSTMs. As we know [from our introduction to Transformers](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/introduction-to-transformers-in-machine-learning.md), these model approaches have really taken over from LSTMs thanks to the self-attention mechanism. We can therefore ask ourselves whether Transformers can also be used to improve how chatbots work.
 
-That's also what Zhang et al. (2019) thought. The group of authors, which works at Microsoft, is the creator of the **[DialoGPT](https://www.machinecurve.com/index.php/question/what-is-dialogpt-and-how-does-it-work/)** Transformer. It inherits from the GPT-2 model (which itself is already a very powerful NLP model) and was trained with a custom dataset derived from Reddit. Evaluation was performed with a wide variety of datasets and tasks. It boosts the state-of-the-art in NRG, even Microsoft's `PersonalityStyle` model used in Azure Cognitive Services, and is available in three flavors (117M, 345M and 762M parameters).
+That's also what Zhang et al. (2019) thought. The group of authors, which works at Microsoft, is the creator of the **[DialoGPT](https://web.archive.org/web/https://www.machinecurve.com/index.php/question/what-is-dialogpt-and-how-does-it-work/)** Transformer. It inherits from the GPT-2 model (which itself is already a very powerful NLP model) and was trained with a custom dataset derived from Reddit. Evaluation was performed with a wide variety of datasets and tasks. It boosts the state-of-the-art in NRG, even Microsoft's `PersonalityStyle` model used in Azure Cognitive Services, and is available in three flavors (117M, 345M and 762M parameters).
 
 **Additional reading**
 
-- [DialoGPT: Transformers for Dialogues](https://www.machinecurve.com/index.php/question/what-is-dialogpt-and-how-does-it-work/)
+- [DialoGPT: Transformers for Dialogues](https://web.archive.org/web/https://www.machinecurve.com/index.php/question/what-is-dialogpt-and-how-does-it-work/)
 
 ![](images/Diagram-17-627x1024.png)
 
@@ -72,7 +72,7 @@ However, in order to make it run, you will need to have installed HuggingFace Tr
 
 ### Chatbot code example - explained
 
-Let's create a file or a [Notebook](https://www.machinecurve.com/index.php/2020/10/07/easy-install-of-jupyter-notebook-with-tensorflow-and-docker/) - e.g. called `chatbot.py` and write some code! As you can see, you will create a set of Python definitions that you will execute towards the end. Let's walk through each of them individually:
+Let's create a file or a [Notebook](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/easy-install-of-jupyter-notebook-with-tensorflow-and-docker.md) - e.g. called `chatbot.py` and write some code! As you can see, you will create a set of Python definitions that you will execute towards the end. Let's walk through each of them individually:
 
 - First of all, **we define `load_tokenizer_and_model`**. As you can imagine, it loads the tokenizer and the model instance for a specific variant of DialoGPT. As with any Transformer, inputs must be tokenized - that's the role of the tokenizer. The model subsequently generates the predictions based on what the tokenizer has created. We're using the `AutoTokenizer` and the `AutoModelForCausalLM` instances of HuggingFace for this purpose, and return the `tokenizer` and `model`, because we'll need them later.
     - Do note that by default, the `microsoft/DialoGPT-large` model is loaded. You can also use the `-medium` and `-small` models.

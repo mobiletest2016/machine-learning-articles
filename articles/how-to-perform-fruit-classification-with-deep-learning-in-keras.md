@@ -134,7 +134,7 @@ Many bananas! 🍌
 
 Before we continue, there is a trade-off to make: will we **create a model that highly specializes in variety**, or will we create **a generic model that can be capable of recognizing some fruits?**
 
-This is a relatively common question: do we keep at a more general level, or not? In the case where we want to specialize, we likely have to create a deeper model, which is hence more complex, and also more prone to [overfitting](https://www.machinecurve.com/index.php/2019/12/16/what-is-dropout-reduce-overfitting-in-your-neural-networks/). The other scenario might sound great, but it comes with a drawback too: the varieties of different fruit don't always match well. For example, when we want to generalize all pear varieties into one class:
+This is a relatively common question: do we keep at a more general level, or not? In the case where we want to specialize, we likely have to create a deeper model, which is hence more complex, and also more prone to [overfitting](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-dropout-reduce-overfitting-in-your-neural-networks.md). The other scenario might sound great, but it comes with a drawback too: the varieties of different fruit don't always match well. For example, when we want to generalize all pear varieties into one class:
 
 ![](images/pears-1024x464.png)
 
@@ -173,7 +173,7 @@ Time to create an actual machine learning model! In today's blog, we're using th
 
 ### Model imports
 
-As always, the first thing we do is import our dependencies. As you can see, we'll use the Sequential API, which allows us to stack each neural network layer on top of each other easily. We also import Dense, Flatten and Conv2D - [the default layers in such a network](https://www.machinecurve.com/index.php/2020/03/30/how-to-use-conv2d-with-keras/). Then, we import [sparse categorical crossentropy](https://www.machinecurve.com/index.php/2019/10/06/how-to-use-sparse-categorical-crossentropy-in-keras/) for computing [loss](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/), [Adam](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/#adam) for optimization, and an ImageDataGenerator for loading our images from folder.
+As always, the first thing we do is import our dependencies. As you can see, we'll use the Sequential API, which allows us to stack each neural network layer on top of each other easily. We also import Dense, Flatten and Conv2D - [the default layers in such a network](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-conv2d-with-keras.md). Then, we import [sparse categorical crossentropy](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-sparse-categorical-crossentropy-in-keras.md) for computing [loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md), [Adam](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound/#adam) for optimization, and an ImageDataGenerator for loading our images from folder.
 
 ```
 # Imports
@@ -192,13 +192,13 @@ The data configuration is simple: we simply set the paths to the training data a
 
 The model configuration is a little bit more complex, but not too difficult.
 
-We specify the batch size to be 25 - which means that 25 samples are fed to the model for training [during every forward pass](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#the-high-level-supervised-learning-process). The image width is 25x25 pixels, and as we are using RGB images, the number of channels is 3.
+We specify the batch size to be 25 - which means that 25 samples are fed to the model for training [during every forward pass](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process). The image width is 25x25 pixels, and as we are using RGB images, the number of channels is 3.
 
 25 by 25 pixels? Strange! Didn't you write that our input data is 100 by 100 pixels?
 
 Indeed - and you're a very diligent reader :) However, as you will see later, we're going to resize our samples to 25 by 25 pixels to speed up the training process. Good catch though!
 
-For loss, as said, we'll be using [sparse categorical crossentropy](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#sparse-categorical-crossentropy), which can work with integer targets. As the number of classes we're using is 10, we set `no_classes` to 10. The number of epochs (or iterations) is set to 25, which is low - very low - but is okay for education purposes. As we shall see, with 10 classes, we get some very good performance regardless. In normal settings, you would usually have thousands of epochs, though. For optimization, we use the [Adam optimizer](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/#adam) - which is a good default choice, and extends traditional gradient descent with local parameter updates and momentum-like optimization ([click here for more information](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/#adam)). Verbosity is set to 1, which means `True`, which means that all the output is displayed on screen. Normally, we set this to False, as prints slightly slow down the training process, but that's not the purpose of today's post - so we keep it on.
+For loss, as said, we'll be using [sparse categorical crossentropy](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#sparse-categorical-crossentropy), which can work with integer targets. As the number of classes we're using is 10, we set `no_classes` to 10. The number of epochs (or iterations) is set to 25, which is low - very low - but is okay for education purposes. As we shall see, with 10 classes, we get some very good performance regardless. In normal settings, you would usually have thousands of epochs, though. For optimization, we use the [Adam optimizer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound/#adam) - which is a good default choice, and extends traditional gradient descent with local parameter updates and momentum-like optimization ([click here for more information](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound/#adam)). Verbosity is set to 1, which means `True`, which means that all the output is displayed on screen. Normally, we set this to False, as prints slightly slow down the training process, but that's not the purpose of today's post - so we keep it on.
 
 ```
 # Data configuration
@@ -217,9 +217,9 @@ verbosity = 1
 
 ### Loading & preparing the data
 
-Next, we load and prepare the data. First, we set the `input_shape` - which is [required for the input layer](https://www.machinecurve.com/index.php/2020/04/05/how-to-find-the-value-for-keras-input_shape-input_dim/). Then, we create a _generator_ - an `ImageDataGenerator`, to be precise.
+Next, we load and prepare the data. First, we set the `input_shape` - which is [required for the input layer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-find-the-value-for-keras-input_shape-input_dim.md). Then, we create a _generator_ - an `ImageDataGenerator`, to be precise.
 
-What is such a generator? For a simple one, [click here](https://www.machinecurve.com/index.php/2020/04/06/using-simple-generators-to-flow-data-from-file-with-keras/), but let's try to explain things in layman's terms here as well.
+What is such a generator? For a simple one, [click here](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/using-simple-generators-to-flow-data-from-file-with-keras.md), but let's try to explain things in layman's terms here as well.
 
 A generator looks like an iterative function, i.e. some kind of loop, which you can use to 'generate' new samples. Although this might sound weird, it's not - because you can also use such generators to _read existing ones_ \- but for the model, they're like new.
 
@@ -246,11 +246,11 @@ train_datagen = train_datagen.flow_from_directory(
 
 ### Specifying the model architecture
 
-Now, back to the defaults - a model architecture that is very similar to the one we created in [our blog about Conv2D](https://www.machinecurve.com/index.php/2020/03/30/how-to-use-conv2d-with-keras/).
+Now, back to the defaults - a model architecture that is very similar to the one we created in [our blog about Conv2D](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-conv2d-with-keras.md).
 
-It's very simple: using the Sequential API, we stack four convolutional layers for feature extraction, subsequently flatten the feature maps into a one-dimensional input for the densely-connected layers, which generate a [multiclass probability distribution with Softmax](https://www.machinecurve.com/index.php/2020/01/08/how-does-the-softmax-activation-function-work/). This distribution, adhering to the laws of probability theory, give us the ultimate class prediction - precisely what we want.
+It's very simple: using the Sequential API, we stack four convolutional layers for feature extraction, subsequently flatten the feature maps into a one-dimensional input for the densely-connected layers, which generate a [multiclass probability distribution with Softmax](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-does-the-softmax-activation-function-work.md). This distribution, adhering to the laws of probability theory, give us the ultimate class prediction - precisely what we want.
 
-Additionally, we display a [model summary](https://www.machinecurve.com/index.php/2020/04/01/how-to-generate-a-summary-of-your-keras-model/) for visualization purposes.
+Additionally, we display a [model summary](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-generate-a-summary-of-your-keras-model.md) for visualization purposes.
 
 ```
 # Create the model
@@ -397,7 +397,7 @@ Epoch 25/25
 199/199 [==============================] - 13s 64ms/step - loss: 1.7623e-06 - accuracy: 1.0000
 ```
 
-The next step you could now take is [check for overfitting](https://www.machinecurve.com/index.php/2019/12/16/what-is-dropout-reduce-overfitting-in-your-neural-networks/), and if it occurs, apply techniques like [Dropout](https://www.machinecurve.com/index.php/2019/12/16/what-is-dropout-reduce-overfitting-in-your-neural-networks/) - or [L2 regularization](https://www.machinecurve.com/index.php/2020/01/23/how-to-use-l1-l2-and-elastic-net-regularization-with-keras/). Perhaps, also ensure that your data set gets bigger, possibly more varied or augmented through the Image Data Generator. But that's for another time! ;-)
+The next step you could now take is [check for overfitting](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-dropout-reduce-overfitting-in-your-neural-networks.md), and if it occurs, apply techniques like [Dropout](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-dropout-reduce-overfitting-in-your-neural-networks.md) - or [L2 regularization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-l1-l2-and-elastic-net-regularization-with-keras.md). Perhaps, also ensure that your data set gets bigger, possibly more varied or augmented through the Image Data Generator. But that's for another time! ;-)
 
 * * *
 

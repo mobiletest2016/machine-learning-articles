@@ -24,7 +24,7 @@ ELU, which we cover subsequently, attempts to resolve this problem by introducin
 
 ## Recap: what was the point with ReLU, again?
 
-Rectified Linear Unit, or [ReLU](https://www.machinecurve.com/index.php/2019/09/04/relu-sigmoid-and-tanh-todays-most-used-activation-functions/) for short, is one of the most widely used activation functions these days. It works really well and due to the fact that it can be used across various machine learning problems it has grown into what it is today. It is also a really simple activation function, outputting zero for all \[latex\]x < 0\[/latex\] and outputting \[latex\]x\[/latex\] (i.e., the input) in all the other cases.
+Rectified Linear Unit, or [ReLU](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md) for short, is one of the most widely used activation functions these days. It works really well and due to the fact that it can be used across various machine learning problems it has grown into what it is today. It is also a really simple activation function, outputting zero for all \[latex\]x < 0\[/latex\] and outputting \[latex\]x\[/latex\] (i.e., the input) in all the other cases.
 
 [![](images/relu_and_deriv-1024x511.jpeg)](https://www.machinecurve.com/wp-content/uploads/2019/09/relu_and_deriv.jpeg)
 
@@ -34,9 +34,9 @@ Another benefit is related to the gradients produced by the ReLU activation func
 
 ### No vanishing gradients
 
-As you might recall from the [high-level supervised machine learning process](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#the-high-level-supervised-learning-process), during training, your trainingset is _fed forward_, generating predictions based on the current state of the model. These predictions are subsequently converted into a loss value, which can be used to optimize the model's weights - repeating this process over and over again, until you stop training.
+As you might recall from the [high-level supervised machine learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process), during training, your trainingset is _fed forward_, generating predictions based on the current state of the model. These predictions are subsequently converted into a loss value, which can be used to optimize the model's weights - repeating this process over and over again, until you stop training.
 
-But how to improve? From the article about [gradient descent based optimization](https://www.machinecurve.com/index.php/2019/10/24/gradient-descent-and-its-variants/) or [adaptive optimization](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/), we recall that two elements play a role here: first, the optimizer, and second, backpropagation.
+But how to improve? From the article about [gradient descent based optimization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md) or [adaptive optimization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md), we recall that two elements play a role here: first, the optimizer, and second, backpropagation.
 
 The optimizer will _actually change the weights in order to improve the model_. But if you want to change the weights, you must know how by much they should change - in theory. This is what the _gradient_ is for, or the change that should be applied to a neuron with respect to the current loss value.
 
@@ -48,7 +48,7 @@ As can be seen from the plot, activation functions like the Sigmoid function pro
 
 This is bad, especially for really large networks - i.e., the ones that we see today, with many (i.e., dozens) of layers.
 
-Because when chaining the gradients together in these cases, you would for four layers in between find a gradient of (0.25^4) = 0.00390625 at max for the particular upstream layer. Welcome to what is called the **[vanishing gradients problem.](https://www.machinecurve.com/index.php/2019/08/30/random-initialization-vanishing-and-exploding-gradients/)** In those cases, upstream layers learn very slowly or do not converge at all, essentially wasting all your resources as you will never get the results you want.
+Because when chaining the gradients together in these cases, you would for four layers in between find a gradient of (0.25^4) = 0.00390625 at max for the particular upstream layer. Welcome to what is called the **[vanishing gradients problem.](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/random-initialization-vanishing-and-exploding-gradients.md)** In those cases, upstream layers learn very slowly or do not converge at all, essentially wasting all your resources as you will never get the results you want.
 
 [![](images/relu_and_deriv-1024x511.jpeg)](https://www.machinecurve.com/wp-content/uploads/2019/09/relu_and_deriv.jpeg)
 
@@ -84,8 +84,8 @@ Fortunately, new activation functions are to the rescue.
 
 These functions all _change the ReLU formula_ slightly in order to overcome some of the problems:
 
-- **[Leaky ReLU](https://www.machinecurve.com/index.php/2019/11/12/using-leaky-relu-with-keras/)** sets the negative part of the formula to really small but nonzero outputs (the inputs are being multiplied by some parameter \[latex\]\\alpha\[/latex\]), which means that dying neurons are no longer present.
-- **[PReLU](https://www.machinecurve.com/index.php/2019/12/05/how-to-use-prelu-with-keras/)** recognizes that setting \[latex\]\\alpha\[/latex\] manually in advance of training means that certain assumptions about the data and the model have to be made. Such assumptions may not hold or may not be fully perfect for the particular ML problem, which means that performance may deteriorate. PReLU generalizes Leaky ReLU to a situation where \[latex\]\\alpha\[/latex\] is made input-specific and becomes trainable. As with Leaky ReLU, this avoids the dying ReLU problem.
+- **[Leaky ReLU](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/using-leaky-relu-with-keras.md)** sets the negative part of the formula to really small but nonzero outputs (the inputs are being multiplied by some parameter \[latex\]\\alpha\[/latex\]), which means that dying neurons are no longer present.
+- **[PReLU](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-prelu-with-keras.md)** recognizes that setting \[latex\]\\alpha\[/latex\] manually in advance of training means that certain assumptions about the data and the model have to be made. Such assumptions may not hold or may not be fully perfect for the particular ML problem, which means that performance may deteriorate. PReLU generalizes Leaky ReLU to a situation where \[latex\]\\alpha\[/latex\] is made input-specific and becomes trainable. As with Leaky ReLU, this avoids the dying ReLU problem.
 
 Unfortunately, while they do contribute towards a better activation function, the functions do still not solve all the well-known issues.
 
@@ -134,7 +134,7 @@ Clevert et al. (2015) validated the effectiveness of the ELU activation function
 - With the **CIFAR100 dataset**, which contains 60k color images in 100 categories and thus classes, the same results were reported.
 - With the **ImageNet dataset**, which contains 1.4M color images in 1000 categories, a faster decrease in error rate was reported as well as lower error rates.
 
-Note that [He initialization](https://www.machinecurve.com/index.php/2019/09/16/he-xavier-initialization-activation-functions-choose-wisely/) (He et al., 2015) was used throughout all cases since we're working with ReLU-like activation functions here, which are traditionally incompatible with standard Xavier (or Glorot) [weight initialization](https://www.machinecurve.com/index.php/2019/08/22/what-is-weight-initialization/).
+Note that [He initialization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/he-xavier-initialization-activation-functions-choose-wisely.md) (He et al., 2015) was used throughout all cases since we're working with ReLU-like activation functions here, which are traditionally incompatible with standard Xavier (or Glorot) [weight initialization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-weight-initialization.md).
 
 I would like to refer you to the [original paper](#references) if you wish to look at the results in more detail.
 
@@ -146,7 +146,7 @@ Why this occurs? Presumably due to the relative ease of training given the discr
 
 We'll therefore code a Keras model today 😀
 
-I won't explain the model here except its few ideosyncrasies, since it's the Keras CNN [we coded in another blog](https://www.machinecurve.com/index.php/2019/09/17/how-to-create-a-cnn-classifier-with-keras/). Hence, if you wish to understand the architectural components of this model in more detail, I'd recommend you take a look at the other blog post 😄
+I won't explain the model here except its few ideosyncrasies, since it's the Keras CNN [we coded in another blog](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras.md). Hence, if you wish to understand the architectural components of this model in more detail, I'd recommend you take a look at the other blog post 😄
 
 ```
 import keras
@@ -248,9 +248,9 @@ plt.show()
 These are the differences:
 
 - We configure an `elu_alpha` value in the model configuration section, which simply specifies the \[latex\]\\alpha\[/latex\] value for the ELU activation layers.
-- We apply [He initialization](https://www.machinecurve.com/index.php/2019/09/16/he-xavier-initialization-activation-functions-choose-wisely/) to the Conv2D and Dense layers, in line with Clevert et al. (2015) given the findings of He et al. (2015).
+- We apply [He initialization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/he-xavier-initialization-activation-functions-choose-wisely.md) to the Conv2D and Dense layers, in line with Clevert et al. (2015) given the findings of He et al. (2015).
 
-Generating the evaluation metrics & visualizations is also in line with what we've seen in the blog about [visualizing the training process](https://www.machinecurve.com/index.php/2019/10/08/how-to-visualize-the-training-process-in-keras/):
+Generating the evaluation metrics & visualizations is also in line with what we've seen in the blog about [visualizing the training process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-training-process-in-keras.md):
 
 ```
 # Generate generalization metrics
@@ -327,7 +327,7 @@ Test loss for Keras ELU CNN: 0.08624260328077216 / Test accuracy: 0.990899980068
 - [![](images/long_elu_relu-1024x294.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/long_elu_relu.png)
     
 
-The results are both positive and negative. Yes, we do observe in line with the authors that ELU results in faster convergence and hence a sped-up training process, but we _also_ observe that overfitting occurs faster when ConvNets are trained with ELU. Hence, when considering ELU, you may wish to use [EarlyStopping with ModelCheckpointing](https://www.machinecurve.com/index.php/2019/05/30/avoid-wasting-resources-with-earlystopping-and-modelcheckpoint-in-keras/) in parallel to stop at precisely the correct point.
+The results are both positive and negative. Yes, we do observe in line with the authors that ELU results in faster convergence and hence a sped-up training process, but we _also_ observe that overfitting occurs faster when ConvNets are trained with ELU. Hence, when considering ELU, you may wish to use [EarlyStopping with ModelCheckpointing](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/avoid-wasting-resources-with-earlystopping-and-modelcheckpoint-in-keras.md) in parallel to stop at precisely the correct point.
 
 ### Interpretation
 
@@ -340,7 +340,7 @@ This made me think: **the fact that ELU performs less powerful here, does not me
 - It may be the case that a particular setting is hampering learning. Perhaps, it's the Dropout from the architecture, which was not present in Clevert et al. (2015)? Who knows. Additional research is required into this.
 - Perhaps, we find improvements if we let it train for ten times as long (i.e., 250 epochs).
 
-Hence: consider ELU when you face dying ReLUs and wish to avoid vanishing gradients, but consider it carefully, taking [proper mitigation measures](https://www.machinecurve.com/index.php/2019/05/30/avoid-wasting-resources-with-earlystopping-and-modelcheckpoint-in-keras/).
+Hence: consider ELU when you face dying ReLUs and wish to avoid vanishing gradients, but consider it carefully, taking [proper mitigation measures](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/avoid-wasting-resources-with-earlystopping-and-modelcheckpoint-in-keras.md).
 
 ## Summary
 

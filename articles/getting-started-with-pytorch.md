@@ -11,7 +11,7 @@ tags:
   - "pytorch"
 ---
 
-When you want to build a deep learning model these days, there are two machine learning libraries that you must consider. The first is [TensorFlow](https://www.machinecurve.com/index.php/mastering-keras/), about which we have written a lot on this website already. TensorFlow, having been created by Google and released to the public in 2015, has been the leading library for years. The second one is **PyTorch**, which was released by Facebook in 2016. Long running behind, both frameworks are now on par with each other, and are both used very frequently.
+When you want to build a deep learning model these days, there are two machine learning libraries that you must consider. The first is [TensorFlow](https://web.archive.org/web/https://www.machinecurve.com/index.php/mastering-keras/), about which we have written a lot on this website already. TensorFlow, having been created by Google and released to the public in 2015, has been the leading library for years. The second one is **PyTorch**, which was released by Facebook in 2016. Long running behind, both frameworks are now on par with each other, and are both used very frequently.
 
 In this article, we will take a look at **getting started with PyTorch**. We will focus on simplicity of both our explanations and the code that we write. For this reason, we have chosen to work with [PyTorch Lightning](https://www.pytorchlightning.ai/) in the PyTorch articles on this website. Being a way to structure native PyTorch code, it helps boost reusability while saving a lot of overhead. In other words: you'll have the freedom of native PyTorch, while having the benefits of neat and clean code.
 
@@ -125,9 +125,9 @@ Let's explore each in more detail now.
 The _first benefit_ of using PyTorch Lightning is that **you'll have the same, PyTorch-compatible code, but then organized**. In fact, it "is just plain PyTorch" (PyTorch Lightning, 2021). Let's take a look at this example, which comes from the [Lightning website](https://www.pytorchlightning.ai/), and slightly adapted. We can see that the code is composed of a few segments that are all interrelated:
 
 - The `models` segment specifies the neural network's encoder and decoder segments using the `torch.nn` APIs.
-- Under `download data`, we download the MNIST dataset, and apply a transform to [normalize the data](https://www.machinecurve.com/index.php/2020/11/19/how-to-normalize-or-standardize-a-dataset-in-python/).
-- We then generate a [train/test split](https://www.machinecurve.com/index.php/2020/11/16/how-to-easily-create-a-train-test-split-for-your-machine-learning-model/) of 55.000/5.000 images and load the data with `DataLoaders`.
-- We specify an `optimizer`; the [Adam](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/) one in this case.
+- Under `download data`, we download the MNIST dataset, and apply a transform to [normalize the data](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-normalize-or-standardize-a-dataset-in-python.md).
+- We then generate a [train/test split](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-easily-create-a-train-test-split-for-your-machine-learning-model.md) of 55.000/5.000 images and load the data with `DataLoaders`.
+- We specify an `optimizer`; the [Adam](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md) one in this case.
 - Finally, we specify a custom training loop.
 
 ```
@@ -466,7 +466,7 @@ We then saw that a PyTorch Lightning module is called a `LightningModule` and th
 
 In an example implementation of a PyTorch model, we looked at how to construct a neural network using PyTorch in a step-by-step fashion. We saw that it's quite easy to do so once you understand the basics of neural networks and the way in which LightningModules are constructed. In fact, with our neural network, a classifier can be trained that is capable of classifying the MNIST dataset.
 
-[Ask a question](https://www.machinecurve.com/index.php/add-machine-learning-question/)
+[Ask a question](https://web.archive.org/web/https://www.machinecurve.com/index.php/add-machine-learning-question/)
 
 I hope that this tutorial was useful! If you learned something, please feel free to leave a comment in the comments section 💬 Please do the same if you have questions, or leave a question through the **Ask Questions** button on the right.
 

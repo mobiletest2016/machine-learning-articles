@@ -10,7 +10,7 @@ tags:
   - "sparse-categorical-crossentropy"
 ---
 
-For multiclass classification problems, many online tutorials - and even François Chollet's book _Deep Learning with Python_, which I think is one of the most intuitive books on deep learning with Keras - use **[categorical crossentropy](https://www.machinecurve.com/index.php/2019/10/22/how-to-use-binary-categorical-crossentropy-with-keras/)** for computing the [loss value](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/) of your neural network.
+For multiclass classification problems, many online tutorials - and even François Chollet's book _Deep Learning with Python_, which I think is one of the most intuitive books on deep learning with Keras - use **[categorical crossentropy](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-binary-categorical-crossentropy-with-keras.md)** for computing the [loss value](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md) of your neural network.
 
 However, traditional categorical crossentropy requires that your data is one-hot encoded and hence converted into categorical format. Often, this is not what your dataset looks like when you'll start creating your models. Rather, you likely have feature vectors with integer targets - such as 0 to 9 for the numbers 0 to 9.
 
@@ -20,7 +20,7 @@ But did you know that there exists another type of loss - **sparse categorical c
 
 In this blog, we'll figure out how to _build a convolutional neural network with sparse categorical crossentropy loss_.
 
-We'll create an actual CNN with Keras. It'll be a simple one - an extension of a [CNN that we created before](https://www.machinecurve.com/index.php/2019/09/17/how-to-create-a-cnn-classifier-with-keras/), with the MNIST dataset. However, doing that allows us to compare the model in terms of its performance - to actually see whether sparse categorical crossentropy does as good a job as the regular one.
+We'll create an actual CNN with Keras. It'll be a simple one - an extension of a [CNN that we created before](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras.md), with the MNIST dataset. However, doing that allows us to compare the model in terms of its performance - to actually see whether sparse categorical crossentropy does as good a job as the regular one.
 
 **After reading this tutorial, you will...**
 
@@ -80,7 +80,7 @@ Suppose that you have a classification problem where you have four target classe
 
 Your dataset likely comes in this flavor: `{ feature vector } -> target`, where your target is an integer value from { 0, 1, 2, 3 }.
 
-However, as we saw [in another blog on categorical crossentropy](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#categorical-crossentropy), its mathematical structure doesn't allow us to feed it integers directly.
+However, as we saw [in another blog on categorical crossentropy](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#categorical-crossentropy), its mathematical structure doesn't allow us to feed it integers directly.
 
 We'll have to convert it into categorical format first - with one-hot encoding, or `to_categorical` in Keras.
 
@@ -95,7 +95,7 @@ Note that when you have more classes, the trick goes on and on - you simply crea
 
 ### Categorical crossentropy
 
-When converted into categorical data, you can apply **[categorical crossentropy](https://www.machinecurve.com/index.php/2019/10/22/how-to-use-binary-categorical-crossentropy-with-keras/)**:
+When converted into categorical data, you can apply **[categorical crossentropy](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-binary-categorical-crossentropy-with-keras.md)**:
 
 ![](images/image-6.png)
 
@@ -123,7 +123,7 @@ Let's now create a CNN with Keras that uses sparse categorical crossentropy. In 
 
 ### Today's dataset: MNIST
 
-As usual, like in our previous blog on [creating a (regular) CNN with Keras](https://www.machinecurve.com/index.php/2019/09/17/how-to-create-a-cnn-classifier-with-keras/), we use the MNIST dataset. This dataset, which contains thousands of 28x28 pixel handwritten digits (individual numbers from 0-9), is one of the standard datasets in machine learning training programs because it's a very easy and normalized one. The images are also relatively small and high in quantity, which benefits the predictive and generalization power of your model when trained properly. This way, one can really focus on the machine learning aspects of an exercise, rather than the data related issues.
+As usual, like in our previous blog on [creating a (regular) CNN with Keras](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras.md), we use the MNIST dataset. This dataset, which contains thousands of 28x28 pixel handwritten digits (individual numbers from 0-9), is one of the standard datasets in machine learning training programs because it's a very easy and normalized one. The images are also relatively small and high in quantity, which benefits the predictive and generalization power of your model when trained properly. This way, one can really focus on the machine learning aspects of an exercise, rather than the data related issues.
 
 Let's go!
 
@@ -294,7 +294,7 @@ To be frank: the architecture of our model doesn't really matter for showing tha
 
 - We use two convolutional blocks which comprise a 2-dimensional convolutional layer, max pooling and Dropout. The convolutional layer interprets the features into feature maps, which are subsequently downsampled (made smaller / less granular) by the max pooling operation. Subsequently, random Dropout noise is introduced to reduce the odds of overfitting, which means that your model is tailored too specifically to your training data, and might not work anymore with data it has never seen.
 - We then flatten the multidimensional input into a 1-dimensional vector that can be handled by the densely-connected layers. We specify the number of output neurons to `no_classes` which in the case of the MNIST dataset is 10: each neuron generates the probability (summated to one considering all neurons together) that the input belongs to one of the 10 classes in the MNIST scenario.
-- We use two Dense layers which essentially give the CNN its classification power. Note that ReLU is used as an [activation function](https://www.machinecurve.com/index.php/2019/09/04/relu-sigmoid-and-tanh-todays-most-used-activation-functions/) throughout all layers given its simplicity and relative power in today's deep learning problems. However, the last layer uses a Softmax activation, which essentially generates a multiclass probability distribution over all the classes that are available in your targets.
+- We use two Dense layers which essentially give the CNN its classification power. Note that ReLU is used as an [activation function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md) throughout all layers given its simplicity and relative power in today's deep learning problems. However, the last layer uses a Softmax activation, which essentially generates a multiclass probability distribution over all the classes that are available in your targets.
 
 #### Model compilation: hyperparameter tuning
 
@@ -416,6 +416,6 @@ Chollet, F. (2017). _Deep Learning with Python_. New York, NY: Manning Publica
 
 Keras. (n.d.). Losses. Retrieved from [https://keras.io/losses/](https://keras.io/losses/)
 
-How to create a CNN classifier with Keras? – MachineCurve. (2019, September 24). Retrieved from [https://www.machinecurve.com/index.php/2019/09/17/how-to-create-a-cnn-classifier-with-keras](https://www.machinecurve.com/index.php/2019/09/17/how-to-create-a-cnn-classifier-with-keras)
+How to create a CNN classifier with Keras? – MachineCurve. (2019, September 24). Retrieved from [https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras)
 
-About loss and loss functions – MachineCurve. (2019, October 4). Retrieved from [https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/)
+About loss and loss functions – MachineCurve. (2019, October 4). Retrieved from [https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md)

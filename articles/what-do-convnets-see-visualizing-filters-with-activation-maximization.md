@@ -30,8 +30,8 @@ However, it's important to understand how convolutional neural networks work if 
 
 If you wish to understand convolutional neural networks in more detail, I would like to recommend you read these two blogs:
 
-- [Convolutional Neural Networks and their components for computer vision](https://www.machinecurve.com/index.php/2018/12/07/convolutional-neural-networks-and-their-components-for-computer-vision/)
-- [Understanding separable convolutions](https://www.machinecurve.com/index.php/2019/09/23/understanding-separable-convolutions/)
+- [Convolutional Neural Networks and their components for computer vision](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/convolutional-neural-networks-and-their-components-for-computer-vision.md)
+- [Understanding separable convolutions](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/understanding-separable-convolutions.md)
 
 However, if you already have a slight understanding about them or only need to reiterate your existing knowledge, hang on tight - as we'll give you a crash course ConvNets here.
 
@@ -43,30 +43,30 @@ The input might be a W x H RGB image, meaning that the input to the ConvNet is t
 
 Once the data is input, it passes through **N kernels** (where N is an integer number, such as 3) or **filters** that have the same dimension. These kernels slide over the input data, performing element-wise multiplications, generating **N feature maps** of width Wfm and height Hfm, depending on the size of the kernel.
 
-This convolutional operation is often followed by pooling operations, possibly by other convolutional operations, and likely, finally, by densely-connected neural operations, to generate a prediction. It is hence part of the [high-level supervised learning process](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#the-high-level-supervised-learning-process).
+This convolutional operation is often followed by pooling operations, possibly by other convolutional operations, and likely, finally, by densely-connected neural operations, to generate a prediction. It is hence part of the [high-level supervised learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process).
 
 This also sheds light on how ConvNets actually learn. We saw that for any input, the kernels help determine the feature map. The kernels thus contain the patterns that the model has learnt. As after training the kernels are kept constant, they drive the predictions for all the inputs when a model is put into production (possibly augmented with the weights from the densely-connected layers - it's important to know that convolutions and Dense layers are often combined in ConvNets.)
 
-But how does it learn? And what does it learn? Even though it might sound difficult, it's actually pretty simple. We know that the kernels contain the learnt information. They thus need to be adapted when learning needs to take place. From the high-level supervised learning process, the concept of a [loss function](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions), and the concept of an [optimizer](https://www.machinecurve.com/index.php/2019/10/24/gradient-descent-and-its-variants/), we know that:
+But how does it learn? And what does it learn? Even though it might sound difficult, it's actually pretty simple. We know that the kernels contain the learnt information. They thus need to be adapted when learning needs to take place. From the high-level supervised learning process, the concept of a [loss function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions), and the concept of an [optimizer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md), we know that:
 
 1. Data is fed forward in full batches, minibatches or a stochastic (single-item) fashion.
 2. For every sample, a prediction is generated.
 3. The average difference between the predictions and the true targets (which are known in supervised settings) determines how _bad_ the model performs, or - in other words - how high its _loss_ is. How this is computed is determined by the choice of loss function.
 4. With backpropagation, the error displayed by the loss can be computed backwards to each neuron, computing what is known as a _gradient_, or the change of loss with respect to changes in neurons.
-5. With the optimizer, the (negative of the) computed gradient is applied to the neuron's weights, changing them and likely improving the model as a result. The choice of optimizer (such as [gradient descent](https://www.machinecurve.com/index.php/2019/10/24/gradient-descent-and-its-variants/) or [adaptive optimizers](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/)) determines how gradients are applied.
+5. With the optimizer, the (negative of the) computed gradient is applied to the neuron's weights, changing them and likely improving the model as a result. The choice of optimizer (such as [gradient descent](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md) or [adaptive optimizers](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md)) determines how gradients are applied.
 
 Kernels are nothing but neurons structured differently. Hence, learning can take place by shifting neuron weights, which means that the high-level supervised learning process is responsible for changing the neurons. Recall that kernels are also called filters every now and then. With that in mind, let's now take a look at the concept of Activation Maximization - which we can use to visualize these filters.
 
 ## Recap: what is Activation Maximization?
 
-In different blog post, we used **Activation Maximization** [to visualize the perfect input to produce some class prediction](https://www.machinecurve.com/index.php/2019/11/18/visualizing-keras-model-inputs-with-activation-maximization/). This is a really powerful idea: we derive whether the model has learnt correctly by _generating some input_ that _maximizes_ _activations_ in order to produce _some output_, which we set in advance - to some class that we wish to check. Really nice results!
+In different blog post, we used **Activation Maximization** [to visualize the perfect input to produce some class prediction](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/visualizing-keras-model-inputs-with-activation-maximization.md). This is a really powerful idea: we derive whether the model has learnt correctly by _generating some input_ that _maximizes_ _activations_ in order to produce _some output_, which we set in advance - to some class that we wish to check. Really nice results!
 
 But how does Activation Maximization work? The principle is simple:
 
 - You keep the output class constant, you keep the weights constant, and change the input to find maximum activations for the constant class.
 - If the generated input, which is the 'perfect input for some class' given the trained model, looks accurate, then you can be more confident that the model has learnt correctly.
-- If it doesn't, you might wish to inspect learning in more detail with e.g. [TensorBoard](https://www.machinecurve.com/index.php/2019/11/13/how-to-use-tensorboard-with-keras/), [saliency maps](https://www.machinecurve.com/index.php/2019/11/25/visualizing-keras-cnn-attention-saliency-maps/) or [Grad-CAMs](https://www.machinecurve.com/index.php/2019/11/28/visualizing-keras-cnn-attention-grad-cam-class-activation-maps/), to identify where the model attends and which layers contribute to learning.
-- You might do the same with [Keract output visualizations](https://www.machinecurve.com/index.php/2019/12/02/visualize-layer-outputs-of-your-keras-classifier-with-keract/), or read on, to learn how to visualize ConvNet filters with Activation Maximization.
+- If it doesn't, you might wish to inspect learning in more detail with e.g. [TensorBoard](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-tensorboard-with-keras.md), [saliency maps](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/visualizing-keras-cnn-attention-saliency-maps.md) or [Grad-CAMs](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/visualizing-keras-cnn-attention-grad-cam-class-activation-maps.md), to identify where the model attends and which layers contribute to learning.
+- You might do the same with [Keract output visualizations](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/visualize-layer-outputs-of-your-keras-classifier-with-keract.md), or read on, to learn how to visualize ConvNet filters with Activation Maximization.
 
 ## Introducing `keras-vis`
 
@@ -110,7 +110,7 @@ Successfully installed keras-vis-0.5.0
 
 ## Today's model: VGG16
 
-Now, let's take a look at today's model. Contrary to other posts, where we used a simple Convolutional Neural Network for visualization purposes (e.g. in our other [Activation Maximization post](https://www.machinecurve.com/index.php/2019/11/18/visualizing-keras-model-inputs-with-activation-maximization/)), we don't use simple ones here today. This is due to the nature of this post: we're interested in generating filter visualizations that are relatively discriminative in terms of abstractness, yet show enough similarity to the task that we can include them here.
+Now, let's take a look at today's model. Contrary to other posts, where we used a simple Convolutional Neural Network for visualization purposes (e.g. in our other [Activation Maximization post](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/visualizing-keras-model-inputs-with-activation-maximization.md)), we don't use simple ones here today. This is due to the nature of this post: we're interested in generating filter visualizations that are relatively discriminative in terms of abstractness, yet show enough similarity to the task that we can include them here.
 
 Fortunately, the Keras framework comes to the rescue; more specifically, the `keras.applications` ([Github here](https://github.com/keras-team/keras-applications)). It is delivered with various model architectures included. That's perfect for our task today! 🎉
 

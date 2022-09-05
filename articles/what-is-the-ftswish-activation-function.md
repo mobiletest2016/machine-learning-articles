@@ -41,15 +41,15 @@ By placing an artificial activation function directly after each neuron, it's po
 
 Over the years, many nonlinear activation functions have emerged that are widely used. They can now be considered to be legacy activation functions, I would say. These are the primary three:
 
-- The **[Sigmoid](https://www.machinecurve.com/index.php/2019/09/04/relu-sigmoid-and-tanh-todays-most-used-activation-functions/#sigmoid)** activation function has been around for many years now. It maps any input from a real domain to the range \[latex\](0, 1)\[/latex\]. Sigmoid is a good replacement for the Heaviside step function used in [Rosenblatt Perceptrons](https://www.machinecurve.com/index.php/2019/07/24/why-you-cant-truly-create-rosenblatts-perceptron-with-keras/), which made them non-differentiable and useless with respect to Gradient Descent. Sigmoid has also been used in Multilayer Perceptrons used for classification.
-- The **[Tangens hyperbolicus](https://www.machinecurve.com/index.php/2019/09/04/relu-sigmoid-and-tanh-todays-most-used-activation-functions/#tangens-hyperbolicus-tanh)** or Tanh activation function is quite an oldie, and has also been around for many years. It maps any input from a real domain into a value in the range \[latex\](-1, 1)\[/latex\]. Contrary to Sigmoid, it's symmetrical around the origin, which benefits optimization. However, it's relatively slow during training, while the next one is faster.
-- The **[Rectified Linear Unit](https://www.machinecurve.com/index.php/2019/09/04/relu-sigmoid-and-tanh-todays-most-used-activation-functions/#rectified-linear-unit-relu)** or ReLU is the de facto standard activation function for today's neural networks. Activating to zero for all negative inputs and to the identity \[latex\]f(x) = x\[/latex\] for all nonnegative inputs, it induces sparsity and greatly benefits learning.
+- The **[Sigmoid](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions/#sigmoid)** activation function has been around for many years now. It maps any input from a real domain to the range \[latex\](0, 1)\[/latex\]. Sigmoid is a good replacement for the Heaviside step function used in [Rosenblatt Perceptrons](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-you-cant-truly-create-rosenblatts-perceptron-with-keras.md), which made them non-differentiable and useless with respect to Gradient Descent. Sigmoid has also been used in Multilayer Perceptrons used for classification.
+- The **[Tangens hyperbolicus](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions/#tangens-hyperbolicus-tanh)** or Tanh activation function is quite an oldie, and has also been around for many years. It maps any input from a real domain into a value in the range \[latex\](-1, 1)\[/latex\]. Contrary to Sigmoid, it's symmetrical around the origin, which benefits optimization. However, it's relatively slow during training, while the next one is faster.
+- The **[Rectified Linear Unit](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions/#rectified-linear-unit-relu)** or ReLU is the de facto standard activation function for today's neural networks. Activating to zero for all negative inputs and to the identity \[latex\]f(x) = x\[/latex\] for all nonnegative inputs, it induces sparsity and greatly benefits learning.
 
 ### Problems with common activation functions
 
 Having been used for many years, both practitioners and researchers have identified certain issues with the previous activation functions that might make training neural nets impossible - especially when the neural networks are larger.
 
-The first issue, the [**vanishing gradients problem**](https://www.machinecurve.com/index.php/2019/08/30/random-initialization-vanishing-and-exploding-gradients/), occurs when the gradients computed during backpropagation are smaller than 1. Given the fact that each gradient is chained to the downstream layers' gradients to find the update with respect to the error value, you'll easily see where it goes wrong: with many layers, and gradients \[latex\]< 1\[/latex\], the upstream gradients get very small. For example: \[latex\] 0.25 \\times 0.25 \\times 0.25 = 0.25^3 = 0.015625\[/latex\]. And this only for a few layers in the network. Remember that today's deep neural networks can have thousands. The effect of vanishing gradients, which is present particularly with Sigmoid: the most upstream layers learn very slowly, or no longer at all. This severely impacts learning.
+The first issue, the [**vanishing gradients problem**](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/random-initialization-vanishing-and-exploding-gradients.md), occurs when the gradients computed during backpropagation are smaller than 1. Given the fact that each gradient is chained to the downstream layers' gradients to find the update with respect to the error value, you'll easily see where it goes wrong: with many layers, and gradients \[latex\]< 1\[/latex\], the upstream gradients get very small. For example: \[latex\] 0.25 \\times 0.25 \\times 0.25 = 0.25^3 = 0.015625\[/latex\]. And this only for a few layers in the network. Remember that today's deep neural networks can have thousands. The effect of vanishing gradients, which is present particularly with Sigmoid: the most upstream layers learn very slowly, or no longer at all. This severely impacts learning.
 
 Fortunately, ReLU does not suffer from this problem, as its gradient is either zero (for \[latex\] x < 0\[/latex\]) or one (for the other values). However, the **dying ReLU problem** is a substantial bottleneck for learning here: if _only one_ of the layers in the chain produces a partial gradient of zero, the entire chain _and_ the upstream layers have a zero gradient. This effectively excludes the neurons from participating in learning, once again severely impacting learning. Especially with larger networks, this becomes an issue, which you'll have to deal with.
 
@@ -59,20 +59,20 @@ Fortunately, ReLU does not suffer from this problem, as its gradient is either z
 
 Over the years, some new activation functions have emerged to deal with this problem. The first is **Leaky ReLU**: it's a traditional ReLU which "leaks" some information on the left side of the function, i.e. where \[latex\]x < 0\[/latex\]. This is visible in the plot below, as you can identify a very gentle slope configured by some \[latex\]\\alpha\[/latex\] parameter. It resolves the dying ReLU problem by ensuring that the gradient value for all \[latex\]x < 0\[/latex\] is also very small, i.e. the \[latex\]\\alpha\[/latex\] that you configured.
 
-- [Leaky ReLU: improving traditional ReLU](https://www.machinecurve.com/index.php/2019/10/15/leaky-relu-improving-traditional-relu/)
-- [Using Leaky ReLU with Keras](https://www.machinecurve.com/index.php/2019/11/12/using-leaky-relu-with-keras/)
+- [Leaky ReLU: improving traditional ReLU](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/leaky-relu-improving-traditional-relu.md)
+- [Using Leaky ReLU with Keras](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/using-leaky-relu-with-keras.md)
 
 [![](images/leaky_relu.png)](https://www.machinecurve.com/wp-content/uploads/2019/10/leaky_relu.png)
 
 The downside of Leaky ReLU is that the value for \[latex\]\\alpha\[/latex\] has to be set in advance. Even though an estimate can be made by pretraining with a small subset of your data serving as a validation set, it's still suboptimal. Fortunately, Leaky ReLU can be generalized into what is known as **Parametric ReLU**, or PReLU. The value for \[latex\]\\alpha\[/latex\] no longer needs to be set by the machine learning engineer, but instead is learnt during training through a few extra trainable parameters. Here too, the gradient for all \[latex\]x < 0\[/latex\] is (very likely, as a learnt \[latex\]\\alpha = 0\[/latex\] cannot be ignored) small but nonzero, so that the dying ReLU problem is avoided.
 
-- [How to use PReLU with Keras?](https://www.machinecurve.com/index.php/2019/12/05/how-to-use-prelu-with-keras/)
+- [How to use PReLU with Keras?](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-prelu-with-keras.md)
 
 Another activation function with which the dying ReLU problem can be avoided is the **Exponential Linear Unit**, or ELU. The creators of this activation function argue that both PReLU and Leaky ReLU still produce issues when inputs are _really_ _large_ and negative, because the negative side of the spectrum does not saturate to some value. They introduce ELU, which both resolves the dying ReLU problem and ensures saturation based on some \[latex\]\\alpha\[/latex\] value.
 
 [![](images/elu_avf.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/elu_avf.png)
 
-- [How to use ELU with Keras?](https://www.machinecurve.com/index.php/2019/12/09/how-to-use-elu-with-keras/)
+- [How to use ELU with Keras?](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-elu-with-keras.md)
 
 Another relatively popular new activation function is **Swish**, which really looks like ReLU but is somewhat different:
 
@@ -80,7 +80,7 @@ Another relatively popular new activation function is **Swish**, which really lo
 
 Firstly, it's smooth - which is expected to improve the loss surface during optimization (MachineCurve, 2019). Additionally, it saturates for large negative values, to zero - which is expected to still ensure that the activation function yields model sparsity. However, thirdly, it does produce small but nonzero (negative) outputs for small negative inputs, which is expected to help reduce the dying ReLU problem. Empirical tests with large datasets have shown that Swish may actually be beneficial in settings when larger neural networks are used.
 
-- [Why Swish could perform better than ReLu](https://www.machinecurve.com/index.php/2019/05/30/why-swish-could-perform-better-than-relu/)
+- [Why Swish could perform better than ReLu](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-swish-could-perform-better-than-relu.md)
 
 * * *
 
@@ -120,7 +120,7 @@ However, what I must note is that this function does not protect us from the dyi
 
 Only one way to find out if my cautiousness is valid, right? :) Let's do some tests: we'll compare FTSwish with both ReLU and Swish with a ConvNet.
 
-I used the following [Keras datasets](https://www.machinecurve.com/index.php/2019/12/31/exploring-the-keras-datasets/) for this purpose:
+I used the following [Keras datasets](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets.md) for this purpose:
 
 - MNIST;
 - CIFAR-10;
@@ -283,4 +283,4 @@ Thanks for reading MachineCurve today and happy engineering! 😎
 
 Chieng, H. H., Wahid, N., Ong, P., & Perla, S. R. K. (2018). [Flatten-T Swish: a thresholded ReLU-Swish-like activation function for deep learning](https://arxiv.org/abs/1812.06247). _arXiv preprint arXiv:1812.06247_.
 
-Why Swish could perform better than ReLu – MachineCurve. (2019, September 4). Retrieved from [https://www.machinecurve.com/index.php/2019/05/30/why-swish-could-perform-better-than-relu/](https://www.machinecurve.com/index.php/2019/05/30/why-swish-could-perform-better-than-relu/)
+Why Swish could perform better than ReLu – MachineCurve. (2019, September 4). Retrieved from [https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-swish-could-perform-better-than-relu/](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-swish-could-perform-better-than-relu.md)

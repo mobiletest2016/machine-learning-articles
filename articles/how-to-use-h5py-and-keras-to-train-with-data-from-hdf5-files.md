@@ -14,7 +14,7 @@ tags:
   - "mnist"
 ---
 
-In the many simple educational cases where people show you how to build Keras models, data is often loaded from the [Keras datasets module](https://www.machinecurve.com/index.php/2019/12/31/exploring-the-keras-datasets/) - where loading the data is as simple as adding one line of Python code.
+In the many simple educational cases where people show you how to build Keras models, data is often loaded from the [Keras datasets module](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets.md) - where loading the data is as simple as adding one line of Python code.
 
 However, it's much more common that data is delivered in the HDF5 file format - and then you might stuck, especially if you're a beginner.
 
@@ -71,13 +71,13 @@ You get the point :)
 
 ## A Keras example
 
-Now, let's take a look if we can create a simple [Convolutional Neural Network](https://www.machinecurve.com/index.php/2020/03/30/how-to-use-conv2d-with-keras/) which operates with the [MNIST dataset](https://www.machinecurve.com/index.php/2019/12/31/exploring-the-keras-datasets/#mnist-database-of-handwritten-digits), stored in HDF5 format.
+Now, let's take a look if we can create a simple [Convolutional Neural Network](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-conv2d-with-keras.md) which operates with the [MNIST dataset](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets/#mnist-database-of-handwritten-digits), stored in HDF5 format.
 
 Fortunately, this dataset is readily available at [Kaggle for download](https://www.kaggle.com/benedictwilkinsai/mnist-hd5f), so make sure to create an account there and download the **train.hdf5** and **test.hdf5** files.
 
 ### The differences: the imports & how to load the data
 
-Our HDF5 based model is not too different compared to any other Keras model. In fact, the only differences are present at the start - namely, an extra import as well as a different way of loading the data. That's what we'll highlight in this post primarily. If you wish to understand the ConvNet creation process in more detail, I suggest you also take a look at [this blog](https://www.machinecurve.com/index.php/2020/03/30/how-to-use-conv2d-with-keras/).
+Our HDF5 based model is not too different compared to any other Keras model. In fact, the only differences are present at the start - namely, an extra import as well as a different way of loading the data. That's what we'll highlight in this post primarily. If you wish to understand the ConvNet creation process in more detail, I suggest you also take a look at [this blog](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-conv2d-with-keras.md).
 
 ### The imports
 
@@ -117,7 +117,7 @@ validation_split = 0.2
 verbosity = 1
 ```
 
-Followed by loading and reshaping the input data into the correct [input shape](https://www.machinecurve.com/index.php/2020/04/05/how-to-find-the-value-for-keras-input_shape-input_dim/) (i.e. _length_ of the datasets times `(28, 28, 1)` as MNIST contains grayscale 28x28 pixels images). Here's the code for that:
+Followed by loading and reshaping the input data into the correct [input shape](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-find-the-value-for-keras-input_shape-input_dim.md) (i.e. _length_ of the datasets times `(28, 28, 1)` as MNIST contains grayscale 28x28 pixels images). Here's the code for that:
 
 ```
 # Load MNIST data

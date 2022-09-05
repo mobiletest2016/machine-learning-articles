@@ -28,7 +28,7 @@ Let's explore these new Keras datasets!
 
 ## The Keras Datasets module
 
-In a different blog post, we [explored the Keras Datasets module](https://www.machinecurve.com/index.php/2019/12/31/exploring-the-keras-datasets/). The module, which can be used in your Keras models by importing `tensorflow.keras.datasets`, allows you to load datasets very easily: often, it's simply enough to call `load_data()` and there you go.
+In a different blog post, we [explored the Keras Datasets module](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets.md). The module, which can be used in your Keras models by importing `tensorflow.keras.datasets`, allows you to load datasets very easily: often, it's simply enough to call `load_data()` and there you go.
 
 ![](images/exploring_keras_datasets.jpg)
 

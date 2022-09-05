@@ -15,7 +15,7 @@ tags:
 
 At a high level, training supervised machine learning models involves a few easy steps: feeding data to your model, computing loss based on the differences between predictions and ground truth, and using loss to improve the model with an optimizer.
 
-However, practice isn't so simple. For example, it's possible to choose multiple optimizers - ranging from traditional [Stochastic Gradient Descent](https://www.machinecurve.com/index.php/2019/10/24/gradient-descent-and-its-variants/) to [adaptive optimizers](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/), which are also very common today.
+However, practice isn't so simple. For example, it's possible to choose multiple optimizers - ranging from traditional [Stochastic Gradient Descent](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md) to [adaptive optimizers](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md), which are also very common today.
 
 Say that you settle for the first - Stochastic Gradient Descent (SGD). Likely, in your deep learning framework, you'll see that the _learning rate_ is a parameter that can be configured, with a default value that is preconfigured most of the times.
 
@@ -46,9 +46,9 @@ The first thing we need to do before we can introduce Cyclical Learning Rates - 
 
 If you already know what learning rates are, I suggest you skip this section. However, if you're interested in sharpening your understanding, then make sure to read on :)
 
-Training a supervised machine learning model, as we already illustrated above, can be captured in a [few steps](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#the-high-level-supervised-learning-process) that are easy in theory. One of these steps is computing the _gradient_, i.e. the estimated change, that can be used to change the model - doing so would likely improve it in the next iteration.
+Training a supervised machine learning model, as we already illustrated above, can be captured in a [few steps](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process) that are easy in theory. One of these steps is computing the _gradient_, i.e. the estimated change, that can be used to change the model - doing so would likely improve it in the next iteration.
 
-The backpropagation, with its "change with respect to layer X (...) with respect to the loss value" logic, is used to compute the gradient for a particular layer. Upstream gradients are often more complex to compute, with problems like the [vanishing gradients problem](https://www.machinecurve.com/index.php/2019/08/30/random-initialization-vanishing-and-exploding-gradients/) as a result.
+The backpropagation, with its "change with respect to layer X (...) with respect to the loss value" logic, is used to compute the gradient for a particular layer. Upstream gradients are often more complex to compute, with problems like the [vanishing gradients problem](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/random-initialization-vanishing-and-exploding-gradients.md) as a result.
 
 However, we're not here today to complain about issues with gradients :) Rather, we're here to see what learning rates are.
 
@@ -72,7 +72,7 @@ This is where the learning rate enters the picture. With the learning rate, you 
 
 _Weight update = Previous weights - Learning rate x Gradient_
 
-By setting the learning rate to small values (e.g. \[latex\]0.001\[/latex\]), you ensure that steps are small enough in order to converge towards the minimum and arrive at a position close to a minimum. If you set it too large (e.g. \[latex\]0.5\[/latex\]), you might overshoot the minimum every time. However, it would speed up learning in the beginning, while you're still at the top of the mountain and can afford to take large steps. This is precisely the problem [why fixed learning rates aren't a good idea](https://www.machinecurve.com/index.php/2019/11/11/problems-with-fixed-and-decaying-learning-rates/), and why you need to be careful with decaying learning rates as well.
+By setting the learning rate to small values (e.g. \[latex\]0.001\[/latex\]), you ensure that steps are small enough in order to converge towards the minimum and arrive at a position close to a minimum. If you set it too large (e.g. \[latex\]0.5\[/latex\]), you might overshoot the minimum every time. However, it would speed up learning in the beginning, while you're still at the top of the mountain and can afford to take large steps. This is precisely the problem [why fixed learning rates aren't a good idea](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/problems-with-fixed-and-decaying-learning-rates.md), and why you need to be careful with decaying learning rates as well.
 
 * * *
 
@@ -186,7 +186,7 @@ Smith (2017) also provides an answer to this question.
 
 This one's easy too: **we use the Learning Rate Range Test**.
 
-Indeed, that test [which we already encountered](https://www.machinecurve.com/index.php/2020/02/20/finding-optimal-learning-rates-with-the-learning-rate-range-test/) when estimating proper starting LRs for learning rate decay.
+Indeed, that test [which we already encountered](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/finding-optimal-learning-rates-with-the-learning-rate-range-test.md) when estimating proper starting LRs for learning rate decay.
 
 This time, we'll use it a little bit differently, though. With the Learning Rate Range Test, we let the model run for several epochs, while the learning rate increases over time. For every learning rate, we get the loss value - and this information tells us something about the bounds we need to set.
 
@@ -213,7 +213,7 @@ To make this work, we use two great open source implementations of:
 
 ### Today's Keras model
 
-The first thing that we have to do is define today's Keras model. We'll use a model that is very similar to the one created for [sparse categorical crossentropy](https://www.machinecurve.com/index.php/2019/10/06/how-to-use-sparse-categorical-crossentropy-in-keras/), with a few adaptations. If you want to learn how to build this model from the ground up, it's wise if you read the post linked above. Therefore, we'll continue with (a large part) of that model here without further explanation.
+The first thing that we have to do is define today's Keras model. We'll use a model that is very similar to the one created for [sparse categorical crossentropy](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-sparse-categorical-crossentropy-in-keras.md), with a few adaptations. If you want to learn how to build this model from the ground up, it's wise if you read the post linked above. Therefore, we'll continue with (a large part) of that model here without further explanation.
 
 Create a folder containing a Python file, such as `base_model.py`. In this file, add the following code:
 

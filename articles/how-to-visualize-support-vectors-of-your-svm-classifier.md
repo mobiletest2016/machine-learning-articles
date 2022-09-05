@@ -20,7 +20,7 @@ In the case of using SVMs for classification - they can also be used for regress
 
 That's why in today's blog post, we will be looking at visualizing the support vectors that are used when constructing the decision boundary of your SVM classifier. Firstly, we will take a look at Support Vector Machines for classification and support vectors. What are they? How are they chosen? What does maximum-margin mean? Those questions will be answered.
 
-Subsequently, we'll move on to a practical example using Python and Scikit-learn. For an example dataset, which we will generate in this post as well, we will show you how a [simple SVM can be trained](https://www.machinecurve.com/index.php/2020/05/03/creating-a-simple-binary-svm-classifier-with-python-and-scikit-learn/) and how you can subsequently visualize the support vectors. We will do this step-by-step, so that you understand everything that happens.
+Subsequently, we'll move on to a practical example using Python and Scikit-learn. For an example dataset, which we will generate in this post as well, we will show you how a [simple SVM can be trained](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/creating-a-simple-binary-svm-classifier-with-python-and-scikit-learn.md) and how you can subsequently visualize the support vectors. We will do this step-by-step, so that you understand everything that happens.
 
 All right, let's go! :)
 
@@ -50,7 +50,7 @@ Source: [Alisneaky on Wikipedia](https://commons.wikimedia.org/wiki/File:Kernel_
 
 _Today's dataset the SVM is trained on: clearly, two blobs of separable data are visible._
 
-Constructing and training a Support Vector Machine is not difficult, as we could see [in a different blog post](https://www.machinecurve.com/index.php/2020/05/03/creating-a-simple-binary-svm-classifier-with-python-and-scikit-learn/). In fact, with Scikit-learn and Python, it can be as easy as 3 lines of code.
+Constructing and training a Support Vector Machine is not difficult, as we could see [in a different blog post](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/creating-a-simple-binary-svm-classifier-with-python-and-scikit-learn.md). In fact, with Scikit-learn and Python, it can be as easy as 3 lines of code.
 
 That's why today, given the focus of this post, we don't focus on creating the SVM itself step-by-step. Instead, I'd like to point you to the link referenced above if you wish to understand SVM creation in more detail. Here, we'll focus on visualizing the SVM's support vectors.
 

@@ -19,7 +19,7 @@ This often comes at a trade-off: the trade-off between underfitting and overfitt
 
 And although it may sound strange, this _can_ actually cause problems, because the training dataset and inference samples should not necessarily come from a sample with an approximately equal distribution!
 
-Measuring the balance between underfitting and overfitting can be done by [splitting](https://www.machinecurve.com/index.php/2020/02/18/how-to-use-k-fold-cross-validation-with-keras/) the dataset into three subsets: training data, validation data and testing data. The first two ensure that the model is trained (training data) and steered away from overfitting (validation data), while the latter can be used to test the model after it has been trained. In this article, we'll focus on the latter.
+Measuring the balance between underfitting and overfitting can be done by [splitting](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-k-fold-cross-validation-with-keras.md) the dataset into three subsets: training data, validation data and testing data. The first two ensure that the model is trained (training data) and steered away from overfitting (validation data), while the latter can be used to test the model after it has been trained. In this article, we'll focus on the latter.
 
 First, we will look at the balance between underfitting and overfitting in more detail. Subsequently, we will use the `tensorflow.keras` functionality for evaluating your machine learning model, called `model.evaluate`. This includes a full Keras example, where we train a model and subsequently evaluate it.
 
@@ -35,7 +35,7 @@ Let's take a look! 😎
 
 Great question - why do we need to evaluate TensorFlow/Keras models in the first place?
 
-To answer it, we must take a look at how a supervised machine learning model [is trained](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#the-high-level-supervised-learning-process). Following the supervised learning process linked before, we note that samples from a _training set_ are fed forward, after which an average error value is computed and subsequently used for model [optimization](https://www.machinecurve.com/index.php/2019/10/24/gradient-descent-and-its-variants/).
+To answer it, we must take a look at how a supervised machine learning model [is trained](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process). Following the supervised learning process linked before, we note that samples from a _training set_ are fed forward, after which an average error value is computed and subsequently used for model [optimization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md).
 
 The samples in a training set are often derived from some kind of population. For example, if we want to measure voting behavior in a population, we often take a representative sample. We therefore don't measure the behavior of the entire population - which would be really inefficient - but instead assume that if our sample is large enough, its distribution approaches the distribution of the entire population.
 
@@ -51,7 +51,7 @@ Model evaluation helps us to avoid falling into the underfitting/overfitting tra
 
 ![](images/nonlinear-1-1024x514.png)
 
-Especially models with [high variance](https://www.machinecurve.com/index.php/2020/11/02/machine-learning-error-bias-variance-and-irreducible-error-with-python/) are sensitive to overfitting.
+Especially models with [high variance](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/machine-learning-error-bias-variance-and-irreducible-error-with-python.md) are sensitive to overfitting.
 
 * * *
 
@@ -88,12 +88,12 @@ Let's now take a look at creating a TensorFlow/Keras model that uses `model.eval
 
 We first create the following TensorFlow model.
 
-- We import the TensorFlow imports that we need. We also use the [extra\_keras\_datasets](https://github.com/christianversloot/extra_keras_datasets) module as we are training the model on the [EMNIST](https://www.machinecurve.com/index.php/2020/01/10/making-more-datasets-available-for-keras/) dataset.
+- We import the TensorFlow imports that we need. We also use the [extra\_keras\_datasets](https://github.com/christianversloot/extra_keras_datasets) module as we are training the model on the [EMNIST](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/making-more-datasets-available-for-keras.md) dataset.
 - We specify some configuration options for the model.
-- We load the EMNIST dataset, reshape the data (to make it compatible with TensorFlow), convert the data into `float32` format ([read here why](https://www.machinecurve.com/index.php/2020/09/16/tensorflow-model-optimization-an-introduction-to-quantization/#float32-in-your-ml-model-why-its-great)), and then scale the data to the \[latex\]\[0, 1\]\[/latex\] range.
+- We load the EMNIST dataset, reshape the data (to make it compatible with TensorFlow), convert the data into `float32` format ([read here why](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tensorflow-model-optimization-an-introduction-to-quantization/#float32-in-your-ml-model-why-its-great)), and then scale the data to the \[latex\]\[0, 1\]\[/latex\] range.
 - We then create and compile the model, and fit the data, i.e. construct and complete the training process.
 
-Click [here](https://www.machinecurve.com/index.php/2019/09/17/how-to-create-a-cnn-classifier-with-keras/) if you wish to understand creating a Convolutional Neural Network in more detail.
+Click [here](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras.md) if you wish to understand creating a Convolutional Neural Network in more detail.
 
 ```
 from tensorflow.keras.datasets import mnist
@@ -160,7 +160,7 @@ For this, during the loading operation, we loaded both training data and testing
 You can now use `model.evaluate` in order to generate evaluation scores and print them in your console.
 
 - We call `evaluate` on the `model` with the testing data - verbosity off, so we don't see output on the screen.
-- As our main loss function is [sparse categorical crossentropy](https://www.machinecurve.com/index.php/2019/10/06/how-to-use-sparse-categorical-crossentropy-in-keras/) (see above) and our additional metric is accuracy, the `score` variable contains the scores in that particular other. Hence, `score[0]` represents crossentropy, and `score[1]` represents accuracy. We finally call `print()` to output the scores on screen.
+- As our main loss function is [sparse categorical crossentropy](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-sparse-categorical-crossentropy-in-keras.md) (see above) and our additional metric is accuracy, the `score` variable contains the scores in that particular other. Hence, `score[0]` represents crossentropy, and `score[1]` represents accuracy. We finally call `print()` to output the scores on screen.
 
 ```
 # Generate generalization metrics
@@ -180,11 +180,11 @@ Test loss: 0.0175113923806377 / Test accuracy: 0.9951000213623047
 
 In the example above, we used `load_data()` to load the dataset into variables. This is easy, and that's precisely the goal of my Keras extensions library. However, many times, practice is a bit less ideal. In those cases, many approaches to importing your training dataset are out there. Three of them are, for example:
 
-- [Creating a Keras model with HDF5 files and H5Py](https://www.machinecurve.com/index.php/2020/04/13/how-to-use-h5py-and-keras-to-train-with-data-from-hdf5-files/)
-- [Creating a Keras model with HDF5 files and HDF5Matrix](https://www.machinecurve.com/index.php/2020/04/26/how-to-use-hdf5matrix-with-keras/)
-- [Creating a Keras model with data flowing from files using a generator](https://www.machinecurve.com/index.php/2020/04/06/using-simple-generators-to-flow-data-from-file-with-keras/)
+- [Creating a Keras model with HDF5 files and H5Py](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-h5py-and-keras-to-train-with-data-from-hdf5-files.md)
+- [Creating a Keras model with HDF5 files and HDF5Matrix](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-hdf5matrix-with-keras.md)
+- [Creating a Keras model with data flowing from files using a generator](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/using-simple-generators-to-flow-data-from-file-with-keras.md)
 
-With the former two, you likely still end up with lists of training samples - i.e., having to load them into variables and thus in memory. For these cases, the example above can be used. But did you know that it is also possible to flow data from your system into the model. In other words, did you know that you can use a [generator](https://www.machinecurve.com/index.php/2020/04/06/using-simple-generators-to-flow-data-from-file-with-keras/) to train your machine learning model?
+With the former two, you likely still end up with lists of training samples - i.e., having to load them into variables and thus in memory. For these cases, the example above can be used. But did you know that it is also possible to flow data from your system into the model. In other words, did you know that you can use a [generator](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/using-simple-generators-to-flow-data-from-file-with-keras.md) to train your machine learning model?
 
 And it is also possible to evaluate a model using `model.evaluate` if you are using a generator. Say, for example, that you are using the following generator:
 

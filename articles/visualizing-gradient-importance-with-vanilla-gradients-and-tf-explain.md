@@ -44,7 +44,7 @@ Now that we understand what Vanilla Gradients are, we can take a look at `tf-exp
 
 A wide range of explainability techniques is supported:
 
-1. [Activations Visualization](https://www.machinecurve.com/index.php/2020/04/27/neural-network-activation-visualization-with-tf-explain/)
+1. [Activations Visualization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/neural-network-activation-visualization-with-tf-explain.md)
 2. _Vanilla Gradients_
 3. Gradients\*Inputs
 4. Occlusion Sensitivity
@@ -76,7 +76,7 @@ A model, I guess. And it should be a ConvNet.
 
 Let's take a look at the model that we will be using first.
 
-It'll be a simple Convolutional Neural Network that we created in our post explaining the [Keras Conv2D layer type](https://www.machinecurve.com/index.php/2020/03/30/how-to-use-conv2d-with-keras/).
+It'll be a simple Convolutional Neural Network that we created in our post explaining the [Keras Conv2D layer type](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-conv2d-with-keras.md).
 
 Why not create the ConvNet here, you'd likely argue. There is one big reason:It would spoil this blog post - which is not about creating a ConvNet, but about applying Vanilla Gradients for visualizing the importance of gradients with respect to your input image.
 
@@ -201,9 +201,9 @@ Now that we have imported the `VanillaGradientsCallback`, it's time to use it in
 
 We can do so by means of a **Keras callback**. Callbacks are pieces of code that are executed after each iteration, or epoch, and can manipulate the training process.
 
-For example, with the [ModelCheckpoint and EarlyStopping callbacks](https://www.machinecurve.com/index.php/2019/05/30/avoid-wasting-resources-with-earlystopping-and-modelcheckpoint-in-keras/), you can ensure that your training process stops precisely in time, while saving the best model instance you've found during the training process.
+For example, with the [ModelCheckpoint and EarlyStopping callbacks](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/avoid-wasting-resources-with-earlystopping-and-modelcheckpoint-in-keras.md), you can ensure that your training process stops precisely in time, while saving the best model instance you've found during the training process.
 
-This saves you resources and avoids that your [saved model](https://www.machinecurve.com/index.php/2020/02/14/how-to-save-and-load-a-model-with-keras/) has been overfitting for some time.
+This saves you resources and avoids that your [saved model](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-save-and-load-a-model-with-keras.md) has been overfitting for some time.
 
 However, we can also apply callbacks for using vanilla gradients with `tf-explain`: by means of the `VanillaGradientsCallback`, we can visualize and explain our model during the training process. Here's the code for creating the Keras callback:
 

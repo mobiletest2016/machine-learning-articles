@@ -14,7 +14,7 @@ tags:
   - "visualization"
 ---
 
-Autoencoders are special types of neural networks which learn to convert inputs into lower-dimensional form, after which they convert it back into the original or some related output. A variety of interesting applications has emerged for them: denoising, dimensionality reduction, input reconstruction, and - with a particular type of autoencoder called Variational Autoencoder - even [generative actions](https://www.machinecurve.com/index.php/2019/12/24/what-is-a-variational-autoencoder-vae/).
+Autoencoders are special types of neural networks which learn to convert inputs into lower-dimensional form, after which they convert it back into the original or some related output. A variety of interesting applications has emerged for them: denoising, dimensionality reduction, input reconstruction, and - with a particular type of autoencoder called Variational Autoencoder - even [generative actions](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-a-variational-autoencoder-vae.md).
 
 This lower-dimensional form is also called the encoded state. But what does it look like? Can we visualize the encoded state of an autoencoder? And how do we do that for a Keras model? Those are questions that I'll answer in this blog post. Firstly, we'll dive into the concept of an autoencoder, to recap - or to inject - your high-level understanding of them. Next, we'll take a look at what we're going to do today, i.e., generate visualizations of the encoded state. Subsequently, we provide an example for encoded state visualization with both the Keras Functional API and the Keras Sequential API.
 
@@ -40,8 +40,8 @@ At a high level, this is an autoencoder:
 
 It's a combination of building blocks which allows you to feed it some input, which is encoded, decoded and then returned to the user. Depending on how you configure it (in terms of input and desired outputs), they can be used for:
 
-- [Input reconstruction](https://www.machinecurve.com/index.php/2019/12/19/creating-a-signal-noise-removal-autoencoder-with-keras/);
-- [Noise reduction](https://www.machinecurve.com/index.php/2019/12/20/building-an-image-denoiser-with-a-keras-autoencoder-neural-network/);
+- [Input reconstruction](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/creating-a-signal-noise-removal-autoencoder-with-keras.md);
+- [Noise reduction](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/building-an-image-denoiser-with-a-keras-autoencoder-neural-network.md);
 - Dimensionality reduction.
 
 Besides the input image and the 'reconstructed image' (or denoised image), there are more building blocks: an encoder, a decoder and an encoded state.
@@ -50,7 +50,7 @@ What are they?
 
 Let's take at the encoder first. When you feed an autoencoder input, the input has multiple dimensions. For example, a 28 x 28 pixels input image has 28 x 28 = 784 dimensions, which all take a real value (i.e., a number with some decimals that can be positive and negative). The _encoder_ reduces the dimensionality of your input to the extent that it can be overseen by compressing information and discarding useless information (e.g. sampling noise), to e.g. 25 dimensions. This is called the _encoded state_, which you can feed to the _decoder_. The decoder, in turn, attempts to build up a new image, such as a reconstruction of the input. How good the autoencoder works is determined by the loss function with which it is trained, and is determined by how similar the output is to the input.
 
-An important word in the previous paragraph is _trained_. Indeed, the encoder and decoder segments of autoencoders must be trained. Usually, neural networks are employed for this purpose, as they are [universal function approximators](https://www.machinecurve.com/index.php/2019/07/18/can-neural-networks-approximate-mathematical-functions/) and can by consequence _learn_ the mapping from input to encoded state, and from encoded state to reconstruction. This is really important to remember when you're talking about autoencoders. While they are usually associated with neural networks, they're not the same. Rather, they are _implemented_ with neural nets.
+An important word in the previous paragraph is _trained_. Indeed, the encoder and decoder segments of autoencoders must be trained. Usually, neural networks are employed for this purpose, as they are [universal function approximators](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/can-neural-networks-approximate-mathematical-functions.md) and can by consequence _learn_ the mapping from input to encoded state, and from encoded state to reconstruction. This is really important to remember when you're talking about autoencoders. While they are usually associated with neural networks, they're not the same. Rather, they are _implemented_ with neural nets.
 
 * * *
 
@@ -60,13 +60,13 @@ You may now wonder: _what's the goal of this blog post?_
 
 It's to visualize the **encoded state**, when a sample is fed to the autoencoder.
 
-This can be useful in situations when you use autoencoders for dimensionality reduction, and you consider the encoded states to be features for e.g. [Support Vector Machines](https://www.machinecurve.com/index.php/2019/09/20/intuitively-understanding-svm-and-svr/). In those cases, you may wish to look at your encoded states in order to find whether dimensions must be added or dropped, and so on. In other words, you wish to generate images like this one:
+This can be useful in situations when you use autoencoders for dimensionality reduction, and you consider the encoded states to be features for e.g. [Support Vector Machines](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/intuitively-understanding-svm-and-svr.md). In those cases, you may wish to look at your encoded states in order to find whether dimensions must be added or dropped, and so on. In other words, you wish to generate images like this one:
 
 [![](images/encoded-state-1024x511.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/encoded-state.png)
 
 Fortunately, this is possible! 🎉
 
-**Keract** ([link to their GitHub](https://github.com/philipperemy/keract)) is a nice toolkit with which you can "get the activations (outputs) and gradients for each layer of your Keras model" (Rémy, 2019). We already covered Keract before, in a blog post illustrating how to use it for [visualizing the hidden layers in your neural net](https://www.machinecurve.com/index.php/2019/12/02/visualize-layer-outputs-of-your-keras-classifier-with-keract/), but we're going to use it again today.
+**Keract** ([link to their GitHub](https://github.com/philipperemy/keract)) is a nice toolkit with which you can "get the activations (outputs) and gradients for each layer of your Keras model" (Rémy, 2019). We already covered Keract before, in a blog post illustrating how to use it for [visualizing the hidden layers in your neural net](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/visualize-layer-outputs-of-your-keras-classifier-with-keract.md), but we're going to use it again today.
 
 This time, we'll be using it to visualize the encoded state - which, in terms of the neural network implementation of your autoecoder, is nothing else than a visualization of the output of the _encoder segment_, i.e. the final layer of the neural network segment that represents your autoencoder's encoder.
 
@@ -166,9 +166,9 @@ Next, we can define the layers that we will use in the autoencoder.
 
 The `inputs` layer does what you think it does: it serves to "take in" the input following the `input_shape` determined before.
 
-Recognizable by the `(inputs)` code in the next layer, we can tell that it's fed to the `encoding_layer`, which is a densely-connected layer with `encoded_dim` (= 50, in our case) neurons, [ReLU activation](https://www.machinecurve.com/index.php/2019/09/09/implementing-relu-sigmoid-and-tanh-in-keras/), [and by consequence He init](https://www.machinecurve.com/index.php/2019/09/16/he-xavier-initialization-activation-functions-choose-wisely/).
+Recognizable by the `(inputs)` code in the next layer, we can tell that it's fed to the `encoding_layer`, which is a densely-connected layer with `encoded_dim` (= 50, in our case) neurons, [ReLU activation](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/implementing-relu-sigmoid-and-tanh-in-keras.md), [and by consequence He init](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/he-xavier-initialization-activation-functions-choose-wisely.md).
 
-The decoding layer, which takes the input from the encoding layer, is once again densely-connected. Its output equals the `initial_dimension`, which results in the same shape as we fed it in the first place. It activates with a Sigmoi activation function, so that we can use [binary crossentropy](https://www.machinecurve.com/index.php/2019/10/22/how-to-use-binary-categorical-crossentropy-with-keras/) for computing loss (as we will see next).
+The decoding layer, which takes the input from the encoding layer, is once again densely-connected. Its output equals the `initial_dimension`, which results in the same shape as we fed it in the first place. It activates with a Sigmoi activation function, so that we can use [binary crossentropy](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-binary-categorical-crossentropy-with-keras.md) for computing loss (as we will see next).
 
 ```python
 # Define the layers
@@ -228,7 +228,7 @@ decoder = Model(encoded_input, final_ae_layer(encoded_input), name='decoder')
 
 Next, we can compile both the autoencoder and the encoder segment. We'll need to compile them both, as we'll use them later to generate an image of input and reconstructed output (hence we need `autoencoder`) and visualize the encoded state (hence we need `encoder`). If you only need one of them, it's of course fine to drop any of them.
 
-We'll use the [Adam optimizer](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/) and [binary crossentropy](https://www.machinecurve.com/index.php/2019/10/22/how-to-use-binary-categorical-crossentropy-with-keras/), pretty much the standard settings for today's networks with Sigmoid activation functions.
+We'll use the [Adam optimizer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md) and [binary crossentropy](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-binary-categorical-crossentropy-with-keras.md), pretty much the standard settings for today's networks with Sigmoid activation functions.
 
 ```python
 # Compile the autoencoder
@@ -498,9 +498,9 @@ input_test = input_test / 255
 
 We next define the autoencoder in full. We do so by assigning a new instance of the `Sequential` model type to the `autoencoder` variable. Subsequently, we'll add a densely-connected layer that has `encoded_dim` outputs i.e. neurons - and thus learns the encoded state.
 
-It makes use of [ReLU activation](https://www.machinecurve.com/index.php/2019/09/09/implementing-relu-sigmoid-and-tanh-in-keras/) and by consequence [He initialization](https://www.machinecurve.com/index.php/2019/09/16/he-xavier-initialization-activation-functions-choose-wisely/). The `input_shape` is defined as well as with the Sequential API, the input layer is defined under the hood.
+It makes use of [ReLU activation](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/implementing-relu-sigmoid-and-tanh-in-keras.md) and by consequence [He initialization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/he-xavier-initialization-activation-functions-choose-wisely.md). The `input_shape` is defined as well as with the Sequential API, the input layer is defined under the hood.
 
-Next, we add another densely-connected layer, which converts the representation of `encoded_dim` dimensionality back into the `initial_dimension`, and thus serves as the decoder segment. It makes use of Sigmoid activation in order to allow us to use [binary crossentropy loss](https://www.machinecurve.com/index.php/2019/10/22/how-to-use-binary-categorical-crossentropy-with-keras/).
+Next, we add another densely-connected layer, which converts the representation of `encoded_dim` dimensionality back into the `initial_dimension`, and thus serves as the decoder segment. It makes use of Sigmoid activation in order to allow us to use [binary crossentropy loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-binary-categorical-crossentropy-with-keras.md).
 
 ```python
 # Define the 'autoencoder' full model

@@ -10,7 +10,7 @@ tags:
   - "thomas-rid"
 ---
 
-Since 2012, there has been increasing attention for machine learning and especially [deep learning](https://www.machinecurve.com/index.php/2018/11/23/what-is-deep-learning-exactly/), the ML branch that benefits from more advanced techniques and increased computing resources to equal human-level performance in some domains.
+Since 2012, there has been increasing attention for machine learning and especially [deep learning](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-deep-learning-exactly.md), the ML branch that benefits from more advanced techniques and increased computing resources to equal human-level performance in some domains.
 
 <iframe style="width:120px;height:240px;float:right;margin-bottom:20px;margin-left:20px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&amp;OneJS=1&amp;Operation=GetAdHtml&amp;MarketPlace=US&amp;source=ac&amp;ref=qf_sp_asin_til&amp;ad_type=product_link&amp;tracking_id=webn3rd-20&amp;marketplace=amazon&amp;region=US&amp;placement=1925228649&amp;asins=1925228649&amp;linkId=2e40136a2ca4da0b883932007f7e85d3&amp;show_border=false&amp;link_opens_in_new_window=true&amp;price_color=333333&amp;title_color=0066c0&amp;bg_color=ffffff"></iframe>
 

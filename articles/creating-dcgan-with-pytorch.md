@@ -16,7 +16,7 @@ tags:
   - "pytorch"
 ---
 
-Generative Adversarial Networks have been able to produce images that are _shockingly_ realistic (think [This Person Does Not Exist](https://www.machinecurve.com/index.php/2019/07/17/this-person-does-not-exist-how-does-it-work/)). For this reason, I have started focusing on GANs recently. After reading about [GAN theory](https://www.machinecurve.com/index.php/generative-adversarial-networks-explanations-examples/), I wanted to create a GAN myself. For this reason, I started with a relatively simple type of GAN called the Deep Convolutional GAN. In this article, you will...
+Generative Adversarial Networks have been able to produce images that are _shockingly_ realistic (think [This Person Does Not Exist](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/this-person-does-not-exist-how-does-it-work.md)). For this reason, I have started focusing on GANs recently. After reading about [GAN theory](https://web.archive.org/web/https://www.machinecurve.com/index.php/generative-adversarial-networks-explanations-examples.md), I wanted to create a GAN myself. For this reason, I started with a relatively simple type of GAN called the Deep Convolutional GAN. In this article, you will...
 
 - **Briefly cover what a DCGAN is, to understand what is happening.**
 - **Learn to build a DCGAN with PyTorch.**
@@ -41,9 +41,9 @@ Ready? Let's take a look! 😎
 
 A **Generative Adversarial Network** or GAN for short is a combination of two neural networks and can be used for generative Machine Learning. In other words, and plainer English, it can be used to generate data if it has learned what data it must generate.
 
-As we have seen with [This Person Does Not Exist](https://www.machinecurve.com/index.php/2019/07/17/this-person-does-not-exist-how-does-it-work/), GANs can be used to generate highly realistic pictures of peoples' faces - because that specific GAN has learned to do so. However, GANs can also be used for more serious purposes, such as composing music for movies and for generative medicine, possibly helping us cure disease.
+As we have seen with [This Person Does Not Exist](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/this-person-does-not-exist-how-does-it-work.md), GANs can be used to generate highly realistic pictures of peoples' faces - because that specific GAN has learned to do so. However, GANs can also be used for more serious purposes, such as composing music for movies and for generative medicine, possibly helping us cure disease.
 
-Now, with respect to the **Deep Convolutional GAN** that we will create today, we'll briefly cover its components. If you want to understand DCGANs in more detail, [refer to this article](https://www.machinecurve.com/index.php/2021/03/24/an-introduction-to-dcgans/).
+Now, with respect to the **Deep Convolutional GAN** that we will create today, we'll briefly cover its components. If you want to understand DCGANs in more detail, [refer to this article](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/an-introduction-to-dcgans.md).
 
 A DCGAN is composed of a **Generator** and a **Discriminator**. As you can see in the image below, the Generator takes as input a noise sample, which is taken from a standard normal distribution. It outputs a fake image, which is fed to the Discriminator. The Discriminator itself is trained on real images, and is capable of judging whether the generated image is real or fake. By generating joint loss and subsequent combined optimization, the Discriminator can get better in separating fakes from real, but unknowingly training the Generator in generating better fake images.
 
@@ -190,7 +190,7 @@ Recall that while the Generator generates images, the Discriminator serves as a 
 Like the Generator, the Discriminator is also a `nn.Module` based class with a constructor (`__init__`) and a forward pass definition (`forward`). The forward pass def is simple so will not be explained in detail. For the constructor, here's what happens:
 
 - First of all, the **number of feature maps** is defined. Note that this must be equal to the number of feature maps specified in the Generator.
-- It follows the structure of a [Convolutional Neural Network](https://www.machinecurve.com/index.php/2021/07/08/convolutional-neural-networks-with-pytorch/). Using a stack of `Conv2d` layers, feature maps are generated that help detect certain patterns in the input data. The feature maps of the final `Conv2d` layer are eventually Flattened and passed to a `Linear` (or fully-connected) layer, after which the [Sigmoid](https://www.machinecurve.com/index.php/2021/01/21/using-relu-sigmoid-and-tanh-with-pytorch-ignite-and-lightning/) activation function ensures that the output is in the range `[0, 1]`.
+- It follows the structure of a [Convolutional Neural Network](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/convolutional-neural-networks-with-pytorch.md). Using a stack of `Conv2d` layers, feature maps are generated that help detect certain patterns in the input data. The feature maps of the final `Conv2d` layer are eventually Flattened and passed to a `Linear` (or fully-connected) layer, after which the [Sigmoid](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/using-relu-sigmoid-and-tanh-with-pytorch-ignite-and-lightning.md) activation function ensures that the output is in the range `[0, 1]`.
 - Two-dimensional batch normalization (`BatchNorm2d`) is used to help speed up the training process, as suggested in general and for DCGANs specifically. This is also why, like in the Generator, the `bias` values for the preceding layers are set to `False`.
 - Leaky ReLU with an `alpha=0.2` is used instead of regular ReLU.
 

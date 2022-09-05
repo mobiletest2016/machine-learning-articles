@@ -53,7 +53,7 @@ Make sure to read the rest of this tutorial if you want to understand everything
 
 To show you how to visualize a Keras model, I think it's best if we discussed one first.
 
-Today, we will visualize the [Convolutional Neural Network](https://www.machinecurve.com/index.php/2019/09/17/how-to-create-a-cnn-classifier-with-keras/) that we created earlier to demonstrate the benefits of using CNNs over densely-connected ones.
+Today, we will visualize the [Convolutional Neural Network](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras.md) that we created earlier to demonstrate the benefits of using CNNs over densely-connected ones.
 
 This is the code of that model:
 
@@ -127,7 +127,7 @@ print(f'Test loss: {score[0]} / Test accuracy: {score[1]}')
 
 What does it do?
 
-I'd suggest that you [read the post](https://www.machinecurve.com/index.php/2019/09/17/how-to-create-a-cnn-classifier-with-keras/) if you wish to understand it very deeply, but I'll briefly cover it here.
+I'd suggest that you [read the post](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras.md) if you wish to understand it very deeply, but I'll briefly cover it here.
 
 It simply classifies the MNIST dataset. This dataset contains 28 x 28 pixel images of digits, or numbers between 0 and 9, and our CNN classifies them with a staggering 99% accuracy. It does so by combining two convolutional blocks (which consist of a two-dimensional convolutional layer, two-dimensional max pooling and dropout) with densely-conneted layers. It's the best of both worlds in terms of interpreting the image _and_ generating final predictions.
 
@@ -152,7 +152,7 @@ plot_model(model, to_file='model.png')
 
 From the **Keras utilities**, one needs to import the function, after which it can be used with very minimal parameters:
 
-- The **model instance**, or the model that you created - whether you created it now or preloaded it instead from a model [saved to disk](https://www.machinecurve.com/index.php/2019/05/30/avoid-wasting-resources-with-earlystopping-and-modelcheckpoint-in-keras/).
+- The **model instance**, or the model that you created - whether you created it now or preloaded it instead from a model [saved to disk](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/avoid-wasting-resources-with-earlystopping-and-modelcheckpoint-in-keras.md).
 - And the `to_file` parameter, which essentially specifies a location on disk where the model visualization is stored.
 
 If you wish, you can supply some additional parameters as well:
@@ -283,11 +283,11 @@ _Note that model code is also available [on GitHub](https://github.com/christian
 
 ## References
 
-How to create a CNN classifier with Keras? – MachineCurve. (2019, September 24). Retrieved from [https://www.machinecurve.com/index.php/2019/09/17/how-to-create-a-cnn-classifier-with-keras/](https://www.machinecurve.com/index.php/2019/09/17/how-to-create-a-cnn-classifier-with-keras/)
+How to create a CNN classifier with Keras? – MachineCurve. (2019, September 24). Retrieved from [https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras/](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras.md)
 
 Keras. (n.d.). Visualization. Retrieved from [https://keras.io/visualization/](https://keras.io/visualization/)
 
-Avoid wasting resources with EarlyStopping and ModelCheckpoint in Keras – MachineCurve. (2019, June 3). Retrieved from [https://www.machinecurve.com/index.php/2019/05/30/avoid-wasting-resources-with-earlystopping-and-modelcheckpoint-in-keras/](https://www.machinecurve.com/index.php/2019/05/30/avoid-wasting-resources-with-earlystopping-and-modelcheckpoint-in-keras/)
+Avoid wasting resources with EarlyStopping and ModelCheckpoint in Keras – MachineCurve. (2019, June 3). Retrieved from [https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/avoid-wasting-resources-with-earlystopping-and-modelcheckpoint-in-keras/](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/avoid-wasting-resources-with-earlystopping-and-modelcheckpoint-in-keras.md)
 
 pydot issue · Issue #7 · XifengGuo/CapsNet-Keras. (n.d.). Retrieved from [https://github.com/XifengGuo/CapsNet-Keras/issues/7#issuecomment-536100376](https://github.com/XifengGuo/CapsNet-Keras/issues/7#issuecomment-536100376)
 

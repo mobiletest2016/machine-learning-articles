@@ -14,7 +14,7 @@ tags:
   - "tensorflow"
 ---
 
-A few years ago, some people argued that being a data scientist meant that you had the sexiest job of the 21st Century. Who's to disagree: being one, you're responsible for [diving into](https://www.machinecurve.com/index.php/2017/09/30/the-differences-between-artificial-intelligence-machine-learning-more/) (sometimes big) datasets, finding relevant results for business, and reporting about them so that new opportunities can be created. This requires that you develop intuition for both business and technology as well as the capability of working in both worlds. It's in fact a very challenging but rewarding path, as salaries for data scientists are quite substantial.
+A few years ago, some people argued that being a data scientist meant that you had the sexiest job of the 21st Century. Who's to disagree: being one, you're responsible for [diving into](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/the-differences-between-artificial-intelligence-machine-learning-more.md) (sometimes big) datasets, finding relevant results for business, and reporting about them so that new opportunities can be created. This requires that you develop intuition for both business and technology as well as the capability of working in both worlds. It's in fact a very challenging but rewarding path, as salaries for data scientists are quite substantial.
 
 Now, Machine Learning - which I often describe as automatically finding patterns in datasets that can be used for predictive purposes, by means of some type of model architecture - is one of the sub branches of data science related jobs. Becoming a machine learning engineer puts you at the technology side of the data science spectrum. Requiring some intuition about mathematics (but not necessarily a maths degree!), as well as some interest and expertise with programming languages such as Python, you could be responsible for creating a variety of predictive models that serve the future needs of the organization you're working for.
 
@@ -54,11 +54,11 @@ And that's why we'll focus on them in this article explaining how to create your
 
 ## Installing TensorFlow with Conda
 
-When you're a data scientist, using TensorFlow for creating machine learning models is likely not the only thing you will do - or if not it could be that you need other libraries such as PyTorch or [Scikit-learn](https://www.machinecurve.com/index.php/how-to-use-scikit-learn-for-machine-learning-with-python-mastering-scikit/) to do the job. To just give a few examples:
+When you're a data scientist, using TensorFlow for creating machine learning models is likely not the only thing you will do - or if not it could be that you need other libraries such as PyTorch or [Scikit-learn](https://web.archive.org/web/https://www.machinecurve.com/index.php/how-to-use-scikit-learn-for-machine-learning-with-python-mastering-scikit/) to do the job. To just give a few examples:
 
 - It could very much be the case that you will be asked to filter data from CSV files by means of [Pandas](https://pandas.pydata.org/).
 - You might need Scikit-learn or PyTorch to run another person's Machine Learning model.
-- Or, when it comes to big data, it could be that you need to run data processing jobs on [Apache Spark](https://www.machinecurve.com/index.php/2020/10/22/distributed-training-tensorflow-and-keras-models-with-apache-spark/).
+- Or, when it comes to big data, it could be that you need to run data processing jobs on [Apache Spark](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/distributed-training-tensorflow-and-keras-models-with-apache-spark.md).
 
 You will need a variety of Python libraries (also called 'packages') to make this happen - think `pyspark`, `pandas`, `sklearn`, `pytorch`, `tensorflow`, to name just a few.
 
@@ -173,7 +173,7 @@ Exciting stuff, we're going to build our first neural network using TensorFlow a
 
 ### Today's Dataset
 
-Let's now take a look at the dataset that we will be using today. For your first Machine Learning project, you will build what is known as a [classifier](https://www.machinecurve.com/index.php/2020/10/19/3-variants-of-classification-problems-in-machine-learning/) - a system that allows you to assign an input to one of multiple (sometimes two, sometimes more) buckets. We will train the classifier on the [MNIST dataset](https://www.machinecurve.com/index.php/2019/12/31/exploring-the-keras-datasets/), which contains thousands of handwritten digits from 0 to 9:
+Let's now take a look at the dataset that we will be using today. For your first Machine Learning project, you will build what is known as a [classifier](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/3-variants-of-classification-problems-in-machine-learning.md) - a system that allows you to assign an input to one of multiple (sometimes two, sometimes more) buckets. We will train the classifier on the [MNIST dataset](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets.md), which contains thousands of handwritten digits from 0 to 9:
 
 ![](images/mnist-visualize.png)
 
@@ -222,7 +222,7 @@ def load_data():
   return tensorflow.keras.datasets.mnist.load_data(path="mnist.npz")
 ```
 
-Per the Keras datasets `load_data` function, we can easily load the MNIST data - one of the benefits of Keras, which comes with [preinstalled datasets](https://www.machinecurve.com/index.php/2019/12/31/exploring-the-keras-datasets/).
+Per the Keras datasets `load_data` function, we can easily load the MNIST data - one of the benefits of Keras, which comes with [preinstalled datasets](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets.md).
 
 #### Creating the model
 
@@ -243,7 +243,7 @@ def create_model():
 
 #### Compiling the model
 
-Above, we just created a _skeleton_ of the model. That is, we didn't create a working model yet, but simply described what it should look like. Compiling a model involves specifying an optimization mechanism ([Adam](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/) in our case) and [loss function](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/):
+Above, we just created a _skeleton_ of the model. That is, we didn't create a working model yet, but simply described what it should look like. Compiling a model involves specifying an optimization mechanism ([Adam](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md) in our case) and [loss function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md):
 
 ```
 # Model compilation
@@ -412,13 +412,13 @@ model = test_model(model, X_test, y_test)
 
 Great! You just completed creating your first Machine Learning model with TensorFlow and Keras! 🎉 Perhaps, you've gained some momentum now, and you're interested in adding extra bits of knowledge to your Machine Learning toolbox. In those cases, I would like to recommend you to the following further readings:
 
-1. Extending the monitoring (for which you used a simple `model.evaluate` call and validation data) to a more extensive form of monitoring, with [TensorBoard](https://www.machinecurve.com/index.php/2019/11/13/how-to-use-tensorboard-with-keras/).
-2. Understanding [Convolutional Neural Networks](https://www.machinecurve.com/index.php/2018/12/07/convolutional-neural-networks-and-their-components-for-computer-vision/) and what they do in more detail.
+1. Extending the monitoring (for which you used a simple `model.evaluate` call and validation data) to a more extensive form of monitoring, with [TensorBoard](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-tensorboard-with-keras.md).
+2. Understanding [Convolutional Neural Networks](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/convolutional-neural-networks-and-their-components-for-computer-vision.md) and what they do in more detail.
 3. Reading more about how models are optimized:
-    1. [The high-level supervised machine learning process](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#the-high-level-supervised-learning-process)
-    2. [Loss and loss functions](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/)
-    3. [Gradient descent based optimization](https://www.machinecurve.com/index.php/2019/10/24/gradient-descent-and-its-variants/)
-    4. [Adaptive optimizers](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/)
+    1. [The high-level supervised machine learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process)
+    2. [Loss and loss functions](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md)
+    3. [Gradient descent based optimization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md)
+    4. [Adaptive optimizers](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md)
 
 * * *
 

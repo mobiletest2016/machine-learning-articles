@@ -20,7 +20,7 @@ Computer vision has a few sub disciplines - and image segmentation is one of the
 
 One of the prominent architectures in the image segmentation community is **U-Net**. Having been named after its shape, the fully-convolutional architecture first contracts an image followed by its expansion into the outcome. While this contracting path builds up a hierarchy of learned features, skip connections help transform these features back into a relevant model output in the expansive path.
 
-While you can learn more about the U-net architecture [by clicking this link](https://www.machinecurve.com/index.php/2022/01/28/u-net-a-step-by-step-introduction/), this article focuses on a practical implementation. Today, you will learn to build a U-Net architecture from scratch. You will use TensorFlow and Keras for doing so. Firstly, you're going to briefly cover the components of a U-Net at a high level. This is followed by a step-by-step tutorial for implementing U-Net yourself. Finally, we're going to train the network on the Oxford-IIIT Pet Dataset from scratch, show you what can be achieved _and_ how to improve even further!
+While you can learn more about the U-net architecture [by clicking this link](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/u-net-a-step-by-step-introduction.md), this article focuses on a practical implementation. Today, you will learn to build a U-Net architecture from scratch. You will use TensorFlow and Keras for doing so. Firstly, you're going to briefly cover the components of a U-Net at a high level. This is followed by a step-by-step tutorial for implementing U-Net yourself. Finally, we're going to train the network on the Oxford-IIIT Pet Dataset from scratch, show you what can be achieved _and_ how to improve even further!
 
 So, after reading this tutorial, you will understand...
 
@@ -42,7 +42,7 @@ When you ask a computer vision engineer about _image segmentation_, it's likely 
 
 The U-Net, which is named after its shape, is a convolutional architecture originally proposed by Ronneberger et al. (2015) for use in the biomedical sciences. More specifically, it is used for cell segmentation, and worked really well compared to approaches previously used in the field.
 
-MachineCurve has an [in-depth article explaining U-Net](https://www.machinecurve.com/index.php/2022/01/28/u-net-a-step-by-step-introduction/), and here we will review the components at a high-level only. U-Nets are composed of three component groups:
+MachineCurve has an [in-depth article explaining U-Net](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/u-net-a-step-by-step-introduction.md), and here we will review the components at a high-level only. U-Nets are composed of three component groups:
 
 1. **A contracting path**. Visible to the left in the image below, groups of convolutions and pooling layers are used to downsample the image, sometimes even halving it in size. The contracting path learns a hierarchy of features at varying levels of granularity.
 2. **An expansive path**. To the right, you see groups of _upsampling layers_ (whether simple interpolation layers or transposed convolutions) that upsample the resolution of the input image. In other words, from the contracted input, the network tries to construct a higher-resolution output.
@@ -153,7 +153,7 @@ def configuration():
 - The number of feature maps generated at the first U-net convolutional block will be 64. In total, your network will consist of 3 U-Net blocks (the sketch above has 5, but we found 3 to work better on this dataset) and will have 3 feature maps in the _final 1x1 Conv layer_. It's set to 3 because our dataset has three possible classes to assign to each pixel - in other words, it should be equal to the number of classes in your dataset.
 - The width and height of our input image will be 100 pixels. Dimensionality of the input will be 3 channels (it's an RGB image).
 - The width and height of the output mask will be 60 pixels. Indeed, in the original U-Net architecture input and output size is not equal to each other!
-- Model wise, the Adam optimizer, sparse categorical crossentropy and He normal initialization are used. For the Adam optimizer, we use a learning rate schedule called `PiecewiseConstantDecay`. This schedule ensures that the learning rate is set to a preconfigured value after a predefined amount of training time. We start with a learning rate of `3e-4` (i.e., 0.0003) and decrease to `1e-4`, `1e-5` and `1e-6` after 20%, 50% and 80% of training. Decreasing your learning rate will help you move towards an optimum in a better way. [Read here why.](https://www.machinecurve.com/index.php/2019/11/11/problems-with-fixed-and-decaying-learning-rates/)
+- Model wise, the Adam optimizer, sparse categorical crossentropy and He normal initialization are used. For the Adam optimizer, we use a learning rate schedule called `PiecewiseConstantDecay`. This schedule ensures that the learning rate is set to a preconfigured value after a predefined amount of training time. We start with a learning rate of `3e-4` (i.e., 0.0003) and decrease to `1e-4`, `1e-5` and `1e-6` after 20%, 50% and 80% of training. Decreasing your learning rate will help you move towards an optimum in a better way. [Read here why.](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/problems-with-fixed-and-decaying-learning-rates.md)
 - Training wise, we generate batches of 50 pixels and perform shuffling with a 50 buffer size, and train the model for 50 epochs.
 - As an additional metric, we use `accuracy`.
 - Our dataset will be located in the current working directory, `data` sub folder. 5 sub splits are used for validation purposes.
@@ -203,7 +203,7 @@ def conv_block(x, filters, last_block):
 	return x, skip_input
 ```
 
-Each convolutional block, per the Ronneberger et al. (2015) paper, is composed of two 3x3 convolutional blocks the output of which are each ReLU activated. Per the configuration, He initialization is used ([because we use ReLU activation](https://www.machinecurve.com/index.php/2019/09/16/he-xavier-initialization-activation-functions-choose-wisely/)).
+Each convolutional block, per the Ronneberger et al. (2015) paper, is composed of two 3x3 convolutional blocks the output of which are each ReLU activated. Per the configuration, He initialization is used ([because we use ReLU activation](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/he-xavier-initialization-activation-functions-choose-wisely.md)).
 
 > It consists of the repeated application of two 3x3 convolutions (unpadded convolutions), each followed by a rectified linear unit (ReLU) and a 2x2 max pooling operation with stride 2 for downsampling.
 > 
@@ -296,8 +296,8 @@ Per the design of U-Net, the first step is performing upsampling. In the image t
 
 In computer vision models, there are two primary ways of performing **upsampling**:
 
-- **By means of interpolation.** This is the classic approach and is used by Ronneberger et al. (2015). An interpolation function, such as bicubic interpolation, is used to compute the missing pixels. In TensorFlow and Keras, this functionality is covered by the [Upsampling](https://www.machinecurve.com/index.php/2019/12/11/upsampling2d-how-to-use-upsampling-with-keras/) blocks.
-- **By means of learned upsampling with [transposed convolutions](https://www.machinecurve.com/index.php/2019/09/29/understanding-transposed-convolutions/).** Another approach would be using transposed convolutions, which are convolutions that work the other way around. Instead of using learned kernels/filters to _down_sample a larger image, they _up_sample the image, but also by using learned kernels/filters! In TensorFlow, these are represented by meansa of `[ConvXDTranspose](https://www.machinecurve.com/index.php/2019/12/10/conv2dtranspose-using-2d-transposed-convolutions-with-keras/)`. You will be using this type of upsampling because it is (1) more common today and (2) makes the whole model use trainable parameters where possible.
+- **By means of interpolation.** This is the classic approach and is used by Ronneberger et al. (2015). An interpolation function, such as bicubic interpolation, is used to compute the missing pixels. In TensorFlow and Keras, this functionality is covered by the [Upsampling](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/upsampling2d-how-to-use-upsampling-with-keras.md) blocks.
+- **By means of learned upsampling with [transposed convolutions](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/understanding-transposed-convolutions.md).** Another approach would be using transposed convolutions, which are convolutions that work the other way around. Instead of using learned kernels/filters to _down_sample a larger image, they _up_sample the image, but also by using learned kernels/filters! In TensorFlow, these are represented by meansa of `[ConvXDTranspose](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/conv2dtranspose-using-2d-transposed-convolutions-with-keras.md)`. You will be using this type of upsampling because it is (1) more common today and (2) makes the whole model use trainable parameters where possible.
 
 So, the first processing that happens to your input Tensor `x` is upsampling by means of `Conv2DTranspose`.
 
@@ -449,7 +449,7 @@ The following happens within this definition:
 - The learning rate schedule is constructed from the percentages by computing the boundaries - which are the number of iterations that must be passed. Note that an iteration here is a batch of data being fed through the network; the number of samples divided by your batch size yields the number of iterations in one epoch). So, to compute the boundaries, we take the number of epochs, the particular percentage, and the number of steps (batches) per epoch. You then initialize the learning rate schedule with the boundaries and corresponding learning rate values (which are discussed in the section about model configuration).
 - Then, the optimizer is initialized with the learning rate schedule.
 - Now, you can compile your model as is standard with TensorFlow models.
-- Some utilities will now describe your model - both [visually](https://www.machinecurve.com/index.php/2019/10/07/how-to-visualize-a-model-with-keras/) and by means of a [summary](https://www.machinecurve.com/index.php/2020/04/01/how-to-generate-a-summary-of-your-keras-model/).
+- Some utilities will now describe your model - both [visually](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-a-model-with-keras.md) and by means of a [summary](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-generate-a-summary-of-your-keras-model.md).
 - Finally, you return the initialized `model`.
 
 ```
@@ -650,7 +650,7 @@ def preprocess_dataset(data, dataset_type, dataset_info):
 
 #### Training callbacks
 
-What's left is writing some utility functions. If you're familiar with TensorFlow, it's likely that you know about the [Keras callbacks](https://www.machinecurve.com/index.php/2020/11/10/an-introduction-to-tensorflow-keras-callbacks/). These can be used to allow certain actions to take place at specific steps in your training process.
+What's left is writing some utility functions. If you're familiar with TensorFlow, it's likely that you know about the [Keras callbacks](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/an-introduction-to-tensorflow-keras-callbacks.md). These can be used to allow certain actions to take place at specific steps in your training process.
 
 Today, we're using these callbacks to integrate TensorBoard logging into your model. This way, you'll be able to evaluate progress and model training during and after your training process.
 

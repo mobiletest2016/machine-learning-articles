@@ -13,7 +13,7 @@ tags:
 
 Transformers are taking the world of NLP by storm. After being introduced in Vaswani et al.'s _Attention is all you need_ work back in 2017, they - and particularly their self-attention mechanism requiring no recurrent elements to be used anymore - have proven to show state-of-the-art performance on a wide variety of language tasks.
 
-Nevertheless, what's good can still be improved, and this process has been applied to Transformers as well. After the introduction of the 'vanilla' Transformer by Vaswani and colleagues, a group of people at OpenAI have [used just the decoder segment](https://www.machinecurve.com/index.php/2021/01/02/intuitive-introduction-to-openai-gpt/) and built a model that works great. However, according to Devlin et al., the authors of a 2018 paper about pretrained Transformers in NLP, they do one thing wrong: the attention that they apply is [unidirectional](https://www.machinecurve.com/index.php/question/what-are-unidirectional-language-models/).
+Nevertheless, what's good can still be improved, and this process has been applied to Transformers as well. After the introduction of the 'vanilla' Transformer by Vaswani and colleagues, a group of people at OpenAI have [used just the decoder segment](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/intuitive-introduction-to-openai-gpt.md) and built a model that works great. However, according to Devlin et al., the authors of a 2018 paper about pretrained Transformers in NLP, they do one thing wrong: the attention that they apply is [unidirectional](https://web.archive.org/web/https://www.machinecurve.com/index.php/question/what-are-unidirectional-language-models.md).
 
 This hampers learning unnecessarily, they argue, and they proposed a bidirectional variant instead: BERT, or **Bidirectional Encoder Representations from Transformers**. It is covered in this article. Firstly, we'll briefly take a look at _finetuning-based approaches in NLP_, which is followed by BERT as well. It is necessary to get sufficient context for reading about how BERT works: we'll cover both the architecture i.e. the _what_ and how BERT is trained i.e. the _why_. This includes a detailed look at how the inputs to a BERT model must be constructed.
 
@@ -61,7 +61,7 @@ Let's take a look at how it works. Firstly, we'll cover the _why_: we will see t
 
 ### Why BERT?
 
-One of the first questions that I had when reading the BERT paper was "why"? Why BERT? What makes it better than other approaches, such as the vanilla Transformer proposed by Vaswani et al. (2017) or the [GPT model](https://www.machinecurve.com/index.php/2021/01/02/intuitive-introduction-to-openai-gpt/) which utilizes the decoder segment of the original Transformer together with pretraining?
+One of the first questions that I had when reading the BERT paper was "why"? Why BERT? What makes it better than other approaches, such as the vanilla Transformer proposed by Vaswani et al. (2017) or the [GPT model](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/intuitive-introduction-to-openai-gpt.md) which utilizes the decoder segment of the original Transformer together with pretraining?
 
 The authors argue as follows:
 
@@ -71,11 +71,11 @@ The authors argue as follows:
 
 What does this mean? We'll have to briefly take a look at e.g. the GPT model to know for sure - why **unidirectional models** can underperform.
 
-From our [article about GPT](https://www.machinecurve.com/index.php/2021/01/02/intuitive-introduction-to-openai-gpt/): "The input is then served to a masked multi-head attention segment, which computes self-attention in a unidirectional way. Here, the residual is added and the result is layer normalized."
+From our [article about GPT](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/intuitive-introduction-to-openai-gpt.md): "The input is then served to a masked multi-head attention segment, which computes self-attention in a unidirectional way. Here, the residual is added and the result is layer normalized."
 
-Indeed, GPT (which uses the Transformer decoder segment [autoregressively during pretraining](https://www.machinecurve.com/index.php/2020/12/29/differences-between-autoregressive-autoencoding-and-sequence-to-sequence-models-in-machine-learning/)) and the original Transformer (which performs [Seq2Seq](https://www.machinecurve.com/index.php/2020/12/29/differences-between-autoregressive-autoencoding-and-sequence-to-sequence-models-in-machine-learning/)), apply a mask in one of the attention modules - the _masked multi-head self-attention subsegment_ in the decoder segment.
+Indeed, GPT (which uses the Transformer decoder segment [autoregressively during pretraining](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/differences-between-autoregressive-autoencoding-and-sequence-to-sequence-models-in-machine-learning.md)) and the original Transformer (which performs [Seq2Seq](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/differences-between-autoregressive-autoencoding-and-sequence-to-sequence-models-in-machine-learning.md)), apply a mask in one of the attention modules - the _masked multi-head self-attention subsegment_ in the decoder segment.
 
-For any token, this mask sets the values for any future tokens to infinite, as can be seen in the example below. For example, for the doken "am", "doing ok" is set to minus infinite, so that after applying [Softmax activation](https://www.machinecurve.com/index.php/2020/01/08/how-does-the-softmax-activation-function-work/) the attention to future tokens is zero. This ensures
+For any token, this mask sets the values for any future tokens to infinite, as can be seen in the example below. For example, for the doken "am", "doing ok" is set to minus infinite, so that after applying [Softmax activation](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-does-the-softmax-activation-function-work.md) the attention to future tokens is zero. This ensures
 
 ![](images/Diagram-20-1024x282.png)
 
@@ -99,7 +99,7 @@ Say hello to BERT :)
 
 ### Transformer encoder segment
 
-First: the architecture. Understanding BERT requires you to [understand the Vanilla Transformer first](https://www.machinecurve.com/index.php/2020/12/28/introduction-to-transformers-in-machine-learning/), because BERT utilizes the encoder segment of the original Transformer as the architecture.
+First: the architecture. Understanding BERT requires you to [understand the Vanilla Transformer first](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/introduction-to-transformers-in-machine-learning.md), because BERT utilizes the encoder segment of the original Transformer as the architecture.
 
 This segment looks as follows:
 
@@ -108,7 +108,7 @@ This segment looks as follows:
 It has two subsegments:
 
 - The **multi-head attention segment**, which computes self-attention over the inputs, then adds back the residual and layer normalizes everything. The attention head can be split into multiple segments, hence the name _multi-head_.
-    - The multi-head attention segment differentiates itself from the _masked_ multi-head attention segment [used by the GPT model](https://www.machinecurve.com/index.php/2021/01/02/intuitive-introduction-to-openai-gpt/) and is why Devlin et al. (2018) propose BERT. It's exactly the same, except for the mask. In other words, this is how bidirectionality is added to the self-attention mechanism.
+    - The multi-head attention segment differentiates itself from the _masked_ multi-head attention segment [used by the GPT model](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/intuitive-introduction-to-openai-gpt.md) and is why Devlin et al. (2018) propose BERT. It's exactly the same, except for the mask. In other words, this is how bidirectionality is added to the self-attention mechanism.
 - The **feedforward segment**, which is applied to each individual input, after which the residual and layer normalization is performed once again.
 
 BERT specifically comes in two flavors:
@@ -116,7 +116,7 @@ BERT specifically comes in two flavors:
 - **BERT base** (\[latex\]\\text{BERT}\_\\text{BASE}\[/latex\]), which has 12 Encoder Segments stacked on top of each other, has 768-dimensional intermediate state, and utilizes 12 attention heads (with hence 768/12 = 64-dimensional attention heads).
 - **BERT large** (\[latex\]\\text{BERT}\_\\text{LARGE}\[/latex\]), which has 24 Encoder Segments, 1024-dimensional intermediate state, and 16 attention heads (64-dimensional attention heads again).
 
-The models are huge: the BERT base model has 110 million trainable parameters; the BERT large model has 340 million (Devlin et al., 2018). In comparison, classic vanilla ConvNets have hundreds of thousands [to a few million](https://www.machinecurve.com/index.php/2020/01/31/reducing-trainable-parameters-with-a-dense-free-convnet-classifier/). Training them hence requires a lot of resources: in the case of [GPT](https://www.machinecurve.com/index.php/2021/01/02/intuitive-introduction-to-openai-gpt/), it's not strange to find that they have to be pretrained for a month using massive machinery, whereas fine-tuning is more cost efficient.
+The models are huge: the BERT base model has 110 million trainable parameters; the BERT large model has 340 million (Devlin et al., 2018). In comparison, classic vanilla ConvNets have hundreds of thousands [to a few million](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/reducing-trainable-parameters-with-a-dense-free-convnet-classifier.md). Training them hence requires a lot of resources: in the case of [GPT](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/intuitive-introduction-to-openai-gpt.md), it's not strange to find that they have to be pretrained for a month using massive machinery, whereas fine-tuning is more cost efficient.
 
 Speaking about training, let's now take a look at how BERT is actually trained.
 
@@ -126,7 +126,7 @@ Pretraining a language model like BERT allows us to take a look at two things: t
 
 With respect to the task, we must actually say _tasks_: during pretraining of BERT, the model is trained for a combination of two tasks. The first task is a **Masked Language Model** (MLM) task and the second one is a **Next Sentence Prediction** (NSP) task.
 
-We'll cover the tasks themselves later. If we want to understand them, we must first take a look at what the input to BERT looks like. Put simply: each input to a BERT mode is either a whole sentence or two sentences packed together. All the words are tokenized and (through BERT) converted into a [word embedding](https://www.machinecurve.com/index.php/2020/03/03/classifying-imdb-sentiment-with-keras-and-embeddings-dropout-conv1d/).
+We'll cover the tasks themselves later. If we want to understand them, we must first take a look at what the input to BERT looks like. Put simply: each input to a BERT mode is either a whole sentence or two sentences packed together. All the words are tokenized and (through BERT) converted into a [word embedding](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/classifying-imdb-sentiment-with-keras-and-embeddings-dropout-conv1d.md).
 
 Visually, this input looks as follows. Below the image, we'll cover each component in plain English.
 
@@ -163,7 +163,7 @@ Let's now take a look at each of the tasks in more detail.
 
 #### Task 1: Masked Language Modeling (MLM)
 
-The first task performed during pretraining is a **Masked Language Modeling** (MLM) task. It looks like the autoregressive Language Modeling task performed by the [GPT model](https://www.machinecurve.com/index.php/2021/01/02/intuitive-introduction-to-openai-gpt/), which involves predicting the next token given the previous tokens, but it is in fact slightly different.
+The first task performed during pretraining is a **Masked Language Modeling** (MLM) task. It looks like the autoregressive Language Modeling task performed by the [GPT model](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/intuitive-introduction-to-openai-gpt.md), which involves predicting the next token given the previous tokens, but it is in fact slightly different.
 
 In Masked Language Modeling, an input sequence of tokens is provided, but with some of these tokens masked. The goal of the model is then to learn to predict the correct tokens that are hidden by the mask. If it can do so, it can learn token-level information given the context of the token.
 
@@ -181,7 +181,7 @@ Constructing a training dataset for this task is simple: given an unlabeled corp
 
 As we can see from the BERT input structure above, during pretraining, BERT is trained jointly on both the MLM and NSP tasks. We can also see that the input structure supports this through the specific way of inputting data by means of <CLS>, <Tokens for A>, <SEP> and <Tokens for B>.
 
-BERT is pretrained on two datasets. The first dataset that is being used is the BooksCorpus dataset, which contains 800 million words from "more than 7.000 unpublished books. It includes many genres and hence texts from many domains, such as adventure, fantasy and romance", we wrote in our article about GPT, which is pretrained on [the same dataset](https://www.machinecurve.com/index.php/2021/01/02/intuitive-introduction-to-openai-gpt/).
+BERT is pretrained on two datasets. The first dataset that is being used is the BooksCorpus dataset, which contains 800 million words from "more than 7.000 unpublished books. It includes many genres and hence texts from many domains, such as adventure, fantasy and romance", we wrote in our article about GPT, which is pretrained on [the same dataset](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/intuitive-introduction-to-openai-gpt.md).
 
 BooksCorpus is however not the only dataset that is used for pretraining. The English Wikipedia dataset, with 2500 million words, is used as well. First, all lists, tables, headers and images are removed from the texts, because they have no linguistic representation whatsoever and are specific to Wikipedia (Devlin et al., 2018). Then, the texts are used.
 
@@ -212,7 +212,7 @@ In other words, the pretrained version of BERT is a really good starting point f
 
 The benefit of BERT compared to previous approaches such as GPT is bidirectionality. In the attention segment, both during pretraining and fine-tuning, the self-attention subsegment does not use a mask for hiding "inputs from the future". The effect is that inputs can both learn from the past and from the future, which can be a necessary thing for many downstream tasks.
 
-[Ask a question](https://www.machinecurve.com/index.php/add-machine-learning-question/)
+[Ask a question](https://web.archive.org/web/https://www.machinecurve.com/index.php/add-machine-learning-question/)
 
 I hope that you have learned something from this article! If you did, please feel free to leave a message in the comments section. I'd love to hear from you 💬 If you have questions, please feel free to leave a question through the Ask Questions button above. Where possible, I'll try to answer as soon as I can.
 

@@ -123,7 +123,7 @@ If you're already very familiar with those basic concepts in machine learning / 
 
 ### What is a classifier?
 
-Suppose that you work in the field of separating non-ripe tomatoes from the ripe ones. It's an important job, one can argue, because we don't want to sell customers tomatoes they can't process into dinner. It's the perfect job to illustrate what a human [classifier](https://www.machinecurve.com/index.php/2020/10/19/3-variants-of-classification-problems-in-machine-learning/) would do.
+Suppose that you work in the field of separating non-ripe tomatoes from the ripe ones. It's an important job, one can argue, because we don't want to sell customers tomatoes they can't process into dinner. It's the perfect job to illustrate what a human [classifier](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/3-variants-of-classification-problems-in-machine-learning.md) would do.
 
 Humans have a perfect eye to spot tomatoes that are not ripe or that have any other defect, such as being rotten. They derive certain characteristics for those tomatoes, e.g. based on color, smell and shape:
 
@@ -151,7 +151,7 @@ Suppose that you have an image. In the case of the humans classifying tomatoes a
 
 You wish to detect certain characteristics from the object in order to classify them. This means that you'll have to make a _summary_ of those characteristics that gets more abstract over time. For example, with the tomatoes above, humans translate their continuous stream of observation into a fixed set of intuitive rules about when to classify a tomato as non-sellable; i.e., the three rules specified above.
 
-Machine learning models and especially [convolutional neural networks (CNNs)](https://www.machinecurve.com/index.php/2018/12/07/convolutional-neural-networks-and-their-components-for-computer-vision/) do the same thing.
+Machine learning models and especially [convolutional neural networks (CNNs)](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/convolutional-neural-networks-and-their-components-for-computer-vision.md) do the same thing.
 
 ![](images/Cnn_layer-1.jpg)
 
@@ -171,7 +171,7 @@ Hence, by creating an abstract summary with a Convolutional Neural Network, it's
 
 ## Today's dataset
 
-For the model that we'll create today, we're going to use the MNIST [dataset](https://www.machinecurve.com/index.php/2019/12/31/exploring-the-keras-datasets/). The dataset, or the Modified National Institute of Standards and Technology database, contains many thousands of 28x28 pixel images of handwritten numbers, like this:
+For the model that we'll create today, we're going to use the MNIST [dataset](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets.md). The dataset, or the Modified National Institute of Standards and Technology database, contains many thousands of 28x28 pixel images of handwritten numbers, like this:
 
 ![](images/mnist-visualize.png)
 
@@ -209,13 +209,13 @@ from tensorflow.keras.layers import Dense, Dropout, Flatten
 from tensorflow.keras.layers import Conv2D, MaxPooling2D
 ```
 
-Obviously, we need **Keras** since it's the framework we're working with. We import the `mnist` dataset and benefit from the fact that it [comes with Keras by default](https://www.machinecurve.com/index.php/2019/12/31/exploring-the-keras-datasets/) - we don't have a lot of trouble using it.
+Obviously, we need **Keras** since it's the framework we're working with. We import the `mnist` dataset and benefit from the fact that it [comes with Keras by default](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets.md) - we don't have a lot of trouble using it.
 
 With respect to the layers, we will primarily use the **Conv2D** and **Dense** layers - I would say that these constitute the _core_ of your deep learning model. The Conv2D layers will provide these _magnifier_ operations that I discussed before, at two dimensions (like on the image above). That means: it slides with a small 2D box over a larger 2D box, being the image. It goes without saying that one can also apply 3D convolutional layers (for analyzing videos, with boxes sliding over a larger box) and 1D convolutional layers (for analyzing e.g. timeseries, with 'pixels' / points on a line sliding over the line).
 
 We use the Dense layers later on for generating predictions (_classifications_) as it's the structure used for that.
 
-However, we'll also use **[Dropout](https://www.machinecurve.com/index.php/2019/12/18/how-to-use-dropout-with-keras/)**, **Flatten** and **[MaxPooling2D](https://www.machinecurve.com/index.php/2020/01/30/what-are-max-pooling-average-pooling-global-max-pooling-and-global-average-pooling/)**. A max pooling layer is often added after a Conv2D layer and it also provides a magnifier operation, although a different one. In the 2D case, it also slides with a box over the image (or in that case, the 'convolutional maps' generated by the first convolutional layer, i.e. the summarized image) and for every slide picks the maximum value for further propagation. In short, it generates an even stronger summary and can be used to induce sparsity when data is large.
+However, we'll also use **[Dropout](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-dropout-with-keras.md)**, **Flatten** and **[MaxPooling2D](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-are-max-pooling-average-pooling-global-max-pooling-and-global-average-pooling.md)**. A max pooling layer is often added after a Conv2D layer and it also provides a magnifier operation, although a different one. In the 2D case, it also slides with a box over the image (or in that case, the 'convolutional maps' generated by the first convolutional layer, i.e. the summarized image) and for every slide picks the maximum value for further propagation. In short, it generates an even stronger summary and can be used to induce sparsity when data is large.
 
 Flatten connects the convolutional parts of the layer with the Dense parts. Those latter ones can only handle flat data, e.g. onedimensional data, but convolutional outputs are anything but onedimensional. Flatten simply takes all dimensions and concatenates them after each other.
 
@@ -258,7 +258,7 @@ input_test = input_test / 255
 
 We first reshape our input data (the feature vectors). As you can see with the `input_shape`, it's the way your data must be built up to be handled correctly by the framework.
 
-We then parse the numbers as floats, especially 32-bit floats. This [optimizes the trade-off between memory and number precision](https://www.machinecurve.com/index.php/2020/09/16/tensorflow-model-optimization-an-introduction-to-quantization/#float32-in-your-ml-model-why-its-great) over e.g. integers and 64-bit floats.
+We then parse the numbers as floats, especially 32-bit floats. This [optimizes the trade-off between memory and number precision](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tensorflow-model-optimization-an-introduction-to-quantization/#float32-in-your-ml-model-why-its-great) over e.g. integers and 64-bit floats.
 
 Finally, we convert the numbers to greyscale by dividing all (numeric!) image samples by 255. This allows them to be converted to the interval \[0, 1\] - or, greyscale. Why we do this? Because we don't care about the color of a number, only about the number itself.
 
@@ -272,14 +272,14 @@ target_train = tensorflow.keras.utils.to_categorical(target_train, no_classes)
 target_test = tensorflow.keras.utils.to_categorical(target_test, no_classes)
 ```
 
-In a different post explaining [how to create MLPs with Keras](https://machinecurve.com/index.php/2019/07/27/how-to-create-a-basic-mlp-classifier-with-the-keras-sequential-api/), I explained the need for categorical data as being dependent on the loss function (the means of computing the difference between actual targets and generated predictions during passing the data forward):
+In a different post explaining [how to create MLPs with Keras](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-basic-mlp-classifier-with-the-keras-sequential-api.md), I explained the need for categorical data as being dependent on the loss function (the means of computing the difference between actual targets and generated predictions during passing the data forward):
 
 >   
 > For those problems, we need a loss function that is called _categorical crossentropy._ In plain English, I always compare it with a purple elephant 🐘.  
 >   
 > Suppose that the relationships in the real world (which are captured by your training date) together compose a purple elephant (a.k.a. distribution). We next train a machine learning model that attempts to be as accurate as the original data; hence attempting to classify data as that purple elephant. How well the model is capable of doing that is what is called a _loss_, and the loss function allows one to compare one distribution (elephant) with the other (hopefully the same elephant). Cross entropy allows one to compare those. We can't use the binary variant (it only compares two elephants), but need the _categorical_ one (which can compare multiple elephants). This however requires us to 'lock' the set of elephants first, to avoid that another one is added somehow. This is called _categorical data_: it belongs to a fixed set of categories (Chollet, 2017).
 > 
-> [How to create a basic MLP classifier with the Keras Sequential API](https://machinecurve.com/index.php/2019/07/27/how-to-create-a-basic-mlp-classifier-with-the-keras-sequential-api/)
+> [How to create a basic MLP classifier with the Keras Sequential API](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-basic-mlp-classifier-with-the-keras-sequential-api.md)
 
 I suggest to click the link above if you wish to understand `to_categorical` at a deeper level. We'll need it again here, since we have 10 categories of data - the numbers 0 to 10, and don't ever include an 11th category in this scenario. Hence, we apply it in our model.
 
@@ -303,15 +303,15 @@ model.add(Dense(no_classes, activation='softmax'))
 
 We first define the `model` itself to be using the `Sequential` API, or, a stack of layers that together compose the Convolutional Neural Network.
 
-We start off with a two-dimensional convolutional layer, or a Conv2D layer. It learns 32 [filters](https://machinecurve.com/index.php/2018/12/07/convolutional-neural-networks-and-their-components-for-computer-vision/#convolutional-layers), or feature maps, based on the data. The kernel, or the small image that slides over the larger one, is 3x3 pixels. As expected, we use the [ReLU](https://machinecurve.com/index.php/2019/09/04/relu-sigmoid-and-tanh-todays-most-used-activation-functions/) activation function for nonlinearity. In the first layer, we also specify the `input_shape` of our data, as determined by reshape.
+We start off with a two-dimensional convolutional layer, or a Conv2D layer. It learns 32 [filters](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/convolutional-neural-networks-and-their-components-for-computer-vision/#convolutional-layers), or feature maps, based on the data. The kernel, or the small image that slides over the larger one, is 3x3 pixels. As expected, we use the [ReLU](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md) activation function for nonlinearity. In the first layer, we also specify the `input_shape` of our data, as determined by reshape.
 
-The Conv2D layer is followed by a [MaxPooling2D](https://www.machinecurve.com/index.php/2020/01/30/what-are-max-pooling-average-pooling-global-max-pooling-and-global-average-pooling/) layer with a pool size of 2 x 2. That is, we further summarize the derivation of the Conv2D layer by applying max pooling with another image sliding over the filters that is 2x2 pixels. For every _slide_, it takes the maximum value (hence max pooling) within the 2x2 box and passes it on. Hence, each 2x2 = 4 pixel wide slide is turned into a one-pixel output. This greatly reduces memory requirements while keeping mostly intact your model performance.
+The Conv2D layer is followed by a [MaxPooling2D](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-are-max-pooling-average-pooling-global-max-pooling-and-global-average-pooling.md) layer with a pool size of 2 x 2. That is, we further summarize the derivation of the Conv2D layer by applying max pooling with another image sliding over the filters that is 2x2 pixels. For every _slide_, it takes the maximum value (hence max pooling) within the 2x2 box and passes it on. Hence, each 2x2 = 4 pixel wide slide is turned into a one-pixel output. This greatly reduces memory requirements while keeping mostly intact your model performance.
 
-Finally, before repeating the convolutional layers, we add [Dropout](https://www.machinecurve.com/index.php/2019/12/16/what-is-dropout-reduce-overfitting-in-your-neural-networks/). Dropout, as said, essentially breaks the magnifiers we discussed at the start of this blog. Hence, a little bit of random noise is introduced during training. This greatly reduces the odds of overfitting. It does so by converting certain inputs to 0, and does so randomly. The parameter `0.25` is the dropout rate, or the number of input neurons to drop (in this case, 25% of the inputs is converted to 0).
+Finally, before repeating the convolutional layers, we add [Dropout](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-dropout-reduce-overfitting-in-your-neural-networks.md). Dropout, as said, essentially breaks the magnifiers we discussed at the start of this blog. Hence, a little bit of random noise is introduced during training. This greatly reduces the odds of overfitting. It does so by converting certain inputs to 0, and does so randomly. The parameter `0.25` is the dropout rate, or the number of input neurons to drop (in this case, 25% of the inputs is converted to 0).
 
 Since we wish to summarize further, we repeat the Conv2D process (although learning _more_ filters this time), the MaxPooling2D process and the Dropout process.
 
-It's then likely that the summary is _general_ enough to compare new images and assign them one of the classes 0-9. We must however convert the many filters learnt and processed to a _flat_ structure before it can be processed by the part that can actually generate the predictions. Hence, we use the Flatten layer. Subsequently, we let the data pass through two Dense layers, of which the first is `ReLU`\-activated and the second one is `Softmax`\-activated. [Softmax activation](https://www.machinecurve.com/index.php/2020/01/08/how-does-the-softmax-activation-function-work/) essentially generates a _multiclass probability distribution_, or computes the probability that the item belongs to one of the classes 0-9, summed to 1 (the maximum probability). _This is also why we must have categorical data: it's going to be difficult to add an 11th class on the fly._
+It's then likely that the summary is _general_ enough to compare new images and assign them one of the classes 0-9. We must however convert the many filters learnt and processed to a _flat_ structure before it can be processed by the part that can actually generate the predictions. Hence, we use the Flatten layer. Subsequently, we let the data pass through two Dense layers, of which the first is `ReLU`\-activated and the second one is `Softmax`\-activated. [Softmax activation](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-does-the-softmax-activation-function-work.md) essentially generates a _multiclass probability distribution_, or computes the probability that the item belongs to one of the classes 0-9, summed to 1 (the maximum probability). _This is also why we must have categorical data: it's going to be difficult to add an 11th class on the fly._
 
 Note that the number of output neurons is `num_classes` for the final layer for the same reason: since `num_classes` probabilities must be computed, we must have `num_classes` different outputs so that for every class a unique output exists.
 
@@ -335,9 +335,9 @@ model.fit(input_train, target_train,
 
 Model compilation essentially _configures_ the model architecture that was created in the previous section. We decide about the _loss value_, about the _optimizer_, and the additional _metrics_ that will be used during the training process. We'll briefly cover them next:
 
-- The **[loss function](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/)** can be used to compute the difference between the actual targets (as indicated by the training and/or testing data) and the targets generated by the model during an arbitrary epoch. The higher the difference, or the higher the loss, the worse the model performs. The goal of the machine learning training process is therefore to _minimize loss_.
-- Each machine learning scenario needs a different loss function. Since we deal with _classification_, we must use a function called cross entropy. It essentially compares the actual outcomes with the generated outcomes by computing the _entropy_, or the difficulty of successfully comparing between the classes. Since our data is categorical in nature, we use **[categorical crossentropy](https://www.machinecurve.com/index.php/2019/10/17/how-to-use-categorical-multiclass-hinge-with-keras/)**.
-- We use **Adaptive Moment Estimation** or **[Adam](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/)** for optimization. It's one of the de facto standard optimizers that are used today.
+- The **[loss function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md)** can be used to compute the difference between the actual targets (as indicated by the training and/or testing data) and the targets generated by the model during an arbitrary epoch. The higher the difference, or the higher the loss, the worse the model performs. The goal of the machine learning training process is therefore to _minimize loss_.
+- Each machine learning scenario needs a different loss function. Since we deal with _classification_, we must use a function called cross entropy. It essentially compares the actual outcomes with the generated outcomes by computing the _entropy_, or the difficulty of successfully comparing between the classes. Since our data is categorical in nature, we use **[categorical crossentropy](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-categorical-multiclass-hinge-with-keras.md)**.
+- We use **Adaptive Moment Estimation** or **[Adam](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md)** for optimization. It's one of the de facto standard optimizers that are used today.
 - For reasons of being more intuitive to humans, we also use **accuracy** as a metric.
 
 We next _fit the data to the model_, or in plain English start the training process. We do so by feeding the training data (both inputs and targets), specifying the batch size, number of epochs, verbosity and validation split configured before.
@@ -346,7 +346,7 @@ And then let's see what happens!
 
 #### Adding test metrics for testing generalization
 
-...except that you'll need to add metrics for _testing_ as well. After training with the training and validation data, which essentially tells you something about the model's _predictive performance_, you also wish to test it for _generalization_ - or, whether it works well when data is used that the model has [never seen before](https://www.machinecurve.com/index.php/2020/11/03/how-to-evaluate-a-keras-model-with-model-evaluate/). That's why you created the train / test split in the first place. Now is the time to add a test, or an evaluation step, to the model - which executes just after the training process ends:
+...except that you'll need to add metrics for _testing_ as well. After training with the training and validation data, which essentially tells you something about the model's _predictive performance_, you also wish to test it for _generalization_ - or, whether it works well when data is used that the model has [never seen before](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-evaluate-a-keras-model-with-model-evaluate.md). That's why you created the train / test split in the first place. Now is the time to add a test, or an evaluation step, to the model - which executes just after the training process ends:
 
 ```
 # Generate generalization metrics
@@ -515,4 +515,4 @@ Keras. (n.d.). Core Layers. Retrieved from [https://keras.io/layers/core/](https
 
 When should I use tf.float32 vs tf.float64 in TensorFlow? (n.d.). Retrieved from [https://www.quora.com/When-should-I-use-tf-float32-vs-tf-float64-in-TensorFlow](https://www.quora.com/When-should-I-use-tf-float32-vs-tf-float64-in-TensorFlow)
 
-MachineCurve. (2019, July 27). How to create a basic MLP classifier with the Keras Sequential API – MachineCurve. Retrieved from [https://machinecurve.com/index.php/2019/07/27/how-to-create-a-basic-mlp-classifier-with-the-keras-sequential-api/](https://machinecurve.com/index.php/2019/07/27/how-to-create-a-basic-mlp-classifier-with-the-keras-sequential-api/)
+MachineCurve. (2019, July 27). How to create a basic MLP classifier with the Keras Sequential API – MachineCurve. Retrieved from [https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-basic-mlp-classifier-with-the-keras-sequential-api/](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-basic-mlp-classifier-with-the-keras-sequential-api.md)

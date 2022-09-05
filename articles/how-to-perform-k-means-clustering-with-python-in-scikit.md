@@ -18,7 +18,7 @@ While deep learning algorithms belong to today's fashionable class of machine le
 
 **K-means clustering** is such an algorithm, and we will scrutinize it in today's blog post. We'll first take a look at what it is, by studying the steps it takes for generating clusters. We then take a look at the inertia metric, which is used to compute whether the algorithm needs to continue or whether it's done, i.e. whether there is convergence. This is followed by taking a look at convergence itself and in what cases K-means clustering may not be useful.
 
-The theoretical part is followed by a practical implementation by means of a Python script. It provides an example implementation of K-means clustering with [**Scikit-learn**](https://www.machinecurve.com/index.php/how-to-use-scikit-learn-for-machine-learning-with-python-mastering-scikit/), one of the most popular Python libraries for machine learning used today. Altogether, you'll thus learn about the theoretical components of K-means clustering, while having an example explained at the same time.
+The theoretical part is followed by a practical implementation by means of a Python script. It provides an example implementation of K-means clustering with [**Scikit-learn**](https://web.archive.org/web/https://www.machinecurve.com/index.php/how-to-use-scikit-learn-for-machine-learning-with-python-mastering-scikit/), one of the most popular Python libraries for machine learning used today. Altogether, you'll thus learn about the theoretical components of K-means clustering, while having an example explained at the same time.
 
 In this tutorial, you will learn...
 
@@ -28,7 +28,7 @@ In this tutorial, you will learn...
 
 Let's take a look! 🚀
 
-**Update 11/Jan/2021:** added [quick example](https://www.machinecurve.com/index.php/2020/04/16/how-to-perform-k-means-clustering-with-python-in-scikit/#quick-answer-how-to-perform-k-means-clustering-with-python-in-scikit-learn) to performing K-means clustering with Python in Scikit-learn.
+**Update 11/Jan/2021:** added [quick example](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-perform-k-means-clustering-with-python-in-scikit/#quick-answer-how-to-perform-k-means-clustering-with-python-in-scikit-learn) to performing K-means clustering with Python in Scikit-learn.
 
 **Update 08/Dec/2020:** added references to PCA article.
 
@@ -40,7 +40,7 @@ Let's take a look! 🚀
 
 ## Example code: How to perform K-means clustering with Python in Scikit-learn?
 
-Here's a [quick answer](https://www.machinecurve.com/index.php/2020/04/16/how-to-perform-k-means-clustering-with-python-in-scikit/#full-model-code) to performing K-means clustering with Python and Scikit-learn. Make sure to read the full article if you wish to understand what happens in full detail!
+Here's a [quick answer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-perform-k-means-clustering-with-python-in-scikit/#full-model-code) to performing K-means clustering with Python and Scikit-learn. Make sure to read the full article if you wish to understand what happens in full detail!
 
 ```
 import matplotlib.pyplot as plt
@@ -164,7 +164,7 @@ If you look at [this page](https://scikit-learn.org/stable/auto_examples/cluster
 - **When your dataset has more blobs of data than the number of blobs you configure**. For obvious reasons, K-means clustering will then fail. The fact that the user must configure the number of clusters is one possible point of failure as well. Always look closely at your dataset before you apply K-means, is the advice!
 - **When you don't have isotropic blobs**. Fancy words, I know, but isotropic means something like "nicely shaped" - i.e., equally wide and equally high. If they're not (and you will see this when you click the link above), K-means will detect halves of clusters, merging them together.
 - **If clusters aren't convex**, or truly separable. In those cases, the algorithm might get confused, as you can see with the link above as well.
-- Finally, **if your dimensionality is too high**. In the scenario above, we have a dimensionality of 2, but the more dimensions you add, the more time it will take for clustering to complete. This is due to the nature of the [euclidian distance](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/#adamax) that is computed for inertia. Hence, you'll have to apply dimensionality reduction first - with techniques like [Principal Components Analysis (PCA)](https://www.machinecurve.com/index.php/2020/12/07/introducing-pca-with-python-and-scikit-learn-for-machine-learning/), for example.
+- Finally, **if your dimensionality is too high**. In the scenario above, we have a dimensionality of 2, but the more dimensions you add, the more time it will take for clustering to complete. This is due to the nature of the [euclidian distance](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound/#adamax) that is computed for inertia. Hence, you'll have to apply dimensionality reduction first - with techniques like [Principal Components Analysis (PCA)](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/introducing-pca-with-python-and-scikit-learn-for-machine-learning.md), for example.
 
 Think about applying K-means well before naïvely making the choice to "just" make it work. It might simply not work!
 

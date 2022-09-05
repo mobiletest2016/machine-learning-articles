@@ -15,7 +15,7 @@ tags:
   - "visualization"
 ---
 
-If you want to visualize how your Keras model performs, it's possible to use MachineCurve's tutorial for [visualizing the training process](https://www.machinecurve.com/index.php/2019/10/08/how-to-visualize-the-training-process-in-keras/). Additionally, if you wish to visualize the model yourself, you can [use another tutorial](https://www.machinecurve.com/index.php/2019/10/07/how-to-visualize-a-model-with-keras/).
+If you want to visualize how your Keras model performs, it's possible to use MachineCurve's tutorial for [visualizing the training process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-training-process-in-keras.md). Additionally, if you wish to visualize the model yourself, you can [use another tutorial](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-a-model-with-keras.md).
 
 But are they they only options you've got?
 
@@ -23,9 +23,9 @@ No - not at all!
 
 You may also wish to use TensorBoard, for example.
 
-In this blog post, we'll discover what TensorBoard is, what you can use it for, and how it works with Keras. We specifically take a look at how TensorBoard is integrated into the Keras API by means of [callbacks](https://www.machinecurve.com/index.php/2020/11/10/an-introduction-to-tensorflow-keras-callbacks/), and we take a look at the specific Keras callback that can be used to control TensorBoard.
+In this blog post, we'll discover what TensorBoard is, what you can use it for, and how it works with Keras. We specifically take a look at how TensorBoard is integrated into the Keras API by means of [callbacks](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/an-introduction-to-tensorflow-keras-callbacks.md), and we take a look at the specific Keras callback that can be used to control TensorBoard.
 
-This is followed by an example implementation of TensorBoard into your Keras model - by means of [our Keras CNN](https://www.machinecurve.com/index.php/2019/09/17/how-to-create-a-cnn-classifier-with-keras/) and the [CIFAR10 dataset](https://www.machinecurve.com/index.php/2019/12/31/exploring-the-keras-datasets/). This way, you'll understand _what it is and how it works_, allowing you to easily implement TensorBoard in your own deep learning model.
+This is followed by an example implementation of TensorBoard into your Keras model - by means of [our Keras CNN](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras.md) and the [CIFAR10 dataset](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets.md). This way, you'll understand _what it is and how it works_, allowing you to easily implement TensorBoard in your own deep learning model.
 
 Let's go! 😎
 
@@ -87,7 +87,7 @@ Let's turn to the TensorFlow docs for a more elaborate description, as they can 
 > 
 > [TensorBoard - Get Started](https://www.tensorflow.org/tensorboard/get_started)
 
-In short, TensorBoard helps you better understand your machine learning model that you generated with TensorFlow. It allows you to measure various aspects - such as the [weights](https://www.machinecurve.com/index.php/2019/08/22/what-is-weight-initialization/), biases, gradients of your model - as well as how they progressed during training (i.e., across epochs). Additionally, you can [visualize model performance](https://www.machinecurve.com/index.php/2019/12/03/visualize-keras-models-overview-of-visualization-methods-tools/) over time, visualize classes in a multidimensional space, and so on.
+In short, TensorBoard helps you better understand your machine learning model that you generated with TensorFlow. It allows you to measure various aspects - such as the [weights](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-weight-initialization.md), biases, gradients of your model - as well as how they progressed during training (i.e., across epochs). Additionally, you can [visualize model performance](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/visualize-keras-models-overview-of-visualization-methods-tools.md) over time, visualize classes in a multidimensional space, and so on.
 
 Quite exciting!
 
@@ -97,9 +97,9 @@ Fortunately, TensorBoard integrates natively with Keras. Let's find out how it d
 
 ## TensorBoard and the Keras API
 
-Keras provides TensorBoard in the form of a _[callback](https://www.machinecurve.com/index.php/2020/11/10/an-introduction-to-tensorflow-keras-callbacks/)_, which is "a set of functions to be applied at given stages of the training procedure" (Keras, n.d.). According to the Keras website, they can be used to take a look at the model's internals and statistics during training, but also afterwards.
+Keras provides TensorBoard in the form of a _[callback](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/an-introduction-to-tensorflow-keras-callbacks.md)_, which is "a set of functions to be applied at given stages of the training procedure" (Keras, n.d.). According to the Keras website, they can be used to take a look at the model's internals and statistics during training, but also afterwards.
 
-An exemplary combination of Keras callbacks is [EarlyStopping and ModelCheckpoint](https://www.machinecurve.com/index.php/2019/05/30/avoid-wasting-resources-with-earlystopping-and-modelcheckpoint-in-keras/), which you can use to (1) identify whether your model's performance is still increasing, and if not, stop it, while (2) always [saving](https://www.machinecurve.com/index.php/2020/02/14/how-to-save-and-load-a-model-with-keras/) the best model to disk.
+An exemplary combination of Keras callbacks is [EarlyStopping and ModelCheckpoint](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/avoid-wasting-resources-with-earlystopping-and-modelcheckpoint-in-keras.md), which you can use to (1) identify whether your model's performance is still increasing, and if not, stop it, while (2) always [saving](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-save-and-load-a-model-with-keras.md) the best model to disk.
 
 In January 2021, Keras defined the **TensorBoard** callback as follows (Keras, n.d.):
 
@@ -112,7 +112,7 @@ Let's break the arguments for the `TensorBoard` callback apart and describe what
 - With `log_dir` you specify the path to the directory where Keras saves the log files that you can later read when starting the actual TensorBoard.
 - The histogram frequency, or `histogram_freq`, determines the frequency (in number of epochs) for compute weight histograms for all layers of the model (Sunside, n.d.). If `histogram_freq = 0`, no histograms will be computed, and computing them requires validation data to be present. [Click here to understand them more deeply.](#about-histogram_freq-what-are-weight-histograms)
 - If you choose to compute these histograms, you can also specify the batch size with the `batch_size` attribute. It defaults to 32, but is only relevant if you compute histograms. The larger the batch size, the higher the memory requirements for your system.
-- If you don't wish to visualize the graph of your model, as you can also do [with Keras-native functions](https://www.machinecurve.com/index.php/2019/10/07/how-to-visualize-a-model-with-keras/), you can choose to set `write_graph` to `False`. By default, it's set to `True` and your network graph will be visualized.
+- If you don't wish to visualize the graph of your model, as you can also do [with Keras-native functions](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-a-model-with-keras.md), you can choose to set `write_graph` to `False`. By default, it's set to `True` and your network graph will be visualized.
 - While `histogram_freq` can be used to visualize the histograms of your layer _weights_ across epochs, you may also wish to visualize the distribution of _gradients_ for every layer. If `histogram_freq = True`, you can also set `write_grads` to True, which generates gradient histograms as well.
 - Some people are more into numbers while others are more into visuals. For the latter, setting `write_images` to `True` results in the fact that Keras generates images for the weights based on the numbers present. This may allow you to spot patterns in weight changes, even if you're not too much into numbers! Very useful.
 - The Keras TensorBoard callback also provides quite some functions related to _embeddings_. We'll cover these next. However, like me, it may be that your knowledge about embeddings isn't really... up to date, to say it nicely. In that case, I've attempted to explain the concept of embeddings briefly as part of this blog post - [and you can find it here](#about-embeddings-in-tensorboard-what-are-they). I hope it helps you.
@@ -120,7 +120,7 @@ Let's break the arguments for the `TensorBoard` callback apart and describe what
 - The attribute `embeddings_layer_names` can be used to specify the layers at which embeddings should be learnt. They do not necessarily have to be learnt at the most downstream layer of your neural network, but can be learnt e.g. in the middle, allowing you to find out whether e.g. a model has too many layers. With this attribute, you can specify the layers at which the embeddings should be learnt and visualized in TensorBoard.
 - In `embeddings_metadata`, you provide a dictionary of file names per layer in `embeddings_layer_names`. Each file essentially contains the _targets_ of the samples you'll use next, in corresponding order.
 - In `embeddings_data`, you specify the data which should be used to generate the embeddings learnt. That is, you generate the visualization based on `embeddings_data` and `embeddings_metadata`. While often, test data is suitable, you can also use data that does not belong to training and testing data. This is up to you.
-- Finally, with `update_freq`, you can specify how often data should be written to `log_dir` logs. You can either configure `batch`, `epoch` or an integer number. If you set `update_freq` to `batch`, logs will be written after each batch (which, in Keras, you set as `batch_size` when calling `model.fit`). This may especially be useful when you use a minibatch [gradient descent](https://www.machinecurve.com/index.php/2019/10/24/gradient-descent-and-its-variants/) (or [gradient descent-like](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/)) optimizer. However, when you set the update frequency to `epoch`, it writes logs after each epoch, as if it were a batch SGD approach. You can also configure the update frequency to be an integer value `n`, which means that logs are written every `n` samples. The Keras docs warn you here: "writing too frequently (...) can slow down your training" (Keras, n.d.).
+- Finally, with `update_freq`, you can specify how often data should be written to `log_dir` logs. You can either configure `batch`, `epoch` or an integer number. If you set `update_freq` to `batch`, logs will be written after each batch (which, in Keras, you set as `batch_size` when calling `model.fit`). This may especially be useful when you use a minibatch [gradient descent](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md) (or [gradient descent-like](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md)) optimizer. However, when you set the update frequency to `epoch`, it writes logs after each epoch, as if it were a batch SGD approach. You can also configure the update frequency to be an integer value `n`, which means that logs are written every `n` samples. The Keras docs warn you here: "writing too frequently (...) can slow down your training" (Keras, n.d.).
 
 Next, we'll dive more deeply into questions arising from the Keras API, specifically these ones:
 
@@ -145,7 +145,7 @@ Let's take a look at some examples:
 
 ![](images/weight_histogram_2.jpg)
 
-Here, we see the _bias_ values and the true _weight_ values for the second and first [convolutional layer](https://www.machinecurve.com/index.php/2020/03/30/how-to-use-conv2d-with-keras/) in our model (which we specify later 😉), but then when we configured it to train for only 5 epochs.
+Here, we see the _bias_ values and the true _weight_ values for the second and first [convolutional layer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-conv2d-with-keras.md) in our model (which we specify later 😉), but then when we configured it to train for only 5 epochs.
 
 A weight histogram essentially tells you something about the distribution of your weights: visualize a histogram as many buckets where you can drop balls into. When a weight equals the (very small) range for one bucket, you drop the weight (represented by the ball) into that particular bucket. At the end, you can take a global look and see how many weights have landed in every bucket. This is your histogram.
 
@@ -179,7 +179,7 @@ I'll try to explain them as intuitively as possible. We'll do so by means of the
 
 If you wish to represent words, or objects - since we can also generate embeddings of images, such as the ones present in the MNIST or CIFAR10 datasets - you'll have to convert them into _categorical vectors_ or _integers_. These approaches are relatively inefficient and arbitrary, which either results in longer training times or missing relationships between objects.
 
-[Embeddings](https://www.machinecurve.com/index.php/2020/03/03/classifying-imdb-sentiment-with-keras-and-embeddings-dropout-conv1d/) enter the picture here. They allow you to map an object (say, a word, or an image) into a high-dimensional space by specifying coordinates for each dimension. For a two-dimensional space, that would be (x, y) coordinates. Often, you would want to use higher-dimensional spaces, because this makes your representation more accurate.
+[Embeddings](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/classifying-imdb-sentiment-with-keras-and-embeddings-dropout-conv1d.md) enter the picture here. They allow you to map an object (say, a word, or an image) into a high-dimensional space by specifying coordinates for each dimension. For a two-dimensional space, that would be (x, y) coordinates. Often, you would want to use higher-dimensional spaces, because this makes your representation more accurate.
 
 Let's make it more intuitive. Take a look at this point cloud:
 
@@ -189,7 +189,7 @@ https://www.youtube.com/watch?v=MPHPJ5mBTA8
 
 Now suppose that instead of LiDAR measurement, you map samples from the MNIST dataset to (x, y, z) coordinates. That is, you map these images to the point cloud, generating a three-dimensional space... _an embedding_.
 
-The question you now may have is as follows: **how are [embeddings](https://www.machinecurve.com/index.php/2020/03/03/classifying-imdb-sentiment-with-keras-and-embeddings-dropout-conv1d/) generated?**
+The question you now may have is as follows: **how are [embeddings](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/classifying-imdb-sentiment-with-keras-and-embeddings-dropout-conv1d.md) generated?**
 
 Well, they are learnt - at least in TensorFlow (TensorFlow, n.d.). Embeddings are initialized randomly, and the table representing classes vertically and the many dimensions horizontally is learnt during the training process. This way, you can generate really cool embeddings, such as this one for the MNIST dataset:
 
@@ -203,7 +203,7 @@ Yes, TensorBoard [can be used with PyTorch](https://pytorch.org/docs/stable/tens
 
 _You may also be interested in:_
 
-- [How to visualize your Keras model without TensorBoard?](https://www.machinecurve.com/index.php/2019/10/07/how-to-visualize-a-model-with-keras/)
+- [How to visualize your Keras model without TensorBoard?](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-a-model-with-keras.md)
 
 * * *
 
@@ -211,13 +211,13 @@ _You may also be interested in:_
 
 ### What model will we create today?
 
-Simple. We're going to use the [Keras CNN](https://www.machinecurve.com/index.php/2019/09/17/how-to-create-a-cnn-classifier-with-keras/) that we already created before, as it is relatively simple and achieves adequate performance across a wide range of machine learning tasks.
+Simple. We're going to use the [Keras CNN](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras.md) that we already created before, as it is relatively simple and achieves adequate performance across a wide range of machine learning tasks.
 
 If you wish to understand how to create a convolutional neural network with Keras, specifically using Conv2D layers, click the link above 😄
 
 ### What dataset will we use?
 
-We're going to use the [CIFAR10 dataset](https://www.machinecurve.com/index.php/2019/12/31/exploring-the-keras-datasets/). This one, like the MNIST one, also comes with Keras by default (Keras, n.d.). It's a 32x32 pixel dataset representing common objects across ten classes, and when visualized looks as follows:
+We're going to use the [CIFAR10 dataset](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets.md). This one, like the MNIST one, also comes with Keras by default (Keras, n.d.). It's a 32x32 pixel dataset representing common objects across ten classes, and when visualized looks as follows:
 
 ![](images/cifar10_images.png)
 
@@ -256,12 +256,12 @@ They are really simple:
 - We import Keras itself;
 - We import the CIFAR10 dataset;
 - We import the Sequential API for stacking our layers on top of each other;
-- We import the Dense, Dropout, Flatten, [Conv2D](https://www.machinecurve.com/index.php/2020/03/30/how-to-use-conv2d-with-keras/) and [MaxPooling2D](https://www.machinecurve.com/index.php/2020/01/30/what-are-max-pooling-average-pooling-global-max-pooling-and-global-average-pooling/) layers - refer to [this post](https://www.machinecurve.com/index.php/2019/09/17/how-to-create-a-cnn-classifier-with-keras/) if you wish to understand them in more detail.
+- We import the Dense, Dropout, Flatten, [Conv2D](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-conv2d-with-keras.md) and [MaxPooling2D](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-are-max-pooling-average-pooling-global-max-pooling-and-global-average-pooling.md) layers - refer to [this post](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras.md) if you wish to understand them in more detail.
 - We import `TensorBoard` from the Keras callbacks.
 
 ### Model configuration & loading CIFAR10 data
 
-Next, we configure the model, which is essentially just a configuration of image width and height, batch size, epochs, classes, [validation split](https://www.machinecurve.com/index.php/2020/11/16/how-to-easily-create-a-train-test-split-for-your-machine-learning-model/) and verbosity - just the regular stuff:
+Next, we configure the model, which is essentially just a configuration of image width and height, batch size, epochs, classes, [validation split](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-easily-create-a-train-test-split-for-your-machine-learning-model.md) and verbosity - just the regular stuff:
 
 ```
 # Model configuration
@@ -273,7 +273,7 @@ validation_split = 0.2
 verbosity = 1
 ```
 
-And (which is why I love Keras) we next [import the data](https://www.machinecurve.com/index.php/2019/12/31/exploring-the-keras-datasets/) with one line of code (or two, if we include the comment):
+And (which is why I love Keras) we next [import the data](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets.md) with one line of code (or two, if we include the comment):
 
 ```
 # Load CIFAR10 dataset
@@ -343,10 +343,10 @@ Which is a bunch of code that just tells Matplotlib to visualize the first ten s
 
 Now, we can prepare our data, which comprises these steps:
 
-- Setting the [shape of our input data](https://www.machinecurve.com/index.php/2020/04/05/how-to-find-the-value-for-keras-input_shape-input_dim/), which is of shape `(img_width, img_height, 3)` because we're working with RGB and hence three-channel images.
-- Converting the input data into `float32` format, which apparently [speeds up the training process](https://www.machinecurve.com/index.php/2020/09/16/tensorflow-model-optimization-an-introduction-to-quantization/) (Quora, n.d.).
-- Input data [normalization](https://www.machinecurve.com/index.php/2020/11/19/how-to-normalize-or-standardize-a-dataset-in-python/).
-- Generating [categorical data from the integer targets](https://www.machinecurve.com/index.php/2020/11/24/one-hot-encoding-for-machine-learning-with-tensorflow-and-keras/), allowing us to use [categorical crossentropy](https://www.machinecurve.com/index.php/2019/10/22/how-to-use-binary-categorical-crossentropy-with-keras/) for computing loss.
+- Setting the [shape of our input data](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-find-the-value-for-keras-input_shape-input_dim.md), which is of shape `(img_width, img_height, 3)` because we're working with RGB and hence three-channel images.
+- Converting the input data into `float32` format, which apparently [speeds up the training process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tensorflow-model-optimization-an-introduction-to-quantization.md) (Quora, n.d.).
+- Input data [normalization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-normalize-or-standardize-a-dataset-in-python.md).
+- Generating [categorical data from the integer targets](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/one-hot-encoding-for-machine-learning-with-tensorflow-and-keras.md), allowing us to use [categorical crossentropy](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-binary-categorical-crossentropy-with-keras.md) for computing loss.
 
 ```
 # Set input shape
@@ -383,9 +383,9 @@ model.add(Dense(256, activation='relu'))
 model.add(Dense(no_classes, activation='softmax'))
 ```
 
-It's a relatively simple [convolutional](https://www.machinecurve.com/index.php/2018/12/07/convolutional-neural-networks-and-their-components-for-computer-vision/) architecture, with two convolutional blocks comprising [conv layers](https://www.machinecurve.com/index.php/2020/03/30/how-to-use-conv2d-with-keras/), [max pooling](https://www.machinecurve.com/index.php/2020/01/30/what-are-max-pooling-average-pooling-global-max-pooling-and-global-average-pooling/) and [dropout](https://www.machinecurve.com/index.php/2019/12/18/how-to-use-dropout-with-keras/), followed by two Dense layers, with flattening in between.
+It's a relatively simple [convolutional](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/convolutional-neural-networks-and-their-components-for-computer-vision.md) architecture, with two convolutional blocks comprising [conv layers](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-conv2d-with-keras.md), [max pooling](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-are-max-pooling-average-pooling-global-max-pooling-and-global-average-pooling.md) and [dropout](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-dropout-with-keras.md), followed by two Dense layers, with flattening in between.
 
-Refer to [this post](https://www.machinecurve.com/index.php/2019/09/17/how-to-create-a-cnn-classifier-with-keras/) if you wish to understand this architecture in more detail.
+Refer to [this post](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras.md) if you wish to understand this architecture in more detail.
 
 ### Model compilation & fitting data
 
@@ -416,9 +416,9 @@ model.fit(input_train, target_train,
           callbacks=keras_callbacks)
 ```
 
-Compiling the model involves specifying a loss function ([categorical crossentropy](https://www.machinecurve.com/index.php/2019/10/22/how-to-use-binary-categorical-crossentropy-with-keras/)), an [optimizer](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/) and an additional metric - which is not too exciting.
+Compiling the model involves specifying a loss function ([categorical crossentropy](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-binary-categorical-crossentropy-with-keras.md)), an [optimizer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md) and an additional metric - which is not too exciting.
 
-Fitting the data to the compiled model is neither (you just specify the data, the number of epochs, batch size, and so on) - except for one thing: the additional [callbacks](https://www.machinecurve.com/index.php/2020/11/10/an-introduction-to-tensorflow-keras-callbacks/) variable that we added.
+Fitting the data to the compiled model is neither (you just specify the data, the number of epochs, batch size, and so on) - except for one thing: the additional [callbacks](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/an-introduction-to-tensorflow-keras-callbacks.md) variable that we added.
 
 And this `callbacks` variable refers to `keras_callbacks`, which is an array of Keras callbacks that we apply to this model - in this case, `tensorboard`!
 
@@ -426,7 +426,7 @@ Tensorboard, or `tensorboard`, in its own is the implementation as defined by th
 
 ### Model evaluation
 
-Finally, we add this evaluation code which tells you how well the trained model performs based on the testing data - i.e., how well it [generalizes](https://www.machinecurve.com/index.php/2020/12/01/how-to-check-if-your-deep-learning-model-is-underfitting-or-overfitting/) to data it has never seen before:
+Finally, we add this evaluation code which tells you how well the trained model performs based on the testing data - i.e., how well it [generalizes](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-check-if-your-deep-learning-model-is-underfitting-or-overfitting.md) to data it has never seen before:
 
 ```
 # Generate generalization metrics
@@ -637,7 +637,7 @@ Test loss: 0.823152067565918 / Test accuracy: 0.7271000146865845
 
 We can now inspect model performance in TensorBoard!
 
-Once the [training process](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#the-high-level-supervised-learning-process) is finished, execute this command in the same terminal:
+Once the [training process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process) is finished, execute this command in the same terminal:
 
 ```
 tensorboard --logdir=./logs
@@ -660,7 +660,7 @@ In that case, you can open a browser, navigate to http://localhost:6006, and see
 
 [![](images/image-1-1024x505.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/image-1.png)
 
-This tab essentially shows you how the training process happened over time by showing you the [loss value](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/) (for [training and validation data](https://www.machinecurve.com/index.php/2020/11/16/how-to-easily-create-a-train-test-split-for-your-machine-learning-model/)) as well as other metrics. On the left, you can configure the charts.
+This tab essentially shows you how the training process happened over time by showing you the [loss value](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md) (for [training and validation data](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-easily-create-a-train-test-split-for-your-machine-learning-model.md)) as well as other metrics. On the left, you can configure the charts.
 
 ### TensorBoard Images tab
 
@@ -688,7 +688,7 @@ Finally, the Histograms tab shows the weights histograms which help you determin
 
 [![](images/image-5-1024x505.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/image-5.png)
 
-In the case of our model that learns to classify based on the [CIFAR10 dataset](https://www.machinecurve.com/index.php/2019/12/31/exploring-the-keras-datasets/), it becomes clear that it has primarily learnt by _slightly_ adapting the [weights](https://www.machinecurve.com/index.php/2019/08/22/what-is-weight-initialization/) of some models, and by _steering_ the biases quite substantially. This eventually reflects a 72.7% test accuracy.
+In the case of our model that learns to classify based on the [CIFAR10 dataset](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets.md), it becomes clear that it has primarily learnt by _slightly_ adapting the [weights](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-weight-initialization.md) of some models, and by _steering_ the biases quite substantially. This eventually reflects a 72.7% test accuracy.
 
 * * *
 

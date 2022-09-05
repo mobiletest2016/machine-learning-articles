@@ -34,7 +34,7 @@ Ready? Let's go! 😎
 
 Let's first take a look at what underfitting and overfitting are.
 
-When starting the [training process](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#the-high-level-supervised-learning-process), the weights of your neurons are likely initialized at random or with some other initialization strategy. This means that the error rate, or loss value, will be very high during the first few epochs. Take a look at this diagram, where the loss decreases very rapidly during the first few epochs:
+When starting the [training process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process), the weights of your neurons are likely initialized at random or with some other initialization strategy. This means that the error rate, or loss value, will be very high during the first few epochs. Take a look at this diagram, where the loss decreases very rapidly during the first few epochs:
 
 ![](images/elu_loss.png)
 
@@ -100,7 +100,7 @@ You may now wonder: why does Bernoulli variables attached to regular neural netw
 
 For the answer to this question, we will have to take a look at how neural networks are trained.
 
-Usually, backpropagation and [gradient descent](https://www.machinecurve.com/index.php/2019/10/24/gradient-descent-and-its-variants/) or a [similar optimizer](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/) is used for this purpose. Given a [loss value](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/), so-called 'gradients' are computed which the optimizer then processes into the network's weights. By using these gradients (with respect to the error rate) to change the weights, the network likely performs slightly better during the next iteration of the training process.
+Usually, backpropagation and [gradient descent](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md) or a [similar optimizer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md) is used for this purpose. Given a [loss value](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md), so-called 'gradients' are computed which the optimizer then processes into the network's weights. By using these gradients (with respect to the error rate) to change the weights, the network likely performs slightly better during the next iteration of the training process.
 
 Computing the gradient is done _with respect to the error_, but also _with respect to what all other units are doing_ (Srivastava et al., 2014). This means that certain neurons, through changes in their weights, may fix the mistakes of other neurons. These, Srivastava et al. (2014) argue, lead to complex co-adaptations that may not generalize to unseen data, resulting in overfitting.
 
@@ -108,9 +108,9 @@ Dropout, then, prevents these co-adaptations by - as we wrote before - _making t
 
 ## Training neural nets with Dropout
 
-Training neural networks to which Dropout has been attached is pretty much equal to training neural networks without Dropout. [Stochastic gradient descent](https://www.machinecurve.com/index.php/2019/10/24/gradient-descent-and-its-variants/) or [similar optimizers](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/) can be used. The only difference, as reported by Srivastava et al. (2014), can be found when using a mini-batch approach: rather than per epoch, thinned networks are sampled per minibatch.
+Training neural networks to which Dropout has been attached is pretty much equal to training neural networks without Dropout. [Stochastic gradient descent](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md) or [similar optimizers](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md) can be used. The only difference, as reported by Srivastava et al. (2014), can be found when using a mini-batch approach: rather than per epoch, thinned networks are sampled per minibatch.
 
-Additionally, methods that improve classic SGD - like [momentum](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/#momentum) - can be used as well, and show similar improvements as with regular neural networks (Srivastava et al., 2014).
+Additionally, methods that improve classic SGD - like [momentum](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound/#momentum) - can be used as well, and show similar improvements as with regular neural networks (Srivastava et al., 2014).
 
 What the authors also found to be useful during training is applying _max-norm regularization_, which means constraining the norm of the incoming weight to be bounded by some maximum value \[latex\]c\[/latex\]. This value must be set by the engineer upfront, and determined using a validation set (Srivastava et al., 2014).
 
@@ -121,7 +121,7 @@ Combining Dropout with max-norm regularization improves performance compared to 
 
 According to Srivastava et al. (2014), this can possibly be justified by the following arguments:
 
-1. Constraining weight vectors makes it possible to use large learning rates without [exploding weights](https://www.machinecurve.com/index.php/2019/08/30/random-initialization-vanishing-and-exploding-gradients/).
+1. Constraining weight vectors makes it possible to use large learning rates without [exploding weights](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/random-initialization-vanishing-and-exploding-gradients.md).
 2. Dropout noise plus large learning rates then help optimizers "to explore different regions of the weight space that would have otherwise been difficult to reach".
 3. Decaying the learning rate then slows down the jumpiness of the exploration process, eventually "settling into a minimum".
 4. High momentum allows the network to overcome local minima, increasing the likelihood that the global minimum is found.
@@ -182,7 +182,7 @@ The question must be answered with **yes**.
 
 #### What is the best value for \[latex\]p\[/latex\]?
 
-First, the parameter \[latex\]p\[/latex\]. By now, we can recall that it is tunable, and must in fact be set up front by the machine learning engineer. The fact that it is tunable leads to the same errors as why [fixed learning rates aren't a good idea](https://www.machinecurve.com/index.php/2019/11/11/problems-with-fixed-and-decaying-learning-rates/): you simply don't know which \[latex\]p\[/latex\] fits the data best.
+First, the parameter \[latex\]p\[/latex\]. By now, we can recall that it is tunable, and must in fact be set up front by the machine learning engineer. The fact that it is tunable leads to the same errors as why [fixed learning rates aren't a good idea](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/problems-with-fixed-and-decaying-learning-rates.md): you simply don't know which \[latex\]p\[/latex\] fits the data best.
 
 Hence, the authors argue, selecting a value for \[latex\]p\[/latex\] must be done by some initial tests with a validation set.
 

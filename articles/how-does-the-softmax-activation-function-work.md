@@ -181,7 +181,7 @@ Now suppose that we input an image that should have been class 4. This is proble
 
 We'd need to improve!
 
-By default, in neural networks, optimization techniques like [gradient descent](https://www.machinecurve.com/index.php/2019/10/24/gradient-descent-and-its-variants/) or [adaptive optimizers](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/) are used for this purpose. For each trainable parameter, backpropagation computes the gradient with respect to the [loss value](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/) and the intermediate layers, and the optimizer subsequently adapts the weights of the parameter.
+By default, in neural networks, optimization techniques like [gradient descent](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md) or [adaptive optimizers](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md) are used for this purpose. For each trainable parameter, backpropagation computes the gradient with respect to the [loss value](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md) and the intermediate layers, and the optimizer subsequently adapts the weights of the parameter.
 
 But this requires that a function is differentiable. And `argmax` is not, or useless if it were (Shimis, n.d.). Either, the gradient is zero almost everywhere (because if you move a really small bit on the argmax function, the outputs will remain the same), or even undefined, as argmax is not continuous (Shimis, n.d.). By consequence, argmax cannot be used when training neural networks with gradient descent based optimization.
 
@@ -242,7 +242,7 @@ All right. We can use Softmax to generate a discrete probability distribution ov
 
 Now, before we'll work on an example model with Keras, it's time to briefly stop and think about what happens during optimization.
 
-As you likely know, during the forward pass in the [high-level supervised machine learning process](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#the-high-level-supervised-learning-process), your training data is fed to the model. The predictions are compared with the ground truth, i.e. the targets, and eventually summarized in a loss value. Based on this loss value, backpropagation computes the gradient for improvement, and the optimizer subsequently performs this improvement based on its ideosyncrasies. This iterative process stops when the model performs adequately enough.
+As you likely know, during the forward pass in the [high-level supervised machine learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process), your training data is fed to the model. The predictions are compared with the ground truth, i.e. the targets, and eventually summarized in a loss value. Based on this loss value, backpropagation computes the gradient for improvement, and the optimizer subsequently performs this improvement based on its ideosyncrasies. This iterative process stops when the model performs adequately enough.
 
 So far so good, but what happens when you design a neural network with `num_classes` output neurons, as well as a Softmax layer?
 
@@ -293,7 +293,7 @@ pip install keras tensorflow matplotlib numpy scikit-learn
 
 ### Model config
 
-Next up is the model configuration. We define here how many samples we'll generate, how much of them are used for _testing_ the trained model (250), where in 2D space our clusters are located, how many clusters we've got and which loss function is to be used (indeed, as we expect with Softmax activation at our final layer, [categorical crossentropy loss](https://www.machinecurve.com/index.php/2019/10/22/how-to-use-binary-categorical-crossentropy-with-keras/)).
+Next up is the model configuration. We define here how many samples we'll generate, how much of them are used for _testing_ the trained model (250), where in 2D space our clusters are located, how many clusters we've got and which loss function is to be used (indeed, as we expect with Softmax activation at our final layer, [categorical crossentropy loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-binary-categorical-crossentropy-with-keras.md)).
 
 ```
 # Configuration options
@@ -318,7 +318,7 @@ Targets_training = categorical_targets[training_split:]
 Targets_testing = categorical_targets[:training_split].astype(np.integer)
 ```
 
-Once data has been generated, we can convert the targets into one-hot encoded vectors, in order to make them compatible with [categorical crossentropy loss](https://www.machinecurve.com/index.php/2019/10/22/how-to-use-binary-categorical-crossentropy-with-keras/). Finally, we make the split between training and testing data.
+Once data has been generated, we can convert the targets into one-hot encoded vectors, in order to make them compatible with [categorical crossentropy loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-binary-categorical-crossentropy-with-keras.md). Finally, we make the split between training and testing data.
 
 Once this is done, we can set the shape of our input data, as we know this by now:
 
@@ -343,7 +343,7 @@ plt.show()
 
 Now that we have imported the dependencies that we need and have configured the model, it's time to define its _architecture_.
 
-It's going to be a very simple one; a densely-connected one, to be precise. It will have three layers, of which one is an output layer. The first layer takes in data of `input_shape` shape, activates by means of [ReLU](https://www.machinecurve.com/index.php/2019/09/04/relu-sigmoid-and-tanh-todays-most-used-activation-functions/) and hence requires [He weight init](https://www.machinecurve.com/index.php/2019/09/16/he-xavier-initialization-activation-functions-choose-wisely/). It has a (12, ) output shape.
+It's going to be a very simple one; a densely-connected one, to be precise. It will have three layers, of which one is an output layer. The first layer takes in data of `input_shape` shape, activates by means of [ReLU](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md) and hence requires [He weight init](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/he-xavier-initialization-activation-functions-choose-wisely.md). It has a (12, ) output shape.
 
 The second layer works similarly, but learns has an (8, ) output shape instead.
 
@@ -359,7 +359,7 @@ model.add(Dense(num_classes, activation='softmax'))
 
 ### Compilation, data fitting and evaluation
 
-We can subsequently compile (i.e. configure) the model based on the [loss function](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/) we configured as well as the [optimizer](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/) we want to use, and set additional metrics (accuracy due to the fact that it's intuitive for humans).
+We can subsequently compile (i.e. configure) the model based on the [loss function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md) we configured as well as the [optimizer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md) we want to use, and set additional metrics (accuracy due to the fact that it's intuitive for humans).
 
 Then, we fit the training data to the model, train it for 30 iterations (epochs) and use a batch size of 5. 20% of the training data will be used for validation purposes and all output is shown on screen with verbosity mode set to True.
 
@@ -375,7 +375,7 @@ print(f'Test results - Loss: {test_results[0]} - Accuracy: {test_results[1]*100}
 
 Once data has been fit, it's time to test the model. We do so by means of `model.evaluate`, feeding it the testing data. The outcome is shown on screen.
 
-If desired, the `history` object can be used to [visualize the training process](https://www.machinecurve.com/index.php/2019/10/08/how-to-visualize-the-training-process-in-keras/).
+If desired, the `history` object can be used to [visualize the training process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-training-process-in-keras.md).
 
 ### Full model code
 

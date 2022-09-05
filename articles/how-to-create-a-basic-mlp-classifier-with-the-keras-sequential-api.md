@@ -13,7 +13,7 @@ tags:
   - "neural-networks"
 ---
 
-In one of my previous blogs, I showed why [you can't truly create a Rosenblatt's Perceptron](https://machinecurve.com/index.php/2019/07/24/why-you-cant-truly-create-rosenblatts-perceptron-with-keras/) with Keras. Fortunately for this lovely Python framework, Rosenblatt's was only the first in many developments with respect to neural networks. Since Rosenblatt published his work in 1957-1958, many years have passed since and, consequentially, many algorithms have been developed.
+In one of my previous blogs, I showed why [you can't truly create a Rosenblatt's Perceptron](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-you-cant-truly-create-rosenblatts-perceptron-with-keras.md) with Keras. Fortunately for this lovely Python framework, Rosenblatt's was only the first in many developments with respect to neural networks. Since Rosenblatt published his work in 1957-1958, many years have passed since and, consequentially, many algorithms have been developed.
 
 One class of algorithms that stands out relatively often is the class of so-called Multilayer Perceptrons. I often like to call them _basic neural network_, since they have the shape that people usually come up with when they talk about neural nets. They aren't complex, really, while they are much more powerful than the single-neuron ones.
 
@@ -104,7 +104,7 @@ The Rosenblatt perceptron triggered a fairly big controversy in the field of AI.
 
 As with any fairly new field of science or practice, the cybernetics movement was rather hype-saturated. Although prominent figures such as Alan Turing participated in cybernetic research, dreams often went beyond what was realistic at the time (Rid, 2016). However, that can be said about many things in retrospect... :-)
 
-Two main streams of thought emerged in the 1950s for making the cybernetic dreams a reality (Olazaran, 1996). The first was the _neural net_ stream. This stream, in which [Frank Rosenblatt](https://machinecurve.com/index.php/2019/07/23/linking-maths-and-intuition-rosenblatts-perceptron-in-python/) played a prominent role, was about automated learning in a network-like fashion: by attempting to mimic the human brain through artificial neural networks, they argued, learning could be automated.
+Two main streams of thought emerged in the 1950s for making the cybernetic dreams a reality (Olazaran, 1996). The first was the _neural net_ stream. This stream, in which [Frank Rosenblatt](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/linking-maths-and-intuition-rosenblatts-perceptron-in-python.md) played a prominent role, was about automated learning in a network-like fashion: by attempting to mimic the human brain through artificial neural networks, they argued, learning could be automated.
 
 The other stream of thought had a radically different point of view. In this stream, the symbolic one, "symbolic expressions stand for words, propositions and other conceptual entities" (Olazaran, 1996). By manipulating these propositions, possibly linking them together, knowledge about the world could be captured and manipulated - and by consequence, intelligent machines could emerge. One of the most prominent thought leaders in the field of symbolic AI was [Marvin Minsky](https://en.wikipedia.org/wiki/Marvin_Minsky) (Olazaran, 1996).
 
@@ -134,7 +134,7 @@ The consequence? The same as for neural net research in the 1960s ... enter the 
 
 ### New momentum for neural networks
 
-Fortunately, the field of neural net research was not abandoned entirely. Particularly, certain scholars invented what is called the _backpropagation algorithm_. By slightly altering the way a perceptron operates, e.g. by having it use a [continuous rather than a discontinuous function](https://machinecurve.com/index.php/2019/07/24/why-you-cant-truly-create-rosenblatts-perceptron-with-keras/), much progress could be made. Particularly, researchers were since able to optimize it by using a descending-down-the-hill approach, computing the error backwards throughout the layers. They were now especially able to _train perceptrons that were stacked in multiple layers_, or **multilayer perceptrons**. Finally! One of the primary problems of the 1950s-1960s was overcome.
+Fortunately, the field of neural net research was not abandoned entirely. Particularly, certain scholars invented what is called the _backpropagation algorithm_. By slightly altering the way a perceptron operates, e.g. by having it use a [continuous rather than a discontinuous function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-you-cant-truly-create-rosenblatts-perceptron-with-keras.md), much progress could be made. Particularly, researchers were since able to optimize it by using a descending-down-the-hill approach, computing the error backwards throughout the layers. They were now especially able to _train perceptrons that were stacked in multiple layers_, or **multilayer perceptrons**. Finally! One of the primary problems of the 1950s-1960s was overcome.
 
 Minsky and folks were quick to respond with the notion that this revival did not mean that e.g. their remarks about computational costs were no longer accurate. Indeed, they were still right about this, but machine learning by means of neural nets remained here to stay. In the years since, we've seen many incremental improvements and a fair share of breakthroughs, of which the deep learning hype is the latest development.
 
@@ -185,11 +185,11 @@ Why we import the `keras` package should make sense by now. The same applies to 
 
 First, the `Sequential` model. It's one of the two APIs that Keras supports (the other being the `Functional` API). The Sequential one is often used by beginning ML engineers. It offers less flexibility but makes creating neural networks easier. Especially for educational purposes, like this blog, the Sequential API is a very good choice.
 
-Then, the `Dense` layer. Keras supports a wide number of layers, such as convolutional ones if one aims to build a [Convolutional Neural Network](https://machinecurve.com/index.php/2018/12/07/convolutional-neural-networks-and-their-components-for-computer-vision/). However, we don't: our goal is to build a Multilayer Perceptron. Those aren't built of spectacular layers; rather, it's simply a stack of so-called densely-connected ones. That means that an arbitrary neuron is connected to all neurons in the subsequent layer. It looks as follows:
+Then, the `Dense` layer. Keras supports a wide number of layers, such as convolutional ones if one aims to build a [Convolutional Neural Network](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/convolutional-neural-networks-and-their-components-for-computer-vision.md). However, we don't: our goal is to build a Multilayer Perceptron. Those aren't built of spectacular layers; rather, it's simply a stack of so-called densely-connected ones. That means that an arbitrary neuron is connected to all neurons in the subsequent layer. It looks as follows:
 
 ![](images/Basic-neural-network.jpg)
 
-Next is the `to_categorical` util. We don't need it immediately, but require it later. It has to do with the structure of the MNIST dataset, specifically the number of target classes. Contrary to the [single-layer perceptron](https://machinecurve.com/index.php/2019/07/24/why-you-cant-truly-create-rosenblatts-perceptron-with-keras/) that we created, which was a binary classification problem, we're dealing with a multiclass classification problem this time - simply because we have 10 classes, the numbers 0-9.
+Next is the `to_categorical` util. We don't need it immediately, but require it later. It has to do with the structure of the MNIST dataset, specifically the number of target classes. Contrary to the [single-layer perceptron](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-you-cant-truly-create-rosenblatts-perceptron-with-keras.md) that we created, which was a binary classification problem, we're dealing with a multiclass classification problem this time - simply because we have 10 classes, the numbers 0-9.
 
 #### Small detour: categorical cross entropy
 
@@ -223,7 +223,7 @@ feature_vector_length = 784
 num_classes = 10
 ```
 
-One MNIST sample is an image of 28 by 28 pixels. An interesting observation that I made a while ago is that MLPs don't support multidimensional data like images natively. What you'll have to do is to _flatten_ the image, in the sense that you'll just take all the rows and put them into a massive row. Since 28 times 28 is 784, our feature vector ([which with the Pima dataset SLP was only 8](https://machinecurve.com/index.php/2019/07/24/why-you-cant-truly-create-rosenblatts-perceptron-with-keras/#loading-dependencies-and-data)) will contain 784 features (pixels).
+One MNIST sample is an image of 28 by 28 pixels. An interesting observation that I made a while ago is that MLPs don't support multidimensional data like images natively. What you'll have to do is to _flatten_ the image, in the sense that you'll just take all the rows and put them into a massive row. Since 28 times 28 is 784, our feature vector ([which with the Pima dataset SLP was only 8](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-you-cant-truly-create-rosenblatts-perceptron-with-keras/#loading-dependencies-and-data)) will contain 784 features (pixels).
 
 The MNIST dataset contains 60.000 images in its training set. Each image belongs to one of ten classes. Hence, the `num_classes` is 10.
 
@@ -318,7 +318,7 @@ That's why we assign `feature_vector_length` converted into tuple format to `inp
 
 As discussed before, the Keras Sequential API is used for creating the model. We'll next add three hidden layers to our MLP:
 
-- The first has 350 output neurons and takes the input of 784 input neurons, which are represented by an input layer specified by the `input_shape` argument. We activate using Rectified Linear Unit (ReLU), which is one of the [standard activation functions](https://machinecurve.com/index.php/2019/05/30/why-swish-could-perform-better-than-relu/#todays-activation-functions) used today. Below, you'll see how it activates.
+- The first has 350 output neurons and takes the input of 784 input neurons, which are represented by an input layer specified by the `input_shape` argument. We activate using Rectified Linear Unit (ReLU), which is one of the [standard activation functions](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-swish-could-perform-better-than-relu/#todays-activation-functions) used today. Below, you'll see how it activates.
 - The second has 50 output neurons and activates by means of ReLU. You'll by now notice that we somehow funnel the information into a very dense format. This way, the model will be capable of learning the most important patterns, which helps generalizing to new data.
 - Finally, there's an output layer, which has `num_classes` output neurons and activates by means of `Softmax`. The number of neurons equals the number of scalars in your output vector. Since that data must be categorical for categorical cross entropy, and thus the number of scalar values in your target vector equals the number of classes, it makes sense why `num_classes` is used. Softmax, the activation function, is capable of generating a so-called multiclass probability distribution. That is, it computes the probability that a certain feature vector belongs to one class.
 
@@ -473,7 +473,7 @@ But...
 
 ...we can do better.
 
-MLPs were very popular years back (say, in the 2000s), but when it comes to image data, they have been overtaken in populary and effectiveness by [Convolutional Neural Networks](https://machinecurve.com/index.php/2018/12/07/convolutional-neural-networks-and-their-components-for-computer-vision/) (CNNs). If you wish to create an image classifier, I'd suggest looking at them, perhaps combining them with MLPs in some kind of ensemble classifier. Don't use MLPs only.
+MLPs were very popular years back (say, in the 2000s), but when it comes to image data, they have been overtaken in populary and effectiveness by [Convolutional Neural Networks](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/convolutional-neural-networks-and-their-components-for-computer-vision.md) (CNNs). If you wish to create an image classifier, I'd suggest looking at them, perhaps combining them with MLPs in some kind of ensemble classifier. Don't use MLPs only.
 
 ### More observations
 

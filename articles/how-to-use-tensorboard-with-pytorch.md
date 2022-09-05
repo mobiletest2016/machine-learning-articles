@@ -34,7 +34,7 @@ Are you ready? Let's take a look! 😎
 
 People who create stuff can usually know best how to describe what they created - and the same is true for the creators of TensorBoard:
 
-> _In machine learning, to improve something you often need to be able to measure it. TensorBoard is a tool for providing the measurements and visualizations needed during the machine learning workflow. It enables tracking experiment metrics like_ [loss](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/) _and accuracy, visualizing the model graph, projecting embeddings to a lower dimensional space, and much more._
+> _In machine learning, to improve something you often need to be able to measure it. TensorBoard is a tool for providing the measurements and visualizations needed during the machine learning workflow. It enables tracking experiment metrics like_ [loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md) _and accuracy, visualizing the model graph, projecting embeddings to a lower dimensional space, and much more._
 > 
 > [TensorBoard – Get Started](https://www.tensorflow.org/tensorboard/get_started)
 
@@ -48,7 +48,7 @@ In another screen, you can see how loss has evolved over the epochs:
 
 ![](images/image-1-1024x505.png)
 
-[And so on. And so on.](https://www.machinecurve.com/index.php/2019/11/13/how-to-use-tensorboard-with-keras/#viewing-model-performance-in-tensorboard)
+[And so on. And so on.](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-tensorboard-with-keras/#viewing-model-performance-in-tensorboard)
 
 Installing TensorBoard must be done separately to your PyTorch install. Doing so is not difficult, fortunately, and can be done by simply executing `pip` via `pip install tensorboard`.
 
@@ -66,7 +66,7 @@ Great!
 
 This means that we can create a `SummaryWriter` (or, fully: `torch.utils.tensorboard.writer.SummaryWriter`) and use it to write away the data that we want.
 
-Recall from the article [linked above](https://www.machinecurve.com/index.php/2019/11/13/how-to-use-tensorboard-with-keras/#viewing-model-performance-in-tensorboard) that TensorBoard provides a variety of tabs:
+Recall from the article [linked above](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-tensorboard-with-keras/#viewing-model-performance-in-tensorboard) that TensorBoard provides a variety of tabs:
 
 - The **scalar tab** for showing how the training process happened over time by means of displaying scalars (e.g., in a line plot).
 - The **images tab** for showing images written away during the training process.
@@ -106,7 +106,7 @@ This will give you a rough idea how TensorBoard can be used, leaving sufficient 
 
 ### A simple ConvNet to start with
 
-In a different article, [we created a simple Convolutional Neural Network](https://www.machinecurve.com/index.php/2021/07/08/convolutional-neural-networks-with-pytorch/) for classifying MNIST digits. Let's use that code here and expand it with the `SummaryWriter` for
+In a different article, [we created a simple Convolutional Neural Network](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/convolutional-neural-networks-with-pytorch.md) for classifying MNIST digits. Let's use that code here and expand it with the `SummaryWriter` for
 
 ```
 import os

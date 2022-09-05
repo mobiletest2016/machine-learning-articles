@@ -46,7 +46,7 @@ Let's take a look! :)
 
 ## What is a GAN?
 
-Before we start building our simple GAN, it may be a good idea to briefly recap what GANs are. Make sure to read the [gentle introduction to GANs](https://www.machinecurve.com/index.php/2021/03/23/generative-adversarial-networks-a-gentle-introduction/) if you wish to understand their behavior in more detail. However, we'll also cover things here briefly. Let's take a look at the generic architecture of a GAN:
+Before we start building our simple GAN, it may be a good idea to briefly recap what GANs are. Make sure to read the [gentle introduction to GANs](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/generative-adversarial-networks-a-gentle-introduction.md) if you wish to understand their behavior in more detail. However, we'll also cover things here briefly. Let's take a look at the generic architecture of a GAN:
 
 ![This image has an empty alt attribute; its file name is GAN-1024x431.jpg](images/GAN-1024x431.jpg)
 
@@ -54,7 +54,7 @@ You'll see that a GAN is composed of two separate models. The first, being calle
 
 You can also compare this process with that of a **counterfeiter** and the **police**. The Generator serves as the counterfeiter, while the task of the police is to catch them. When the police catches more counterfeit images, the counterfeiter has to learn to produce better results. This is exactly what happens: through the Discriminator becoming better in judging whether an image is fake or real, the Generator eventually becomes better in generating fake images. Consequentially, the Generator can be used independently to generate images after it has been trained.
 
-Now, it's time to start building the GAN. Note that more contemporary approaches, such as [DCGANs](https://www.machinecurve.com/index.php/2021/07/15/creating-dcgan-with-pytorch/), are more preferred if you wish to use your GAN in production (because of the simple reason that originally, the vanilla GAN didn't use any Convolutional layers). However, if you want to start with GANs, the example that you will produce below is a very good starting point - after which you can continue with DCGANs and further. Let's take a look! :)
+Now, it's time to start building the GAN. Note that more contemporary approaches, such as [DCGANs](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/creating-dcgan-with-pytorch.md), are more preferred if you wish to use your GAN in production (because of the simple reason that originally, the vanilla GAN didn't use any Convolutional layers). However, if you want to start with GANs, the example that you will produce below is a very good starting point - after which you can continue with DCGANs and further. Let's take a look! :)
 
 * * *
 
@@ -127,7 +127,7 @@ torch.backends.cudnn.benchmark = True
 
 ### Building the Generator
 
-Now that we have written some preparatory code, it's time to build the actual Generator! Contrary to the [Deep Convolutional GAN](https://www.machinecurve.com/index.php/2021/07/15/creating-dcgan-with-pytorch/), which essentially follows the _vanilla GAN_ that you will create today, this Generator does not use [Convolutional layers](https://www.machinecurve.com/index.php/2018/12/07/convolutional-neural-networks-and-their-components-for-computer-vision/). Here's the code for the Generator:
+Now that we have written some preparatory code, it's time to build the actual Generator! Contrary to the [Deep Convolutional GAN](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/creating-dcgan-with-pytorch.md), which essentially follows the _vanilla GAN_ that you will create today, this Generator does not use [Convolutional layers](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/convolutional-neural-networks-and-their-components-for-computer-vision.md). Here's the code for the Generator:
 
 ```
 class Generator(nn.Module):
@@ -159,7 +159,7 @@ class Generator(nn.Module):
     return self.layers(x)
 ```
 
-You can see that it is a regular PyTorch [`nn.Module` class](https://www.machinecurve.com/index.php/2021/01/26/creating-a-multilayer-perceptron-with-pytorch-and-lightning/) and hence performs a `forward` pass by simply feeding the data to a model, specified in `self.layers` as a `nn.Sequential` based neural network. In our case, you will write four upsampling blocks. The intermediate blocks consist of a `nn.Linear` (or densely-connected) layer, a `BatchNorm1d` layer for Batch Normalization, and Leaky ReLU. Bias is set to `False` because the Batch Norm layers nullify it.
+You can see that it is a regular PyTorch [`nn.Module` class](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/creating-a-multilayer-perceptron-with-pytorch-and-lightning.md) and hence performs a `forward` pass by simply feeding the data to a model, specified in `self.layers` as a `nn.Sequential` based neural network. In our case, you will write four upsampling blocks. The intermediate blocks consist of a `nn.Linear` (or densely-connected) layer, a `BatchNorm1d` layer for Batch Normalization, and Leaky ReLU. Bias is set to `False` because the Batch Norm layers nullify it.
 
 The final upsampling layer converts the intermediate amount of neurons of already 512 into `GENERATOR_OUTPUT_IMAGE_SHAPE`, which is `28 * 28 * 1 = 784`. With Tanh, the outputs are normalized to the range `[-1, 1]`.
 
@@ -813,4 +813,4 @@ Voila, your first GAN is complete! :D
 
 Goodfellow, I. J., Pouget-Abadie, J., Mirza, M., Xu, B., Warde-Farley, D., Ozair, S., … & Bengio, Y. (2014). [Generative adversarial networks.](https://arxiv.org/abs/1406.2661) _arXiv preprint arXiv:1406.2661_.
 
-MachineCurve. (2021, July 15). _Creating DCGAN with PyTorch_. [https://www.machinecurve.com/index.php/2021/07/15/creating-dcgan-with-pytorch/](https://www.machinecurve.com/index.php/2021/07/15/creating-dcgan-with-pytorch/)
+MachineCurve. (2021, July 15). _Creating DCGAN with PyTorch_. [https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/creating-dcgan-with-pytorch/](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/creating-dcgan-with-pytorch.md)

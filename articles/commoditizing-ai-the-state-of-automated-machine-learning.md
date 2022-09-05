@@ -39,7 +39,7 @@ Then, next question - which type of model must be used? Should we use Support Ve
 
 How ML engineers may feel every now and then.
 
-Ok, suppose that we chose a certain class of neural networks, say [Convolutional Neural Networks](https://machinecurve.com/index.php/2018/12/07/convolutional-neural-networks-and-their-components-for-computer-vision/). You'll then have to decide about the network architecture. How many layers should be used? Which activation functions must be added to these layers? What kind of regularization do I apply? How many densely-classified layer must accompany my convolutional ones? All kind of questions that must be answered by the engineer.
+Ok, suppose that we chose a certain class of neural networks, say [Convolutional Neural Networks](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/convolutional-neural-networks-and-their-components-for-computer-vision.md). You'll then have to decide about the network architecture. How many layers should be used? Which activation functions must be added to these layers? What kind of regularization do I apply? How many densely-classified layer must accompany my convolutional ones? All kind of questions that must be answered by the engineer.
 
 Suppose that you have chosen both a _model class_ and an _architecture_. You'll then move on and select a set of hyperparameters, or configuration options. Example ones are the degree with which a model is optimized every iteration, also known as the learning rate. Similarly, you choose the optimizer, and the loss function to be used during training. And there are other ones.
 
@@ -145,7 +145,7 @@ The cloud is often the place for automated machine learning, but this does not a
 
 ### AutoKeras
 
-Cloud AutoML is however rather pricy as it apparently costs $20 per hour (Seif, 2019). Fortunately, for those who have experience with [Keras](https://machinecurve.com/index.php/mastering-keras/), there is now a library out there called AutoKeras - take a look at it [here](https://github.com/keras-team/autokeras). It essentially turns the Keras based way of working into an AutoML problem: it performs an architecture search by means of Bayesian optimization and network morphism. Back to plain English now, but if you really wish to understand it deeper - take a look at (Jin et al., 2018).
+Cloud AutoML is however rather pricy as it apparently costs $20 per hour (Seif, 2019). Fortunately, for those who have experience with [Keras](https://web.archive.org/web/https://machinecurve.com/index.php/mastering-keras/), there is now a library out there called AutoKeras - take a look at it [here](https://github.com/keras-team/autokeras). It essentially turns the Keras based way of working into an AutoML problem: it performs an architecture search by means of Bayesian optimization and network morphism. Back to plain English now, but if you really wish to understand it deeper - take a look at (Jin et al., 2018).
 
 I do - and will dive deeper into it ASAP. Remind me of this, please! 😄
 

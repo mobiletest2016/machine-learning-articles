@@ -41,9 +41,9 @@ Are you ready? Let's go! :-)
 
 In today's deep learning practice, three so-called **activation functions** are used widely: the Rectified Linear Unit (ReLU), Sigmoid and Tanh activation functions.
 
-Activation functions in general are used to convert linear outputs of a neuron into [nonlinear outputs](https://www.machinecurve.com/index.php/2020/10/29/why-nonlinear-activation-functions-improve-ml-performance-with-tensorflow-example/), ensuring that a neural network can learn nonlinear behavior.
+Activation functions in general are used to convert linear outputs of a neuron into [nonlinear outputs](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-nonlinear-activation-functions-improve-ml-performance-with-tensorflow-example.md), ensuring that a neural network can learn nonlinear behavior.
 
-**Rectified Linear Unit (ReLU)** does so by outputting `x` for all `x >= 0` and `0` for all `x < 0`. In other words, it [equals](https://www.machinecurve.com/index.php/question/why-does-relu-equal-max0-x/) `max(x, 0)`. This simplicity makes it more difficult than the **Sigmoid** **activation function** and the **Tangens hyperbolicus** **(Tanh)** activation function, which use more difficult formulas and are computationally more expensive. In addition, ReLU is not sensitive to vanishing gradients, whereas the other two are, slowing down learning in your network. Also known to generalize well, it is unsurprising to see that ReLU is the most widely used activation function today.
+**Rectified Linear Unit (ReLU)** does so by outputting `x` for all `x >= 0` and `0` for all `x < 0`. In other words, it [equals](https://web.archive.org/web/https://www.machinecurve.com/index.php/question/why-does-relu-equal-max0-x/) `max(x, 0)`. This simplicity makes it more difficult than the **Sigmoid** **activation function** and the **Tangens hyperbolicus** **(Tanh)** activation function, which use more difficult formulas and are computationally more expensive. In addition, ReLU is not sensitive to vanishing gradients, whereas the other two are, slowing down learning in your network. Also known to generalize well, it is unsurprising to see that ReLU is the most widely used activation function today.
 
 * * *
 
@@ -101,7 +101,7 @@ Mathematically, it can be represented as follows:
 
 As you can see in the plot, the function slowly increases over time, but the greatest increase can be found around \[latex\]x = 0\[/latex\]. The range of the function is \[latex\](0, 1)\[/latex\]; i.e. towards high values for \[latex\]x\[/latex\] the function therefore approaches 1, but never equals it.
 
-The Sigmoid function allows you to do multiple things. First, as we recall from our post on [why true Rosenblatt perceptrons cannot be created in Keras](https://machinecurve.com/index.php/2019/07/24/why-you-cant-truly-create-rosenblatts-perceptron-with-keras/), step functions used in those ancient neurons are not differentiable and hence gradient descent for optimization cannot be applied. Second, when we implemented the Rosenblatt perceptron ourselves with the [Perceptron Learning Rule](https://machinecurve.com/index.php/2019/07/23/linking-maths-and-intuition-rosenblatts-perceptron-in-python/), we noticed that in a binary classification problem, the decision boundary is optimized per neuron and will find one of the possible boundaries if they exist. This gets easier with the Sigmoid function, since it is more smooth (Majidi, n.d.).
+The Sigmoid function allows you to do multiple things. First, as we recall from our post on [why true Rosenblatt perceptrons cannot be created in Keras](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-you-cant-truly-create-rosenblatts-perceptron-with-keras.md), step functions used in those ancient neurons are not differentiable and hence gradient descent for optimization cannot be applied. Second, when we implemented the Rosenblatt perceptron ourselves with the [Perceptron Learning Rule](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/linking-maths-and-intuition-rosenblatts-perceptron-in-python.md), we noticed that in a binary classification problem, the decision boundary is optimized per neuron and will find one of the possible boundaries if they exist. This gets easier with the Sigmoid function, since it is more smooth (Majidi, n.d.).
 
 Additionally, and perhaps primarily, we use the Sigmoid function because it outputs between \[latex\](0, 1)\[/latex\]. When estimating a probability, this is perfect, because probabilities have a very similar range of \[latex\]\[0, 1\]\[/latex\] (Sharma, 2019). Especially in binary classification problems, when we effectively estimate the probability that the output is of some class, Sigmoid functions allow us to give a very weighted estimate. The output \[latex\]0.623\[/latex\] between classes A and B would indicate "slightly more of B". With a step function, the output would have likely been \[latex\]1\[/latex\], and the nuance disappears.
 
@@ -149,13 +149,13 @@ Sigmoid and Tanh essentially produce non-sparse models because their neurons pre
 
 Hence, if certain neurons are less important in terms of their weights, they cannot be 'removed', and the model is not sparse.
 
-Another possible issue with the output ranges of those activation functions is the so-called [vanishing gradients problem](https://machinecurve.com/index.php/2019/08/30/random-initialization-vanishing-and-exploding-gradients/) (DaemonMaker, n.d.). During optimization, data is fed through the model, after which the outcomes are compared with the actual target values. This produces what is known as the loss. Since the loss can be considered to be an (optimizable) mathematical function, we can compute the gradient towards the zero derivative, i.e. the mathematical optimum.
+Another possible issue with the output ranges of those activation functions is the so-called [vanishing gradients problem](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/random-initialization-vanishing-and-exploding-gradients.md) (DaemonMaker, n.d.). During optimization, data is fed through the model, after which the outcomes are compared with the actual target values. This produces what is known as the loss. Since the loss can be considered to be an (optimizable) mathematical function, we can compute the gradient towards the zero derivative, i.e. the mathematical optimum.
 
 Neural networks however comprise many layers of neurons. We would essentially have to repeat this process over and over again for every layer with respect to the downstream ones, and subsequently chain them. That's what backpropagation is. Subsequently, we can optimize our models with gradient descent or a similar optimizer.
 
 When neuron outputs are very small (i.e. \[latex\] -1 < output < 1\[/latex\]), the chains produced during optimization will get smaller and smaller towards the upstream layers. This will cause them to learn very slowly, and make it questionable whether they will converge to their optimum at all: enter the _vanishing gradients problem_.
 
-A more detailed review on this problem can be found [here](https://machinecurve.com/index.php/2019/08/30/random-initialization-vanishing-and-exploding-gradients/).
+A more detailed review on this problem can be found [here](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/random-initialization-vanishing-and-exploding-gradients.md).
 
 * * *
 
@@ -198,7 +198,7 @@ This does however not mean that ReLU itself does not have certain challenges:
 
 To name just a few.
 
-Fortunately, new activation functions have been designed to overcome these problems in especially very large and/or very deep networks. A prime example of such functions is [Swish](https://machinecurve.com/index.php/2019/05/30/why-swish-could-perform-better-than-relu/); another is Leaky ReLU. The references navigate you to blogs that cover these new functions.
+Fortunately, new activation functions have been designed to overcome these problems in especially very large and/or very deep networks. A prime example of such functions is [Swish](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-swish-could-perform-better-than-relu.md); another is Leaky ReLU. The references navigate you to blogs that cover these new functions.
 
 * * *
 

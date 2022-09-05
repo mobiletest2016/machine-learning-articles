@@ -11,7 +11,7 @@ tags:
 
 Training a deep learning model is both simple and complex at the same time. It's simple because with libraries like TensorFlow 2.0 (`tensorflow.keras`, specifically) it's very easy to get started. But while creating a first model is easy, fine-tuning it while knowing what you are doing is a bit more complex.
 
-For example, you will need some knowledge on the [supervised learning process](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#the-high-level-supervised-learning-process), gradient descent or other optimization, regularization, and a lot of other contributing factors.
+For example, you will need some knowledge on the [supervised learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process), gradient descent or other optimization, regularization, and a lot of other contributing factors.
 
 Tweaking and tuning a deep learning models therefore benefits from two things: insight into what is happening and automated control to avoid the need for human intervention where possible. In Keras, this can be achieved with the `tensorflow.keras.callbacks` API. In this article, we will look into Callbacks in more detail. We will first illustrate what they are by displaying where they play a role in the supervised machine learning process. Then, we cover the Callbacks API - and for each callback, illustrate what it can be used for together with a small example. Finally, we will show how you can create your own Callback with the `tensorflow.keras.callbacks.Base` class.
 
@@ -27,18 +27,18 @@ Let's take a look :)
 
 ## Callbacks and their role in the training process
 
-In our article about the [supervised machine learning process](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#the-high-level-supervised-learning-process), we saw how a supervised machine learning model is trained:
+In our article about the [supervised machine learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process), we saw how a supervised machine learning model is trained:
 
-1. A machine learning model (today, often a neural network) is [initialized](https://www.machinecurve.com/index.php/2019/08/22/what-is-weight-initialization/).
+1. A machine learning model (today, often a neural network) is [initialized](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-weight-initialization.md).
 2. Samples from the training set are fed forward, through the model, resulting in a set of predictions.
-3. The predictions are compared with what is known as the _ground truth_ (i.e. the labels corresponding to the training samples), resulting in one value - a [loss value](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions) - telling us how _bad_ the model performs.
+3. The predictions are compared with what is known as the _ground truth_ (i.e. the labels corresponding to the training samples), resulting in one value - a [loss value](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions) - telling us how _bad_ the model performs.
 4. Based on the loss value and the subsequent backwards computation of the error, the weights are changed a little bit, to make the model a bit better. Then, we're either moving back to step 2, or we stop the training process.
 
 As we can see, steps 2-4 are _iterative_, meaning that the model improves in a cyclical fashion. This is reflected in the figure below.
 
 ![](images/High-level-training-process-1024x973.jpg)
 
-In Machine Learning terms, each iteration is also called an **epoch**. Hence, training a machine learning model involves the completion of at least one, but often multiple epochs. Note from the article about [gradient descent based optimization](https://www.machinecurve.com/index.php/2019/10/24/gradient-descent-and-its-variants/) that we often don't feed forward all data at once. Instead, we use what is called a _minibatch approach_ - the entire batch of data is fed forward in smaller batches called minibatches. By consequence, each epoch consists of at least one but often multiple **batches** of data.
+In Machine Learning terms, each iteration is also called an **epoch**. Hence, training a machine learning model involves the completion of at least one, but often multiple epochs. Note from the article about [gradient descent based optimization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md) that we often don't feed forward all data at once. Instead, we use what is called a _minibatch approach_ - the entire batch of data is fed forward in smaller batches called minibatches. By consequence, each epoch consists of at least one but often multiple **batches** of data.
 
 Now, it can be the case that you want to get insights from the training process while it is running. Or you want to provide automated steering in order to avoid wasting resources. In those cases, you might want to add a **callback** to your Keras model.
 
@@ -46,12 +46,12 @@ Now, it can be the case that you want to get insights from the training process 
 > 
 > Keras Team (n.d.)
 
-As we shall see later in this article, among others, there are [callbacks for monitoring](https://www.machinecurve.com/index.php/2019/11/13/how-to-use-tensorboard-with-keras/) and for stopping the training process [when it no longer makes the model better](https://www.machinecurve.com/index.php/2019/05/30/avoid-wasting-resources-with-earlystopping-and-modelcheckpoint-in-keras/). This is possible because with callbacks, we can 'capture' the training process while it is happening. They essentially 'hook' into the training process by allowing the training process to invoke certain callback definitions. In Keras, each callback implements at least one, but possibly multiple of the following definitions (Keras Team, n.d.).
+As we shall see later in this article, among others, there are [callbacks for monitoring](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-tensorboard-with-keras.md) and for stopping the training process [when it no longer makes the model better](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/avoid-wasting-resources-with-earlystopping-and-modelcheckpoint-in-keras.md). This is possible because with callbacks, we can 'capture' the training process while it is happening. They essentially 'hook' into the training process by allowing the training process to invoke certain callback definitions. In Keras, each callback implements at least one, but possibly multiple of the following definitions (Keras Team, n.d.).
 
 - With the `on_train_begin` and `on_train_end` definitions, we can perform a certain action either when `model.fit` starts executing or when the training process has just ended.
 - With the `on_epoch_begin` and `on_epoch_end` definitions, we can perform a certain action just before the start of an epoch, or directly after it has ended.
-- With the `on_test_begin` and `on_test_end` definitions, we can perform a certain action just before or after the model [is evaluated](https://www.machinecurve.com/index.php/2020/11/03/how-to-evaluate-a-keras-model-with-model-evaluate/).
-- With the `on_predict_begin` and `on_predict_end` definitions, we can do the same, but then when we generate [new predictions](https://www.machinecurve.com/index.php/2020/02/21/how-to-predict-new-samples-with-your-keras-model/). If we predict for a batch rather than a single sample, we can use the `on_predict_batch_begin` and `on_predict_batch_end` definitions.
+- With the `on_test_begin` and `on_test_end` definitions, we can perform a certain action just before or after the model [is evaluated](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-evaluate-a-keras-model-with-model-evaluate.md).
+- With the `on_predict_begin` and `on_predict_end` definitions, we can do the same, but then when we generate [new predictions](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-predict-new-samples-with-your-keras-model.md). If we predict for a batch rather than a single sample, we can use the `on_predict_batch_begin` and `on_predict_batch_end` definitions.
 - With the `on_train_batch_begin`, `on_train_batch_end`, `on_test_batch_begin` and `on_test_batch_end` definitions, we can perform a certain action directly before or after we feed a batch to either the training or testing process.
 
 As we can see, by using a callback, through the definitions outlined above, we can control the training process at a variety of levels.
@@ -64,9 +64,9 @@ Now that we understand what callbacks are, how they can help us, and what defini
 
 Most specifically, it contains the following callbacks, and we will cover each of them next:
 
-1. **ModelCheckpoint callback:** can be used to [automatically save a model](https://www.machinecurve.com/index.php/2019/05/30/avoid-wasting-resources-with-earlystopping-and-modelcheckpoint-in-keras/) after each epoch, or just the best one.
-2. **TensorBoard callback:** allows us to monitor the training process in realtime with [TensorBoard](https://www.machinecurve.com/index.php/2019/11/13/how-to-use-tensorboard-with-keras/).
-3. **EarlyStopping callback:** ensures that the training process stops if the loss value [does no longer improve](https://www.machinecurve.com/index.php/2019/05/30/avoid-wasting-resources-with-earlystopping-and-modelcheckpoint-in-keras/).
+1. **ModelCheckpoint callback:** can be used to [automatically save a model](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/avoid-wasting-resources-with-earlystopping-and-modelcheckpoint-in-keras.md) after each epoch, or just the best one.
+2. **TensorBoard callback:** allows us to monitor the training process in realtime with [TensorBoard](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-tensorboard-with-keras.md).
+3. **EarlyStopping callback:** ensures that the training process stops if the loss value [does no longer improve](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/avoid-wasting-resources-with-earlystopping-and-modelcheckpoint-in-keras.md).
 4. **LearningRateScheduler callback:** updates the learning rate before the start of an epoch, based on a `scheduler` function.
 5. **ReduceLROnPlateau callback:** reduces learning rate if the loss value does no longer improve.
 6. **RemoteMonitor callback:** sends TensorFlow training events to a remote monitor, such as a logging system.
@@ -85,7 +85,7 @@ Before we take a look at all the individual callbacks, we must take a look at ho
 
 With those three simple steps, you ensure that the callbacks are hooked into the training process!
 
-For example, if we want to use both `ModelCheckpoint` and `EarlyStopping` - [as we do here](https://www.machinecurve.com/index.php/2019/05/30/avoid-wasting-resources-with-earlystopping-and-modelcheckpoint-in-keras/) - for step (1), we first **add the imports**:
+For example, if we want to use both `ModelCheckpoint` and `EarlyStopping` - [as we do here](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/avoid-wasting-resources-with-earlystopping-and-modelcheckpoint-in-keras.md) - for step (1), we first **add the imports**:
 
 ```
 
@@ -134,12 +134,12 @@ With the following arguments:
 - If you want to save only if some quantity has changed, you can set this quantity by means of `monitor`. It is set to validation loss by default.
 - With `verbose`, you can specify if the callback output should be output in your standard output (often, your terminal).
 - If you only want to save the model when the monitored quantity improves, you can set `save_best_only` to `True`.
-- Normally, the entire model is [saved](https://www.machinecurve.com/index.php/2020/02/14/how-to-save-and-load-a-model-with-keras/) - that is, the stack of layers as well as the [model weights](https://www.machinecurve.com/index.php/2019/08/22/what-is-weight-initialization/). If you want to save the weights only (e.g. because you can initialize the model yourself), you can set `save_weights_only` to `True`.
+- Normally, the entire model is [saved](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-save-and-load-a-model-with-keras.md) - that is, the stack of layers as well as the [model weights](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-weight-initialization.md). If you want to save the weights only (e.g. because you can initialize the model yourself), you can set `save_weights_only` to `True`.
 - With `mode`, you can determine in what direction the `monitor` quantity must move to consider it to be an improvement. You can choose any from `{auto, min, max}`. When it is set to `auto`, it determines the `mode` based on the `monitor` - with loss, for example, it will be `min`; with accuracy, it will be `max`.
 - The `save_freq` allows you to determine when to save the model. By default, it is saved after every epoch (or checks whether it has improved after every epoch). By changing the `'epoch'` string into an integer, you can also instruct Keras to save after every `n` minibatches.
 - If you want, you can specify other compatible `options` as well. Check the `ModelCheckpoint` docs (see link in references) for more information about these `options`.
 
-Using `ModelCheckpoint` is easy - and here is an example based on a [generator](https://www.machinecurve.com/index.php/2020/04/06/using-simple-generators-to-flow-data-from-file-with-keras/):
+Using `ModelCheckpoint` is easy - and here is an example based on a [generator](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/using-simple-generators-to-flow-data-from-file-with-keras.md):
 
 ```
 checkpoint_path=f'{os.path.dirname(os.path.realpath(__file__))}/covid-convnet.h5'
@@ -155,7 +155,7 @@ model.fit(train_generator,
 
 ### TensorBoard callback
 
-Did you know that you can visualize the training process realtime [with TensorBoard](https://www.machinecurve.com/index.php/2019/11/13/how-to-use-tensorboard-with-keras/)?
+Did you know that you can visualize the training process realtime [with TensorBoard](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-tensorboard-with-keras.md)?
 
 ![](images/image-1.png)
 
@@ -188,7 +188,7 @@ tf.keras.callbacks.TensorBoard(
 - If you want to visualize your model weights as images in TensorBoard, you can set `write_images` to `True`.
 - With `update_freq`, you can specify when this callback sends data to TensorBoard. If it's set to `epoch`, it will send data every epoch. If set to `batch`, data will be sent on every batch. If set to an integer `n` instead, data will be sent every `n` batches.
 - With the [TensorFlow Profiler](https://www.tensorflow.org/guide/profiler), we can calculate the compute performance of TensorFlow - that is, the resources it needs at a point in time. With `profile_batch`, you can specify a batch to profile, meaning that Profiling information will be sent to TensorBoard as well.
-- If you are using [Embeddings](https://www.machinecurve.com/index.php/2020/03/03/classifying-imdb-sentiment-with-keras-and-embeddings-dropout-conv1d/), it is possible to let TensorFlow visualize them. Specifying the `embeddings_freq` allows you to configure when Embeddings need to be visualized; it represents the frequency in epochs. Embeddings will not be visualized when the frequency is set to 0.
+- If you are using [Embeddings](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/classifying-imdb-sentiment-with-keras-and-embeddings-dropout-conv1d.md), it is possible to let TensorFlow visualize them. Specifying the `embeddings_freq` allows you to configure when Embeddings need to be visualized; it represents the frequency in epochs. Embeddings will not be visualized when the frequency is set to 0.
 - A dictionary with Embeddings metadata can be passed along with `embeddings_metadata`.
 
 Here is an example of using the `TensorBoard` callback within your Keras model:
@@ -206,7 +206,7 @@ model.fit(train_generator,
 
 ### EarlyStopping callback
 
-Optimizing your neural network involves applying [gradient descent](https://www.machinecurve.com/index.php/2019/10/24/gradient-descent-and-its-variants/) or [another optimizer](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/) to a loss value generated by feeding forward batches of training samples, generating predictions that are compared with the corresponding training labels.
+Optimizing your neural network involves applying [gradient descent](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md) or [another optimizer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md) to a loss value generated by feeding forward batches of training samples, generating predictions that are compared with the corresponding training labels.
 
 During this process, you want to find a model that performs well in terms of predictions (i.e., it is not underfit) but that is not too rigid with respect to the dataset it is trained on (i.e., it is neither overfit). That's why the `EarlyStopping` callback can be useful if you are dealing with a situation like this.
 
@@ -229,7 +229,7 @@ tf.keras.callbacks.EarlyStopping(
 - With `patience`, you can indicate how long in epochs to wait for additional improvements before stopping the training process.
 - With `verbose`, you can specify the verbosity of the callback, i.e. whether the output is written to standard output.
 - The `baseline` value can be configured to specify a minimum `monitor` that must be achieved at all before _any_ change can be considered an improvement.
-- As you would expect, having a `patience` > 0 will ensure that the model is trained for `patience` more epochs, possibly making it worse. With `restore_best_weights`, we can restore the weights of the best-performing model instance when the training process stops. This can be useful if you directly perform [model evaluation](https://www.machinecurve.com/index.php/2020/11/03/how-to-evaluate-a-keras-model-with-model-evaluate/) after stopping the training process.
+- As you would expect, having a `patience` > 0 will ensure that the model is trained for `patience` more epochs, possibly making it worse. With `restore_best_weights`, we can restore the weights of the best-performing model instance when the training process stops. This can be useful if you directly perform [model evaluation](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-evaluate-a-keras-model-with-model-evaluate.md) after stopping the training process.
 
 Here is an example of using `EarlyStopping` with Keras:
 
@@ -247,9 +247,9 @@ model.fit(train_generator,
 
 ### LearningRateScheduler callback
 
-During the optimization process, a so called _weight update_ is computed. However, if we compare the optimization process with rolling a ball down a mountain (reflecting the [loss landscape](https://www.machinecurve.com/index.php/2020/02/26/getting-out-of-loss-plateaus-by-adjusting-learning-rates/)), we want to smooth the ride, ensuring that our ball does not bounce out of control. That is why a [learning rate](https://www.machinecurve.com/index.php/2019/11/06/what-is-a-learning-rate-in-a-neural-network/) is applied: it specifies a fraction of the weight update to be used by the optimizer.
+During the optimization process, a so called _weight update_ is computed. However, if we compare the optimization process with rolling a ball down a mountain (reflecting the [loss landscape](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/getting-out-of-loss-plateaus-by-adjusting-learning-rates.md)), we want to smooth the ride, ensuring that our ball does not bounce out of control. That is why a [learning rate](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-a-learning-rate-in-a-neural-network.md) is applied: it specifies a fraction of the weight update to be used by the optimizer.
 
-Preferably being relatively large during the early iterations and lower in the later stages, we must adapt the learning rate during the training process. This is called [learning rate decay](https://www.machinecurve.com/index.php/2019/11/11/problems-with-fixed-and-decaying-learning-rates/) and shows what a _learning rate scheduler_ can be useful for. The `LearningRateScheduler` callback implements this functionality.
+Preferably being relatively large during the early iterations and lower in the later stages, we must adapt the learning rate during the training process. This is called [learning rate decay](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/problems-with-fixed-and-decaying-learning-rates.md) and shows what a _learning rate scheduler_ can be useful for. The `LearningRateScheduler` callback implements this functionality.
 
 > At the beginning of every epoch, this callback gets the updated learning rate value from `schedule` function provided at `__init__`, with the current epoch and current learning rate, and applies the updated learning rate on the optimizer.
 > 
@@ -289,7 +289,7 @@ model.fit(train_generator,
 
 During the optimization process - i.e., rolling the ball downhill - it can be the case that you encounter so-called _loss plateaus_. In those areas, the gradient of the loss function is close to zero, but not entirely - indicating that you are in the vicinity of a loss minimum. That is, close to where you want to be (unless you are dealing with a local minimum, of course).
 
-Keeping your learning rate equal when close to a plateau means that your model will likely not improve any further. This happens because your model will optimize, oscillating around the loss minimum, simply because the steps the current [learning rate](https://www.machinecurve.com/index.php/2019/11/06/what-is-a-learning-rate-in-a-neural-network/) it instructs to set are too big.
+Keeping your learning rate equal when close to a plateau means that your model will likely not improve any further. This happens because your model will optimize, oscillating around the loss minimum, simply because the steps the current [learning rate](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-a-learning-rate-in-a-neural-network.md) it instructs to set are too big.
 
 With the `ReduceLROnPlateau` callback, the optimization process can be instructed to _reduce_ the learning rate (and hence the step) when a plateau is encountered.
 
@@ -328,7 +328,7 @@ model.fit(train_generator,
 
 ### RemoteMonitor callback
 
-Above, we saw that training logs can be distributed to [TensorBoard](https://www.machinecurve.com/index.php/2019/11/13/how-to-use-tensorboard-with-keras/) for visualization and logging purposes. However, it can be the case that you have your own logging and visualization system - whether that's a cloud-based system or a locally installed Grafana or Elastic Stack visualization tooling.
+Above, we saw that training logs can be distributed to [TensorBoard](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-tensorboard-with-keras.md) for visualization and logging purposes. However, it can be the case that you have your own logging and visualization system - whether that's a cloud-based system or a locally installed Grafana or Elastic Stack visualization tooling.
 
 In those cases, you might wish to send the training logs there instead. The `RemoteMonitor` callback can help you do this.
 
@@ -490,7 +490,7 @@ model.fit(train_generator,
 
 ### Experimental: BackupAndRestore callback
 
-When you are training a neural network, especially in a [distributed setting](https://www.machinecurve.com/index.php/2020/10/16/tensorflow-cloud-easy-cloud-based-training-of-your-keras-model/), it would be problematic if your training process suddenly stops - e.g. due to machine failure. Every iteration passed so far will be gone. With the experimental `BackupAndRestore` callback, you can instruct Keras to create temporary checkpoint files after each epoch, to which you can restore later.
+When you are training a neural network, especially in a [distributed setting](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tensorflow-cloud-easy-cloud-based-training-of-your-keras-model.md), it would be problematic if your training process suddenly stops - e.g. due to machine failure. Every iteration passed so far will be gone. With the experimental `BackupAndRestore` callback, you can instruct Keras to create temporary checkpoint files after each epoch, to which you can restore later.
 
 > `BackupAndRestore` callback is intended to recover from interruptions that happened in the middle of a model.fit execution by backing up the training states in a temporary checkpoint file (based on TF CheckpointManager) at the end of each epoch.
 > 
@@ -525,7 +525,7 @@ There are two callbacks that are part of the `tensorflow.keras.callbacks` API bu
 
 They are the `History` and `BaseLogger` callbacks.
 
-- The `History` callback generates a `History` [object](https://www.machinecurve.com/index.php/2019/10/08/how-to-visualize-the-training-process-in-keras/#the-history-object) when calling `model.fit`.
+- The `History` callback generates a `History` [object](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-training-process-in-keras/#the-history-object) when calling `model.fit`.
 - The `BaseLogger` callback accumulates basic metrics to display later.
 
 * * *

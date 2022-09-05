@@ -20,7 +20,7 @@ While that is still the case for many models these days, much has improved, but 
 
 Are you ready? Let's take a look! 😎
 
-- If you want to build a neural network using greedy layer-wise training with TensorFlow and Keras, [take a look at this article](https://www.machinecurve.com/index.php/2022/01/09/greedy-layer-wise-training-of-deep-networks-a-tensorflow-keras-example/).
+- If you want to build a neural network using greedy layer-wise training with TensorFlow and Keras, [take a look at this article](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/greedy-layer-wise-training-of-deep-networks-a-tensorflow-keras-example.md).
 
 * * *
 
@@ -80,7 +80,7 @@ You will use the following dependencies:
 - PyTorch, which is represented in the `torch` package. Besides the package itself, you will also import the `CIFAR10` dataset (which you will train today's model with) and the `DataLoader`, which is used for loading the training data.
 - From `torchvision`, a sub package that must be installed jointly with PyTorch, you will import `transforms`, which is used for transforming the input data into Tensor format, and allows you to perform additional transformations otu of the box.
 - From `collections`, you import an ordered dictionary - `OrderedDict`. You will see that it will play a big role in structuring the layers of your neural network. It is a default Python API, so if you have installed Python, nothing else needs to be installed.
-- Finally, you will import `Accelerator` - which is the [HuggingFace Accelerate](https://www.machinecurve.com/index.php/2022/01/07/quick-and-easy-gpu-tpu-acceleration-for-pytorch-with-huggingface-accelerate/) package. It can be used to relieve you from all the `.to(cuda)` calls, moving your data and your model to your CUDA device if available. It handles everything out of the box! Click the link if you want to understand it in more detail.
+- Finally, you will import `Accelerator` - which is the [HuggingFace Accelerate](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/quick-and-easy-gpu-tpu-acceleration-for-pytorch-with-huggingface-accelerate.md) package. It can be used to relieve you from all the `.to(cuda)` calls, moving your data and your model to your CUDA device if available. It handles everything out of the box! Click the link if you want to understand it in more detail.
 
 ![](images/cifar10_images.png)
 
@@ -129,7 +129,7 @@ class LayerConfigurableMLP(nn.Module):
 
 Let's break this class apart by its definitions - `__init__`, `forward` and `set_structure`.
 
-- Each class must have a **constructor**. In Python classes, this is the `__init__` definition. In ours, which is the constructor for the `nn.Module` ([the base PyTorch class for a neural network](https://www.machinecurve.com/index.php/2021/07/20/how-to-create-a-neural-network-for-regression-with-pytorch/)), the constructor does the following:
+- Each class must have a **constructor**. In Python classes, this is the `__init__` definition. In ours, which is the constructor for the `nn.Module` ([the base PyTorch class for a neural network](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-neural-network-for-regression-with-pytorch.md)), the constructor does the following:
     - First, it retrieves the configuration - because we will need some items from it.
     - We compute the full dimensionality should our Tensor be one-dimensional, which is a simple multiplication of width, height and the number of channels.
     - We retrieve the `layer_dim`, which is the dimensionality of each hidden layer - including the layers that we will add later, during greedy layer-wise training.
@@ -162,13 +162,13 @@ It's pretty simple - the global configuration specifies the number of layers tha
 
 The **model configuration** is a bit more complex - it specifies all the settings that are necessary for successsfully training your model. In addition, these settings are _model specific_ rather than specific to the _training process_.
 
-For example, through the `width`, `height` and `channels`, the shape of your image Tensor is represented. Indeed, a CIFAR-10 sample is a 32 x 32 pixels image with 3 channels. The number of classes in the output is 10, and we use a 250-sample batch size when training. We also specify (but not initialize!) the loss function and optimizer. We use `CrossEntropyLoss` for [computing how poorly the model performs.](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#loss)
+For example, through the `width`, `height` and `channels`, the shape of your image Tensor is represented. Indeed, a CIFAR-10 sample is a 32 x 32 pixels image with 3 channels. The number of classes in the output is 10, and we use a 250-sample batch size when training. We also specify (but not initialize!) the loss function and optimizer. We use `CrossEntropyLoss` for [computing how poorly the model performs.](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#loss)
 
 > This criterion combines [`nn.LogSoftmax()`](https://pytorch.org/docs/stable/nn.html#logsoftmax) and [`nn.NLLLoss()`](https://pytorch.org/docs/stable/nn.html#nllloss) in one single class.
 > 
 > PyTorch docs
 
-Using `CrossEntropyLoss` is also why we don't use Softmax activation in our layer structure! This [PyTorch loss function](https://www.machinecurve.com/index.php/2021/07/19/how-to-use-pytorch-loss-functions/) combines both softmax and NLL loss and hence pushes Softmax computation to the loss function, which is more stable numerically.
+Using `CrossEntropyLoss` is also why we don't use Softmax activation in our layer structure! This [PyTorch loss function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-pytorch-loss-functions.md) combines both softmax and NLL loss and hence pushes Softmax computation to the loss function, which is more stable numerically.
 
 For optimization, we use Adam, which is an adaptive optimizer and one of the default optimizers that are used in neural networks these days.
 
@@ -700,4 +700,4 @@ Sequential(
 
 Bengio, Y., Lamblin, P., Popovici, D., & Larochelle, H. (2007). [Greedy layer-wise training of deep networks](https://proceedings.neurips.cc/paper/2006/file/5da713a690c067105aeb2fae32403405-Paper.pdf). In _Advances in neural information processing systems_ (pp. 153-160).
 
-MachineCurve. (2022, January 9). _Greedy layer-wise training of deep networks, a TensorFlow/Keras example_. [https://www.machinecurve.com/index.php/2022/01/09/greedy-layer-wise-training-of-deep-networks-a-tensorflow-keras-example/](https://www.machinecurve.com/index.php/2022/01/09/greedy-layer-wise-training-of-deep-networks-a-tensorflow-keras-example/)
+MachineCurve. (2022, January 9). _Greedy layer-wise training of deep networks, a TensorFlow/Keras example_. [https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/greedy-layer-wise-training-of-deep-networks-a-tensorflow-keras-example/](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/greedy-layer-wise-training-of-deep-networks-a-tensorflow-keras-example.md)

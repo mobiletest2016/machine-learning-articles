@@ -31,7 +31,7 @@ Let's take a look! 😎
 
 ## Variance and overfitting
 
-In our article about the [trade-off between bias and variance](https://www.machinecurve.com/index.php/2020/11/02/machine-learning-error-bias-variance-and-irreducible-error-with-python/), it became clear that models can be high in _bias_ or high in _variance_. Preferably, there is a balance between both.
+In our article about the [trade-off between bias and variance](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/machine-learning-error-bias-variance-and-irreducible-error-with-python.md), it became clear that models can be high in _bias_ or high in _variance_. Preferably, there is a balance between both.
 
 To summarize that article briefly, models high in bias are relatively rigid. Linear models are a good example - they assume that your input data has a linear pattern. Models high in variance, however, do not make such assumptions -- but they are sensitive to changes in your training data.
 
@@ -47,19 +47,19 @@ In their paper [“Dropout: A Simple Way to Prevent Neural Networks from Overfi
 
 > With Dropout, the training process essentially drops out neurons in a neural network.
 > 
-> [What is Dropout? Reduce overfitting in your neural networks](https://www.machinecurve.com/index.php/2019/12/16/what-is-dropout-reduce-overfitting-in-your-neural-networks/)
+> [What is Dropout? Reduce overfitting in your neural networks](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-dropout-reduce-overfitting-in-your-neural-networks.md)
 
-When certain neurons are dropped, no data flows through them anymore. Dropout is modeled as [Bernoulli variables](https://www.machinecurve.com/index.php/2019/12/16/what-is-dropout-reduce-overfitting-in-your-neural-networks/#bernoulli-variables), which are either zero (0) or one (1). They can be configured with a variable, \[latex\]p\[/latex\], which illustrates the probability (between 0 and 1) with which neurons are dropped.
+When certain neurons are dropped, no data flows through them anymore. Dropout is modeled as [Bernoulli variables](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-dropout-reduce-overfitting-in-your-neural-networks/#bernoulli-variables), which are either zero (0) or one (1). They can be configured with a variable, \[latex\]p\[/latex\], which illustrates the probability (between 0 and 1) with which neurons are dropped.
 
 When neurons are dropped, they are not dropped permanently: instead, at every epoch (or even minibatch) the network randomly selects neurons that are dropped this time. Neurons that had been dropped before can be activated again during future iterations.
 
-- For a more detailed explanation of Dropout, see our article [_What is Dropout? Reduce overfitting in your neural networks_](https://www.machinecurve.com/index.php/2019/12/16/what-is-dropout-reduce-overfitting-in-your-neural-networks/).
+- For a more detailed explanation of Dropout, see our article [_What is Dropout? Reduce overfitting in your neural networks_](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-dropout-reduce-overfitting-in-your-neural-networks.md).
 
 * * *
 
 ## Using Dropout with PyTorch: full example
 
-Now that we understand what Dropout is, we can take a look at how Dropout can be implemented with the PyTorch framework. For this example, we are using a [basic example](https://www.machinecurve.com/index.php/2021/01/26/creating-a-multilayer-perceptron-with-pytorch-and-lightning/) that models a Multilayer Perceptron. We will be applying it to the MNIST dataset (but note that Convolutional Neural Networks are more applicable, generally speaking, for image datasets).
+Now that we understand what Dropout is, we can take a look at how Dropout can be implemented with the PyTorch framework. For this example, we are using a [basic example](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/creating-a-multilayer-perceptron-with-pytorch-and-lightning.md) that models a Multilayer Perceptron. We will be applying it to the MNIST dataset (but note that Convolutional Neural Networks are more applicable, generally speaking, for image datasets).
 
 In the example, you'll see that:
 
@@ -162,4 +162,4 @@ if __name__ == '__main__':
 
 PyTorch. (n.d.). _Dropout — PyTorch 1.9.0 documentation_. [https://pytorch.org/docs/stable/generated/torch.nn.Dropout.html](https://pytorch.org/docs/stable/generated/torch.nn.Dropout.html)
 
-MachineCurve. (2019, December 17). _What is dropout? Reduce overfitting in your neural networks_. [https://www.machinecurve.com/index.php/2019/12/16/what-is-dropout-reduce-overfitting-in-your-neural-networks/](https://www.machinecurve.com/index.php/2019/12/16/what-is-dropout-reduce-overfitting-in-your-neural-networks/)
+MachineCurve. (2019, December 17). _What is dropout? Reduce overfitting in your neural networks_. [https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-dropout-reduce-overfitting-in-your-neural-networks/](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-dropout-reduce-overfitting-in-your-neural-networks.md)

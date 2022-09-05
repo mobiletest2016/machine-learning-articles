@@ -14,7 +14,7 @@ tags:
   - "transformers"
 ---
 
-Natural Language Processing is one of the fields where Machine Learning has really boosted progress in the past few years. One of the reasons why there was such progress is of course the [Transformer architecture](https://www.machinecurve.com/index.php/2020/12/28/introduction-to-transformers-in-machine-learning/) introduced in 2017. However, in addition to that, it's unlikely that you haven't heard about the **GPT** **class** of language models. This class, which includes the GPT-2 and GPT-3 architectures, has been attracting global attention since they can produce text which resembles text written by humans.
+Natural Language Processing is one of the fields where Machine Learning has really boosted progress in the past few years. One of the reasons why there was such progress is of course the [Transformer architecture](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/introduction-to-transformers-in-machine-learning.md) introduced in 2017. However, in addition to that, it's unlikely that you haven't heard about the **GPT** **class** of language models. This class, which includes the GPT-2 and GPT-3 architectures, has been attracting global attention since they can produce text which resembles text written by humans.
 
 In fact, Microsoft has acquired an [exclusive license to the GPT-3 language model](https://blogs.microsoft.com/blog/2020/09/22/microsoft-teams-up-with-openai-to-exclusively-license-gpt-3-language-model/), which will likely give it a prominent role in its cloud environment. In addition to that, many other cloud services using GPT-like models are seeing the light of day. Language models like these can possibly change the world of text in unprecedented ways.
 
@@ -22,9 +22,9 @@ But how does the GPT class of models work? In this article, we'll cover the firs
 
 It is structured as follows. Firstly, we'll take a look at performing semi-supervised learning in NLP models - i.e., pretraining on large unlabeled corpora (the unsupervised part) and subsequent fine-tuning on relatively small, labeled corporate (the supervised part). Using this approach, it becomes possible to use the large, pretrained model for building a very task-specific model.
 
-Following this is the actual introduction as GPT. We're going to find out how it utilizes the decoder segment [of the original Transformer](https://www.machinecurve.com/index.php/2020/12/28/introduction-to-transformers-in-machine-learning/) as its base architecture. We will also cover the hyperparameters used for training the decoder segment in pre-training and in fine-tuning. This way, you'll understand how GPT works in detail - without a lot of heavy maths. Looking at fine-tuning, we will also cover the variety of tasks that the GPT model was fine-tuned on, and see how it performs.
+Following this is the actual introduction as GPT. We're going to find out how it utilizes the decoder segment [of the original Transformer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/introduction-to-transformers-in-machine-learning.md) as its base architecture. We will also cover the hyperparameters used for training the decoder segment in pre-training and in fine-tuning. This way, you'll understand how GPT works in detail - without a lot of heavy maths. Looking at fine-tuning, we will also cover the variety of tasks that the GPT model was fine-tuned on, and see how it performs.
 
-Finally, we are going to look at a few extra takeaways of the GPT paper. We'll find out what the effect is of 'locking' certain layers of the pretrained model in terms of performance deterioriation. We'll also see that the pretrained model shows zero-shot behavior, meaning that _some_ performance is achieved when it has not had _any_ fine-tuning. This suggests that the unsupervised language model also learns to recognize linguistic patterns within the text. Finally, we'll compare the performance of Transformer based architectures for semi-supervised learning to that of [LSTMs](https://www.machinecurve.com/index.php/2020/12/29/a-gentle-introduction-to-long-short-term-memory-networks-lstm/).
+Finally, we are going to look at a few extra takeaways of the GPT paper. We'll find out what the effect is of 'locking' certain layers of the pretrained model in terms of performance deterioriation. We'll also see that the pretrained model shows zero-shot behavior, meaning that _some_ performance is achieved when it has not had _any_ fine-tuning. This suggests that the unsupervised language model also learns to recognize linguistic patterns within the text. Finally, we'll compare the performance of Transformer based architectures for semi-supervised learning to that of [LSTMs](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/a-gentle-introduction-to-long-short-term-memory-networks-lstm.md).
 
 * * *
 
@@ -59,9 +59,9 @@ Now that we know what semi-supervised learning for natural language involves, we
 
 ### Using the Transformer decoder segment
 
-From the original article about the [Transformer architecture](https://www.machinecurve.com/index.php/2020/12/28/introduction-to-transformers-in-machine-learning/), we know that the version proposed by Vaswani et al. (2017) is composed of an **encoder segment** and a **decoder segment**.
+From the original article about the [Transformer architecture](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/introduction-to-transformers-in-machine-learning.md), we know that the version proposed by Vaswani et al. (2017) is composed of an **encoder segment** and a **decoder segment**.
 
-The encoder segment converts the original sequence into a hidden and intermediary representation, whereas the decoder segment converts this back into a target sequence. Being a classic [Seq2Seq model](https://www.machinecurve.com/index.php/2020/12/29/differences-between-autoregressive-autoencoding-and-sequence-to-sequence-models-in-machine-learning/), the classic Transformer allows us to perform e.g. translation using neural networks.
+The encoder segment converts the original sequence into a hidden and intermediary representation, whereas the decoder segment converts this back into a target sequence. Being a classic [Seq2Seq model](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/differences-between-autoregressive-autoencoding-and-sequence-to-sequence-models-in-machine-learning.md), the classic Transformer allows us to perform e.g. translation using neural networks.
 
 The GPT based Transformer extends this work by simply taking the decoder segment and stacking it 12 times, like visualized here:
 
@@ -71,14 +71,14 @@ As you can see, it has both the masked multi-head attention segment, the feed fo
 
 This, in other words, means that:
 
-1. First, the (learned) [embedding](https://www.machinecurve.com/index.php/2020/12/28/introduction-to-transformers-in-machine-learning/#output-embedding) is [position embedded](https://www.machinecurve.com/index.php/2020/12/28/introduction-to-transformers-in-machine-learning/#positional-encoding_1) (which contrary to the classic Transformer is also performed using a learned embedding).
-2. The input is then served to a [masked multi-head attention segment](https://www.machinecurve.com/index.php/2020/12/28/introduction-to-transformers-in-machine-learning/#masked-multi-head-attention), which computes self-attention in a [unidirectional way](https://www.machinecurve.com/index.php/question/what-are-unidirectional-language-models/). Here, the residual is added and the result is layer normalized.
+1. First, the (learned) [embedding](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/introduction-to-transformers-in-machine-learning/#output-embedding) is [position embedded](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/introduction-to-transformers-in-machine-learning/#positional-encoding_1) (which contrary to the classic Transformer is also performed using a learned embedding).
+2. The input is then served to a [masked multi-head attention segment](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/introduction-to-transformers-in-machine-learning/#masked-multi-head-attention), which computes self-attention in a [unidirectional way](https://web.archive.org/web/https://www.machinecurve.com/index.php/question/what-are-unidirectional-language-models.md). Here, the residual is added and the result is layer normalized.
 3. The result is then passed through a position-wise feedforward network, meaning that every token is passed individually and that the result is merged back together. Once again, the residual is added and the result is layer normalized.
 4. The outcome either passes to the next decoder segment or is the output of the model as a whole.
 
 ### Pre-training task
 
-Pretraining of the GPT Transformer is performed with the [BooksCorpus dataset](https://www.machinecurve.com/index.php/question/what-does-the-bookscorpus-dataset-look-like/). This dataset, which is unfortunately not wholly distributed anymore but can be reconstructed (see the link for more information), contains more than 7.000 unpublished books (Radford et al., 2018). It includes many genres and hence texts from many domains, such as adventure, fantasy and romance.
+Pretraining of the GPT Transformer is performed with the [BooksCorpus dataset](https://web.archive.org/web/https://www.machinecurve.com/index.php/question/what-does-the-bookscorpus-dataset-look-like/). This dataset, which is unfortunately not wholly distributed anymore but can be reconstructed (see the link for more information), contains more than 7.000 unpublished books (Radford et al., 2018). It includes many genres and hence texts from many domains, such as adventure, fantasy and romance.
 
 An excerpt from the corpus, [found here](https://twitter.com/theshawwn/status/1301852133319294976), is as follows:
 
@@ -100,12 +100,12 @@ This function is a really complex way of writing down the following:
 
 [![](images/bce-1-1024x421.png)](https://www.machinecurve.com/wp-content/uploads/2019/10/bce-1-1024x421.png)
 
-- For each token \[latex\]T\_i\[/latex\] (in the formula also called \[latex\]u\_i\[/latex\]) in the corpus \[latex\]U\[/latex\], [we compute log loss](https://www.machinecurve.com/index.php/2019/10/22/how-to-use-binary-categorical-crossentropy-with-keras/) of the probability that it occurs given the context window \[latex\]u\_{i-k} \\rightarrow u\_{1-1}\[/latex\], i.e. the \[latex\]k\[/latex\] tokens prior to token \[latex\]i\[/latex\].
+- For each token \[latex\]T\_i\[/latex\] (in the formula also called \[latex\]u\_i\[/latex\]) in the corpus \[latex\]U\[/latex\], [we compute log loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-binary-categorical-crossentropy-with-keras.md) of the probability that it occurs given the context window \[latex\]u\_{i-k} \\rightarrow u\_{1-1}\[/latex\], i.e. the \[latex\]k\[/latex\] tokens prior to token \[latex\]i\[/latex\].
 - In plain English, this means: we let the model output the probability that token \[latex\]u\_i\[/latex\] is the next token given the context window of length \[latex\]k\[/latex\], and compute log loss for this probability, indicating how off the prediction is.
     - In the image on the right, you can see that when the prediction is 100% correct, loss is 0; when it gets worse, loss increases exponentially.
-- If we sum this together for all tokens \[latex\]i \\in U\[/latex\], we get the loss as a whole and we can perform backpropagation based error computation and subsequent optimization. In fact, GPT is optimized with [Adam](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/#adam) with a learning rate schedule with a maximum rate of 2.5e-4.
+- If we sum this together for all tokens \[latex\]i \\in U\[/latex\], we get the loss as a whole and we can perform backpropagation based error computation and subsequent optimization. In fact, GPT is optimized with [Adam](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound/#adam) with a learning rate schedule with a maximum rate of 2.5e-4.
 
-Radford et al. (2018) ran the training process for 100 epochs with a [minibatch](https://www.machinecurve.com/index.php/2019/10/24/gradient-descent-and-its-variants/) approach using 64 randomly sampled batches of 512 tokens per batch.
+Radford et al. (2018) ran the training process for 100 epochs with a [minibatch](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md) approach using 64 randomly sampled batches of 512 tokens per batch.
 
 > Our approach requires an expensive pre-training step - 1 month on 8 GPUs. (...) The model does fine-tune to new tasks very quickly which helps mitigate the additional resource requirements.
 > 
@@ -117,7 +117,7 @@ Let's now take a look at how we can use the pretrained model for fine-tuning.
 
 ### Fine-tuning task
 
-Once the GPT model has been pretrained, it can be finetuned. This involves a labeled dataset, which Radford et al. (2018) call \[latex\]C\[/latex\]. Each instance contains a sequence of tokens \[latex\]\\{x^2, x^2, ..., x^m\\}\[/latex\], as well as a label \[latex\]y\[/latex\]. The sequence is passed through the pretrained Transformer architecture, which then is passed through a linear layer with weights \[latex\]W\_y\[/latex\] and [Softmax activation](https://www.machinecurve.com/index.php/2020/01/08/how-does-the-softmax-activation-function-work/) for [multiclass prediction](https://www.machinecurve.com/index.php/2020/10/19/3-variants-of-classification-problems-in-machine-learning/).
+Once the GPT model has been pretrained, it can be finetuned. This involves a labeled dataset, which Radford et al. (2018) call \[latex\]C\[/latex\]. Each instance contains a sequence of tokens \[latex\]\\{x^2, x^2, ..., x^m\\}\[/latex\], as well as a label \[latex\]y\[/latex\]. The sequence is passed through the pretrained Transformer architecture, which then is passed through a linear layer with weights \[latex\]W\_y\[/latex\] and [Softmax activation](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-does-the-softmax-activation-function-work.md) for [multiclass prediction](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/3-variants-of-classification-problems-in-machine-learning.md).
 
 ![](images/image-1.png)
 
@@ -136,7 +136,7 @@ We saw above that during fine-tuning text is fed to the Transformer as a sequenc
 
 As these tasks are all different, we must also represent texts differently when inputting them to the model.
 
-Take **classification**, with sentiment analysis as an example. When we perform classification, we simply tokenize the text, add a <Start> and <Extract> token, and feed it to the Transformer. By sticking a Linear layer on top of it, e.g. with a [binary or multiclass loss function](https://www.machinecurve.com/index.php/2019/10/22/how-to-use-binary-categorical-crossentropy-with-keras/) with Softmax for activation, we can create a model that classifies text.
+Take **classification**, with sentiment analysis as an example. When we perform classification, we simply tokenize the text, add a <Start> and <Extract> token, and feed it to the Transformer. By sticking a Linear layer on top of it, e.g. with a [binary or multiclass loss function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-binary-categorical-crossentropy-with-keras.md) with Softmax for activation, we can create a model that classifies text.
 
 ![](images/Diagram-40-1024x385.png)
 
@@ -152,7 +152,7 @@ Finally, there's **question answering** and **common sense reasoning**. In the c
 
 ![](images/Diagram-43-1024x342.png)
 
-As you can see, the GPT Transformer can be fine-tuned on a wide variety of tasks given the pretrained model. This requires structuring the text a bit differently given the use case and possibly the dataset, but the same architecture and pretrained model can be used over and over again. This is one of the reasons why GPT is used quite widely these days and why it is present in e.g. the [HuggingFace Transformers library](https://www.machinecurve.com/index.php/getting-started-with-huggingface-transformers/).
+As you can see, the GPT Transformer can be fine-tuned on a wide variety of tasks given the pretrained model. This requires structuring the text a bit differently given the use case and possibly the dataset, but the same architecture and pretrained model can be used over and over again. This is one of the reasons why GPT is used quite widely these days and why it is present in e.g. the [HuggingFace Transformers library](https://web.archive.org/web/https://www.machinecurve.com/index.php/getting-started-with-huggingface-transformers/).
 
 * * *
 
@@ -162,7 +162,7 @@ Let's now take a look at three extra takeaways from the Radford et al. (2018) pa
 
 1. **Whether fine-tuning more layers of the model yields better performance**.
 2. **Whether zero-shot learning provides some accuracy.** In other words, whether _not_ performing any epochs and measuring the performance of the fine-tuning task yields some performance to begin with. If so, this suggests that the pretrained model itself is capable of understanding some language.
-3. **What the performance differences are between [LSTM networks](https://www.machinecurve.com/index.php/2020/12/29/a-gentle-introduction-to-long-short-term-memory-networks-lstm/) and (GPT based) Transformer ones**.
+3. **What the performance differences are between [LSTM networks](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/a-gentle-introduction-to-long-short-term-memory-networks-lstm.md) and (GPT based) Transformer ones**.
 
 ### More layers used in finetuning means better performance
 
@@ -176,7 +176,7 @@ Surprisingly, this zero-shot approach indicates that the pretrained model perfor
 
 ### Transformers vs LSTMs
 
-In finding the effectiveness of the GPT Transformer based model, Radford et al. (2018) have also trained a 2048 unit single layer [LSTM network](https://www.machinecurve.com/index.php/2020/12/29/a-gentle-introduction-to-long-short-term-memory-networks-lstm/). On average, across many of the tasks, the performance of the network dropped significantly when doing so. This clearly demonstrates that Transformer based models in general and GPT in particular _does_ improve performance compared to previous approaches.
+In finding the effectiveness of the GPT Transformer based model, Radford et al. (2018) have also trained a 2048 unit single layer [LSTM network](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/a-gentle-introduction-to-long-short-term-memory-networks-lstm.md). On average, across many of the tasks, the performance of the network dropped significantly when doing so. This clearly demonstrates that Transformer based models in general and GPT in particular _does_ improve performance compared to previous approaches.
 
 * * *
 
@@ -188,7 +188,7 @@ We then proceeded by looking at how GPT works: we saw that it uses the decoder s
 
 To finalize, we also appreciated three extra takeaways from the Radford et al. (2018) paper that may be present across many Transformed based approaches. Firstly, we saw that fine-tuning more layers yields better performing models compared to when only one or a few layers (i.e. Transformer segments) are fine-tuned. Secondly, we saw that zero-shot learning (i.e. performing the fine-tuned task with the pretrained model, so without extra finetuning epochs) already provides some performance. This suggests that pretraining _really_ provides the performance boost that we suspected it to provide. Thirdly, and finally, the GPT architecture also demonstrates that the Transformer based architecture performs much better than previous LSTM-based approaches, as was experimentally identified during an ablation study.
 
-[Ask a question](https://www.machinecurve.com/index.php/add-machine-learning-question/)
+[Ask a question](https://web.archive.org/web/https://www.machinecurve.com/index.php/add-machine-learning-question/)
 
 I hope that you have learned something from this article. If you did, please feel free to leave a message in the comments section 💬 Please do the same if you have any questions, or use the **Ask Questions** button on the right. I'd love to hear from you :)
 

@@ -11,11 +11,11 @@ tags:
   - "model-optimization"
 ---
 
-Today's state-of-the-art deep learning models are deep - which means that they represent a large hierarchy of layers which themselves are composed of many weights often. The consequence of their depth is that when saving [model weights](https://www.machinecurve.com/index.php/2019/08/22/what-is-weight-initialization/) after training, the resulting files can become [really big](https://www.machinecurve.com/index.php/2020/09/23/tensorflow-model-optimization-an-introduction-to-pruning/#the-need-for-model-optimization). This poses relatively large storage requirements to hardware where the model runs on. In addition, as running a model after it was trained involves many vector multiplications in [the forward pass of data](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#the-high-level-supervised-learning-process), compute requirements are big as well.
+Today's state-of-the-art deep learning models are deep - which means that they represent a large hierarchy of layers which themselves are composed of many weights often. The consequence of their depth is that when saving [model weights](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-weight-initialization.md) after training, the resulting files can become [really big](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tensorflow-model-optimization-an-introduction-to-pruning/#the-need-for-model-optimization). This poses relatively large storage requirements to hardware where the model runs on. In addition, as running a model after it was trained involves many vector multiplications in [the forward pass of data](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process), compute requirements are big as well.
 
 Often, running such machine learning models in the field is quite impossible due to these resource requirements. This means that cloud-based hardware, such as heavy GPUs, are often necessary to generate predictions with acceptable speed.
 
-Now, fortunately, there are ways to optimize one's model. In other articles, we studied [quantization](https://www.machinecurve.com/index.php/2020/09/16/tensorflow-model-optimization-an-introduction-to-quantization/) which changes number representation and [pruning](https://www.machinecurve.com/index.php/2020/09/23/tensorflow-model-optimization-an-introduction-to-pruning/) for zeroing out weights that contribute insignificantly to model performance. However, there is another technique: **weight clustering**. In short, and we shall look into the technique in more detail in this article, it involves reduction of model size by clustering layer weights and subsequently changing the weights that belong to a cluster from their own representation into that of their cluster centroids.
+Now, fortunately, there are ways to optimize one's model. In other articles, we studied [quantization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tensorflow-model-optimization-an-introduction-to-quantization.md) which changes number representation and [pruning](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tensorflow-model-optimization-an-introduction-to-pruning.md) for zeroing out weights that contribute insignificantly to model performance. However, there is another technique: **weight clustering**. In short, and we shall look into the technique in more detail in this article, it involves reduction of model size by clustering layer weights and subsequently changing the weights that belong to a cluster from their own representation into that of their cluster centroids.
 
 Now, I can imagine that this all sounds a bit abstract. Let's therefore move forward quickly and take a look in more detail. Firstly, we'll cover the need for model optimization - briefly, as we have done this in the articles linked above as well. Secondly, we'll take a look at what weight clustering is conceptually - and why it could work. Then, we cover `tfmot.clustering`, the weight clustering representation available in the TensorFlow Model Optimization Toolkit. Finally, we'll create a Keras model ourselves, and subsequently attempt to reduce its size by applying weight clustering. We also take a look at whether clustering the weights of a pruned and quantized model makes the model even smaller, and what it does to accuracy.
 
@@ -31,7 +31,7 @@ Now, as we saw above, a neural network is essentially a system of neurons, with 
 
 When machine learning models are big, it becomes more and more difficult to run them without having dedicated hardware for doing so. In particular, Graphical Processing Units (GPUs) are required if you want to run very big models at speed. Loading the models, getting them to run, and getting them to run at adequate speed - this all gets increasingly difficult when the model gets bigger.
 
-In short, running models in the field is not an easy task today. Fortunately, for the TensorFlow framework, there are methods available for optimizing your neural network. While we covered [quantization](https://www.machinecurve.com/index.php/2020/09/16/tensorflow-model-optimization-an-introduction-to-quantization/) and [pruning](https://www.machinecurve.com/index.php/2020/09/23/tensorflow-model-optimization-an-introduction-to-pruning/) in another article, we're going to focus on the third method here today: **weight clustering**.
+In short, running models in the field is not an easy task today. Fortunately, for the TensorFlow framework, there are methods available for optimizing your neural network. While we covered [quantization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tensorflow-model-optimization-an-introduction-to-quantization.md) and [pruning](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tensorflow-model-optimization-an-introduction-to-pruning.md) in another article, we're going to focus on the third method here today: **weight clustering**.
 
 Let's take a look!
 
@@ -39,7 +39,7 @@ Let's take a look!
 
 ## Weight clustering for model optimization
 
-Training a neural network is a supervised learning operation: it is trained following the [high-level supervised machine learning process](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#the-high-level-supervised-learning-process), involving training samples and their corresponding ground truth. However, if you are already involved with Machine Learning, you'll likely also know that there is a branch of techniques that fall under the umbrella of unsupervised learning. [Clustering](https://www.machinecurve.com/index.php/2020/04/16/how-to-perform-k-means-clustering-with-python-in-scikit/) is one of those techniques: without any training samples, an algorithm attempts to identify 'clusters' of similar samples.
+Training a neural network is a supervised learning operation: it is trained following the [high-level supervised machine learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process), involving training samples and their corresponding ground truth. However, if you are already involved with Machine Learning, you'll likely also know that there is a branch of techniques that fall under the umbrella of unsupervised learning. [Clustering](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-perform-k-means-clustering-with-python-in-scikit.md) is one of those techniques: without any training samples, an algorithm attempts to identify 'clusters' of similar samples.
 
 ![](images/weight_images.jpg)
 
@@ -49,12 +49,12 @@ They can be used for many purposes - and as we shall see, they can also be used 
 
 ### High-level supervised ML process
 
-Identifying how this works can be done by zooming in to the [supervised machine learning process](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#the-high-level-supervised-learning-process). We know that during training it works by means of a forward pass and subsequent optimization, and that this happens iteratively. In more detail, this is a high-level description of that flow:
+Identifying how this works can be done by zooming in to the [supervised machine learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process). We know that during training it works by means of a forward pass and subsequent optimization, and that this happens iteratively. In more detail, this is a high-level description of that flow:
 
-- Before the first iteration, weights are [initialized pseudorandomly with some statistical deviation](https://www.machinecurve.com/index.php/2019/09/16/he-xavier-initialization-activation-functions-choose-wisely/).
+- Before the first iteration, weights are [initialized pseudorandomly with some statistical deviation](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/he-xavier-initialization-activation-functions-choose-wisely.md).
 - In the first iteration, samples are fed forward - often in batches of samples - after which predictions are generated.
-- These predictions are compared with ground truth and converge into a _[loss value](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/)_, which is subequently used to [optimize](https://www.machinecurve.com/index.php/2019/10/24/gradient-descent-and-its-variants/) i.e. adapt model weights.
-- The iteration is repeated until the preconfigured amount of iterations was completed or a [threshold](https://www.machinecurve.com/index.php/2019/05/30/avoid-wasting-resources-with-earlystopping-and-modelcheckpoint-in-keras/) is met.
+- These predictions are compared with ground truth and converge into a _[loss value](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md)_, which is subequently used to [optimize](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md) i.e. adapt model weights.
+- The iteration is repeated until the preconfigured amount of iterations was completed or a [threshold](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/avoid-wasting-resources-with-earlystopping-and-modelcheckpoint-in-keras.md) is met.
 
 This means that after every iteration (i.e. attempt to train the model), weights are adapted. Essentially, this can be characterized as a continuous 'system state change', where the state of the system of weights changes because the weights are adapted. Once training finishes, the state remains constant - until the model is subsequently trained further e.g. with additional data.
 
@@ -66,7 +66,7 @@ Using blazing-fast mathematical programming libraries, we can subsequently perfo
 
 ### Clustering weights for model compression benefits
 
-If weights are represented numerically, it is possible to apply [clustering](https://www.machinecurve.com/index.php/2020/04/23/how-to-perform-mean-shift-clustering-with-python-in-scikit/) techniques to them in order to identify groups of similar weights. This is precisely how **weight clustering for model optimization works**. By applying a clustering technique, it is possible to reduce the number of unique weights that are present in a machine learning model (TensorFlow, n.d.).
+If weights are represented numerically, it is possible to apply [clustering](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-perform-mean-shift-clustering-with-python-in-scikit.md) techniques to them in order to identify groups of similar weights. This is precisely how **weight clustering for model optimization works**. By applying a clustering technique, it is possible to reduce the number of unique weights that are present in a machine learning model (TensorFlow, n.d.).
 
 How this works is as follows. First of all, you need a trained model - where the system of weights can successfully generate predictions. Applying weight clustering based optimization to this model involves grouping the weights of layers into \[latex\]N\[/latex\] clusters, where \[latex\]N\[/latex\] is configurable by the Machine Learning engineer. This is performed using some clustering algorithm (we will look at this in more detail later).
 
@@ -74,7 +74,7 @@ If there's a cluster of samples, it's possible to compute a value that represent
 
 And that's precisely what weight clustering based optimization does (TensorFlow, n.d.). Once clusters are computed, all weights in the cluster are adapted to the cluster's centroid value. This brings benefits in terms of model compression: values that are equal can be compressed better. People from TensorFlow have performed tests and have seen up to 5x model compression imrpovements _without_ losing predictive performance in the machine learning model (TensorFlow, n.d.). That's great!
 
-Applying weight clustering based optimization can therefore be a great addition to your existing toolkit, which should include [quantization](https://www.machinecurve.com/index.php/2020/09/16/tensorflow-model-optimization-an-introduction-to-quantization/) and [pruning](https://www.machinecurve.com/index.php/2020/09/23/tensorflow-model-optimization-an-introduction-to-pruning/).
+Applying weight clustering based optimization can therefore be a great addition to your existing toolkit, which should include [quantization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tensorflow-model-optimization-an-introduction-to-quantization.md) and [pruning](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tensorflow-model-optimization-an-introduction-to-pruning.md).
 
 Now that we know what weight clustering based optimization involves, it's time to take a look at how weight clustering based model optimization is implemented in TensorFlow.
 
@@ -115,9 +115,9 @@ Here, we define the number of clusters we want, as well as how the centroids are
 
 From the section above, we know that weight clustering involves clustering the weights (no shit, sherlock) but then also replacing the weights that are part of a cluster with the centroids of that particular cluster. This achieves the benefits in terms of compression that we talked about.
 
-Understanding that there are multiple [algorithms](https://www.machinecurve.com/index.php/2020/04/23/how-to-perform-mean-shift-clustering-with-python-in-scikit/) for [clustering](https://www.machinecurve.com/index.php/2020/04/16/how-to-perform-k-means-clustering-with-python-in-scikit/) yields the question if certain alterations are present within the TFMOT based weights clustering technique as well.
+Understanding that there are multiple [algorithms](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-perform-mean-shift-clustering-with-python-in-scikit.md) for [clustering](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-perform-k-means-clustering-with-python-in-scikit.md) yields the question if certain alterations are present within the TFMOT based weights clustering technique as well.
 
-Now, while it seems to be the case that the _clustering algorithm itself cannot be chosen_ (it seems like [K-means is used under the hood](https://www.machinecurve.com/index.php/2020/04/16/how-to-perform-k-means-clustering-with-python-in-scikit/)), it's possible to choose what is known as a **centroid initialization**. Here's what centroid initialization involves. When starting clustering, as we saw in the previous section, the Machine Learning engineer can configure a number of clusters for either the model or the layers that they intend to cluster.
+Now, while it seems to be the case that the _clustering algorithm itself cannot be chosen_ (it seems like [K-means is used under the hood](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-perform-k-means-clustering-with-python-in-scikit.md)), it's possible to choose what is known as a **centroid initialization**. Here's what centroid initialization involves. When starting clustering, as we saw in the previous section, the Machine Learning engineer can configure a number of clusters for either the model or the layers that they intend to cluster.
 
 Those _clusters_ need to be initialized - that is, they need to be placed somewhere in sample space, before the clustering algorithm can work towards convergence. This initial placement is called the initialization of the centers of the clusters, also known as the centroids. In TensorFlow model optimization, a strategy for doing so can be chosen by means of a `CentroidInitialization` parameter. You can choose from the following centroid initialization strategies:
 
@@ -140,7 +140,7 @@ stripped_model = strip_clustering(wrapped_model)
 
 ### Model deserialization: cluster\_scope(...)
 
-Sometimes, however, you [save a model](https://www.machinecurve.com/index.php/2020/02/14/how-to-save-and-load-a-model-with-keras/) when it is wrapped with clustering functionality:
+Sometimes, however, you [save a model](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-save-and-load-a-model-with-keras.md) when it is wrapped with clustering functionality:
 
 ```
 model = tf.Keras.Model(...)
@@ -148,7 +148,7 @@ wrapped_model = cluster_weights(model)
 tensorflow.keras.models.save_model(wrapped_model, './some_path')
 ```
 
-If you then [load the model](https://www.machinecurve.com/index.php/2020/02/14/how-to-save-and-load-a-model-with-keras/) with `load_model`, things will go south! This originates from the fact that you are trying to load a _regular_ Keras model, i.e. a model without wrappers, while in fact you saved the model _with_ clustering wrappers.
+If you then [load the model](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-save-and-load-a-model-with-keras.md) with `load_model`, things will go south! This originates from the fact that you are trying to load a _regular_ Keras model, i.e. a model without wrappers, while in fact you saved the model _with_ clustering wrappers.
 
 Fortunately, TFMOT provides functionality to put the loading operation to `cluster_scope` which means that it takes into account the fact that it is loading a model that has been wrapped with clustering functionality:
 
@@ -168,8 +168,8 @@ with tfmot.clustering.keras.cluster_scope():
 
 If you want to apply weight clustering based optimization, it's good to follow a few best practices. Here, we've gathered a variety tips from throughout the web that help you get started with this model optimization technique (TensorFlow, n.d.):
 
-- Weight optimization can be combined with **[post-training quantization](https://www.machinecurve.com/index.php/2020/09/16/tensorflow-model-optimization-an-introduction-to-quantization/)**. This should bring even more benefits compared to weight clustering based optimization or quantization based optimization alone.
-- A model should already be trained before weight based clustering is performed. Contrary to e.g. [pruning](https://www.machinecurve.com/index.php/2020/09/23/tensorflow-model-optimization-an-introduction-to-pruning/), where sparsity can be increased while the model is training, weight based pruning does not work in parallel with the training process. It must be applied after training finishes.
+- Weight optimization can be combined with **[post-training quantization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tensorflow-model-optimization-an-introduction-to-quantization.md)**. This should bring even more benefits compared to weight clustering based optimization or quantization based optimization alone.
+- A model should already be trained before weight based clustering is performed. Contrary to e.g. [pruning](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tensorflow-model-optimization-an-introduction-to-pruning.md), where sparsity can be increased while the model is training, weight based pruning does not work in parallel with the training process. It must be applied after training finishes.
 - If you apply clustering to layers that precede a batch normalization layer, the benefits are reduced. This is likely due to the normalizing effect of Batch Normalization layers.
 - It could be that clustering weights for all layers leads to unacceptable accuracies or other loss scores. In those cases, it is possible to cluster only a few layers only. Click [here](https://www.tensorflow.org/model_optimization/guide/clustering/clustering_comprehensive_guide#cluster_some_layers_sequential_and_functional_models) to find out more if that's what you want to do.
 - Apparently, downstream layers (i.e. the later layers in your neural network) have _more redundant parameters_ compared to layers early in the neural network (TensorFlow, n.d.). Here, weight clustering based optimization should provide the biggest benefits. If you want to clusters a few layers only, it could be worthwhile to optimize those later layers instead of early ones.
@@ -187,7 +187,7 @@ Let's now take a step away from all the theory - we're going to code a model tha
 
 ### Defining the ConvNet
 
-For this example, we're going to create a simple [Convolutional Neural Network](https://www.machinecurve.com/index.php/2019/09/17/how-to-create-a-cnn-classifier-with-keras/) with Keras that is trained to recognize digits from the MNIST [dataset](https://www.machinecurve.com/index.php/2019/12/31/exploring-the-keras-datasets/). If you're familiar with Machine Learning, you're well aware that this dataset is used in educational settings very often. Precisely that is the reason that we are also using this dataset here today. In fact, it's a model that will _guarantee_ to perform well (if trained adequately), often with accuracies of 95-97% and more.
+For this example, we're going to create a simple [Convolutional Neural Network](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras.md) with Keras that is trained to recognize digits from the MNIST [dataset](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets.md). If you're familiar with Machine Learning, you're well aware that this dataset is used in educational settings very often. Precisely that is the reason that we are also using this dataset here today. In fact, it's a model that will _guarantee_ to perform well (if trained adequately), often with accuracies of 95-97% and more.
 
 Do note that if you wish to run the model code, you will need `tensorflow` 2.x as well as the TensorFlow Model Optimization Toolkit or `tfmot`. If you don't have it already, you must also install NumPy. Here's how to install them:
 
@@ -320,7 +320,7 @@ Then, it's time to wrap our trained `model` with clustering functionality config
 wrapped_model = tfmot.clustering.keras.cluster_weights(model, **clustering_params)
 ```
 
-We're now almost ready to finetune our model with clustered weights. However, recall from the tips mentioned above that it is important to decrease the learning rate when doing so. That's why we're redefining our [Adam optimizer](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/) with a lower learning rate (`1e-4` by default):
+We're now almost ready to finetune our model with clustered weights. However, recall from the tips mentioned above that it is important to decrease the learning rate when doing so. That's why we're redefining our [Adam optimizer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md) with a lower learning rate (`1e-4` by default):
 
 ```
 # Decrease learning rate (see tips in article!)

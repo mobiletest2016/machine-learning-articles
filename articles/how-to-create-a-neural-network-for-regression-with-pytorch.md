@@ -33,7 +33,7 @@ Are you ready? Let's take a look!
 
 Deep Learning models are systems of trainable components that can learn a _mappable function_. Such a function can be represented as \[latex\]\\textbf{x} \\rightarrow \\text{y}\[/latex\] at a high level, where some input \[latex\]\\textbf{x}\[/latex\] is mapped to an output \[latex\]\\text{y}\[/latex\].
 
-Given the [universal approximation theorem](https://www.machinecurve.com/index.php/2019/07/18/can-neural-networks-approximate-mathematical-functions/), they should even be capable of approximating any mathematical function! The exact _mapping_ is learned through the high-level training process, in which example data that contains this mapping is fed through the model, after which the error is computed backwards and the model is optimized.
+Given the [universal approximation theorem](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/can-neural-networks-approximate-mathematical-functions.md), they should even be capable of approximating any mathematical function! The exact _mapping_ is learned through the high-level training process, in which example data that contains this mapping is fed through the model, after which the error is computed backwards and the model is optimized.
 
 There is a wide variety of such mappings:
 
@@ -51,22 +51,22 @@ In other words, \[latex\]\\text{y}\[/latex\] can take any value that belongs to 
 
 ## Creating a MLP regression model with PyTorch
 
-In a different article, we already looked at building a [classification model](https://www.machinecurve.com/index.php/2021/01/26/creating-a-multilayer-perceptron-with-pytorch-and-lightning/) with PyTorch. Here, instead, you will learn to build a model for **regression**. We will be using the PyTorch deep learning library, which is one of the most frequently used libraries at the time of writing. Creating a regression model is actually really easy when you break down the process into smaller parts:
+In a different article, we already looked at building a [classification model](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/creating-a-multilayer-perceptron-with-pytorch-and-lightning.md) with PyTorch. Here, instead, you will learn to build a model for **regression**. We will be using the PyTorch deep learning library, which is one of the most frequently used libraries at the time of writing. Creating a regression model is actually really easy when you break down the process into smaller parts:
 
 1. Firstly, we will make sure that we **import all the dependencies** needed for today's code.
 2. Secondly, we're going to ensure that we have our **training data** available. This data, which is the [Boston Housing Dataset](https://www.tensorflow.org/api_docs/python/tf/keras/datasets/boston_housing), provides a set of variables that may together ensure that a price prediction (the target variable) becomes possible.
-3. Subsequently, the **neural network** will be created. This will be a **Multilayer Perceptron** based model, which is essentially a stack of layers containing neurons that can be [trained](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#the-high-level-supervised-learning-process).
+3. Subsequently, the **neural network** will be created. This will be a **Multilayer Perceptron** based model, which is essentially a stack of layers containing neurons that can be [trained](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process).
 4. The training dataset, which is by now represented as a `torch.utils.data.Dataset`, will need to be used in the model. The fourth step is to ensure that the **dataset is prepared into a `DataLoader`**, which ensures that data is shuffled and batched appropriately.
 5. Then, we **pick a loss function and initialize it**. We also **init the model and the optimizer** (Adam).
-6. Finally, we create the **training loop**, which effectively contains the [high-level training process](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#the-high-level-supervised-learning-process) captured in code.
+6. Finally, we create the **training loop**, which effectively contains the [high-level training process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process) captured in code.
 
 Let's get to work! 👩‍💻 Create a file or Notebook, e.g. `regression-mlp.py`, and write along :)
 
 ### Today's dataset
 
-The **[Boston House Prices Regression dataset](https://www.machinecurve.com/index.php/2019/12/31/exploring-the-keras-datasets/#boston-housing-price-regression-dataset)** contains 506 observations that relate certain characteristics with the price of houses (in $1000s) in Boston in some period.
+The **[Boston House Prices Regression dataset](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets/#boston-housing-price-regression-dataset)** contains 506 observations that relate certain characteristics with the price of houses (in $1000s) in Boston in some period.
 
-Some observations about this data (from [this article](https://www.machinecurve.com/index.php/2019/12/31/exploring-the-keras-datasets/#boston-housing-price-regression-dataset)):
+Some observations about this data (from [this article](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets/#boston-housing-price-regression-dataset)):
 
 > The minimum house price is $5000, while the maximum house price is $50.000. This may sound weird, but it’s not: house prices have risen over the decades, and the study that produced this data is from 1978 (Harrison & Rubinfeld, 1978). Actually, around 1978 prices of ≈$50.000 were quite the median value, so this dataset seems to contain relatively cheaper houses (or the Boston area was cheaper back then – I don’t know; Martin, 2017).
 > 
@@ -114,7 +114,7 @@ Obviously, **MEDV** is the median value and hence the target variable.
 
 The first thing that we have to do is specifying the imports that will be used for today's regression model. First of all, we need `torch`, which is the representation of PyTorch in Python. We will also need its `nn` library, which is the _neural networks_ library and contains neural network related functionalities. The `DataLoader` with which we will batch and shuffle the dataset is imported as well, and that's it for the PyTorch imports.
 
-Next to PyTorch, we will also import two parts (the `load_boston` and `StandardScaler` components) from Scikit-learn. We will need them for loading and preparing the data; they represent as the source and [a preparation mechanism](https://www.machinecurve.com/index.php/2020/11/19/how-to-normalize-or-standardize-a-dataset-in-python/), respectively.
+Next to PyTorch, we will also import two parts (the `load_boston` and `StandardScaler` components) from Scikit-learn. We will need them for loading and preparing the data; they represent as the source and [a preparation mechanism](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-normalize-or-standardize-a-dataset-in-python.md), respectively.
 
 ```
 import torch
@@ -130,7 +130,7 @@ Above, you saw that we use Scikit-learn for importing the Boston dataset. Becaus
 
 A PyTorch dataset simply is a class that extends the `Dataset` class; in our case, we name it `BostonDataset`. It has three defs: `__init__` or the constructor, where most of the work is done, `__len__` returning dataset length, and `__getitem__` for retrieving an individual item using an index.
 
-In the constructor, we receive `X` and `y` representing inputs and targets and possibly a `scale_data` variable for [standardization](https://www.machinecurve.com/index.php/2020/11/19/how-to-normalize-or-standardize-a-dataset-in-python/), being `True` by default. We then check whether the data already has Tensor format - it really needs to be non-Tensor format to be processed. Subsequently, depending on whether we want our data to be [standardized](https://www.machinecurve.com/index.php/2020/11/19/how-to-normalize-or-standardize-a-dataset-in-python/) (which is smart), we apply the `StandardScaler` and immediately transform the data after fitting the scaler to the data. Next, we represent the inputs (`X`) and targets (`y`) as instance variables of each `BostonDataset` object.
+In the constructor, we receive `X` and `y` representing inputs and targets and possibly a `scale_data` variable for [standardization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-normalize-or-standardize-a-dataset-in-python.md), being `True` by default. We then check whether the data already has Tensor format - it really needs to be non-Tensor format to be processed. Subsequently, depending on whether we want our data to be [standardized](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-normalize-or-standardize-a-dataset-in-python.md) (which is smart), we apply the `StandardScaler` and immediately transform the data after fitting the scaler to the data. Next, we represent the inputs (`X`) and targets (`y`) as instance variables of each `BostonDataset` object.
 
 ```
 class BostonDataset(torch.utils.data.Dataset):
@@ -157,19 +157,19 @@ class BostonDataset(torch.utils.data.Dataset):
 
 ![](images/Basic-neural-network.jpg)
 
-The regression model that we will create today will be a [Multilayer Perceptron](https://www.machinecurve.com/index.php/2021/01/26/creating-a-multilayer-perceptron-with-pytorch-and-lightning/). It is the classic prototype of a neural network which you can see on the right as well.
+The regression model that we will create today will be a [Multilayer Perceptron](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/creating-a-multilayer-perceptron-with-pytorch-and-lightning.md). It is the classic prototype of a neural network which you can see on the right as well.
 
-In other words, a Multilayer Perceptron has _multi_ple _layers_ of _perceptrons_. A [Perceptron](https://www.machinecurve.com/index.php/2019/07/24/why-you-cant-truly-create-rosenblatts-perceptron-with-keras/) goes back into the 1950s and was created by an American psychologist named Frank Rosenblatt. It involves a learnable _neuron_ which can learn a mapping between `X` and `y`.
+In other words, a Multilayer Perceptron has _multi_ple _layers_ of _perceptrons_. A [Perceptron](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-you-cant-truly-create-rosenblatts-perceptron-with-keras.md) goes back into the 1950s and was created by an American psychologist named Frank Rosenblatt. It involves a learnable _neuron_ which can learn a mapping between `X` and `y`.
 
 Recall that this is precisely what we want to create. The Rosenblatt Perceptron, however, turned out to be incapable of mapping _all possible functions_ - not surprising given the fact that it is one neuron only.
 
-Multilayer Perceptrons change the internals of the original Perceptron and stack them in layers. In addition, they apply [nonlinear activation functions](https://www.machinecurve.com/index.php/2020/10/29/why-nonlinear-activation-functions-improve-ml-performance-with-tensorflow-example/) to the individual neurons, meaning that they can also capture nonlinear patterns in datasets.
+Multilayer Perceptrons change the internals of the original Perceptron and stack them in layers. In addition, they apply [nonlinear activation functions](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-nonlinear-activation-functions-improve-ml-performance-with-tensorflow-example.md) to the individual neurons, meaning that they can also capture nonlinear patterns in datasets.
 
 The result is that Multilayer Perceptrons can produce behavior that outperforms human judgment, although more recent approaches such as Convolutional Neural Networks and Recurrent Neural Networks are more applicable to some problems (such as computer vision and time series prediction).
 
 Now, let's get back to writing some code. Our regression Multilayer Perceptron can be created by means of a class called `MLP` which is a sub class of the `nn.Module` class; the PyTorch representation of a neural network.
 
-In the constructor (`__init__`), we first init the superclass as well and specify a `nn.Sequential` set of layers. Sequential here means that input first flows through the first layer, followed by the second, and so forth. We apply three linear layers with two ReLu activation functions in between. The first `nn.Linear` layer takes 13 inputs. This is the case because we have 13 different variables in the Boston dataset, all of which we will use (which may be suboptimal; you may wish to apply e.g. [PCA](https://www.machinecurve.com/index.php/2020/12/07/introducing-pca-with-python-and-scikit-learn-for-machine-learning/) first). It converts the 13 inputs into 64 outputs. The second takes 64 and generates 32, and the final one takes the 32 ReLU-activated outputs and learns a mapping between them and _one output value_.
+In the constructor (`__init__`), we first init the superclass as well and specify a `nn.Sequential` set of layers. Sequential here means that input first flows through the first layer, followed by the second, and so forth. We apply three linear layers with two ReLu activation functions in between. The first `nn.Linear` layer takes 13 inputs. This is the case because we have 13 different variables in the Boston dataset, all of which we will use (which may be suboptimal; you may wish to apply e.g. [PCA](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/introducing-pca-with-python-and-scikit-learn-for-machine-learning.md) first). It converts the 13 inputs into 64 outputs. The second takes 64 and generates 32, and the final one takes the 32 ReLU-activated outputs and learns a mapping between them and _one output value_.
 
 Yep, that one output value is precisely the target variable that should be learned!
 
@@ -230,7 +230,7 @@ Now that we have a PyTorch-compatible dataset, it still cannot be used directly.
 
 Recall from the high-level supervised training process that a loss function is used to compare model predictions and true targets - essentially computing **how poor the model performs**.
 
-Picking a [loss function](https://www.machinecurve.com/index.php/2021/07/19/how-to-use-pytorch-loss-functions/#pytorch-regression-loss-function-examples) thus has to be done relative to the characteristics of your data. For example, if your dataset has many outliers, [Mean Squared Error](https://www.machinecurve.com/index.php/2021/07/19/how-to-use-pytorch-loss-functions/#mean-squared-error-mse-loss-nn-mseloss) loss may not be a good idea. In that case, [L1 or Mean Average Error loss](https://www.machinecurve.com/index.php/2021/07/19/how-to-use-pytorch-loss-functions/#mean-absolute-error-mae-l1-loss-nn-l1loss) can be a better choice. In other words, first perform Exploratory Data Analysis on the variables you will be working with. Are there many outliers? Are the values close together? Depending on that, you will be able to pick an appropriate loss function to start with. Trial and error will tell whether you'll need to change after training a few times.
+Picking a [loss function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-pytorch-loss-functions/#pytorch-regression-loss-function-examples) thus has to be done relative to the characteristics of your data. For example, if your dataset has many outliers, [Mean Squared Error](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-pytorch-loss-functions/#mean-squared-error-mse-loss-nn-mseloss) loss may not be a good idea. In that case, [L1 or Mean Average Error loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-pytorch-loss-functions/#mean-absolute-error-mae-l1-loss-nn-l1loss) can be a better choice. In other words, first perform Exploratory Data Analysis on the variables you will be working with. Are there many outliers? Are the values close together? Depending on that, you will be able to pick an appropriate loss function to start with. Trial and error will tell whether you'll need to change after training a few times.
 
 ### Initializing the model, loss function and optimizer
 
@@ -436,8 +436,8 @@ Thank you for reading MachineCurve today and happy engineering! 😎
 
 PyTorch. (n.d.). _L1Loss — PyTorch 1.9.0 documentation_. [https://pytorch.org/docs/stable/generated/torch.nn.L1Loss.html#torch.nn.L1Loss](https://pytorch.org/docs/stable/generated/torch.nn.L1Loss.html#torch.nn.L1Loss)
 
-MachineCurve. (2020, November 2). _Why you can't truly create Rosenblatt's Perceptron with Keras – MachineCurve_. [https://www.machinecurve.com/index.php/2019/07/24/why-you-cant-truly-create-rosenblatts-perceptron-with-keras/](https://www.machinecurve.com/index.php/2019/07/24/why-you-cant-truly-create-rosenblatts-perceptron-with-keras/)
+MachineCurve. (2020, November 2). _Why you can't truly create Rosenblatt's Perceptron with Keras – MachineCurve_. [https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-you-cant-truly-create-rosenblatts-perceptron-with-keras/](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-you-cant-truly-create-rosenblatts-perceptron-with-keras.md)
 
-MachineCurve. (2021, January 12). _Rosenblatt's Perceptron with Python – MachineCurve_. [https://www.machinecurve.com/index.php/2019/07/23/linking-maths-and-intuition-rosenblatts-perceptron-in-python/](https://www.machinecurve.com/index.php/2019/07/23/linking-maths-and-intuition-rosenblatts-perceptron-in-python/)
+MachineCurve. (2021, January 12). _Rosenblatt's Perceptron with Python – MachineCurve_. [https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/linking-maths-and-intuition-rosenblatts-perceptron-in-python/](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/linking-maths-and-intuition-rosenblatts-perceptron-in-python.md)
 
-MachineCurve. (2020, November 16). _Exploring the Keras datasets – MachineCurve_. [https://www.machinecurve.com/index.php/2019/12/31/exploring-the-keras-datasets/](https://www.machinecurve.com/index.php/2019/12/31/exploring-the-keras-datasets/)
+MachineCurve. (2020, November 16). _Exploring the Keras datasets – MachineCurve_. [https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets/](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets.md)

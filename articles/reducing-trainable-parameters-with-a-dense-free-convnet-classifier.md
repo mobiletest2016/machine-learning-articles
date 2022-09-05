@@ -36,13 +36,13 @@ Are you ready? Let's go! 😎
 
 ## Using Global Average Pooling to replace Dense layers
 
-Before we begin, I think it's important to take a look at the concept of pooling - and specifically Global Average Pooling - first. It's only going to be a brief introduction so as to save you time ([click here if you want to read a more detailed discussion](https://www.machinecurve.com/index.php/2020/01/30/what-are-max-pooling-average-pooling-global-max-pooling-and-global-average-pooling/)). However, with this understanding, I think you can better understand what happens in the code later, and why.
+Before we begin, I think it's important to take a look at the concept of pooling - and specifically Global Average Pooling - first. It's only going to be a brief introduction so as to save you time ([click here if you want to read a more detailed discussion](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-are-max-pooling-average-pooling-global-max-pooling-and-global-average-pooling.md)). However, with this understanding, I think you can better understand what happens in the code later, and why.
 
 Let's begin our analysis with what pooling layers are.
 
 ### What are pooling layers?
 
-When training a [convolutional neural network](https://www.machinecurve.com/index.php/2018/12/07/convolutional-neural-networks-and-their-components-for-computer-vision/), your goal is to build a spatial hierarchy of increasingly abstract representations of your input data. Doing so allows you to feed new, but slightly different input, without any consequence for the classifier or regression model - because the convolutional layers, a.k.a. the feature extractors, have still produced intermediate outputs that are highly similar.
+When training a [convolutional neural network](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/convolutional-neural-networks-and-their-components-for-computer-vision.md), your goal is to build a spatial hierarchy of increasingly abstract representations of your input data. Doing so allows you to feed new, but slightly different input, without any consequence for the classifier or regression model - because the convolutional layers, a.k.a. the feature extractors, have still produced intermediate outputs that are highly similar.
 
 So, in short, your goal is to build a hierarchy that is similar to the one on the left, versus the one on the right:
 
@@ -60,7 +60,7 @@ As a result of these pools, their sliding process and the cheap operation, they 
 
 [![](images/Max-Pooling-2.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/Max-Pooling-2.png)
 
-_Side note: there are additional benefits when using Max Pooling. Take a look at the [blog post scrutinizing it in more detail](https://www.machinecurve.com/index.php/2020/01/30/what-are-max-pooling-average-pooling-global-max-pooling-and-global-average-pooling/#max-pooling) if you wish to understand which ones they are._
+_Side note: there are additional benefits when using Max Pooling. Take a look at the [blog post scrutinizing it in more detail](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-are-max-pooling-average-pooling-global-max-pooling-and-global-average-pooling/#max-pooling) if you wish to understand which ones they are._
 
 ### What does Global Average Pooling do?
 
@@ -79,7 +79,7 @@ Traditionally, ConvNet based classifiers work as follows:
 
 - The convolutional layers serve as feature extractors, learning the features of importance in your input data.
 - A Flatten layer is used to convert the multidimensional data into one-dimensional format.
-- This allows Dense or densely-connected layers to take the input and generate a class based prediction, often using the [Softmax activation function](https://www.machinecurve.com/index.php/2020/01/08/how-does-the-softmax-activation-function-work/).
+- This allows Dense or densely-connected layers to take the input and generate a class based prediction, often using the [Softmax activation function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-does-the-softmax-activation-function-work.md).
 
 Global Average Pooling can be used to replace these Dense layers in classifiers.
 
@@ -99,7 +99,7 @@ Now that we understand the theory sufficiently, we can move on to the practical 
 
 ### Today's dataset
 
-As today's dataset, we'll be using the KMNIST dataset from our [Extra Keras Datasets module](https://www.machinecurve.com/index.php/2020/01/10/making-more-datasets-available-for-keras/). This module makes available various additional datasets in the style of Keras `load_data` functionality. This way, you can use a variety of datasets in your models quite easily, allowing you to try different datasets than e.g. MNIST all the time.
+As today's dataset, we'll be using the KMNIST dataset from our [Extra Keras Datasets module](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/making-more-datasets-available-for-keras.md). This module makes available various additional datasets in the style of Keras `load_data` functionality. This way, you can use a variety of datasets in your models quite easily, allowing you to try different datasets than e.g. MNIST all the time.
 
 With regards to the dataset itself: the KMNIST dataset, as you can see, replaces MNIST digits with Japanese characters. It's a drop-in dataset for MNIST: it has the same number of output classes (10) and the same number of samples (60k in total for training).
 
@@ -109,13 +109,13 @@ With regards to the dataset itself: the KMNIST dataset, as you can see, replaces
 
 [![](images/model-137x300.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/model.png)
 
-Let's take a look at the model that we will be creating today: a [Convolutional Neural Network](https://www.machinecurve.com/index.php/2018/12/07/convolutional-neural-networks-and-their-components-for-computer-vision/) for image classification.
+Let's take a look at the model that we will be creating today: a [Convolutional Neural Network](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/convolutional-neural-networks-and-their-components-for-computer-vision.md) for image classification.
 
 On the right, you see the architecture of the particular model. Click on the image to make it larger, so that we can look at it in more detail.
 
 Obviously, an `InputLayer` takes in the data. The input shape, as we will see, is `(28, 28, 1)`, as the images that we will be feeding the model are 28 x 28 pixels and have one image channel only.
 
-We then have two convolutional blocks: a `Conv2D` layer followed by `MaxPooling2D` for [downsampling](https://www.machinecurve.com/index.php/2020/01/30/what-are-max-pooling-average-pooling-global-max-pooling-and-global-average-pooling/) and `Dropout` for [regularization](https://www.machinecurve.com/index.php/2019/12/16/what-is-dropout-reduce-overfitting-in-your-neural-networks/). Finally, the data is added to another `Conv2D`, which generates a number of feature maps equal to the number of classes, and then to `GlobalAveragePooling2D`, which generates the average value for each feature map. Since this is output to a [`Softmax` activation function](https://www.machinecurve.com/index.php/2020/01/08/how-does-the-softmax-activation-function-work/), we get the same probability distribution as we would get with [a classic Flatten/Dense based structure](https://www.machinecurve.com/index.php/2019/09/17/how-to-create-a-cnn-classifier-with-keras/).
+We then have two convolutional blocks: a `Conv2D` layer followed by `MaxPooling2D` for [downsampling](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-are-max-pooling-average-pooling-global-max-pooling-and-global-average-pooling.md) and `Dropout` for [regularization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-dropout-reduce-overfitting-in-your-neural-networks.md). Finally, the data is added to another `Conv2D`, which generates a number of feature maps equal to the number of classes, and then to `GlobalAveragePooling2D`, which generates the average value for each feature map. Since this is output to a [`Softmax` activation function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-does-the-softmax-activation-function-work.md), we get the same probability distribution as we would get with [a classic Flatten/Dense based structure](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras.md).
 
 ### What you'll need to run this model
 
@@ -123,7 +123,7 @@ You need to have a few software dependencies installed if you wish to successful
 
 - **TensorFlow**, and this must be version 2.0+
 - **Matplotlib**, for generating plots.
-- The [**Extra Keras Datasets**](https://www.machinecurve.com/index.php/2020/01/10/making-more-datasets-available-for-keras/) module, but you can also use `tensorflow.keras.datasets.mnist` instead.
+- The [**Extra Keras Datasets**](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/making-more-datasets-available-for-keras.md) module, but you can also use `tensorflow.keras.datasets.mnist` instead.
 
 All right - let's start writing some code! 😎 Open some code editor and create a file. For example, name it `model_no_dense.py`. If possible, enable Python syntax checking. Now, let's go!
 
@@ -162,7 +162,7 @@ verbosity = 1
 
 ### Loading and preparing the dataset
 
-Now that we have imported our dependencies and set the configuration options for the model, it's time to import the data. We do so by calling the `load_data()` definition from our [module](https://www.machinecurve.com/index.php/2020/01/10/making-more-datasets-available-for-keras/):
+Now that we have imported our dependencies and set the configuration options for the model, it's time to import the data. We do so by calling the `load_data()` definition from our [module](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/making-more-datasets-available-for-keras.md):
 
 ```
 # Load MNIST dataset
@@ -196,7 +196,7 @@ input_train = input_train / 255
 input_test = input_test / 255
 ```
 
-Finally, in terms of data preparation, we convert our target vectors - which are provided in integer format - into categorical format, by generating one-hot encoded vectors with `to_categorical`. This allows us to use [categorical crossentropy loss](https://www.machinecurve.com/index.php/2019/10/22/how-to-use-binary-categorical-crossentropy-with-keras/) during the optimization process.
+Finally, in terms of data preparation, we convert our target vectors - which are provided in integer format - into categorical format, by generating one-hot encoded vectors with `to_categorical`. This allows us to use [categorical crossentropy loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-binary-categorical-crossentropy-with-keras.md) during the optimization process.
 
 ```
 # Convert target vectors to categorical targets
@@ -206,7 +206,7 @@ target_test = tensorflow.keras.utils.to_categorical(target_test, no_classes)
 
 ### Defining the model architecture
 
-Next, we code the model architecture. It's equal to what we discussed above, so the discussion here won't be very lengthy. What wasn't included above, is that we use [ReLU](https://www.machinecurve.com/index.php/2019/09/04/relu-sigmoid-and-tanh-todays-most-used-activation-functions/) as an activation function on our hidden layers.
+Next, we code the model architecture. It's equal to what we discussed above, so the discussion here won't be very lengthy. What wasn't included above, is that we use [ReLU](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md) as an activation function on our hidden layers.
 
 What's more, the Conv2D layer which converts the 64 feature maps into `no_classes = 10` ones uses `padding='same'`, which ensures that the _size_ of the feature maps remains equal to the ones generated by the previous layer (we do so because we aim to compare the performance of this model with a regular Dense based CNN later, and we wish to keep the data shapes equal).
 
@@ -341,7 +341,7 @@ Despite showing that it _is possible_ to create a CNN based classifier without D
 
 Then, for both, we show the number of trainable parameters, which tells you something about the complexity of the model and the corresponding computational requirements.
 
-Subsequently, we show you the evaluation metrics generated for both models with the testing data. Finally, this is visualized by some visualizations of the [training history](https://www.machinecurve.com/index.php/2019/10/08/how-to-visualize-the-training-process-in-keras/). This enables you to compare the progress of e.g. the loss value for each model over time.
+Subsequently, we show you the evaluation metrics generated for both models with the testing data. Finally, this is visualized by some visualizations of the [training history](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-training-process-in-keras.md). This enables you to compare the progress of e.g. the loss value for each model over time.
 
 ### Control model
 
@@ -477,4 +477,4 @@ Thank you for reading MachineCurve today and happy engineering! 😎
 
 ## References
 
-MachineCurve. (2020, January 30). What are Max Pooling, Average Pooling, Global Max Pooling and Global Average Pooling? Retrieved from [https://www.machinecurve.com/index.php/2020/01/30/what-are-max-pooling-average-pooling-global-max-pooling-and-global-average-pooling/](https://www.machinecurve.com/index.php/2020/01/30/what-are-max-pooling-average-pooling-global-max-pooling-and-global-average-pooling/)
+MachineCurve. (2020, January 30). What are Max Pooling, Average Pooling, Global Max Pooling and Global Average Pooling? Retrieved from [https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-are-max-pooling-average-pooling-global-max-pooling-and-global-average-pooling/](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-are-max-pooling-average-pooling-global-max-pooling-and-global-average-pooling.md)

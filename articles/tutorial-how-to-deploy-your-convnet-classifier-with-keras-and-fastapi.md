@@ -115,8 +115,8 @@ Ready? Let's go! :) Create a Python file, such as `main.py`, on your system, and
 
 Not willing to interrupt, but there are two things that you'll have to do first before you actually build your API:
 
-- Train a machine learning model with Keras, [for example with the MNIST dataset](https://www.machinecurve.com/index.php/2019/09/17/how-to-create-a-cnn-classifier-with-keras/) (we assume that your ML model handles the MNIST dataset from now on, but this doesn't really matter as the API works with all kinds of CNNs).
-- Save the model instance, so that you can load it later. [Find out here how](https://www.machinecurve.com/index.php/2020/02/14/how-to-save-and-load-a-model-with-keras/).
+- Train a machine learning model with Keras, [for example with the MNIST dataset](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras.md) (we assume that your ML model handles the MNIST dataset from now on, but this doesn't really matter as the API works with all kinds of CNNs).
+- Save the model instance, so that you can load it later. [Find out here how](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-save-and-load-a-model-with-keras.md).
 
 ### Model imports
 
@@ -142,7 +142,7 @@ Obviously, we'll need parts from `FastAPI`, `PIL` (Pillow), `pydantic` and `tens
 
 ### Loading the model and getting input shape
 
-Next, we [load the model](https://www.machinecurve.com/index.php/2020/02/14/how-to-save-and-load-a-model-with-keras/):
+Next, we [load the model](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-save-and-load-a-model-with-keras.md):
 
 ```
 # Load the model
@@ -187,7 +187,7 @@ It contains four parts:
 
 - The file name, or `filename`;
 - The `contenttype`, or the content type that was found
-- A `prediction`, which is a list of floats - [remember how Softmax generates outputs in this way?](https://www.machinecurve.com/index.php/2020/01/08/how-does-the-softmax-activation-function-work/)
+- A `prediction`, which is a list of floats - [remember how Softmax generates outputs in this way?](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-does-the-softmax-activation-function-work.md)
 - A `likely_class`, which is the most likely class predicted by the model.
 
 #### Defining the main route
@@ -264,7 +264,7 @@ Let's break it into pieces:
 - Once it's opened, we resize the image so that it meets the `input_shape` of our model.
 - Then, we convert the image into `RGB` if it's `RGBA`, to avoid alpha channels (our model hasn't been trained for this).
 - If required by the ML model, we convert the image into grayscale.
-- Then, we convert it into Numpy format, so that we can manipulate it, and then _scale the image_ (this is dependent on your model! As we scaled [it before training](https://www.machinecurve.com/index.php/2019/09/17/how-to-create-a-cnn-classifier-with-keras/), we need to do so here too or we get an error)
+- Then, we convert it into Numpy format, so that we can manipulate it, and then _scale the image_ (this is dependent on your model! As we scaled [it before training](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras.md), we need to do so here too or we get an error)
 - Finally, we can generate a prediction and return the Response in the format that we specified.
 
 * * *

@@ -17,7 +17,7 @@ Within the field of image generation, **Generative Adversarial Networks** or GAN
 
 As we shall see, GANs involve two models: a generative one that is capable of generating images, and an adversary one that is capable of detecting fake from real ones. In other words, it's a competition between counterfeiters and the police, where counterfeiters eventually learn to distract the police because they become too good at generating fake images.
 
-In this tutorial, we'll be taking a brief but deep look at how GANs work. It is in effect an explanation of the 2014 Goodfellow paper. It therefore doesn't have many of the new things of GANs in the modern era. However, it _does_ provide an intuitive explanation of the core ideas. Other topics follow in subsequent tutorials, which you can find on [this page](https://www.machinecurve.com/index.php/generative-adversarial-networks-explanations-examples/).
+In this tutorial, we'll be taking a brief but deep look at how GANs work. It is in effect an explanation of the 2014 Goodfellow paper. It therefore doesn't have many of the new things of GANs in the modern era. However, it _does_ provide an intuitive explanation of the core ideas. Other topics follow in subsequent tutorials, which you can find on [this page](https://web.archive.org/web/https://www.machinecurve.com/index.php/generative-adversarial-networks-explanations-examples/).
 
 After reading this article, you will understand...
 

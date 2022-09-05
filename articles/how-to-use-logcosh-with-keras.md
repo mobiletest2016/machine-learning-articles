@@ -16,7 +16,7 @@ tags:
 
 There are two main branches in the domain of supervised machine learning problems: _classification_ and _regression_. While you assign a sample to a fixed set of groups with classification, you're doing something very different when regressing. In fact, your regression model estimates a numeric value for the sample, such as the predicted oxygen levels given certain input values (such as the number of people currently in the room).
 
-In order to [train your machine learning model](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#the-high-level-supervised-learning-process), you need to optimize it. That is, the model will adapt itself iteratively, based on the inputs on the left (which you feed through the model) and [a loss function on the right](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#loss-functions), which computes how much off the model performs to the actual targets.
+In order to [train your machine learning model](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process), you need to optimize it. That is, the model will adapt itself iteratively, based on the inputs on the left (which you feed through the model) and [a loss function on the right](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#loss-functions), which computes how much off the model performs to the actual targets.
 
 For regression problems, there is a wide array of very known loss functions that can be used. MAE, MSE, RMSE, MAPE - they're all usable in such problems, but all have their drawbacks. MAE, for example, is too soft when the average error is small; MSE, on the other hand, lets the computed error explode when you have outliers in your dataset, substantially distorting the computed error.
 
@@ -36,7 +36,7 @@ _Note that the full code for the models we create in this blog post is also avai
 
 **If you wish to understand loss functions in more detail...**
 
-- [All our blogs about loss functions, some with Keras implementations.](https://www.machinecurve.com/index.php/tag/loss-function/)
+- [All our blogs about loss functions, some with Keras implementations.](https://web.archive.org/web/https://www.machinecurve.com/index.php/tag/loss-function/)
 
 **Updates:**
 
@@ -78,7 +78,7 @@ The [TensorFlow docs](https://www.tensorflow.org/api_docs/python/tf/keras/losses
 
 > `log(cosh(x))` is approximately equal to `(x ** 2) / 2` for small `x` and to `abs(x) - log(2)` for large `x`. This means that 'logcosh' works mostly like the mean squared error, but will not be so strongly affected by the occasional wildly incorrect prediction.
 > 
-> Source: [TensorFlow docs](https://www.tensorflow.org/api_docs/python/tf/keras/losses/logcosh), taken from [About loss and loss functions](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#logcosh)
+> Source: [TensorFlow docs](https://www.tensorflow.org/api_docs/python/tf/keras/losses/logcosh), taken from [About loss and loss functions](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#logcosh)
 
 It is therefore something like the MSE when you're training a regression model, but then with a degree of built-in protection against "wildly incorrect predictions" that are likely caused by outlier samples.
 
@@ -119,7 +119,7 @@ It contains these variables, according to the [StatLib website](http://lib.stat.
 
 As you can see, the target value for the preditions is the **median home value in $1000s.** The dataset contains quite some other _feature vectors_, which tell us something about that particular house - such as the crime rate, industry (not retail!) around the house, air pollution, and so on. Together, it is assumed, these variables will be able to tell us something about the median value of the home.
 
-When applying the same dataset with [Huber loss](https://www.machinecurve.com/index.php/2019/10/12/using-huber-loss-in-keras/), we found a mean absolute error of approximately $3.639. Not too bad, but not spot on either.
+When applying the same dataset with [Huber loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/using-huber-loss-in-keras.md), we found a mean absolute error of approximately $3.639. Not too bad, but not spot on either.
 
 Let's now find out whether we can improve this score when applying Logcosh loss instead.
 
@@ -162,7 +162,7 @@ Obviously, we'll need the `boston_housing` dataset which we can import from `ten
 
 Additionally, we need the `Sequential` model, as we will use the Sequential API, using which we will stack multiple densely-connected or `Dense` layers.
 
-Numpy is used for numbers processing and Matplotlib is used for visualization purposes (i.e., for [visualizing model performance across epochs](https://www.machinecurve.com/index.php/2019/10/08/how-to-visualize-the-training-process-in-keras/)).
+Numpy is used for numbers processing and Matplotlib is used for visualization purposes (i.e., for [visualizing model performance across epochs](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-training-process-in-keras.md)).
 
 ### Loading and preparing the dataset
 
@@ -194,7 +194,7 @@ model.add(Dense(8, activation='relu', kernel_initializer='he_uniform'))
 model.add(Dense(1, activation='linear'))
 ```
 
-It's really simple - we're using the Sequential API, which allows us to stack the subsequent layers on top of each other. These layers are all densely-connected, or `Dense`, and have 16, 8 and 1 neuron(s), respectively. The hidden layers (the first two we're adding) use ReLU activation and He uniform init, [which is wise](https://www.machinecurve.com/index.php/2019/09/16/he-xavier-initialization-activation-functions-choose-wisely/). The first hidden layer specifies the input shape and hence the number of neurons in your initial layer. The final layer has one neuron (since only one value - the one being predicted with the regressed function - is output) and activates linearly, so that the predicted value is output.
+It's really simple - we're using the Sequential API, which allows us to stack the subsequent layers on top of each other. These layers are all densely-connected, or `Dense`, and have 16, 8 and 1 neuron(s), respectively. The hidden layers (the first two we're adding) use ReLU activation and He uniform init, [which is wise](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/he-xavier-initialization-activation-functions-choose-wisely.md). The first hidden layer specifies the input shape and hence the number of neurons in your initial layer. The final layer has one neuron (since only one value - the one being predicted with the regressed function - is output) and activates linearly, so that the predicted value is output.
 
 ### Model configuration & training
 
@@ -206,7 +206,7 @@ model.compile(loss='logcosh', optimizer='adam', metrics=['mean_absolute_error'])
 history = model.fit(x_train, y_train, epochs=250, batch_size=1, verbose=1, validation_split=0.2)
 ```
 
-Here, we specify various configuration options such as the loss value (Logcosh), the optimizer, additional metrics (we also use MAE so that we can compare with the [Huber loss](https://www.machinecurve.com/index.php/2019/10/12/using-huber-loss-in-keras/) variant), and so on. Fitting the data also requires us to specify certain options, such as the number of epochs, the batch size, and the validation split. We store the results of the training process in a `history` object so that we can visualize the model's performance.
+Here, we specify various configuration options such as the loss value (Logcosh), the optimizer, additional metrics (we also use MAE so that we can compare with the [Huber loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/using-huber-loss-in-keras.md) variant), and so on. Fitting the data also requires us to specify certain options, such as the number of epochs, the batch size, and the validation split. We store the results of the training process in a `history` object so that we can visualize the model's performance.
 
 ### Model testing & performance visualization code
 
@@ -333,7 +333,7 @@ _Note that the full code for the models we created in this blog post is also ava
 
 ## References
 
-About loss and loss functions – MachineCurve. (2019, October 15). Retrieved from [https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/)
+About loss and loss functions – MachineCurve. (2019, October 15). Retrieved from [https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md)
 
 Grover, P. (2019, September 25). 5 Regression Loss Functions All Machine Learners Should Know. Retrieved from [https://heartbeat.fritz.ai/5-regression-loss-functions-all-machine-learners-should-know-4fb140e9d4b0](https://heartbeat.fritz.ai/5-regression-loss-functions-all-machine-learners-should-know-4fb140e9d4b0)
 

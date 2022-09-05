@@ -16,7 +16,7 @@ tags:
 
 It was January 1957 when a report was released by Cornell Aeronautical Laboratory. It was written by Frank Rosenblatt and titled _The Perceptron - a Perceiving and Recognizing Automaton_, which aimed to "formulate a brain analogue useful in analysis" (Rosenblatt, 1957).
 
-In his work, he presented the [perceptron](https://machinecurve.com/index.php/2019/07/23/linking-maths-and-intuition-rosenblatts-perceptron-in-python/)\- a one-neuron neural network that would eventually lie at the basis of many further developments in this field.
+In his work, he presented the [perceptron](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/linking-maths-and-intuition-rosenblatts-perceptron-in-python.md)\- a one-neuron neural network that would eventually lie at the basis of many further developments in this field.
 
 Since I'm currently investigating historical algorithms _and_ because I use Keras on a daily basis for creating deep neural networks, I was interested in combining both - especially since I saw some blogs on the internet that had applied it too.
 
@@ -183,7 +183,7 @@ So I started looking around for clues, and then I found this:
 > Source: [Yahia Zakaria, StackOverflow](https://stackoverflow.com/a/40758135), or (Zakaria, 2016).
 
   
-Today's neural networks, which are supported by Keras, apparently use an entirely different method for optimization, I found. Whereas the Rosenblatt Perceptron updates the weights by pushing them slightly into the right direction (i.e. the [Perceptron Learning Rule](https://machinecurve.com/index.php/2019/07/23/linking-maths-and-intuition-rosenblatts-perceptron-in-python/)), today's neural networks don't do that. Instead, they compute the loss with a so-called loss function, which is differentiable. By minimizing this gradient, the algorithms find the way to the best-performing model. We call this (Stochastic) Gradient Descent. Instead of pushing the weights into the right direction, it's like descending a mountainous path, where your goal is to go to the valley - changing the model weights as you go.
+Today's neural networks, which are supported by Keras, apparently use an entirely different method for optimization, I found. Whereas the Rosenblatt Perceptron updates the weights by pushing them slightly into the right direction (i.e. the [Perceptron Learning Rule](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/linking-maths-and-intuition-rosenblatts-perceptron-in-python.md)), today's neural networks don't do that. Instead, they compute the loss with a so-called loss function, which is differentiable. By minimizing this gradient, the algorithms find the way to the best-performing model. We call this (Stochastic) Gradient Descent. Instead of pushing the weights into the right direction, it's like descending a mountainous path, where your goal is to go to the valley - changing the model weights as you go.
 
 The next question is then: the Perceptron step function outputs class 0 for all values \[latex\]\\leq 0\[/latex\] and 1 for the rest. Why cannot this be used as a loss function, then?
 
@@ -257,7 +257,7 @@ model = Sequential()
 model.add(Dense())
 ```
 
-We can now add the activation function and the initializer. Since _zero initialization_ (which is what one can do with the [real Rosenblatt Perceptron](https://machinecurve.com/index.php/2019/07/23/linking-maths-and-intuition-rosenblatts-perceptron-in-python/#training-the-model)) is **not a good idea with SGD** (I'll cover this in another post), I'll initialize them with the default Keras initializer, being `glorot_uniform` (or Xavier uniform).
+We can now add the activation function and the initializer. Since _zero initialization_ (which is what one can do with the [real Rosenblatt Perceptron](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/linking-maths-and-intuition-rosenblatts-perceptron-in-python/#training-the-model)) is **not a good idea with SGD** (I'll cover this in another post), I'll initialize them with the default Keras initializer, being `glorot_uniform` (or Xavier uniform).
 
 Let's add the `hard_sigmoid` activation function to the imports:
 

@@ -14,7 +14,7 @@ tags:
   - "optimizer"
 ---
 
-Today, optimizing neural networks is often performed with what is known as gradient descent: analogous to [walking down a mountain](https://www.machinecurve.com/index.php/2019/10/24/gradient-descent-and-its-variants/), an algorithm attempts to find a minimum in a neural network's loss landscape.
+Today, optimizing neural networks is often performed with what is known as gradient descent: analogous to [walking down a mountain](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md), an algorithm attempts to find a minimum in a neural network's loss landscape.
 
 Traditionally, one of the variants of gradient descent - batch gradient descent, stochastic gradient descent and minibatch gradient descent - were used for this purpose.
 
@@ -40,7 +40,7 @@ If you have questions - feel free to leave a message in my comments box below! ð
 
 ## Traditional gradient descent & challenges
 
-When considering the [high-level machine learning process](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#the-high-level-supervised-learning-process) for supervised learning, you'll see that each forward pass generates a loss value that can be used for optimization.
+When considering the [high-level machine learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process) for supervised learning, you'll see that each forward pass generates a loss value that can be used for optimization.
 
 Although backpropagation generates the actual gradients in order to perform the optimization, the optimizer algorithm used determines _how optimization is performed_, i.e., where to apply what change in the weights of your neural network in order to improve loss during the next iteration.
 
@@ -63,7 +63,7 @@ Various challenges were identified with usage of traditional gradient descent ov
 - The learning process may slow down when large flat areas are encountered during training (O'Reilly, n.d.).
 - Additionally, _saddle points_ may be encountered, which are points that descend when you approach them from one direction, yet ascend when you approach them from another one. Optimizers will get confused when they encounter such points (Shaikh, 2019; Ruder, 2016).
 - A loss landscape often contains multiple minima. But which one is the global minimum? Traditional gradient descent does not know this in advance, since it cannot look over the next mountainous peak. This is another problem with the traditional methods (Ruder, 2016).
-- You may face [vanishing and exploding gradients](https://www.machinecurve.com/index.php/2019/08/30/random-initialization-vanishing-and-exploding-gradients/) (Shaikh, 2019).
+- You may face [vanishing and exploding gradients](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/random-initialization-vanishing-and-exploding-gradients.md) (Shaikh, 2019).
 
 * * *
 
@@ -149,7 +149,7 @@ Now what if we could add _both momentum_ and _adapt our neuron's weights locally
 
 This is what the **Adam optimizer** does, which combines the best of both worlds - i.e., it performs similar to RMSprop and Adadelta, _as well as momentum_ (Ruder, 2016; Kingma & Ba, 2014).
 
-By consequence, it is one of the most widely used optimizers today - and it is the reason that we use it in many of our blog posts, such as [How to create a CNN classifier with Keras?](https://www.machinecurve.com/index.php/2019/09/17/how-to-create-a-cnn-classifier-with-keras/)
+By consequence, it is one of the most widely used optimizers today - and it is the reason that we use it in many of our blog posts, such as [How to create a CNN classifier with Keras?](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras.md)
 
 ### AdaMax
 

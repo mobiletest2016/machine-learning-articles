@@ -12,7 +12,7 @@ tags:
   - "tensorflow"
 ---
 
-Machine Learning is here to stay. More and more organizations are grasping the benefits of the technology, as long as it is applied with care - and with a realistic mindset. By consequence, demand for ML engineers is high, and the field is working towards increased [commoditization](https://www.machinecurve.com/index.php/2020/10/27/using-teachable-machine-for-creating-tensorflow-models/) and [automation](https://www.machinecurve.com/index.php/2020/06/09/automating-neural-network-configuration-with-keras-tuner/).
+Machine Learning is here to stay. More and more organizations are grasping the benefits of the technology, as long as it is applied with care - and with a realistic mindset. By consequence, demand for ML engineers is high, and the field is working towards increased [commoditization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/using-teachable-machine-for-creating-tensorflow-models.md) and [automation](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/automating-neural-network-configuration-with-keras-tuner.md).
 
 But why was there an explosion of Machine Learning, anyway? Why did Deep Neural Networks grow in popularity exponentially in the years after the 2012 computer vision breakthrough?
 
@@ -40,11 +40,11 @@ It's in fact a really simple one - we see a yellow **input layer**, a red **outp
 
 As you can imagine, the input layer is capable of accepting input to the model that is in some kind of shape. For example, if the model supports a three-dimensional Tensor, that's what you must feed the input layer - or an error will be thrown. It's thus like an ingestion mechanism that feeds forward acceptable input into the next layer.
 
-The hidden layer(s - just one in this case) attempt to capture patterns hidden within the dataset as a whole through training. Training, as we shall see later in this article, is an iterative optimization process. Patterns are captured by means of [weights](https://www.machinecurve.com/index.php/2019/08/22/what-is-weight-initialization/). When new samples pass through these hidden layers, they thus attempt to 'see' whether certain patterns are present - and if so, the individual components (i.e. neurons) that capture these patterns will 'fire' to the next layer with more strength.
+The hidden layer(s - just one in this case) attempt to capture patterns hidden within the dataset as a whole through training. Training, as we shall see later in this article, is an iterative optimization process. Patterns are captured by means of [weights](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-weight-initialization.md). When new samples pass through these hidden layers, they thus attempt to 'see' whether certain patterns are present - and if so, the individual components (i.e. neurons) that capture these patterns will 'fire' to the next layer with more strength.
 
-Finally, the output layer generates the final prediction. For example, [in the case of binary classification](https://www.machinecurve.com/index.php/2020/10/19/3-variants-of-classification-problems-in-machine-learning/), this is a numeric prediction in the range \[latex\]\[0, 1\]\[/latex\] - i.e. a 0% to 100% probability that it's some class. Output \[latex\]0.6666\[/latex\] suggests that it's more likely to be class \[latex\]1\[/latex\], but the model is not entirely sure.
+Finally, the output layer generates the final prediction. For example, [in the case of binary classification](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/3-variants-of-classification-problems-in-machine-learning.md), this is a numeric prediction in the range \[latex\]\[0, 1\]\[/latex\] - i.e. a 0% to 100% probability that it's some class. Output \[latex\]0.6666\[/latex\] suggests that it's more likely to be class \[latex\]1\[/latex\], but the model is not entirely sure.
 
-In the case of [multiclass classification](https://www.machinecurve.com/index.php/2020/10/19/3-variants-of-classification-problems-in-machine-learning/), it would be a [probability distribution](https://www.machinecurve.com/index.php/2020/01/08/how-does-the-softmax-activation-function-work/) over the possible output classes - with each class assigned a probability, all probabilities summed to \[latex\]1\[/latex\].
+In the case of [multiclass classification](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/3-variants-of-classification-problems-in-machine-learning.md), it would be a [probability distribution](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-does-the-softmax-activation-function-work.md) over the possible output classes - with each class assigned a probability, all probabilities summed to \[latex\]1\[/latex\].
 
 ### Individual neurons
 
@@ -64,7 +64,7 @@ But our definition of a neuron until now is also problematic. If you remember so
 
 Indeed, it is exactly the cause of the problem - the weights \[latex\]w\[/latex\] and bias \[latex\]b\[/latex\] that can be learnt by the model effectively allow each neuron to capture a linear pattern - a line. As the system as a whole performs such tasks but then at massive scale, we can easily see that with the neuron setup from above, the system can only learn linear patterns.
 
-In plain English, in case of [classification](https://www.machinecurve.com/index.php/2020/10/19/3-variants-of-classification-problems-in-machine-learning/), it can only learn to generate a [separation boundary](https://www.machinecurve.com/index.php/2019/10/11/how-to-visualize-the-decision-boundary-for-your-keras-model/) that has the shape of a line. And in the case of regression, the other form of supervised learning where the outcome is a real number (like 2.349839), it can only learn to predict a linear relationship between input variables.
+In plain English, in case of [classification](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/3-variants-of-classification-problems-in-machine-learning.md), it can only learn to generate a [separation boundary](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-decision-boundary-for-your-keras-model.md) that has the shape of a line. And in the case of regression, the other form of supervised learning where the outcome is a real number (like 2.349839), it can only learn to predict a linear relationship between input variables.
 
 We're not going the war with neural networks if they look like this, so let's take a look how to move forward.
 
@@ -136,7 +136,7 @@ Using Scikit's `make_moons` function, we're going two generate 1000 samples (750
 
 ![](images/nonlinear.png)
 
-It's simply impossible to create a linear [classifier](https://www.machinecurve.com/index.php/2020/10/19/3-variants-of-classification-problems-in-machine-learning/) here - no straight line can be drawn that separates the two moons :)
+It's simply impossible to create a linear [classifier](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/3-variants-of-classification-problems-in-machine-learning.md) here - no straight line can be drawn that separates the two moons :)
 
 ### Constructing a linear TensorFlow model
 
@@ -148,7 +148,7 @@ We now show you that it doesn't work by generating a linear TensorFlow model. Le
 - We compile the model.
 - We start the fitting i.e. training process.
 - We perform light model evaluation activities to see how well it performs on a testing dataset.
-- We use Mlxtend to [visualize the decision boundary](https://www.machinecurve.com/index.php/2019/10/11/how-to-visualize-the-decision-boundary-for-your-keras-model/) of our model.
+- We use Mlxtend to [visualize the decision boundary](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-decision-boundary-for-your-keras-model.md) of our model.
 
 ```
 # Imports
@@ -255,8 +255,8 @@ I hope that you have learnt something from today's article. If you did, please f
 
 ## References
 
-MachineCurve. (2019, October 22). _How to visualize the decision boundary for your Keras model?_ [https://www.machinecurve.com/index.php/2019/10/11/how-to-visualize-the-decision-boundary-for-your-keras-model/](https://www.machinecurve.com/index.php/2019/10/11/how-to-visualize-the-decision-boundary-for-your-keras-model/)
+MachineCurve. (2019, October 22). _How to visualize the decision boundary for your Keras model?_ [https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-decision-boundary-for-your-keras-model/](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-decision-boundary-for-your-keras-model.md)
 
-MachineCurve. (2020, February 2). _Why you shouldn't use a linear activation function_. [https://www.machinecurve.com/index.php/2019/06/11/why-you-shouldnt-use-a-linear-activation-function/](https://www.machinecurve.com/index.php/2019/06/11/why-you-shouldnt-use-a-linear-activation-function/)
+MachineCurve. (2020, February 2). _Why you shouldn't use a linear activation function_. [https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-you-shouldnt-use-a-linear-activation-function/](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-you-shouldnt-use-a-linear-activation-function.md)
 
-MachineCurve. (2020, October 22). _3 variants of classification problems in machine learning_. [https://www.machinecurve.com/index.php/2020/10/19/3-variants-of-classification-problems-in-machine-learning/](https://www.machinecurve.com/index.php/2020/10/19/3-variants-of-classification-problems-in-machine-learning/)
+MachineCurve. (2020, October 22). _3 variants of classification problems in machine learning_. [https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/3-variants-of-classification-problems-in-machine-learning/](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/3-variants-of-classification-problems-in-machine-learning.md)

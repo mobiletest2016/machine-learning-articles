@@ -136,9 +136,9 @@ This information includes, but is not limited to:
 - Whether the layer is trainable;
 - What the data type is;
 - For Convolutional layers, the number of filters, the kernel size, the strides, padding, data format and dilation rate;
-- The [activation function](https://www.machinecurve.com/index.php/2020/01/24/overview-of-activation-functions-for-neural-networks/) that is used;
+- The [activation function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/overview-of-activation-functions-for-neural-networks.md) that is used;
 - Whether bias is used;
-- And how the kernels and (if applied) biases are [initialized](https://www.machinecurve.com/index.php/2019/08/22/what-is-weight-initialization/).
+- And how the kernels and (if applied) biases are [initialized](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-weight-initialization.md).
 
 Each layer has its own unique set of characteristics.
 
@@ -148,7 +148,7 @@ It's also possible to export visualizations by using the top menu, then the 'Exp
 
 [![](images/netron_model_mobilenetv2.png)](https://www.machinecurve.com/wp-content/uploads/2020/02/netron_model_mobilenetv2.png)
 
-If you wish to use architecture visualizations in print or, more generally, in a horizontal fashion, use [Net2Vis](https://www.machinecurve.com/index.php/2020/01/07/visualizing-keras-neural-networks-with-net2vis-and-docker/) instead.
+If you wish to use architecture visualizations in print or, more generally, in a horizontal fashion, use [Net2Vis](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/visualizing-keras-neural-networks-with-net2vis-and-docker.md) instead.
 
 * * *
 

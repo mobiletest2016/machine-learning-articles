@@ -14,7 +14,7 @@ tags:
   - "unsupervised-learning"
 ---
 
-Unsupervised Machine Learning problems involve clustering, adding samples into groups based on some measure of similarity because no labeled training data is available. There are many algorithms for clustering available today. OPTICS, or _Ordering points to identify the clustering structure,_ is one of these algorithms. It is very similar to [DBSCAN](https://www.machinecurve.com/index.php/2020/12/09/performing-dbscan-clustering-with-python-and-scikit-learn/), which we already covered in another article. In this article, we'll be looking at how to use OPTICS for clustering with Python.
+Unsupervised Machine Learning problems involve clustering, adding samples into groups based on some measure of similarity because no labeled training data is available. There are many algorithms for clustering available today. OPTICS, or _Ordering points to identify the clustering structure,_ is one of these algorithms. It is very similar to [DBSCAN](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/performing-dbscan-clustering-with-python-and-scikit-learn.md), which we already covered in another article. In this article, we'll be looking at how to use OPTICS for clustering with Python.
 
 It is structured as follows. Firstly, in order to provide you with the necessary context, we will briefly look at clustering. We will see what it is and how it works generally speaking. Then, we'll move on to the conceptual details of OPTICS. We will take a look at its components, the algorithm and its dendogram output called a _reachability plot_, and how to generate clusters from the diagram.
 
@@ -62,7 +62,7 @@ OPTICS is such a clustering algorithm. Now that we know about clustering in gene
 
 ## Introducing OPTICS: a relative of DBSCAN
 
-**Ordering points to identify the clustering structure**, or OPTICS, is an algorithm for density based clustering. It's quite an old algorithm already, as it was presented in 1999. Nevertheless, it is still a good algorithm today - not everything that's no longer new and shiny must be discarded. It is similar to the [DBSCAN algorithm](https://www.machinecurve.com/index.php/2020/12/09/performing-dbscan-clustering-with-python-and-scikit-learn/) for clustering, an extension even, and hence borrows some of its components as well as its algorithmic components.
+**Ordering points to identify the clustering structure**, or OPTICS, is an algorithm for density based clustering. It's quite an old algorithm already, as it was presented in 1999. Nevertheless, it is still a good algorithm today - not everything that's no longer new and shiny must be discarded. It is similar to the [DBSCAN algorithm](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/performing-dbscan-clustering-with-python-and-scikit-learn.md) for clustering, an extension even, and hence borrows some of its components as well as its algorithmic components.
 
 Let's take a look at OPTICS here. Firstly, we'll take a look at OPTICS' components, followed by taking a look at its algorithm. The outcome of this algorithm is a [dendrogram](https://en.wikipedia.org/wiki/Dendrogram) (which shows the tree-like structure of the data by means of the _reachability distance_, which is one of the components that we will cover next). Once we know the output of the algorithm, we'll move on to interpreting this diagram, answering the questions how we can generate the clusters from this reachability plot.
 
@@ -88,7 +88,7 @@ When the point \[latex\]p\[/latex\] has \[latex\]\\text{minPts}\[/latex\] within
 
 #### Core distance
 
-If you have read the article about [DBSCAN](https://www.machinecurve.com/index.php/2020/12/09/performing-dbscan-clustering-with-python-and-scikit-learn/), you might have thought that many of these concepts are familiar. And in fact, they are! All concepts covered so far are also components of the DBSCAN algorithm. The next one, **core distance**, is however unique to OPTICS. Let's take a look.
+If you have read the article about [DBSCAN](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/performing-dbscan-clustering-with-python-and-scikit-learn.md), you might have thought that many of these concepts are familiar. And in fact, they are! All concepts covered so far are also components of the DBSCAN algorithm. The next one, **core distance**, is however unique to OPTICS. Let's take a look.
 
 Core distance is defined as follows. For any point \[latex\]p\[/latex\] with some epsilon \[latex\]\\epsilon\[/latex\] and hence an epsilon neighborhood \[latex\]N\_\\epsilon(p)\[/latex\]:
 
@@ -315,7 +315,7 @@ First of all, we looked at what clustering is in the first place. We saw that cl
 
 We saw that OPTICS works by ordering based on reachability distance while expanding the clusters at the same time. The output of the OPTICS algorithm is therefore an ordered list of reachability distances, which by means of thresholds or different techniques we can split into clusters. This way, we're able of generating clusters for groups of data that have varying densities.
 
-[Ask a question](https://www.machinecurve.com/index.php/add-machine-learning-question/)
+[Ask a question](https://web.archive.org/web/https://www.machinecurve.com/index.php/add-machine-learning-question/)
 
 I hope that you have learned something from today's article. If you did, please feel free to leave a message in the comments section! 💬 Please also leave remarks and comments, or leave them through the **Ask Questions** button. Thank you for reading MachineCurve today and happy engineering! 😎
 

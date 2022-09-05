@@ -38,7 +38,7 @@ Now, say that we show you a few of these digits, handwritten ones:
 
 [![](images/emnist-mnist.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/emnist-mnist.png)
 
-Check out ["Making more datasets available for Keras"](https://www.machinecurve.com/index.php/2020/01/10/making-more-datasets-available-for-keras/) for this dataset.
+Check out ["Making more datasets available for Keras"](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/making-more-datasets-available-for-keras.md) for this dataset.
 
 Likely, you know which digits they are instantly. The first row: 4 - 1 - 4 -1. The second: 6 - 7 - 6 - 8. And so on.
 
@@ -51,7 +51,7 @@ The answer is a little bit more complex than this (i.e., we leave the discussion
 1. Your brain decomposes (or "breaks down") the image it sees into smaller parts.
 2. These parts, in return, take some kind of "generic shape". While the bottom part of the second 4 is written in a curvy way, and the first in a cursive way, we still know that it's the bottom part of the 4. We thus instantly recognize it as the "bottom part", regardless of the precise shape it takes.
 
-Now, **[convolutional neural networks](https://www.machinecurve.com/index.php/2018/12/07/convolutional-neural-networks-and-their-components-for-computer-vision/)**, together with extra additions such as [pooling layers](https://www.machinecurve.com/index.php/2020/01/30/what-are-max-pooling-average-pooling-global-max-pooling-and-global-average-pooling/), attempt to mimic this process. They break down input images into smaller parts in ways they have learnt during training. Preferably, these smaller parts are "generic", so that a wide range of input data should yield the same conclusion. Let's take a look at how this works.
+Now, **[convolutional neural networks](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/convolutional-neural-networks-and-their-components-for-computer-vision.md)**, together with extra additions such as [pooling layers](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-are-max-pooling-average-pooling-global-max-pooling-and-global-average-pooling.md), attempt to mimic this process. They break down input images into smaller parts in ways they have learnt during training. Preferably, these smaller parts are "generic", so that a wide range of input data should yield the same conclusion. Let's take a look at how this works.
 
 ### How a convolutional layer works
 
@@ -73,7 +73,7 @@ Now, sliding over the entire image horizontally and vertically, it produces many
 
 ### Feature detection and the "smaller parts"
 
-The fun thing, here, is that the network can be trained. That is, the weights can be adapted. During this training process, the network as a whole will produce one output value. This output value can be compared to the true target - a.k.a. the "ground truth". The difference between the two can be captured in a [loss value](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/) that can subsequently be used for [optimizing the model](https://www.machinecurve.com/index.php/2019/10/24/gradient-descent-and-its-variants/). This way, iteratively, the model can learn weights that yield the most optimal outputs.
+The fun thing, here, is that the network can be trained. That is, the weights can be adapted. During this training process, the network as a whole will produce one output value. This output value can be compared to the true target - a.k.a. the "ground truth". The difference between the two can be captured in a [loss value](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md) that can subsequently be used for [optimizing the model](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md). This way, iteratively, the model can learn weights that yield the most optimal outputs.
 
 Now, possibly and most preferably, what will these weights become?
 
@@ -93,7 +93,7 @@ Thus, even though you have a spatial hierarchy, it's not very _sharp_. This, in 
 
 What's more, it's still not "translation invariant", which means that it's also sensitive to the _orientation, size, and position_ of the particular element. In the case of the four, if the top part were cut off and the bottom part was shifted to the top, leaving blank space at the bottom, the network may now not detect it as a 4 anymore.
 
-Adding **pooling layers** may [help you resolve this issue](https://www.machinecurve.com/index.php/2020/01/30/what-are-max-pooling-average-pooling-global-max-pooling-and-global-average-pooling/). Similar to convolutional layers, pooling layers slide over the inputs, but instead of multiplying the parts with some learnt weights, they compute a hard value such as \[latex\]max()\[/latex\].
+Adding **pooling layers** may [help you resolve this issue](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-are-max-pooling-average-pooling-global-max-pooling-and-global-average-pooling.md). Similar to convolutional layers, pooling layers slide over the inputs, but instead of multiplying the parts with some learnt weights, they compute a hard value such as \[latex\]max()\[/latex\].
 
 - [![](images/Max-Pooling-1.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/Max-Pooling-1.png)
     
@@ -107,7 +107,7 @@ As you can see, a pooling layer - Max Pooling in the image above - substantially
 
 This way, we introduce "feature invariance" into the model. Together, the convolutional layer both "learns parts" and "learns them in a generic way". Exactly what we want :)
 
-Now that we understand the two most important parts of a ConvNet, it's time to build one. Please note that it's possible to use additional layers such as [Dropout](https://www.machinecurve.com/index.php/2019/12/18/how-to-use-dropout-with-keras/), and that you can [apply padding when desired](https://www.machinecurve.com/index.php/2020/02/07/what-is-padding-in-a-neural-network/), but this is optional. Let's now take a look at the datasets that we'll use today! 📷
+Now that we understand the two most important parts of a ConvNet, it's time to build one. Please note that it's possible to use additional layers such as [Dropout](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-dropout-with-keras.md), and that you can [apply padding when desired](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-padding-in-a-neural-network.md), but this is optional. Let's now take a look at the datasets that we'll use today! 📷
 
 * * *
 
@@ -209,8 +209,8 @@ Time to write some actual code! We'll start with the model imports. As our model
 - The **CIFAR-10 dataset**;
 - The **Sequential API**, which allows us to stack the individual layers nicely together;
 - The **Conv2D, MaxPooling2D, Flatten** and **Dense** layers;
-- **[Adam optimization](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/#adam)** with **[sparse categorical crossentropy loss](https://www.machinecurve.com/index.php/2019/10/06/how-to-use-sparse-categorical-crossentropy-in-keras/)**;
-- Visualizations of the [model history](https://www.machinecurve.com/index.php/2019/10/08/how-to-visualize-the-training-process-in-keras/);
+- **[Adam optimization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound/#adam)** with **[sparse categorical crossentropy loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-sparse-categorical-crossentropy-in-keras.md)**;
+- Visualizations of the [model history](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-training-process-in-keras.md);
 
 ...you'll need to import these dependencies. You can do this as follows:
 
@@ -241,11 +241,11 @@ verbosity = 1
 
 What do they mean is what you may wonder now. Let's find out:
 
-- The **batch size** is the amount of samples that will be [fed forward](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#forward-pass) in your model at once, after which the loss value is computed. You could either feed the model the [entire training batch, one sample every time or a minibatch](https://www.machinecurve.com/index.php/2019/10/24/gradient-descent-and-its-variants/#variants-of-gradient-descent) - and you can set this value by specifying `batch_size`.
+- The **batch size** is the amount of samples that will be [fed forward](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#forward-pass) in your model at once, after which the loss value is computed. You could either feed the model the [entire training batch, one sample every time or a minibatch](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants/#variants-of-gradient-descent) - and you can set this value by specifying `batch_size`.
 - The **image width, image height and number of channels**. Width and height are 32, respectively, and number of channels is 3, as the dataset contains RGB images.
-- The **loss function** used to compare predictions with ground truth during training. We use [sparse categorical crossentropy loss](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#sparse-categorical-crossentropy). We skip the "why" for now - I'll show you later why we use _sparse_ instead of regular categorical crossentropy loss.
-- The **number of classes** and **number of epochs** (or iterations), which we set to 10 and 100, respectively. We set the first to 10 because we have ten distinct classes - the digits 0 to 9. The second is set to 100 because I'm assuming that we'll have passed maximum model performance by then. We don't want to be training infinitely, as this induces [overfitting](https://www.machinecurve.com/index.php/2019/12/16/what-is-dropout-reduce-overfitting-in-your-neural-networks/#how-well-does-your-model-perform-underfitting-and-overfitting).
-- The **optimizer**, or the method by which we update the weights of our neural network. We use [Adam optimization](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/#adam) - which is a relatively state-of-the-art optimizer and common in today's neural networks.
+- The **loss function** used to compare predictions with ground truth during training. We use [sparse categorical crossentropy loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#sparse-categorical-crossentropy). We skip the "why" for now - I'll show you later why we use _sparse_ instead of regular categorical crossentropy loss.
+- The **number of classes** and **number of epochs** (or iterations), which we set to 10 and 100, respectively. We set the first to 10 because we have ten distinct classes - the digits 0 to 9. The second is set to 100 because I'm assuming that we'll have passed maximum model performance by then. We don't want to be training infinitely, as this induces [overfitting](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-dropout-reduce-overfitting-in-your-neural-networks/#how-well-does-your-model-perform-underfitting-and-overfitting).
+- The **optimizer**, or the method by which we update the weights of our neural network. We use [Adam optimization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound/#adam) - which is a relatively state-of-the-art optimizer and common in today's neural networks.
 - 20% of our training data will be used for **validation purposes**; that is, used to test the model with non-training-data _during_ training.
 - Verbosity mode is set to "1", which means "True", which means that all the output is displayed on screen. This is good for understanding what happens during training, but it's best to turn it off when you _actually_ train models, as it slows down the training process.
 
@@ -285,7 +285,7 @@ Next, it's time to stack a few layers. Firstly, we'll use three convolutional bl
 
 After the convolutional blocks, we add a `Flatten` layer. The `Dense` layers, which are responsible for generating the actual classifications, only work with one-dimensional data. Flatten makes this happen: it converts the multidimensional feature maps into one-dimensional shape. Great!
 
-As said, the Dense layers ensure that classification is possible. As you can see, in terms of the number of outputs per layer, we create an information bottleneck that eventually converges in `no_classes` - thus 10 - outputs, exactly the number of unique classes in our dataset. As we're using the [Softmax activation function](https://www.machinecurve.com/index.php/2020/01/08/how-does-the-softmax-activation-function-work/), we'll get a discrete multiclass probability distribution as our output for any input. From this distribution, we can draw the one with the highest value, which is the most likely class for our input. There we go, our classifier is ready! Or isn't it? 😉
+As said, the Dense layers ensure that classification is possible. As you can see, in terms of the number of outputs per layer, we create an information bottleneck that eventually converges in `no_classes` - thus 10 - outputs, exactly the number of unique classes in our dataset. As we're using the [Softmax activation function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-does-the-softmax-activation-function-work.md), we'll get a discrete multiclass probability distribution as our output for any input. From this distribution, we can draw the one with the highest value, which is the most likely class for our input. There we go, our classifier is ready! Or isn't it? 😉
 
 ```
 # Create the model
@@ -310,7 +310,7 @@ Once the model is compiled, we _do_ have a model, but it's not yet trained. We c
 
 Here, it also becomes clear why we decided to use _sparse_ categorical crossentropy instead of _true_ categorical crossentropy. Categorical crossentropy requires our data to be categorical, which can e.g. be achieved with `to_categorical` i.e. one-hot encoding of your target vectors.
 
-Our data is not categorical by nature: our targets are integers in the range \[latex\]\[0, 9\]\[/latex\]. But why convert them, I'd argue, if there is a loss function which does the same as _true_ categorical crossentropy but works with integer targets? Indeed, [_sparse_ categorical crossentropy](https://www.machinecurve.com/index.php/2019/10/06/how-to-use-sparse-categorical-crossentropy-in-keras/) is this activation function. Hence, we choose it over the other one :)
+Our data is not categorical by nature: our targets are integers in the range \[latex\]\[0, 9\]\[/latex\]. But why convert them, I'd argue, if there is a loss function which does the same as _true_ categorical crossentropy but works with integer targets? Indeed, [_sparse_ categorical crossentropy](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-sparse-categorical-crossentropy-in-keras.md) is this activation function. Hence, we choose it over the other one :)
 
 ```
 # Compile the model
@@ -328,7 +328,7 @@ history = model.fit(input_train, target_train,
 
 ### Generating evaluation metrics & visualizations
 
-We're almost there. As you can see, we assigned the results of `model.fit` to a `history` object. This will allow us to see the _testing_ results as well as [generate nice plots of the training process](https://www.machinecurve.com/index.php/2019/10/08/how-to-visualize-the-training-process-in-keras/). Here's the code:
+We're almost there. As you can see, we assigned the results of `model.fit` to a `history` object. This will allow us to see the _testing_ results as well as [generate nice plots of the training process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-training-process-in-keras.md). Here's the code:
 
 ```
 # Generate generalization metrics
@@ -446,9 +446,9 @@ In approximately 70% of the cases, our model was correct. This is in line with t
 
 This is a clear sign that our model is overfitting, or that it is highly adapted to our _training dataset_. This may mean that its performance on data it has never seen before is worse than if the training process was stopped at e.g. the fifth epoch. Take a look at these blog posts if you wish to reduce the impact of overfitting:
 
-- [What is Dropout? Reduce overfitting in your neural networks](https://www.machinecurve.com/index.php/2019/12/16/what-is-dropout-reduce-overfitting-in-your-neural-networks/)
-- [What are L1, L2 and Elastic Net Regularization in neural networks?](https://www.machinecurve.com/index.php/2020/01/21/what-are-l1-l2-and-elastic-net-regularization-in-neural-networks/)
-- [Avoid wasting resources with EarlyStopping and ModelCheckpoint in Keras](https://www.machinecurve.com/index.php/2019/05/30/avoid-wasting-resources-with-earlystopping-and-modelcheckpoint-in-keras/)
+- [What is Dropout? Reduce overfitting in your neural networks](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-dropout-reduce-overfitting-in-your-neural-networks.md)
+- [What are L1, L2 and Elastic Net Regularization in neural networks?](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-are-l1-l2-and-elastic-net-regularization-in-neural-networks.md)
+- [Avoid wasting resources with EarlyStopping and ModelCheckpoint in Keras](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/avoid-wasting-resources-with-earlystopping-and-modelcheckpoint-in-keras.md)
 
 - [![](images/val_acc.png)](https://www.machinecurve.com/wp-content/uploads/2020/02/val_acc.png)
     
@@ -592,11 +592,11 @@ Thank you for reading MachineCurve today and happy engineering! 😎
 
 ## References
 
-MachineCurve. (2020, January 6). Exploring the Keras Datasets. Retrieved from [https://www.machinecurve.com/index.php/2019/12/31/exploring-the-keras-datasets/](https://www.machinecurve.com/index.php/2019/12/31/exploring-the-keras-datasets/)
+MachineCurve. (2020, January 6). Exploring the Keras Datasets. Retrieved from [https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets/](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets.md)
 
-MachineCurve. (2020, February 2). Convolutional Neural Networks and their components for computer vision. Retrieved from [https://www.machinecurve.com/index.php/2018/12/07/convolutional-neural-networks-and-their-components-for-computer-vision/](https://www.machinecurve.com/index.php/2018/12/07/convolutional-neural-networks-and-their-components-for-computer-vision/)
+MachineCurve. (2020, February 2). Convolutional Neural Networks and their components for computer vision. Retrieved from [https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/convolutional-neural-networks-and-their-components-for-computer-vision/](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/convolutional-neural-networks-and-their-components-for-computer-vision.md)
 
-MachineCurve. (2019, September 24). How to create a CNN classifier with Keras? Retrieved from [https://www.machinecurve.com/index.php/2019/09/17/how-to-create-a-cnn-classifier-with-keras/](https://www.machinecurve.com/index.php/2019/09/17/how-to-create-a-cnn-classifier-with-keras/)
+MachineCurve. (2019, September 24). How to create a CNN classifier with Keras? Retrieved from [https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras/](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras.md)
 
 Keras. (n.d.). Datasets: CIFAR10 small image classification. Retrieved from [https://keras.io/datasets/#cifar10-small-image-classification](https://keras.io/datasets/#cifar10-small-image-classification)
 

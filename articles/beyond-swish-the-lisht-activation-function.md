@@ -16,11 +16,11 @@ tags:
   - "swish"
 ---
 
-Deep neural networks perform linear operations to combine weight vectors with input vectors. The values that are the outputs of these combinations are subsequently fed to [activation functions](https://www.machinecurve.com/index.php/2019/09/04/relu-sigmoid-and-tanh-todays-most-used-activation-functions/) which map the linear input into nonlinear output.
+Deep neural networks perform linear operations to combine weight vectors with input vectors. The values that are the outputs of these combinations are subsequently fed to [activation functions](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md) which map the linear input into nonlinear output.
 
 The Rectified Linear Unit or ReLU activation function is very popular today. It activates to zero for all inputs lower than zero, and activates linearly (i.e. \[latex\]f(x) = x\[/latex\] for all \[latex\]x >= 0\[/latex\]).
 
-Nevertheless, it has some challenges - to which [the Swish activation function was found to be a solution](https://www.machinecurve.com/index.php/2019/05/30/why-swish-could-perform-better-than-relu/). Increasing in popularity, studies have emerged that empirically investigate the effectiveness of Swish. Does it really result in better model performance? If not, why is this the case? How could even Swish be improved?
+Nevertheless, it has some challenges - to which [the Swish activation function was found to be a solution](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-swish-could-perform-better-than-relu.md). Increasing in popularity, studies have emerged that empirically investigate the effectiveness of Swish. Does it really result in better model performance? If not, why is this the case? How could even Swish be improved?
 
 We'll take a look at these questions in this blog post. First, we recap - based on our earlier blog post linked above - how Swish might improve model performance compared to traditional ReLU. Subsequently, we introduce challenges that were found empirically, before introducing a new activation function called _LiSHT_.
 
@@ -36,10 +36,10 @@ Ready? Let's go!
 
 ## Recap: how Swish improves ReLU
 
-If we wish to understand the challenges of the Swish activation function, we must first investigate how Swish improves ReLU in the first place. As we have seen [in our Swish related blog post](https://www.machinecurve.com/index.php/2019/05/30/why-swish-could-perform-better-than-relu/), there are multiple reasons ( Ramachandran, 2017):
+If we wish to understand the challenges of the Swish activation function, we must first investigate how Swish improves ReLU in the first place. As we have seen [in our Swish related blog post](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-swish-could-perform-better-than-relu.md), there are multiple reasons ( Ramachandran, 2017):
 
 - Like ReLU, it is bounded below and unbounded above. This allows Swish to introduce both sparsity and non-congestion in the training process.
-- It's also smooth, compared to ReLU. Because of this, the [Swish loss landscape](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/) is smooth as well, which allows the optimizer to experience less oscillation. This might ensure faster convergence.
+- It's also smooth, compared to ReLU. Because of this, the [Swish loss landscape](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md) is smooth as well, which allows the optimizer to experience less oscillation. This might ensure faster convergence.
 - Small negative values are not zeroed out, which may help you catch certain patterns in your dataset in a better way.
 
 [![](images/relu_swish-1024x511.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/relu_swish.png)
@@ -52,11 +52,11 @@ How the ReLU and Swish activations activate. They are really similar, but Swish 
 
 This does not mean that Swish is free of challenges. On the contrary - and this has everything to do with model optimization.
 
-While Swish reportedly improves model performance (Ramachandran et al., 2017), it still does not allow you to avoid [vanishing gradients](https://www.machinecurve.com/index.php/2019/08/30/random-initialization-vanishing-and-exploding-gradients/), as argued by Roy et al. (2019). Instead, they argue that "the gradient diminishing problem is still present in case of Swish function".
+While Swish reportedly improves model performance (Ramachandran et al., 2017), it still does not allow you to avoid [vanishing gradients](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/random-initialization-vanishing-and-exploding-gradients.md), as argued by Roy et al. (2019). Instead, they argue that "the gradient diminishing problem is still present in case of Swish function".
 
 But why is this the case?
 
-We'll have to take a look at neural network optimization by means of [gradient descent](https://www.machinecurve.com/index.php/2019/10/24/gradient-descent-and-its-variants/) (or [similar optimizers](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/)) combined with backpropagation.
+We'll have to take a look at neural network optimization by means of [gradient descent](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md) (or [similar optimizers](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md)) combined with backpropagation.
 
 It will be fairly simple to identify why even Swish might cause you to fall prey to these vanishing gradients.
 
@@ -104,7 +104,7 @@ Essentially, LiSHT looks very much like Swish in terms of the first-order deriva
 
 In their work, Roy et al. (2019) report based on empirical testing that indeed, the vanishing gradient problems is reduced compared to Swish and traditional ReLU. Additional correlations between network learning and the shape of e.g. the LiSHT loss landscape were identified.
 
-Even though the authors empirically tested LiSHT on various datasets (Car Evaluation, Iris, MNIST, CIFAR10, CIFAR100 and Twitter140) with multiple types of architectures ([MLP](https://www.machinecurve.com/index.php/2019/07/27/how-to-create-a-basic-mlp-classifier-with-the-keras-sequential-api/), [CNN](https://www.machinecurve.com/index.php/2020/03/30/how-to-use-conv2d-with-keras/), [LSTM](https://www.machinecurve.com/index.php/2020/12/29/a-gentle-introduction-to-long-short-term-memory-networks-lstm/)), we'll have to wait to see if LiSHT will generate traction in the machine learning community. Firstly, it will be difficult to knock ReLU off the throne, as it generalizes well to most machine learning scenarios. While the authors have done their best to test LiSHT across many settings, we still don't know enough about how well it generalizes across most scenarios.
+Even though the authors empirically tested LiSHT on various datasets (Car Evaluation, Iris, MNIST, CIFAR10, CIFAR100 and Twitter140) with multiple types of architectures ([MLP](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-basic-mlp-classifier-with-the-keras-sequential-api.md), [CNN](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-conv2d-with-keras.md), [LSTM](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/a-gentle-introduction-to-long-short-term-memory-networks-lstm.md)), we'll have to wait to see if LiSHT will generate traction in the machine learning community. Firstly, it will be difficult to knock ReLU off the throne, as it generalizes well to most machine learning scenarios. While the authors have done their best to test LiSHT across many settings, we still don't know enough about how well it generalizes across most scenarios.
 
 Secondly, which has nothing to do with true _fact_, the machine learning community has been relatively slow to adapt promising activation functions like Swish. While it does improve ReLU in many cases, most tutorials still recommend ReLU over such new activation functions. While this partially occurs because of the first reason - i.e., that ReLU simply generalizes well, and works well in many cases - the LiSHT authors also face the inherent slowness of collective human nature to adapt.
 

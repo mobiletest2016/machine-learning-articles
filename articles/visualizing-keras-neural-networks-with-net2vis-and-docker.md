@@ -38,7 +38,7 @@ However, when looking at the available tools and techniques for visualizing neur
 - Most of the time, neural networks are visualized by hand, which consumes a lot of time and induces errors in (even _published_!) papers.
 - This time is better spent on improving the model through tuning hyperparameters or training result evaluation.
 - Often, print media requires horizontal visualizations, maintaining the natural flow of reading, while still conveying all important information.
-- There are a lot of tools available for visualizing neural networks, like [Keras plot\_model](https://www.machinecurve.com/index.php/2019/10/07/how-to-visualize-a-model-with-keras/), but they either do not convey enough information or produce vertical visualizations.
+- There are a lot of tools available for visualizing neural networks, like [Keras plot\_model](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-a-model-with-keras.md), but they either do not convey enough information or produce vertical visualizations.
 
 Hence, convinced that the current tool landscape is suboptimal, they set out and created [Net2Vis](https://github.com/viscom-ulm/Net2Vis), a web application for automatically visualizing your Keras neural networks.
 
@@ -164,7 +164,7 @@ Let's now walk through each of these :)
 
 ### The model we'll be visualizing today
 
-But first - the model we'll be visualizing today. It's a simple ConvNet with two Conv2D layers, Max Pooling and [Dropout](https://www.machinecurve.com/index.php/2019/12/18/how-to-use-dropout-with-keras/). Do note that Net2Vis has a particular structure, which in essence boils down to this:
+But first - the model we'll be visualizing today. It's a simple ConvNet with two Conv2D layers, Max Pooling and [Dropout](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-dropout-with-keras.md). Do note that Net2Vis has a particular structure, which in essence boils down to this:
 
 ```
 def get_model():

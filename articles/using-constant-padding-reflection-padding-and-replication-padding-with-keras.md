@@ -16,7 +16,7 @@ tags:
 
 If you're training Convolutional Neural Networks with Keras, it may be that you don't want the size of your feature maps to be smaller than the size of your inputs. For example, because you're using a Conv layer in an autoencoder - where your goal is to generate a final feature map, not reduce the size of its output.
 
-Fortunately, this is possible with [padding](https://www.machinecurve.com/index.php/2020/02/08/how-to-use-padding-with-keras/), which essentially puts your feature map inside a frame that combined has the same size as your input data. Unfortunately, the Keras framework for deep learning only supports Zero Padding by design. This is especially unfortunate because there are types of padding - such as Reflection Padding and Replication Padding - which [may interfere less with the distribution of your data](https://www.machinecurve.com/index.php/2020/02/07/what-is-padding-in-a-neural-network/#reflection-padding) during training.
+Fortunately, this is possible with [padding](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-padding-with-keras.md), which essentially puts your feature map inside a frame that combined has the same size as your input data. Unfortunately, the Keras framework for deep learning only supports Zero Padding by design. This is especially unfortunate because there are types of padding - such as Reflection Padding and Replication Padding - which [may interfere less with the distribution of your data](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-padding-in-a-neural-network/#reflection-padding) during training.
 
 Now, there's no point in giving up :) That's why we got inspired by an answer on StackOverflow and got to work (StackOverflow, n.d.). By consequence, this blog post presents implementations of Constant Padding, Reflection Padding and Replication Padding to be used with TensorFlow 2.0 based Keras. The implementations are available for 1D and 2D data. Besides the implementation, it will also show you how to use them in an actual Keras model 👩‍💻.
 
@@ -32,19 +32,19 @@ Are you ready? Let's go! 😎
 
 ## Recap: what is padding and why is it useful?
 
-Suppose that you are training a [convolutional neural network](https://www.machinecurve.com/index.php/2018/12/07/convolutional-neural-networks-and-their-components-for-computer-vision/), which is a type of neural network where so-called "convolutional layers" serve as feature extractors:
+Suppose that you are training a [convolutional neural network](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/convolutional-neural-networks-and-their-components-for-computer-vision.md), which is a type of neural network where so-called "convolutional layers" serve as feature extractors:
 
 [![](images/CNN-1.png)](https://www.machinecurve.com/wp-content/uploads/2019/09/CNN-1.png)
 
-In the drawing above, some input data (which is likely an RGB image) of height \[latex\]H\[/latex\] and width \[latex\]W\[/latex\] is fed to a convolutional layer. This layer, which slides (or "convolves") \[latex\]N\[/latex\] kernels of size 3x3x3 over the input, produces \[latex\]N\[/latex\] so-called "feature maps" as output. Through the _weights_ of the kernels, which have been [optimized](https://www.machinecurve.com/index.php/2019/10/24/gradient-descent-and-its-variants/) based on the training dataset, the neural network learns to recognize featues in the input image.
+In the drawing above, some input data (which is likely an RGB image) of height \[latex\]H\[/latex\] and width \[latex\]W\[/latex\] is fed to a convolutional layer. This layer, which slides (or "convolves") \[latex\]N\[/latex\] kernels of size 3x3x3 over the input, produces \[latex\]N\[/latex\] so-called "feature maps" as output. Through the _weights_ of the kernels, which have been [optimized](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md) based on the training dataset, the neural network learns to recognize featues in the input image.
 
 Note that often, a convolutional neural network consists of quite a few convolutional layers stacked on top of each other. In this case, the feature map that is the output of the first layer, is used as the input of the second, and so on.
 
-Now, due to the way such layers work, the size of one feature map (e.g. \[latex\]H\_{fm}\[/latex\] and \[latex\]W\_{fm}\[/latex\] in the image above) [is _smaller_](https://www.machinecurve.com/index.php/2020/02/07/what-is-padding-in-a-neural-network/#conv-layers-might-induce-spatial-hierarchy) than the size of the input to the layer (\[latex\]H\[/latex\] and \[latex\]W\[/latex\]). However, sometimes, you don't want this to happen. Rather, you wish that the size of the feature map is equal - or perhaps larger - than the size of your input data.
+Now, due to the way such layers work, the size of one feature map (e.g. \[latex\]H\_{fm}\[/latex\] and \[latex\]W\_{fm}\[/latex\] in the image above) [is _smaller_](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-padding-in-a-neural-network/#conv-layers-might-induce-spatial-hierarchy) than the size of the input to the layer (\[latex\]H\[/latex\] and \[latex\]W\[/latex\]). However, sometimes, you don't want this to happen. Rather, you wish that the size of the feature map is equal - or perhaps larger - than the size of your input data.
 
-Padding can be used to achieve this. By wrapping the outcome in some "frame", you can ensure that the size of the outputs are equal to those of the input. However, what does this frame look like? In our [article about padding](https://www.machinecurve.com/index.php/2020/02/07/what-is-padding-in-a-neural-network/), we saw that zeros are often used for this. However, we also saw that this might result in worse performance due to the fact that zero padding is claimed to interfere with the distribution of your dataset. _Reflection padding_ and _replication padding_ are introduced as possible fixes for this issue, together with _constant padding_.
+Padding can be used to achieve this. By wrapping the outcome in some "frame", you can ensure that the size of the outputs are equal to those of the input. However, what does this frame look like? In our [article about padding](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-padding-in-a-neural-network.md), we saw that zeros are often used for this. However, we also saw that this might result in worse performance due to the fact that zero padding is claimed to interfere with the distribution of your dataset. _Reflection padding_ and _replication padding_ are introduced as possible fixes for this issue, together with _constant padding_.
 
-Unfortunately, Keras does not support this, [as it only supports zero padding](https://www.machinecurve.com/index.php/2020/02/08/how-to-use-padding-with-keras/). That's why the rest of this blog will introduce constant padding, reflection padding and replication padding to Keras. The code below is compatible with TensorFlow 2.0 based Keras and hence should still work for quite some time from now. If not, feel free to leave a message in the comments box, and I'll try to fix it for you :)
+Unfortunately, Keras does not support this, [as it only supports zero padding](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-padding-with-keras.md). That's why the rest of this blog will introduce constant padding, reflection padding and replication padding to Keras. The code below is compatible with TensorFlow 2.0 based Keras and hence should still work for quite some time from now. If not, feel free to leave a message in the comments box, and I'll try to fix it for you :)
 
 Let's take a look at the first type: using constant padding with Keras 😎
 
@@ -60,7 +60,7 @@ Let's take a look at what constant padding does by means of this schematic drawi
 
 [![](images/constantpad.jpg)](https://www.machinecurve.com/wp-content/uploads/2020/02/constantpad.jpg)
 
-As you can see, the feature maps that are the output of the `Conv2D` layer that is applied to the input data, are smaller than the input data itself. This is perfectly normal, and normally, one would apply [zero padding](https://www.machinecurve.com/index.php/2020/02/08/how-to-use-padding-with-keras/#how-to-use-same-zero-padding-with-keras). However, can't we pad with a constant value \[latex\]c\[/latex\] instead of zeros?
+As you can see, the feature maps that are the output of the `Conv2D` layer that is applied to the input data, are smaller than the input data itself. This is perfectly normal, and normally, one would apply [zero padding](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-padding-with-keras/#how-to-use-same-zero-padding-with-keras). However, can't we pad with a constant value \[latex\]c\[/latex\] instead of zeros?
 
 Yes!
 
@@ -367,7 +367,7 @@ Thank you for reading MachineCurve today and happy engineering! 😎
 
 StackOverflow. (n.d.). Reflection padding Conv2D. Retrieved from [https://stackoverflow.com/questions/50677544/reflection-padding-conv2d](https://stackoverflow.com/questions/50677544/reflection-padding-conv2d)
 
-MachineCurve. (2020, February 9). What is padding in a neural network? Retrieved from [https://www.machinecurve.com/index.php/2020/02/07/what-is-padding-in-a-neural-network/](https://www.machinecurve.com/index.php/2020/02/07/what-is-padding-in-a-neural-network/)
+MachineCurve. (2020, February 9). What is padding in a neural network? Retrieved from [https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-padding-in-a-neural-network/](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-padding-in-a-neural-network.md)
 
 Liu, G., Shih, K. J., Wang, T. C., Reda, F. A., Sapra, K., Yu, Z., … & Catanzaro, B. (2018). [Partial convolution based padding](https://arxiv.org/abs/1811.11718). _arXiv preprint arXiv:1811.11718_.
 

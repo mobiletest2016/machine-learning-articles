@@ -62,7 +62,7 @@ Do you remember high school, where groups of people formed - and you could only 
 
 Although the analogy might be a bit far-fetched, I think this is how Affinity Propagation for clustering can be explained in plain English. For a **set of data points**, a "group formation" process begins, where each **sample** competes with other ones in order to gain group membership. The ones with most group capital, the group leaders are called **exemplars** (Scikit-learn, n.d.).
 
-The interesting thing about this machine learning techniques is that you don't have to configure the number of clusters in advance, unlike [K-means clustering](https://www.machinecurve.com/index.php/2020/04/16/how-to-perform-k-means-clustering-with-python-in-scikit/) (Scikit-learn, n.d.). The main drawback is the complexity: it's not one of the cheapest machine learning algorithms in terms of the computational resources that are required (Scikit-learn, n.d.). Hence, it's a suitable technique for "small to medium sized datasets" only (Scikit-learn, n.d.).
+The interesting thing about this machine learning techniques is that you don't have to configure the number of clusters in advance, unlike [K-means clustering](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-perform-k-means-clustering-with-python-in-scikit.md) (Scikit-learn, n.d.). The main drawback is the complexity: it's not one of the cheapest machine learning algorithms in terms of the computational resources that are required (Scikit-learn, n.d.). Hence, it's a suitable technique for "small to medium sized datasets" only (Scikit-learn, n.d.).
 
 ### A little bit more detail
 
@@ -127,7 +127,7 @@ Let's now take a look how to implement it with Python and Scikit-learn! :)
 
 ## Implementing Affinity Propagation with Python and Scikit-learn
 
-Here they are again, the clusters that we also saw in our blog about [K-means clustering](https://www.machinecurve.com/index.php/2020/04/16/how-to-perform-k-means-clustering-with-python-in-scikit/), although we have fewer samples today:
+Here they are again, the clusters that we also saw in our blog about [K-means clustering](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-perform-k-means-clustering-with-python-in-scikit.md), although we have fewer samples today:
 
 ![](images/afp_cluster.png)
 

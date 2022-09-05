@@ -20,7 +20,7 @@ tags:
 
 Training a neural network means that you will need to strike a balance between _optimization_ and _over-optimization_. Over-optimized models work really well on your training set, but due to their complexity - by taking the oddities within a training dataset as part of the mapping that is to be performed - they can fail really hard when the model is used in production.
 
-Regularization techniques can be used to mitigate these issues. In this article, we're going to take a look at [L1, L2 and Elastic Net Regularization](https://www.machinecurve.com/index.php/2020/01/21/what-are-l1-l2-and-elastic-net-regularization-in-neural-networks/). Click on the previous link to understand them in more detail in terms of theory, because this article focuses on their implementation in PyTorch. After reading it, you will...
+Regularization techniques can be used to mitigate these issues. In this article, we're going to take a look at [L1, L2 and Elastic Net Regularization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-are-l1-l2-and-elastic-net-regularization-in-neural-networks.md). Click on the previous link to understand them in more detail in terms of theory, because this article focuses on their implementation in PyTorch. After reading it, you will...
 
 - **Understand why you need regularization in your neural network.**
 - **See how L1, L2 and Elastic Net (L1+L2) regularization work in theory.**
@@ -48,11 +48,11 @@ If you said yellow, you're right. Such extremities in mappings that are visible 
 
 Training a neural network involves using your input data (the set of \[latex\]\\textbf{x}\[/latex\]s) to generate predictions for each sample (the corresponding set of \[latex\]\\text{y}\[/latex\]. The network has trainable components that can jointly attempt to approximate the mapping, \[latex\]\\text{y}: f(\\textbf{x})\[/latex\]. The approximation is then called \[latex\]\\hat{\\text{y}}: f(\\textbf{x})\[/latex\], from _y hat_.
 
-When [feeding forward our samples and optimizing our model](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#the-high-level-supervised-learning-process) we do not know whether our model will learn a mapping like the one in yellow or the one in blue. Rather, it will learn a mapping that minimizes the [loss value](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#loss). This can lead to a situation where a mapping like the one in blue is learned, while such extremities are unwanted.
+When [feeding forward our samples and optimizing our model](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process) we do not know whether our model will learn a mapping like the one in yellow or the one in blue. Rather, it will learn a mapping that minimizes the [loss value](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#loss). This can lead to a situation where a mapping like the one in blue is learned, while such extremities are unwanted.
 
 Adding **regularization** to your neural network, and specifically to the computed loss values, can help you in guiding the model towards learning a mapping that looks more like the one in yellow. After computing loss (i.e., the model error) after every forward pass, it adds _another value_ to the loss function - and this value is higher when the model is more complex, while lower when it is less complex. In other words, the model is punished for complexity. This leads to a trained model that is as good as it can be when it is as simple as it can be at the same time.
 
-Beyond [Dropout](https://www.machinecurve.com/index.php/2021/07/07/using-dropout-with-pytorch/), which is another mechanism for regularization, there are three main candidates that are used frequently:
+Beyond [Dropout](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/using-dropout-with-pytorch.md), which is another mechanism for regularization, there are three main candidates that are used frequently:
 
 - **L1 Regularization**, also called Lasso Regularization, involves adding the absolute value of all weights to the loss value.
 - **L2 Regularization**, also called Ridge Regularization, involves adding the squared value of all weights to the loss value.

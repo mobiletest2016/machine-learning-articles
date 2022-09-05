@@ -25,8 +25,8 @@ Are you ready? Let's go! 😎
 
 _PS:_ If you wish to understand regularization or how to use regularizers with Keras in more detail, you may find these two blogs interesting as well:
 
-- [What are L1, L2 and Elastic Net Regularization in neural networks?](https://www.machinecurve.com/index.php/2020/01/21/what-are-l1-l2-and-elastic-net-regularization-in-neural-networks/)
-- [How to use L1, L2 and Elastic Net Regularization with Keras?](https://www.machinecurve.com/index.php/2020/01/23/how-to-use-l1-l2-and-elastic-net-regularization-with-keras/)
+- [What are L1, L2 and Elastic Net Regularization in neural networks?](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-are-l1-l2-and-elastic-net-regularization-in-neural-networks.md)
+- [How to use L1, L2 and Elastic Net Regularization with Keras?](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-l1-l2-and-elastic-net-regularization-with-keras.md)
 
 * * *
 
@@ -61,7 +61,7 @@ One way of doing so is by applying a regularizer to your model. A regularizer, b
 
 ### Common regularizers
 
-Now, which regularizers are out there? Let's take a look at the most common ones that are available for your machine learning projects today: L1, L2 and Elastic Net Regularization. [Click here if you want to understand the regularizers in more detail.](https://www.machinecurve.com/index.php/2020/01/21/what-are-l1-l2-and-elastic-net-regularization-in-neural-networks/)
+Now, which regularizers are out there? Let's take a look at the most common ones that are available for your machine learning projects today: L1, L2 and Elastic Net Regularization. [Click here if you want to understand the regularizers in more detail.](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-are-l1-l2-and-elastic-net-regularization-in-neural-networks.md)
 
 #### L1 Regularization
 
@@ -163,13 +163,13 @@ If the answer is "no", let's take a look at the next question.
 
 #### Do you need the "entire picture"?
 
-Suppose that you don't have features which describe individual variables, such as when you're using image and video datasets. For example, the images below are samples from the [EMNIST dataset](https://www.machinecurve.com/index.php/2020/01/10/making-more-datasets-available-for-keras/), which means that they are 28 x 28 pixel images with only 1 image channel. By consequence, the number of features present is 28 x 28 = 784. But does each feature tell something about a variable?
+Suppose that you don't have features which describe individual variables, such as when you're using image and video datasets. For example, the images below are samples from the [EMNIST dataset](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/making-more-datasets-available-for-keras.md), which means that they are 28 x 28 pixel images with only 1 image channel. By consequence, the number of features present is 28 x 28 = 784. But does each feature tell something about a variable?
 
 Nope.
 
 ![](images/emnist-letters.png)
 
-_Sample letters from the [EMNIST dataset](https://www.machinecurve.com/index.php/2020/01/10/making-more-datasets-available-for-keras/)._
+_Sample letters from the [EMNIST dataset](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/making-more-datasets-available-for-keras.md)._
 
 Do we need the "entire picture" - and in this case, literally, the entire picture?
 
@@ -220,6 +220,6 @@ Thank you for reading MachineCurve today and happy engineering! 😎
 
 ## References
 
-MachineCurve. (2020, January 21). What are L1, L2 and Elastic Net Regularization in neural networks? Retrieved from [https://www.machinecurve.com/index.php/2020/01/21/what-are-l1-l2-and-elastic-net-regularization-in-neural-networks/](https://www.machinecurve.com/index.php/2020/01/21/what-are-l1-l2-and-elastic-net-regularization-in-neural-networks/)
+MachineCurve. (2020, January 21). What are L1, L2 and Elastic Net Regularization in neural networks? Retrieved from [https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-are-l1-l2-and-elastic-net-regularization-in-neural-networks/](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-are-l1-l2-and-elastic-net-regularization-in-neural-networks.md)
 
-MachineCurve. (2020, January 23). How to use L1, L2 and Elastic Net Regularization with Keras? Retrieved from [https://www.machinecurve.com/index.php/2020/01/23/how-to-use-l1-l2-and-elastic-net-regularization-with-keras/](https://www.machinecurve.com/index.php/2020/01/23/how-to-use-l1-l2-and-elastic-net-regularization-with-keras/)
+MachineCurve. (2020, January 23). How to use L1, L2 and Elastic Net Regularization with Keras? Retrieved from [https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-l1-l2-and-elastic-net-regularization-with-keras/](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-l1-l2-and-elastic-net-regularization-with-keras.md)

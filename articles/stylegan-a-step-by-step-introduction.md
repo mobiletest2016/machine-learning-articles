@@ -43,7 +43,7 @@ While quite a bit of a breakthrough when the first GAN paper appeared in 2014. I
 
 - **Generators operate as black boxes.** Latent spaces of classic GANs were poorly understood at the time of writing the Karras et al. paper.
 - **GANs must be heavily regularized.** The game played between the generator and discriminator is a fine one - and it proved to be very easy that one of the two overpowers the other early in the training process. When this happens, the other cannot recover, and expectations never materialize. Heavy regularization must be applied to solve this issue.
-- **There is little control over image synthesis.** A great latent space is structured according to some kind of order. In other words, if I were to pick a sample and move a bit, the generated image should at least resemble the image of my picked sample. And changes should be comparable across [generators](https://www.machinecurve.com/index.php/2021/03/24/an-introduction-to-dcgans/) of [different kinds](https://www.machinecurve.com/index.php/2021/03/25/conditional-gans-cgans-explained/). But they aren't.
+- **There is little control over image synthesis.** A great latent space is structured according to some kind of order. In other words, if I were to pick a sample and move a bit, the generated image should at least resemble the image of my picked sample. And changes should be comparable across [generators](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/an-introduction-to-dcgans.md) of [different kinds](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/conditional-gans-cgans-explained.md). But they aren't.
 
 Let's now take a look at StyleGAN. Rather than building a whole image from a latent vector, it uses the latent space to _control_ the synthesis process. In other words, rather than providing the foundation for generation, StyleGAN provides the steering wheel with which it's possible to control what can be generated. And more smartly, it separates noisy and stochastic details (such as the generation of where hairs are located) from more fixed components (such as whether a person in a generated image is wearing glasses). Let's take a look at StyleGAN at a high level now.
 
@@ -62,7 +62,7 @@ Clearly, we can already see a big difference between classic GANs and StyleGAN. 
 
 Rather than being the foundation of the image synthesis process, \[latex\]\\textbf{z}\[/latex\] is now used to generate styles that _control_ the synthesis process.
 
-If you do not understand everything that was written above, don't worry. It's an extreme summarization and only highlights what happens at a high level. If you want to dive into StyleGAN in depth, let's now spend some time looking at the details. If, however, you're having trouble understanding basic GAN concepts such as a _latent space_ or _latent vector_, it may be best to read the [introduction to GANs article](https://www.machinecurve.com/index.php/2021/03/23/generative-adversarial-networks-a-gentle-introduction/) first.
+If you do not understand everything that was written above, don't worry. It's an extreme summarization and only highlights what happens at a high level. If you want to dive into StyleGAN in depth, let's now spend some time looking at the details. If, however, you're having trouble understanding basic GAN concepts such as a _latent space_ or _latent vector_, it may be best to read the [introduction to GANs article](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/generative-adversarial-networks-a-gentle-introduction.md) first.
 
 ![](images/StyleGAN.drawio-925x1024.png)
 
@@ -90,13 +90,13 @@ According to the paper, its latent space is 512-dimensional (Karras et al., 2018
 
 #### Latent vector normalization
 
-Neural networks are notorious for suffering from poor performance when inputs aren't normalized or, even better, standardized. By means of a **normalization** **step**, the vector can be made ready for input. [Min-max normalization](https://www.machinecurve.com/index.php/2020/11/19/how-to-normalize-or-standardize-a-dataset-in-python/) is one of the options. [Standardization](https://www.machinecurve.com/index.php/2020/11/19/how-to-normalize-or-standardize-a-dataset-in-python/) is too.
+Neural networks are notorious for suffering from poor performance when inputs aren't normalized or, even better, standardized. By means of a **normalization** **step**, the vector can be made ready for input. [Min-max normalization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-normalize-or-standardize-a-dataset-in-python.md) is one of the options. [Standardization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-normalize-or-standardize-a-dataset-in-python.md) is too.
 
 If you use a _standard normal_ _distribution_ in your StyleGAN implementation, it's questionable whether you'll need this normalization step - as your inputs will already have zero mean and unit variance. Still, it doesn't hurt to keep it in.
 
 #### The stack of fully-connected feedforward layers to generate intermediate latent vector w
 
-Your (potentially normalized) sampled latent vector \[latex\]\\textbf{z}\[/latex\] is now ready for input. **It's fed to the actual _mapping network_**, which is a neural network with 8 trainable [fully connected (or Dense) layers](https://www.machinecurve.com/index.php/2019/07/27/how-to-create-a-basic-mlp-classifier-with-the-keras-sequential-api/) a.k.a. a Multilayer Perceptron or MLP. It produces another vector, an intermediate latent vector \[latex\]\\textbf{w}\[/latex\]. This is the latent vector that will be used by the synthesis network for generating the output image.
+Your (potentially normalized) sampled latent vector \[latex\]\\textbf{z}\[/latex\] is now ready for input. **It's fed to the actual _mapping network_**, which is a neural network with 8 trainable [fully connected (or Dense) layers](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-basic-mlp-classifier-with-the-keras-sequential-api.md) a.k.a. a Multilayer Perceptron or MLP. It produces another vector, an intermediate latent vector \[latex\]\\textbf{w}\[/latex\]. This is the latent vector that will be used by the synthesis network for generating the output image.
 
 The mapping is nonlinear, meaning that each fully-connected layer has an activation function, typically a ReLU or LeakyReLU one.
 
@@ -220,7 +220,7 @@ This is what AdaIN looks like:
 
 Here, \[latex\]\\textbf{x}\_i\[/latex\] is the \[latex\]i\[/latex\]th feature map from the input Tensor (i.e., the \[latex\]i\[/latex\]th element from the vector), and \[latex\]\\textbf{y}\[/latex\] is the affine transformation generated style.
 
-You can see in the middle part that the feature map is first normalized (or rather, [standardized](https://www.machinecurve.com/index.php/2020/11/19/how-to-normalize-or-standardize-a-dataset-in-python/)) to zero mean, unit variance - and subsequently _scaled_ by the \[latex\]i\[/latex\]th element from the style's scale component, and the \[latex\]i\[/latex\]th bias component is added subsequently.
+You can see in the middle part that the feature map is first normalized (or rather, [standardized](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-normalize-or-standardize-a-dataset-in-python.md)) to zero mean, unit variance - and subsequently _scaled_ by the \[latex\]i\[/latex\]th element from the style's scale component, and the \[latex\]i\[/latex\]th bias component is added subsequently.
 
 In other words, AdaIN ensures that the generated _styles_ can **control** the (normalized) synthesis input by changing scale and/or bias. This is how styles control the image synthesis process on the noise-added input Tensor!
 
@@ -232,7 +232,7 @@ The text above primarily focused on the first synthesis block - the output of wh
 
 Subsequent synthesis blocks (8x8, 16x16, up to 1024x1024 pixels) work slightly differently compared to the first synthesis block:
 
-- First, **bilinear upsampling** is applied to upsample the image, after which a **[2d Convolutional layer with 3x3 kernel](https://www.machinecurve.com/index.php/2020/03/30/how-to-use-conv2d-with-keras/)** is used for learned downsampling.
+- First, **bilinear upsampling** is applied to upsample the image, after which a **[2d Convolutional layer with 3x3 kernel](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-conv2d-with-keras.md)** is used for learned downsampling.
 - Subsequently, **noise is added**, after which an **AdaIn** operation for style control is performed.
 - Then, another **downsampling** is operated with a similar Convolutional layer, after which another noise-and-style-control is performed.
 

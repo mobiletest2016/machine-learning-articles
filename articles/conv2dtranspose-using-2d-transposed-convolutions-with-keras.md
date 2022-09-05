@@ -16,7 +16,7 @@ tags:
   - "transposed-convolution"
 ---
 
-Transposed convolutions - [we looked at them in theory](https://www.machinecurve.com/index.php/2019/09/29/understanding-transposed-convolutions/) in a previous blog post, but how can they be applied? What are they useful for? These were questions that kept popping up every now and then.
+Transposed convolutions - [we looked at them in theory](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/understanding-transposed-convolutions.md) in a previous blog post, but how can they be applied? What are they useful for? These were questions that kept popping up every now and then.
 
 While we all understand the usefulness of 'normal' convolutional layers, this is more difficult for transposed layers.
 
@@ -32,7 +32,7 @@ Imagine that you have a ConvNet which has only one convolutional layer, performi
 
 ![](images/CNN-onechannel.png)
 
-This is what a convolutional layer, being part of a [convolutional neural network](https://www.machinecurve.com/index.php/2018/12/07/convolutional-neural-networks-and-their-components-for-computer-vision/), does when training it.
+This is what a convolutional layer, being part of a [convolutional neural network](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/convolutional-neural-networks-and-their-components-for-computer-vision.md), does when training it.
 
 But now you have the desire to work in the opposite direction, i.e., to use a smaller input and to learn its larger representation, being the following:
 
@@ -43,9 +43,9 @@ What to do?
 You have multiple options, as we can see:
 
 - It's possible to use **traditional interpolation techniques** like [bicubic](https://en.wikipedia.org/wiki/Bicubic_interpolation) or [bilinear interpolation](https://en.wikipedia.org/wiki/Bilinear_interpolation). While they are fast, they are not too flexible: they just produce a pixel estimate given the pixel's surroundings. This might not be suitable if e.g. you have very particular data, which shares certain patterns across samples.
-- You could also choose to use **[transposed convolutions](https://www.machinecurve.com/index.php/2019/09/29/understanding-transposed-convolutions/)**. These convolutions, which essentially compute the matrix transpose of a regular convolutional layer, swapping the effect of the forward and the backwards pass as a result. The fun thing: the weights of these transposed convolutions are learnable, allowing - and requiring - you to learn the 'swap' from the data you're feeding it.
+- You could also choose to use **[transposed convolutions](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/understanding-transposed-convolutions.md)**. These convolutions, which essentially compute the matrix transpose of a regular convolutional layer, swapping the effect of the forward and the backwards pass as a result. The fun thing: the weights of these transposed convolutions are learnable, allowing - and requiring - you to learn the 'swap' from the data you're feeding it.
 
-If you're interested in how these transposed convolutions work, I would like to recommend the post "[Understanding transposed convolutions](https://www.machinecurve.com/index.php/2019/09/29/understanding-transposed-convolutions/)", where I cover them in more detail.
+If you're interested in how these transposed convolutions work, I would like to recommend the post "[Understanding transposed convolutions](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/understanding-transposed-convolutions.md)", where I cover them in more detail.
 
 In this blog, we'll try and implement them with Keras, in order to build something that is known as an "autoencoder".
 
@@ -57,7 +57,7 @@ This immediately requires us to make a choice: apparently, Keras contains functi
 
 The difference? Relatively simple - it has to do with the dimensionality of your input data.
 
-As with the [Conv2D](https://www.machinecurve.com/index.php/2019/09/17/how-to-create-a-cnn-classifier-with-keras/) and [Conv3D](https://www.machinecurve.com/index.php/2019/10/18/a-simple-conv3d-example-with-keras/) layers, which take either two- or three-dimensional input data (e.g., 2D pictures or 3D videos), you'll need to have two types of transposed convolutions for them in order to perform the opposite operation: **Conv2DTranspose** and **Conv3DTranspose**.
+As with the [Conv2D](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras.md) and [Conv3D](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/a-simple-conv3d-example-with-keras.md) layers, which take either two- or three-dimensional input data (e.g., 2D pictures or 3D videos), you'll need to have two types of transposed convolutions for them in order to perform the opposite operation: **Conv2DTranspose** and **Conv3DTranspose**.
 
 We'll leave the three-dimensional variant to another blog and cover the two-dimensional transposed convolution here, and will provide an example implementation as well.
 
@@ -116,7 +116,7 @@ Note that I deliberately applied a different color to the reconstructed image, t
 The fact that you learn _encoder_ and _decoder_ functions with autoencoders, a new interesting range of appliations emerges (Keras Blog, n.d.; own experience):
 
 - By consequence of training an encoder, you're efficiently learning a **dimensionality reduction** method that is highly applicable to your training set. If your neural network, e.g. your classifier, requires lower-dimensional data, it may be worthwhile to let it pass through a learned encoder function first, using the encoded state as the feature vectors for your classifier.
-- Autoencoders are also used for **noise reduction**. Think about it as follows: when training the encoder and decoder parts, i.e. learning weights for the trainable parameters for these parts, you feed forward data - just as in the [high-level supervised learning process](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#the-high-level-supervised-learning-process). You compare the prediction with some 'target', compute a loss, and optimize the model in order to move the prediction closer to the 'target'. Now, when you have data (e.g. images) and add the noise you wish to filter to them, you can use autoencoders for noise reduction. By feeding forward the noisy images as input data, and setting the targets to the noise-free data, the autoencoder will essentially 'reconstruct' the image based on the noise-free data, given the noisy input data: there you have your noise reduction algorithm.
+- Autoencoders are also used for **noise reduction**. Think about it as follows: when training the encoder and decoder parts, i.e. learning weights for the trainable parameters for these parts, you feed forward data - just as in the [high-level supervised learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process). You compare the prediction with some 'target', compute a loss, and optimize the model in order to move the prediction closer to the 'target'. Now, when you have data (e.g. images) and add the noise you wish to filter to them, you can use autoencoders for noise reduction. By feeding forward the noisy images as input data, and setting the targets to the noise-free data, the autoencoder will essentially 'reconstruct' the image based on the noise-free data, given the noisy input data: there you have your noise reduction algorithm.
 - In a strange way, you can also use autoencoders for **classification**. Say that you have a binary classification scenario for simple images: "yes" or "no". Picetti et al. (2018) had this scenario, in which they had so-called Ground Penetrating Radar images of landmines: _contains_ landmine or _does not contain_ landmine. By training the encoder and decoder on radar images _without_ landmines, they ensured that decoding would fail when landmines were present. By subsequently measuring the differences between input and (reconstructed) output, it's possible to say whether a mine is present: if there's not too much different, no landmine is present; if there is a lot of difference, it's likely that a mine has been spotted.
 
 ### Today's Conv2DTranspose model: a Conv-based autoencoder
@@ -177,7 +177,7 @@ verbosity = 1
 
 The MNIST digits are 28 pixels wide and high - we hence specify `img_width` and `img_height` as 28.
 
-We use a [batch size of 1000](https://www.machinecurve.com/index.php/2019/10/24/gradient-descent-and-its-variants/#minibatch-gradient-descent). Even though we don't use the gradient descent optimizer (as we will see later), this represents a minibatch approach, balancing between _memory requirements_ and _accuracy of gradients_ (click the link for more detailed information about this trade-off).
+We use a [batch size of 1000](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants/#minibatch-gradient-descent). Even though we don't use the gradient descent optimizer (as we will see later), this represents a minibatch approach, balancing between _memory requirements_ and _accuracy of gradients_ (click the link for more detailed information about this trade-off).
 
 The autoencoder will be trained for 25 epochs, and there are ten classes - the ten digits, 0 to 9. 20% of the data will be used for validation purposes and the `verbosity` will be set to True (1), showing all output on screen.
 
@@ -239,7 +239,7 @@ This is how the **Conv2DTranspose** layer can be used: for the decoder part of a
 
 Do note the following aspects:
 
-- For all but the last layer, we use the `he_normal` [kernel initializer](https://www.machinecurve.com/index.php/2019/08/22/what-is-weight-initialization/). We do so given the fact that we use ReLU, and that Xavier init is [incompatible with this activation function](https://www.machinecurve.com/index.php/2019/09/16/he-xavier-initialization-activation-functions-choose-wisely/).
+- For all but the last layer, we use the `he_normal` [kernel initializer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-weight-initialization.md). We do so given the fact that we use ReLU, and that Xavier init is [incompatible with this activation function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/he-xavier-initialization-activation-functions-choose-wisely.md).
 - The last layer contains 'same' padding in order to ensure that the output is 28x28 pixels.
 
 ### Model compilation & fitting the data
@@ -251,7 +251,7 @@ Next, we compile the model:
 model.compile(optimizer='adam', loss='binary_crossentropy')
 ```
 
-...using the [Adam optimizer](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/) and [binary crossentropy loss](https://www.machinecurve.com/index.php/2019/10/22/how-to-use-binary-categorical-crossentropy-with-keras/), which are the standard choices in today's ML toolkit 😉 The BCE loss allows the loss to increasingly go up when the predicted reconstruction is more off, while punishing almost-correct predictions only lightly. This avoids large, weird steps.
+...using the [Adam optimizer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md) and [binary crossentropy loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-binary-categorical-crossentropy-with-keras.md), which are the standard choices in today's ML toolkit 😉 The BCE loss allows the loss to increasingly go up when the predicted reconstruction is more off, while punishing almost-correct predictions only lightly. This avoids large, weird steps.
 
 Then, we fit the data:
 
@@ -347,7 +347,7 @@ Ramey, J. (2018, May 14). Autoencoders with Keras. Retrieved from [https://ramh
 
 Keras Blog. (n.d.). Building Autoencoders in Keras. Retrieved from [https://blog.keras.io/building-autoencoders-in-keras.html](https://blog.keras.io/building-autoencoders-in-keras.html)
 
-MachineCurve. (2019, September 29). Understanding transposed convolutions. Retrieved from [https://www.machinecurve.com/index.php/2019/09/29/understanding-transposed-convolutions](https://www.machinecurve.com/index.php/2019/09/29/understanding-transposed-convolutions)
+MachineCurve. (2019, September 29). Understanding transposed convolutions. Retrieved from [https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/understanding-transposed-convolutions](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/understanding-transposed-convolutions)
 
 Keras. (n.d.). Convolutional Layers: Conv2DTranspose. Retrieved from [https://keras.io/layers/convolutional/#conv2dtranspose](https://keras.io/layers/convolutional/#conv2dtranspose)
 

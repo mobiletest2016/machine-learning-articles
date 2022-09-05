@@ -14,9 +14,9 @@ tags:
   - "tensorflow"
 ---
 
-Neural networks thrive on nonlinear data only when [nonlinear activation functions](https://www.machinecurve.com/index.php/2020/10/29/why-nonlinear-activation-functions-improve-ml-performance-with-tensorflow-example/) are used. The Rectified Linear Unit, or RELU, is one such activation function - and in fact, it is currently the most widely used one due to its robustness in many settings. But training a neural network can be problematic, even with functions like RELU.
+Neural networks thrive on nonlinear data only when [nonlinear activation functions](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-nonlinear-activation-functions-improve-ml-performance-with-tensorflow-example.md) are used. The Rectified Linear Unit, or RELU, is one such activation function - and in fact, it is currently the most widely used one due to its robustness in many settings. But training a neural network can be problematic, even with functions like RELU.
 
-Parts of these problems can be related to the speed of the training process. For example, we know from [Batch Normalization](https://www.machinecurve.com/index.php/2020/01/15/how-to-use-batch-normalization-with-keras/) that it helps speed up the training process, because it [normalizes](https://www.machinecurve.com/index.php/2020/11/19/how-to-normalize-or-standardize-a-dataset-in-python/) the inputs to a layer. While this is not necessarily problematic, deep learning engineers must pay attention to how they construct the rest of their model. For example, using Dropout in combination with Batch Normalization might not be a good idea if implemented incorrectly. In addition, Batch Normalization must be explicitly added to a neural network, which might not always what you want.
+Parts of these problems can be related to the speed of the training process. For example, we know from [Batch Normalization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-batch-normalization-with-keras.md) that it helps speed up the training process, because it [normalizes](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-normalize-or-standardize-a-dataset-in-python.md) the inputs to a layer. While this is not necessarily problematic, deep learning engineers must pay attention to how they construct the rest of their model. For example, using Dropout in combination with Batch Normalization might not be a good idea if implemented incorrectly. In addition, Batch Normalization must be explicitly added to a neural network, which might not always what you want.
 
 In this article, we are going to take a look at the **Scaled Exponential Linear Unit** or **SELU activation function**. This activation function, which has self-normalizing properties, ensures that all outputs are normalized without explicitly adding a normalization layer to your model. What's better is that it can be used relatively easily and that it provides adequate results, according to the authors in Klambauer et al. (2017).
 
@@ -58,15 +58,15 @@ model.add(Dense(no_classes, activation='softmax'))
 
 ## What are activation functions?
 
-By design, a neural network processes data linearly. Every neuron takes an input vector `x` and multiplies this vector element-wise with vector `w`, which contains **weights**. These weights, in return, are learned by the network, as well as the **bias**. As each neuron learns to process data individually, the system as a whole learns to process the data collectively, because it is trained to do so by means of the [high-level machine learning process](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#the-high-level-supervised-learning-process).
+By design, a neural network processes data linearly. Every neuron takes an input vector `x` and multiplies this vector element-wise with vector `w`, which contains **weights**. These weights, in return, are learned by the network, as well as the **bias**. As each neuron learns to process data individually, the system as a whole learns to process the data collectively, because it is trained to do so by means of the [high-level machine learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process).
 
 ![](images/layer-linear.png)
 
-Neural networks are therefore perfectly capable of learning [linear decision boundaries](https://www.machinecurve.com/index.php/2020/10/29/why-nonlinear-activation-functions-improve-ml-performance-with-tensorflow-example/):
+Neural networks are therefore perfectly capable of learning [linear decision boundaries](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-nonlinear-activation-functions-improve-ml-performance-with-tensorflow-example.md):
 
 ![](images/linear-1024x514.png)
 
-Unfortunately, today's world comes with complex datasets. These datasets often contain patterns that are not linear. If we would train a neural network using the approach mentioned above, that would not work. This is clearly visible in the example that [we visualized above](https://www.machinecurve.com/index.php/2019/10/11/how-to-visualize-the-decision-boundary-for-your-keras-model/): the neural network is not capable of learning a nonlinear decision boundary.
+Unfortunately, today's world comes with complex datasets. These datasets often contain patterns that are not linear. If we would train a neural network using the approach mentioned above, that would not work. This is clearly visible in the example that [we visualized above](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-decision-boundary-for-your-keras-model.md): the neural network is not capable of learning a nonlinear decision boundary.
 
 ### Adding activation functions
 
@@ -80,13 +80,13 @@ This is the effect with the data visualized above when a nonlinear activation fu
 
 ### About RELU
 
-One of the most prominent activation functions that is used today is the **[Rectified Linear Unit](https://www.machinecurve.com/index.php/2019/09/09/implementing-relu-sigmoid-and-tanh-in-keras/)**, or **RELU**. This activation function effectively boils down to the following output:
+One of the most prominent activation functions that is used today is the **[Rectified Linear Unit](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/implementing-relu-sigmoid-and-tanh-in-keras.md)**, or **RELU**. This activation function effectively boils down to the following output:
 
 \[mathjax\]
 
 \\begin{equation} f(x) = \\begin{cases} 0, & \\text{if}\\ x < 0 \\\\ x, & \\text{otherwise} \\\\ \\end{cases} \\end{equation}
 
-In other words, the output will be zero if `x < 0` and will equal `x` otherwise. Being as simple as implementing [max(x, 0)](https://www.machinecurve.com/index.php/question/why-does-relu-equal-max0-x/), ReLU is a very efficient and easy activation function. It is therefore not surprising that it is widely used today.
+In other words, the output will be zero if `x < 0` and will equal `x` otherwise. Being as simple as implementing [max(x, 0)](https://web.archive.org/web/https://www.machinecurve.com/index.php/question/why-does-relu-equal-max0-x/), ReLU is a very efficient and easy activation function. It is therefore not surprising that it is widely used today.
 
 ![](images/relu-1024x511.png)
 
@@ -94,7 +94,7 @@ In other words, the output will be zero if `x < 0` and will equal `x` otherwise.
 
 ## What is the SELU activation function?
 
-Training a neural network successfully does not depend on an activation function alone. Especially with bigger models, the training process also becomes dependent on a variety of efficiencies that must be built into the neural network for it to work well. For example, we know that the distribution of layer outputs significantly impacts the speed of the training process. [Batch Normalization](https://www.machinecurve.com/index.php/2020/01/14/what-is-batch-normalization-for-training-neural-networks/) has been invented to deal with it, and we can use it easily in TensorFlow by simply [adding it as a layer](https://www.machinecurve.com/index.php/2020/01/15/how-to-use-batch-normalization-with-keras/).
+Training a neural network successfully does not depend on an activation function alone. Especially with bigger models, the training process also becomes dependent on a variety of efficiencies that must be built into the neural network for it to work well. For example, we know that the distribution of layer outputs significantly impacts the speed of the training process. [Batch Normalization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-batch-normalization-for-training-neural-networks.md) has been invented to deal with it, and we can use it easily in TensorFlow by simply [adding it as a layer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-batch-normalization-with-keras.md).
 
 But while Batch Normalization speeds up the training process by normalizing the outputs of each layer, it comes at a few drawbacks. The first one is that it must be added explicitly, incurring additional computational costs that are unnecessary, strictly speaking. In addition, using Batch Normalization together with Dropout is not a good idea necessarily, unless implemented correctly.
 
@@ -110,7 +110,7 @@ A SELU activation function is defined in the following way:
 
 Here, `alpha=1.67326324` and `scale=1.05070098` (TensorFlow, n.d.).
 
-It has the properties that leads the neural network to become **self-normalizing**, meaning that the outputs of each layer are pushed to a mean (\[latex\]\\mu\[/latex\]) of zero (\[latex\]\\mu = 0.0\[/latex\]) whereas variance equals 1.0 (\[latex\]\\sigma = 1.0\[/latex\]). This equals the effect of Batch Normalization, without using Batch Normalization. If this is not _strictly_ possible, the authors show that at least an upper and lower bound is present for the derivative, [avoiding the vanishing gradients problem](https://www.machinecurve.com/index.php/2019/08/30/random-initialization-vanishing-and-exploding-gradients/) (Klambauer et al., 2017).
+It has the properties that leads the neural network to become **self-normalizing**, meaning that the outputs of each layer are pushed to a mean (\[latex\]\\mu\[/latex\]) of zero (\[latex\]\\mu = 0.0\[/latex\]) whereas variance equals 1.0 (\[latex\]\\sigma = 1.0\[/latex\]). This equals the effect of Batch Normalization, without using Batch Normalization. If this is not _strictly_ possible, the authors show that at least an upper and lower bound is present for the derivative, [avoiding the vanishing gradients problem](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/random-initialization-vanishing-and-exploding-gradients.md) (Klambauer et al., 2017).
 
 > We have introduced self-normalizing neural networks for which we have proved that neuron activations are pushed towards zero mean and unit variance when propagated through the network. Additionally, for activations not close to unit variance, we have proved an upper and lower bound on the variance mapping. Consequently, SNNs do not face vanishing and exploding gradient problems.
 > 
@@ -140,7 +140,7 @@ Note that if you're using Dropout, you must use [AlphaDropout](https://www.tenso
 
 #### About SELU and Initializers
 
-Note that for [weight initialization](https://www.machinecurve.com/index.php/2019/08/22/what-is-weight-initialization/), you must take into account the utilization of SELU (just as you would need to use a [different initializer when using RELU](https://www.machinecurve.com/index.php/2019/09/16/he-xavier-initialization-activation-functions-choose-wisely/)). If you are using SELU, you must use the `LecunNormalInitializer` [instead](https://www.tensorflow.org/api_docs/python/tf/keras/initializers/LecunNormal).
+Note that for [weight initialization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-weight-initialization.md), you must take into account the utilization of SELU (just as you would need to use a [different initializer when using RELU](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/he-xavier-initialization-activation-functions-choose-wisely.md)). If you are using SELU, you must use the `LecunNormalInitializer` [instead](https://www.tensorflow.org/api_docs/python/tf/keras/initializers/LecunNormal).
 
 * * *
 
@@ -148,9 +148,9 @@ Note that for [weight initialization](https://www.machinecurve.com/index.php/201
 
 Adding SELU to a TensorFlow / Keras powered neural network is really easy and involves three main steps:
 
-1. **Setting the `activation` attribute to `'selu'`.** As you can see in the example above, all activations are set to SELU through `activation='selu'`. Of course, we don't do this at the last layer, because (as we shall see) we are trying to solve a [multiclass classification problem](https://www.machinecurve.com/index.php/2020/10/19/3-variants-of-classification-problems-in-machine-learning/). For these, we need [Softmax](https://www.machinecurve.com/index.php/2020/01/08/how-does-the-softmax-activation-function-work/).
-2. **Using the `LecunNormal` kernel initializer**. The TensorFlow docs suggest to use this initializer when using SELU, which is related in the fact that [different activation functions need different initializers](https://www.machinecurve.com/index.php/2019/09/16/he-xavier-initialization-activation-functions-choose-wisely/).
-3. **Using `AlphaDropout` instead of `Dropout`.** Another important suggestion made the docs is to use this type of [Dropout](https://www.machinecurve.com/index.php/2019/12/16/what-is-dropout-reduce-overfitting-in-your-neural-networks/) when you need to use it.
+1. **Setting the `activation` attribute to `'selu'`.** As you can see in the example above, all activations are set to SELU through `activation='selu'`. Of course, we don't do this at the last layer, because (as we shall see) we are trying to solve a [multiclass classification problem](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/3-variants-of-classification-problems-in-machine-learning.md). For these, we need [Softmax](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-does-the-softmax-activation-function-work.md).
+2. **Using the `LecunNormal` kernel initializer**. The TensorFlow docs suggest to use this initializer when using SELU, which is related in the fact that [different activation functions need different initializers](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/he-xavier-initialization-activation-functions-choose-wisely.md).
+3. **Using `AlphaDropout` instead of `Dropout`.** Another important suggestion made the docs is to use this type of [Dropout](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-dropout-reduce-overfitting-in-your-neural-networks.md) when you need to use it.
 
 ```
 # Create the model
@@ -164,16 +164,16 @@ model.add(Dense(no_classes, activation='softmax'))
 
 ### Fully working neural network with SELU
 
-We can use these easy steps in the creation of a neural network which can be used for [multiclass classification](https://www.machinecurve.com/index.php/2020/10/19/3-variants-of-classification-problems-in-machine-learning/). In fact, we will be using it for classification of the [MNIST dataset](https://www.machinecurve.com/index.php/2019/12/31/exploring-the-keras-datasets/#mnist-database-of-handwritten-digits), which is composed of handwritten digits - a few examples of them visualized on the right.
+We can use these easy steps in the creation of a neural network which can be used for [multiclass classification](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/3-variants-of-classification-problems-in-machine-learning.md). In fact, we will be using it for classification of the [MNIST dataset](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets/#mnist-database-of-handwritten-digits), which is composed of handwritten digits - a few examples of them visualized on the right.
 
-In other words, the neural network that we will create is capable of generating a prediction about the digit it sees - giving a number between zero and nine as the output. The code below constructs the neural network and is composed of multiple sections. Read the article about [constructing a ConvNet](https://www.machinecurve.com/index.php/2019/09/17/how-to-create-a-cnn-classifier-with-keras/) for more step-by-step instructions, but these are the important remarks:
+In other words, the neural network that we will create is capable of generating a prediction about the digit it sees - giving a number between zero and nine as the output. The code below constructs the neural network and is composed of multiple sections. Read the article about [constructing a ConvNet](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras.md) for more step-by-step instructions, but these are the important remarks:
 
-1. **Imports section**. We import everything that we need in this section. Recall once more that this also includes the `LecunNormal` initializer and the `AlphaDropout` layer; the latter only if you desire to use [Dropout](https://www.machinecurve.com/index.php/2019/12/18/how-to-use-dropout-with-keras/).
+1. **Imports section**. We import everything that we need in this section. Recall once more that this also includes the `LecunNormal` initializer and the `AlphaDropout` layer; the latter only if you desire to use [Dropout](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-dropout-with-keras.md).
 2. **Model configuration**. Here, we set a few configuration options throughout the model.
-3. **Loading and preparing the dataset.** With these lines of code, we use `load_data()` to [load the MNIST dataset](https://www.machinecurve.com/index.php/2019/12/31/exploring-the-keras-datasets/) and reshape it into the correct [input format](https://www.machinecurve.com/index.php/2020/04/05/how-to-find-the-value-for-keras-input_shape-input_dim/). It also includes parsing numbers as floats, [which might speed up the training process](https://www.machinecurve.com/index.php/2020/09/16/tensorflow-model-optimization-an-introduction-to-quantization/#float32-in-your-ml-model-why-its-great). Finally, it is also [normalized](https://www.machinecurve.com/index.php/2020/11/19/how-to-normalize-or-standardize-a-dataset-in-python/) relatively naïvely and target vectors are [one-hot encoded](https://www.machinecurve.com/index.php/2020/11/24/one-hot-encoding-for-machine-learning-with-tensorflow-and-keras/).
+3. **Loading and preparing the dataset.** With these lines of code, we use `load_data()` to [load the MNIST dataset](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets.md) and reshape it into the correct [input format](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-find-the-value-for-keras-input_shape-input_dim.md). It also includes parsing numbers as floats, [which might speed up the training process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tensorflow-model-optimization-an-introduction-to-quantization/#float32-in-your-ml-model-why-its-great). Finally, it is also [normalized](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-normalize-or-standardize-a-dataset-in-python.md) relatively naïvely and target vectors are [one-hot encoded](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/one-hot-encoding-for-machine-learning-with-tensorflow-and-keras.md).
 4. **The model is created and compiled**. This involves stacking layers on top of each other with `model.add(..)` and actually initializing the model with `model.compile(..)`, getting us a model that can be trained.
-5. **Training the model**. We use the `input_train` and `target_train` variables for this; in other words, [our training dataset](https://www.machinecurve.com/index.php/2020/11/16/how-to-easily-create-a-train-test-split-for-your-machine-learning-model/).
-6. **[Evaluating](https://www.machinecurve.com/index.php/2020/11/03/how-to-evaluate-a-keras-model-with-model-evaluate/) the model**. Finally, we evaluate the performance of the model with `input_test` and `target_test`, to see whether it generalizes to data that we haven't seen before.
+5. **Training the model**. We use the `input_train` and `target_train` variables for this; in other words, [our training dataset](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-easily-create-a-train-test-split-for-your-machine-learning-model.md).
+6. **[Evaluating](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-evaluate-a-keras-model-with-model-evaluate.md) the model**. Finally, we evaluate the performance of the model with `input_test` and `target_test`, to see whether it generalizes to data that we haven't seen before.
 
 ```
 import tensorflow
@@ -280,7 +280,7 @@ In this article, we looked at activation functions, SELU, and an implementation 
 
 In an example implementation, we also saw how we can create a neural network using SELU.
 
-[Ask a question](https://www.machinecurve.com/index.php/add-machine-learning-question/)
+[Ask a question](https://web.archive.org/web/https://www.machinecurve.com/index.php/add-machine-learning-question/)
 
 I hope that this tutorial has been useful to you and that you have learned something! 😀 If you did, please feel free to leave a message in the comments section below 💬 Please do the same if you have any questions or remarks, or click the **Ask Questions** button to the right.
 

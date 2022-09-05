@@ -39,7 +39,7 @@ Hence, for today's ML projects: it's perfectly fine to use Sigmoid, if you consi
 
 [![](images/sigmoid_and_deriv-1024x511.jpeg)](https://www.machinecurve.com/wp-content/uploads/2019/09/sigmoid_and_deriv.jpeg)
 
-**Read more:** [ReLU, Sigmoid and Tanh: today’s most used activation functions](https://www.machinecurve.com/index.php/2019/09/04/relu-sigmoid-and-tanh-todays-most-used-activation-functions/#sigmoid)
+**Read more:** [ReLU, Sigmoid and Tanh: today’s most used activation functions](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions/#sigmoid)
 
 * * *
 
@@ -51,7 +51,7 @@ Even though it _does_ provide symmetry around the origin, it's still sensitive t
 
 [![](images/tanh_and_deriv-1024x511.jpeg)](https://www.machinecurve.com/wp-content/uploads/2019/09/tanh_and_deriv.jpeg)
 
-**Read more:** [ReLU, Sigmoid and Tanh: today’s most used activation functions](https://www.machinecurve.com/index.php/2019/09/04/relu-sigmoid-and-tanh-todays-most-used-activation-functions/#tangens-hyperbolicus-tanh)
+**Read more:** [ReLU, Sigmoid and Tanh: today’s most used activation functions](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions/#tangens-hyperbolicus-tanh)
 
 * * *
 
@@ -67,7 +67,7 @@ Nevertheless, ReLU is still the way to go in many cases these days.
 
 [![](images/relu_and_deriv-1024x511.jpeg)](https://www.machinecurve.com/wp-content/uploads/2019/09/relu_and_deriv.jpeg)
 
-**Read more:** [ReLU, Sigmoid and Tanh: today’s most used activation functions](https://www.machinecurve.com/index.php/2019/09/04/relu-sigmoid-and-tanh-todays-most-used-activation-functions/#rectified-linear-unit-relu)
+**Read more:** [ReLU, Sigmoid and Tanh: today’s most used activation functions](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions/#rectified-linear-unit-relu)
 
 * * *
 
@@ -79,7 +79,7 @@ As a result, the gradient for the negative domain is no longer zero, and the neu
 
 [![](images/leaky_relu.png)](https://www.machinecurve.com/wp-content/uploads/2019/10/leaky_relu.png)
 
-**Read more:** [Using Leaky ReLU with Keras](https://www.machinecurve.com/index.php/2019/11/12/using-leaky-relu-with-keras/)
+**Read more:** [Using Leaky ReLU with Keras](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/using-leaky-relu-with-keras.md)
 
 * * *
 
@@ -91,7 +91,7 @@ That is, it adds a few extra parameters to the neural network, which represent t
 
 ![](images/loss.png)
 
-**Read more:** [How to use PReLU with Keras?](https://www.machinecurve.com/index.php/2019/12/05/how-to-use-prelu-with-keras/)
+**Read more:** [How to use PReLU with Keras?](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-prelu-with-keras.md)
 
 * * *
 
@@ -105,7 +105,7 @@ For this reason, the authors propose ELU: an activation function that looks like
 
 [![](images/elu_avf.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/elu_avf.png)
 
-**Read more:** [How to use ELU with Keras?](https://www.machinecurve.com/index.php/2019/12/09/how-to-use-elu-with-keras/)
+**Read more:** [How to use ELU with Keras?](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-elu-with-keras.md)
 
 * * *
 
@@ -113,11 +113,11 @@ For this reason, the authors propose ELU: an activation function that looks like
 
 Now something entirely different: from activation functions that are used on hidden layers, we'll move to an output activation function as a small intermezzo. Let's take a look at the Softmax activation function.
 
-Softmax is quite widely used in classification, and especially when you're trying to solve a multiclass classification problem with [categorical crossentropy loss](https://www.machinecurve.com/index.php/2019/10/22/how-to-use-binary-categorical-crossentropy-with-keras/). Softmax works very nicely and quite intuitively: by interrelating all the values in some vector, and converting them into numbers that adhere to the principles of probability theory, Softmax essentially computes a discrete probability distribution over the values in your vector. When these values represent the outputs of a neural network based classifier, you effectively compute a probability distribution over the target classes for each sample. This allows you to select a "most probable class" and has contributed to e.g. neural network based object detectors.
+Softmax is quite widely used in classification, and especially when you're trying to solve a multiclass classification problem with [categorical crossentropy loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-binary-categorical-crossentropy-with-keras.md). Softmax works very nicely and quite intuitively: by interrelating all the values in some vector, and converting them into numbers that adhere to the principles of probability theory, Softmax essentially computes a discrete probability distribution over the values in your vector. When these values represent the outputs of a neural network based classifier, you effectively compute a probability distribution over the target classes for each sample. This allows you to select a "most probable class" and has contributed to e.g. neural network based object detectors.
 
 ![](images/softmax_logits.png)
 
-**Read more:** [How does the Softmax activation function work?](https://www.machinecurve.com/index.php/2020/01/08/how-does-the-softmax-activation-function-work/)
+**Read more:** [How does the Softmax activation function work?](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-does-the-softmax-activation-function-work.md)
 
 * * *
 
@@ -127,7 +127,7 @@ Back to the ReLU-like activation functions. Another activation function which at
 
 [![](images/swish_deriv-1024x511.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/swish_deriv.png)
 
-**Read more:** [Why Swish could perform better than ReLu](https://www.machinecurve.com/index.php/2019/05/30/why-swish-could-perform-better-than-relu/)
+**Read more:** [Why Swish could perform better than ReLu](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-swish-could-perform-better-than-relu.md)
 
 * * *
 
@@ -139,8 +139,8 @@ Another Swish style activation function is called Flatten-T Swish. Effectively c
 
 **Read more:**
 
-- [What is the FTSwish activation function?](https://www.machinecurve.com/index.php/2020/01/03/what-is-the-ftswish-activation-function/)
-- [How to use FTSwish with Keras?](https://www.machinecurve.com/index.php/2020/01/06/how-to-use-ftswish-with-keras/)
+- [What is the FTSwish activation function?](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-the-ftswish-activation-function.md)
+- [How to use FTSwish with Keras?](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-ftswish-with-keras.md)
 
 * * *
 
@@ -152,8 +152,8 @@ Another activation function is LiSHT. It works in a different way when comparing
 
 **Read more:**
 
-- [Beyond Swish: the LiSHT activation function](https://www.machinecurve.com/index.php/2019/11/17/beyond-swish-the-lisht-activation-function/)
-- [How to use LiSHT activation function with Keras?](https://www.machinecurve.com/index.php/2019/11/17/how-to-use-lisht-activation-function-with-keras/)
+- [Beyond Swish: the LiSHT activation function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/beyond-swish-the-lisht-activation-function.md)
+- [How to use LiSHT activation function with Keras?](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-lisht-activation-function-with-keras.md)
 
 * * *
 

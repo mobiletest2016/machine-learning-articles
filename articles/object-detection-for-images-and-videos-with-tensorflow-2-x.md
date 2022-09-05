@@ -40,7 +40,7 @@ With this fully functional **example of object detection with TensorFlow**, you 
 
 **⚠ Pay attention to the following things when running this example straight away:**
 
-1. Make sure that you have installed TensorFlow, OpenCV and the TensorFlow Object Detection API. I built this with [TensorFlow 2.4.0](https://www.machinecurve.com/index.php/2020/11/05/saying-hello-to-tensorflow-2-4-0/).
+1. Make sure that you have installed TensorFlow, OpenCV and the TensorFlow Object Detection API. I built this with [TensorFlow 2.4.0](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/saying-hello-to-tensorflow-2-4-0.md).
 2. Download the pretrained model that you want to use for object detection.
 3. Ensure that you correctly configure the path to the Object Detection API, the model checkpoint and the labels. Also make sure to set the model name correctly.
 4. Optionally, comment out the `os.environ(...)` call if you want to run the code on your GPU. Of course, this only works if your TensorFlow is GPU-enabled.
@@ -283,7 +283,7 @@ We'll take a look at the pretrained models later. Let's install the Object Detec
 Our object detection system will be built on top of a TensorFlow model that is capable of detecting objects - so far no surprise. Training such a model involves the following steps:
 
 - Collecting a large amount of images with a variety of objects.
-- Labeling all these images, ensuring that you [ensure class balance](https://www.machinecurve.com/index.php/2020/11/10/working-with-imbalanced-datasets-with-tensorflow-and-keras/) when doing so.
+- Labeling all these images, ensuring that you [ensure class balance](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/working-with-imbalanced-datasets-with-tensorflow-and-keras.md) when doing so.
 - Training a model.
 
 This takes quite a lot of work that you likely don't want to spend. Fortunately, the folks at TensorFlow have made available a variety of pretrained object detection models in the [TensorFlow Detection Model Zoo](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/tf2_detection_zoo.md).
@@ -657,7 +657,7 @@ _These photos and videos have been downloaded and used under a [Pexels License](
 
 There are many use cases for object detection in Machine Learning. In this tutorial, you have learned how you can build an object detection system yourself. Using the TensorFlow Object Detection API and a pretrained model, you have been able to perform object detection on images and on videos.
 
-[Ask a question](https://www.machinecurve.com/index.php/add-machine-learning-question/)
+[Ask a question](https://web.archive.org/web/https://www.machinecurve.com/index.php/add-machine-learning-question/)
 
 I hope that you have learned something from this article 💬 If you did, please feel free to leave a message in the comments section below. Please do the same if you have any questions, or click the **Ask Questions** button on the right.
 

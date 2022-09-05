@@ -84,21 +84,21 @@ If you are training a Supervised Machine Learning model, at a high level, you ar
 
 Since Supervised Learning means that you have a dataset at your disposal, the first step in training a model is **feeding the samples to the model**. For every sample, a prediction is generated. Note that at the first iteration, the model has just been initialized. The predictions therefore likely make no sense at all.
 
-This becomes especially evident from what happens in the second step, **where predictions and ground truth (= actual targets) are compared**. This comparison produces an [error or loss value](https://www.machinecurve.com/index.php/2020/11/02/machine-learning-error-bias-variance-and-irreducible-error-with-python/) which illustrates how bad the model performs.
+This becomes especially evident from what happens in the second step, **where predictions and ground truth (= actual targets) are compared**. This comparison produces an [error or loss value](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/machine-learning-error-bias-variance-and-irreducible-error-with-python.md) which illustrates how bad the model performs.
 
-The third step is then really simple: you **improve the model**. Depending on the Machine Learning algorithm, optimization happens in different ways. In the case of Neural networks, gradients are computed with backpropagation, and subsequently [optimizers](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/) are used for changing the model internals. Weights can also be changed by minimizing one function only; it just depends on the algorithm.
+The third step is then really simple: you **improve the model**. Depending on the Machine Learning algorithm, optimization happens in different ways. In the case of Neural networks, gradients are computed with backpropagation, and subsequently [optimizers](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md) are used for changing the model internals. Weights can also be changed by minimizing one function only; it just depends on the algorithm.
 
 You then start again. Likely, because you have optimized the model, the predictions are a little bit better now. You simply keep iterating until you are satisfied with the results, and then you stop the training process.
 
 #### Underfitting and overfitting a model
 
-When you are performing this iterative process, you are effectively moving from a model that is _underfit_ to a model that demonstrates a _good fit_. If you want to understand these concepts in more detail, [this article can help](https://www.machinecurve.com/index.php/2020/12/01/how-to-check-if-your-deep-learning-model-is-underfitting-or-overfitting/), but let's briefly take a look at them here as well.
+When you are performing this iterative process, you are effectively moving from a model that is _underfit_ to a model that demonstrates a _good fit_. If you want to understand these concepts in more detail, [this article can help](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-check-if-your-deep-learning-model-is-underfitting-or-overfitting.md), but let's briefly take a look at them here as well.
 
 In the first stages of the training process, your model is likely not able to capture the patterns in your dataset. This is visible in the left part of the figure below. The solution is simple: just keep training until you achieve the right fit for the dataset (that's the right part). Now, you _can't keep training forever_. If you do, the model will learn to focus too much on patterns hidden within your training dataset - patterns that may not be present in other real-world data at all; patterns truly specific to the sample with which you are training.
 
 The result: a model tailored to your specific dataset, visible in the middle part of the figure.
 
-In other words, training a Machine Learning model involves finding a good balance between a model that is underfit and a model that is overfit. Fortunately, many techniques are available [to help you with this](https://www.machinecurve.com/index.php/2019/05/30/avoid-wasting-resources-with-earlystopping-and-modelcheckpoint-in-keras/), but it's one of the most common problems in Supervised ML today.
+In other words, training a Machine Learning model involves finding a good balance between a model that is underfit and a model that is overfit. Fortunately, many techniques are available [to help you with this](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/avoid-wasting-resources-with-earlystopping-and-modelcheckpoint-in-keras.md), but it's one of the most common problems in Supervised ML today.
 
 - [![](images/30under.png)](https://www.machinecurve.com/wp-content/uploads/2020/11/30under.png)
     
@@ -224,7 +224,7 @@ If you look closely at the dataset, you can see that it primarily spreads into t
 
 No other set of directions will explain as much as the variance than the one we mentioned above.
 
-After [standardization](https://www.machinecurve.com/index.php/2020/11/19/how-to-normalize-or-standardize-a-dataset-in-python/), we can visualize the directions as a pair of two vectors. These vectors are called the **principal directions** of the data (StackExchange, n.d.). There are as many principal directions as the number of dimensions; in our case, there are two.
+After [standardization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-normalize-or-standardize-a-dataset-in-python.md), we can visualize the directions as a pair of two vectors. These vectors are called the **principal directions** of the data (StackExchange, n.d.). There are as many principal directions as the number of dimensions; in our case, there are two.
 
 ![](images/pca_2.png)
 
@@ -305,14 +305,14 @@ In the next sections, we will take a look at clear and step-by-step examples of 
 
 One of the ways in which PCA can be performed is by means of **Eigenvector Decomposition (EIG)**. More specifically, we can use the covariance matrix of our \[latex\]N\[/latex\]-dimensional dataset and decompose it into \[latex\]N\[/latex\] eigenpairs. We can do this as follows:
 
-1. **Standardizing the dataset:** EIG based PCA only works well if the dataset is centered and has a mean of zero (i.e. \[latex\]\\mu = 0.0\[/latex\]). We will use [standardization](https://www.machinecurve.com/index.php/2020/11/19/how-to-normalize-or-standardize-a-dataset-in-python/) for this purpose, which also scales the data to a standard deviation of one (\[latex\]\\sigma = 1.0\[/latex\]).
+1. **Standardizing the dataset:** EIG based PCA only works well if the dataset is centered and has a mean of zero (i.e. \[latex\]\\mu = 0.0\[/latex\]). We will use [standardization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-normalize-or-standardize-a-dataset-in-python.md) for this purpose, which also scales the data to a standard deviation of one (\[latex\]\\sigma = 1.0\[/latex\]).
 2. **Computing the covariance matrix of the variables:** a covariance matrix indicates how much variance each individual variable has, and how much they 'covary' - in other words, how much certain variables move together.
 3. **Decomposing the covariance matrix into eigenpairs:** mathematically, we can rewrite the covariance matrix so that we can get a set of eigenvectors and eigenvalues, or eigenpairs.
 4. **Sorting the eigenpairs in decreasing order of importance**, to find the principal directions in your dataset which contribute to the spread most significantly.
 5. **Selecting the variance contribution of your principal directions and selecting \[latex\]n\[/latex\] principal components:** if we know the relative contributions to the spread for each principal direction, we can perform dimensionality reduction by selecting only the \[latex\]n\[/latex\] most contributing principal components.
 6. **Building the projection matrix** for projecting our original dataset onto the principal components.
 
-We can see that steps (1), (4), (5) and (6) are general - we also saw them above. Steps (2) and (3) are specific to PCA-EIG and represent the core of what makes eigenvector decomposition based PCA unique. We will now cover each step in more detail, including step-by-step examples with Python. Note that the example in this section makes use of native / vanilla Python deliberately, and that Scikit-learn based implementations of e.g. [standardization](https://www.machinecurve.com/index.php/2020/11/19/how-to-normalize-or-standardize-a-dataset-in-python/) and PCA will be used in another section.
+We can see that steps (1), (4), (5) and (6) are general - we also saw them above. Steps (2) and (3) are specific to PCA-EIG and represent the core of what makes eigenvector decomposition based PCA unique. We will now cover each step in more detail, including step-by-step examples with Python. Note that the example in this section makes use of native / vanilla Python deliberately, and that Scikit-learn based implementations of e.g. [standardization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-normalize-or-standardize-a-dataset-in-python.md) and PCA will be used in another section.
 
 ### Using the multidimensional Iris dataset
 
@@ -385,7 +385,7 @@ The images illustrate that two of the Iris flowers cannot be linearly separated,
 
 ### Performing standardization
 
-We first add Python code for [standardization](https://www.machinecurve.com/index.php/2020/11/19/how-to-normalize-or-standardize-a-dataset-in-python/), which brings our data to \[latex\]\\mu = 0.0, \\sigma = 1.0\[/latex\] by performing \[latex\]x = \\frac{x - \\mu}{\\sigma}\[/latex\] for each dimension (MachineCurve, 2020).
+We first add Python code for [standardization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-normalize-or-standardize-a-dataset-in-python.md), which brings our data to \[latex\]\\mu = 0.0, \\sigma = 1.0\[/latex\] by performing \[latex\]x = \\frac{x - \\mu}{\\sigma}\[/latex\] for each dimension (MachineCurve, 2020).
 
 ```
 # Perform standardization
@@ -592,7 +592,7 @@ Note that here as well, we'll use a vanilla / native Python approach to performi
 
 ### Starting with the standardized Iris dataset
 
-In the PCA-SVD approach, we also use the Iris dataset as an example. Using the code below, we'll load the Iris data and perform [standardization](https://www.machinecurve.com/index.php/2020/11/19/how-to-normalize-or-standardize-a-dataset-in-python/), which means that your mean will become \[latex\]\\mu = 0.0\[/latex\] and your standard deviation will become \[latex\]\\sigma = 1.0\[/latex\].
+In the PCA-SVD approach, we also use the Iris dataset as an example. Using the code below, we'll load the Iris data and perform [standardization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-normalize-or-standardize-a-dataset-in-python.md), which means that your mean will become \[latex\]\\mu = 0.0\[/latex\] and your standard deviation will become \[latex\]\\sigma = 1.0\[/latex\].
 
 ```
 from sklearn import datasets
@@ -732,7 +732,7 @@ y = iris.target
 
 ### Performing Scikit-learn based standardization
 
-As we could read in [another article](https://www.machinecurve.com/index.php/2020/11/19/how-to-normalize-or-standardize-a-dataset-in-python/), Scikit-learn provides standardization out of the box through the `StandardScaler`, so we also implement it here:
+As we could read in [another article](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-normalize-or-standardize-a-dataset-in-python.md), Scikit-learn provides standardization out of the box through the `StandardScaler`, so we also implement it here:
 
 ```
 # Standardize
@@ -879,7 +879,7 @@ Raschka, S. (2015, January 27). _Principal component analysis_. Dr. Sebastian 
 
 StackExchange. (n.d.). _Why does Andrew Ng prefer to use SVD and not EIG of covariance matrix to do PCA?_ Cross Validated. [https://stats.stackexchange.com/questions/314046/why-does-andrew-ng-prefer-to-use-svd-and-not-eig-of-covariance-matrix-to-do-pca](https://stats.stackexchange.com/questions/314046/why-does-andrew-ng-prefer-to-use-svd-and-not-eig-of-covariance-matrix-to-do-pca)
 
-MachineCurve. (2020, November 19). _How to normalize or standardize a dataset in Python? – MachineCurve_. [https://www.machinecurve.com/index.php/2020/11/19/how-to-normalize-or-standardize-a-dataset-in-python/](https://www.machinecurve.com/index.php/2020/11/19/how-to-normalize-or-standardize-a-dataset-in-python/)
+MachineCurve. (2020, November 19). _How to normalize or standardize a dataset in Python? – MachineCurve_. [https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-normalize-or-standardize-a-dataset-in-python/](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-normalize-or-standardize-a-dataset-in-python.md)
 
 Wikipedia. (2003, March 4). _Covariance matrix_. Wikipedia, the free encyclopedia. Retrieved December 7, 2020, from [https://en.wikipedia.org/wiki/Covariance\_matrix](https://en.wikipedia.org/wiki/Covariance_matrix)
 

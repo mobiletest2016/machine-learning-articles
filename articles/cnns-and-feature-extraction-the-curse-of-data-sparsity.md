@@ -12,7 +12,7 @@ tags:
 
 I recently finished work on my master's thesis in which I investigated how the process of mapping underground utilities such as cables and pipelines could be improved with deep neural networks.
 
-Specifically, since utility mapping harnesses a geophysical technique called Ground Penetrating Radar, which produces image-like data, I investigated the effectiveness of [Convolutional Neural Networks](https://machinecurve.com/index.php/2018/12/07/convolutional-neural-networks-and-their-components-for-computer-vision/) for this purpose. Since utility mapping is effectively a classification problem with respect to utility material type, that's what made CNNs worthwhile.
+Specifically, since utility mapping harnesses a geophysical technique called Ground Penetrating Radar, which produces image-like data, I investigated the effectiveness of [Convolutional Neural Networks](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/convolutional-neural-networks-and-their-components-for-computer-vision.md) for this purpose. Since utility mapping is effectively a classification problem with respect to utility material type, that's what made CNNs worthwhile.
 
 Later more on my thesis work, but today I want to share a peculiar observation with you: **that I have the feeling that feature compression deteriorates model performance when you're using CNNs.**
 
@@ -26,7 +26,7 @@ Since deep learning practitioners such as Chollet claim "to input data into CNNs
 
 So let's look backwards for a bit before we'll try to explain the behavior I observed during my research.
 
-Primarily, approaches harnessing machine learning for improving the utility mapping process have used [Support Vector Machines](https://www.machinecurve.com/index.php/2019/09/20/intuitively-understanding-svm-and-svr/) for this purpose. SVMs, which were popular many years ago i.e. before deep learning was cool, had one big shortcoming: they could not handle dimensionality well. That is, if you had an image, you had to substantially downsample it prior to feeding it to the model. Otherwise, it wouldn't work.
+Primarily, approaches harnessing machine learning for improving the utility mapping process have used [Support Vector Machines](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/intuitively-understanding-svm-and-svr.md) for this purpose. SVMs, which were popular many years ago i.e. before deep learning was cool, had one big shortcoming: they could not handle dimensionality well. That is, if you had an image, you had to substantially downsample it prior to feeding it to the model. Otherwise, it wouldn't work.
 
 By consequence, many feature extraction approaches were investigated for utility mapping that all had in common that they wanted to reduce this _curse of dimensionality_. Examples are signal histograms (reducing dimensionality because many signal backscatters could be grouped into histogram bins) or the Discrete Cosine Transform (which essentially transforms the data input into the frequency spectrum, making it usable for signal compression such as the JPEG format).
 
@@ -46,7 +46,7 @@ Do we remember that fancy numbers dataset?
 
 ![](images/mnist.png)
 
-Indeed, it's the [MNIST](http://yann.lecun.com/exdb/mnist/) dataset: "a training set of 60,000 examples, and a test set of 10,000 examples". It [contains handwritten digits](https://www.machinecurve.com/index.php/2019/12/31/exploring-the-keras-datasets/#mnist-database-of-handwritten-digits), thus numbers from 0-9.
+Indeed, it's the [MNIST](http://yann.lecun.com/exdb/mnist.md) dataset: "a training set of 60,000 examples, and a test set of 10,000 examples". It [contains handwritten digits](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets/#mnist-database-of-handwritten-digits), thus numbers from 0-9.
 
 To give you a baseline of what a CNN can do with such a dataset, you will next see the result of training a CNN based on a [default Keras example script](https://github.com/keras-team/keras/blob/master/examples/mnist_cnn.py):
 
@@ -111,9 +111,9 @@ Now let's see what happens if you average the matrices across one of the axes:
 
 We have substantially sparser feature vectors now: in fact, every number is now represented by 28 instead of 784 features.
 
-Let's redo the experiment. Note that this time, I had to change all references to [2D image data](https://www.machinecurve.com/index.php/2019/09/17/how-to-create-a-cnn-classifier-with-keras/), e.g. the `Conv2D` and the `MaxPooling2D` layers, into their 1D variants - we namely removed one dimension from the data, and the 2D variants simply don't work anymore.
+Let's redo the experiment. Note that this time, I had to change all references to [2D image data](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras.md), e.g. the `Conv2D` and the `MaxPooling2D` layers, into their 1D variants - we namely removed one dimension from the data, and the 2D variants simply don't work anymore.
 
-The [convolution operation](https://machinecurve.com/index.php/2018/12/07/convolutional-neural-networks-and-their-components-for-computer-vision/) with learning filters itself, however, remains similar. This is the result:
+The [convolution operation](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/convolutional-neural-networks-and-their-components-for-computer-vision.md) with learning filters itself, however, remains similar. This is the result:
 
 ```
 Epoch 1/12
@@ -160,7 +160,7 @@ Or, in layman's terms, you make the CNN blind to the unique aspects represented 
 
 **Why is this the case?**
 
-In my opinion, this can be explained by looking at the internals of a convolutional layer. It works as follows. [You specify a number of filters](https://machinecurve.com/index.php/2018/12/07/convolutional-neural-networks-and-their-components-for-computer-vision/) which, during training, learn to recognize unique aspects of the image-like data. They can then be used to classify new samples - quite accurately, as we have seen with raw MNIST data. This means that the convolutional layer _already makes your data representation sparser_. What's more, this effect gets even stronger when layers like [Max Pooling](https://www.machinecurve.com/index.php/2020/01/30/what-are-max-pooling-average-pooling-global-max-pooling-and-global-average-pooling/) are applied - which is precisely what I did above.
+In my opinion, this can be explained by looking at the internals of a convolutional layer. It works as follows. [You specify a number of filters](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/convolutional-neural-networks-and-their-components-for-computer-vision.md) which, during training, learn to recognize unique aspects of the image-like data. They can then be used to classify new samples - quite accurately, as we have seen with raw MNIST data. This means that the convolutional layer _already makes your data representation sparser_. What's more, this effect gets even stronger when layers like [Max Pooling](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-are-max-pooling-average-pooling-global-max-pooling-and-global-average-pooling.md) are applied - which is precisely what I did above.
 
 But when you downsample the data first by e.g. applying the DCT, _you thus effectively apply sparsening twice._ My only conclusion can thus be that by consequence, the convolutional filters can no longer learn the unique aspects within the image-like data, as they are hidden in the data set made compact. Only then, I literally found out why people always suggest to input your image data into CNNs as untransformed as possible.
 

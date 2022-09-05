@@ -33,7 +33,7 @@ Let's take a look! 🚀
 
 Generative Adversarial Networks were proposed back in 2014, through a paper written by Ian Goodfellow and others (Goodfellow et al., 2014). Their architecture is composed of two neural networks. First of all, there is a _generator_ \[latex\]G\[/latex\], which is responsible for generating images. Secondly, there is a _discriminator_ \[latex\]D\[/latex\], which has the task to detect which of the images presented to it is fake and which is real.
 
-As they are trained jointly by minimizing loss components, the following minimax game emerges, as discussed in [our article about vanilla GANs](https://www.machinecurve.com/index.php/2021/03/23/generative-adversarial-networks-a-gentle-introduction/):
+As they are trained jointly by minimizing loss components, the following minimax game emerges, as discussed in [our article about vanilla GANs](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/generative-adversarial-networks-a-gentle-introduction.md):
 
 ![](images/image-1-1024x401.png)
 

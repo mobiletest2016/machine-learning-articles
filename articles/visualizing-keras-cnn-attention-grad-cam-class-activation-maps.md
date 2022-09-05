@@ -49,8 +49,8 @@ Hence, scholars have been finding ways to explain model behavior. `keras-vis` is
 
 Broadly speaking, it comes with three types of visualizations:
 
-- **[Activation Maximization](https://www.machinecurve.com/index.php/2019/11/18/visualizing-keras-model-inputs-with-activation-maximization/)**, which essentially generates a perfect image of a particular class for a trained model.
-- **[Saliency Maps](https://www.machinecurve.com/index.php/2019/11/25/visualizing-keras-cnn-attention-saliency-maps/)**, which - given some input image - tell you something about the importance of each pixel for generating the class decision, hence visualizing where the model looks at when deciding.
+- **[Activation Maximization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/visualizing-keras-model-inputs-with-activation-maximization.md)**, which essentially generates a perfect image of a particular class for a trained model.
+- **[Saliency Maps](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/visualizing-keras-cnn-attention-saliency-maps.md)**, which - given some input image - tell you something about the importance of each pixel for generating the class decision, hence visualizing where the model looks at when deciding.
 - **Class Activation Maps**, and especially Grad-CAM class activation maps, which generate heatmaps at the _convolutional_ level rather than the _dense_ neural layer level, taking into account more spatial details.
 
 We cover the latter in this blog post. Please click the links above if you wish to understand more about the other two, or if you wish to find examples for them.
@@ -61,7 +61,7 @@ Let's first cover the inner workings of class activation maps and Grad-CAMs, or 
 
 In fact, we'll have to take an additional step backwards in order to understand Grad-CAMs: by looking at saliency maps.
 
-As we covered in the [saliency maps blog post](https://www.machinecurve.com/index.php/2019/11/25/visualizing-keras-cnn-attention-saliency-maps/), saliency maps tell you something about the importance of a pixel of the input image. In the case of `keras-vis` based saliency maps, this is the importance of a pixel of the input image with respect to _generating the class prediction_, i.e. the output. This is achieved by mathematically asking the following question: how does the output of the saliency map change when changing its input?
+As we covered in the [saliency maps blog post](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/visualizing-keras-cnn-attention-saliency-maps.md), saliency maps tell you something about the importance of a pixel of the input image. In the case of `keras-vis` based saliency maps, this is the importance of a pixel of the input image with respect to _generating the class prediction_, i.e. the output. This is achieved by mathematically asking the following question: how does the output of the saliency map change when changing its input?
 
 As you could see in the blog post, they work pretty well in telling you which parts of the image are used for generating the target prediction:
 
@@ -80,14 +80,14 @@ Class activation maps (or CAMs) solve this problem: they are highly class discri
 
 **Traditional CAMs can only be used by a small class of ConvNets, i.e. those without densely-connected layers, directly passing forward the convolutional feature maps to the output layer (Selvaraju et al., 2017).**
 
-This fact makes it hard to use them in real life models, where often [convolutional layers are followed by densely-connected ones](https://www.machinecurve.com/index.php/2019/09/17/how-to-create-a-cnn-classifier-with-keras/), to generate various [computer vision applications](https://www.machinecurve.com/index.php/2018/12/07/convolutional-neural-networks-and-their-components-for-computer-vision/). Fortunately, Selvajaru et al. (2017) propose a generalization of the CAM approach which can be used by _any_ architecture, hence also the ones with densely-connected layers.
+This fact makes it hard to use them in real life models, where often [convolutional layers are followed by densely-connected ones](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras.md), to generate various [computer vision applications](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/convolutional-neural-networks-and-their-components-for-computer-vision.md). Fortunately, Selvajaru et al. (2017) propose a generalization of the CAM approach which can be used by _any_ architecture, hence also the ones with densely-connected layers.
 
 It is called **gradient-weighted class activation maps** (Grad-CAM) and works as follows:
 
-- First, the gradient of the _output class prediction_ with respect to the _feature maps of your **last** convolutional layer_ is computed (before the Softmax layer which is common in [multiclass scenarios](https://www.machinecurve.com/index.php/2019/10/22/how-to-use-binary-categorical-crossentropy-with-keras/) - hence, we replace it in our implementation with Linear).
+- First, the gradient of the _output class prediction_ with respect to the _feature maps of your **last** convolutional layer_ is computed (before the Softmax layer which is common in [multiclass scenarios](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-binary-categorical-crossentropy-with-keras.md) - hence, we replace it in our implementation with Linear).
 - Subsequently, these gradients flow back, and determine the relative importance of these feature maps for the class prediction, by means of global average pooling.
 - By generating a weighted combination of the feature maps in this layer and their weights, we get a _gradient-weighted_ CAM heatmap that represents both the _positive_ and _negative_ importance factors for the input image. The positive factors mean that many feature maps participate in the importance of some area with respect to the output class (i.e., the desired class). Those are the areas that likely contain the object of interest. The negative factors mean that many feature maps participate in the importance of that area with respect to the _other classes_ (as the gradients will be strongly negative).
-- Selvaraju et al. simply yet ingeniously propose to pass the heatmap through a [ReLU](https://www.machinecurve.com/index.php/2019/09/04/relu-sigmoid-and-tanh-todays-most-used-activation-functions/) function to filter out the negative areas, setting them to zero importance, while maintaining importance of the positive areas.
+- Selvaraju et al. simply yet ingeniously propose to pass the heatmap through a [ReLU](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md) function to filter out the negative areas, setting them to zero importance, while maintaining importance of the positive areas.
 
 ...which allows us to visualize which parts of an image participate in a class decision, and hence add _explainability_ to the ConvNet's prediction process!
 
@@ -112,7 +112,7 @@ As with many MachineCurve tutorials, you'll need to have a few software dependen
 - **Numpy**, for data processing.
 - **Keras-vis**, the toolkit for generating Grad-CAMs.
 
-From the blog on [saliency maps](https://www.machinecurve.com/index.php/2019/11/25/visualizing-keras-cnn-attention-saliency-maps/) \- this is important:
+From the blog on [saliency maps](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/visualizing-keras-cnn-attention-saliency-maps.md) \- this is important:
 
 With this latter requirement, there is a catch: `pip install keras-vis` doesn't work, as it will not install the most recent version - which is a version that doesn't work with the most recent versions of Tensorflow/Keras.
 
@@ -140,7 +140,7 @@ Successfully installed keras-vis-0.5.0
 
 The first step you'll undertake now is opening File explorer and creating a file such as `class_activation_maps_mnist.py`. In this file, you're going to add your code. Now open a code editor and open the file. Then proceed.
 
-We're going to use the Keras CNN we created and explained in a different blog for today's MNIST visualizations. Hence, I won't explain the model in much detail here, but would like to refer you [to that blog](https://www.machinecurve.com/index.php/2019/09/17/how-to-create-a-cnn-classifier-with-keras/) if you wish to know more. Instead, I'll just give you the model code:
+We're going to use the Keras CNN we created and explained in a different blog for today's MNIST visualizations. Hence, I won't explain the model in much detail here, but would like to refer you [to that blog](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras.md) if you wish to know more. Instead, I'll just give you the model code:
 
 ```
 '''

@@ -58,7 +58,7 @@ In short, it answers the question "For my true labels / ground truth, how well d
 
 It's also possible to start from a prediction point of view. In this case, the question would change to "For my predicted label, how many predictions are actually part of the predicted class?". It's the opposite point of view, but could be a valid question in many machine learning cases.
 
-Most preferably, the entire set of true labels is equal to the set of predicted labels. In those cases, you would see zeros everywhere except for the line from the top left to the bottom right. In practice, however, this does not happen often. Likely, the plot is much more scattered, like this SVM classifier where many supporrt vectors are necessary to draw [a decision boundary](https://www.machinecurve.com/index.php/2019/10/11/how-to-visualize-the-decision-boundary-for-your-keras-model/) that _does not work perfectly, but adequately enough:_
+Most preferably, the entire set of true labels is equal to the set of predicted labels. In those cases, you would see zeros everywhere except for the line from the top left to the bottom right. In practice, however, this does not happen often. Likely, the plot is much more scattered, like this SVM classifier where many supporrt vectors are necessary to draw [a decision boundary](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-decision-boundary-for-your-keras-model.md) that _does not work perfectly, but adequately enough:_
 
 - [![](images/likethis.png)](https://www.machinecurve.com/wp-content/uploads/2020/05/likethis.png)
     
@@ -185,7 +185,7 @@ This suggests that the data may be separable, and possibly even linearly so (yes
 
 Third, and finally, the number of samples is relatively low: only 5.000 samples are present. Neural networks with their relatively large amount of trainable parameters would likely start overfitting relatively quickly, so they wouldn't be my preferable choice.
 
-However, traditional machine learning techniques to the rescue. A [Support Vector Machine](https://www.machinecurve.com/index.php/2020/05/03/creating-a-simple-binary-svm-classifier-with-python-and-scikit-learn/), which attempts to construct a decision boundary between separable blobs of data, can be a good candidate here. Let's give it a try: we're going to construct and train an SVM and see how well it performs through its confusion matrix.
+However, traditional machine learning techniques to the rescue. A [Support Vector Machine](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/creating-a-simple-binary-svm-classifier-with-python-and-scikit-learn.md), which attempts to construct a decision boundary between separable blobs of data, can be a good candidate here. Let's give it a try: we're going to construct and train an SVM and see how well it performs through its confusion matrix.
 
 ### Constructing and training the ML model
 
@@ -201,7 +201,7 @@ from sklearn.metrics import plot_confusion_matrix
 from mlxtend.plotting import plot_decision_regions
 ```
 
-(The Mlxtend one is optional, as we discussed at 'what you need to install', but could be useful if you wish to [visualize the decision boundary](https://www.machinecurve.com/index.php/2019/10/11/how-to-visualize-the-decision-boundary-for-your-keras-model/) later.)
+(The Mlxtend one is optional, as we discussed at 'what you need to install', but could be useful if you wish to [visualize the decision boundary](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-decision-boundary-for-your-keras-model.md) later.)
 
 #### Training the classifier
 
@@ -245,7 +245,7 @@ Normalization, here, involves converting back the data into the \[0, 1\] format 
 
 [![](images/samples-1.png)](https://www.machinecurve.com/wp-content/uploads/2020/05/samples-1.png)
 
-Here are some other visualizations that help us explain the confusion matrix (for the [boundary plot](https://www.machinecurve.com/index.php/2019/10/11/how-to-visualize-the-decision-boundary-for-your-keras-model/), you need to install Mlxtend with `pip install mlxtend`):
+Here are some other visualizations that help us explain the confusion matrix (for the [boundary plot](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-decision-boundary-for-your-keras-model.md), you need to install Mlxtend with `pip install mlxtend`):
 
 - ![](images/rcf_boundary.png)
     
@@ -271,7 +271,7 @@ plt.show()
 
 It's clear that we need many support vectors (the red samples) to generate the decision boundary. Given the relative _unclarity_ of the separability between the data points, this is not unexpected. I'm actually quite satisfied with the performance of the model, as demonstrated by the confusion matrix (relatively blue diagonal line).
 
-The only class that underperforms is class 3, with a score of 0.68. It's still acceptable, but is lower than preferred. This can be explained by looking at the class in the [decision boundary plot](https://www.machinecurve.com/index.php/2019/10/11/how-to-visualize-the-decision-boundary-for-your-keras-model/). Here, it's clear that it's the middle class - the reds. As those samples are surrounded by the other ones, it's clear that the model has had significant difficulty generating the decision boundary. We might for example counter this by using a different kernel function which takes this into account, ensuring better separability. However, that's not the core of today's post.
+The only class that underperforms is class 3, with a score of 0.68. It's still acceptable, but is lower than preferred. This can be explained by looking at the class in the [decision boundary plot](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-decision-boundary-for-your-keras-model.md). Here, it's clear that it's the middle class - the reds. As those samples are surrounded by the other ones, it's clear that the model has had significant difficulty generating the decision boundary. We might for example counter this by using a different kernel function which takes this into account, ensuring better separability. However, that's not the core of today's post.
 
 ### Full model code
 

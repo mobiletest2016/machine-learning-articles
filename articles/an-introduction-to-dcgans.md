@@ -15,7 +15,7 @@ tags:
   - "machine-learning"
 ---
 
-The class of Generative Adversarial Network models, or GANs, belongs to the toolbox of any advanced Deep Learning engineer these days. First proposed [in 2014](https://www.machinecurve.com/index.php/2021/03/23/generative-adversarial-networks-a-gentle-introduction/), GANs can be used for a wide variety of generative applications - but primarily and most significantly the generation of images and videos.
+The class of Generative Adversarial Network models, or GANs, belongs to the toolbox of any advanced Deep Learning engineer these days. First proposed [in 2014](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/generative-adversarial-networks-a-gentle-introduction.md), GANs can be used for a wide variety of generative applications - but primarily and most significantly the generation of images and videos.
 
 But as with any innovation in neural networks, the original propositions almost never scale well. The same is true for GANs: vanilla GANs suffer from instability during training. And that does not benefit the quality of the images that are generated.
 
@@ -37,7 +37,7 @@ Let's take a look! 🚀
 
 ## Conv-based GANs and stability problems
 
-Generative Adversarial Networks or GANs have been around in the Generative Deep Learning field since the 2014 paper by Ian Goodfellow and others. As we know from our [introduction article on GANs](https://www.machinecurve.com/index.php/2021/03/23/generative-adversarial-networks-a-gentle-introduction/), they are composed of two models. The first, the generator, is responsible for generating fake images that cannot be distinguished from real ones. In other words, for counterfeiting.
+Generative Adversarial Networks or GANs have been around in the Generative Deep Learning field since the 2014 paper by Ian Goodfellow and others. As we know from our [introduction article on GANs](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/generative-adversarial-networks-a-gentle-introduction.md), they are composed of two models. The first, the generator, is responsible for generating fake images that cannot be distinguished from real ones. In other words, for counterfeiting.
 
 The second, however, is the police - and its job is to successfully detect when images presented to it are fake.
 
@@ -73,10 +73,10 @@ After "extensive model exploration" they identified "a family of architectures \
 
 When converted into best practices, this is a list that when used should improve any GAN compared to vanilla ones from the early days:
 
-1. **Minimizing fully connected layers:** Remove fully connected hidden layers for deeper architectures, [relying on Global Average Pooling instead](https://www.machinecurve.com/index.php/2020/01/31/reducing-trainable-parameters-with-a-dense-free-convnet-classifier/). If you cannot do that, make sure to add Dense layers only to the input of the Generator and the output of the Discriminator.
+1. **Minimizing fully connected layers:** Remove fully connected hidden layers for deeper architectures, [relying on Global Average Pooling instead](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/reducing-trainable-parameters-with-a-dense-free-convnet-classifier.md). If you cannot do that, make sure to add Dense layers only to the input of the Generator and the output of the Discriminator.
     - The first layer of the Generator must be a Dense layer because it must be able to take samples from the latent distribution \[latex\]Z\[/latex\] as its input.
     - The final layer of the Discriminator must be a Dense layer because it must be able to convert inputs to a probability value.
-2. **Allowing the network to learn its own downsampling and upsampling.** This is achieved through replacing _deterministic pooling functions_ (like [max pooling](https://www.machinecurve.com/index.php/2020/01/30/what-are-max-pooling-average-pooling-global-max-pooling-and-global-average-pooling/)) with strided convolutions in the Discriminator and fractional-strided convolutions in the Generator.
+2. **Allowing the network to learn its own downsampling and upsampling.** This is achieved through replacing _deterministic pooling functions_ (like [max pooling](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-are-max-pooling-average-pooling-global-max-pooling-and-global-average-pooling.md)) with strided convolutions in the Discriminator and fractional-strided convolutions in the Generator.
 3. **Applying Batch Normalization.** Ensuring that the data distributions within each layer remain in check means that the weights updates oscillate less during training, and by consequence training is more stable.
 4. **Use Rectified Linear Unit in the Generator.** The ReLU activation function is used in the generator, except for the last layer, which uses Tanh.
 5. **Use Leaky ReLU in the Discriminator.** This was found to work well, in contrast to the Goodfellow et al. (2014) approach, which used maxout. Radford et al. (2015) set the slope of the leak to 0.2.

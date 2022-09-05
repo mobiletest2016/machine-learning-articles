@@ -11,7 +11,7 @@ tags:
   - "visualization"
 ---
 
-Sometimes, you don't want to visualize the [architecture](https://www.machinecurve.com/index.php/2019/10/07/how-to-visualize-a-model-with-keras/) of your Keras model, but rather you wish to show the training process.
+Sometimes, you don't want to visualize the [architecture](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-a-model-with-keras.md) of your Keras model, but rather you wish to show the training process.
 
 One way of achieving that is by exporting all the loss values and accuracies manually, adding them to an Excel sheet - before generating a chart.
 
@@ -115,7 +115,7 @@ model.compile(loss='mean_absolute_error', optimizer='adam', metrics=['mean_squar
 model.fit(X, Y, epochs=25, batch_size=1, verbose=1, validation_split=0.2)
 ```
 
-Why such a simple one? Well - it's not about the model today, so we should keep most complexity out of here. The regular reader recognizes that this is the regression MLP that we created [earlier](https://www.machinecurve.com/index.php/2019/07/30/creating-an-mlp-for-regression-with-keras/). It loads Chennai, India based water reservoir water levels and attempts to predict the levels at one given the levels in the other 3 reservoirs. It does so by means of the Keras Sequential API and densely-conencted layers and MAE as a [regression loss function](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#loss-functions-for-regression), with MSE as an additional one. It performs training in 25 epochs.
+Why such a simple one? Well - it's not about the model today, so we should keep most complexity out of here. The regular reader recognizes that this is the regression MLP that we created [earlier](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/creating-an-mlp-for-regression-with-keras.md). It loads Chennai, India based water reservoir water levels and attempts to predict the levels at one given the levels in the other 3 reservoirs. It does so by means of the Keras Sequential API and densely-conencted layers and MAE as a [regression loss function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#loss-functions-for-regression), with MSE as an additional one. It performs training in 25 epochs.
 
 Let's create a file called `history_visualization.py` and paste the above code into it.
 
@@ -255,8 +255,8 @@ _Note that model code is also available [on GitHub](https://github.com/christian
 
 Keras. (n.d.). Visualization. Retrieved from [https://keras.io/visualization/#model-visualization](https://keras.io/visualization/#model-visualization)
 
-Creating an MLP for regression with Keras – MachineCurve. (2019, July 30). Retrieved from [https://www.machinecurve.com/index.php/2019/07/30/creating-an-mlp-for-regression-with-keras/](https://www.machinecurve.com/index.php/2019/07/30/creating-an-mlp-for-regression-with-keras/)
+Creating an MLP for regression with Keras – MachineCurve. (2019, July 30). Retrieved from [https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/creating-an-mlp-for-regression-with-keras/](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/creating-an-mlp-for-regression-with-keras.md)
 
-How to visualize a model with Keras? – MachineCurve. (2019, October 7). Retrieved from [https://www.machinecurve.com/index.php/2019/10/07/how-to-visualize-a-model-with-keras/](https://www.machinecurve.com/index.php/2019/10/07/how-to-visualize-a-model-with-keras/)
+How to visualize a model with Keras? – MachineCurve. (2019, October 7). Retrieved from [https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-a-model-with-keras/](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-a-model-with-keras.md)
 
 TensorBoard: Visualizing Learning. (n.d.). Retrieved from [https://www.tensorflow.org/tensorboard/r1/summaries](https://www.tensorflow.org/tensorboard/r1/summaries)

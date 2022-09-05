@@ -13,15 +13,15 @@ tags:
   - "tensorflow"
 ---
 
-It's very likely that you will use the [ReLU activation function](https://www.machinecurve.com/index.php/2019/09/09/implementing-relu-sigmoid-and-tanh-in-keras/) when creating a neural network. This is unsurprising, since there is a vast landscape of literature that suggests that ReLU performs better than today's other two standard activation functions, Sigmoid and Tanh.
+It's very likely that you will use the [ReLU activation function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/implementing-relu-sigmoid-and-tanh-in-keras.md) when creating a neural network. This is unsurprising, since there is a vast landscape of literature that suggests that ReLU performs better than today's other two standard activation functions, Sigmoid and Tanh.
 
 Nevertheless, ReLU has its shortcomings: when you don't configure your network properly, or when you use data that is not normalized before training, the outputs of your neurons may swing substantially during the first phases of training. Since gradients for ReLU are either zero or one, it may be that you cannot escape _zeroes_ when your initial neuron outputs are really small. We then call your neuron dead, and with many dead neurons, you essentially deprive your neural network from its ability to achieve acceptable performance.
 
-Fortunately, new activation functions have been designed that attempt to reduce the impact of this inherent shortcoming of the ReLU activation function. For example, [Swish](https://www.machinecurve.com/index.php/2019/05/30/why-swish-could-perform-better-than-relu/) was designed to make ReLU more smooth. However, [LiSHT](https://www.machinecurve.com/index.php/2019/11/17/beyond-swish-the-lisht-activation-function/) is a very new activation function that attempts to reduce the ReLU shortcomings indirectly. It essentially manipulates the Sigmoid function (which does not result in dying neurons, but in [vanishing gradients](https://www.machinecurve.com/index.php/2019/08/30/random-initialization-vanishing-and-exploding-gradients/) instead - which is just as worse). Fortunately, with LiSHT, the impact of this vanishing gradients problem is much less severe, and it may thus be a good candidate that hovers between ReLU and Sigmoid.
+Fortunately, new activation functions have been designed that attempt to reduce the impact of this inherent shortcoming of the ReLU activation function. For example, [Swish](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-swish-could-perform-better-than-relu.md) was designed to make ReLU more smooth. However, [LiSHT](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/beyond-swish-the-lisht-activation-function.md) is a very new activation function that attempts to reduce the ReLU shortcomings indirectly. It essentially manipulates the Sigmoid function (which does not result in dying neurons, but in [vanishing gradients](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/random-initialization-vanishing-and-exploding-gradients.md) instead - which is just as worse). Fortunately, with LiSHT, the impact of this vanishing gradients problem is much less severe, and it may thus be a good candidate that hovers between ReLU and Sigmoid.
 
 But if LiSHT is to gain traction in the machine learning community, it must be usable for your own machine learning projects. This renders the question: **how can LiSHT be implemented with Keras**? Precisely the question that we'll attempt to answer with this blog.
 
-First, we provide a brief recap about LiSHT, although this will primarily be a reference [to our other blog post](https://www.machinecurve.com/index.php/2019/11/17/beyond-swish-the-lisht-activation-function/). Subsequently, we'll use the Keras deep learning framework to implement LiSHT into a [ConvNet](https://www.machinecurve.com/index.php/2019/10/18/a-simple-conv3d-example-with-keras/) that is trained for [classifying the MNIST image dataset](https://www.machinecurve.com/index.php/2019/09/17/how-to-create-a-cnn-classifier-with-keras/). Before wrapping up, we'll also show how the model performs - and compare it to the results of _standard_ ReLU activation as well as _Leaky_ ReLU.
+First, we provide a brief recap about LiSHT, although this will primarily be a reference [to our other blog post](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/beyond-swish-the-lisht-activation-function.md). Subsequently, we'll use the Keras deep learning framework to implement LiSHT into a [ConvNet](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/a-simple-conv3d-example-with-keras.md) that is trained for [classifying the MNIST image dataset](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras.md). Before wrapping up, we'll also show how the model performs - and compare it to the results of _standard_ ReLU activation as well as _Leaky_ ReLU.
 
 After reading this tutorial, you will...
 
@@ -141,7 +141,7 @@ Its formula - \[latex\]LiSHT(x) = x \\times tanh(x)\[/latex\] leads to the follo
 
 [![](images/lisht_visualized-1024x511.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/lisht_visualized.png)
 
-In terms of the derivative, this has the effect that the _range_ of the derivative function - and hence the computed gradients - is expanded. This is expected to reduce the impact of the vanishing gradients problem. I'd recommend to read [MachineCurve's other blog post](https://www.machinecurve.com/index.php/2019/11/17/beyond-swish-the-lisht-activation-function/) for more information about the theoretical aspects of the LiSHT activation function.
+In terms of the derivative, this has the effect that the _range_ of the derivative function - and hence the computed gradients - is expanded. This is expected to reduce the impact of the vanishing gradients problem. I'd recommend to read [MachineCurve's other blog post](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/beyond-swish-the-lisht-activation-function.md) for more information about the theoretical aspects of the LiSHT activation function.
 
 [![](images/lisht_derivs-1024x511.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/lisht_derivs.png)
 
@@ -248,9 +248,9 @@ validation_split = 0.2
 verbosity = 1
 ```
 
-As MNIST images are 28 pixels wide and 28 pixels high, we specify `img_height` and `img_width` to be 28. We also use a batch size of 250, which means that - even though we don't truly use the gradient descent optimizer - we're taking a [minibatch](https://www.machinecurve.com/index.php/2019/10/24/gradient-descent-and-its-variants/) approach.
+As MNIST images are 28 pixels wide and 28 pixels high, we specify `img_height` and `img_width` to be 28. We also use a batch size of 250, which means that - even though we don't truly use the gradient descent optimizer - we're taking a [minibatch](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md) approach.
 
-Twenty-five epochs are used for training. This is just a fixed number and is based on my estimate that with a relatively simple dataset quite accurate performance must be achievable without extensive training. In your own projects, you must obviously configure the number of epochs to an educated estimate of your own, or use smart techniques like [EarlyStopping](https://www.machinecurve.com/index.php/2019/05/30/avoid-wasting-resources-with-earlystopping-and-modelcheckpoint-in-keras/) instead.
+Twenty-five epochs are used for training. This is just a fixed number and is based on my estimate that with a relatively simple dataset quite accurate performance must be achievable without extensive training. In your own projects, you must obviously configure the number of epochs to an educated estimate of your own, or use smart techniques like [EarlyStopping](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/avoid-wasting-resources-with-earlystopping-and-modelcheckpoint-in-keras.md) instead.
 
 We use 20% of our training data for validation purposes and set model verbosity to `True` (by means of '1'), essentially outputting everything on screen. This is useful for educational settings, but slightly slows down the training process. Choose wisely in your own project :)
 
@@ -291,11 +291,11 @@ This code essentially:
 - Reshapes data based using the channels-last strategy by default required in TensorFlow 2.
 - Parses numbers as floats, which is estimated to speed up the training process (Quora, n.d.).
 - Normalizes the data.
-- Converts target vectors into categorical format, allowing us to use [categorical crossentropy loss](https://www.machinecurve.com/index.php/2019/10/22/how-to-use-binary-categorical-crossentropy-with-keras/) for evaluating training and validation performance.
+- Converts target vectors into categorical format, allowing us to use [categorical crossentropy loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-binary-categorical-crossentropy-with-keras.md) for evaluating training and validation performance.
 
 ### Creating our model architecture
 
-Next, we specify the architecture of our model. We use two convolutional blocks with max pooling and dropout, as well as two densely-connected layers. Please [refer to this post](https://www.machinecurve.com/index.php/2019/09/17/how-to-create-a-cnn-classifier-with-keras/) if you wish to understand these blocks in more detail. Here's the code:
+Next, we specify the architecture of our model. We use two convolutional blocks with max pooling and dropout, as well as two densely-connected layers. Please [refer to this post](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras.md) if you wish to understand these blocks in more detail. Here's the code:
 
 ```
 # Create the model
@@ -319,7 +319,7 @@ We simply add the `LiSHT` Python definition to the layers by specifying it as th
 
 Next, we compile our model with the hyperparameters set in the _model configuration_ section and start our training process.
 
-We store the training history in the `history` object, for [visualizing model performance](https://www.machinecurve.com/index.php/2019/10/08/how-to-visualize-the-training-process-in-keras/) over time.
+We store the training history in the `history` object, for [visualizing model performance](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-training-process-in-keras.md) over time.
 
 ```
 # Compile the model

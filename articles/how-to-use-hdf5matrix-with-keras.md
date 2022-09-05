@@ -15,13 +15,13 @@ tags:
   - "tensorflow"
 ---
 
-In machine learning, when performing supervised learning, you'll have to load your dataset from somewhere - and then [feed it to the machine learning model](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#the-high-level-supervised-learning-process). Now, there are multiple ways for loading data.
+In machine learning, when performing supervised learning, you'll have to load your dataset from somewhere - and then [feed it to the machine learning model](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process). Now, there are multiple ways for loading data.
 
 A CSV file is one example, as well as a text file. It works really well if you're looking for simplicity: loading a dataset from a text-based file is really easy with Python.
 
 The downside? Scalability. Reading text files is slow. And while this does not really matter when your dataset is small, it can become a true burden when you have dataset with millions and millions of rows.
 
-As we've seen, the HDF5 format - the Hierarchical Data Format - comes to the rescue. This format, which stores the data into a hierarchy of groups and datasets (hence the name, plus version 5), is faster to read, as [we've seen before](https://www.machinecurve.com/index.php/2020/04/13/how-to-use-h5py-and-keras-to-train-with-data-from-hdf5-files/). It's also easily integrable with Python: with the `h5py` library, we can load our data into memory, and subsequently feed it to the machine learning training process.
+As we've seen, the HDF5 format - the Hierarchical Data Format - comes to the rescue. This format, which stores the data into a hierarchy of groups and datasets (hence the name, plus version 5), is faster to read, as [we've seen before](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-h5py-and-keras-to-train-with-data-from-hdf5-files.md). It's also easily integrable with Python: with the `h5py` library, we can load our data into memory, and subsequently feed it to the machine learning training process.
 
 Now, did you know that Keras already partially automates those steps? In fact, it does: the creators already provide a `util` that allows you to load a HDF5 based dataset easily, being the `HDF5Matrix`. Great!
 
@@ -47,7 +47,7 @@ Here we go:
 > 
 > Wikipedia (2004)
 
-As we can read in [our other blog post on HDF5](https://www.machinecurve.com/index.php/2020/04/13/how-to-use-h5py-and-keras-to-train-with-data-from-hdf5-files/), it is characterized as follows:
+As we can read in [our other blog post on HDF5](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-h5py-and-keras-to-train-with-data-from-hdf5-files.md), it is characterized as follows:
 
 - It's a dataset that is designed for large datasets. Could be great for our ML projects!
 - It consists of datasets and groups, where datasets are multidimensional arrays of a homogeneous type. Groups are container structures which can hold datasets and other groups.
@@ -96,7 +96,7 @@ Today's dataset will be the MNIST one, which we know pretty well by now - it's a
 
 [![](images/mnist-visualize.png)](https://www.machinecurve.com/wp-content/uploads/2019/06/mnist-visualize.png)
 
-Now, let’s take a look if we can create a simple [Convolutional Neural Network](https://www.machinecurve.com/index.php/2020/03/30/how-to-use-conv2d-with-keras/) which operates with the [MNIST dataset](https://www.machinecurve.com/index.php/2019/12/31/exploring-the-keras-datasets/#mnist-database-of-handwritten-digits), stored in HDF5 format.
+Now, let’s take a look if we can create a simple [Convolutional Neural Network](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-conv2d-with-keras.md) which operates with the [MNIST dataset](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets/#mnist-database-of-handwritten-digits), stored in HDF5 format.
 
 Fortunately, this dataset is readily available at [Kaggle for download](https://www.kaggle.com/benedictwilkinsai/mnist-hd5f), so make sure to create an account there and download the **train.hdf5** and **test.hdf5** files.
 
@@ -244,7 +244,7 @@ f.close()
 
 ### Training the model
 
-At this point, we have HDF5 files that we can actually use to train a [Keras based ConvNet](https://www.machinecurve.com/index.php/2020/03/30/how-to-use-conv2d-with-keras/)!
+At this point, we have HDF5 files that we can actually use to train a [Keras based ConvNet](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-conv2d-with-keras.md)!
 
 Let's take a look.
 

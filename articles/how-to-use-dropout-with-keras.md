@@ -29,7 +29,7 @@ Ready? Let's go! 😊
 
 Before discussing the implementation of Dropout in the Keras API, the design of our model and its implementation, let's first recall what Dropout is and how it works.
 
-In our blog post ["What is Dropout? Reduce overfitting in your neural networks"](https://www.machinecurve.com/index.php/2019/12/16/what-is-dropout-reduce-overfitting-in-your-neural-networks/), we looked at what Dropout is theoretically. In short, it's a regularizer technique that reduces the odds of overfitting by dropping out neurons at random, during every epoch (or, when using a minibatch approach, during every minibatch).
+In our blog post ["What is Dropout? Reduce overfitting in your neural networks"](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-dropout-reduce-overfitting-in-your-neural-networks.md), we looked at what Dropout is theoretically. In short, it's a regularizer technique that reduces the odds of overfitting by dropping out neurons at random, during every epoch (or, when using a minibatch approach, during every minibatch).
 
 ![](images/dropout.png)
 
@@ -37,7 +37,7 @@ Dropping out neurons happens by attaching Bernoulli variables to the neural outp
 
 By consequence, the occurrence of overfitting is reduced.
 
-Let's now continue with some Dropout best practices. If you wish to understand the concepts behind Dropout in more detail, I'd like to point you to [this blog](https://www.machinecurve.com/index.php/2019/12/16/what-is-dropout-reduce-overfitting-in-your-neural-networks/).
+Let's now continue with some Dropout best practices. If you wish to understand the concepts behind Dropout in more detail, I'd like to point you to [this blog](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-dropout-reduce-overfitting-in-your-neural-networks.md).
 
 ### Dropout best practices
 
@@ -45,9 +45,9 @@ When working on software projects, and hence when working on machine learning de
 
 - While it's best to determine the value for parameter \[latex\]p\[/latex\] with a validation set, it's perfectly fine to set it to \[latex\]p \\approx 0.5\[/latex\]. This value has shown the best empirical results when being tested with the MNIST dataset.
 - To avoid holes in your input data, the authors argued that you best set \[latex\]p\[/latex\] for the input layer to \[latex\]1.0\[/latex\] - effectively the same as not applying Dropout there.
-- Dropout seems to work best when a combination of max-norm regularization (in Keras, with the [MaxNorm constraint](https://keras.io/constraints/#maxnorm)), high learning rates that [decay](https://www.machinecurve.com/index.php/2019/11/11/problems-with-fixed-and-decaying-learning-rates/#what-is-learning-rate-decay) to smaller values, and high momentum is used as well.
+- Dropout seems to work best when a combination of max-norm regularization (in Keras, with the [MaxNorm constraint](https://keras.io/constraints/#maxnorm)), high learning rates that [decay](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/problems-with-fixed-and-decaying-learning-rates/#what-is-learning-rate-decay) to smaller values, and high momentum is used as well.
 
-Any optimizer can be used. Given the benefits of the [Adam optimizer](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/#adam) (momentum-like optimization with locally adapted weights), we're using that one today, as well as the best practices mentioned above.
+Any optimizer can be used. Given the benefits of the [Adam optimizer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound/#adam) (momentum-like optimization with locally adapted weights), we're using that one today, as well as the best practices mentioned above.
 
 ## Dropout in the Keras API
 
@@ -67,7 +67,7 @@ It can be added to a Keras deep learning model with `model.add` and contains the
 
 ## Designing a ConvNet classifier with Dropout
 
-Let's now take a look how to create a neural network with Keras that makes use of Dropout for reducing overfitting. For this purpose, we're creating a [convolutional neural network](https://www.machinecurve.com/index.php/2018/12/07/convolutional-neural-networks-and-their-components-for-computer-vision/) for image classification. Next, we discuss the dataset we're using today and the design of our model.
+Let's now take a look how to create a neural network with Keras that makes use of Dropout for reducing overfitting. For this purpose, we're creating a [convolutional neural network](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/convolutional-neural-networks-and-their-components-for-computer-vision.md) for image classification. Next, we discuss the dataset we're using today and the design of our model.
 
 ### Today's dataset
 
@@ -87,7 +87,7 @@ This architecture, which contains two Conv2D layers followed by Max Pooling, as 
 
 Note that Dropout is applied with \[latex\]rate = 0.50\[/latex\], and that - which is not visible in this diagram - max-norm regularization is applied as well, in each layer (also the Dense ones). The Conv2D layers learn 64 filters each and convolve with a 3x3 kernel over the input. The max pooling pool size will be 2 x 2 pixels.
 
-The activation functions in the hidden layer are [ReLU](https://www.machinecurve.com/index.php/2019/09/04/relu-sigmoid-and-tanh-todays-most-used-activation-functions/), and by consequence, we use [He uniform init](https://www.machinecurve.com/index.php/2019/09/16/he-xavier-initialization-activation-functions-choose-wisely/) as our weight initialization strategy.
+The activation functions in the hidden layer are [ReLU](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md), and by consequence, we use [He uniform init](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/he-xavier-initialization-activation-functions-choose-wisely.md) as our weight initialization strategy.
 
 ### What you'll need to run the model
 
@@ -115,7 +115,7 @@ from keras.constraints import max_norm
 
 We'll use the `keras` deep learning framework, from which we'll use a variety of functionalities. From `keras.datasets`, we import the CIFAR-10 dataset. It's a nice shortcut: Keras contains API pointers to datasets like MNIST and CIFAR-10, which means that you can load them with only a few lines of code. This way, we don't get buried with a lot of data loading work, so that we can fully focus on creating the model.
 
-From `keras.layers`, we import `Dense` (the densely-connected layer type), `Dropout` (which [serves to regularize](https://www.machinecurve.com/index.php/2019/12/16/what-is-dropout-reduce-overfitting-in-your-neural-networks/)), `Flatten` (to link the convolutional layers with the Dense ones), and finally `Conv2D` and `MaxPooling2D` - the conv & related layers.
+From `keras.layers`, we import `Dense` (the densely-connected layer type), `Dropout` (which [serves to regularize](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-dropout-reduce-overfitting-in-your-neural-networks.md)), `Flatten` (to link the convolutional layers with the Dense ones), and finally `Conv2D` and `MaxPooling2D` - the conv & related layers.
 
 We also import the `Sequential` model, which allows us to stack the layers nicely on top of each other, from `keras.models`.
 
@@ -181,7 +181,7 @@ With the Keras `load_data` call, it's possible to load CIFAR-10 very easily into
 
 Once the data has been loaded, we reshape it based on the backend we're using - i.e., Tensorflow, Theano and CNTK - so that no matter the backend, the data has a uniform shape.
 
-Next, we parse numbers as floats, which presumably speeds up the training process. Subsequently, we normalize the data, which neural networks appreciate. Finally, we apply `to_categorical`, to ensure that [categorical crossentropy loss](https://www.machinecurve.com/index.php/2019/10/22/how-to-use-binary-categorical-crossentropy-with-keras/) can be used for this multiclass classification problem.
+Next, we parse numbers as floats, which presumably speeds up the training process. Subsequently, we normalize the data, which neural networks appreciate. Finally, we apply `to_categorical`, to ensure that [categorical crossentropy loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-binary-categorical-crossentropy-with-keras.md) can be used for this multiclass classification problem.
 
 ### Defining the architecture
 
@@ -205,7 +205,7 @@ It's in line with the architectural diagram [we discussed earlier](#model-archit
 
 ### Compilation & training
 
-The next step is to compile the model. Compiling, or configuring the model, allows you to specify a [loss function](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/), an [optimizer](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/) and additional metrics, such as accuracy. As said, we use categorical crossentropy loss to determine the difference between prediction and actual target. Additionally, we use the Adam optimizer - pretty much one of the standard optimizers today.
+The next step is to compile the model. Compiling, or configuring the model, allows you to specify a [loss function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md), an [optimizer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md) and additional metrics, such as accuracy. As said, we use categorical crossentropy loss to determine the difference between prediction and actual target. Additionally, we use the Adam optimizer - pretty much one of the standard optimizers today.
 
 ```
 # Compile the model
@@ -353,7 +353,7 @@ As you can see, the difference is less significant than with the Dropout/No-drop
 
 ### Dropout with Adam vs Dropout with SGD
 
-Well, the results for this one clearly indicate that Adam performs much better when Dropout is applied, compared to traditional SGD. Likely, this is the case because Adam [combines momentum and local parameter updates](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/#adam) - benefiting the training process irrespective of Dropout.
+Well, the results for this one clearly indicate that Adam performs much better when Dropout is applied, compared to traditional SGD. Likely, this is the case because Adam [combines momentum and local parameter updates](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound/#adam) - benefiting the training process irrespective of Dropout.
 
 - ![](images/acc-4-1024x537.png)
     
@@ -374,6 +374,6 @@ Thank you for reading MachineCurve today and I hope you've learnt something from
 
 Srivastava, N., Hinton, G., Krizhevsky, A., Sutskever, I., & Salakhutdinov, R. (2014, June 15). Dropout: A Simple Way to Prevent Neural Networks from Overfitting. Retrieved from [http://jmlr.org/papers/v15/srivastava14a.html](http://jmlr.org/papers/v15/srivastava14a.html)
 
-MachineCurve. (2019, December 16). What is Dropout? Reduce overfitting in your neural networks. Retrieved from [https://www.machinecurve.com/index.php/2019/12/16/what-is-dropout-reduce-overfitting-in-your-neural-networks](https://www.machinecurve.com/index.php/2019/12/16/what-is-dropout-reduce-overfitting-in-your-neural-networks)
+MachineCurve. (2019, December 16). What is Dropout? Reduce overfitting in your neural networks. Retrieved from [https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-dropout-reduce-overfitting-in-your-neural-networks](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-dropout-reduce-overfitting-in-your-neural-networks)
 
 Keras. (n.d.). Core Layers: Dropout. Retrieved from [https://keras.io/layers/core/#dropout](https://keras.io/layers/core/#dropout)

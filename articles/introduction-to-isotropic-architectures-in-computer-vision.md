@@ -45,7 +45,7 @@ This pyramid structure is also very common for Convolutional Neural Networks: th
 
 ## Transformers and Mixers in Computer Vision: Isotropic architectures
 
-If you have followed the field of Natural Language Processing in recent years, you must know about the fact that [Transformer architectures](https://www.machinecurve.com/index.php/2020/12/28/introduction-to-transformers-in-machine-learning/) have really boosted progress over there. These architectures, which combine an **encoding segment** with a **decoding segment** (or have one of them) with the concept of **self-attention** really changed the way language models have been created.
+If you have followed the field of Natural Language Processing in recent years, you must know about the fact that [Transformer architectures](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/introduction-to-transformers-in-machine-learning.md) have really boosted progress over there. These architectures, which combine an **encoding segment** with a **decoding segment** (or have one of them) with the concept of **self-attention** really changed the way language models have been created.
 
 I would suggest to click the link above to read more about what Transformers do. For now, it's enough to know that they have recently been applied in Computer Vision problems as well. For example, the Vision Transformer (Dosovitskiy et al., 2020) has reached state-of-the-art performance when pretrained and then finetuned using massive image datasets. In doing so, images have been divided into patches, and these patches (turned into an embedding) have been used as input for the Transformer architecture.
 

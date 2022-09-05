@@ -24,7 +24,7 @@ Let's take a look! 🚀
 
 ## Today's PyTorch model
 
-In another tutorial, we showed you [how to create a Multilayer Perceptron with PyTorch](https://www.machinecurve.com/index.php/2021/01/26/creating-a-multilayer-perceptron-with-pytorch-and-lightning/). What follows is the code for doing so. If you want to understand all the details, I recommend clicking the link to follow that particular tutorial.
+In another tutorial, we showed you [how to create a Multilayer Perceptron with PyTorch](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/creating-a-multilayer-perceptron-with-pytorch-and-lightning.md). What follows is the code for doing so. If you want to understand all the details, I recommend clicking the link to follow that particular tutorial.
 
 However, here, we will cover it briefly, so that you understand what is happening when you are running the code.
 
@@ -177,7 +177,7 @@ These are some of the results:
 
 ## Predicting new samples with a loaded PyTorch mdoel
 
-You can also use a [saved model](https://www.machinecurve.com/index.php/2021/02/03/how-to-save-and-load-a-pytorch-model/) for inference:
+You can also use a [saved model](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-save-and-load-a-pytorch-model.md) for inference:
 
 ```
   # Disable grad

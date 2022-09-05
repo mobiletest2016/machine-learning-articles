@@ -32,7 +32,7 @@ Let's go! 😎
 
 ## The high-level supervised learning process
 
-Before we can actually introduce the concept of loss, we'll have to take a look at the **high-level supervised machine learning process**. All supervised training approaches fall under this process, which means that it is equal for deep neural networks such as [MLPs](https://www.machinecurve.com/index.php/2019/07/30/creating-an-mlp-for-regression-with-keras/) or [ConvNets](https://www.machinecurve.com/index.php/2018/12/07/convolutional-neural-networks-and-their-components-for-computer-vision/), but also for [SVMs](https://www.machinecurve.com/index.php/2019/09/20/intuitively-understanding-svm-and-svr/).
+Before we can actually introduce the concept of loss, we'll have to take a look at the **high-level supervised machine learning process**. All supervised training approaches fall under this process, which means that it is equal for deep neural networks such as [MLPs](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/creating-an-mlp-for-regression-with-keras.md) or [ConvNets](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/convolutional-neural-networks-and-their-components-for-computer-vision.md), but also for [SVMs](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/intuitively-understanding-svm-and-svr.md).
 
 Let's take a look at this training process, which is cyclical in nature.
 
@@ -74,7 +74,7 @@ When loss is computed, the model must be improved. This is done by propagating t
 
 Depending on the model type used, there are many ways for optimizing the model, i.e. propagating the error backwards. In neural networks, often, a combination of **gradient descent based methods** and **backpropagation** is used: gradient descent like optimizers for computing the _gradient_ or the direction in which to optimize, backpropagation for the actual error propagation.
 
-In other model types, such as [Support Vector Machines](https://www.machinecurve.com/index.php/2019/09/20/intuitively-understanding-svm-and-svr/), we do not actually propagate the error backward, strictly speaking. However, we use methods such as **quadratic optimization** to find the mathematical optimum, which given linear separability of your data (whether in regular space or kernel space) must exist. However, visualizing it as "adapting the weights by computing some error" benefits understanding. Next up - the loss functions we can actually use for computing the error! 😄
+In other model types, such as [Support Vector Machines](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/intuitively-understanding-svm-and-svr.md), we do not actually propagate the error backward, strictly speaking. However, we use methods such as **quadratic optimization** to find the mathematical optimum, which given linear separability of your data (whether in regular space or kernel space) must exist. However, visualizing it as "adapting the weights by computing some error" benefits understanding. Next up - the loss functions we can actually use for computing the error! 😄
 
 \[ad\]
 
@@ -84,7 +84,7 @@ Here, we'll cover a wide array of loss functions: some of them for regression, o
 
 ### Loss functions for regression
 
-There are two main types of supervised learning problems: [classification](https://www.machinecurve.com/index.php/2019/09/17/how-to-create-a-cnn-classifier-with-keras/#what-is-a-classifier) and [regression](https://www.machinecurve.com/index.php/2019/07/30/creating-an-mlp-for-regression-with-keras/#mlps-for-classification-and-regression-the-differences). In the first, your aim is to classify a sample into the correct bucket, e.g. into one of the buckets 'diabetes' or 'no diabetes'. In the latter case, however, you don't _classify_ but rather _estimate_ some real valued number. What you're trying to do is _regress a mathematical function from some input data_, and hence it's called regression. For regression problems, there are many loss functions available.
+There are two main types of supervised learning problems: [classification](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras/#what-is-a-classifier) and [regression](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/creating-an-mlp-for-regression-with-keras/#mlps-for-classification-and-regression-the-differences). In the first, your aim is to classify a sample into the correct bucket, e.g. into one of the buckets 'diabetes' or 'no diabetes'. In the latter case, however, you don't _classify_ but rather _estimate_ some real valued number. What you're trying to do is _regress a mathematical function from some input data_, and hence it's called regression. For regression problems, there are many loss functions available.
 
 #### Mean Absolute Error (L1 Loss)
 
@@ -266,7 +266,7 @@ Loss functions are also applied in classifiers. I already discussed in another p
 > The same principle occurs again in machine learning and deep learning.  
 > Only then, we replace the human with a machine learning model. We’re then using machine learning for _classification_, or for deciding about some “model input” to “which class” it belongs.
 > 
-> Source: [How to create a CNN classifier with Keras?](https://www.machinecurve.com/index.php/2019/09/17/how-to-create-a-cnn-classifier-with-keras/)
+> Source: [How to create a CNN classifier with Keras?](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras.md)
 
 We'll now cover loss functions that are used for classification.
 
@@ -300,7 +300,7 @@ In the third case, e.g. when \[latex\]y = 0.9\[/latex\], loss output function wi
 
 What this essentially sketches is a _margin_ that you try to _maximize_: when the prediction is correct or even too correct, it doesn't matter much, but when it's not, we're trying to correct. The correction process keeps going until the prediction is fully correct (or when the human tells the improvement to stop). We're thus finding the most optimum decision boundary and are hence performing a maximum-margin operation.
 
-It is therefore not surprising that hinge loss is one of the most commonly used loss functions in [Support Vector Machines](https://www.machinecurve.com/index.php/2019/09/20/intuitively-understanding-svm-and-svr/) (Kompella, 2017). What's more, hinge loss itself _cannot be used with gradient descent like optimizers_, those with which (deep) neural networks are trained. This occurs due to the fact that it's not continuously differentiable, more precisely at the 'boundary' between no loss / minimum loss. Fortunately, a subgradient of the hinge loss function can be optimized, so it can (albeit in a different form) still be used in today's deep learning models (Wikipedia, 2011). For example, hinge loss is available as a [loss function](https://keras.io/losses#hinge) in Keras.
+It is therefore not surprising that hinge loss is one of the most commonly used loss functions in [Support Vector Machines](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/intuitively-understanding-svm-and-svr.md) (Kompella, 2017). What's more, hinge loss itself _cannot be used with gradient descent like optimizers_, those with which (deep) neural networks are trained. This occurs due to the fact that it's not continuously differentiable, more precisely at the 'boundary' between no loss / minimum loss. Fortunately, a subgradient of the hinge loss function can be optimized, so it can (albeit in a different form) still be used in today's deep learning models (Wikipedia, 2011). For example, hinge loss is available as a [loss function](https://keras.io/losses#hinge) in Keras.
 
 #### Squared hinge
 
@@ -315,7 +315,7 @@ This helps achieving two things:
 
 #### Categorical / multiclass hinge
 
-Both normal hinge and squared hinge loss work only for _binary classification problems_ in which the actual target value is either +1 or -1. Although that's perfectly fine for when you have such problems (e.g. the [diabetes yes/no problem](https://www.machinecurve.com/index.php/2019/07/24/why-you-cant-truly-create-rosenblatts-perceptron-with-keras/) that we looked at previously), there are many other problems which cannot be solved in a binary fashion.
+Both normal hinge and squared hinge loss work only for _binary classification problems_ in which the actual target value is either +1 or -1. Although that's perfectly fine for when you have such problems (e.g. the [diabetes yes/no problem](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-you-cant-truly-create-rosenblatts-perceptron-with-keras.md) that we looked at previously), there are many other problems which cannot be solved in a binary fashion.
 
 (Note that one approach to create a multiclass classifier, especially with SVMs, is to create many binary ones, feeding the data to each of them and counting classes, eventually taking the most-chosen class as output - it goes without saying that this is not very efficient.)
 
@@ -359,7 +359,7 @@ Now what if you have no _binary_ classification problem, but instead a _multicla
 
 Thus: one where your output can belong to one of > 2 classes.
 
-The [CNN that we created with Keras](https://www.machinecurve.com/index.php/2019/09/17/how-to-create-a-cnn-classifier-with-keras/) using the MNIST dataset is a good example of this problem. As you can find in the blog (see the link), we used a different loss function there - **categorical crossentropy**. It's still crossentropy, but then adapted to multiclass problems.
+The [CNN that we created with Keras](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras.md) using the MNIST dataset is a good example of this problem. As you can find in the blog (see the link), we used a different loss function there - **categorical crossentropy**. It's still crossentropy, but then adapted to multiclass problems.
 
 ![](images/image-6.png)
 
@@ -369,7 +369,7 @@ It took me some time to understand what was meant with a prediction, though, but
 
 The answer lies in the fact that the crossentropy is _categorical_ and that hence _categorical data is used_, with _one-hot encoding_.
 
-Suppose that we have dataset that presents what the odds are of getting diabetes after five years, just like the [Pima Indians dataset](https://www.machinecurve.com/index.php/2019/07/24/why-you-cant-truly-create-rosenblatts-perceptron-with-keras/) we used before. However, this time another class is added, being "Possibly diabetic", rendering us three classes for one's condition after five years given current measurements:
+Suppose that we have dataset that presents what the odds are of getting diabetes after five years, just like the [Pima Indians dataset](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-you-cant-truly-create-rosenblatts-perceptron-with-keras.md) we used before. However, this time another class is added, being "Possibly diabetic", rendering us three classes for one's condition after five years given current measurements:
 
 - 0: no diabetes
 - 1: possibly diabetic

@@ -30,7 +30,7 @@ Let's take a look! :)
 
 ## What is HuggingFace Accelerate?
 
-If you're familiar to the machine learning world, it's likely that you have heard of HuggingFace already - because they are known for their [Transformers library](https://www.machinecurve.com/index.php/getting-started-with-huggingface-transformers/). HuggingFace itself is a company providing an AI community "building the future of AI".
+If you're familiar to the machine learning world, it's likely that you have heard of HuggingFace already - because they are known for their [Transformers library](https://web.archive.org/web/https://www.machinecurve.com/index.php/getting-started-with-huggingface-transformers/). HuggingFace itself is a company providing an AI community "building the future of AI".
 
 And that's why they provide [a lot more libraries](https://github.com/huggingface) which can be very useful to you as a machine learning engineer!
 
@@ -62,7 +62,7 @@ pip install accelerate
 
 Now that you have installed HuggingFace Accelerate, it's time to accelerate our PyTorch model 🤗
 
-Obviously, a model is necessary if you want to accelerate it, so that is why we will use a model that we created before, [in another blog article](https://www.machinecurve.com/index.php/2021/01/26/creating-a-multilayer-perceptron-with-pytorch-and-lightning/). It's a simple Multilayer Perceptron that is trained for classification with the CIFAR-10 dataset, and you will find an explanation as to how it works when clicking the link.
+Obviously, a model is necessary if you want to accelerate it, so that is why we will use a model that we created before, [in another blog article](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/creating-a-multilayer-perceptron-with-pytorch-and-lightning.md). It's a simple Multilayer Perceptron that is trained for classification with the CIFAR-10 dataset, and you will find an explanation as to how it works when clicking the link.
 
 Today, however, we will simply use it for acceleration with HuggingFace Accelerate. Here, you can find the code - which, as you can see, has no references to `cuda` whatsoever and hence runs on CPU by default:
 

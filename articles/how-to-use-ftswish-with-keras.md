@@ -29,7 +29,7 @@ Let's go! 😊
 
 ## Recap: what is FTSwish?
 
-In our blog post "[What is the FTSwish activation function?](https://www.machinecurve.com/index.php/2020/01/03/what-is-the-ftswish-activation-function/)" we looked at what the Flatten-T Swish or FTSwish activation function is like. Here, we'll recap the essentials, so that you can understand with ease what we're going to build next.
+In our blog post "[What is the FTSwish activation function?](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-the-ftswish-activation-function.md)" we looked at what the Flatten-T Swish or FTSwish activation function is like. Here, we'll recap the essentials, so that you can understand with ease what we're going to build next.
 
 We can define FTSwish as follows:
 
@@ -128,7 +128,7 @@ validation_split = 0.2
 verbosity = 1
 ```
 
-The [CIFAR-10 dataset](https://www.machinecurve.com/index.php/2019/12/31/exploring-the-keras-datasets/#cifar-10-small-image-classification) which we're using today contains 32 x 32 pixels images across 10 different classes. Hence, `img_width = img_height = 32`, and `no_classes = 10`. The `batch_size` is 250 which is a fairly OK setting based on experience ([click here to find out why to balance between high batch sizes and memory requirements](https://www.machinecurve.com/index.php/2019/10/24/gradient-descent-and-its-variants/)). We train for 100 `epochs`, and use 20% of our training data for validation purposes. We output everything on screen by setting `verbosity` to True.
+The [CIFAR-10 dataset](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets/#cifar-10-small-image-classification) which we're using today contains 32 x 32 pixels images across 10 different classes. Hence, `img_width = img_height = 32`, and `no_classes = 10`. The `batch_size` is 250 which is a fairly OK setting based on experience ([click here to find out why to balance between high batch sizes and memory requirements](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md)). We train for 100 `epochs`, and use 20% of our training data for validation purposes. We output everything on screen by setting `verbosity` to True.
 
 ### Loading & preparing the data
 
@@ -206,7 +206,7 @@ input_train = input_train / 255
 input_test = input_test / 255
 ```
 
-Finally, we convert our targets into _categorical format_, which allows us to use [categorical crossentropy loss](https://www.machinecurve.com/index.php/2019/10/22/how-to-use-binary-categorical-crossentropy-with-keras/) later:
+Finally, we convert our targets into _categorical format_, which allows us to use [categorical crossentropy loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-binary-categorical-crossentropy-with-keras.md) later:
 
 ```
 # Convert target vectors to categorical targets
@@ -244,7 +244,7 @@ model.add(Dense(256, kernel_initializer='he_normal', activation=ftswish))
 model.add(Dense(no_classes, activation='softmax', kernel_initializer='he_normal'))
 ```
 
-It's a relatively simple ConvNet, with two Conv2D layers, max pooling, [Dropout](https://www.machinecurve.com/index.php/2019/12/16/what-is-dropout-reduce-overfitting-in-your-neural-networks/) and finally Dense layers for classification. We use [He init](https://www.machinecurve.com/index.php/2019/09/16/he-xavier-initialization-activation-functions-choose-wisely/) because our activation function resembles ReLU.
+It's a relatively simple ConvNet, with two Conv2D layers, max pooling, [Dropout](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-dropout-reduce-overfitting-in-your-neural-networks.md) and finally Dense layers for classification. We use [He init](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/he-xavier-initialization-activation-functions-choose-wisely.md) because our activation function resembles ReLU.
 
 ### Compiling the model
 
@@ -257,9 +257,9 @@ model.compile(loss=keras.losses.categorical_crossentropy,
               metrics=['accuracy'])
 ```
 
-Because we are facing a multiclass classification problem with one-hot encoded vectors (by virtue of calling `to_categorical`), we'll be using [categorical crossentropy](https://www.machinecurve.com/index.php/2019/10/22/how-to-use-binary-categorical-crossentropy-with-keras/). If you wish to skip the conversion to categorical targets, you might want to replace this with [sparse categorical crossentropy](https://www.machinecurve.com/index.php/2019/10/06/how-to-use-sparse-categorical-crossentropy-in-keras/), which supports integer targets.
+Because we are facing a multiclass classification problem with one-hot encoded vectors (by virtue of calling `to_categorical`), we'll be using [categorical crossentropy](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-binary-categorical-crossentropy-with-keras.md). If you wish to skip the conversion to categorical targets, you might want to replace this with [sparse categorical crossentropy](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-sparse-categorical-crossentropy-in-keras.md), which supports integer targets.
 
-For optimization, we use the [Adam optimizer](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/#adam) - the default choice for today's neural networks. Finally, we specify `accuracy` as an additional metric, which is more intuitive than crossentropy loss.
+For optimization, we use the [Adam optimizer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound/#adam) - the default choice for today's neural networks. Finally, we specify `accuracy` as an additional metric, which is more intuitive than crossentropy loss.
 
 ### Fitting the data
 
@@ -276,7 +276,7 @@ history_FTSwish = model.fit(input_train, target_train,
 
 ### Evaluation metrics & model history
 
-The final thing we do is adding code for evaluation (using our _testing data_) and [visualizing the training process](https://www.machinecurve.com/index.php/2019/10/08/how-to-visualize-the-training-process-in-keras/):
+The final thing we do is adding code for evaluation (using our _testing data_) and [visualizing the training process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-training-process-in-keras.md):
 
 ```
 # Generate evaluation metrics

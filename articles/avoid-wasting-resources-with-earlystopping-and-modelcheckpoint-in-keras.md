@@ -15,7 +15,7 @@ tags:
 
 Training a neural network can take a lot of time. In some cases, especially with very deep architectures trained on very large data sets, it can take weeks before one's model is finally trained.
 
-In Keras, when you train a neural network such as a [classifier](https://www.machinecurve.com/index.php/2019/09/17/how-to-create-a-cnn-classifier-with-keras/) or a [regression model](https://www.machinecurve.com/index.php/2019/07/30/creating-an-mlp-for-regression-with-keras/), you'll usually set the number of epochs when you call `model.fit`:
+In Keras, when you train a neural network such as a [classifier](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras.md) or a [regression model](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/creating-an-mlp-for-regression-with-keras.md), you'll usually set the number of epochs when you call `model.fit`:
 
 ```
 fit(x=None, y=None, batch_size=None, epochs=1, verbose=1, callbacks=None, validation_split=0.0, validation_data=None, shuffle=True, class_weight=None, sample_weight=None, initial_epoch=0, steps_per_epoch=None, validation_steps=None, validation_freq=1)
@@ -81,9 +81,9 @@ model.fit(x_train, y_train,
 
 Fortunately, if you use Keras for creating your deep neural networks, it comes to the rescue.
 
-It has two so-called [callbacks](https://www.machinecurve.com/index.php/mastering-keras/#keras-callbacks) which can really help in settling this issue, avoiding wasting computational resources a priori and a posteriori. They are named `EarlyStopping` and `ModelCheckpoint`. This is what they do:
+It has two so-called [callbacks](https://web.archive.org/web/https://www.machinecurve.com/index.php/mastering-keras/#keras-callbacks) which can really help in settling this issue, avoiding wasting computational resources a priori and a posteriori. They are named `EarlyStopping` and `ModelCheckpoint`. This is what they do:
 
-- **EarlyStopping** is called once an epoch finishes. It checks whether the [metric](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/) you configured it for has improved with respect to the best value found so far. If it has not improved, it increases the count of 'times not improved since best value' by one. If it did actually improve, it resets this count. By configuring your _patience_ (i.e. the number of epochs without improvement you allow before training should be aborted), you have the freedom to decide when to stop training. This allows you to configure a very large number of epochs in model.fit (e.g. 100.000), while you know that it will abort the training process once it no longer improves. Gone is your waste of resources with respect to training for too long.
+- **EarlyStopping** is called once an epoch finishes. It checks whether the [metric](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md) you configured it for has improved with respect to the best value found so far. If it has not improved, it increases the count of 'times not improved since best value' by one. If it did actually improve, it resets this count. By configuring your _patience_ (i.e. the number of epochs without improvement you allow before training should be aborted), you have the freedom to decide when to stop training. This allows you to configure a very large number of epochs in model.fit (e.g. 100.000), while you know that it will abort the training process once it no longer improves. Gone is your waste of resources with respect to training for too long.
 - It would be nice if you could save the best performing model automatically. **ModelCheckpoint** is perfect for this and is also called after every epoch. Depending on how you configure it, it saves the entire model or its weights to an HDF5 file. If you wish, it can only save the model once it has improved with respect to some metric you can configure. You will then end up with the best performing instance of your model saved to file, ready for loading and production usage.
 
 Together, EarlyStopping and ModelCheckpoint allow you to stop early, saving computational resources, while maintaining the best performing instance of your model automatically. That's precisely what you want.
@@ -92,7 +92,7 @@ Together, EarlyStopping and ModelCheckpoint allow you to stop early, saving comp
 
 ## Example implementation
 
-Let's build one of the [Keras examples](https://github.com/keras-team/keras/blob/master/examples/imdb_cnn.py) step by step. It uses one-dimensional [convolutional layers](https://machinecurve.com/index.php/2018/12/07/convolutional-neural-networks-and-their-components-for-computer-vision/) for classifying IMDB reviews and, according to its metadata, achieves about 90% test accuracy after just two training epochs.
+Let's build one of the [Keras examples](https://github.com/keras-team/keras/blob/master/examples/imdb_cnn.py) step by step. It uses one-dimensional [convolutional layers](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/convolutional-neural-networks-and-their-components-for-computer-vision.md) for classifying IMDB reviews and, according to its metadata, achieves about 90% test accuracy after just two training epochs.
 
 We will slightly alter it in order to (1) include the callbacks and (2) keep it running until it no longer improves.
 
@@ -128,7 +128,7 @@ We'll fix the random seed in Numpy. This allows us to use the same pseudo random
 np.random.seed(7)
 ```
 
-We then load the data. We make a `load_data` call to the [IMDB data set](https://www.machinecurve.com/index.php/2019/12/31/exploring-the-keras-datasets/#imdb-movie-reviews-sentiment-classification), which is provided in Keras by default. We load a maximum of 5.000 words according to our configuration file. The `load_data` definition provided by Keras automatically splits the data in training and testing data (with inputs `x` and targets `y`). In order to create feature vectors that have the same shape, the sequences are padded. That is, `0.0` is added towards the end. Neural networks tend not to be influenced by those numbers.
+We then load the data. We make a `load_data` call to the [IMDB data set](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets/#imdb-movie-reviews-sentiment-classification), which is provided in Keras by default. We load a maximum of 5.000 words according to our configuration file. The `load_data` definition provided by Keras automatically splits the data in training and testing data (with inputs `x` and targets `y`). In order to create feature vectors that have the same shape, the sequences are padded. That is, `0.0` is added towards the end. Neural networks tend not to be influenced by those numbers.
 
 ```
 (x_train, y_train), (x_test, y_test) = imdb.load_data(num_words=max_features)
@@ -157,7 +157,7 @@ model.add(Dense(1))
 model.add(Activation('sigmoid'))
 ```
 
-Next, we compile the model. [Binary crossentropy](https://www.machinecurve.com/index.php/2019/10/22/how-to-use-binary-categorical-crossentropy-with-keras/) is used since we have two target classes (`positive` and `negative`) and our task is a classification task (for which [crossentropy](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#binary-crossentropy) is a good way of computing loss). The optimizer is [Adam](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/#adam), which is a state-of-the-art optimizer combining various improvements to original [stochastic gradient descent](https://www.machinecurve.com/index.php/2019/10/24/gradient-descent-and-its-variants/). As an additional metric which is more intuitive to human beings, `accuracy` is included as well.
+Next, we compile the model. [Binary crossentropy](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-binary-categorical-crossentropy-with-keras.md) is used since we have two target classes (`positive` and `negative`) and our task is a classification task (for which [crossentropy](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#binary-crossentropy) is a good way of computing loss). The optimizer is [Adam](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound/#adam), which is a state-of-the-art optimizer combining various improvements to original [stochastic gradient descent](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md). As an additional metric which is more intuitive to human beings, `accuracy` is included as well.
 
 ```
 model.compile(loss='binary_crossentropy',
@@ -197,7 +197,7 @@ As you can see, the callbacks have various configuration options:
 
 - The **checkpoint\_path** in ModelCheckpoint is the path to the file where the model instance should be saved. In my case, the checkpoint path is `checkpoint_path=f'{os.path.dirname(os.path.realpath(__file__))}/testmodel.h5'`.
 - A **monitor**, which specifies the variable that is being monitored by the callback for making its decision whether to stop or save the model. Often, it's a good idea to use `val_loss`, because it overfits much slower than training loss. This does however require that you add a `validation_split` in `model.fit`.
-- A **patience**, which specifies how many epochs without improvement you'll allow before the callback interferes. In the case of EarlyStopping above, once the [validation loss](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/) improves, I allow Keras to complete 30 new epochs without improvement before the training process is finished. When it improves at e.g. the 23rd epoch, this counter is reset and the cycle starts again.
+- A **patience**, which specifies how many epochs without improvement you'll allow before the callback interferes. In the case of EarlyStopping above, once the [validation loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md) improves, I allow Keras to complete 30 new epochs without improvement before the training process is finished. When it improves at e.g. the 23rd epoch, this counter is reset and the cycle starts again.
 - The **mode**, which can also be `max` or left empty. If it's left empty, it decides itself based on the `monitor` you specify. Common sense dictates what mode you should use. Validation loss should be minimized; that's why we use `min`. Not sure why you would attempt to maximize validation loss :)
 - The **min\_delta** in EarlyStopping. Only when the improvement is higher than this delta value it is considered to be an improvement. This avoids that very small improvements disallow you from finalizing training, e.g. when you're trapped in a small convergence scenario when using a really small learning rate.
 - The **save\_best\_only** in ModelCheckpoint pretty much speaks for itself. If `True`, it only saves the best model instance with respect to the monitor specified.
@@ -268,7 +268,7 @@ Epoch 00032: val_loss did not improve from 0.27188
 Epoch 00032: early stopping
 ```
 
-...and the training process comes to a halt, as we intended :) Most likely, the model can still be improved - e.g. by introducing [learning rate decay](https://www.machinecurve.com/index.php/2019/11/11/problems-with-fixed-and-decaying-learning-rates/) and finding the best [learning rate](https://www.machinecurve.com/index.php/2019/11/06/what-is-a-learning-rate-in-a-neural-network/) prior to the training process - but hey, that wasn't the goal of this exercise.
+...and the training process comes to a halt, as we intended :) Most likely, the model can still be improved - e.g. by introducing [learning rate decay](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/problems-with-fixed-and-decaying-learning-rates.md) and finding the best [learning rate](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-a-learning-rate-in-a-neural-network.md) prior to the training process - but hey, that wasn't the goal of this exercise.
 
 I've also got my HDF5 file:
 

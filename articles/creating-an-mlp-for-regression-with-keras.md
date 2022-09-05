@@ -14,7 +14,7 @@ tags:
 
 Machine learning is a wide field and machine learning problems come in many flavors. If, say, you wish to group data based on similarities, you would choose an _unsupervised_ approach called _clustering_. If you have a fixed number of classes which you wish to assign new data to, you'll choose a _supervised_ approach named _classification_. If, however, you don't have a fixed number, but wish to estimate a real value - your approach will still be _supervised_, but your ML problem has changed: you'll then focus on _regression_.
 
-In a previous blog we showed that [Multilayer Perceptrons](https://machinecurve.com/index.php/2019/07/27/how-to-create-a-basic-mlp-classifier-with-the-keras-sequential-api/) (MLPs) can be used successfully for classification, albeit that state-of-the-art methods may yield better performance for some datasets.
+In a previous blog we showed that [Multilayer Perceptrons](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-basic-mlp-classifier-with-the-keras-sequential-api.md) (MLPs) can be used successfully for classification, albeit that state-of-the-art methods may yield better performance for some datasets.
 
 But MLPs can also be used for a regression problem. And that's exactly what we will demonstrate in today's blog.
 
@@ -93,11 +93,11 @@ Preferably, install these in an environment with Anaconda. See [here](https://to
 
 ## MLPs for classification and regression: the differences
 
-We created a Multilayer Perceptron for classifying data (MNIST data, to be specific) in [another blog](https://machinecurve.com/index.php/2019/07/27/how-to-create-a-basic-mlp-classifier-with-the-keras-sequential-api/). As we'll discover in this blog, MLPs can also be applied to regression. However, I must stress that there are a few differences that we must take into account before we proceed.
+We created a Multilayer Perceptron for classifying data (MNIST data, to be specific) in [another blog](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-basic-mlp-classifier-with-the-keras-sequential-api.md). As we'll discover in this blog, MLPs can also be applied to regression. However, I must stress that there are a few differences that we must take into account before we proceed.
 
 Firstly, the final activation function. For classification MLPs, we used the `Softmax` activation function for the multiclass classification problem that we intended to solve. This does not work for regression MLPs. While you want to compute the probability that a sample belongs to any of the predetermined classes during classification (i.e., what Softmax does), you want something different during regression. In fact, what you want is to predict a real-valued number, like '24.05'. You therefore cannot use Softmax during regression. You'll simply use the linear activation function instead for the final layer.
 
-(For the same reason, you don't [convert your data](https://machinecurve.com/index.php/2019/07/27/how-to-create-a-basic-mlp-classifier-with-the-keras-sequential-api/#loading-your-data) with `to_categorical` during regression).
+(For the same reason, you don't [convert your data](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-basic-mlp-classifier-with-the-keras-sequential-api/#loading-your-data) with `to_categorical` during regression).
 
 Secondly, the loss function that you'll define is different. For multiclass classification problems, categorical crossentropy was your loss function of preference (Chollet, 2017). Binary crossentropy would be the one for binary classification. However, once again, you're regressing this time - and you cannot use crossentropy, which essentially attempts to compare probability distributions (or, by the analogy from our previous blog, purple elephants) and see how much they are alike. Instead, you'll use the mean average error or mean squared error, or similar loss functions. These simply compute the difference between the prediction and the expected value and perform some operations to make the outcome better for optimization. We'll cover them in more detail later.
 
@@ -257,13 +257,13 @@ model.add(Dense(8, activation='relu'))
 model.add(Dense(1, activation='linear'))
 ```
 
-Similar to the [MLP for classification](https://machinecurve.com/index.php/2019/07/27/how-to-create-a-basic-mlp-classifier-with-the-keras-sequential-api/), we're using the Keras Sequential API since it makes our life easier given the simplicity of our model.
+Similar to the [MLP for classification](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-basic-mlp-classifier-with-the-keras-sequential-api.md), we're using the Keras Sequential API since it makes our life easier given the simplicity of our model.
 
 We then specify three densely-connected layers of neurons: one with 16 outputs, one with 8 outputs and one with 1 output. This way, the neural network will be allowed to 'think' wider first, before converging to the actual prediction.
 
 The input layer is specified by the input shape and therefore contains 3 neurons; one per input feature.
 
-Note that we're using ReLU based activation because it is [one of the standard activation functions](https://machinecurve.com/index.php/2019/05/30/why-swish-could-perform-better-than-relu/#todays-activation-functions) used today. However, note as well that for the final layer we're no longer using `Softmax`, as with the MLP classifier. Instead, we're using the identity function or \[latex\]f(x) = x\[/latex\] for generating the prediction. Using the linear function allows us to generate a real-valued or numeric prediction, which is exactly what we need.
+Note that we're using ReLU based activation because it is [one of the standard activation functions](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-swish-could-perform-better-than-relu/#todays-activation-functions) used today. However, note as well that for the final layer we're no longer using `Softmax`, as with the MLP classifier. Instead, we're using the identity function or \[latex\]f(x) = x\[/latex\] for generating the prediction. Using the linear function allows us to generate a real-valued or numeric prediction, which is exactly what we need.
 
 ### Hyperparameter configuration and fitting the data
 
@@ -475,7 +475,7 @@ Here's why I think that the relatively poor performance occurs:
 - We didn't take into account **human activity**. The numbers do not say anything about human activity; perhaps, water levels changed due to certain water management activities. If this is the case, it would directly influence the model's predictive power if it this pattern does not occur in all the lakes. I read [here](https://en.wikipedia.org/wiki/Poondi_reservoir#2008-2009:_Construction_of_pump_houses) that activities were undertaken in 2008-2009 to reduce the effects of evaporation. This might influence the data.
 - Finally, we also did not take into account **weather conditions**. The weather is chaotic and may therefore reduce balance within the data. This is particularly the case because we only have rain data - and no data about, say, sunshine, and by consequence the degree of evaporation. It may be the case that we can improve the performance of the model if we simply add more weather data to it.
 
-And to be frank, one can think about many better approaches to this problem than an MLP - approaches that would make the prediction much more aware of (primarily the temporal) context. For the sake of simplicity, I won't cover them all, but creating timeseries based models with e.g. [CNNs](https://machinecurve.com/index.php/2018/12/07/convolutional-neural-networks-and-their-components-for-computer-vision/) could be an option.
+And to be frank, one can think about many better approaches to this problem than an MLP - approaches that would make the prediction much more aware of (primarily the temporal) context. For the sake of simplicity, I won't cover them all, but creating timeseries based models with e.g. [CNNs](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/convolutional-neural-networks-and-their-components-for-computer-vision.md) could be an option.
 
 Nevertheless, we have been successful in creating a Multilayer Perceptron in Keras for regression - contrary to the classification one that we created before.
 

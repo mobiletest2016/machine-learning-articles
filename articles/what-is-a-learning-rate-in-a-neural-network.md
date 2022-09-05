@@ -35,7 +35,7 @@ Let's go! 😊
 
 **Update 01/Mar/2021:** ensure that article is up to date in 2021.
 
-**Update 01/Feb/2020:** added link to [Learning Rate Range Test](https://www.machinecurve.com/index.php/2020/02/20/finding-optimal-learning-rates-with-the-learning-rate-range-test/).
+**Update 01/Feb/2020:** added link to [Learning Rate Range Test](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/finding-optimal-learning-rates-with-the-learning-rate-range-test.md).
 
 * * *
 
@@ -45,19 +45,19 @@ Let's go! 😊
 
 ## How models optimize
 
-If we wish to understand what learning rates are and why they are there, we must first take a look at the [high-level machine learning process](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#the-high-level-supervised-learning-process) for supervised learning scenarios:
+If we wish to understand what learning rates are and why they are there, we must first take a look at the [high-level machine learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process) for supervised learning scenarios:
 
 [![](images/High-level-training-process-1024x973.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/09/High-level-training-process.jpg)
 
 ### Feeding data forward and computing loss
 
-As you can see, neural networks improve iteratively. This is done by feeding the training data forward, generating a prediction for every sample fed to the model. When comparing the predictions with the actual (known) targets by means of a [loss function](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/), it's possible to determine how well (or, strictly speaking, how bad) the model performs.
+As you can see, neural networks improve iteratively. This is done by feeding the training data forward, generating a prediction for every sample fed to the model. When comparing the predictions with the actual (known) targets by means of a [loss function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md), it's possible to determine how well (or, strictly speaking, how bad) the model performs.
 
 ### Changing model weights with gradient updates
 
 Subsequently, before starting the second iteration, the model will slightly adapt its internal structure - the weights for each neuron - by using gradients of the loss landscape. With a technique called _backpropagation_, the gradient of the update for a particular error is computed with respect to the original error and the neurons between the particular neuron and the error. Backprop allows you to compute the gradient efficiently by smartly using the chain rule, which you've likely encountered in calculus class.
 
-However, this is always combined with what is known as an _optimizer_, which effectively performs the update. There are many optimizers: [three forms of gradient descent](https://www.machinecurve.com/index.php/2019/10/24/gradient-descent-and-its-variants/), where you simply move in the opposite direction of the gradient, are the simplest ones. With [adaptive ones](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/), improvements to gradient descent are combined with per-neuron updates.
+However, this is always combined with what is known as an _optimizer_, which effectively performs the update. There are many optimizers: [three forms of gradient descent](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md), where you simply move in the opposite direction of the gradient, are the simplest ones. With [adaptive ones](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md), improvements to gradient descent are combined with per-neuron updates.
 
 However - it's not a good idea that weight updates are large. This is because when weights swing back and forth, it's likely that you either have a very oscillating path towards your global minimum. Additionally, when they are large, it might be that you continously overshoot the optimum, getting worse performance than necessary!
 
@@ -95,11 +95,11 @@ There are many options here: it's possible to have your learning rate decay expo
 
 It's better than a fixed learning rate for obvious reasons, but learning rate decay schemes suffer from a drawback that also impacts fixed learning rates: the fact that you have to configure them in advance. This is essentially a guess, because you then don't know your exact loss landscape yet. And with any guess, the results may be good, but also disastrous.
 
-Fortunately, there's also something as a _[Learning Rate Range Test](https://www.machinecurve.com/index.php/2020/02/20/finding-optimal-learning-rates-with-the-learning-rate-range-test/)_, which we'll also cover in a subsequent blog. With this range test, you essentially test average model performance across a range of learning rates. This results in a plot that allows you to pick a starting learning rate based on empirical testing, which you can subsequently use in e.g. a learning rate decay scheme.
+Fortunately, there's also something as a _[Learning Rate Range Test](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/finding-optimal-learning-rates-with-the-learning-rate-range-test.md)_, which we'll also cover in a subsequent blog. With this range test, you essentially test average model performance across a range of learning rates. This results in a plot that allows you to pick a starting learning rate based on empirical testing, which you can subsequently use in e.g. a learning rate decay scheme.
 
 Another type of learning rate we'll cover in another blog is the concept of a _Cyclical Learning Rate_. In this case, the learning rate moves back and forth between a very high and a very low learning rate, in between some bounds that you can specify using the same _range test_ as discussed previously. This is contradictory to the concept of a large learning rate at first and a small one towards the final epochs, but it actually makes a lot of sense. With larger learning rates throughout the entire training process, you can both speed up your training process in the early stages _and_ find an escape route if you're stuck in local minima. Smaller learning rates, which will inevitably follow the larger ones, will then allow you to look around for some time, taking smaller steps towards the minimum close by. Empirical results have shown promising results.
 
-Especially when you combine decaying learning rates and cyclical learning rates with early cutoff techniques such as [EarlyStopping](https://www.machinecurve.com/index.php/2019/05/30/avoid-wasting-resources-with-earlystopping-and-modelcheckpoint-in-keras/), it's very much possible to find a well-performing model without risking severe overfitting.
+Especially when you combine decaying learning rates and cyclical learning rates with early cutoff techniques such as [EarlyStopping](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/avoid-wasting-resources-with-earlystopping-and-modelcheckpoint-in-keras.md), it's very much possible to find a well-performing model without risking severe overfitting.
 
 * * *
 
@@ -107,7 +107,7 @@ Especially when you combine decaying learning rates and cyclical learning rates 
 
 In this blog post, we've looked at the concept of a learning rate at a high level. We explained why they are there in terms of the high-level supervised machine learning process and how they are combined with feeding data forward and model optimization.
 
-Subsequently, we looked at some types of learning rates that are available and common today: fixed learning rates, learning rate decay schemes, the [Learning Rate Range Test](https://www.machinecurve.com/index.php/2020/02/20/finding-optimal-learning-rates-with-the-learning-rate-range-test/) which can be combined with either learning rate decay _or_ Cyclical Learning Rates, which are an entirely different approach to learning.
+Subsequently, we looked at some types of learning rates that are available and common today: fixed learning rates, learning rate decay schemes, the [Learning Rate Range Test](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/finding-optimal-learning-rates-with-the-learning-rate-range-test.md) which can be combined with either learning rate decay _or_ Cyclical Learning Rates, which are an entirely different approach to learning.
 
 Thanks for reading! If you have any questions or remarks, feel free to leave a comment below 👇 I'll happily answer whenever I can, and will update and/or improve my blog post if necessary.
 
@@ -121,10 +121,10 @@ Smith, L. N., & Topin, N. (2017). Exploring loss function topology with cyclical
 
 Smith, S. L., Kindermans, P. J., Ying, C., & Le, Q. V. (2017). Don't decay the learning rate, increase the batch size. _[arXiv preprint arXiv:1711.00489](https://arxiv.org/abs/1711.00489)_[.](https://arxiv.org/abs/1711.00489)
 
-MachineCurve. (2019, October 22). About loss and loss functions. Retrieved from [https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/)
+MachineCurve. (2019, October 22). About loss and loss functions. Retrieved from [https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md)
 
-MachineCurve. (2019, October 24). Gradient Descent and its variants. Retrieved from [https://www.machinecurve.com/index.php/2019/10/24/gradient-descent-and-its-variants/](https://www.machinecurve.com/index.php/2019/10/24/gradient-descent-and-its-variants/)
+MachineCurve. (2019, October 24). Gradient Descent and its variants. Retrieved from [https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants/](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md)
 
-MachineCurve. (2019, November 3). Extensions to Gradient Descent: from momentum to AdaBound. Retrieved from [https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/)
+MachineCurve. (2019, November 3). Extensions to Gradient Descent: from momentum to AdaBound. Retrieved from [https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound/](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md)
 
 Jain, V. (2019, August 5). Cyclical Learning Rates ? The ultimate guide for setting learning rates for Neural Networks. Retrieved from [https://medium.com/swlh/cyclical-learning-rates-the-ultimate-guide-for-setting-learning-rates-for-neural-networks-3104e906f0ae](https://medium.com/swlh/cyclical-learning-rates-the-ultimate-guide-for-setting-learning-rates-for-neural-networks-3104e906f0ae)

@@ -13,9 +13,9 @@ tags:
   - "optimizer"
 ---
 
-Learning rates come in various flavors and can be used to influence the learning process. More specifically, they are meant to ensure that gradient updates are not too large as they are set to small values by default. In a [different blog post](https://www.machinecurve.com/index.php/2019/11/06/what-is-a-learning-rate-in-a-neural-network/), we covered them conceptually, but highlighted that fixed and decaying learning rates come with their set of challenges.
+Learning rates come in various flavors and can be used to influence the learning process. More specifically, they are meant to ensure that gradient updates are not too large as they are set to small values by default. In a [different blog post](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-a-learning-rate-in-a-neural-network.md), we covered them conceptually, but highlighted that fixed and decaying learning rates come with their set of challenges.
 
-What these challenges are is what we'll cover in this blog post. For fixed learning rates, we will compare [SGD](https://www.machinecurve.com/index.php/2019/10/24/gradient-descent-and-its-variants/) learning rates that are either too large or too small with the baseline scenario, which is the Keras default learning rate for the SGD optimizer.
+What these challenges are is what we'll cover in this blog post. For fixed learning rates, we will compare [SGD](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md) learning rates that are either too large or too small with the baseline scenario, which is the Keras default learning rate for the SGD optimizer.
 
 For learning rate decay, we'll show you how it improves the learning process, but why setting the default one in advance and choosing a decay scheme might still influence the training results. Finally, we'll show you a few possible solutions for the problem.
 
@@ -25,7 +25,7 @@ If you still think that this post covers the machine learning problem you're dea
 
 **Update 01/Mar/2021:** ensure that article is up to date for 2021. Replaced TF 1 based code with TensorFlow 2 based code, so that it can be used with recent versions of the library. Some other improvements as well.
 
-**Update 01/Feb/2020:** added link to [Learning Rate Range Test](https://www.machinecurve.com/index.php/2020/02/20/finding-optimal-learning-rates-with-the-learning-rate-range-test/).
+**Update 01/Feb/2020:** added link to [Learning Rate Range Test](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/finding-optimal-learning-rates-with-the-learning-rate-range-test.md).
 
 * * *
 
@@ -35,7 +35,7 @@ If you still think that this post covers the machine learning problem you're dea
 
 ## Problems with Fixed Learning Rates
 
-In order to show the issues you may encounter when using fixed learning rates, we'll use a [CNN based image classifier](https://www.machinecurve.com/index.php/2019/09/17/how-to-create-a-cnn-classifier-with-keras/) that we created before. This model uses the MNIST dataset for demonstration purposes. This dataset is used in educational settings quite often.
+In order to show the issues you may encounter when using fixed learning rates, we'll use a [CNN based image classifier](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras.md) that we created before. This model uses the MNIST dataset for demonstration purposes. This dataset is used in educational settings quite often.
 
 The code of our model can be found by clicking the link above or by scrolling slightly to the bottom of this post, under 'Model code'.
 
@@ -43,7 +43,7 @@ First, we will create our baseline by training our CNN with the default learning
 
 ### Baseline: default learning rate
 
-This is a [visualization of the performance](https://www.machinecurve.com/index.php/2019/10/08/how-to-visualize-the-training-process-in-keras/) of the model with our baseline scenario:
+This is a [visualization of the performance](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-training-process-in-keras.md) of the model with our baseline scenario:
 
 [![](images/fixed_lr_baseline.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/fixed_lr_baseline.png)
 
@@ -86,7 +86,7 @@ Yes, we're finding convergence again with really good test accuracy! 😎
 - First, the test loss is approximately twice as high compared with the baseline scenario: 0.045 instead of 0.029. This likely occurs because the model cannot find the actual minimum, since the learning rate is too large and we overshoot our minimum every time.
 - Secondly, compared to the [baseline plot](https://www.machinecurve.com/wp-content/uploads/2019/11/fixed_lr_baseline.png), we can observe that our loss value oscillates more heavily. This is also the result of a less subtle learning rate, compared with the baseline scenario.
 
-All in all, comparing our baseline, we can see that while increasing the learning rate _may_ help you find convergence faster, _it may also be destructive for learning_. Choose wisely! Start with the default LR and perhaps increase it in small steps, [visualize training history](https://www.machinecurve.com/index.php/2019/10/08/how-to-visualize-the-training-process-in-keras/) and watch for oscillation in your plots, and stop slightly before this occurs.
+All in all, comparing our baseline, we can see that while increasing the learning rate _may_ help you find convergence faster, _it may also be destructive for learning_. Choose wisely! Start with the default LR and perhaps increase it in small steps, [visualize training history](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-training-process-in-keras.md) and watch for oscillation in your plots, and stop slightly before this occurs.
 
 ### Too small fixed learning rate: extremely slow convergence
 
@@ -106,8 +106,8 @@ Test loss: 0.17123142351806164 / Test accuracy: 0.9513999819755554
 
 We can make a few observations here:
 
-- First, the history plot shows that our history is much smoother than the ones found with the larger learning rate. This makes sense, since a smaller learning rate essentially means that you're taking smaller steps when performing [gradient descent](https://www.machinecurve.com/index.php/2019/10/24/gradient-descent-and-its-variants/), and hence your path downhill is smoother.
-- Secondly, we unfortunately find higher loss values compared to our baseline scenario. Training and validation loss approximate 0.25, while test loss is approximately 0.171. Compare this with our baseline, where test loss was 0.029, and you see what happens - smaller loss values lead to smoother learning curves, but result in slower convergence (while theoretically your model still converges by simply increasing the number of epochs, things like [vanishing gradients](https://www.machinecurve.com/index.php/2019/08/30/random-initialization-vanishing-and-exploding-gradients/) or using the [Adadelta optimizer](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/#adagrad) could then result in finding no convergence at all!)
+- First, the history plot shows that our history is much smoother than the ones found with the larger learning rate. This makes sense, since a smaller learning rate essentially means that you're taking smaller steps when performing [gradient descent](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md), and hence your path downhill is smoother.
+- Secondly, we unfortunately find higher loss values compared to our baseline scenario. Training and validation loss approximate 0.25, while test loss is approximately 0.171. Compare this with our baseline, where test loss was 0.029, and you see what happens - smaller loss values lead to smoother learning curves, but result in slower convergence (while theoretically your model still converges by simply increasing the number of epochs, things like [vanishing gradients](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/random-initialization-vanishing-and-exploding-gradients.md) or using the [Adadelta optimizer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound/#adagrad) could then result in finding no convergence at all!)
 
 This pattern gets even stronger when we decrease our learning rate again, once more 100 times. In fact, the steps are now too small in order to find model convergence quickly:
 
@@ -131,7 +131,7 @@ We can thus conclude that while fixed learning rates benefit you in terms of _si
 
 ### Model code
 
-This is the code that we used for our model, more speifically for our baseline setting. It uses the [Adam adaptive optimizer](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/) and its default learning rate of \[latex\]0.001\[/latex\]. Note that you can adapt the learning rate under 'Fit data to model'.
+This is the code that we used for our model, more speifically for our baseline setting. It uses the [Adam adaptive optimizer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md) and its default learning rate of \[latex\]0.001\[/latex\]. Note that you can adapt the learning rate under 'Fit data to model'.
 
 ```
 '''
@@ -308,21 +308,21 @@ You may in that case try a few of these solutions.
 
 ### Using adaptive optimizers
 
-First of all - you may wish to use an [adaptive optimizer](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/). Normal [gradient descent](https://www.machinecurve.com/index.php/2019/10/24/gradient-descent-and-its-variants/) updates all your weights in a similar fashion: it applies the gradient update times the learning rate and subtracts this update from the model's current weights.
+First of all - you may wish to use an [adaptive optimizer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md). Normal [gradient descent](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md) updates all your weights in a similar fashion: it applies the gradient update times the learning rate and subtracts this update from the model's current weights.
 
 However, over time, you may wish to decrease the updates for weights that have already updated quite often (since they apparently do not contribute to model improvement) while increasing the weights that haven't updated quite often yet (because perhaps, they may contribute after all).
 
-What you need is an _adaptive optimizer_ such as [Adam](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/#adam), [Adadelta](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/#adadelta) or [AdaMax](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/#adamax), which
+What you need is an _adaptive optimizer_ such as [Adam](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound/#adam), [Adadelta](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound/#adadelta) or [AdaMax](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound/#adamax), which
 
-Yes - for most of them, you'll still need to configure the default learning rate. However, what's best **is that the impact of your choice impacts the training process even less**, because the optimizer will be able to alter the _impact_ of the update itself. Even better, if you use [Adadelta](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/#adadelta) it means that you don't need to configure a default learning rate at all.
+Yes - for most of them, you'll still need to configure the default learning rate. However, what's best **is that the impact of your choice impacts the training process even less**, because the optimizer will be able to alter the _impact_ of the update itself. Even better, if you use [Adadelta](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound/#adadelta) it means that you don't need to configure a default learning rate at all.
 
-(Note that adaptive optimizers are not [without challenges](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/#challenges-with-adaptive-optimizers-new-ones) - as is pretty much everything in deep learning. Do not use them blindly, but use your common sense - if they don't work, perhaps try SGD with one of the other options instead.)
+(Note that adaptive optimizers are not [without challenges](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound/#challenges-with-adaptive-optimizers-new-ones) - as is pretty much everything in deep learning. Do not use them blindly, but use your common sense - if they don't work, perhaps try SGD with one of the other options instead.)
 
 ### Learning Rate Range Test
 
 In 2017, in two papers, Smith (2017) and Smith & Topin (2017) produced an interesting idea: _what if you can determine the most optimal learning rate empirically_?
 
-This is the premise behind the **[Learning Rate Range Test](https://www.machinecurve.com/index.php/2020/02/20/finding-optimal-learning-rates-with-the-learning-rate-range-test/)**, which essentially allows you to test a range of learning rates by training the model once, but then with exponentially increasing learning rate.
+This is the premise behind the **[Learning Rate Range Test](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/finding-optimal-learning-rates-with-the-learning-rate-range-test.md)**, which essentially allows you to test a range of learning rates by training the model once, but then with exponentially increasing learning rate.
 
 Take for example the [Keras LR Finder](https://github.com/surmenok/keras_lr_finder) implementation in Keras, which is based on the algorithm described in Smith (2017) and essentially:
 
@@ -336,7 +336,7 @@ Result of the Learning Rate Range Test for a CNN I trained for my master's thesi
 
 It allows you to to estimate a default learning rate, which you can then use in a fixed sense or with a decay scheme. Even though you'll have to fix your learning rate a priori before starting the real training process, you can now find an estimate that might actually work best, or approaches an optimal value quite closely.
 
-If you wish to implement it with Keras, [take a look here](https://www.machinecurve.com/index.php/2020/02/20/finding-optimal-learning-rates-with-the-learning-rate-range-test/#implementing-the-learning-rate-range-test-with-keras).
+If you wish to implement it with Keras, [take a look here](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/finding-optimal-learning-rates-with-the-learning-rate-range-test/#implementing-the-learning-rate-range-test-with-keras).
 
 ### Cyclical Learning Rates
 
@@ -356,7 +356,7 @@ How does this benefit you compared to a 'traditional' learning rate, you may now
 
 Well, this has actually yielded quite good results, and this is perhaps why: it combines the best of _large steps_ with the best of _small steps_. By setting large steps, you may move quickly towards a minimum, and even overshoot a local minimum if it seems that you're getting stuck. The smaller steps will then ensure, if you're closer to a minimum, that you will be able to find the true minimum without overshooting.
 
-Especially when you're in the global minimum, it's very unlikely that you'll overshoot when learning rates switch back from small to large ones. In fact, when you combine this strategy with [EarlyStopping and/or ModelCheckpointing](https://www.machinecurve.com/index.php/2019/05/30/avoid-wasting-resources-with-earlystopping-and-modelcheckpoint-in-keras/), it's even more unlikely that you'll overshoot your global minimum.
+Especially when you're in the global minimum, it's very unlikely that you'll overshoot when learning rates switch back from small to large ones. In fact, when you combine this strategy with [EarlyStopping and/or ModelCheckpointing](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/avoid-wasting-resources-with-earlystopping-and-modelcheckpoint-in-keras.md), it's even more unlikely that you'll overshoot your global minimum.
 
 * * *
 

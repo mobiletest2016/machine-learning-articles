@@ -34,11 +34,11 @@ Are you ready? Let's go! 😎
 
 ## What are pooling operations?
 
-Suppose that you're training a [convolutional neural network](https://www.machinecurve.com/index.php/2018/12/07/convolutional-neural-networks-and-their-components-for-computer-vision/). Your goal is to classify images from a dataset - say, the [SVHN](https://www.machinecurve.com/index.php/2020/01/10/making-more-datasets-available-for-keras/) one. The operation performed by the first convolutional layer in your neural network can be represented as follows:
+Suppose that you're training a [convolutional neural network](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/convolutional-neural-networks-and-their-components-for-computer-vision.md). Your goal is to classify images from a dataset - say, the [SVHN](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/making-more-datasets-available-for-keras.md) one. The operation performed by the first convolutional layer in your neural network can be represented as follows:
 
 [![](images/CNN-1.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/09/CNN-1.jpg)
 
-The inputs for this layer are images, of height \[latex\]H\[/latex\], width \[latex\]W\[/latex\] and with three channels. Thus, they're likely RGB images. Using a 3x3x3 kernel, a convolution operation is performed over the input image, generating \[latex\]N\[/latex\] so-called "feature maps" of size \[latex\]H\_{fm} \\times W\_{fm}\[/latex\]. One feature map learns one particular feature present in the image. Through [activating](https://www.machinecurve.com/index.php/2019/12/03/what-do-convnets-see-visualizing-filters-with-activation-maximization/), these feature maps contribute to the outcome prediction during training, and for new data as well. \[latex\]N\[/latex\] can be configured by the machine learning engineer prior to starting the training process.
+The inputs for this layer are images, of height \[latex\]H\[/latex\], width \[latex\]W\[/latex\] and with three channels. Thus, they're likely RGB images. Using a 3x3x3 kernel, a convolution operation is performed over the input image, generating \[latex\]N\[/latex\] so-called "feature maps" of size \[latex\]H\_{fm} \\times W\_{fm}\[/latex\]. One feature map learns one particular feature present in the image. Through [activating](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-do-convnets-see-visualizing-filters-with-activation-maximization.md), these feature maps contribute to the outcome prediction during training, and for new data as well. \[latex\]N\[/latex\] can be configured by the machine learning engineer prior to starting the training process.
 
 In the case of the SVHN dataset mentioned above, where the images are 32 x 32 pixels, the first convolution operation (assuming a stride of 1 and no padding whatsoever) would produce feature maps of 30 x 30 pixels; say we set \[latex\]N = 64\[/latex\], then 64 such maps would be produced in this first layer (Chollet, 2017).
 
@@ -54,7 +54,7 @@ Now let's take a look at the concept of a feature map again. In the first layer,
 
 _A good spatial hierarchy (left) versus a worse one (right)._
 
-As you [likely know](https://www.machinecurve.com/index.php/2018/12/07/convolutional-neural-networks-and-their-components-for-computer-vision/), in the convolution operation of a ConvNet, a small block slides over the entire input image, taking element-wise multiplications with the part of the image it currently slides over (Chollet, 2017). This is a relatively expensive operation. Can't this be done in a simpler way? Do we really need to have a hierarchy built up from convolutions only? The answer is no, and pooling operations prove this.
+As you [likely know](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/convolutional-neural-networks-and-their-components-for-computer-vision.md), in the convolution operation of a ConvNet, a small block slides over the entire input image, taking element-wise multiplications with the part of the image it currently slides over (Chollet, 2017). This is a relatively expensive operation. Can't this be done in a simpler way? Do we really need to have a hierarchy built up from convolutions only? The answer is no, and pooling operations prove this.
 
 ### Introducing pooling
 
@@ -181,7 +181,7 @@ Or, once again when visualized differently:
 
 [![](images/Global-Average-Pooling-3.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/Global-Average-Pooling-3.png)
 
-They're often used to replace the fully-connected or densely-connected layers in a classifier. Instead, the model ends with a convolutional layer that generates as many feature maps as the number of target classes, and applies global average pooling to each in order to convert each feature map into one value (Mudau, n.d.). As feature maps can recognize certain elements within the input data, the maps in the final layer effectively learn to "recognize" the presence of a particular class in this architecture. By feeding the values generated by global average pooling into a [Softmax activation function](https://www.machinecurve.com/index.php/2020/01/08/how-does-the-softmax-activation-function-work/), you once again obtain the multiclass probability distribution that you want.
+They're often used to replace the fully-connected or densely-connected layers in a classifier. Instead, the model ends with a convolutional layer that generates as many feature maps as the number of target classes, and applies global average pooling to each in order to convert each feature map into one value (Mudau, n.d.). As feature maps can recognize certain elements within the input data, the maps in the final layer effectively learn to "recognize" the presence of a particular class in this architecture. By feeding the values generated by global average pooling into a [Softmax activation function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-does-the-softmax-activation-function-work.md), you once again obtain the multiclass probability distribution that you want.
 
 What's more, this approach might improve model performance because of the nativeness of the "classifier" to the "feature extractor" (they're both convolutional instead of convolutional/dense), and reduce overfitting because of the fact that there is no parameter to be learnt in the global average pooling layer (Mudau, n.d.). In a different blog post, we'll try this approach and show the results!
 
@@ -253,7 +253,7 @@ keras.layers.GlobalAveragePooling3D(data_format='channels_last')
 
 ## Conv2D and Pooling example with Keras
 
-Now that we know what pooling layers are and how they are represented within Keras, we can give an example. For this example, we'll show you the model we created before, to show [how sparse categorical crossentropy worked](https://www.machinecurve.com/index.php/2019/10/06/how-to-use-sparse-categorical-crossentropy-in-keras/). Hence, we don't show you all the steps to creating the model here - click the link to finalize your model.
+Now that we know what pooling layers are and how they are represented within Keras, we can give an example. For this example, we'll show you the model we created before, to show [how sparse categorical crossentropy worked](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-sparse-categorical-crossentropy-in-keras.md). Hence, we don't show you all the steps to creating the model here - click the link to finalize your model.
 
 But what we do is show you the fragment where pooling is applied. Here it is:
 
@@ -271,7 +271,7 @@ model.add(Dense(256, activation='relu'))
 model.add(Dense(no_classes, activation='softmax'))
 ```
 
-Essentially, it's the architecture for our model. Using the Sequential API, you can see that we add Conv2D layers, which are then followed by MaxPooling2D layers with a `(2, 2)` pool size - effectively halving the input every time. The [Dropout layer](https://www.machinecurve.com/index.php/2019/12/18/how-to-use-dropout-with-keras/) helps boost the model's generalization power.
+Essentially, it's the architecture for our model. Using the Sequential API, you can see that we add Conv2D layers, which are then followed by MaxPooling2D layers with a `(2, 2)` pool size - effectively halving the input every time. The [Dropout layer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-dropout-with-keras.md) helps boost the model's generalization power.
 
 That's it! Applying pooling layers to Keras models is really easy :)
 

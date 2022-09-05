@@ -23,7 +23,7 @@ In this tutorial, you will learn...
 - **How the DBSCAN algorithm works.**
 - **How you can implement the DBSCAN algorithm yourself, with Scikit-learn.**
 
-[Ask a question](https://www.machinecurve.com/index.php/add-machine-learning-question/)
+[Ask a question](https://web.archive.org/web/https://www.machinecurve.com/index.php/add-machine-learning-question/)
 
 Let's take a look! 😎
 
@@ -91,7 +91,7 @@ DBSCAN is an algorithm for performing cluster analysis on your dataset.
 
 Before we start any work on implementing DBSCAN with Scikit-learn, let's zoom in on the algorithm first. As we read above, it stands for **density-based spatial clustering of applications with noise**, which is quite a complex name for a relatively simple algorithm. But we can break it apart so that we can intuitively grasp what it does. _Density-based_ means that it will zoom into areas that have great _density_, or in other words a large amount of samples closely together. Since clusters are dense, this focus on density is good.
 
-_Spatial_ clustering means that it performs clustering by performing actions in the feature space. In other words, whereas some clustering techniques [work by sending messages between points](https://www.machinecurve.com/index.php/2020/04/18/how-to-perform-affinity-propagation-with-python-in-scikit/), DBSCAN performs distance measures in the space to identify which samples belong to each other. _Clustering_ speaks for itself, and _applications with noise_ means that the technique can be used with noisy datasets. We shall see why this is the case next, because we will now look at the fundamental concepts of DBScan: core points, directly reachable points, reachable points and outliers.
+_Spatial_ clustering means that it performs clustering by performing actions in the feature space. In other words, whereas some clustering techniques [work by sending messages between points](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-perform-affinity-propagation-with-python-in-scikit.md), DBSCAN performs distance measures in the space to identify which samples belong to each other. _Clustering_ speaks for itself, and _applications with noise_ means that the technique can be used with noisy datasets. We shall see why this is the case next, because we will now look at the fundamental concepts of DBScan: core points, directly reachable points, reachable points and outliers.
 
 ### The concepts of DBScan
 
@@ -267,7 +267,7 @@ Estimated no. of noise points: 0
 
 ### Plotting the clustered data
 
-Finally, we can generate a scatter plot for our training data. Since we have two clusters, we use a simple lambda function that selects either one color or the other. If you have multiple clusters, you can easily generalize this lambda function [with a dictionary approach](https://www.machinecurve.com/index.php/question/how-to-give-multiple-colors-when-plotting-clusters/).
+Finally, we can generate a scatter plot for our training data. Since we have two clusters, we use a simple lambda function that selects either one color or the other. If you have multiple clusters, you can easily generalize this lambda function [with a dictionary approach](https://web.archive.org/web/https://www.machinecurve.com/index.php/question/how-to-give-multiple-colors-when-plotting-clusters/).
 
 ```
 # Generate scatter plot for training data
@@ -340,7 +340,7 @@ In particular, the algorithm is now capable of detecting noisy samples, as we ca
 
 Adding the lines before generating the scatter plot shows that samples that are labeled as noise are removed from the dataset.
 
-For this reason, we can also use DBSCAN as a noise removal algorithm, e.g. before applying [SVM based classification](https://www.machinecurve.com/index.php/2020/05/03/creating-a-simple-binary-svm-classifier-with-python-and-scikit-learn/), to find better decision boundaries.
+For this reason, we can also use DBSCAN as a noise removal algorithm, e.g. before applying [SVM based classification](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/creating-a-simple-binary-svm-classifier-with-python-and-scikit-learn.md), to find better decision boundaries.
 
 ```
 # Remove the noise
@@ -374,7 +374,7 @@ The algorithm itself is then really simple. Starting from one point, it attempts
 
 Knowing about the building blocks and how the algorithm works conceptually, we then moved on and provided a Python implementation for DBSCAN using Scikit-learn. We saw that with only a few lines of Python code, we were able to generate a dataset, apply DBSCAN clustering to it, visualize the clusters, and even remove the noisy points. The latter makes our dataset cleaner without losing much of the core information available in the clusters.
 
-[Ask a question](https://www.machinecurve.com/index.php/add-machine-learning-question/)
+[Ask a question](https://web.archive.org/web/https://www.machinecurve.com/index.php/add-machine-learning-question/)
 
 I hope that you have learned something from today's article. If you have any questions, you can leave a comments in the comments section below 💬. You can also click the green button to the right 🟢, where you can ask your questions in our **Ask Questions** forum. Please feel free to leave a comment as well if you have other remarks or suggestions for improvement. I'd love to hear from you.
 

@@ -55,7 +55,7 @@ If you wish to understand everything written above in more detail, make sure to 
 
 ## A traditional convolution
 
-Understanding separable convolutions requires to understand traditional ones first. Because I often try to favor [development use](https://machinecurve.com/index.php/mastering-keras/) of deep learning over pure theory, I had to look into the inner workings of those traditional layers again. Since this provides valuable insights (or a valuable recap) about convolutions and I think you'll better understand separable ones because of it, I'll include my review first.
+Understanding separable convolutions requires to understand traditional ones first. Because I often try to favor [development use](https://web.archive.org/web/https://machinecurve.com/index.php/mastering-keras/) of deep learning over pure theory, I had to look into the inner workings of those traditional layers again. Since this provides valuable insights (or a valuable recap) about convolutions and I think you'll better understand separable ones because of it, I'll include my review first.
 
 By consequence, we'll firist look into traditional convolutions. This is such a convolution:
 
@@ -101,7 +101,7 @@ In essence, the fact that the kernel is three-dimensional (WxHxM, with M=3 in th
 
 ## Traditional convolutions require many resources
 
-Very often, your neural network is not composed of one convolutional layer. Rather, a few of them summarize your image to an abstract representation that can be used for classification with densely classified layers that behave like [MLPs](https://machinecurve.com/index.php/2019/07/27/how-to-create-a-basic-mlp-classifier-with-the-keras-sequential-api/).
+Very often, your neural network is not composed of one convolutional layer. Rather, a few of them summarize your image to an abstract representation that can be used for classification with densely classified layers that behave like [MLPs](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-basic-mlp-classifier-with-the-keras-sequential-api.md).
 
 However, a traditional convolution is expensive in terms of the resources that you'll need during training.
 
@@ -119,7 +119,7 @@ We can generalize this to the following formula when we're not using padding:
 
 **Multiplications per image = Kernel width x Kernel height x Number of channels x Number of kernels x Number of vertical slides x Number of horizontal slides**.
 
-Say that the MNIST dataset added to [Keras](https://machinecurve.com/index.php/2019/09/17/how-to-create-a-cnn-classifier-with-keras/) contains ~60k images, of which ~48k are training data, you get the point: convolutions are expensive - and this was only the first convolutional layer.
+Say that the MNIST dataset added to [Keras](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras.md) contains ~60k images, of which ~48k are training data, you get the point: convolutions are expensive - and this was only the first convolutional layer.
 
 Why I'm covering separable convolutions in this blog today is because they might be the (partial) answer to these requirements for computational complexity. They will do the same trick while requiring much fewer resources. Let's start with spatially separable convolutions. Following those, we cover depthwise separable convolutions. For both, we'll show how they might improve the resource requirements for your machine learning projects, and save resources when you're developing convolutional neural nets.
 

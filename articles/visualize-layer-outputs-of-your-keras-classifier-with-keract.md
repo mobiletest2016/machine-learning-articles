@@ -21,7 +21,7 @@ This is what is possible with Keract - and not only for Convolutional Neural Net
 
 In this blog post, we'll cover precisely this feature of the Keract toolkit. We first argue in more detail why it can be smart to visualize the output of various neural network layers. Subsequently, we introduce Keract, which is followed by the creation of a simple ConvNet that can classify MNIST digits. Note again that you can also use Keract when you don't have a ConvNet - that is, it allows you to visualize Dense layers as well.
 
-Followed by the creation of our simple classifier, we use Keract to do a couple of things. First, we use it to generate visualizations of the outputs of the model's layers. Subsequently, we show that it can also generate _activation heatmaps_, which are similar to the [Grad-CAM maps](https://www.machinecurve.com/index.php/2019/11/28/visualizing-keras-cnn-attention-grad-cam-class-activation-maps/) which we created in another blog post. Finally, we show that you don't necessarily need ConvNets to use Keract - as indicated - by giving you an example.
+Followed by the creation of our simple classifier, we use Keract to do a couple of things. First, we use it to generate visualizations of the outputs of the model's layers. Subsequently, we show that it can also generate _activation heatmaps_, which are similar to the [Grad-CAM maps](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/visualizing-keras-cnn-attention-grad-cam-class-activation-maps.md) which we created in another blog post. Finally, we show that you don't necessarily need ConvNets to use Keract - as indicated - by giving you an example.
 
 Let's go! 😎
 
@@ -31,9 +31,9 @@ Let's go! 😎
 
 ## Why visualize layer outputs?
 
-Training your supervised neural network involves feeding forward your training data, generating predictions, and computing a loss score, which is used for [optimization purposes](https://www.machinecurve.com/index.php/2019/10/24/gradient-descent-and-its-variants/). However, it may be that your optimizer gets stuck after some time - and you would like to know why this occurs and, more importantly, what you could do about it.
+Training your supervised neural network involves feeding forward your training data, generating predictions, and computing a loss score, which is used for [optimization purposes](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md). However, it may be that your optimizer gets stuck after some time - and you would like to know why this occurs and, more importantly, what you could do about it.
 
-Take for example a [Convolutional Neural Network](https://www.machinecurve.com/index.php/2018/12/07/convolutional-neural-networks-and-their-components-for-computer-vision/). Such a network is often composed of two types of layers: convolutional layers, which learn features from the image, that can be used by densely-connected layers for classification purposes. The result is a neural network that can classify images - and with quite some accuracy in many cases!
+Take for example a [Convolutional Neural Network](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/convolutional-neural-networks-and-their-components-for-computer-vision.md). Such a network is often composed of two types of layers: convolutional layers, which learn features from the image, that can be used by densely-connected layers for classification purposes. The result is a neural network that can classify images - and with quite some accuracy in many cases!
 
 However, especially with problems that are less straight-forward, ConvNets can be tough to train. In some cases, it does not even converge. Visualizing layer outputs gets important in those cases. As convolutional layers, together with additional layers such as pooling layers downsample the image - in the sense that it gets smaller and more abstract - it may be the case, for example, that information loss occurs. When this happens, a neural network might no longer be able to discriminate between the classes, and hence show inadequate performance. Solving this might be done by increasing the number of feature maps or by removing a layer. While this increase computational cost, it might also improve model performance.
 
@@ -41,9 +41,9 @@ Hence: visualization is important. Let's now introduce Keract, which we can use 
 
 ## What is Keract?
 
-Keract is best summarized as follows: **You have just found a (easy) way to get the activations (outputs) and gradients for each layer of your Keras model ([LSTM](https://www.machinecurve.com/index.php/2020/12/29/a-gentle-introduction-to-long-short-term-memory-networks-lstm/), conv nets…)** (Rémy, 2019).
+Keract is best summarized as follows: **You have just found a (easy) way to get the activations (outputs) and gradients for each layer of your Keras model ([LSTM](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/a-gentle-introduction-to-long-short-term-memory-networks-lstm.md), conv nets…)** (Rémy, 2019).
 
-It is a set of simple yet powerful tools to visualize the outputs (and gradients, but we leave them out of this blog post) of every layer (or a subset of them) of your Keras model. Contrary to many visualization packages, it doesn't only visualize the convolutional layers. Rather, it visualizes output of other layers as well: [LSTMs](https://www.machinecurve.com/index.php/2020/12/29/a-gentle-introduction-to-long-short-term-memory-networks-lstm/), densely-connected ones, and so on. That's great news, as Keract will thus allow you to follow an input throughout the entire model towards its final prediction.
+It is a set of simple yet powerful tools to visualize the outputs (and gradients, but we leave them out of this blog post) of every layer (or a subset of them) of your Keras model. Contrary to many visualization packages, it doesn't only visualize the convolutional layers. Rather, it visualizes output of other layers as well: [LSTMs](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/a-gentle-introduction-to-long-short-term-memory-networks-lstm.md), densely-connected ones, and so on. That's great news, as Keract will thus allow you to follow an input throughout the entire model towards its final prediction.
 
 Let's now implement Keract based visualization using a simple convolutional neural network that classifies the MNIST dataset 😀 As you likely know, this dataset contains thousands of 28x28 pixel images of handwritten digits, i.e. the numbers 0 to 9. Visualizing a subset of them produces this plot:
 
@@ -59,9 +59,9 @@ This is the architecture of the model that we will create today:
 
 [![](images/model.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/model.png)
 
-The model's architecture from the input layer to the output Dense layer. Click [here](https://www.machinecurve.com/index.php/2019/10/07/how-to-visualize-a-model-with-keras/) if you want to understand how to make such plots yourself.
+The model's architecture from the input layer to the output Dense layer. Click [here](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-a-model-with-keras.md) if you want to understand how to make such plots yourself.
 
-We start with an **input layer**, which is simply receptive to the inputs as they are fed to the model. This input layer passes the data to a **Conv2D** layer, which is a convolutional layer that handles two-dimensional inputs. The layer will output six so-called [feature maps](https://www.machinecurve.com/index.php/2018/12/07/convolutional-neural-networks-and-their-components-for-computer-vision/#convolutional-layers), in which the model can detect certain 'features' that separate the classes, to be used for discriminating between the digits 0 to 9. This number - six - is arbitrary: it could have been 32, or 250, but the more feature maps, the more computational resources you need. Additionally, the Keract visualizations that will follow would then consume a substantial amount of space. For this post, we've kept it simple - but feel free to change this number as you desire.
+We start with an **input layer**, which is simply receptive to the inputs as they are fed to the model. This input layer passes the data to a **Conv2D** layer, which is a convolutional layer that handles two-dimensional inputs. The layer will output six so-called [feature maps](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/convolutional-neural-networks-and-their-components-for-computer-vision/#convolutional-layers), in which the model can detect certain 'features' that separate the classes, to be used for discriminating between the digits 0 to 9. This number - six - is arbitrary: it could have been 32, or 250, but the more feature maps, the more computational resources you need. Additionally, the Keract visualizations that will follow would then consume a substantial amount of space. For this post, we've kept it simple - but feel free to change this number as you desire.
 
 Upon passing through the Conv2D layer, data flows to a **MaxPooling2D** layer. This layer essentially looks at the data with e.g. a 2x2 pixels block, taking the maximum value for the block at every time. While the information present in the feature map remains relatively intact, the image gets substantially smaller - saving the need for computational resources. If you're having trouble visualizing this in your head - you've found the _exact_ reason why visualization with e.g. Keract helps you with tuning your deep neural networks.... as it will provide the visualization for you. But let's finish analyzing the architecture first!
 
@@ -69,7 +69,7 @@ Once the feature maps have passed the max pooling layer, they are fed into anoth
 
 Once this convolutional layer has generated another set of feature maps - ten in our case - we let the data pass to a **Flatten** layer. This layer simply takes the data, which is multidimensional (by having a width, height and depth - the ten feature maps), and converts it into a onedimensional array. Why this is necessary is simple: the densely-connected layers, or the "true neuron like layers" that we will use next, can only handle one-dimensional data. The Flatten layer hence connects the convolutional part of your model with the Dense, or classification, part.
 
-As said, two **Dense** layers subsequently follow the convolutional part. They allow for actual classification. The final Dense layer uses the **Softmax** activation function, for [multiclass classification](https://www.machinecurve.com/index.php/2019/10/22/how-to-use-binary-categorical-crossentropy-with-keras/) purposes.
+As said, two **Dense** layers subsequently follow the convolutional part. They allow for actual classification. The final Dense layer uses the **Softmax** activation function, for [multiclass classification](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-binary-categorical-crossentropy-with-keras.md) purposes.
 
 ## From architecture to code: the model
 
@@ -87,7 +87,7 @@ That's it already! 😊
 
 ### Imports and model preparations
 
-Open up your Explorer and navigate to some folder. Create a file - and name it e.g. `keract_activations.py`. Now open an editor, open the file, and start coding. What you'll have to code largely aligns with the [Keras CNN tutorial](https://www.machinecurve.com/index.php/2019/09/17/how-to-create-a-cnn-classifier-with-keras/), and especially the first part:
+Open up your Explorer and navigate to some folder. Create a file - and name it e.g. `keract_activations.py`. Now open an editor, open the file, and start coding. What you'll have to code largely aligns with the [Keras CNN tutorial](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras.md), and especially the first part:
 
 ```
 '''
@@ -217,7 +217,7 @@ This is what this piece of code does:
 - After the imports, you select the `inputs` and `targets` that must be visualized this time. In this case, we visualize the first sample of the test set.
 - Finally, we call `get_activations` for the `model` instance and input image, and subsequently display them with `display_activations`, using the gray colormap. We don't save them, but rather display them on screen.
 
-Now it's time to run the model again. Likely, you have to start training again (check [ModelCheckpoint](https://www.machinecurve.com/index.php/2019/05/30/avoid-wasting-resources-with-earlystopping-and-modelcheckpoint-in-keras/) if you wish to avoid this by saving your model instance to file), but when it finishes, visualizations start popping up.
+Now it's time to run the model again. Likely, you have to start training again (check [ModelCheckpoint](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/avoid-wasting-resources-with-earlystopping-and-modelcheckpoint-in-keras.md) if you wish to avoid this by saving your model instance to file), but when it finishes, visualizations start popping up.
 
 Remember the architecture? Recall...
 
@@ -257,7 +257,7 @@ Next up: the Flatten layer.
 
 [![](images/3_flatten-1024x511.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/3_flatten.png)
 
-It simply converts the multidimensional input into a onedimensional output, being an array, or dots on a line segment. This is fed into a Dense layer which activates with the [ReLU activation function](https://www.machinecurve.com/index.php/2019/09/04/relu-sigmoid-and-tanh-todays-most-used-activation-functions/):
+It simply converts the multidimensional input into a onedimensional output, being an array, or dots on a line segment. This is fed into a Dense layer which activates with the [ReLU activation function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md):
 
 [![](images/4_dense-1024x511.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/4_dense.png)
 

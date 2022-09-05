@@ -15,7 +15,7 @@ tags:
   - "standardization"
 ---
 
-Training a Supervised Machine Learning model involves feeding forward data from a training dataset, through the model, generating predictions. These predictions are then compared with what is known as the _ground truth_, or the corresponding targets for the training data. Subsequently, the model is improved, by minimizing a cost, error or [loss function](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/).
+Training a Supervised Machine Learning model involves feeding forward data from a training dataset, through the model, generating predictions. These predictions are then compared with what is known as the _ground truth_, or the corresponding targets for the training data. Subsequently, the model is improved, by minimizing a cost, error or [loss function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md).
 
 It is important to prepare your dataset before feeding it to your model. When you pass through data without doing so, the model may show some very interesting behavior - and training can become really difficult, if not impossible. In those cases, when inspecting your model code, it could very well be the case that you forgot to apply **normalization** or **standardization**. What are they? Why are they necessary? And how do they work? Precisely that is what we will look at in this article.
 
@@ -39,11 +39,11 @@ Before studying the _what_ of something, I always think that it helps studying t
 
 When you are training a Supervised Machine Learning model, you are feeding forward data through the model, generating predictions, and subsequently improving the model. As you read in the introduction, this is achieved by minimizing a cost/error/loss function, and it allows us to optimize models in their unique ways.
 
-For example, a [Support Vector Machine](https://www.machinecurve.com/index.php/2019/09/20/intuitively-understanding-svm-and-svr/) is optimized by finding support vectors that support the decision boundary with the greatest margin between two classes, effectively computing a distance metric. Neural networks use [gradient descent](https://www.machinecurve.com/index.php/2019/10/24/gradient-descent-and-its-variants/) for optimization, which involves walking down the loss landscape into the direction where loss improves most. And there are many other ways. Now, here are some insights about why datasets must be scaled for Machine Learning algorithms (Wikipedia, 2011):
+For example, a [Support Vector Machine](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/intuitively-understanding-svm-and-svr.md) is optimized by finding support vectors that support the decision boundary with the greatest margin between two classes, effectively computing a distance metric. Neural networks use [gradient descent](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md) for optimization, which involves walking down the loss landscape into the direction where loss improves most. And there are many other ways. Now, here are some insights about why datasets must be scaled for Machine Learning algorithms (Wikipedia, 2011):
 
 - Gradient descent converges much faster when the dataset is scaled.
 - If the model depends on measuring distance (think SVM), the distances are comparable after the dataset was scaled. In fact, if it is _not_ scaled, computation of the loss can be "governed by this particular feature" if the feature has a really big scale compared to other features (Wikipedia, 2011).
-- If you apply [regularization](https://www.machinecurve.com/index.php/2020/01/26/which-regularizer-do-i-need-for-training-my-neural-network/), you must also apply scaling, because otherwise some features may be penalized more than strictly necessary.
+- If you apply [regularization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/which-regularizer-do-i-need-for-training-my-neural-network.md), you must also apply scaling, because otherwise some features may be penalized more than strictly necessary.
 
 ### They help Feature Selection too
 
@@ -56,7 +56,7 @@ Suppose that we given a dataset of a **runner's diary** and that our goal is to 
 > 
 > Wikipedia (n.d.) about the curse of dimensionality
 
-We would e.g. apply algorithms such as [_Principal Component Analysis_ (PCA)](https://www.machinecurve.com/index.php/2020/12/07/introducing-pca-with-python-and-scikit-learn-for-machine-learning/) to help us determine which features are most important. If we look at how these algorithms work, we see that e.g. PCA extracts new features based on the _principal directions_ in the dataset, i.e. the directions in your data where variance is largest (Scikit-learn, n.d.).
+We would e.g. apply algorithms such as [_Principal Component Analysis_ (PCA)](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/introducing-pca-with-python-and-scikit-learn-for-machine-learning.md) to help us determine which features are most important. If we look at how these algorithms work, we see that e.g. PCA extracts new features based on the _principal directions_ in the dataset, i.e. the directions in your data where variance is largest (Scikit-learn, n.d.).
 
 > Variance is the expectation of the squared deviation of a random variable from its mean. Informally, it measures how far a set of numbers is spread out from their average value.
 > 
@@ -68,7 +68,7 @@ Let's keep this in mind when looking at the following dataset:
 
 Here, the variance of the variable _Time offset_ is larger than that of the variable _Distance run_.
 
-PCA will therefore naturally select the Time offset variable over the Distance run variable, because the [eigenpairs](https://www.machinecurve.com/index.php/2020/12/07/introducing-pca-with-python-and-scikit-learn-for-machine-learning/) are more significant there.
+PCA will therefore naturally select the Time offset variable over the Distance run variable, because the [eigenpairs](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/introducing-pca-with-python-and-scikit-learn-for-machine-learning.md) are more significant there.
 
 However, this does not necessarily mean that it _is_ in fact more important - because we cannot compare variance. Only if variance is comparable, and hence the scales are equal in the _unit they represent_, we can confidently use algorithms like PCA for feature selection. That's why we must find a way to make our variables comparable.
 
@@ -201,7 +201,7 @@ print(np.std(normalized_dataset))
 0.611196249385709
 ```
 
-Because the bounds of our normalizations would not be equal, it would still be (slightly) unfair to compare the outcomes e.g. with [PCA](https://www.machinecurve.com/index.php/2020/12/07/introducing-pca-with-python-and-scikit-learn-for-machine-learning/).
+Because the bounds of our normalizations would not be equal, it would still be (slightly) unfair to compare the outcomes e.g. with [PCA](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/introducing-pca-with-python-and-scikit-learn-for-machine-learning.md).
 
 For example, if we used a different dataset, our results would be different:
 
@@ -294,7 +294,7 @@ Most generally, the rule of thumb would be to **use min-max normalization if you
 
 The example below illustrates the effects of standardization. In it, we create Gaussian data, stretch one of the axes with some value to make them relatively incomparable, and plot the data. This clearly indicates the stretched blobs in an absolute sense. Then, we use standardization and plot the data again. We now see that both the mean has moved to \[latex\](0, 0)\[/latex\] _and_ that when the data is standardized, the variance of the axes is pretty similar!
 
-If we hadn't applied feature scaling here, algorithms like [PCA](https://www.machinecurve.com/index.php/2020/12/07/introducing-pca-with-python-and-scikit-learn-for-machine-learning/) would have pretty much fooled us. ;-)
+If we hadn't applied feature scaling here, algorithms like [PCA](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/introducing-pca-with-python-and-scikit-learn-for-machine-learning.md) would have pretty much fooled us. ;-)
 
 ```
 # Imports

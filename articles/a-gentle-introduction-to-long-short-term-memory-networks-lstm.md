@@ -17,9 +17,9 @@ tags:
   - "vanilla-rnn"
 ---
 
-One of the fields where Machine Learning has boosted progress is Natural Language Processing. This is particularly true for the models that are used for machine translation and similar tasks. In other words, for models that can be used for performing [sequence-to-sequence learning](https://www.machinecurve.com/index.php/2020/12/21/from-vanilla-rnns-to-transformers-a-history-of-seq2seq-learning/), where sequences of one kind (e.g. phrases written in English) are transducted into ones of another kind (e.g. phrases written in German).
+One of the fields where Machine Learning has boosted progress is Natural Language Processing. This is particularly true for the models that are used for machine translation and similar tasks. In other words, for models that can be used for performing [sequence-to-sequence learning](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/from-vanilla-rnns-to-transformers-a-history-of-seq2seq-learning.md), where sequences of one kind (e.g. phrases written in English) are transducted into ones of another kind (e.g. phrases written in German).
 
-For many years, **Long Short-Term Memory** networks (LSTM networks) have been part of the state-of-the-art within sequence-to-sequence learning. Having been replaced slowly but surely after the 2017 [Transformer breakthrough](https://www.machinecurve.com/index.php/2020/12/28/introduction-to-transformers-in-machine-learning/) (i.e., the Vaswani et al. work from 2017), they do still play an essential role in many Seq2Seq tasks today, especially with deployed models.
+For many years, **Long Short-Term Memory** networks (LSTM networks) have been part of the state-of-the-art within sequence-to-sequence learning. Having been replaced slowly but surely after the 2017 [Transformer breakthrough](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/introduction-to-transformers-in-machine-learning.md) (i.e., the Vaswani et al. work from 2017), they do still play an essential role in many Seq2Seq tasks today, especially with deployed models.
 
 This article provides a gentle introduction to LSTMs. As with any MachineCurve article, we're going to take a look at some context first. We'll cover classic Recurrent Neural Networks and why training them is problematic. This is followed by an introduction of the Long Short-Term Memory Network by Hochreiter and Schmidhuber in their 1997 work. We're also going to cover intuitively why LSTMs solve the vanishing gradients problem traditionally present within Machine Learning with recurrent segments.
 
@@ -56,7 +56,7 @@ Especially when you unfold this structure showing the parsing of subsequent toke
 > 
 > Pascanu et al. (2013)
 
-While being a relatively great step forward, especially with larger sequences, classic RNNs did not show great improvements over classic neural networks where the inputs were sets of time steps (i.e. multiple tokens just at once), according to Hochreiter & Schmidhuber (1997). Diving into Hochreiter's thesis work from 6 years earlier, the researchers have identified the [vanishing gradients problem](https://www.machinecurve.com/index.php/2019/08/30/random-initialization-vanishing-and-exploding-gradients/) and the relatively large distances error flow has to go when sequences are big as one of the leading causes why such models don't perform well.
+While being a relatively great step forward, especially with larger sequences, classic RNNs did not show great improvements over classic neural networks where the inputs were sets of time steps (i.e. multiple tokens just at once), according to Hochreiter & Schmidhuber (1997). Diving into Hochreiter's thesis work from 6 years earlier, the researchers have identified the [vanishing gradients problem](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/random-initialization-vanishing-and-exploding-gradients.md) and the relatively large distances error flow has to go when sequences are big as one of the leading causes why such models don't perform well.
 
 > The vanishing gradients problem refers to the opposite behaviour, when long term components go exponentially fast to norm 0, making it impossible for the model to learn correlation between temporally distant events.
 > 
@@ -72,7 +72,7 @@ When unfolded through time, we can see the chained passages of inputs \[latex\]a
 
 Source: Headlessplatter (Wikipedia). Licensed to be in the public domain.
 
-Now here's the problem. Traditionally, to ensure that neural networks can [learn to handle nonlinear data](https://www.machinecurve.com/index.php/2020/10/29/why-nonlinear-activation-functions-improve-ml-performance-with-tensorflow-example/), nonlinear activation functions were added to the network. Sigmoid has been an activation function that used to be one of the standard functions that was applied in neural network. The plot below illustrates perfectly why gradients vanish if the chain of 'copies' through which backpropagation must plough is long: the maximum value of the Sigmoid derivative is < 0.3.
+Now here's the problem. Traditionally, to ensure that neural networks can [learn to handle nonlinear data](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-nonlinear-activation-functions-improve-ml-performance-with-tensorflow-example.md), nonlinear activation functions were added to the network. Sigmoid has been an activation function that used to be one of the standard functions that was applied in neural network. The plot below illustrates perfectly why gradients vanish if the chain of 'copies' through which backpropagation must plough is long: the maximum value of the Sigmoid derivative is < 0.3.
 
 In other words, if we have to chain the derivative of Sigmoid across three time steps, our gradient gets close to zero quickly. Especially upstream layers i.e. upstream time steps are struck significantly by this problem, because they cease learning when sequences get too long. Say hello to the _vanishing gradients problem_!
 
@@ -137,7 +137,7 @@ The first way in which this will happen is through the **forget gate**, which ha
 
 ![](images/LSTM-1-1024x657.png)
 
-The previous output \[latex\]h\[t-1\]\[/latex\] and current input \[latex\]\[x\[t\]\[/latex\] are first added together by means of matrix addition, after (learned) weight matrices have been applied to both inputs. These learned weights determine the strength of the forget gate by putting more attention on the current input or the previous output. The result is then added to a [Sigmoid activation function](https://www.machinecurve.com/index.php/2019/09/04/relu-sigmoid-and-tanh-todays-most-used-activation-functions/), of which we know that it maps all inputs to a value between 0.0 and 1.0.
+The previous output \[latex\]h\[t-1\]\[/latex\] and current input \[latex\]\[x\[t\]\[/latex\] are first added together by means of matrix addition, after (learned) weight matrices have been applied to both inputs. These learned weights determine the strength of the forget gate by putting more attention on the current input or the previous output. The result is then added to a [Sigmoid activation function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md), of which we know that it maps all inputs to a value between 0.0 and 1.0.
 
 In other words, the current and previous input together with the learned weights determine what must be 'forgotten', because when certain elements in the matrices that are the outcome of the addition are < 0, they are likely to be more forgotten (since the output of the Sigmoid activation is closer to 0.0 than to 1.0). If instead outcomes are >= 0, they are more likely to be _omitted_ from the removal process.
 
@@ -157,7 +157,7 @@ Recall that this is our point in time:
 - The value for \[latex\]h\[t-1\]\[/latex\] will be the (translated) tokenized output of `<I>`.
 - The value for \[latex\]c\[t-1\]\[/latex\] will be some representation of long-term memory, which at that point only includes (part of) the representation of `<I>`.
 
-As you can see, it's composed of two components: a [Sigmoid activation](https://www.machinecurve.com/index.php/2019/09/04/relu-sigmoid-and-tanh-todays-most-used-activation-functions/) of a joint learned weighted input based on the previous output \[latex\]h\[t-1\]\[/latex\] and current input \[latex\]x\[t\]\[/latex\] and a [Tanh activation](https://www.machinecurve.com/index.php/2019/09/04/relu-sigmoid-and-tanh-todays-most-used-activation-functions/) that accepts another joint learned weighted input based on the two inputs. The outcomes of these activations are first Hadamard matrix multiplied, and subsequently added into memory by means of matrix addition.
+As you can see, it's composed of two components: a [Sigmoid activation](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md) of a joint learned weighted input based on the previous output \[latex\]h\[t-1\]\[/latex\] and current input \[latex\]x\[t\]\[/latex\] and a [Tanh activation](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md) that accepts another joint learned weighted input based on the two inputs. The outcomes of these activations are first Hadamard matrix multiplied, and subsequently added into memory by means of matrix addition.
 
 [![](images/LSTM-2-1024x657.png)](https://www.machinecurve.com/wp-content/uploads/2020/12/LSTM-2.png)
 
@@ -168,7 +168,7 @@ I can imagine that it's still a bit vague what is happening here. Let's break do
 - [![](images/tanh_and_deriv-1024x511.jpeg)](https://www.machinecurve.com/wp-content/uploads/2019/09/tanh_and_deriv.jpeg)
     
 
-Let's first take a look at the **Tanh function**. As we can see, the function maps all inputs to a value between -1.0 and +1.0. In other words, it [normalizes](https://www.machinecurve.com/index.php/2020/11/19/how-to-normalize-or-standardize-a-dataset-in-python/) any input to the \[latex\]\[-1.0, 1.0\]\[/latex\] range. Feeding the joined weighted combination of previous outputs and current inputs to Tanh therefore ensures some normalization of input values. This benefits the stability of the training process. It doesn't however truly serve as an _update_, because with Tanh, all new information will be added.
+Let's first take a look at the **Tanh function**. As we can see, the function maps all inputs to a value between -1.0 and +1.0. In other words, it [normalizes](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-normalize-or-standardize-a-dataset-in-python.md) any input to the \[latex\]\[-1.0, 1.0\]\[/latex\] range. Feeding the joined weighted combination of previous outputs and current inputs to Tanh therefore ensures some normalization of input values. This benefits the stability of the training process. It doesn't however truly serve as an _update_, because with Tanh, all new information will be added.
 
 That's why here too, we apply a **Sigmoid function**. As we know that it maps to 0.0 to +1.0 instead, we can see that it learns to select the most important aspects of the combination of previous output and current input. The outcome of the Sigmoid activation is Hadamard matrix multiplied with the Tanh outcome before it is added to memory.
 
@@ -219,7 +219,7 @@ In other words, it represents the operations that we intuitively understood abov
 
 #### The memory activation function is the identity function
 
-In addition, no [nonlinear activation function](https://www.machinecurve.com/index.php/2020/10/29/why-nonlinear-activation-functions-improve-ml-performance-with-tensorflow-example/) is present within this memory flow, contrary to classic RNNs, which are often Sigmoid activated. In other words: the activation function can be described as the identity function, or \[latex\]f(x) = x\[/latex\] (ManiacMalko, n.d.). As the gradient of it is 1.0, we can see that errors can flow freely between copies of the same memory cell withint vanishing (as happens when gradients are < 1.0 e.g. in the Sigmoid case).
+In addition, no [nonlinear activation function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-nonlinear-activation-functions-improve-ml-performance-with-tensorflow-example.md) is present within this memory flow, contrary to classic RNNs, which are often Sigmoid activated. In other words: the activation function can be described as the identity function, or \[latex\]f(x) = x\[/latex\] (ManiacMalko, n.d.). As the gradient of it is 1.0, we can see that errors can flow freely between copies of the same memory cell withint vanishing (as happens when gradients are < 1.0 e.g. in the Sigmoid case).
 
 This change compared to classic RNNs resolves the vanishing gradients problem in LSTMs.
 
@@ -237,9 +237,9 @@ Each part of the sequence must be fed to the network in sequence, after which a 
 
 This unnecessarily slows down the training process.
 
-In their breakthrough work, Vaswani et al. (2017) have proposed the [Transformer architecture](https://www.machinecurve.com/index.php/2020/12/28/introduction-to-transformers-in-machine-learning/), which allows for parallelism by means of stripping away the recurrent aspects in the architecture. The massive growth in interest in Transformers has ensured that LSTMs have been removed from the pedestal; they are no longer considered to be state-of-the-art in NLP.
+In their breakthrough work, Vaswani et al. (2017) have proposed the [Transformer architecture](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/introduction-to-transformers-in-machine-learning.md), which allows for parallelism by means of stripping away the recurrent aspects in the architecture. The massive growth in interest in Transformers has ensured that LSTMs have been removed from the pedestal; they are no longer considered to be state-of-the-art in NLP.
 
-Nevertheless, they are continuously being used today, with approximately 55.000 hits in Google Scholar even when the 'since 2020' option was selected. A wide variety of applications is covered, among which predictions for [COVID-19 disease](https://www.machinecurve.com/index.php/2020/11/05/ml-against-covid-19-detecting-disease-with-tensorflow-keras-and-transfer-learning/), air quality forecasting, and water production forecasting.
+Nevertheless, they are continuously being used today, with approximately 55.000 hits in Google Scholar even when the 'since 2020' option was selected. A wide variety of applications is covered, among which predictions for [COVID-19 disease](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/ml-against-covid-19-detecting-disease-with-tensorflow-keras-and-transfer-learning.md), air quality forecasting, and water production forecasting.
 
 That's why LSTMs must not yet be discarded, but applied with care :)
 
@@ -253,7 +253,7 @@ LSTMs, we saw, overcome this problem by introducing what is known as Constant Er
 
 Despite the benefits achieved with LSTMs, they are no longer considered to be state-of-the-art approaches. This is primarily due to the nascence of Transformer networks, which have the additional benefit that sequences don't have to be processed sequentially, but rather, in parallel. Still, LSTMs remain widely applied and hence must not be discarded from research and engineering activities.
 
-[Ask a question](https://www.machinecurve.com/index.php/add-machine-learning-question/)
+[Ask a question](https://web.archive.org/web/https://www.machinecurve.com/index.php/add-machine-learning-question/)
 
 I hope that you have learned something from this article. If you did, please feel free to drop a message in the comments section below 💬 Please do the same if you have any questions, or click the **Ask Questions** button on the right to ask your question. Thank you for reading MachineCurve today and happy engineering! 😎
 

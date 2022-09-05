@@ -19,13 +19,13 @@ tags:
   - "relu"
 ---
 
-Rectified Linear Unit, or [ReLU](https://www.machinecurve.com/index.php/2019/09/04/relu-sigmoid-and-tanh-todays-most-used-activation-functions/), is considered to be the standard activation function of choice for today's neural networks. Even though time has passed since its introduction and many new activation functions have been introduced, ReLU is still recommended everywhere.
+Rectified Linear Unit, or [ReLU](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md), is considered to be the standard activation function of choice for today's neural networks. Even though time has passed since its introduction and many new activation functions have been introduced, ReLU is still recommended everywhere.
 
-The reason for this is twofold: first, it is a very simple activation function. As such, it is computationally inexpensive than others (such as [Sigmoid and Tanh](https://www.machinecurve.com/index.php/2019/09/04/relu-sigmoid-and-tanh-todays-most-used-activation-functions/)), which means that fewer computational resources are required for training your model. Second, it is highly generalizable. That is, it's difficult to use activation functions in practice if they work well on _some data_, while poorly on other data. If their performance is relatively independent of the dataset, they're good.
+The reason for this is twofold: first, it is a very simple activation function. As such, it is computationally inexpensive than others (such as [Sigmoid and Tanh](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md)), which means that fewer computational resources are required for training your model. Second, it is highly generalizable. That is, it's difficult to use activation functions in practice if they work well on _some data_, while poorly on other data. If their performance is relatively independent of the dataset, they're good.
 
 And ReLU has both.
 
-However, it also has problems - or, rather, challenges. While it does not suffer from the [vanishing gradients problem](https://www.machinecurve.com/index.php/2019/08/30/random-initialization-vanishing-and-exploding-gradients/), it does suffer from [dying neurons](https://www.machinecurve.com/index.php/2019/10/15/leaky-relu-improving-traditional-relu/) instead. For this reason, various new activation functions have been proposed in the past. **Parametric Rectified Linear Unit**, or PReLU, is one of them, and we will cover it in this blog (He et al., 2015).
+However, it also has problems - or, rather, challenges. While it does not suffer from the [vanishing gradients problem](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/random-initialization-vanishing-and-exploding-gradients.md), it does suffer from [dying neurons](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/leaky-relu-improving-traditional-relu.md) instead. For this reason, various new activation functions have been proposed in the past. **Parametric Rectified Linear Unit**, or PReLU, is one of them, and we will cover it in this blog (He et al., 2015).
 
 First, we'll provide a recap on ReLU: why is it so useful for many neural networks? What are the challenges we just introduced, and why is PReLU different? Subsequently, we'll give an example implementation for PReLU for your Keras based neural network. This includes a comparison with standard ReLU, in our case with the MNIST dataset. This way, you can both understand _why_ PReLU may be useful, _and_ immediately use it in practice.
 
@@ -47,7 +47,7 @@ This can be visualized as follows:
 
 ### No vanishing gradients
 
-During [optimization](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/), the neural network optimizer uses the gradient (computed with backpropagation) in order to find its path towards better weights.
+During [optimization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md), the neural network optimizer uses the gradient (computed with backpropagation) in order to find its path towards better weights.
 
 With traditional activation functions, such as the Sigmoid function, this gradient - which can be computed by letting the input pass through the first-order derivative of the original function - gets a lot smaller:
 
@@ -57,7 +57,7 @@ In fact, the maximum output for any input is \[latex\]\\approx 0.25\[/latex\], w
 
 A gradient is always generated with respect to the error generated based on the predictions at the model's tail. For upstream layers, this means that _all the gradients of the layers in between layer X and the error must be included_. In mathematical terms, this means that they are chained - multiplied - by the backpropagation algorithm, for finding the gradient at some layer. This is exactly the problem: when the gradients are 0.25 at max, chaining four gradients results in a 0.25^4 = 0.00390625 gradient at max.
 
-You've just found out about the **[vanishing gradients problem](https://www.machinecurve.com/index.php/2019/08/30/random-initialization-vanishing-and-exploding-gradients/)**. For upstream layers, gradients vanish when the wrong activation function is used. With relatively shallow networks, this was not much of a problem, but learning gets severely impaired when your neural network gets deep - and they do these days. Upstream layers simply learn very slowly - or might no longer converge at all!
+You've just found out about the **[vanishing gradients problem](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/random-initialization-vanishing-and-exploding-gradients.md)**. For upstream layers, gradients vanish when the wrong activation function is used. With relatively shallow networks, this was not much of a problem, but learning gets severely impaired when your neural network gets deep - and they do these days. Upstream layers simply learn very slowly - or might no longer converge at all!
 
 Fortunately, ReLU does not suffer from this problem, as can be seen when its gradients are visualized:
 
@@ -75,7 +75,7 @@ Indeed, the gradient for that layer is zero - **and so are all the gradients for
 
 Welcome to the _dying ReLU problem_.
 
-When your data is not normalized properly or when you use a wrong [weight initialization](https://www.machinecurve.com/index.php/2019/09/16/he-xavier-initialization-activation-functions-choose-wisely/) strategy, it may be that large parts of your neural network will find gradients of **zero** during optimization. This simply means that they can no longer participate in learning.
+When your data is not normalized properly or when you use a wrong [weight initialization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/he-xavier-initialization-activation-functions-choose-wisely.md) strategy, it may be that large parts of your neural network will find gradients of **zero** during optimization. This simply means that they can no longer participate in learning.
 
 The effect: your model does learn very slowly or, once again, does not converge at all. Indeed, that's an entire waste of resources.
 
@@ -88,7 +88,7 @@ Kaiming He and others, in one of the landmark papers of machine learning researc
 - Tremendous improvements in recognition performance have been reported for computer vision models in the years prior to the paper.
 - One of the primary drivers of these improvements is the ReLU activation function, which is a significant improvement over traditional Sigmoid and Tanh.
 - Nevertheless, ReLU is not problem-free.
-- One attempt to fix this problem - with [Leaky ReLU](https://www.machinecurve.com/index.php/2019/11/12/using-leaky-relu-with-keras/) - is not sufficient: while it indeed resolves the _dying ReLU problem_ by setting the inputs \[latex\]<= 0\[/latex\] to very small but nonzero values, empirical testing hasn't resulted in significant performance improvements.
+- One attempt to fix this problem - with [Leaky ReLU](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/using-leaky-relu-with-keras.md) - is not sufficient: while it indeed resolves the _dying ReLU problem_ by setting the inputs \[latex\]<= 0\[/latex\] to very small but nonzero values, empirical testing hasn't resulted in significant performance improvements.
 
 The authors argue that this might occur because the \[latex\]\\alpha\[/latex\] parameter, which configures the steepness of the nonzero negative outputs, must be set by the user before starting the training process.
 
@@ -98,7 +98,7 @@ This is what **Parametric Rectified Linear Unit** or **PReLU** is all about. Bei
 
 ### How PReLU works
 
-PReLU is actually not so different from [traditional ReLU](https://www.machinecurve.com/index.php/2019/09/04/relu-sigmoid-and-tanh-todays-most-used-activation-functions/):
+PReLU is actually not so different from [traditional ReLU](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md):
 
 \\begin{equation} f(x\_i) = \\begin{cases} x\_i, & \\text{if}\\ x\_i > 0 \\\\ \\alpha\_ix\_i, & \\text{otherwise} \\\\ \\end{cases} \\end{equation}
 
@@ -112,7 +112,7 @@ This brings us to the following insights:
 
 [![](images/leaky_relu.png)](https://www.machinecurve.com/wp-content/uploads/2019/10/leaky_relu.png)
 
-Learning the values for \[latex\]\\alpha\[/latex\] takes place by adding a few extra parameters to the network. In computational terms, the effects on resource requirements are negligible, and especially so in the channel-shared variant (meaning that only one parameter needs to be added). Traditional backpropagation is used for computing the alpha gradients, and optimization is performed with [momentum gradient descent](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/#momentum) (He et al., 2015). In Keras, that would be the optimizer of your choice instead, I'd guess.
+Learning the values for \[latex\]\\alpha\[/latex\] takes place by adding a few extra parameters to the network. In computational terms, the effects on resource requirements are negligible, and especially so in the channel-shared variant (meaning that only one parameter needs to be added). Traditional backpropagation is used for computing the alpha gradients, and optimization is performed with [momentum gradient descent](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound/#momentum) (He et al., 2015). In Keras, that would be the optimizer of your choice instead, I'd guess.
 
 As with any set of weights, the \[latex\]\\alpha\[/latex\] values must be initialized when the training process commences. The weight initialization strategy used by the authors is to initialize all \[latex\]\\alpha\[/latex\]s to 0.25. Backprop and the optimizer will then take over.
 
@@ -153,7 +153,7 @@ keras.layers.PReLU(alpha_initializer='zeros', alpha_regularizer=None, alpha_cons
 As you can see, the PReLU layer comes with an initializer, regularizer and constraint possibility, as well as something called `shared_axes`:
 
 - With the **initializer**, or `alpha_initializer`, you define how the \[latex\]\\alpha\[/latex\] weights are initialized. You can use any of the [Keras initializers](https://keras.io/initializers/) for this purpose - and even define your own one. He et al. (2015) use \[latex\]\\alpha = 0.25\[/latex\].
-- With the **regularizer**, or `alpha_regularizer`, it's possible to _regulate_ weight swings by applying penalties to outliers. You can use any of the [Keras regularizers](https://keras.io/regularizers/) for this purpose. He et al. (2015) do not use a regularizer, as they argue that some of them - especially L2 regularization - "tends to push \[alphas\] to zero, and thus biases PReLU towards ReLU". Combined L1 and L2 and/or L1, L2 regularization may also bias the activation function towards [Leaky ReLU](https://www.machinecurve.com/index.php/2019/11/12/using-leaky-relu-with-keras/) (Uthmān, 2017).
+- With the **regularizer**, or `alpha_regularizer`, it's possible to _regulate_ weight swings by applying penalties to outliers. You can use any of the [Keras regularizers](https://keras.io/regularizers.md) for this purpose. He et al. (2015) do not use a regularizer, as they argue that some of them - especially L2 regularization - "tends to push \[alphas\] to zero, and thus biases PReLU towards ReLU". Combined L1 and L2 and/or L1, L2 regularization may also bias the activation function towards [Leaky ReLU](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/using-leaky-relu-with-keras.md) (Uthmān, 2017).
 - With the **constraint**, or `alpha_constraint`, you can set fixed limits to the network parameters during training. You can use any of the [Keras constraints](https://keras.io/constraints/) for this purpose. He et al. (2015) do not use constraints to allow the activation function to be non-monotonic.
 - With **shared\_axes**, you can share axes over space. This is useful when you wish to share axes over e.g. the filters present in ConvNets.
 
@@ -161,7 +161,7 @@ By default, only the `alpha_initializer` value is set, to zero initialization: i
 
 ### Today's model and dataset
 
-Today, we'll be creating a simple [ConvNet](https://www.machinecurve.com/index.php/2018/12/07/convolutional-neural-networks-and-their-components-for-computer-vision/). We use two convolutional blocks with MaxPooling and Dropout, followed by two densely-connected layers. The architecture is visualized next:
+Today, we'll be creating a simple [ConvNet](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/convolutional-neural-networks-and-their-components-for-computer-vision.md). We use two convolutional blocks with MaxPooling and Dropout, followed by two densely-connected layers. The architecture is visualized next:
 
 [![](images/model-1.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/model-1.png)
 
@@ -193,7 +193,7 @@ import matplotlib.pyplot as plt
 
 #### Model configuration
 
-Secondly, we'll add configuration parameters for the ConvNet and the training process. We use the ones we defined and elaborated on in our [tutorial on Keras CNNs](https://www.machinecurve.com/index.php/2019/09/17/how-to-create-a-cnn-classifier-with-keras/), so if you wish to understand the _whys_, I'd recommend you also read that blog post :)
+Secondly, we'll add configuration parameters for the ConvNet and the training process. We use the ones we defined and elaborated on in our [tutorial on Keras CNNs](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras.md), so if you wish to understand the _whys_, I'd recommend you also read that blog post :)
 
 ```
 # Model configuration
@@ -243,7 +243,7 @@ target_test = keras.utils.to_categorical(target_test, no_classes)
 - Subsequently, we reshape the data based on whether the image strategy is channels first or channels last (this depends on the backend you are using).
 - Subsequently, we parse the input data as floats, which reportedly speeds up the training process.
 - Subsequently, we normalize the data into the \[0, 1\] range.
-- Finally, we convert the integer target vectors into categorical format (i.e. true/false vector format) so that we can use [categorical crossentropy loss](https://www.machinecurve.com/index.php/2019/10/22/how-to-use-binary-categorical-crossentropy-with-keras/).
+- Finally, we convert the integer target vectors into categorical format (i.e. true/false vector format) so that we can use [categorical crossentropy loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-binary-categorical-crossentropy-with-keras.md).
 
 #### Defining model architecture
 
@@ -288,7 +288,7 @@ history = model.fit(input_train, target_train,
 
 #### Test and visualization metrics
 
-Finally, we provide metrics for testing the model - based on the test set, to see how well it generalizes to new data - and for [visualizing the training process](https://www.machinecurve.com/index.php/2019/10/08/how-to-visualize-the-training-process-in-keras/).
+Finally, we provide metrics for testing the model - based on the test set, to see how well it generalizes to new data - and for [visualizing the training process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-training-process-in-keras.md).
 
 ```
 # Generate generalization metrics

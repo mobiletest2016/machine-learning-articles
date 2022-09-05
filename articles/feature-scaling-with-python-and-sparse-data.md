@@ -13,7 +13,7 @@ tags:
   - "standardization"
 ---
 
-When you are training a Supervised Machine Learning model, scaling your data before you start fitting the model can be a crucial step for training success. In fact, without doing so, there are cases when the model's [loss function](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/) will behave very strangely. However, not every dataset is made equal. There are cases when [standard approaches to scaling](https://www.machinecurve.com/index.php/2020/11/19/how-to-normalize-or-standardize-a-dataset-in-python/) don't work so well. Having a sparse dataset is one such scenario. In this article, we'll find out why and what we can do about it.
+When you are training a Supervised Machine Learning model, scaling your data before you start fitting the model can be a crucial step for training success. In fact, without doing so, there are cases when the model's [loss function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md) will behave very strangely. However, not every dataset is made equal. There are cases when [standard approaches to scaling](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-normalize-or-standardize-a-dataset-in-python.md) don't work so well. Having a sparse dataset is one such scenario. In this article, we'll find out why and what we can do about it.
 
 The article is structured as follows. Firstly, we will look at Feature Scaling itself. What is it? Why is it necessary? And what are those _standard approaches_ that we have just talked about? Then, we move on to the sparsity characteristic of a dataset. What makes it sparse? Those questions will be answered first before we move to the core of our article.
 
@@ -42,8 +42,8 @@ We can use both variables to tell us something about the class: the variables cl
 In other words, we can create a classifier that helps us determine what class a new sample belongs to. When we train a classifier, it will attempt to learn from the variables. Depending on the algorithm, there are various issues that can possibly occur when doing that:
 
 1. When our classifier involves a _distance_ computation for class computation, e.g. when we use Radial Basis Function networks, our classifier will possibly be distorted by large distances, especially if the distances for one variable are large (e.g. it ranges from \[latex\]\[0, 1000000\]\[/latex\]) and low for another one (e.g. \[latex\]\[0, 1\]\[/latex\]. If not made comparable, it thinks that the distances from the first variable are way more important, because the deltas are larger.
-2. When our classifier utilizes _[regularization](https://www.machinecurve.com/index.php/2020/01/26/which-regularizer-do-i-need-for-training-my-neural-network/)_ for reducing model complexity, we can get ourselves into trouble as well, because the [most common regularizers](https://www.machinecurve.com/index.php/2020/01/21/what-are-l1-l2-and-elastic-net-regularization-in-neural-networks/) are based on distance metrics. Here, the same thing goes wrong.
-3. Sometimes, especially when we are using traditional Machine Learning algorithms, we don't want too many variables in our feature space - because of the _[curse of dimensionality](https://www.machinecurve.com/index.php/2020/11/19/how-to-normalize-or-standardize-a-dataset-in-python/)._ In those cases, we want to select the variables that contribute most first. Algorithms we can use for this purpose, such as Principal Component Analysis, rely on the _variance_ of the variables for picking the most important ones.
+2. When our classifier utilizes _[regularization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/which-regularizer-do-i-need-for-training-my-neural-network.md)_ for reducing model complexity, we can get ourselves into trouble as well, because the [most common regularizers](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-are-l1-l2-and-elastic-net-regularization-in-neural-networks.md) are based on distance metrics. Here, the same thing goes wrong.
+3. Sometimes, especially when we are using traditional Machine Learning algorithms, we don't want too many variables in our feature space - because of the _[curse of dimensionality](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-normalize-or-standardize-a-dataset-in-python.md)._ In those cases, we want to select the variables that contribute most first. Algorithms we can use for this purpose, such as Principal Component Analysis, rely on the _variance_ of the variables for picking the most important ones.
 
 > _Variance is the expectation of the squared deviation of a random variable from its mean. Informally, it measures how far a set of numbers is spread out from their average value._
 > 
@@ -57,7 +57,7 @@ Or is it?
 
 Can we actually compare those variables? What if we can't?
 
-Let's check with [standardization](https://www.machinecurve.com/index.php/2020/11/19/how-to-normalize-or-standardize-a-dataset-in-python/). Using this technique, with which we can express our variables in terms of their differences in standard deviation from the variable's mean value, we get the following picture:
+Let's check with [standardization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-normalize-or-standardize-a-dataset-in-python.md). Using this technique, with which we can express our variables in terms of their differences in standard deviation from the variable's mean value, we get the following picture:
 
 ![](images/gauss1.png)
 
@@ -68,7 +68,7 @@ The process of standardization is part of a class of techniques called **Feature
 1. **Normalization**, or _min-max normalization_, uses the minimum and maximum values from the dataset to normalize the variables into the \[latex\]\[0, 1\]\[/latex\] or \[latex\]\[a, b\]\[/latex\] ranges depending on your choice.
 2. **Standardization**, or _Z-score normalization,_ converts the scale into the deviation in standard intervals from the mean for each variable. We already saw what could happen when applying standardization before.
 
-If you want to understand Feature Scaling techniques in more detail, it would be good to read [this article first](https://www.machinecurve.com/index.php/2020/11/19/how-to-normalize-or-standardize-a-dataset-in-python/) before moving on.
+If you want to understand Feature Scaling techniques in more detail, it would be good to read [this article first](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-normalize-or-standardize-a-dataset-in-python.md) before moving on.
 
 * * *
 
@@ -169,7 +169,7 @@ print(standardized_dataset)
 
 ### Why MaxAbsScaler and not MinMaxScaler for sparse data?
 
-Great, I thought, but why use the `MaxAbsScaler` - and why cannot we use simple [min-max normalization](https://www.machinecurve.com/index.php/2020/11/19/how-to-normalize-or-standardize-a-dataset-in-python/) when we have a sparse dataset?
+Great, I thought, but why use the `MaxAbsScaler` - and why cannot we use simple [min-max normalization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-normalize-or-standardize-a-dataset-in-python.md) when we have a sparse dataset?
 
 Especially because the output would be the same if we applied the `MinMaxScaler`, which is Scikit-learn's implementation of min-max normalization, to the dataset we used above:
 

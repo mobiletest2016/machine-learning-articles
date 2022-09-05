@@ -36,9 +36,9 @@ Let's take a look! 😎
 
 Classic computer vision approaches using deep learning solutions focused on classification. AlexNet, as created by Krizhevsky et al. (2012), is an example. It uses convolutional layers for feature learning, after which a set of densely-connected layers is attached for assigning a class to the input image.
 
-This allows you to distinguish between cats and dogs, or [hotdog/no hotdog](https://www.machinecurve.com/index.php/2020/10/20/tutorial-building-a-hot-dog-not-hot-dog-classifier-with-tensorflow-and-keras/), to give just a few examples.
+This allows you to distinguish between cats and dogs, or [hotdog/no hotdog](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tutorial-building-a-hot-dog-not-hot-dog-classifier-with-tensorflow-and-keras.md), to give just a few examples.
 
-Now, there is much more that you can do with images! For example, it should be possible to detect objects within them. If you're familiar with deep learning and computer vision already, it's more than likely that you have heard about approaches like YOLO or [Transformers](https://www.machinecurve.com/index.php/2022/01/04/easy-object-detection-with-python-huggingface-transformers-and-machine-learning/) that draw boxes around objects present in an image.
+Now, there is much more that you can do with images! For example, it should be possible to detect objects within them. If you're familiar with deep learning and computer vision already, it's more than likely that you have heard about approaches like YOLO or [Transformers](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/easy-object-detection-with-python-huggingface-transformers-and-machine-learning.md) that draw boxes around objects present in an image.
 
 However, it should be possible to add even more precision to your image. While classic object detectors draw bounding boxes, **image segmentation** approaches perform their work at pixel level. In other words, each pixel is inspected and assigned a class. This allows you to draw very sharp boxes separating your objects.
 
@@ -56,7 +56,7 @@ At the tail of an image segmentation network, the output Tensor does not represe
 
 ### For regression, too
 
-If we simply left the Softmax out, and set the number of output channels to 1 (or > 1 if you have multiple dependent regression variables), you'll get a linear output for each pixel. This is similar to what you would do when [building a regression model](https://www.machinecurve.com/index.php/2019/07/30/creating-an-mlp-for-regression-with-keras/), but then once again at pixel level. By using a loss function like MAE or MSE, you can now perform image segmentation for regression, too.
+If we simply left the Softmax out, and set the number of output channels to 1 (or > 1 if you have multiple dependent regression variables), you'll get a linear output for each pixel. This is similar to what you would do when [building a regression model](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/creating-an-mlp-for-regression-with-keras.md), but then once again at pixel level. By using a loss function like MAE or MSE, you can now perform image segmentation for regression, too.
 
 It also means that pretrained models for image segmentation for classification can be adapted for regression scenarios, by simply removing the Softmax activation (or only changing the loss function if in fact, Softmax is applied in the loss function - both are possible).
 

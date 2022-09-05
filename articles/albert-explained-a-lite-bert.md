@@ -14,7 +14,7 @@ tags:
   - "transformers"
 ---
 
-Transformer models like GPT-3 and [BERT](https://www.machinecurve.com/index.php/2021/01/04/intuitive-introduction-to-bert/) have been really prominent in today's Natural Language Processing landscape. They have built upon the [original Transformer model](https://www.machinecurve.com/index.php/2020/12/28/introduction-to-transformers-in-machine-learning/), which performed [sequence-to-sequence tasks](https://www.machinecurve.com/index.php/2020/12/29/differences-between-autoregressive-autoencoding-and-sequence-to-sequence-models-in-machine-learning/), and are capable of performing a wide variety of language tasks such as text summarization and machine translation. Text generation is also one of their capabilities, this is true especially for the models from the GPT model family.
+Transformer models like GPT-3 and [BERT](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/intuitive-introduction-to-bert.md) have been really prominent in today's Natural Language Processing landscape. They have built upon the [original Transformer model](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/introduction-to-transformers-in-machine-learning.md), which performed [sequence-to-sequence tasks](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/differences-between-autoregressive-autoencoding-and-sequence-to-sequence-models-in-machine-learning.md), and are capable of performing a wide variety of language tasks such as text summarization and machine translation. Text generation is also one of their capabilities, this is true especially for the models from the GPT model family.
 
 While being very capable, in fact capable of generating human-like text, they also come with one major drawback: they are huge. The size of models like BERT significantly limits their adoption, because they cannot be run on normal machines and even require massive GPU resources to even get them running properly.
 
@@ -34,21 +34,21 @@ Let's take a look! 😎
 
 ## BERT's (and other models') drawback: it's _huge_
 
-If you want to understand what the ALBERT model is and what it does, it can be a good idea to read our [Introduction to the BERT model](https://www.machinecurve.com/index.php/2021/01/04/intuitive-introduction-to-bert/) first.
+If you want to understand what the ALBERT model is and what it does, it can be a good idea to read our [Introduction to the BERT model](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/intuitive-introduction-to-bert.md) first.
 
-In that article, we're going to cover BERT in more detail, and we will see how it is an improvement upon the [vanilla Transformer](https://www.machinecurve.com/index.php/2020/12/28/introduction-to-transformers-in-machine-learning/) proposed in 2017, and which has changed the Natural Language Processing field significantly by showing that language models can be created that rely on the attention mechanism alone.
+In that article, we're going to cover BERT in more detail, and we will see how it is an improvement upon the [vanilla Transformer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/introduction-to-transformers-in-machine-learning.md) proposed in 2017, and which has changed the Natural Language Processing field significantly by showing that language models can be created that rely on the attention mechanism alone.
 
 However, let's take a quick look at BERT here as well before we move on. Below, you can see a high-level representation of BERT, or at least its input and outputs structure.
 
 - BERT always takes two sets of tokens as inputs, a sentence A and a sentence B. Note that dependent on the task, sentence B can be empty (i.e. the set of token is empty there) whereas sentence A is filled all the time. This latter scenario happens during regular text classification tasks such as sentiment analysis, whereas with other tasks (such as textual entailment, i.e. learning text directionality) both sentences must be filled.
-- Text from sentences A and B is first tokenized. Before the tokens from set A, we add a **classification token** or <CLS>. This token learns to contain sentence-level information based on interactions with the textual tokens in [BERT's attention mechanism.](https://www.machinecurve.com/index.php/2021/01/04/intuitive-introduction-to-bert/) The output of the <CLS> token called C can be used to e.g. fine-tune the model on sentence level tasks.
+- Text from sentences A and B is first tokenized. Before the tokens from set A, we add a **classification token** or <CLS>. This token learns to contain sentence-level information based on interactions with the textual tokens in [BERT's attention mechanism.](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/intuitive-introduction-to-bert.md) The output of the <CLS> token called C can be used to e.g. fine-tune the model on sentence level tasks.
 - After <CLS>, we add the tokens from sentence A. We then add a separation token <SEP> and then continue with the tokens from sentence B. In other words, the input to BERT is therefore a set of tokens, with some manual token interventions in between and in front of the textual tokens.
-- Tokens are fed into BERT, meaning that they are word embedded first. They are then taken through the Transformer model, [meaning that attention is computed across tokens](https://www.machinecurve.com/index.php/2020/12/28/introduction-to-transformers-in-machine-learning/), and that the output is a set of vectors representing state.
+- Tokens are fed into BERT, meaning that they are word embedded first. They are then taken through the Transformer model, [meaning that attention is computed across tokens](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/introduction-to-transformers-in-machine-learning.md), and that the output is a set of vectors representing state.
 - BERT utilizes two language tasks for this purpose: a **Masked Language Model (MLM)** task for predicting output tokens ("given these input tokens, what is the most likely output token" - indeed, it should be the actual next token from the input, but it's the task of the model to learn this). It also utilizes a **Next Sentence Prediction (NSP)** task to learn sentence-level information available in C.
 
 ![](images/Diagram-44-1024x625.png)
 
-Previous studies (such as the [study creating BERT](https://www.machinecurve.com/index.php/2021/01/04/intuitive-introduction-to-bert/) or the [one creating GPT](https://www.machinecurve.com/index.php/2021/01/05/dall-e-openai-gpt-3-model-can-draw-pictures-based-on-text/)) have demonstrated that the size of language models is related to performance. The bigger the language model, the better the model performs, is the general finding.
+Previous studies (such as the [study creating BERT](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/intuitive-introduction-to-bert.md) or the [one creating GPT](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/dall-e-openai-gpt-3-model-can-draw-pictures-based-on-text.md)) have demonstrated that the size of language models is related to performance. The bigger the language model, the better the model performs, is the general finding.
 
 > Evidence from these improvements reveals that a large network is of crucial importance for achieving state-of-the-art performance
 > 
@@ -62,9 +62,9 @@ While this allows us to build models that really work well, this also comes at a
 
 Recall that BERT comes in two flavors: a \[latex\]\\text{BERT}\_\\text{BASE}\[/latex\] model that has 110 million trainable parameters, and a \[latex\]\\text{BERT}\_\\text{LARGE}\[/latex\] model that has 340 million ones (Devlin et al., 2018).
 
-This is _huge!_ Compare this to relatively simple ConvNets, [which if really small](https://www.machinecurve.com/index.php/2019/12/19/creating-a-signal-noise-removal-autoencoder-with-keras/) can be < 100k parameters in size.
+This is _huge!_ Compare this to relatively simple ConvNets, [which if really small](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/creating-a-signal-noise-removal-autoencoder-with-keras.md) can be < 100k parameters in size.
 
-The effect, as suggested above, is that scaling models often means that engineers run into resource limits during deployment. There is also an impact on the training process, especially when training is distributed (i.e. across many machines), because the computational overhead of [distributed training strategies](https://www.machinecurve.com/index.php/question/what-are-tensorflow-distribution-strategies/) can be really big, especially with so many parameters.
+The effect, as suggested above, is that scaling models often means that engineers run into resource limits during deployment. There is also an impact on the training process, especially when training is distributed (i.e. across many machines), because the computational overhead of [distributed training strategies](https://web.archive.org/web/https://www.machinecurve.com/index.php/question/what-are-tensorflow-distribution-strategies/) can be really big, especially with so many parameters.
 
 In their work, Lam et al. (2019) have tried to answer one question in particular: _Is having better NLP models as easy as having larger models?_ As a result, they come up with a better BERT design, yielding a drop in parameters with only a small loss in terms of performance. Let's now take a look at ALBERT, or _a lite BERT_.
 
@@ -76,7 +76,7 @@ And according to them, the answer is a **clear no** - better NLP models does not
 
 [![](images/Diagram-6.png)](https://www.machinecurve.com/wp-content/uploads/2020/12/Diagram-6.png)
 
-From the paper, we come to understand that ALBERT simply utilizes the [BERT architecture](https://www.machinecurve.com/index.php/2021/01/04/intuitive-introduction-to-bert/). This architecture, which itself is the [encoder segment from the original Transformer](https://www.machinecurve.com/index.php/2020/12/28/introduction-to-transformers-in-machine-learning/) (with only a few minor tweaks), is visible in the image on the right. It is changed in three key ways, which bring about a significant reduction in parameters:
+From the paper, we come to understand that ALBERT simply utilizes the [BERT architecture](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/intuitive-introduction-to-bert.md). This architecture, which itself is the [encoder segment from the original Transformer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/introduction-to-transformers-in-machine-learning.md) (with only a few minor tweaks), is visible in the image on the right. It is changed in three key ways, which bring about a significant reduction in parameters:
 
 - **Key difference 1:** embeddings are factorized, decomposing the parameters of embedding into two smaller matrices in addition to adaptations to embedding size and hidden state size.
 - **Key difference 2:** ALBERT applies cross-layer parameter sharing. In other words, parameters between certain subsegments from the (stacked) encoder segments are shared, e.g. the parameters of the Multi-head Self-Attention Segment and the Feedforward Segment. This is counter to BERT, which allows these segments to have their own parameters.
@@ -119,7 +119,7 @@ The consequence of this change is that the number of parameters is reduced signi
 
 The third and final key difference is that instead of Next Sentence Prediction (NSP) loss, an **inter-sentence coherence loss** called **sentence-order prediction (SOP)** is used.
 
-The authors, based on previous findings that themselves are based on evaluations of the [BERT model](https://www.machinecurve.com/index.php/2021/01/04/intuitive-introduction-to-bert/), argue that the NSP task can be unreliable. The key problem with this loss is that it merges topic prediction and coherence prediction into one task. Recall that NSP was added to BERT to predict whether two sentences are related (i.e. whether sentence B is actually the next sentence for sentence A or whether it is not). This involves both looking at the _topic_ ("what is this sentence about?") and some measure of coherence ("how related are the sentences?").
+The authors, based on previous findings that themselves are based on evaluations of the [BERT model](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/intuitive-introduction-to-bert.md), argue that the NSP task can be unreliable. The key problem with this loss is that it merges topic prediction and coherence prediction into one task. Recall that NSP was added to BERT to predict whether two sentences are related (i.e. whether sentence B is actually the next sentence for sentence A or whether it is not). This involves both looking at the _topic_ ("what is this sentence about?") and some measure of coherence ("how related are the sentences?").
 
 Intuitively, we can argue that topic prediction is much easier than coherence prediction. The consequence is that when the model discovers this, it can focus entirely on this subtask, and forget about the coherence prediction task; actually taking the path of least resistance. The authors actually demonstrate that this is happening with the NSP task, replacing it within their work with a **sentence-order prediction or SOP** task.
 
@@ -193,7 +193,7 @@ In a 2019 paper, a different type of model was proposed, called ALBERT or _A Lit
 
 The experiments show that a better and more contextual model (ALBERT xxlarge) can be trained that improves upon BERT large at only 70% of the amount of BERT large parameters. This shows that better language models can be created with fewer parameters, possibly making such language models a _bit_ more of a commodity.
 
-[Ask a question](https://www.machinecurve.com/index.php/add-machine-learning-question/)
+[Ask a question](https://web.archive.org/web/https://www.machinecurve.com/index.php/add-machine-learning-question/)
 
 I hope that you have learned something from this article! If you did, please feel free to leave a message in the comments section below 💬 I'd love to hear from you. Please do the same if you have any questions, or click the **Ask Questions** button above. Thank you for reading MachineCurve today and happy engineering! 😎
 
@@ -207,6 +207,6 @@ Devlin, J., Chang, M. W., Lee, K., & Toutanova, K. (2018). [Bert: Pre-training 
 
 Wikipedia. (2002, September 8). _Factorization_. Wikipedia, the free encyclopedia. Retrieved January 6, 2021, from [https://en.wikipedia.org/wiki/Factorization](https://en.wikipedia.org/wiki/Factorization)
 
-MachineCurve. (2021, January 1). _What are ablation studies in machine learning?_ [https://www.machinecurve.com/index.php/question/what-are-ablation-studies-in-machine-learning/](https://www.machinecurve.com/index.php/question/what-are-ablation-studies-in-machine-learning/)
+MachineCurve. (2021, January 1). _What are ablation studies in machine learning?_ [https://web.archive.org/web/https://www.machinecurve.com/index.php/question/what-are-ablation-studies-in-machine-learning/](https://web.archive.org/web/https://www.machinecurve.com/index.php/question/what-are-ablation-studies-in-machine-learning/)
 
 Wikipedia. (n.d.). _Ablation (artificial intelligence)_. Wikipedia, the free encyclopedia. Retrieved January 6, 2021, from [https://en.wikipedia.org/wiki/Ablation\_(artificial\_intelligence)](https://en.wikipedia.org/wiki/Ablation_(artificial_intelligence))

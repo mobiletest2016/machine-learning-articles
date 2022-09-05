@@ -14,9 +14,9 @@ tags:
   - "support-vectors"
 ---
 
-Support Vector Machines can be used for performing regression tasks - we know that [from another article](https://www.machinecurve.com/index.php/2019/09/20/intuitively-understanding-svm-and-svr/). But did you know that it is also possible to use them for creating _multioutput_ regression models - that is, training it for regressing two values at the same time? Precisely that is what we will cover in today's article: we're going to build a **multioutput regression** model using Support Vector Machines with Python and Scikit-learn.
+Support Vector Machines can be used for performing regression tasks - we know that [from another article](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/intuitively-understanding-svm-and-svr.md). But did you know that it is also possible to use them for creating _multioutput_ regression models - that is, training it for regressing two values at the same time? Precisely that is what we will cover in today's article: we're going to build a **multioutput regression** model using Support Vector Machines with Python and Scikit-learn.
 
-The article is structured as follows. Firstly, we'll take a look at _regression_ with Support Vector Machines. I can understand that this sounds a bit counterintuitive, as SVMs are traditionally used for [classification tasks](https://www.machinecurve.com/index.php/2020/10/19/3-variants-of-classification-problems-in-machine-learning/). But indeed, they can be used for regression as well! Secondly, we'll cover Multioutput Regression - and how it works conceptually. This is followed by building an actual multioutput regression SVM ourselves. For this, we'll be using Scikit-learn, a Python-based machine learning library.
+The article is structured as follows. Firstly, we'll take a look at _regression_ with Support Vector Machines. I can understand that this sounds a bit counterintuitive, as SVMs are traditionally used for [classification tasks](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/3-variants-of-classification-problems-in-machine-learning.md). But indeed, they can be used for regression as well! Secondly, we'll cover Multioutput Regression - and how it works conceptually. This is followed by building an actual multioutput regression SVM ourselves. For this, we'll be using Scikit-learn, a Python-based machine learning library.
 
 Let's go!
 
@@ -28,11 +28,11 @@ Let's go!
 
 ## Regression with Support Vector Machines: how it works
 
-If you have some experience with building Machine Learning models, you know that [Support Vector Machines](https://www.machinecurve.com/index.php/2019/09/20/intuitively-understanding-svm-and-svr/) can be used for a wide range of classification tasks. Indeed, it is possible to use them in many ways for creating an automated system which assigns inputs to two or more classes, or even multiple classes to an input sample.
+If you have some experience with building Machine Learning models, you know that [Support Vector Machines](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/intuitively-understanding-svm-and-svr.md) can be used for a wide range of classification tasks. Indeed, it is possible to use them in many ways for creating an automated system which assigns inputs to two or more classes, or even multiple classes to an input sample.
 
-- [Creating One-vs-Rest and One-vs-One SVM Classifiers with Scikit-learn](https://www.machinecurve.com/index.php/2020/11/11/creating-one-vs-rest-and-one-vs-one-svm-classifiers-with-scikit-learn/)
-- [Using Error-Correcting Output Codes with Scikit-learn for multiclass SVM classification](https://www.machinecurve.com/index.php/2020/11/12/using-error-correcting-output-codes-for-multiclass-svm-classification/)
-- [How to create a Multilabel SVM classifier with Scikit-learn](https://www.machinecurve.com/index.php/2020/11/12/how-to-create-a-multilabel-svm-classifier-with-scikit-learn/)
+- [Creating One-vs-Rest and One-vs-One SVM Classifiers with Scikit-learn](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/creating-one-vs-rest-and-one-vs-one-svm-classifiers-with-scikit-learn.md)
+- [Using Error-Correcting Output Codes with Scikit-learn for multiclass SVM classification](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/using-error-correcting-output-codes-for-multiclass-svm-classification.md)
+- [How to create a Multilabel SVM classifier with Scikit-learn](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-multilabel-svm-classifier-with-scikit-learn.md)
 
 It is perhaps less known that Support Vector Machines can be used for regression tasks as well. In this section, we will discuss why this is possible.
 
@@ -50,7 +50,7 @@ We also see some lines between samples and the decision boundaries, which are al
 
 The goal of finding a maximum-margin boundary is to find a set of support vectors for each class where the distance between support vectors for each class to the decision boundary is equal - while also ensuring that a minimum amount of samples is classified incorrectly.
 
-And by consequence, we can use them to build [a classifier](https://www.machinecurve.com/index.php/2020/10/19/3-variants-of-classification-problems-in-machine-learning/). If you want to move from the linear case towards nonlinear data, I suggest you take a look at [this article](https://www.machinecurve.com/index.php/2019/09/20/intuitively-understanding-svm-and-svr/) which covers kernel functions, but for now, we'll move forward to using SVMs for regression.
+And by consequence, we can use them to build [a classifier](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/3-variants-of-classification-problems-in-machine-learning.md). If you want to move from the linear case towards nonlinear data, I suggest you take a look at [this article](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/intuitively-understanding-svm-and-svr.md) which covers kernel functions, but for now, we'll move forward to using SVMs for regression.
 
 ### Using Support Vectors to perform regression
 
@@ -106,8 +106,8 @@ We next import the dependencies - note that they are available as `sklearn` rath
 - We import `make_regression` from `sklearn.datasets` because it will help us create the dataset for today's regression problem (recall that up to now, we have no dataset :) )
 - From `sklearn.multioutput` we import `MultiOutputRegressor` - it's the wrapper we discussed in the previous section.
 - As we will convert an SVR model into a multioutput regressor, we must import `SVR` from `sklearn.svm`.
-- After generating the dataset with `make_regression`, we must split it into [train/test sets](https://www.machinecurve.com/index.php/2020/11/16/how-to-easily-create-a-train-test-split-for-your-machine-learning-model/). We can do so using `sklearn.model_selection`'s `train_test_split`.
-- Finally, we import `mean_squared_error` and `mean_absolute_error` from `sklearn.metrics` for evaluating our model. Those are default [error functions for regression problems](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#loss-functions-for-regression).
+- After generating the dataset with `make_regression`, we must split it into [train/test sets](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-easily-create-a-train-test-split-for-your-machine-learning-model.md). We can do so using `sklearn.model_selection`'s `train_test_split`.
+- Finally, we import `mean_squared_error` and `mean_absolute_error` from `sklearn.metrics` for evaluating our model. Those are default [error functions for regression problems](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#loss-functions-for-regression).
 
 ```
 from sklearn.datasets import make_regression
@@ -133,7 +133,7 @@ After the imports, it's time to make a dataset:
 X, y = make_regression(n_samples=25000, n_features=3, n_targets=2, random_state=33)
 ```
 
-After generating the dataset, we must process it by [splitting it into a training and testing dataset](https://www.machinecurve.com/index.php/2020/11/16/how-to-easily-create-a-train-test-split-for-your-machine-learning-model/):
+After generating the dataset, we must process it by [splitting it into a training and testing dataset](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-easily-create-a-train-test-split-for-your-machine-learning-model.md):
 
 ```
 
@@ -164,7 +164,7 @@ mor = MultiOutputRegressor(svr)
 
 ### Fitting and evaluating the regressor
 
-Finally, we can fit the training data (`X_train`) and `y_train`) to our `MultiOutputRegressor`. This starts the training process. Once fitting the data is complete, we can generate `y_pred` prediction values for our testing inputs `X_test`. Using the [mean squared error and mean absolute error](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#loss-functions-for-regression), we can then evaluate model performance:
+Finally, we can fit the training data (`X_train`) and `y_train`) to our `MultiOutputRegressor`. This starts the training process. Once fitting the data is complete, we can generate `y_pred` prediction values for our testing inputs `X_test`. Using the [mean squared error and mean absolute error](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#loss-functions-for-regression), we can then evaluate model performance:
 
 ```
 # Train the regressor
@@ -245,9 +245,9 @@ I hope that you have learned something from today's article! If you did, please 
 
 ## References
 
-MachineCurve. (2019, October 22). _Intuitively understanding SVM and SVR_. [https://www.machinecurve.com/index.php/2019/09/20/intuitively-understanding-svm-and-svr/](https://www.machinecurve.com/index.php/2019/09/20/intuitively-understanding-svm-and-svr/)
+MachineCurve. (2019, October 22). _Intuitively understanding SVM and SVR_. [https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/intuitively-understanding-svm-and-svr/](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/intuitively-understanding-svm-and-svr.md)
 
-MachineCurve. (2020, October 22). _3 variants of classification problems in machine learning_. [https://www.machinecurve.com/index.php/2020/10/19/3-variants-of-classification-problems-in-machine-learning/](https://www.machinecurve.com/index.php/2020/10/19/3-variants-of-classification-problems-in-machine-learning/)
+MachineCurve. (2020, October 22). _3 variants of classification problems in machine learning_. [https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/3-variants-of-classification-problems-in-machine-learning/](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/3-variants-of-classification-problems-in-machine-learning.md)
 
 Sayad, S. (n.d.). _Support vector regression_. Data Mining Map. [https://www.saedsayad.com/support\_vector\_machine\_reg.htm](https://www.saedsayad.com/support_vector_machine_reg.htm)
 

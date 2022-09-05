@@ -113,7 +113,7 @@ This would make the input layer expect a one-dimensional array of 784 elements a
 
 ## Using Numpy to find the shape of your dataset
 
-Now, suppose that I'm loading an example dataset - such as the MNIST dataset from the [Keras Datasets](https://www.machinecurve.com/index.php/2019/12/31/exploring-the-keras-datasets/).
+Now, suppose that I'm loading an example dataset - such as the MNIST dataset from the [Keras Datasets](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets.md).
 
 That would be something like this:
 
@@ -169,7 +169,7 @@ Now, from the `(60000, 28, 28)`, which elements contribute to our knowledge abou
 
 Indeed, the 28 and 28 - while the 60.000 is not of interest (after all, at sample level, this would be 1).
 
-Now, with images, we would often use Convolutional Neural Networks. In those models, we use [Conv](https://www.machinecurve.com/index.php/2020/03/30/how-to-use-conv2d-with-keras/) layers, which expect the `input_shape` in a very specific way. Specifically, they expect it as follows: `(x_shape, y_shape, channels)`. We already have `x_shape` and `y_shape`, which are both 28. We don't have `channels` yet, but do know about its value: 1. By consequence, our value for `input_shape` will be `(28, 28, 1)`!
+Now, with images, we would often use Convolutional Neural Networks. In those models, we use [Conv](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-conv2d-with-keras.md) layers, which expect the `input_shape` in a very specific way. Specifically, they expect it as follows: `(x_shape, y_shape, channels)`. We already have `x_shape` and `y_shape`, which are both 28. We don't have `channels` yet, but do know about its value: 1. By consequence, our value for `input_shape` will be `(28, 28, 1)`!
 
 However, we can also automate this, for the case when we want to use a different image dataset. We simply add the following:
 
@@ -200,7 +200,7 @@ Sample shape: (28, 28, 1)
 
 Now that we know about Tensor shapes, their importance for neural network input layers, and how to derive the sample shape for a dataset, let's now see if we can expand this to a real Keras model.
 
-For this, we'll be analyzing the [simple two-dimensional ConvNet](https://www.machinecurve.com/index.php/2020/03/30/how-to-use-conv2d-with-keras/) that we created in a different blog post.
+For this, we'll be analyzing the [simple two-dimensional ConvNet](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-conv2d-with-keras.md) that we created in a different blog post.
 
 Here is the code - you can find the analysis below it:
 

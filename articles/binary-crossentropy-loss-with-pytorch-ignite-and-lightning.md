@@ -18,7 +18,7 @@ Training a deep learning model is a cyclical process. First, you feed forward da
 
 This way, you can train a model that really performs well - one that can be used in practice.
 
-In this tutorial, we will take a close look at **using Binary** **Crossentropy Loss with PyTorch**. This loss, which is also called BCE loss, is the de facto standard loss for [binary classification tasks](https://www.machinecurve.com/index.php/2020/10/19/3-variants-of-classification-problems-in-machine-learning/) in neural networks. After reading this tutorial, you will...
+In this tutorial, we will take a close look at **using Binary** **Crossentropy Loss with PyTorch**. This loss, which is also called BCE loss, is the de facto standard loss for [binary classification tasks](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/3-variants-of-classification-problems-in-machine-learning.md) in neural networks. After reading this tutorial, you will...
 
 - Understand what Binary Crossentropy Loss is.
 - How BCE Loss can be used in neural networks for binary classification.
@@ -103,13 +103,13 @@ trainer = create_supervised_trainer(model, optimizer, criterion, device=device)
 
 ## Binary Crossentropy Loss for Binary Classification
 
-From our article about the [various classification problems](https://www.machinecurve.com/index.php/2020/10/19/3-variants-of-classification-problems-in-machine-learning/) that Machine Learning engineers can encounter when tackling a supervised learning problem, we know that **binary classification** involves grouping any input samples in one of two classes - a first and a second, often denoted as _class 0_ and _class 1_.
+From our article about the [various classification problems](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/3-variants-of-classification-problems-in-machine-learning.md) that Machine Learning engineers can encounter when tackling a supervised learning problem, we know that **binary classification** involves grouping any input samples in one of two classes - a first and a second, often denoted as _class 0_ and _class 1_.
 
 ![](images/whatisclassification2.png)
 
 ### High-level training process
 
-We also know from our article about [loss functions](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/) and the [high-level supervised machine learning process](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#the-high-level-supervised-learning-process) that when you train a neural network, these are the steps that the process will go through:
+We also know from our article about [loss functions](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md) and the [high-level supervised machine learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process) that when you train a neural network, these are the steps that the process will go through:
 
 1. **Feeding forward data through the model.** The result is a set of predictions with one prediction per input sample.
 2. **Comparing the predictions with the ground truth**. Here, we compute the differences between the prediction and the _true_ sample. We converge these differences in one value, which we call the _loss value_.
@@ -128,7 +128,7 @@ For binary classification problems, the loss function of choice is the **binary 
 
 Don't let the maths scare you away... just read on! 😉
 
-Here, `t` is the target value (either `0.0` or `1.0` - recall that the classes are represented as _class 0_ and _class 1_). The prediction `p` can be any value between zero and one, as is common with the [Sigmoid activation function](https://www.machinecurve.com/index.php/2019/09/04/relu-sigmoid-and-tanh-todays-most-used-activation-functions/). This function is commonly used to generate the output in the last layer of your neural network when performing binary classification. The `log` here is the logarithm which generates the exponential properties that make the function so useful.
+Here, `t` is the target value (either `0.0` or `1.0` - recall that the classes are represented as _class 0_ and _class 1_). The prediction `p` can be any value between zero and one, as is common with the [Sigmoid activation function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md). This function is commonly used to generate the output in the last layer of your neural network when performing binary classification. The `log` here is the logarithm which generates the exponential properties that make the function so useful.
 
 Visualized for the two possible targets and any value for `p` between 0 and 1, this is what BCE loss looks like:
 
@@ -295,7 +295,7 @@ criterion = nn.BCELoss()
 trainer = create_supervised_trainer(model, optimizer, criterion, device=device)
 ```
 
-That's it for today! Now that you have completed this tutorial, you know how to implement Binary Crossentropy Loss with PyTorch, PyTorch Lightning and PyTorch Ignite. If you have any comments, please feel free to leave a message in the comments section below 💬 Please do the same if you have any questions, or ask your question [here](https://www.machinecurve.com/index.php/machine-learning-questions/).
+That's it for today! Now that you have completed this tutorial, you know how to implement Binary Crossentropy Loss with PyTorch, PyTorch Lightning and PyTorch Ignite. If you have any comments, please feel free to leave a message in the comments section below 💬 Please do the same if you have any questions, or ask your question [here](https://web.archive.org/web/https://www.machinecurve.com/index.php/machine-learning-questions/).
 
 Thank you for reading MachineCurve today and happy engineering! 😎
 

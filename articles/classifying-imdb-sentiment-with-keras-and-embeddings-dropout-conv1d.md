@@ -15,11 +15,11 @@ tags:
   - "word-embedding"
 ---
 
-When using the Keras framework for deep learning, you have at your disposal a module called `keras.datasets` - which represents [standard datasets](https://www.machinecurve.com/index.php/2019/12/31/exploring-the-keras-datasets/) that can be used in your deep learning models, for educating yourself (click [here](https://www.machinecurve.com/index.php/2020/01/10/making-more-datasets-available-for-keras/) if you wish to extend them).
+When using the Keras framework for deep learning, you have at your disposal a module called `keras.datasets` - which represents [standard datasets](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets.md) that can be used in your deep learning models, for educating yourself (click [here](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/making-more-datasets-available-for-keras.md) if you wish to extend them).
 
 Now, what can you do with them?
 
-With regards to the image datasets, it's pretty straightforward: use [convolutional layers](https://www.machinecurve.com/index.php/2018/12/07/convolutional-neural-networks-and-their-components-for-computer-vision/) to generate a computer vision model with e.g. the [CIFAR-10 and CIFAR-100 datasets](https://www.machinecurve.com/index.php/2020/02/09/how-to-build-a-convnet-for-cifar-10-and-cifar-100-classification-with-keras/).
+With regards to the image datasets, it's pretty straightforward: use [convolutional layers](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/convolutional-neural-networks-and-their-components-for-computer-vision.md) to generate a computer vision model with e.g. the [CIFAR-10 and CIFAR-100 datasets](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-build-a-convnet-for-cifar-10-and-cifar-100-classification-with-keras.md).
 
 However, there are more datasets - and the **IMDB Dataset** is one of them.
 
@@ -66,7 +66,7 @@ In the `keras.datasets` module, we find the IMDB dataset:
 > 
 > Keras (n.d.)
 
-When processing the reviews into [readable format](https://www.machinecurve.com/index.php/2019/12/31/exploring-the-keras-datasets/#imdb-movie-reviews-sentiment-classification), this is an example:
+When processing the reviews into [readable format](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets/#imdb-movie-reviews-sentiment-classification), this is an example:
 
 > this has to be one of the worst films of the 1990s when my friends i were watching this film being the target audience it was aimed at we just sat watched the first half an hour with our jaws touching the floor at how bad it really was the rest of the time everyone else in the theatre just started talking to each other leaving or generally crying into their popcorn that they actually paid money they had earnt working to watch this feeble excuse for a film it must have looked like a great idea on paper but on film it looks like no one in the film has a clue what is going on crap acting crap costumes i can't get across how embarrasing this is to watch save yourself an hour a bit of your life
 
@@ -141,7 +141,7 @@ Now, while this will likely work, it's a naïve approach according to Chollet (2
 
 Hence, we could also use one-dimensional convolutional layers. But what are they?
 
-We recall from the blog posts about [2D convolutional layers](https://www.machinecurve.com/index.php/2019/12/03/what-do-convnets-see-visualizing-filters-with-activation-maximization/) that they represent two-dimensional _kernels_, which slide ("convolve") over the input, generating _feature maps_. As they learn to do so increasingly well over the course of the training process, they are effectively the _feature extractors_ for your model - allowing the Dense layers to work based on the patterns that were identified by the Conv layers.
+We recall from the blog posts about [2D convolutional layers](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-do-convnets-see-visualizing-filters-with-activation-maximization.md) that they represent two-dimensional _kernels_, which slide ("convolve") over the input, generating _feature maps_. As they learn to do so increasingly well over the course of the training process, they are effectively the _feature extractors_ for your model - allowing the Dense layers to work based on the patterns that were identified by the Conv layers.
 
 ![](images/1dconv.png)
 
@@ -182,7 +182,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 ```
 
-Here, we use the `Sequential` API for stacking layers on top of each other. More specifically, we'll use the `Embedding` layer for learning the word embedding, `Flatten` for making the data `Dense`\-ready, `Dropout` [for reducing overfitting](https://www.machinecurve.com/index.php/2019/12/18/how-to-use-dropout-with-keras/) and `Conv1D`/`MaxPooling1D` for extracting better patterns and generating [spatial hierarchy](https://www.machinecurve.com/index.php/2020/01/30/what-are-max-pooling-average-pooling-global-max-pooling-and-global-average-pooling/).
+Here, we use the `Sequential` API for stacking layers on top of each other. More specifically, we'll use the `Embedding` layer for learning the word embedding, `Flatten` for making the data `Dense`\-ready, `Dropout` [for reducing overfitting](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-dropout-with-keras.md) and `Conv1D`/`MaxPooling1D` for extracting better patterns and generating [spatial hierarchy](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-are-max-pooling-average-pooling-global-max-pooling-and-global-average-pooling.md).
 
 ### Model configuration
 
@@ -205,7 +205,7 @@ Max sequence length, or `max_sequence_length`, describes the number of words in 
 
 With `num_distinct_words`, we'll set how many distinct words we obtain using the `keras.datasets.imdb` dataset's `load_data()` call. In this setting, it will load the 10.000 most important words - likely, more than enough for a well-functioning model. Other words are replaced with a uniform "replacement" character.
 
-Our embeddings layer has a dimensionality of `embedding_output_dims = 15`. For [loss](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/), we use [binary crossentropy](https://www.machinecurve.com/index.php/2019/10/22/how-to-use-binary-categorical-crossentropy-with-keras/) (as we use [Sigmoid](https://www.machinecurve.com/index.php/2019/09/09/implementing-relu-sigmoid-and-tanh-in-keras/) activated outputs), and the [Adam optimizer](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/#adam). As an additional metric, we use the more intuitive accuracy. We train the model for 100 iterations, set verbosity mode to True (outputting most of the training process on screen) and use 20% of our training data for validation purposes.
+Our embeddings layer has a dimensionality of `embedding_output_dims = 15`. For [loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md), we use [binary crossentropy](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-binary-categorical-crossentropy-with-keras.md) (as we use [Sigmoid](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/implementing-relu-sigmoid-and-tanh-in-keras.md) activated outputs), and the [Adam optimizer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound/#adam). As an additional metric, we use the more intuitive accuracy. We train the model for 100 iterations, set verbosity mode to True (outputting most of the training process on screen) and use 20% of our training data for validation purposes.
 
 ### Loading and preparing the IMDB dataset
 
@@ -226,7 +226,7 @@ Now, we'll have to add a little comment:
 # Then, you can use all data for a full training run. Now, we'll use x_train for training only.
 ```
 
-Indeed, normally, you wouldn't want to split training and testing data when training your production model - the more data, the better. However, you _do_ need to estimate how well your model works - and also in a production setting, with data that it hasn't seen. Hence, here, you would normally perform evaluation metrics such as [K-fold Cross Validation](https://www.machinecurve.com/index.php/2020/02/18/how-to-use-k-fold-cross-validation-with-keras/). If this ensures that model performance is well, you would normally retrain your model with all the data. However, for the sake of simplicity, we use `x_train` only and discard `x_test` until the model evaluation step.
+Indeed, normally, you wouldn't want to split training and testing data when training your production model - the more data, the better. However, you _do_ need to estimate how well your model works - and also in a production setting, with data that it hasn't seen. Hence, here, you would normally perform evaluation metrics such as [K-fold Cross Validation](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-k-fold-cross-validation-with-keras.md). If this ensures that model performance is well, you would normally retrain your model with all the data. However, for the sake of simplicity, we use `x_train` only and discard `x_test` until the model evaluation step.
 
 The next step would be to pad all sequences, as suggested before, to ensure that the shape of all inputs is equal (in our case, 100 words long):
 
@@ -275,9 +275,9 @@ model.add(Dense(1, activation='sigmoid'))
 
 As you can see, the first layer is an `Embedding` layer which learns the word embedding - based on the number of distinct words, the number of output dimensions, and the input length that we defined during model configuration.
 
-Dropout is added after every layer of interest in order to add [noise through Bernoulli variables](https://www.machinecurve.com/index.php/2019/12/16/what-is-dropout-reduce-overfitting-in-your-neural-networks/), hopefully to avoid or reduce overfitting.
+Dropout is added after every layer of interest in order to add [noise through Bernoulli variables](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-dropout-reduce-overfitting-in-your-neural-networks.md), hopefully to avoid or reduce overfitting.
 
-Following the Embedding layer is a `Conv1D` layer with 32 filters of size 2. Then, we use `MaxPooling1D` to boost spatial hierarchies within your model - see the article [about pooling](https://www.machinecurve.com/index.php/2020/01/30/what-are-max-pooling-average-pooling-global-max-pooling-and-global-average-pooling/) for more information. Finally, we use `Flatten` to reduce dimensionality of the data and `Dense` for generating a `Sigmoid`\-activated classification (that is, a classification within the range \[latex\](0, 1)\[/latex\]).
+Following the Embedding layer is a `Conv1D` layer with 32 filters of size 2. Then, we use `MaxPooling1D` to boost spatial hierarchies within your model - see the article [about pooling](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-are-max-pooling-average-pooling-global-max-pooling-and-global-average-pooling.md) for more information. Finally, we use `Flatten` to reduce dimensionality of the data and `Dense` for generating a `Sigmoid`\-activated classification (that is, a classification within the range \[latex\](0, 1)\[/latex\]).
 
 ### Model compilation, fitting & summary
 
@@ -308,7 +308,7 @@ test_results = model.evaluate(padded_inputs_test, y_test, verbose=False)
 print(f'Test results - Loss: {test_results[0]} - Accuracy: {100*test_results[1]}%')
 ```
 
-And subsequently, we use the `history` object in order to [visualize model history](https://www.machinecurve.com/index.php/2019/10/08/how-to-visualize-the-training-process-in-keras/):
+And subsequently, we use the `history` object in order to [visualize model history](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-training-process-in-keras.md):
 
 ```
 # Visualize history
@@ -429,7 +429,7 @@ Let's now take a look at some results after you ran the model with `python imdb.
 
 ### Validation plots
 
-First, the validation plots - i.e., the plots with validation loss and validation accuracy. Clearly, they indicate that [overfitting](https://www.machinecurve.com/index.php/2019/12/16/what-is-dropout-reduce-overfitting-in-your-neural-networks/#how-well-does-your-model-perform-underfitting-and-overfitting) occurs: the loss minimum is reported straight at the beginning of the process, after which loss increases again ([check here how to detect underfitting and overfitting on loss plots](https://www.machinecurve.com/index.php/2020/02/20/finding-optimal-learning-rates-with-the-learning-rate-range-test/#overfitting-and-underfitting-checking-your-validation-loss)).
+First, the validation plots - i.e., the plots with validation loss and validation accuracy. Clearly, they indicate that [overfitting](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-dropout-reduce-overfitting-in-your-neural-networks/#how-well-does-your-model-perform-underfitting-and-overfitting) occurs: the loss minimum is reported straight at the beginning of the process, after which loss increases again ([check here how to detect underfitting and overfitting on loss plots](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/finding-optimal-learning-rates-with-the-learning-rate-range-test/#overfitting-and-underfitting-checking-your-validation-loss)).
 
 While this is bad - and perhaps can be overcome by tuning learning rates, using different optimizers, preparing the data or model architecture differently, training for longer and considering this as a temporary worse loss - we don't really care for now, haha :P Especially because accuracy at that point is \[latex\]\\approx 86\\%\[/latex\].
 

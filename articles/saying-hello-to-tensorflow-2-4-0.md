@@ -45,7 +45,7 @@ Let's take a look at the major features/improvements in more detail :)
 While many people who start with TensorFlow train their neural networks on just one machine with one GPU, it is possible to extend your training setup in multiple ways:
 
 - You can use multiple GPUs on your machine.
-- You can use a [cloud setup](https://www.machinecurve.com/index.php/2020/10/16/tensorflow-cloud-easy-cloud-based-training-of-your-keras-model/) for using multiple GPUs on multiple machines.
+- You can use a [cloud setup](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tensorflow-cloud-easy-cloud-based-training-of-your-keras-model.md) for using multiple GPUs on multiple machines.
 
 How you setup your training process can be configured by a **distribution strategy**, available through the `tf.distribute` API in TensorFlow. Now, a new strategy was added - called `ParameterServerStrategy`:
 
@@ -55,7 +55,7 @@ tf.distribute.experimental.ParameterServerStrategy(
 )
 ```
 
-Generally, if you would use a cluster of machines for training your neural network, you would do so in a data-parallel way, by splitting your dataset into multiple batches, [training instances of the same model with those batches](https://www.machinecurve.com/index.php/2020/10/22/distributed-training-tensorflow-and-keras-models-with-apache-spark/#data-parallelism-vs-model-parallelism), and subsequently aggregating the parameters changes into a change in the full model.
+Generally, if you would use a cluster of machines for training your neural network, you would do so in a data-parallel way, by splitting your dataset into multiple batches, [training instances of the same model with those batches](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/distributed-training-tensorflow-and-keras-models-with-apache-spark/#data-parallelism-vs-model-parallelism), and subsequently aggregating the parameters changes into a change in the full model.
 
 This can be done **synchronously** and **asynchronously**, which differs in the way how model variables of the _full model_ are updated.
 
@@ -73,7 +73,7 @@ This greatly boosts parallel training, especially now that Amazon has released [
 
 ### Into stable: MultiWorkerMirroredStrategy
 
-A synchronous method that [used to be experimental](https://www.machinecurve.com/index.php/2020/10/16/tensorflow-cloud-easy-cloud-based-training-of-your-keras-model/#multiworkermirroredstrategy), called the `MultiWorkerMirroredStrategy`, is being moved from experimental into stable (TensorFlow, n.d.):
+A synchronous method that [used to be experimental](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tensorflow-cloud-easy-cloud-based-training-of-your-keras-model/#multiworkermirroredstrategy), called the `MultiWorkerMirroredStrategy`, is being moved from experimental into stable (TensorFlow, n.d.):
 
 ```
 tf.distribute.MultiWorkerMirroredStrategy(
@@ -81,7 +81,7 @@ tf.distribute.MultiWorkerMirroredStrategy(
 )
 ```
 
-Using the distribution strategy, you can train your model in a setup across **multiple workers, each with potentially multiple GPUs**. This is a strategy that can be employed in [cloud-based training](https://www.machinecurve.com/index.php/2020/10/16/tensorflow-cloud-easy-cloud-based-training-of-your-keras-model/).
+Using the distribution strategy, you can train your model in a setup across **multiple workers, each with potentially multiple GPUs**. This is a strategy that can be employed in [cloud-based training](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tensorflow-cloud-easy-cloud-based-training-of-your-keras-model.md).
 
 ![](images/pexels-manuel-geissinger-325229-1024x358.jpg)
 
@@ -104,7 +104,7 @@ The reason why this was added seems to be **performance**, mainly.
 
 Generally, it seems to be the case that if your NumPy workloads have complex operations, performance benefits become clear. For smaller or not-so-complex workloads, TensorFlow (n.d.) suggests to still use NumPy instead.
 
-Here is a comparison for a [Sigmoid](https://www.machinecurve.com/index.php/2019/09/09/implementing-relu-sigmoid-and-tanh-in-keras/) activation function implemented with NumPy and TensorFlow NumPy:
+Here is a comparison for a [Sigmoid](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/implementing-relu-sigmoid-and-tanh-in-keras.md) activation function implemented with NumPy and TensorFlow NumPy:
 
 ![png](images/output_p-fs_H1lkLfV_0.png)
 

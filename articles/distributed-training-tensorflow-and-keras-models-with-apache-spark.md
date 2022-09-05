@@ -15,7 +15,7 @@ tags:
   - "tensorflow"
 ---
 
-Ever since that particular breakthrough in 2012, deep learning has been an important driver of today's buzz about Artificial Intelligence. And in some areas, it absolutely deserves applause - for example, [convolutional neural networks](https://www.machinecurve.com/index.php/2020/03/30/how-to-use-conv2d-with-keras/) have spawned really great applications of computer vision:
+Ever since that particular breakthrough in 2012, deep learning has been an important driver of today's buzz about Artificial Intelligence. And in some areas, it absolutely deserves applause - for example, [convolutional neural networks](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-conv2d-with-keras.md) have spawned really great applications of computer vision:
 
 - [Snagging Parking Spaces with Mask R-CNN and Python: Using Deep Learning to Solve Minor Annoyances](https://medium.com/@ageitgey/snagging-parking-spaces-with-mask-r-cnn-and-python-955f2231c400)
 - [How to Get Beautiful Results with Neural Style Transfer](https://towardsdatascience.com/how-to-get-beautiful-results-with-neural-style-transfer-75d0c05d6489)
@@ -23,7 +23,7 @@ Ever since that particular breakthrough in 2012, deep learning has been an impor
 
 ...and there are many more!
 
-Despite the progress made so far, deep learning is still a computationally expensive field. Training neural networks [involves feeding forward data, computing the error or loss and subsequently optimizing](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#the-high-level-supervised-learning-process) the model with [gradient descent](https://www.machinecurve.com/index.php/2019/10/24/gradient-descent-and-its-variants/) or [adaptive optimizers](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/).
+Despite the progress made so far, deep learning is still a computationally expensive field. Training neural networks [involves feeding forward data, computing the error or loss and subsequently optimizing](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process) the model with [gradient descent](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md) or [adaptive optimizers](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md).
 
 Especially in settings where your model is large - and deep learning models _are_ large, with sometimes hundreds of layers in just one model, yielding millions and millions of trainable parameters - training a model does (1) take a lot of time, (2) requires GPU powered resources which are expensive, and (3) consumes a lot of electricity.
 
@@ -33,7 +33,7 @@ More specifically, we'll look at a few things. Firstly, we discuss the differenc
 
 It's promising to become quite a read, but I'm sure that it'll provide you with a nice overview of what's out there. Let's go! 😎
 
-**Update 07/Jan/2021:** the [Elephas project](https://www.machinecurve.com/index.php/2020/10/22/distributed-training-tensorflow-and-keras-models-with-apache-spark/#elephas-distributed-deep-learning-with-keras-spark) was taken over by [@danielenricocahall](https://github.com/danielenricocahall). References were updated to accommodate for this. In addition, the new Elephas release now also supports regression models 🚀 This was adapted in the text.
+**Update 07/Jan/2021:** the [Elephas project](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/distributed-training-tensorflow-and-keras-models-with-apache-spark/#elephas-distributed-deep-learning-with-keras-spark) was taken over by [@danielenricocahall](https://github.com/danielenricocahall). References were updated to accommodate for this. In addition, the new Elephas release now also supports regression models 🚀 This was adapted in the text.
 
 * * *
 
@@ -93,7 +93,7 @@ Now, this is no big data article, so let's take a look at how Machine Learning i
 
 If your dataset is _small_, that is - it fits on the disk of the machine that you're using and, as we're talking about machine learning, in the memory of your machine as well - then there is no problem related to training your model.
 
-In fact, by simply installing Keras, it is possible to train a variety of models [like this classifier](https://www.machinecurve.com/index.php/2020/10/20/tutorial-building-a-hot-dog-not-hot-dog-classifier-with-tensorflow-and-keras/).
+In fact, by simply installing Keras, it is possible to train a variety of models [like this classifier](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tutorial-building-a-hot-dog-not-hot-dog-classifier-with-tensorflow-and-keras.md).
 
 Life becomes more difficult when your dataset gets bigger. Fortunately, the machine learning community comes to the rescue with a concept called _distributed training_.
 
@@ -106,7 +106,7 @@ Very simple: rather than performing the entire training process on one machine/G
 - A **best-of-both-worlds distribution strategy**, where multiple machines with multiple GPUs are employed for training your machine learning model;
 - A **big data-powered distribution strategy**, where a batch data processing framework from the big data field is employed for distributing the training operations.
 
-In today's article, we will focus on the latter strategy. The other distributed strategies can be employed on your machine, should you have a _beast_ on-premise, [or in the cloud](https://www.machinecurve.com/index.php/2020/10/16/tensorflow-cloud-easy-cloud-based-training-of-your-keras-model/), if you don't. The big data-powered distribution strategy that we will look at today will benefit greatly from Apache Spark and the way it distributes processing jobs across a variety of commodity machines.
+In today's article, we will focus on the latter strategy. The other distributed strategies can be employed on your machine, should you have a _beast_ on-premise, [or in the cloud](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tensorflow-cloud-easy-cloud-based-training-of-your-keras-model.md), if you don't. The big data-powered distribution strategy that we will look at today will benefit greatly from Apache Spark and the way it distributes processing jobs across a variety of commodity machines.
 
 Let's first take a look at what Apache Spark is, what it does and how its properties can possibly benefit machine learning too. Then, we'll take a look at a variety of modules built on top of Spark / making use of Spark, which can be used for training your machine learning model in a distributed way.
 
@@ -140,7 +140,7 @@ The benefit of Spark is that it is capable of generating a Resilient Distributed
 
 The fact that Spark is capable of distributing processing jobs into essentially small packages, makes one wonder if it cannot be used for _machine learning_ too! The reasoning why this could possibly work is simple: supervised machine learning is
 
-The fact that Spark is capable of distributing processing jobs into essentially small packages, makes one wonder if it cannot be used for _machine learning_ too! The reasoning why this could possibly work is simple: supervised machine learning [is essentially solving an optimization problem, iteratively.](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#the-high-level-supervised-learning-process) Feeding forward the training samples produces an error score, which is subsequently used to optimize the [weights](https://www.machinecurve.com/index.php/2019/08/22/what-is-weight-initialization/) of the individual neurons. It should therefore be possible to distribute this process over many machines.
+The fact that Spark is capable of distributing processing jobs into essentially small packages, makes one wonder if it cannot be used for _machine learning_ too! The reasoning why this could possibly work is simple: supervised machine learning [is essentially solving an optimization problem, iteratively.](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process) Feeding forward the training samples produces an error score, which is subsequently used to optimize the [weights](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-weight-initialization.md) of the individual neurons. It should therefore be possible to distribute this process over many machines.
 
 Is it? Let's take a look at some methods for distributing deep learning using Apache Spark.
 
@@ -175,7 +175,7 @@ Data-parallel? That's a term that we haven't seen yet.
 
 #### Data parallelism vs model parallelism
 
-In a great article that should be read by those who have a background in maths, Mao (n.d.) argues that [batch gradient descent](https://www.machinecurve.com/index.php/2019/10/24/gradient-descent-and-its-variants/) can produce big oscillations in the computed gradients especially because they work with batches of data - and such batches do not necessarily have to be distributed in an equal way.
+In a great article that should be read by those who have a background in maths, Mao (n.d.) argues that [batch gradient descent](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md) can produce big oscillations in the computed gradients especially because they work with batches of data - and such batches do not necessarily have to be distributed in an equal way.
 
 This increases the road towards convergence.
 
@@ -198,10 +198,10 @@ Image from [Elephas GitHub](https://github.com/maxpumperla/elephas). License: MI
 Personally, I think this is a great way of aligning the benefits of Apache Spark with the requirements of training Keras models in a parallel way. In fact, Elephas does not only support training. In total, a number of three use cases is supported by it:
 
 - Distributed data parallel training of your Keras model (animation above).
-- Distributed hyperparameter optimization for your Keras model (that is, finding the best set of hyperparameters automatically, such as with [Keras Tuner](https://www.machinecurve.com/index.php/2020/06/09/automating-neural-network-configuration-with-keras-tuner/), but then distributed).
+- Distributed hyperparameter optimization for your Keras model (that is, finding the best set of hyperparameters automatically, such as with [Keras Tuner](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/automating-neural-network-configuration-with-keras-tuner.md), but then distributed).
 - Distributed training of ensemble models, by means of hyperparameter optimization and subsequently ensembling on \[latex\]N\[/latex\] best-performing models.
 
-While it [used to be impossible](https://github.com/maxpumperla/elephas/issues/139) to perform regression tasks in previous versions of Elephas, [it was added](https://www.machinecurve.com/index.php/2020/10/22/distributed-training-tensorflow-and-keras-models-with-apache-spark/#comment-12187) in [version 0.4.5](https://github.com/danielenricocahall/elephas/releases/tag/0.4.5) released in early 2021.
+While it [used to be impossible](https://github.com/maxpumperla/elephas/issues/139) to perform regression tasks in previous versions of Elephas, [it was added](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/distributed-training-tensorflow-and-keras-models-with-apache-spark/#comment-12187) in [version 0.4.5](https://github.com/danielenricocahall/elephas/releases/tag/0.4.5) released in early 2021.
 
 #### Creating a model with Keras and Elephas
 
@@ -213,7 +213,7 @@ Creating a model with Keras and Elephas is truly simple. [As per the docs on Git
 - Initialize an `elephas.spark_model.SparkModel` instance
 - Submitting your script with `spark-submit`
 
-The steps are explained in more detailed [here](https://github.com/maxpumperla/elephas#basic-spark-integration), but here's a full code example of a simple Keras classifier - our [hot dog classifier made Spark-ready](https://www.machinecurve.com/index.php/2020/10/20/tutorial-building-a-hot-dog-not-hot-dog-classifier-with-tensorflow-and-keras/). Do note that we omitted some general parts, which can be retrieved in the linked article.
+The steps are explained in more detailed [here](https://github.com/maxpumperla/elephas#basic-spark-integration), but here's a full code example of a simple Keras classifier - our [hot dog classifier made Spark-ready](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tutorial-building-a-hot-dog-not-hot-dog-classifier-with-tensorflow-and-keras.md). Do note that we omitted some general parts, which can be retrieved in the linked article.
 
 ```
 import tensorflow
@@ -271,7 +271,7 @@ The [CERN Database Group](https://github.com/cerndb) (indeed, the European Organ
 > 
 > CERN (n.d.)
 
-Similar to Elephas, `dist-keras` also allows people to train models on Apache Spark in a data parallel way (for those who haven't read about Elephas yet: navigate to the Elephas section above if you want to understand the concept of data parallelism in more detail). It does so by allowing people to perform distributed optimization; that is, rather than performing [Adam](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/) or [classic SGD](https://www.machinecurve.com/index.php/2019/10/24/gradient-descent-and-its-variants/), `dist-keras` utilizes _distributed_ optimizers such as ADAG, Dynamic SGD and AEASGD ([click here for a great article that explains them](https://joerihermans.com/ramblings/distributed-deep-learning-part-1-an-introduction/), of which the author is also affiliated with `dist-keras`).
+Similar to Elephas, `dist-keras` also allows people to train models on Apache Spark in a data parallel way (for those who haven't read about Elephas yet: navigate to the Elephas section above if you want to understand the concept of data parallelism in more detail). It does so by allowing people to perform distributed optimization; that is, rather than performing [Adam](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md) or [classic SGD](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md), `dist-keras` utilizes _distributed_ optimizers such as ADAG, Dynamic SGD and AEASGD ([click here for a great article that explains them](https://joerihermans.com/ramblings/distributed-deep-learning-part-1-an-introduction.md), of which the author is also affiliated with `dist-keras`).
 
 Contrary to Elephas, with `dist-keras` it is possible to implement your own distributed optimizer - for example, because new state-of-the-art methods have appeared. You don't have to wait for people to adapt your tools as you can simply replace the part that requires replacement. In theory, this is a big advantage over other distributed deep learning methods.
 
@@ -295,7 +295,7 @@ In fact, that's what its [GitHub page](https://github.com/intel-analytics/BigDL)
 
 Where `elephas` and `dist-keras` focus on Keras models, BigDL works a bit differently. Instead of focusing on an existing framework for deep learning, it requires people to write models directly against Spark - that is, by using `pyspark`. In doing so, it attempts to replicate what we know as the Sequential API from Keras, which should make it fairly easy for people used to the Keras way of working to implement models with BigDL.
 
-While the former may sound strange at first, it does in fact come with great benefits. Since Spark is not effectively 'abused' to run Keras models in a data parallel way, but instead runs as _direct transformations_ of inputs to outputs (essentially replicating the mathematical operations performed by e.g. [Convolutional layers](https://www.machinecurve.com/index.php/2020/10/20/tutorial-building-a-hot-dog-not-hot-dog-classifier-with-tensorflow-and-keras/#what-is-a-convnet) directly in Spark), it becomes possible to train with _extremely_ large datasets currently stored on Hadoop (or S3). This is not possible with Elephas, to give just one example: here, an existing dataset had to be converted into an RDD and then run on the Spark cluster.
+While the former may sound strange at first, it does in fact come with great benefits. Since Spark is not effectively 'abused' to run Keras models in a data parallel way, but instead runs as _direct transformations_ of inputs to outputs (essentially replicating the mathematical operations performed by e.g. [Convolutional layers](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tutorial-building-a-hot-dog-not-hot-dog-classifier-with-tensorflow-and-keras/#what-is-a-convnet) directly in Spark), it becomes possible to train with _extremely_ large datasets currently stored on Hadoop (or S3). This is not possible with Elephas, to give just one example: here, an existing dataset had to be converted into an RDD and then run on the Spark cluster.
 
 As such, BigDL also allows you to train your deep learning model in a data parallel way, but is Spark-native rather than Keras-based.
 
@@ -313,7 +313,7 @@ While BigDL utilizes native Spark processing for creating your deep learning mod
 
 It's essentially a converter to a format that can be converted into a Spark-compatible model and is part of the Apache Spark SystemML, a flexible machine learning system automatically scaling to Spark and Hadoop clusters.
 
-I do however have some relatively bad news for you, which makes this section really short compared to the others: I'm not so sure anymore whether utilizing Keras2DML is the best approach today, especially given the benefits of BigDL and the non-Spark method of [TensorFlow Cloud](https://www.machinecurve.com/index.php/2020/10/16/tensorflow-cloud-easy-cloud-based-training-of-your-keras-model/). This observation comes from two lower-level ones:
+I do however have some relatively bad news for you, which makes this section really short compared to the others: I'm not so sure anymore whether utilizing Keras2DML is the best approach today, especially given the benefits of BigDL and the non-Spark method of [TensorFlow Cloud](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tensorflow-cloud-easy-cloud-based-training-of-your-keras-model.md). This observation comes from two lower-level ones:
 
 1. SystemML is now called SystemDS. I cannot find anything about KerasDML on a SystemDS related website. The only website I find is from SystemML; this means that it's really old.
 2. Articles about SystemML and Keras date back to 2018, as well as this [example](https://gist.github.com/NiloyPurkait/1c6c44f329f2255f5de2b0d498c3f238). The example even imports `keras` manually, rather than importing it from TensorFlow as `tensorflow.keras` - clearly indicating that Keras2DML is compatible with Keras 1.x based models only!
@@ -333,7 +333,7 @@ Combining important elements from TensorFlow with Apache Spark and Apache Hadoop
 According to the docs, it was created with TensorFlow compatibility in mind. The authors argue that it provides many benefits over other solutions used for training your deep learning model:
 
 - Converting your TensorFlow model to a TensorFlowOnSpark based one is easy, requiring a code change of < 10 lines of code. This is not the most salient benefit, as e.g. Elephas requires you to change almost no code either.
-- Many TensorFlow functionalities are supported: various forms of parallelism, inferencing, and even [TensorBoard](https://www.machinecurve.com/index.php/2019/11/13/how-to-use-tensorboard-with-keras/).
+- Many TensorFlow functionalities are supported: various forms of parallelism, inferencing, and even [TensorBoard](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-tensorboard-with-keras.md).
 - Allow your datasets to reside on HDFS and other sources (think S3). Elephas and `dist-keras` don't support this; BigDL does, but doesn't work with TensorFlow/Keras models.
 - Deployment can be done everywhere where Spark is running.
 
@@ -365,7 +365,7 @@ Do you already have a TensorFlow or Keras model, for example? Then, you might no
 
 More generally, I would therefore say that BigDL and TensorFlowOnSpark are the most mature from this list. They support a wide variety of operations, support connecting to data stored on Hadoop, are maintained by larger organizations, support modern versions of the libraries (e.g. TensorFlow 2.x) and have been updated recently. Elephas and Dist-keras, while appreciating the amount of work that must have been put into creating them, don't have all these pros. Keras2DML seems to be very outdated, so I wouldn't recommend using it.
 
-But still, "it depends". Choose wisely. [For example, consider using TensorFlow Cloud on Google machines if you don't have experience with Spark](https://www.machinecurve.com/index.php/2020/10/16/tensorflow-cloud-easy-cloud-based-training-of-your-keras-model/). You then don't have the hassle of getting to know Spark while you can benefit from distributed strategies there as well. In fact, it's also really easy, after you completed the setup.
+But still, "it depends". Choose wisely. [For example, consider using TensorFlow Cloud on Google machines if you don't have experience with Spark](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tensorflow-cloud-easy-cloud-based-training-of-your-keras-model.md). You then don't have the hassle of getting to know Spark while you can benefit from distributed strategies there as well. In fact, it's also really easy, after you completed the setup.
 
 I hope that you've learnt something interesting from today's article. I certainly did - for me, it was new that Apache Spark can be used for training deep learning models. However, after reading about data parallelism, all clicked - and I recognized why using Spark can be really useful. It was fun to see the effort put into creating the tools that we covered in the article today, and I'm happy to see that some are maintained even today.
 

@@ -18,7 +18,7 @@ Recently, I've picked up deep learning both in my professional and spare-time ac
 
 But in order to start, you'll have to start with the definition. **What is deep learning, exactly?** If you don't know what it is, you cannot deepen your understanding.
 
-In this blog, I thus investigate the definition of deep learning in more detail. I'll take a look at the multi-layered information processing, the nonlinear [activation functions](https://www.machinecurve.com/index.php/2019/09/04/relu-sigmoid-and-tanh-todays-most-used-activation-functions/), as well as the concept behind representation learning. It's slightly high-level to keep this blog at an adequate complexity, and I will cover the particular topics in more detail in other blogs.
+In this blog, I thus investigate the definition of deep learning in more detail. I'll take a look at the multi-layered information processing, the nonlinear [activation functions](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md), as well as the concept behind representation learning. It's slightly high-level to keep this blog at an adequate complexity, and I will cover the particular topics in more detail in other blogs.
 
 So keep coming back every now and then to find new information available for you to read, free of charge! :-)
 
@@ -34,7 +34,7 @@ Okay, let's give it a start :-)
 
 ## What is deep learning, exactly?
 
-There seems to be a bit of a definition clash, haha. In all these years, there has been [no agreed upon definition](https://www.machinecurve.com/index.php/2017/09/30/the-differences-between-artificial-intelligence-machine-learning-more/) about what the differences are between artificial intelligence, machine learning and deep learning. Especially for artificial intelligence things get vague with very fuzzy boundaries.
+There seems to be a bit of a definition clash, haha. In all these years, there has been [no agreed upon definition](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/the-differences-between-artificial-intelligence-machine-learning-more.md) about what the differences are between artificial intelligence, machine learning and deep learning. Especially for artificial intelligence things get vague with very fuzzy boundaries.
 
 For deep learning, things tend to get a bit better.
 
@@ -64,7 +64,7 @@ We now have a problem space which we can use to move forward :-)
 
 Classic methods of machine learning work with just one layer of information processing.
 
-To make this principle clear, we take one of the simpler variants of these kind of models: a [linear classifier](https://www.machinecurve.com/index.php/2019/06/11/why-you-shouldnt-use-a-linear-activation-function/).
+To make this principle clear, we take one of the simpler variants of these kind of models: a [linear classifier](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-you-shouldnt-use-a-linear-activation-function.md).
 
 ![](images/linear_classifier.jpg)
 
@@ -72,7 +72,7 @@ Above, we have the mathematical notation of a linear classifier. I'll now try to
 
 ### Input, output and weights
 
-Suppose that we have a model. This means that you will have **input** which you feed to the model, and based on the model you get some **output**. In the notation above, vector (for programmers, this is like an array; for anyone else, it is like an ordered list) **x** is the new input you're feeding the model. **y** is the output, for example the class in a [classification problem](https://www.machinecurve.com/index.php/2019/09/17/how-to-create-a-cnn-classifier-with-keras/).
+Suppose that we have a model. This means that you will have **input** which you feed to the model, and based on the model you get some **output**. In the notation above, vector (for programmers, this is like an array; for anyone else, it is like an ordered list) **x** is the new input you're feeding the model. **y** is the output, for example the class in a [classification problem](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras.md).
 
 Vector **w** is called the **weights vector**. This is the "learnt" knowledge for the model. If you train the model, you feed it "input values" with the corresponding "output value". Based on the way the model is built up itself, it attempts to discover patterns in this data. For example, a medium-sized animal which makes a barking sound probably belongs to output... dog. This means that if trained well, when your input vector (x) consists of 'medium-sized' and 'barking', the model's output (y) will be 'dog'.
 
@@ -90,7 +90,7 @@ For the deep learning methods, things are a bit different. If we wish to demonst
 
 I think you did immediately notice that an artificial neural network consists of multiple layers :-) There is one input layer, one output layer and some hidden layers in between.
 
-These layers, and the nodes within these layers, they are all connected. In most cases, [this happens in a feed-forward fashion](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#the-high-level-supervised-learning-process), as you can notice in the image above, but some network architectures exist in which certain information from the past is used to make better predictions in future layers.
+These layers, and the nodes within these layers, they are all connected. In most cases, [this happens in a feed-forward fashion](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process), as you can notice in the image above, but some network architectures exist in which certain information from the past is used to make better predictions in future layers.
 
 ### Converting input to output: neural network
 
@@ -106,7 +106,7 @@ And here's why.
 
 ## Nonlinear activation functions
 
-We'll have to first look into another aspect of these kind of models: the so-called [**nonlinear activation functions**](https://www.machinecurve.com/index.php/2020/01/24/overview-of-activation-functions-for-neural-networks/).
+We'll have to first look into another aspect of these kind of models: the so-called [**nonlinear activation functions**](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/overview-of-activation-functions-for-neural-networks.md).
 
 ![](images/linear_classifier.jpg)
 
@@ -120,25 +120,25 @@ But neural networks are slightly inspired on how the human brain works. Neurolog
 
 This means that the neurons can partially decide that certain signals do not need to be processed further down the chain, whereas for others this is actually important.
 
-It can be achieved by using an [**activation function**](https://www.machinecurve.com/index.php/2019/09/04/relu-sigmoid-and-tanh-todays-most-used-activation-functions/). One such function uses some kind of threshold value to decide whether activation should take place. For example, "fire if value > threshold, otherwise do not fire". In numbers: "1 if value > threshold, 0 otherwise". Many types of activation function exist.
+It can be achieved by using an [**activation function**](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md). One such function uses some kind of threshold value to decide whether activation should take place. For example, "fire if value > threshold, otherwise do not fire". In numbers: "1 if value > threshold, 0 otherwise". Many types of activation function exist.
 
 ### Nonlinearity
 
 This is really different from a regular model, which does not use any kind of activation function, as we saw with the linear classifier.
 
-In neural networks, activation functions are [**nonlinear**](https://www.machinecurve.com/index.php/2019/06/11/why-you-shouldnt-use-a-linear-activation-function/). We can show the difference by first explaining a linear function:
+In neural networks, activation functions are [**nonlinear**](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-you-shouldnt-use-a-linear-activation-function.md). We can show the difference by first explaining a linear function:
 
 y: A(x) = c \* x.
 
 With a certain weight c (which does not matter for the example), function A produces output value y for the input value x. However, as we can see, this output value is proportional to the input value. If c = 1, we can see that A(1) = 1, A(2) = 2 et cetera.
 
-Nonlinear functions do not work this way. Their input is not necessarily proportional to the input value (but may be for some ranges within the possible input values). For example, one of the most-used nonlinear activation functions is the so-called [**_ReLu_** _activation function_](https://www.machinecurve.com/index.php/2019/09/04/relu-sigmoid-and-tanh-todays-most-used-activation-functions/#rectified-linear-unit-relu). If the x values are < 0, the output is 0, else the output is x. This means that for x >= 0, the output is proportional to the input, but if an input scalar x is < 0, it is not proportional.
+Nonlinear functions do not work this way. Their input is not necessarily proportional to the input value (but may be for some ranges within the possible input values). For example, one of the most-used nonlinear activation functions is the so-called [**_ReLu_** _activation function_](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions/#rectified-linear-unit-relu). If the x values are < 0, the output is 0, else the output is x. This means that for x >= 0, the output is proportional to the input, but if an input scalar x is < 0, it is not proportional.
 
 So, in nonlinear models, the weighted product calculated by the neuron is then put through an activation function that is nonlinear. Its output, if activated, is sent to the connected neurons in the subsequent layer.
 
 ### Differences with classic models
 
-The **benefit** of these kind of activation functions is that data can be handled in a better way. Data is inherently nonlinear, as the world is too. It is therefore very complex [to fully grasp the world in linear models](https://www.machinecurve.com/index.php/2019/06/11/why-you-shouldnt-use-a-linear-activation-function/). Nonlinear activation functions can help identifying much more complex patterns in data than a linear model can handle. This partially explains the enormous rise in accuracy for machine learning models since the rise of deep learning.
+The **benefit** of these kind of activation functions is that data can be handled in a better way. Data is inherently nonlinear, as the world is too. It is therefore very complex [to fully grasp the world in linear models](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-you-shouldnt-use-a-linear-activation-function.md). Nonlinear activation functions can help identifying much more complex patterns in data than a linear model can handle. This partially explains the enormous rise in accuracy for machine learning models since the rise of deep learning.
 
 \[ad\]
 

@@ -29,13 +29,13 @@ Are you ready? Let's go! 😎
 
 Convolutional layers induce spatial hierarchy. That is, generally speaking, they reduce the size of your input data for every layer the data passes through - allowing neural networks to learn both very _specific_ and very _abstract_ aspects of your input data.
 
-However, sometimes you don't want this to happen: you want the size of your input data to stay the same. In that case, padding can help by adding [zeros, constants or different numbers around the reduced input](https://www.machinecurve.com/index.php/2020/02/07/what-is-padding-in-a-neural-network/). This way, the size of your input data remains the same.
+However, sometimes you don't want this to happen: you want the size of your input data to stay the same. In that case, padding can help by adding [zeros, constants or different numbers around the reduced input](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-padding-in-a-neural-network.md). This way, the size of your input data remains the same.
 
 [![](images/reflection_pad.jpg)](https://www.machinecurve.com/wp-content/uploads/2020/02/reflection_pad.jpg)
 
-[Reflection padding](https://www.machinecurve.com/index.php/2020/02/07/what-is-padding-in-a-neural-network/#reflection-padding) can be used for this purpose.
+[Reflection padding](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-padding-in-a-neural-network/#reflection-padding) can be used for this purpose.
 
-In a different scenario, you have one dimensional data representing a time series. Two values in your _feature data_ causally determine a _target_, i.e., together they produce the outcome. However, if you train a `Conv1D` model with both the _inputs_ and the _targets_, effectively, the target will "predate" the input data. As this is weird, [causal padding](https://www.machinecurve.com/index.php/2020/02/07/what-is-padding-in-a-neural-network/#causal-padding) can be applied in order to add zeroes to your input data, as you can see here:
+In a different scenario, you have one dimensional data representing a time series. Two values in your _feature data_ causally determine a _target_, i.e., together they produce the outcome. However, if you train a `Conv1D` model with both the _inputs_ and the _targets_, effectively, the target will "predate" the input data. As this is weird, [causal padding](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-padding-in-a-neural-network/#causal-padding) can be applied in order to add zeroes to your input data, as you can see here:
 
 ![](images/Causalpad-4-1024x262.jpg)
 
@@ -43,7 +43,7 @@ In a different scenario, you have one dimensional data representing a time serie
 
 ## Types of padding supported by Keras
 
-Make sure to take a look at our blog post ["What is padding in a neural network?"](https://www.machinecurve.com/index.php/2020/02/07/what-is-padding-in-a-neural-network/) in order to understand padding and the different types in more detail. In this blog post, we'll take a look at _implementations_ - using the Keras framework, to be precise. This framework, which today works with TensorFlow 2.0, allows you to apply padding to your convolutional neural network.
+Make sure to take a look at our blog post ["What is padding in a neural network?"](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-padding-in-a-neural-network.md) in order to understand padding and the different types in more detail. In this blog post, we'll take a look at _implementations_ - using the Keras framework, to be precise. This framework, which today works with TensorFlow 2.0, allows you to apply padding to your convolutional neural network.
 
 However, not all types of padding from the blog post linked above are supported. Keras supports these types of padding:
 
@@ -88,7 +88,7 @@ model.add(Conv2D(64, kernel_size=(3, 3), activation='relu'))
 model.add(Conv2D(128, kernel_size=(3, 3), activation='relu', padding='valid'))
 ```
 
-Next, we can add a `Flatten` layer - which flattens the multidimensional outputs of the last `Conv2D` layer into one-dimensional format - and two `Dense` layers, [which generate a multiclass probability distribution using Softmax](https://www.machinecurve.com/index.php/2020/01/08/how-does-the-softmax-activation-function-work/). This is perfect for classification 😎
+Next, we can add a `Flatten` layer - which flattens the multidimensional outputs of the last `Conv2D` layer into one-dimensional format - and two `Dense` layers, [which generate a multiclass probability distribution using Softmax](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-does-the-softmax-activation-function-work.md). This is perfect for classification 😎
 
 ```
 model.add(Flatten())

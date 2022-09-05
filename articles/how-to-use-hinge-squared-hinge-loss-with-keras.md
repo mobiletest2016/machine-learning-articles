@@ -17,9 +17,9 @@ tags:
   - "training-process"
 ---
 
-In order to discover the ins and outs of the Keras deep learning framework, I'm writing blog posts about [commonly used loss functions](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/), subsequently implementing them with Keras to practice and to see how they behave.
+In order to discover the ins and outs of the Keras deep learning framework, I'm writing blog posts about [commonly used loss functions](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md), subsequently implementing them with Keras to practice and to see how they behave.
 
-Today, we'll cover two closely related loss functions that can be used in neural networks - and hence in TensorFlow 2 based Keras - that behave similar to how a [Support Vector Machine](https://www.machinecurve.com/index.php/2019/09/20/intuitively-understanding-svm-and-svr/) generates a decision boundary for classification: the **hinge loss** and **squared hinge loss**.
+Today, we'll cover two closely related loss functions that can be used in neural networks - and hence in TensorFlow 2 based Keras - that behave similar to how a [Support Vector Machine](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/intuitively-understanding-svm-and-svr.md) generates a decision boundary for classification: the **hinge loss** and **squared hinge loss**.
 
 In this blog, you'll first find a brief introduction to the two loss functions, in order to ensure that you intuitively understand the maths before we move on to implementing one.
 
@@ -80,7 +80,7 @@ This looks as follows if the target is \[latex\]+1\[/latex\] - for all targets >
 
 [![](images/hinge_loss-1024x507.jpeg)](https://www.machinecurve.com/wp-content/uploads/2019/10/hinge_loss.jpeg)
 
-What effectively happens is that hinge loss will attempt to maximize the decision boundary between the two groups that must be discriminated in your machine learning problem. In that way, it looks somewhat like how [Support Vector Machines](https://www.machinecurve.com/index.php/2019/09/20/intuitively-understanding-svm-and-svr/) work, but it's also kind of different (e.g., with hinge loss in Keras there is no such thing as support vectors).
+What effectively happens is that hinge loss will attempt to maximize the decision boundary between the two groups that must be discriminated in your machine learning problem. In that way, it looks somewhat like how [Support Vector Machines](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/intuitively-understanding-svm-and-svr.md) work, but it's also kind of different (e.g., with hinge loss in Keras there is no such thing as support vectors).
 
 ### What is squared hinge loss?
 
@@ -117,16 +117,16 @@ from sklearn.datasets import make_circles
 from mlxtend.plotting import plot_decision_regions
 ```
 
-First, and foremost, you need the [Keras deep learning framework](https://www.machinecurve.com/index.php/mastering-keras/), which allows you to create neural network architectures relatively easily. From Keras, you'll import the Sequential API and the Dense layer (representing densely-connected layers, or the [MLP-like layers](https://www.machinecurve.com/index.php/2019/07/27/how-to-create-a-basic-mlp-classifier-with-the-keras-sequential-api/) you always see when people use neural networks in their presentations).
+First, and foremost, you need the [Keras deep learning framework](https://web.archive.org/web/https://www.machinecurve.com/index.php/mastering-keras.md), which allows you to create neural network architectures relatively easily. From Keras, you'll import the Sequential API and the Dense layer (representing densely-connected layers, or the [MLP-like layers](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-basic-mlp-classifier-with-the-keras-sequential-api.md) you always see when people use neural networks in their presentations).
 
-You'll subsequently import the PyPlot API from Matplotlib for visualization, Numpy for number processing, `make_circles` from Scikit-learn to generate today's dataset and Mlxtend for [visualizing the decision boundary](https://www.machinecurve.com/index.php/2019/10/11/how-to-visualize-the-decision-boundary-for-your-keras-model/) of your model.
+You'll subsequently import the PyPlot API from Matplotlib for visualization, Numpy for number processing, `make_circles` from Scikit-learn to generate today's dataset and Mlxtend for [visualizing the decision boundary](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-decision-boundary-for-your-keras-model.md) of your model.
 
 ### What you'll need to run it
 
 Hence, this is what you need to run today's code:
 
 - Python, preferably 3.8+
-- TensorFlow 2, preferably [2.4.0+](https://www.machinecurve.com/index.php/2020/11/05/saying-hello-to-tensorflow-2-4-0/)
+- TensorFlow 2, preferably [2.4.0+](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/saying-hello-to-tensorflow-2-4-0.md)
 - Matplotlib
 - Numpy
 - Scikit-learn
@@ -187,7 +187,7 @@ This looks as follows:
 
 As you can see, we have generated two circles that are composed of individual data points: a large one and a smaller one. These are perfectly separable, although not linearly.
 
-(With traditional SVMs one would have to perform the [kernel trick](https://www.machinecurve.com/index.php/2019/09/20/intuitively-understanding-svm-and-svr/#what-if-data-is-not-linearly-separable-kernels) in order to make data linearly separable in kernel space. With neural networks, this is less of a problem, since the layers [activate nonlinearly](https://www.machinecurve.com/index.php/2019/09/04/relu-sigmoid-and-tanh-todays-most-used-activation-functions/#what-is-an-activation-function).)
+(With traditional SVMs one would have to perform the [kernel trick](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/intuitively-understanding-svm-and-svr/#what-if-data-is-not-linearly-separable-kernels) in order to make data linearly separable in kernel space. With neural networks, this is less of a problem, since the layers [activate nonlinearly](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions/#what-is-an-activation-function).)
 
 * * *
 
@@ -223,15 +223,15 @@ model.add(Dense(2, activation='relu', kernel_initializer='he_uniform'))
 model.add(Dense(1, activation='tanh'))
 ```
 
-We use the Keras Sequential API, which allows us to stack multiple layers easily. Contrary to other blog posts, e.g. ones where we created a [MLP for classification](https://www.machinecurve.com/index.php/2019/07/27/how-to-create-a-basic-mlp-classifier-with-the-keras-sequential-api/) or [regression](https://www.machinecurve.com/index.php/2019/07/30/creating-an-mlp-for-regression-with-keras/), I decided to add three layers instead of two. This was done for the reason that the dataset is slightly more complex: the decision boundary cannot be represented as a line, but must be a circle separating the smaller one from the larger one. Hence, I thought, a little bit more capacity for processing data would be useful.
+We use the Keras Sequential API, which allows us to stack multiple layers easily. Contrary to other blog posts, e.g. ones where we created a [MLP for classification](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-basic-mlp-classifier-with-the-keras-sequential-api.md) or [regression](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/creating-an-mlp-for-regression-with-keras.md), I decided to add three layers instead of two. This was done for the reason that the dataset is slightly more complex: the decision boundary cannot be represented as a line, but must be a circle separating the smaller one from the larger one. Hence, I thought, a little bit more capacity for processing data would be useful.
 
-The layers activate with [Rectified Linear Unit](https://www.machinecurve.com/index.php/2019/09/04/relu-sigmoid-and-tanh-todays-most-used-activation-functions/#rectified-linear-unit-relu) or ReLU, except for the last one, which activates by means of [Tanh](https://www.machinecurve.com/index.php/2019/09/04/relu-sigmoid-and-tanh-todays-most-used-activation-functions/#tangens-hyperbolicus-tanh). I chose ReLU because it is the de facto standard activation function and requires fewest computational resources without compromising in predictive performance. I chose Tanh because of the way the predictions must be generated: they should end up in the range \[-1, +1\], given the way Hinge loss works (remember why we had to convert our generated targets from zero to minus one?).
+The layers activate with [Rectified Linear Unit](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions/#rectified-linear-unit-relu) or ReLU, except for the last one, which activates by means of [Tanh](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions/#tangens-hyperbolicus-tanh). I chose ReLU because it is the de facto standard activation function and requires fewest computational resources without compromising in predictive performance. I chose Tanh because of the way the predictions must be generated: they should end up in the range \[-1, +1\], given the way Hinge loss works (remember why we had to convert our generated targets from zero to minus one?).
 
 Tanh indeed precisely does this -- converting a linear value to a range close to \[-1, +1\], namely (-1, +1) - the actual ones are not included here, but this doesn't matter much. It looks like this:
 
 [![](images/tanh-1024x511.png)](https://www.machinecurve.com/wp-content/uploads/2019/05/tanh.png)
 
-The kernels of the ReLU activating layers are initialized with He uniform init instead of Glorot init for the reason that this approach [works better](https://www.machinecurve.com/index.php/2019/09/16/he-xavier-initialization-activation-functions-choose-wisely/) mathematically.
+The kernels of the ReLU activating layers are initialized with He uniform init instead of Glorot init for the reason that this approach [works better](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/he-xavier-initialization-activation-functions-choose-wisely.md) mathematically.
 
 Information is eventually converted into one prediction: the target. Hence, the final layer has _one_ neuron. The intermediate ones have fewer neurons, in order to stimulate the model to generate more abstract representations of the information during the feedforward procedure.
 
@@ -260,7 +260,7 @@ Hence, from the 1000 samples that were generated, 250 are used for testing, 600 
 
 ### Testing & visualizing model performance
 
-We store the results of the fitting (training) procedure into a `history` object, which allows us the actually [visualize model performance across epochs](https://www.machinecurve.com/index.php/2019/10/08/how-to-visualize-the-training-process-in-keras/). But first, we add code for testing the model for its generalization power:
+We store the results of the fitting (training) procedure into a `history` object, which allows us the actually [visualize model performance across epochs](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-training-process-in-keras.md). But first, we add code for testing the model for its generalization power:
 
 ```
 # Test the model after training
@@ -268,7 +268,7 @@ test_results = model.evaluate(X_testing, Targets_testing, verbose=1)
 print(f'Test results - Loss: {test_results[0]} - Accuracy: {test_results[1]*100}%')
 ```
 
-Then a [plot of the decision boundary](https://www.machinecurve.com/index.php/2019/10/11/how-to-visualize-the-decision-boundary-for-your-keras-model/) based on the testing data:
+Then a [plot of the decision boundary](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-decision-boundary-for-your-keras-model.md) based on the testing data:
 
 ```
 # Plot decision boundary
@@ -276,7 +276,7 @@ plot_decision_regions(X_testing, Targets_testing, clf=model, legend=2)
 plt.show()
 ```
 
-And eventually, the [visualization for the training process](https://www.machinecurve.com/index.php/2019/10/08/how-to-visualize-the-training-process-in-keras/):
+And eventually, the [visualization for the training process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-training-process-in-keras.md):
 
 ```
 # Visualize training process
@@ -494,12 +494,12 @@ _Note that the full code for the models we created in this blog post is also ava
 
 Wikipedia. (2011, September 16). Hinge loss. Retrieved from [https://en.wikipedia.org/wiki/Hinge\_loss](https://en.wikipedia.org/wiki/Hinge_loss)
 
-About loss and loss functions – MachineCurve. (2019, October 15). Retrieved from [https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/)
+About loss and loss functions – MachineCurve. (2019, October 15). Retrieved from [https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md)
 
-Intuitively understanding SVM and SVR – MachineCurve. (2019, September 20). Retrieved from [https://www.machinecurve.com/index.php/2019/09/20/intuitively-understanding-svm-and-svr/](https://www.machinecurve.com/index.php/2019/09/20/intuitively-understanding-svm-and-svr/)
+Intuitively understanding SVM and SVR – MachineCurve. (2019, September 20). Retrieved from [https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/intuitively-understanding-svm-and-svr/](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/intuitively-understanding-svm-and-svr.md)
 
-Mastering Keras – MachineCurve. (2019, July 21). Retrieved from [https://www.machinecurve.com/index.php/mastering-keras/](https://www.machinecurve.com/index.php/mastering-keras/)
+Mastering Keras – MachineCurve. (2019, July 21). Retrieved from [https://web.archive.org/web/https://www.machinecurve.com/index.php/mastering-keras/](https://web.archive.org/web/https://www.machinecurve.com/index.php/mastering-keras/)
 
-How to create a basic MLP classifier with the Keras Sequential API – MachineCurve. (2019, July 27). Retrieved from [https://www.machinecurve.com/index.php/2019/07/27/how-to-create-a-basic-mlp-classifier-with-the-keras-sequential-api/](https://www.machinecurve.com/index.php/2019/07/27/how-to-create-a-basic-mlp-classifier-with-the-keras-sequential-api/)
+How to create a basic MLP classifier with the Keras Sequential API – MachineCurve. (2019, July 27). Retrieved from [https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-basic-mlp-classifier-with-the-keras-sequential-api/](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-basic-mlp-classifier-with-the-keras-sequential-api.md)
 
-How to visualize the decision boundary for your Keras model? – MachineCurve. (2019, October 11). Retrieved from [https://www.machinecurve.com/index.php/2019/10/11/how-to-visualize-the-decision-boundary-for-your-keras-model/](https://www.machinecurve.com/index.php/2019/10/11/how-to-visualize-the-decision-boundary-for-your-keras-model/)
+How to visualize the decision boundary for your Keras model? – MachineCurve. (2019, October 11). Retrieved from [https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-decision-boundary-for-your-keras-model/](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-decision-boundary-for-your-keras-model.md)

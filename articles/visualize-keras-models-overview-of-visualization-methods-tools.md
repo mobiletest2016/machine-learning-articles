@@ -35,7 +35,7 @@ Neural networks, and by consequence Keras models, contain layers. These layers a
 
 Keras comes with a handy method to generate such a visualization with only one line of code: `plot_model`. At MachineCurve, we've created a tutorial that is dedicated to this topic - how to build a model, train it, while visualizing its architecture. Click the link below if you wish to read more.
 
-**Read more:** [How to visualize a model with Keras?](https://www.machinecurve.com/index.php/2019/10/07/how-to-visualize-a-model-with-keras/')
+**Read more:** [How to visualize a model with Keras?](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-a-model-with-keras/')
 
 * * *
 
@@ -47,7 +47,7 @@ However, since Keras integrates with the TensorFlow backend, it's also possible 
 
 The best thing is that TensorBoard even works - albeit in a limited way - when you use Theano or CNTK as the backend for your Keras models!
 
-**Read more:** [How to use TensorBoard with Keras?](https://www.machinecurve.com/index.php/2019/11/13/how-to-use-tensorboard-with-keras)
+**Read more:** [How to use TensorBoard with Keras?](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-tensorboard-with-keras)
 
 * * *
 
@@ -61,7 +61,7 @@ Using Net2Vis is really easy, it supports the Keras Functional and Sequential AP
 
 What's more, at MachineCurve, we've created a Docker based installation procedure called `net2vis-docker`, which allows you to run it with only one command.
 
-**Read more:** [Visualizing Keras neural networks with Net2Vis and Docker](https://www.machinecurve.com/index.php/2020/01/07/visualizing-keras-neural-networks-with-net2vis-and-docker/)
+**Read more:** [Visualizing Keras neural networks with Net2Vis and Docker](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/visualizing-keras-neural-networks-with-net2vis-and-docker.md)
 
 * * *
 
@@ -73,7 +73,7 @@ One of the most beautiful tools for visualizing model architectures that I know 
 
 It's also possible to export these plots, so that you can use them in publications. However, contrary to Net2Vis, which generates horizontal visualizations, Netron makes them vertical - and doesn't allow you to switch directions. Especially with deep networks, this results in plots that can hardly be printed. However, despite this observation, I love the visual styles!
 
-**Read more:** [Visualizing your Neural Network with Netron](https://www.machinecurve.com/index.php/2020/02/27/visualizing-your-neural-network-with-netron/)
+**Read more:** [Visualizing your Neural Network with Netron](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/visualizing-your-neural-network-with-netron.md)
 
 * * *
 
@@ -91,7 +91,7 @@ Besides the architecture of your model, it may be interesting to know something 
 
 Visualizing the training process, i.e. the _history_ of your training process, might then be of help. Keras helps you with this by providing a `History` object if you wish to capture this training history. At MachineCurve, we've written a tutorial that helps you make such plots when you wish to visualize them. Doing so is easy: it involves adding a bit of code to _one line of Python_ only, as well as some Matplotlib code for visualizations. Click the link below if you wish to read more.
 
-**Read more:** [How to visualize the training process in Keras?](https://www.machinecurve.com/index.php/2019/10/08/how-to-visualize-the-training-process-in-keras/)
+**Read more:** [How to visualize the training process in Keras?](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-training-process-in-keras.md)
 
 * * *
 
@@ -103,7 +103,7 @@ As with the architecture of your neural network, you can also generate visualiza
 
 As you can see, contrary to History-based visualization, the TensorBoard visualizations are more detailed. They are also more interactive, as you can visualize various options on the fly. This is not possible with the History-object based approach. Nevertheless, both work fine. If you wish to find out how to visualize how training proceeds over time with TensorBoard, the corresponding tutorial at 'Read more' should help you further.
 
-**Read more:** [How to use TensorBoard with Keras?](https://www.machinecurve.com/index.php/2019/11/13/how-to-use-tensorboard-with-keras)
+**Read more:** [How to use TensorBoard with Keras?](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-tensorboard-with-keras)
 
 * * *
 
@@ -119,7 +119,7 @@ Mlxtend, a generic toolkit providing extensions to various machine learning mode
 
 Fun thing is that integrating Mlxtend with your Keras model for visualizing the model's decision boundary is not difficult. Hence, answering the question **How does my model decide between classes?** becomes a lot more transparent. Make sure to read this tutorial if you're interested in those kind of visualizations.
 
-**Read more:** [How to visualize the decision boundary for your Keras model?](https://www.machinecurve.com/index.php/2019/10/11/how-to-visualize-the-decision-boundary-for-your-keras-model/)
+**Read more:** [How to visualize the decision boundary for your Keras model?](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-decision-boundary-for-your-keras-model.md)
 
 * * *
 
@@ -131,7 +131,7 @@ No, rather, you may be interested in visualizing the distribution of weights and
 
 [![](images/image-4-1024x505.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/image-4.png)
 
-**Read more:** [How to use TensorBoard with Keras?](https://www.machinecurve.com/index.php/2019/11/13/how-to-use-tensorboard-with-keras)
+**Read more:** [How to use TensorBoard with Keras?](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-tensorboard-with-keras)
 
 * * *
 
@@ -149,7 +149,7 @@ While weights and biases of your layers are static with respect to the individua
 
 Make sure to read the TensorBoard tutorial if you wish to understand it, as it explains how you can generated _and_ read these charts in order to better understand your neural network.
 
-**Read more:** [How to use TensorBoard with Keras?](https://www.machinecurve.com/index.php/2019/11/13/how-to-use-tensorboard-with-keras)
+**Read more:** [How to use TensorBoard with Keras?](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-tensorboard-with-keras)
 
 * * *
 
@@ -172,7 +172,7 @@ The technique essentially uses a trained model and performs inverse operations t
 
 If you're very excited about this - cool, so was I when I first found out about this! At MachineCurve, I've written a tutorial that explains how to use Activation Maximization for generating 'perfect class images' that help you understand your Keras ConvNet. I've provided a link at 'Read more'.
 
-**Read more:** [Visualizing Keras model inputs with Activation Maximization](https://www.machinecurve.com/index.php/2019/11/18/visualizing-keras-model-inputs-with-activation-maximization/)
+**Read more:** [Visualizing Keras model inputs with Activation Maximization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/visualizing-keras-model-inputs-with-activation-maximization.md)
 
 * * *
 
@@ -195,7 +195,7 @@ You get visualizations that look like this:
 
 As with input visualizations, we're using `keras-vis` for applying Activation Maximization to ConvNet filters. Similarly, we've written a tutorial as well. Check it out if you wish to find out how this works!
 
-**Read more:** [What do ConvNets see? Visualizing filters with Activation Maximization](https://www.machinecurve.com/index.php/2019/12/03/what-do-convnets-see-visualizing-filters-with-activation-maximization/)
+**Read more:** [What do ConvNets see? Visualizing filters with Activation Maximization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-do-convnets-see-visualizing-filters-with-activation-maximization.md)
 
 * * *
 
@@ -216,7 +216,7 @@ Activation Maximization does not help here - but saliency maps do. They essentia
 
 How saliency maps work and how you can use `keras-vis` to implement them for visualizing the importance within inputs to your Keras model? Check out the tutorial that we wrote for this purpose 😁 Hope it helps you!
 
-**Read more:** [Visualizing Keras CNN attention: Saliency maps](https://www.machinecurve.com/index.php/2019/11/25/visualizing-keras-cnn-attention-saliency-maps/)
+**Read more:** [Visualizing Keras CNN attention: Saliency maps](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/visualizing-keras-cnn-attention-saliency-maps.md)
 
 * * *
 
@@ -233,7 +233,7 @@ Heatmaps may help you here. While they are less granular, they might be a compet
 
 The link below refers to our tutorial for visualizing where your Keras ConvNet attends to with Grad-CAM activation maps. Once again, we use `keras-vis` for this purpose. When you augment these activation maps with guided backprop (which is similar to generating the saliency maps), your results get even more powerful.
 
-**Read more:** [Visualizing Keras CNN attention: Grad-CAM Class Activation Maps](https://www.machinecurve.com/index.php/2019/11/28/visualizing-keras-cnn-attention-grad-cam-class-activation-maps/)
+**Read more:** [Visualizing Keras CNN attention: Grad-CAM Class Activation Maps](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/visualizing-keras-cnn-attention-grad-cam-class-activation-maps.md)
 
 * * *
 
@@ -248,7 +248,7 @@ You may also be interested in answering the questions: **how do my Keras model's
 
 Once again, we have a tutorial for this 😊
 
-**Read more:** [Visualize layer outputs of your Keras classifier with Keract](https://www.machinecurve.com/index.php/2019/12/02/visualize-layer-outputs-of-your-keras-classifier-with-keract/)
+**Read more:** [Visualize layer outputs of your Keras classifier with Keract](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/visualize-layer-outputs-of-your-keras-classifier-with-keract.md)
 
 * * *
 

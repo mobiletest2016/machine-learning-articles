@@ -51,7 +51,7 @@ Okay, let's go! 😊
 
 If we're going to build an autoencoder, we must know what they are.
 
-In our blog post **"Conv2DTranspose: using 2D transposed convolutions with Keras"**, we already [covered the high-level principles](https://www.machinecurve.com/index.php/2019/12/10/conv2dtranspose-using-2d-transposed-convolutions-with-keras/#what-is-an-autoencoder) behind autoencoders, but it's wise to repeat them here.
+In our blog post **"Conv2DTranspose: using 2D transposed convolutions with Keras"**, we already [covered the high-level principles](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/conv2dtranspose-using-2d-transposed-convolutions-with-keras/#what-is-an-autoencoder) behind autoencoders, but it's wise to repeat them here.
 
 We can visualize the flow of an autoencoder as follows:
 
@@ -63,7 +63,7 @@ Autoencoders are composed of two parts: an _encoder_, which encodes some input i
 
 _When autoencoders are used to reconstruct inputs from an encoded state._
 
-For example, autoencoders are learnt for noise removal, but also for dimensionality reduction (Keras Blog , n.d.; we then use them to convert the input data into low-dimensional format, which might benefit training lower-dimensionality model types such as [SVMs](https://www.machinecurve.com/index.php/2019/09/20/intuitively-understanding-svm-and-svr/)).
+For example, autoencoders are learnt for noise removal, but also for dimensionality reduction (Keras Blog , n.d.; we then use them to convert the input data into low-dimensional format, which might benefit training lower-dimensionality model types such as [SVMs](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/intuitively-understanding-svm-and-svr.md)).
 
 Note that the red parts in the block above - that is, the encoder and the decoder, are _learnt based on data_ (Keras Blog, n.d.). This means that, contrary to more abstract mathematical functions (e.g. filters), they are highly specialized in _one domain_ (e.g. signal noise removal at \[latex\]x^2\[/latex\] plots as we will do next) while they perform very poorly in another (e.g. when using the same autoencoder for image noise removal).
 
@@ -514,7 +514,7 @@ Next, we'll reshape the data. We do so for each sample. This includes the follow
 
 _Binary crossentropy loss values for target = 1, in the prediction range \[0, 1\]._
 
-- First, given the way how [binary crossentropy loss works](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#binary-crossentropy), we normalize our samples to fall in the range \[latex\]\[0, 1\]\[/latex\]. Without this normalization step, odd loss values (extremely negative ones, impossible with BCE loss) start popping up (Quetzalcohuatl, n.d.).
+- First, given the way how [binary crossentropy loss works](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#binary-crossentropy), we normalize our samples to fall in the range \[latex\]\[0, 1\]\[/latex\]. Without this normalization step, odd loss values (extremely negative ones, impossible with BCE loss) start popping up (Quetzalcohuatl, n.d.).
 - We subsequently add the noisy and pure samples to the specific `*_r` arrays.
 
 ```
@@ -562,7 +562,7 @@ model.summary()
 ```
 
 - We'll use the Sequential API, for stacking the layers on top of each other.
-- The two Conv1D layers serve as the _encoder_, and learn 128 and 32 filters, respectively. They activate with the [ReLU activation function](https://www.machinecurve.com/index.php/2019/09/09/implementing-relu-sigmoid-and-tanh-in-keras/), and by consequence require [He initialization](https://www.machinecurve.com/index.php/2019/09/16/he-xavier-initialization-activation-functions-choose-wisely/). Max-norm regularization is applied to each of them.
+- The two Conv1D layers serve as the _encoder_, and learn 128 and 32 filters, respectively. They activate with the [ReLU activation function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/implementing-relu-sigmoid-and-tanh-in-keras.md), and by consequence require [He initialization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/he-xavier-initialization-activation-functions-choose-wisely.md). Max-norm regularization is applied to each of them.
 - The two Conv1DTranspose layers, which learn 32 and 128 filters, serve as the _decoder_. They also use ReLU activation and He initialization, as well as Max-norm regularization.
 - The final Conv layer serves as the output layer, and does (by virtue of `padding='same'`) not alter the shape, except for the number of channels (back into 1).
 - Kernel sizes are 3 pixels.

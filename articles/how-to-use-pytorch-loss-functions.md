@@ -1090,7 +1090,7 @@ if __name__ == '__main__':
 
 ### Kullback-Leibler Divergence (KL Divergence) loss (`nn.KLDivLoss`)
 
-KL Divergence can be used for [Variational Autoencoders, multiclass classification and replacing Least Squares regression](https://www.machinecurve.com/index.php/2019/12/21/how-to-use-kullback-leibler-divergence-kl-divergence-with-keras/). Here is an example that uses KL Divergence with PyTorch:
+KL Divergence can be used for [Variational Autoencoders, multiclass classification and replacing Least Squares regression](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-kullback-leibler-divergence-kl-divergence-with-keras.md). Here is an example that uses KL Divergence with PyTorch:
 
 ```
 import os
@@ -1737,7 +1737,7 @@ PyTorch. (n.d.). _MultiLabelSoftMarginLoss — PyTorch 1.9.0 documentation_. [
 
 PyTorch. (n.d.). _MultiLabelMarginLoss — PyTorch 1.9.0 documentation_. [https://pytorch.org/docs/stable/generated/torch.nn.MultiLabelMarginLoss.html#torch.nn.MultiLabelMarginLoss](https://pytorch.org/docs/stable/generated/torch.nn.MultiLabelMarginLoss.html#torch.nn.MultiLabelMarginLoss)
 
-MachineCurve. (2019, December 22). _How to use kullback-leibler divergence (KL divergence) with Keras?_ [https://www.machinecurve.com/index.php/2019/12/21/how-to-use-kullback-leibler-divergence-kl-divergence-with-keras/](https://www.machinecurve.com/index.php/2019/12/21/how-to-use-kullback-leibler-divergence-kl-divergence-with-keras/)
+MachineCurve. (2019, December 22). _How to use kullback-leibler divergence (KL divergence) with Keras?_ [https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-kullback-leibler-divergence-kl-divergence-with-keras/](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-kullback-leibler-divergence-kl-divergence-with-keras.md)
 
 PyTorch. (n.d.). _HuberLoss — PyTorch 1.9.0 documentation_. [https://pytorch.org/docs/stable/generated/torch.nn.HuberLoss.html#torch.nn.HuberLoss](https://pytorch.org/docs/stable/generated/torch.nn.HuberLoss.html#torch.nn.HuberLoss)
 

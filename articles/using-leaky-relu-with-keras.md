@@ -14,7 +14,7 @@ tags:
   - "relu"
 ---
 
-Even though the traditional [ReLU activation function](https://www.machinecurve.com/index.php/2019/09/09/implementing-relu-sigmoid-and-tanh-in-keras/) is used quite often, it may sometimes not produce a converging model. This is due to the fact that ReLU maps all negative inputs to zero, with a dead network as a possible result.
+Even though the traditional [ReLU activation function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/implementing-relu-sigmoid-and-tanh-in-keras.md) is used quite often, it may sometimes not produce a converging model. This is due to the fact that ReLU maps all negative inputs to zero, with a dead network as a possible result.
 
 The death of a neural network? How is that even possible?
 
@@ -59,7 +59,7 @@ Mathematically, Leaky ReLU is defined as follows (Maas et al., 2013):
 
 \\begin{equation} f(x) = \\begin{cases} 0.01x, & \\text{if}\\ x < 0 \\\\ x, & \\text{otherwise} \\\\ \\end{cases} \\end{equation}
 
-Contrary to traditional ReLU, the outputs of Leaky ReLU are small and nonzero for all \[latex\]x < 0\[/latex\]. This way, the authors of the paper argue that death of neural networks can be avoided. We do have to note, though, that there also exists [quite some criticism](https://www.machinecurve.com/index.php/2019/10/15/leaky-relu-improving-traditional-relu/#does-leaky-relu-really-work) as to whether it really works.
+Contrary to traditional ReLU, the outputs of Leaky ReLU are small and nonzero for all \[latex\]x < 0\[/latex\]. This way, the authors of the paper argue that death of neural networks can be avoided. We do have to note, though, that there also exists [quite some criticism](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/leaky-relu-improving-traditional-relu/#does-leaky-relu-really-work) as to whether it really works.
 
 * * *
 
@@ -108,7 +108,7 @@ model.add(LeakyReLU(alpha=0.1))
 # ... downstream model layers
 ```
 
-Note my use of the He uniform initializer contrary to Xavier, [which is wise theoretically](https://www.machinecurve.com/index.php/2019/09/16/he-xavier-initialization-activation-functions-choose-wisely/) when using ReLU or ReLU-like activation functions.
+Note my use of the He uniform initializer contrary to Xavier, [which is wise theoretically](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/he-xavier-initialization-activation-functions-choose-wisely.md) when using ReLU or ReLU-like activation functions.
 
 * * *
 
@@ -116,7 +116,7 @@ Note my use of the He uniform initializer contrary to Xavier, [which is wise the
 
 Now that we know how LeakyReLU works with Keras, we can actually implement a model using it for activation purposes.
 
-I chose to take the [CNN we created earlier](https://www.machinecurve.com/index.php/2019/09/17/how-to-create-a-cnn-classifier-with-keras/), which I trained on the MNIST dataset: it's relatively easy to train, its dataset already comes out-of-the-box with Keras, and hence it's a good starting point for educational purposes 😎 Additionally, it allows me to compare LeakyReLU performance with traditional ReLU more easily.
+I chose to take the [CNN we created earlier](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras.md), which I trained on the MNIST dataset: it's relatively easy to train, its dataset already comes out-of-the-box with Keras, and hence it's a good starting point for educational purposes 😎 Additionally, it allows me to compare LeakyReLU performance with traditional ReLU more easily.
 
 Obviously, Leaky ReLU can also be used in more complex settings - just use a similar implementation as we'll create next.
 
@@ -126,13 +126,13 @@ You will need the following dependencies installed on your system if you want to
 
 - **Python**, and preferably version 3.6+.
 - **TensorFlow 2** or any recent 2.x version, which contains Keras by default, in `tensorflow.keras`.
-- **Matplotlib**, for [visualizing the model history](https://www.machinecurve.com/index.php/2019/10/08/how-to-visualize-the-training-process-in-keras/).
+- **Matplotlib**, for [visualizing the model history](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-training-process-in-keras.md).
 
 ### The dataset we're using
 
 [![](images/mnist.png)](https://www.machinecurve.com/wp-content/uploads/2019/07/mnist.png)
 
-To show how Leaky ReLU can be implemented, we're going to build a convolutional neural network image classifier that is [very similar to the one we created with traditional ReLU](https://www.machinecurve.com/index.php/2019/09/17/how-to-create-a-cnn-classifier-with-keras/).
+To show how Leaky ReLU can be implemented, we're going to build a convolutional neural network image classifier that is [very similar to the one we created with traditional ReLU](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras.md).
 
 It is trained with the MNIST dataset and therefore becomes capable of classifying handwritten digits into the correct classes. With normal ReLU, the model achieved very high accuracies. Let's hope that it does here as well!
 
@@ -167,7 +167,7 @@ leaky_relu_alpha = 0.1
 
 The width and height of the handwritten digits provided by the MNIST dataset are 28 pixels. Hence, we specify `img_width` and `img_height` to be 28.
 
-We will use a [minibatch approach](https://www.machinecurve.com/index.php/2019/10/24/gradient-descent-and-its-variants/) (although strictly speaking, we don't use Gradient Descent but Adam for optimization), with a `batch_size` of 250. We train the model for a fixed amount of iterations, with `no_epochs = 25`, and have 10 classes. This makes sense, as digits range from 0 to 9, which are ten in total.
+We will use a [minibatch approach](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md) (although strictly speaking, we don't use Gradient Descent but Adam for optimization), with a `batch_size` of 250. We train the model for a fixed amount of iterations, with `no_epochs = 25`, and have 10 classes. This makes sense, as digits range from 0 to 9, which are ten in total.
 
 20% of our training data will be used for validation purposes, and hence the `validation_split` is 0.2. Verbosity mode is set to True (by means of 'one'), which means that all output is returned to the terminal when running the model. Finally, we set the \[latex\]\\alpha\[/latex\] value for Leaky ReLU; in our case to 0.1. Note that (1) any alpha value is possible _if_ it is equal or larger than zero, and (2) that you may also specify different alpha values for each layer you add Leaky ReLU to. This is however up to you.
 
@@ -198,7 +198,7 @@ This essentially resolves to these steps:
 - Reshaping data based on whether your backend (TensorFlow, Theano or CNTK) uses a channels first / channels last approach.
 - Next, we parse the training data as `float32` values. This is argued to make the training process faster (Quora, n.d.).
 - We subsequently normalize our data.
-- Finally, we convert our data into categorical format. That is, we fix the number of categories and convert our integer targets into category vectors. This allows us to use the [categorical crossentropy loss function](https://www.machinecurve.com/index.php/2019/10/22/how-to-use-binary-categorical-crossentropy-with-keras/).
+- Finally, we convert our data into categorical format. That is, we fix the number of categories and convert our integer targets into category vectors. This allows us to use the [categorical crossentropy loss function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-binary-categorical-crossentropy-with-keras.md).
 
 ### Model architecture
 
@@ -227,7 +227,7 @@ Subsequently, we `Flatten` our input into onedimensional format to allow the `De
 
 A few important observations:
 
-- Note that by omitting any activation function for the `Conv2D` layers and the first `Dense` layer, we're essentially telling Keras to use a linear activation function instead. This activates as \[latex\]f(x) = x\[/latex\]. [Normally, this is a bad idea](https://www.machinecurve.com/index.php/2019/06/11/why-you-shouldnt-use-a-linear-activation-function/), but today it is not, as we directly apply Leaky ReLU afterwards.
+- Note that by omitting any activation function for the `Conv2D` layers and the first `Dense` layer, we're essentially telling Keras to use a linear activation function instead. This activates as \[latex\]f(x) = x\[/latex\]. [Normally, this is a bad idea](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-you-shouldnt-use-a-linear-activation-function.md), but today it is not, as we directly apply Leaky ReLU afterwards.
 - The `input_shape` parameter is based on our dataset.
 - As discussed before, Leaky ReLU is applied by specifying an extra layer to the model stack, _not by specifying some `activation=''` in the layer you're applying it on!_
 
@@ -373,7 +373,7 @@ plt.show()
 
 ## Model performance
 
-Now, we can take a look at how our model performs. Additionally, since we also retrained the [Keras CNN with traditional ReLU](https://www.machinecurve.com/index.php/2019/09/17/how-to-create-a-cnn-classifier-with-keras/) as part of creating the model defined above, we can even compare traditional ReLU with Leaky ReLU for the MNIST dataset!
+Now, we can take a look at how our model performs. Additionally, since we also retrained the [Keras CNN with traditional ReLU](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras.md) as part of creating the model defined above, we can even compare traditional ReLU with Leaky ReLU for the MNIST dataset!
 
 ### LeakyReLU model performance
 
@@ -404,13 +404,13 @@ Test loss for Keras Leaky ReLU CNN: 0.029994659566788557 / Test accuracy: 0.9927
 Test loss for Keras ReLU CNN: 0.02855007330078265 / Test accuracy: 0.9919000267982483
 ```
 
-I'd say they perform equally well. Although the traditional ReLU model seems to perform _slightly_ better than Leaky ReLU during training and testing, it's impossible to say whether this occurs by design or by chance (e.g., due to [pseudo-random weight initialization](https://www.machinecurve.com/index.php/2019/08/22/what-is-weight-initialization/)).
+I'd say they perform equally well. Although the traditional ReLU model seems to perform _slightly_ better than Leaky ReLU during training and testing, it's impossible to say whether this occurs by design or by chance (e.g., due to [pseudo-random weight initialization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-weight-initialization.md)).
 
 * * *
 
 ## Summary
 
-By consequence, we can perhaps argue - in line with the [criticism we saw before](https://www.machinecurve.com/index.php/2019/10/15/leaky-relu-improving-traditional-relu/#does-leaky-relu-really-work) - that in most cases, Leaky ReLU does not perform better than traditional ReLU. This makes sense, as the leaky variant is only expected to work much better in the cases when you experience many dead neurons.
+By consequence, we can perhaps argue - in line with the [criticism we saw before](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/leaky-relu-improving-traditional-relu/#does-leaky-relu-really-work) - that in most cases, Leaky ReLU does not perform better than traditional ReLU. This makes sense, as the leaky variant is only expected to work much better in the cases when you experience many dead neurons.
 
 Nevertheless, it can be used with Keras, as we have seen in this blog post. We first introduced the concept of Leaky ReLU by recapping on how it works, comparing it with traditional ReLU in the process. Subsequently, we looked at the Keras API and how Leaky ReLU is implemented there. We then used this knowledge to create an actual Keras model, which we also used in practice. By training on the MNIST dataset, we also investigated how well it performs and compared it with traditional ReLU, as we've seen above.
 

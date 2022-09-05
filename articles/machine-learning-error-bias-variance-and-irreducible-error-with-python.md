@@ -30,13 +30,13 @@ Let's take a look! :)
 
 ## Error in supervised machine learning: what is it?
 
-From the article about loss and loss functions, we know about the [high-level supervised machine learning process](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#the-high-level-supervised-learning-process):
+From the article about loss and loss functions, we know about the [high-level supervised machine learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process):
 
 1. Samples from a labeled dataset are inserted into the model - this is called "feeding the samples forward".
 2. The machine learning model generates a prediction for each sample.
 3. All predictions are compared to the labels, called the ground truth, and a _loss value_ is output.
 4. Based on the loss value, the loss is computed backwards, to find the optimizations for the individual parts of the machine learning model.
-5. By means of some optimization mechanism (e.g. [gradient descent](https://www.machinecurve.com/index.php/2019/10/24/gradient-descent-and-its-variants/) or [Adaptive optimization](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/)), the model is optimized.
+5. By means of some optimization mechanism (e.g. [gradient descent](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md) or [Adaptive optimization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md)), the model is optimized.
 
 Above, we talked about the "observing how bad it performs" part of training a supervised machine learning model. Note that "how bad" and "loss" have relatively similar meaning - and yes, they are connected.
 
@@ -85,7 +85,7 @@ For example, linear regression is a high-bias model, as it attempts to learn fit
 Bias error quantifies the amount of error that can be attributed to this assumption. In the plot above, we can see that due to the high-bias property of the linear learner, the bias error shall be quite high.
 
 - **Models with high bias:** linear regression, logistic regression, linear classification, linear neural networks, linear SVMs
-- **Models with low bias:** [nonlinear neural networks](https://www.machinecurve.com/index.php/2020/10/29/why-nonlinear-activation-functions-improve-ml-performance-with-tensorflow-example/), [nonlinear Support Vector Machines](https://www.machinecurve.com/index.php/2019/09/20/intuitively-understanding-svm-and-svr/), decision trees.
+- **Models with low bias:** [nonlinear neural networks](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-nonlinear-activation-functions-improve-ml-performance-with-tensorflow-example.md), [nonlinear Support Vector Machines](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/intuitively-understanding-svm-and-svr.md), decision trees.
 
 Your choice for a ML algorithm should never be entirely dependent on the bias assumption of the model. For example, if you have a linear dataset, there is no need to start with neural networks - instead, a linear classifier or linear regression model would likely be able to achieve similar performance at a fraction of the computational cost. Therefore, make sure to think about the characteristics of your dataset, the bias property, but also make sure to consider what we will study next: the variance error.
 
@@ -103,10 +103,10 @@ Here, it must also be noted that we do not know whether the distributions of the
 
 If our model is a **high-variance** model, it is really sensitive to changes in the dataset, and hence could show highly different performance - even when the changes are small. If it's **low-variance**, it's not so sensitive.
 
-Especially when the model is [overfit](https://www.machinecurve.com/index.php/2019/12/16/what-is-dropout-reduce-overfitting-in-your-neural-networks/), the model generally has high variance - and visually, decision boundaries of such models look like this:
+Especially when the model is [overfit](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-dropout-reduce-overfitting-in-your-neural-networks.md), the model generally has high variance - and visually, decision boundaries of such models look like this:
 
 - **Models with low variance:** linear regression, logistic regression, linear classification, linear neural networks, linear SVMs
-- **Models with high variance:** [nonlinear neural networks](https://www.machinecurve.com/index.php/2020/10/29/why-nonlinear-activation-functions-improve-ml-performance-with-tensorflow-example/), [nonlinear Support Vector Machines](https://www.machinecurve.com/index.php/2019/09/20/intuitively-understanding-svm-and-svr/), decision trees.
+- **Models with high variance:** [nonlinear neural networks](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-nonlinear-activation-functions-improve-ml-performance-with-tensorflow-example.md), [nonlinear Support Vector Machines](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/intuitively-understanding-svm-and-svr.md), decision trees.
 
 ![](images/nonlinear-1-1024x514.png)
 
@@ -160,11 +160,11 @@ Here, the only lesson is that practice makes perfect.
 
 ## Decomposing your ML error value into error subtypes
 
-If your train a machine learning model, through picking a [loss function](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/), you'll be able to observe loss values throughout the training process and during the model evaluation step.
+If your train a machine learning model, through picking a [loss function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md), you'll be able to observe loss values throughout the training process and during the model evaluation step.
 
-This loss value can be decomposed into bias and variance error by means of Sebastian Raschka's [Mlxtend](http://rasbt.github.io/mlxtend/) Python library, with which one can also [plot the decision boundary of a classifier](https://www.machinecurve.com/index.php/2019/10/11/how-to-visualize-the-decision-boundary-for-your-keras-model/).
+This loss value can be decomposed into bias and variance error by means of Sebastian Raschka's [Mlxtend](http://rasbt.github.io/mlxtend.md) Python library, with which one can also [plot the decision boundary of a classifier](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-decision-boundary-for-your-keras-model.md).
 
-More specifically, this can be done by means of the `bias_variance_decomp` functionality available in the library. Let's see how it works with the TensorFlow model listed here. It is the [MLP classifier that we created](https://www.machinecurve.com/index.php/2019/07/30/creating-an-mlp-for-regression-with-keras/) with the Chennai Reservoir Level Dataset ([click here for the dataset](https://www.machinecurve.com/index.php/2019/07/30/creating-an-mlp-for-regression-with-keras/#getting-familiar-with-the-data-the-chennai-water-crisis)).
+More specifically, this can be done by means of the `bias_variance_decomp` functionality available in the library. Let's see how it works with the TensorFlow model listed here. It is the [MLP classifier that we created](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/creating-an-mlp-for-regression-with-keras.md) with the Chennai Reservoir Level Dataset ([click here for the dataset](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/creating-an-mlp-for-regression-with-keras/#getting-familiar-with-the-data-the-chennai-water-crisis)).
 
 - We import a variety of functionality: the bias-variance decomposition functionality from Mlxtend, some TensorFlow things, NumPy and generating a train/test split from Scikit-learn.
 - We then load the data from a CSV file and shuffle the dataset.

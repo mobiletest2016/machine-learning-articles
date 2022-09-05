@@ -16,7 +16,7 @@ tags:
 
 Sometimes, you may wish to perform cropping on the input images that you are feeding to your neural network. While strictly speaking a part of data processing in many cases, it can be interesting to _move_ cropping your input data to the neural network itself, because then you might not need to adapt a full dataset in advance.
 
-In TensorFlow and Keras, cropping your input data is relatively easy, using the [Cropping layers](https://www.machinecurve.com/index.php/2020/02/05/how-to-use-cropping-layers-with-keras/) readily available there.
+In TensorFlow and Keras, cropping your input data is relatively easy, using the [Cropping layers](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-cropping-layers-with-keras.md) readily available there.
 
 In PyTorch, this is different, because Cropping layers are not part of the PyTorch API.
 
@@ -58,7 +58,7 @@ from torchvision import transforms
 import matplotlib.pyplot as plt
 ```
 
-These are relatively straight-forward: there are many `torch` related imports, which are explained in our articles on PyTorch based networks [such as the ConvNet](https://www.machinecurve.com/index.php/2021/07/08/convolutional-neural-networks-with-pytorch/).
+These are relatively straight-forward: there are many `torch` related imports, which are explained in our articles on PyTorch based networks [such as the ConvNet](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/convolutional-neural-networks-with-pytorch.md).
 
 Time to move forward with the `CroppingNetwork`. Here it is:
 

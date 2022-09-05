@@ -15,7 +15,7 @@ tags:
 
 When you're creating machine learning models, people say that you're _training_ the model when you're using supervised approaches such as classification and regression.
 
-In a different post, we've seen how the [high-level supervised machine learning process](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/) ensures that models can train: by feeding the model examples that represent the statistical population you wish to classify or regress from/to, the model will iteratively adapt its internals (often, its weights) and hence _learn_ to discover the patterns hidden in the dataset.
+In a different post, we've seen how the [high-level supervised machine learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md) ensures that models can train: by feeding the model examples that represent the statistical population you wish to classify or regress from/to, the model will iteratively adapt its internals (often, its weights) and hence _learn_ to discover the patterns hidden in the dataset.
 
 It does so by computing a loss value (check the link if you wish to know more about loss functions) which tells you something about how poorly the model performs. This loss value, which essentially represents the error, can further be used to optimize the model. Let's now zoom into neural networks.
 
@@ -65,7 +65,7 @@ You successfully completed your trip and your knowledge about the mountain is no
 
 Obviously, we're not talking about real mountains here - rather, I'm giving you an analogy for what happens during gradient descent.
 
-In the blog post describing the [high level machine learning process](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#the-high-level-supervised-learning-process) for supervised learning problems, we saw that when the _forward pass_ is made, a loss value is computed. This loss value is effectively a _mathematical function_ that, given the parameters being input (i.e., everything from the forward pass) outputs the numeric loss value.
+In the blog post describing the [high level machine learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process) for supervised learning problems, we saw that when the _forward pass_ is made, a loss value is computed. This loss value is effectively a _mathematical function_ that, given the parameters being input (i.e., everything from the forward pass) outputs the numeric loss value.
 
 When visualizing this function, you effectively visualize what looks like the _loss landscape_. And as you can see, loss landscapes can look substantially like mountaineering problems:
 

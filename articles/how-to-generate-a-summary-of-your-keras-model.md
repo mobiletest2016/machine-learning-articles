@@ -34,9 +34,9 @@ First of all, you'll always state **the imports of your model**. For example, yo
 
 Next, and this is entirely personal, you'll find the **model configuration**. The model compilation and model training stages - which we'll cover soon - require configuration. This configuration is then spread across a number of lines of code, which I find messy. That's why I always specify a few Python variables storing the model configuration, so that I can refer to those when I actually configure the model.
 
-Example variables are the batch size, the size of your input data, your [loss function](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/), the [optimizer](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/) that you will use, and so on.
+Example variables are the batch size, the size of your input data, your [loss function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md), the [optimizer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md) that you will use, and so on.
 
-Once the model configuration was specified, you'll often **load and preprocess your dataset**. Loading the dataset can be done in a multitude of ways - you can load data from file, you can use the [Keras datasets](https://www.machinecurve.com/index.php/2019/12/31/exploring-the-keras-datasets/), it doesn't really matter. Below, we'll use the latter scenario. Preprocessing is done in a minimal way - in line with the common assumption within the field of deep learning that models will take care of feature extraction themselves as much as possible - and often directly benefits the training process.
+Once the model configuration was specified, you'll often **load and preprocess your dataset**. Loading the dataset can be done in a multitude of ways - you can load data from file, you can use the [Keras datasets](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets.md), it doesn't really matter. Below, we'll use the latter scenario. Preprocessing is done in a minimal way - in line with the common assumption within the field of deep learning that models will take care of feature extraction themselves as much as possible - and often directly benefits the training process.
 
 Once data is ready, you next **specify the architecture of your neural network**. With Keras, you'll often use the Sequential API, because it's easy. It allows you to stack individual layers on top of each other simply by calling `model.add`.
 
@@ -44,7 +44,7 @@ Specifying the architecture actually means creating the skeleton of your neural 
 
 **Starting the training process** is what we finally do. By using `model.fit`, we fit the dataset that we're training with to the model. The training process should now begin as configured by yourself.
 
-Finally, once training has finished, you wish to **evaluate** the model against data that it hasn't yet seen - to find out whether it _really_ performs and did not simply [overfit](https://www.machinecurve.com/index.php/2019/12/16/what-is-dropout-reduce-overfitting-in-your-neural-networks/) to your training set. We use `model.evaluate` for this purpose.
+Finally, once training has finished, you wish to **evaluate** the model against data that it hasn't yet seen - to find out whether it _really_ performs and did not simply [overfit](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-dropout-reduce-overfitting-in-your-neural-networks.md) to your training set. We use `model.evaluate` for this purpose.
 
 * * *
 
@@ -80,7 +80,7 @@ _________________________________________________________________
 There are multiple benefits that can be achieved from generating a model summary:
 
 - Firstly, you have that quick and dirty overview of the components of your Keras model. The names of your layers, their types, as well as the shape of the data that they output and the number of trainable parameters.
-- Secondly, with respect to the shape of your output data, this is beneficial if - for example - you have a mismatch somewhere. This can happen in the case of an [autoencoder](https://www.machinecurve.com/index.php/2019/12/19/creating-a-signal-noise-removal-autoencoder-with-keras/), where you effectively link two funnels together in order to downsample and upsample your data. As you want to have perfect symmetry, model summaries can help here.
+- Secondly, with respect to the shape of your output data, this is beneficial if - for example - you have a mismatch somewhere. This can happen in the case of an [autoencoder](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/creating-a-signal-noise-removal-autoencoder-with-keras.md), where you effectively link two funnels together in order to downsample and upsample your data. As you want to have perfect symmetry, model summaries can help here.
 - Thirdly, with respect to the number of parameters, you can make a guess as to where overfitting is likely and why/where you might face computational bottlenecks. The more trainable parameters your model has, the more computing power you need. What's more, if you provide an overkill of trainable parameters, your model might also be more vulnerable to overfitting, especially when the total size of your model or the size of your dataset does not account for this.
 
 Convinced? Great 😊
@@ -91,7 +91,7 @@ Convinced? Great 😊
 
 Now that we know some of the high-level building blocks of a Keras model, and know how summaries can be beneficial to understand your model, let's see if we can actually generate a summary!
 
-For this reason, we'll give you an example [Convolutional Neural Network](https://www.machinecurve.com/index.php/2020/03/30/how-to-use-conv2d-with-keras/) for two-dimensional inputs. Here it is:
+For this reason, we'll give you an example [Convolutional Neural Network](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-conv2d-with-keras.md) for two-dimensional inputs. Here it is:
 
 ```
 from tensorflow.keras.datasets import cifar10
@@ -153,9 +153,9 @@ print(f'Test loss: {score[0]} / Test accuracy: {score[1]}')
 Clearly, all the high-level building blocks are visible:
 
 - The imports speak for themselves.
-- The model configuration variables tell us that we'll be using [sparse categorical crossentropy loss](https://www.machinecurve.com/index.php/2019/10/06/how-to-use-sparse-categorical-crossentropy-in-keras/) and the [Adam optimizer](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/). We will train for ten epochs (or iterations) and feed the model 50 samples at once.
+- The model configuration variables tell us that we'll be using [sparse categorical crossentropy loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-sparse-categorical-crossentropy-in-keras.md) and the [Adam optimizer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md). We will train for ten epochs (or iterations) and feed the model 50 samples at once.
 - We load the CIFAR10 dataset, which contains everyday objects - see below for some examples. Once it's loaded, we do two three things: firstly, we'll determine the shape of our data - to be used in the first model layer. Secondly, we cast the numbers into `float32` format, which might speed up the training process when you are using a GPU powered version of Keras. Thirdly, and finally, we scale the data, to ensure that we don't face massive weight swings during the optimization step after each iteration. As you can see, we don't really do feature engineering _in terms of the features themselves_, but rather, we do some things to benefit the training process.
-- We next specify the model architecture: three [Conv2D layers](https://www.machinecurve.com/index.php/2020/03/30/how-to-use-conv2d-with-keras/) for feature extraction, followed by a Flatten layer, as our Dense layers - which serve to generate the classification - can only handle one-dimensional data.
+- We next specify the model architecture: three [Conv2D layers](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-conv2d-with-keras.md) for feature extraction, followed by a Flatten layer, as our Dense layers - which serve to generate the classification - can only handle one-dimensional data.
 - Next, we compile the skeleton into an actual model and subsequently start the training process.
 - Once training has finished, we evaluate and show the evaluation on screen.
 

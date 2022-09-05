@@ -16,7 +16,7 @@ Enjoying the benefits of machine learning models means that they are deployed in
 
 If you don't, your models will run slower; sometimes, really slow - especially when your models are big. And big models are very common in today's state-of-the-art in machine learning.
 
-Fortunately, modern machine learning frameworks such as TensorFlow attempt to help machine learning engineers. Through extensions such as TF Lite, methods such as [quantization](https://www.machinecurve.com/index.php/2020/09/16/tensorflow-model-optimization-an-introduction-to-quantization/) can be used to optimize your model. While with quantization the number representation of your machine learning model is adapted to benefit size and speed (often at the cost of precision), we'll take a look at **model pruning** in this article. Firstly, we'll take a look at why model optimization is necessary. Subsequently, we'll introduce pruning - by taking a look at how neural networks work as well as questioning why we should keep weights that don't contribute to model performance.
+Fortunately, modern machine learning frameworks such as TensorFlow attempt to help machine learning engineers. Through extensions such as TF Lite, methods such as [quantization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tensorflow-model-optimization-an-introduction-to-quantization.md) can be used to optimize your model. While with quantization the number representation of your machine learning model is adapted to benefit size and speed (often at the cost of precision), we'll take a look at **model pruning** in this article. Firstly, we'll take a look at why model optimization is necessary. Subsequently, we'll introduce pruning - by taking a look at how neural networks work as well as questioning why we should keep weights that don't contribute to model performance.
 
 Following the theoretical part of this article, we'll build a Keras model and subsequently apply pruning to optimize it. This shows you how to apply pruning to your TensorFlow/Keras model with a real example. Finally, when we know how to do is, we'll continue by _combining_ pruning with quantization for compound optimization. Obviously, this also includes adding quantization to the Keras example that we created before.
 
@@ -83,7 +83,7 @@ Now, this is good if your predictions can be batch oriented or when some delay i
 
 Very large models, however, cannot run in the field, for the simple reason that insufficiently powerful hardware is available in the field. Embedded devices simply aren't good enough to equal performance of their cloud-based competitors. This means that you'll have to trade-off model performance by using smaller ones.
 
-Fortunately, modern deep learning frameworks provide a variety of techniques to optimize your machine learning models. As we have seen in another blog post, changing the number representation into a less-precise but smaller variant - a technique called [quantization](https://www.machinecurve.com/index.php/2020/09/16/tensorflow-model-optimization-an-introduction-to-quantization/) - helps already. In this blog post, we'll take a look at another technique: **model pruning**. Really interesting, especially if you combine the two - as we shall do later! :)
+Fortunately, modern deep learning frameworks provide a variety of techniques to optimize your machine learning models. As we have seen in another blog post, changing the number representation into a less-precise but smaller variant - a technique called [quantization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tensorflow-model-optimization-an-introduction-to-quantization.md) - helps already. In this blog post, we'll take a look at another technique: **model pruning**. Really interesting, especially if you combine the two - as we shall do later! :)
 
 * * *
 
@@ -95,16 +95,16 @@ I can imagine that it's difficult to visualize this if you don't fully understan
 
 ### Neural network maths: features and weights
 
-Taken from our blog post about loss and loss functions, we can sketch a [high-level machine learning process](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#the-high-level-supervised-learning-process) for supervised learning scenarios - such as training a classifier or a regression model:
+Taken from our blog post about loss and loss functions, we can sketch a [high-level machine learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process) for supervised learning scenarios - such as training a classifier or a regression model:
 
 ![](images/High-level-training-process-1024x973.jpg)
 
-Training such a model involves a cyclical process, where **features** (or data inputs) are fed to a machine learning model that is initially [initialized](https://www.machinecurve.com/index.php/2019/08/22/what-is-weight-initialization/) quite randomly, after which predictions are compared with the actual outcomes - or the ground truth. After comparison, the model is adapted, after which the process restarts. This way, models are improved incrementally, and "learning" takes place.
+Training such a model involves a cyclical process, where **features** (or data inputs) are fed to a machine learning model that is initially [initialized](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-weight-initialization.md) quite randomly, after which predictions are compared with the actual outcomes - or the ground truth. After comparison, the model is adapted, after which the process restarts. This way, models are improved incrementally, and "learning" takes place.
 
-If we talk about initializing a machine learning model, we're talking about initializing their **weights**. Each machine learning model has a large amount of weights that can be trained, i.e., where learning can be captured. Both weights and features are vectors. Upon the forward pass (i.e., passing a feature, generating a prediction), the inputs for every layer are fed to the weights, after which they are vector multiplied. The collective outcome (another vector) is subsequently passed to the next layer. The system as a whole generates the prediction, and can be used for generating highly complex predictions due to its [nonlinearity](https://www.machinecurve.com/index.php/2019/06/11/why-you-shouldnt-use-a-linear-activation-function/).
+If we talk about initializing a machine learning model, we're talking about initializing their **weights**. Each machine learning model has a large amount of weights that can be trained, i.e., where learning can be captured. Both weights and features are vectors. Upon the forward pass (i.e., passing a feature, generating a prediction), the inputs for every layer are fed to the weights, after which they are vector multiplied. The collective outcome (another vector) is subsequently passed to the next layer. The system as a whole generates the prediction, and can be used for generating highly complex predictions due to its [nonlinearity](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-you-shouldnt-use-a-linear-activation-function.md).
 
-- [Read more about weights and features here.](https://www.machinecurve.com/index.php/2019/08/22/what-is-weight-initialization/)
-- [Read here why full random weight initialization could not be a good idea.](https://www.machinecurve.com/index.php/2019/08/30/random-initialization-vanishing-and-exploding-gradients/)
+- [Read more about weights and features here.](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-weight-initialization.md)
+- [Read here why full random weight initialization could not be a good idea.](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/random-initialization-vanishing-and-exploding-gradients.md)
 
 ### Why keep weights that don't contribute?
 
@@ -148,7 +148,7 @@ pip install --user --upgrade tensorflow-model-optimization
 
 ### Using our Keras ConvNet
 
-In another blog post, we saw how to create a [Convolutional Neural Network with Keras](https://www.machinecurve.com/index.php/2019/09/17/how-to-create-a-cnn-classifier-with-keras/). Here, I'll re-use that code, for its sheer simplicity - it does nothing more than create a small CNN and train it with the MNIST dataset. It'll be the starting point of our pruning exercise. Here it is - if you wish to understand it in more detail, I'd recommend taking a look at the page we just linked to before:
+In another blog post, we saw how to create a [Convolutional Neural Network with Keras](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras.md). Here, I'll re-use that code, for its sheer simplicity - it does nothing more than create a small CNN and train it with the MNIST dataset. It'll be the starting point of our pruning exercise. Here it is - if you wish to understand it in more detail, I'd recommend taking a look at the page we just linked to before:
 
 ```
 import tensorflow
@@ -266,7 +266,7 @@ Here, the following happens:
 - We subsequently define configuration for the pruning operation through `pruning_params`. We define a pruning schedule using `PolynomialDecay`, which means that sparsity of the model increases with increasing number of `epochs`. Initially, we set the model to be 40% sparse, increasingly getting sparser to eventually 70%. We begin at 0, and end at `end_step`.
 - Finally, we actually call the `prune_low_magnitude` functionality (which generates the prunable model) from our initial `model` and the defined `pruning_params`.
 
-**Suggestion:** make sure to read our [article about PolynomialDecay and ConstantSparsity pruning schedules](https://www.machinecurve.com/index.php/2020/09/29/tensorflow-pruning-schedules-constantsparsity-and-polynomialdecay/) to find out more about these particular schedules.
+**Suggestion:** make sure to read our [article about PolynomialDecay and ConstantSparsity pruning schedules](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tensorflow-pruning-schedules-constantsparsity-and-polynomialdecay.md) to find out more about these particular schedules.
 
 ### Starting the pruning process
 
@@ -507,7 +507,7 @@ print("Size of gzipped pruned Keras model: %.2f bytes" % (get_gzipped_model_size
 
 ## Combining Pruning with Quantization for compound optimization
 
-Above, we saw how we can apply **pruning** to our TensorFlow model to make it smaller without losing much performance. Doing so, we achieved a model that was 2.35 times smaller than the original one. However, it's possible to make the model even smaller. We can do so by means of [quantization](https://www.machinecurve.com/index.php/2020/09/16/tensorflow-model-optimization-an-introduction-to-quantization/). If you're interested in what it is, I'd recommend you read the blog post for much detail. Here, we'll look at it very briefly and subsequently add it to our Keras example to gain even further improvements in model size.
+Above, we saw how we can apply **pruning** to our TensorFlow model to make it smaller without losing much performance. Doing so, we achieved a model that was 2.35 times smaller than the original one. However, it's possible to make the model even smaller. We can do so by means of [quantization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tensorflow-model-optimization-an-introduction-to-quantization.md). If you're interested in what it is, I'd recommend you read the blog post for much detail. Here, we'll look at it very briefly and subsequently add it to our Keras example to gain even further improvements in model size.
 
 ### What is quantization?
 
@@ -521,7 +521,7 @@ In short, once the model has been pruned - i.e., stripped off non-contributing w
 
 ### Adding quantization to our Keras example
 
-Let's now take a look how we can add quantization to a pruned TensorFlow model. More specifically, we'll add [dynamic range quantization](https://www.machinecurve.com/index.php/2020/09/16/tensorflow-model-optimization-an-introduction-to-quantization/#post-training-dynamic-range-quantization), which quantizes the weights, but not necessarily model activations.
+Let's now take a look how we can add quantization to a pruned TensorFlow model. More specifically, we'll add [dynamic range quantization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tensorflow-model-optimization-an-introduction-to-quantization/#post-training-dynamic-range-quantization), which quantizes the weights, but not necessarily model activations.
 
 Adding quantization first requires you to add a `TFLite` converter. This converter converts your TensorFlow model into TensorFlow Lite equivalent, which is what quantization will run against. Converting the model into a Lite model allows us to specify a model optimizer - `DEFAULT` or dynamic range quantization, in our case. Finally, we `convert()` the model:
 
@@ -747,7 +747,7 @@ Dwivedi, P. (2019, March 27). _Understanding and coding a ResNet in Keras_. Me
 
 Keras Team. (n.d.). _Keras documentation: Keras applications_. Keras: the Python deep learning API. [https://keras.io/api/applications/](https://keras.io/api/applications/)
 
-_TensorFlow model optimization: An introduction to quantization – MachineCurve_. (2020, September 16). MachineCurve. [https://www.machinecurve.com/index.php/2020/09/16/tensorflow-model-optimization-an-introduction-to-quantization/](https://www.machinecurve.com/index.php/2020/09/16/tensorflow-model-optimization-an-introduction-to-quantization/)
+_TensorFlow model optimization: An introduction to quantization – MachineCurve_. (2020, September 16). MachineCurve. [https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tensorflow-model-optimization-an-introduction-to-quantization/](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tensorflow-model-optimization-an-introduction-to-quantization.md)
 
 _Decision tree pruning_. (2006, June 7). Wikipedia, the free encyclopedia. Retrieved September 22, 2020, from [https://en.wikipedia.org/wiki/Decision\_tree\_pruning](https://en.wikipedia.org/wiki/Decision_tree_pruning)
 

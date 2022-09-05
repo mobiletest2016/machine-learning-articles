@@ -13,7 +13,7 @@ tags:
   - "variational-autoencoder"
 ---
 
-In a [different blog post](https://www.machinecurve.com/index.php/2019/12/24/what-is-a-variational-autoencoder-vae/), we studied the concept of a _Variational Autoencoder_ (or VAE) in detail. The models, which are generative, can be used to manipulate datasets by learning the distribution of this input data.
+In a [different blog post](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-a-variational-autoencoder-vae.md), we studied the concept of a _Variational Autoencoder_ (or VAE) in detail. The models, which are generative, can be used to manipulate datasets by learning the distribution of this input data.
 
 But there's a difference between theory and practice. While it's always nice to understand neural networks in theory, it's always even more fun to actually create them with a particular framework. It makes them really _usable_.
 
@@ -37,7 +37,7 @@ If you are already familiar with variational autoencoders or wish to find the im
 
 ### How do VAEs work?
 
-Contrary to a [normal autoencoder](https://www.machinecurve.com/index.php/2019/12/24/what-is-a-variational-autoencoder-vae/#about-normal-autoencoders), which learns to encode some input into a point in _latent space_, Variational Autoencoders (VAEs) learn to encode multivariate probability distributions into latent space, given their configuration usually Gaussian ones:
+Contrary to a [normal autoencoder](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-a-variational-autoencoder-vae/#about-normal-autoencoders), which learns to encode some input into a point in _latent space_, Variational Autoencoders (VAEs) learn to encode multivariate probability distributions into latent space, given their configuration usually Gaussian ones:
 
 [![](images/vae-encoder-decoder-1024x229.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/vae-encoder-decoder.png)
 
@@ -45,7 +45,7 @@ Sampling from the distribution gives a point in latent space that, given the dis
 
 [![](images/MultivariateNormal.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/MultivariateNormal.png)
 
-Combining this with a [Kullback-Leibler divergence segment](https://www.machinecurve.com/index.php/2019/12/21/how-to-use-kullback-leibler-divergence-kl-divergence-with-keras/) in the loss function leads to a latent space that is both _continuous_ and _complete_: for every point sampled close to the distribution's mean and standard deviation (which is in our case the standard normal distribution) the output should be both _similar to samples around that sample_ and _should make sense_.
+Combining this with a [Kullback-Leibler divergence segment](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-kullback-leibler-divergence-kl-divergence-with-keras.md) in the loss function leads to a latent space that is both _continuous_ and _complete_: for every point sampled close to the distribution's mean and standard deviation (which is in our case the standard normal distribution) the output should be both _similar to samples around that sample_ and _should make sense_.
 
 [![](images/vae_space.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/vae_space.png)
 
@@ -59,7 +59,7 @@ Besides the regular stuff one can do with an autoencoder (like denoising and dim
 
 _Samples generated with a VAE trained on the Fashion MNIST dataset._
 
-I would really recommend my blog ["What is a Variational Autoencoder (VAE)?"](https://www.machinecurve.com/index.php/2019/12/24/what-is-a-variational-autoencoder-vae/) if you are interested in understanding VAEs in more detail. However, based on the high-level recap above, I hope that you now both understand (1) how VAEs work at a high level and (2) what this allows you to do with them: using them for generative purposes.
+I would really recommend my blog ["What is a Variational Autoencoder (VAE)?"](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-a-variational-autoencoder-vae.md) if you are interested in understanding VAEs in more detail. However, based on the high-level recap above, I hope that you now both understand (1) how VAEs work at a high level and (2) what this allows you to do with them: using them for generative purposes.
 
 Let's now take a look at how we will use VAEs today 😊
 
@@ -180,7 +180,7 @@ Before we begin, it's important that you ensure that you have all the required d
 Let's now declare everything that we will import:
 
 - Keras, obviously.
-- From Keras Layers, we'll need convolutional layers and [transposed convolutions](https://www.machinecurve.com/index.php/2019/09/29/understanding-transposed-convolutions/), which we'll use for the autoencoder. Given our usage of the Functional API, we also need Input, Lambda and Reshape, as well as Dense and Flatten.
+- From Keras Layers, we'll need convolutional layers and [transposed convolutions](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/understanding-transposed-convolutions.md), which we'll use for the autoencoder. Given our usage of the Functional API, we also need Input, Lambda and Reshape, as well as Dense and Flatten.
 - We'll import BatchNormalization as well to ensure that the mean and variance of our layer's inputs remains close to (0, 1) during training. This benefits the training process.
 - We'll import the `Model` container from `keras.models`. This allows us to instantiate the models eventually.
 - The `mnist` dataset is the dataset we'll be training our VAE on.
@@ -290,7 +290,7 @@ sigma   = Dense(latent_dim, name='latent_sigma')(x)
 Let's now take a look at the individual lines of code in more detail.
 
 - The first layer is the `Input` layer. It accepts data with `input_shape = (28, 28, 1)` and is named _encoder\_input_. It's actually a pretty dumb layer, haha 😂
-- Next up is a [two-dimensional convolutional layer](https://www.machinecurve.com/index.php/2018/12/07/convolutional-neural-networks-and-their-components-for-computer-vision/), or Conv2D in Keras terms. It learns 8 filters by deploying a 3 x 3 kernel which it convolves over the input. It has a stride of two which means that it skips over the input during the convolution as well, speeding up the learning process. It employs 'same' padding and [ReLU activation](https://www.machinecurve.com/index.php/2019/09/04/relu-sigmoid-and-tanh-todays-most-used-activation-functions/). Do note that officially, it's best to use [He init](https://www.machinecurve.com/index.php/2019/09/16/he-xavier-initialization-activation-functions-choose-wisely/) with ReLU activating layers. However, since the dataset is relatively small, it shouldn't be too much of a problem if you don't.
+- Next up is a [two-dimensional convolutional layer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/convolutional-neural-networks-and-their-components-for-computer-vision.md), or Conv2D in Keras terms. It learns 8 filters by deploying a 3 x 3 kernel which it convolves over the input. It has a stride of two which means that it skips over the input during the convolution as well, speeding up the learning process. It employs 'same' padding and [ReLU activation](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md). Do note that officially, it's best to use [He init](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/he-xavier-initialization-activation-functions-choose-wisely.md) with ReLU activating layers. However, since the dataset is relatively small, it shouldn't be too much of a problem if you don't.
 - Subsequently, we use Batch Normalization. This layer ensures that the outputs of the Conv2D layer that are input to the next Conv2D layer have a steady mean and variance, likely \[latex\]\\mu = 0.0, \\sigma = 1.0\[/latex\] (plus some \[latex\]\\epsilon\[/latex\], an error term to ensure numerical stability). This benefits the learning process.
 - Once again, a Conv2D layer. It learns 16 filters and for the rest is equal to the first Conv2D layer.
 - BatchNormalization once more.
@@ -375,7 +375,7 @@ o     = Conv2DTranspose(filters=num_channels, kernel_size=3, activation='sigmoid
 ```
 
 - Our decoder also starts with an `Input` layer, the `decoder_input` layer. It takes input with the shape `(latent_dim, )`, which as we will see is the vector we sampled for `z` with our encoder.
-- If we'd like to upsample the point in latent space with [Conv2DTranspose](https://www.machinecurve.com/index.php/2019/12/10/conv2dtranspose-using-2d-transposed-convolutions-with-keras/) layers, in exactly the opposite symmetrical order as with we downsampled with our encoder, we must first bring back the data from shape `(latent_dim, )` into some shape that can be reshaped into the _output shape_ of the last convolutional layer of our encoder.
+- If we'd like to upsample the point in latent space with [Conv2DTranspose](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/conv2dtranspose-using-2d-transposed-convolutions-with-keras.md) layers, in exactly the opposite symmetrical order as with we downsampled with our encoder, we must first bring back the data from shape `(latent_dim, )` into some shape that can be reshaped into the _output shape_ of the last convolutional layer of our encoder.
 - **This is why you needed the `conv_shape` variable**. We'll thus now add a `Dense` layer which has `conv_shape[1] * conv_shape[2] * conv_shape[3]` output, and converts the latent space into many outputs.
 - We next use a `Reshape` layer to convert the output of the Dense layer into the output shape of the last convolutional layer: `(conv_shape[1], conv_shape[2], conv_shape[3] = (7, 7, 16)`. Sixteen filters learnt with 7 x 7 pixels per filter.
 - We then use `Conv2DTranspose` and `BatchNormalization` in the exact opposite order as with our encoder to upsample our data into 28 x 28 pixels (which is equal to the width and height of our inputs). However, we still have 8 filters, so the shape so far is `(28, 28, 8)`.
@@ -416,7 +416,7 @@ We the instantiate the model: `i` are our inputs indeed, and `vae_outputs` are t
 
 ### Defining custom VAE loss function
 
-Now that we have defined our model, we can proceed with model configuration. Usually, with neural networks, this is done with `model.compile`, where a loss function is specified such as [binary crossentropy](https://www.machinecurve.com/index.php/2019/10/22/how-to-use-binary-categorical-crossentropy-with-keras/). However, when we look [at how VAEs are optimized](https://www.machinecurve.com/index.php/2019/12/24/what-is-a-variational-autoencoder-vae/#second-difference-kl-divergence-reconstruction-error-for-optimization), we see that it's not a simple loss function that is used: we use reconstruction loss (in our case, binary crossentropy loss) _together with_ [KL divergence loss](https://www.machinecurve.com/index.php/2019/12/21/how-to-use-kullback-leibler-divergence-kl-divergence-with-keras/) to ensure that our latent space is both **[continuous and complete](https://www.machinecurve.com/index.php/2019/12/24/what-is-a-variational-autoencoder-vae/#continuity-and-completeness)**.
+Now that we have defined our model, we can proceed with model configuration. Usually, with neural networks, this is done with `model.compile`, where a loss function is specified such as [binary crossentropy](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-binary-categorical-crossentropy-with-keras.md). However, when we look [at how VAEs are optimized](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-a-variational-autoencoder-vae/#second-difference-kl-divergence-reconstruction-error-for-optimization), we see that it's not a simple loss function that is used: we use reconstruction loss (in our case, binary crossentropy loss) _together with_ [KL divergence loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-kullback-leibler-divergence-kl-divergence-with-keras.md) to ensure that our latent space is both **[continuous and complete](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-a-variational-autoencoder-vae/#continuity-and-completeness)**.
 
 We define it as follows:
 
@@ -439,7 +439,7 @@ def kl_reconstruction_loss(true, pred):
 
 ### Compilation & training
 
-Now that we have defined our custom loss function, we can compile our model. We do so using the [Adam optimizer](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/) and our `kl_reconstruction_loss` custom loss function.
+Now that we have defined our custom loss function, we can compile our model. We do so using the [Adam optimizer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md) and our `kl_reconstruction_loss` custom loss function.
 
 ```
 # Compile VAE

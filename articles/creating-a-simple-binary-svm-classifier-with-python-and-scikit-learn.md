@@ -19,7 +19,7 @@ What you are effectively doing here is _classifying_ each sample into one of two
 
 This is called **binary classification** and it is precisely what we will be looking at in today's blog post. In supervised machine learning, we can create models that do the same - assign one of two classes to a new sample, based on samples from the past that instruct it to do so.
 
-Today, neural networks are very hot - and [they can be used for binary classification as well](https://www.machinecurve.com/index.php/2019/07/27/how-to-create-a-basic-mlp-classifier-with-the-keras-sequential-api/). However, today, we will keep the neural networks out of this post - and we will focus on another Machine Learning technique called Support Vector Machine. It is one of the more _traditional_ techniques, but it is still used today.
+Today, neural networks are very hot - and [they can be used for binary classification as well](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-basic-mlp-classifier-with-the-keras-sequential-api.md). However, today, we will keep the neural networks out of this post - and we will focus on another Machine Learning technique called Support Vector Machine. It is one of the more _traditional_ techniques, but it is still used today.
 
 Let's take a look at what we will do today. Firstly, we'll dive into classification in more detail. What is it? What is a class? What is a binary classifier? How are classifiers trained? We will answer those questions, so that you can understand what is going on - but don't worry, we'll do so intuitively.
 
@@ -84,9 +84,9 @@ In any transition from binary into multiclass classification, you should take a 
 
 Very often, they do, but they may not do so natively - requiring a set of tricks for multiclass classification to work.
 
-For example, [neural networks](https://www.machinecurve.com/index.php/2019/07/27/how-to-create-a-basic-mlp-classifier-with-the-keras-sequential-api/) support multiclass classification out of the box. It's simply a matter of adding the [Softmax activation function](https://www.machinecurve.com/index.php/2020/01/08/how-does-the-softmax-activation-function-work/) to generate a multiclass probability distribution that will give you the likelihood of your sample belonging to one class.
+For example, [neural networks](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-basic-mlp-classifier-with-the-keras-sequential-api.md) support multiclass classification out of the box. It's simply a matter of adding the [Softmax activation function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-does-the-softmax-activation-function-work.md) to generate a multiclass probability distribution that will give you the likelihood of your sample belonging to one class.
 
-Support Vector Machines, which we are using in today's blog post, do not support multiclass classification natively, as we shall see next. However, they _do_ support it with a few tricks, [but those will be covered in another blog post](https://www.machinecurve.com/index.php/2020/11/11/creating-one-vs-rest-and-one-vs-one-svm-classifiers-with-scikit-learn/). Should you wish to find out more, you could look [here](https://en.wikipedia.org/wiki/Support-vector_machine#Multiclass_SVM).
+Support Vector Machines, which we are using in today's blog post, do not support multiclass classification natively, as we shall see next. However, they _do_ support it with a few tricks, [but those will be covered in another blog post](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/creating-one-vs-rest-and-one-vs-one-svm-classifiers-with-scikit-learn.md). Should you wish to find out more, you could look [here](https://en.wikipedia.org/wiki/Support-vector_machine#Multiclass_SVM).
 
 \[affiliatebox\]
 
@@ -110,7 +110,7 @@ We're going to build a SVM classifier step-by-step with Python and Scikit-learn.
 2. **Building the SVM classifier:** we're going to explore the concept of a kernel, followed by constructing the SVM classifier with Scikit-learn.
 3. **Using the SVM to predict new data samples:** once the SVM is trained, it should be able to correctly predict new samples. We're going to demonstrate how you can evaluate your binary SVM classifier.
 4. **Finding the support vectors of your trained SVM:** as we know, support vectors determine the decision boundary. But given your training data, which vectors were used as a support vector? We can find out - and we will show you.
-5. **Visualizing the decision boundary:** by means of a [cool extension called Mlxtend](https://www.machinecurve.com/index.php/2019/10/11/how-to-visualize-the-decision-boundary-for-your-keras-model/), we can visualize the decision boundary of our model. We're going to show you how to do this with your binary SVM classifier.
+5. **Visualizing the decision boundary:** by means of a [cool extension called Mlxtend](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-decision-boundary-for-your-keras-model.md), we can visualize the decision boundary of our model. We're going to show you how to do this with your binary SVM classifier.
 
 Make sure that you have installed all the Python dependencies before you start coding. These dependencies are Scikit-learn (or `sklearn` in PIP terms), Numpy, and Matplotlib.
 
@@ -283,7 +283,7 @@ Any mathematical function can be used as a kernel function. Scikit-learn also su
 - **Linear:** which simply maps the same onto a different space.
 - **Polynomial kernel**: it "represents vector similarity over polynomials of the original variables".
 - **RBF,** or **Radial Basis Function:** value depends on the distance from some point.
-- The **[Sigmoid function](https://www.machinecurve.com/index.php/2019/09/04/relu-sigmoid-and-tanh-todays-most-used-activation-functions/)**.
+- The **[Sigmoid function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md)**.
 - A precomputed function.
 
 Here's an example of what would happen if we apply some customkernel to our moons:
@@ -558,7 +558,7 @@ plt.show()
 
 Sometimes, we don't want to visualize the support vectors, but **the exact decision boundary** for our SVM classifier.
 
-We can do so with a fantastic package called [Mlxtend](https://www.machinecurve.com/index.php/2019/10/11/how-to-visualize-the-decision-boundary-for-your-keras-model/), created by dr. Sebastian Raschka, who faced this problem for his classifiers.
+We can do so with a fantastic package called [Mlxtend](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-decision-boundary-for-your-keras-model.md), created by dr. Sebastian Raschka, who faced this problem for his classifiers.
 
 It can be installed in a very simple way: `pip install mlxtend`. Then, if we add it to the imports:
 

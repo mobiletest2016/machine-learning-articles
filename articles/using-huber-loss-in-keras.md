@@ -60,7 +60,7 @@ model.compile(loss=tensorflow.keras.losses.Huber(delta=1.5), optimizer='adam', m
 
 When you train machine learning models, you feed data to the network, generate predictions, compare them with the actual values (the targets) and then compute what is known as a _loss_. This loss essentially tells you something about the performance of the network: the higher it is, the worse your networks performs overall.
 
-There are many ways for computing the loss value. [Huber loss](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#huber-loss) is one of them. It essentially combines the [Mean Absolute Error](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#mean-absolute-error-l1-loss) and the [Mean Squared Error](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#mean-squared-error) depending on some delta parameter, or 𝛿. This parameter must be configured by the machine learning engineer up front and is dependent on your data.
+There are many ways for computing the loss value. [Huber loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#huber-loss) is one of them. It essentially combines the [Mean Absolute Error](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#mean-absolute-error-l1-loss) and the [Mean Squared Error](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#mean-squared-error) depending on some delta parameter, or 𝛿. This parameter must be configured by the machine learning engineer up front and is dependent on your data.
 
 Huber loss looks like this:
 
@@ -203,7 +203,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 ```
 
-Obviously, we need the `boston_housing` dataset from the available Keras datasets. Additionally, we import `Sequential` as we will build our model using the Keras Sequential API. We're creating a very simple model, a [multilayer perceptron](https://www.machinecurve.com/index.php/2019/07/30/creating-an-mlp-for-regression-with-keras/), with which we'll attempt to regress a function that correctly estimates the median values of Boston homes. For this reason, we import `Dense` layers or densely-connected ones.
+Obviously, we need the `boston_housing` dataset from the available Keras datasets. Additionally, we import `Sequential` as we will build our model using the Keras Sequential API. We're creating a very simple model, a [multilayer perceptron](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/creating-an-mlp-for-regression-with-keras.md), with which we'll attempt to regress a function that correctly estimates the median values of Boston homes. For this reason, we import `Dense` layers or densely-connected ones.
 
 We also need `Huber` since that's the loss function we use. Numpy is used for number processing and we use Matplotlib to visualize the end result.
 
@@ -237,7 +237,7 @@ model.compile(loss=Huber(delta=1.5), optimizer='adam', metrics=['mean_absolute_e
 history = model.fit(x_train, y_train, epochs=250, batch_size=1, verbose=1, validation_split=0.2)
 ```
 
-As discussed, we use the Sequential API; here, we use two densely-connected hidden layers and one output layer. The hidden ones activate by means of [ReLU](https://www.machinecurve.com/index.php/2019/09/04/relu-sigmoid-and-tanh-todays-most-used-activation-functions/) and for this reason require [He uniform initialization](https://www.machinecurve.com/index.php/2019/09/16/he-xavier-initialization-activation-functions-choose-wisely/). The final layer activates linearly, because it regresses the actual value.
+As discussed, we use the Sequential API; here, we use two densely-connected hidden layers and one output layer. The hidden ones activate by means of [ReLU](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md) and for this reason require [He uniform initialization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/he-xavier-initialization-activation-functions-choose-wisely.md). The final layer activates linearly, because it regresses the actual value.
 
 Compiling the model requires specifying the delta value, which we set to 1.5, given our estimate that we don't want true MAE but that given the outliers identified earlier full MSE resemblence is not smart either. We'll optimize by means of Adam _and also define the MAE as an extra error metric_. This way, we can have an estimate about what the true error is in terms of thousands of dollars: the MAE keeps its domain understanding whereas Huber loss does not.
 
@@ -245,7 +245,7 @@ Subsequently, we fit the training data to the model, complete 250 epochs with a 
 
 #### Performance testing & visualization
 
-Finally, we add some code for performance testing and [visualization](https://www.machinecurve.com/index.php/2019/10/08/how-to-visualize-the-training-process-in-keras/):
+Finally, we add some code for performance testing and [visualization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-training-process-in-keras.md):
 
 ```
 # Test the model after training

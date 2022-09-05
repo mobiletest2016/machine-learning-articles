@@ -15,9 +15,9 @@ tags:
   - "mlxtend"
 ---
 
-Recently, I've been looking into [loss functions](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/) - and specifically these questions: What is their purpose? How does the concept of loss work? And more practically, how can loss functions be implemented with the TensorFlow 2 based Keras framework for deep learning?
+Recently, I've been looking into [loss functions](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md) - and specifically these questions: What is their purpose? How does the concept of loss work? And more practically, how can loss functions be implemented with the TensorFlow 2 based Keras framework for deep learning?
 
-This resulted in blog posts that e.g. covered [huber loss](https://www.machinecurve.com/index.php/2019/10/12/using-huber-loss-in-keras/) and [hinge & squared hinge loss](https://www.machinecurve.com/index.php/2019/10/15/how-to-use-hinge-squared-hinge-loss-with-keras/). Today, in this tutorial, we'll extend the latter to multiclass classification: we cover **categorical hinge loss**, or multiclass hinge loss. How can categorical hinge / multiclass hinge be implemented with TF2 based Keras? That's what well find out today.
+This resulted in blog posts that e.g. covered [huber loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/using-huber-loss-in-keras.md) and [hinge & squared hinge loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-hinge-squared-hinge-loss-with-keras.md). Today, in this tutorial, we'll extend the latter to multiclass classification: we cover **categorical hinge loss**, or multiclass hinge loss. How can categorical hinge / multiclass hinge be implemented with TF2 based Keras? That's what well find out today.
 
 After reading this tutorial, you will understand...
 
@@ -52,7 +52,7 @@ model.compile(loss=loss_function_used, optimizer=optimizer_used, metrics=additio
 
 In that previous blog, we looked at _hinge loss_ and _squared hinge loss_ - which actually helped us to generate a decision boundary between two classes and hence a classifier, but yep - two classes only.
 
-Hinge loss and squared hinge loss can be used for [binary classification problems](https://www.machinecurve.com/index.php/2020/10/19/3-variants-of-classification-problems-in-machine-learning/).
+Hinge loss and squared hinge loss can be used for [binary classification problems](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/3-variants-of-classification-problems-in-machine-learning.md).
 
 Unfortunately, many of today's problems aren't binary, but rather, multiclass: the number of possible target classes is \[latex\]> 2\[/latex\].
 
@@ -78,7 +78,7 @@ We first convert our regular targets into categorical data. That is, if we have 
 
 Next, _for any sample_, our DL model generates a multiclass probability distribution over all possible target classes. That is, for the total probability of 100% (or, statistically, \[latex\]1\[/latex\]) it generates the probability that any of the possible categorical classes is the actual target class (in the scenario above, e.g. \[latex\]\[0.25, 0.25, 0.50\]\[/latex\] - which would mean _class two_, but with some uncertainty.
 
-Computing the loss - the difference between _actual target and predicted targets_ - is then equal to computing the hinge loss for _taking the prediction for all the computed classes, except for the target class, since loss is always 0 there_. The hinge loss computation itself is similar to the [traditional hinge loss](https://www.machinecurve.com/index.php/2019/10/15/how-to-use-hinge-squared-hinge-loss-with-keras/).
+Computing the loss - the difference between _actual target and predicted targets_ - is then equal to computing the hinge loss for _taking the prediction for all the computed classes, except for the target class, since loss is always 0 there_. The hinge loss computation itself is similar to the [traditional hinge loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-hinge-squared-hinge-loss-with-keras.md).
 
 Categorical hinge loss can be optimized as well and hence used for generating decision boundaries in multiclass machine learning problems. Let's now see how we can implement it with TensorFlow 2 based Keras.
 
@@ -88,7 +88,7 @@ Categorical hinge loss can be optimized as well and hence used for generating de
 
 ...which requires defining a dataset first :-)
 
-In our post covering [traditional hinge loss](https://www.machinecurve.com/index.php/2019/10/15/how-to-use-hinge-squared-hinge-loss-with-keras/), we generated data ourselves because this increases simplicity.
+In our post covering [traditional hinge loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-hinge-squared-hinge-loss-with-keras.md), we generated data ourselves because this increases simplicity.
 
 We'll do so as well in today's blog. Specifically, we create a dataset with three separable clusters that looks as follows:
 
@@ -123,7 +123,7 @@ We need **TensorFlow 2** (`pip install tensorflow`) since we build the model by 
 - The **Sequential API**, which allows us to stack neural network layers;
 - The **densely-connected layer type**, since we'll build our network by means of such layers.
 
-We also need **Matplotlib** for generating visualizations of our dataset, **Numpy** for basic number processing, **Scikit-learn** for generating the dataset and **Mlxtend** for [visualizing the decision boundary](https://www.machinecurve.com/index.php/2019/10/11/how-to-visualize-the-decision-boundary-for-your-keras-model/) of our model.
+We also need **Matplotlib** for generating visualizations of our dataset, **Numpy** for basic number processing, **Scikit-learn** for generating the dataset and **Mlxtend** for [visualizing the decision boundary](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-decision-boundary-for-your-keras-model.md) of our model.
 
 ### Model & data configuration
 
@@ -145,7 +145,7 @@ validation_split = 0.2 # 20%
 
 The three clusters contain 3000 samples in total divided over three classes or clusters, as we saw in the image above. The `training_split` value is 1000, which means that 1000 samples are split off the training set to serve as testing data.
 
-Next, we specify the hyper parameters. Obviously, we'll use categorical hinge loss. We set the learning rate to 0.03 since traditional hinge required a [more aggressive value](https://www.machinecurve.com/index.php/2019/10/15/how-to-use-hinge-squared-hinge-loss-with-keras/) contrary to 0.001, which is default in Keras. We use the Adam optimizer and configure it to use this learning rate, which is very common today since Adam is the de facto standard optimizer used in DL projects.
+Next, we specify the hyper parameters. Obviously, we'll use categorical hinge loss. We set the learning rate to 0.03 since traditional hinge required a [more aggressive value](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-hinge-squared-hinge-loss-with-keras.md) contrary to 0.001, which is default in Keras. We use the Adam optimizer and configure it to use this learning rate, which is very common today since Adam is the de facto standard optimizer used in DL projects.
 
 As an additional metric, we specify accuracy, as we have done before in many of our blog posts. Accuracy is more intuitively understandable to humans.
 
@@ -171,7 +171,7 @@ input_shape = (feature_vector_length,)
 
 We use Scikit-learns `make_blobs` function to generate data. It simply does as it suggests: it generates blobs of data, or clusters of data, where you specify them to be. Specifically, it generates `num_samples_total` (3000, see model configuration section) in our case, splits them across three clusters centered at \[latex\]{ (0, 0), (15, 15), (0,15) }\[/latex\]. The standard deviation in a cluster is approximately 1.5 to ensure that they are actually separable.
 
-Next, we must convert our target values (which are one of \[latex\]{ 0, 1, 2 }\[/latex\]) into [categorical format](https://www.machinecurve.com/index.php/2019/09/17/how-to-create-a-cnn-classifier-with-keras/#preparing-target-vectors-with-to_categorical) since our _categorical hinge loss_ requires categorical format (and hence no integer targets such as \[latex\]2\[/latex\], but categorical vectors like \[latex\]\[0, 0, 1\]\[/latex\].
+Next, we must convert our target values (which are one of \[latex\]{ 0, 1, 2 }\[/latex\]) into [categorical format](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras/#preparing-target-vectors-with-to_categorical) since our _categorical hinge loss_ requires categorical format (and hence no integer targets such as \[latex\]2\[/latex\], but categorical vectors like \[latex\]\[0, 0, 1\]\[/latex\].
 
 Subsequently, we can split our feature vectors and target vectors according to the `training_split` we configured in our model configuration. Note that we add `.astype(np.integer`) to the testing targets. We do this because when visualizing categorical data, the Mlxtend library requires the vector contents to be _integers_ (instead of floating point numbers).
 
@@ -204,7 +204,7 @@ We can work with this!
 
 ### What you'll need to run this model
 
-If you wish to run this model on your machine, you'll need to install some dependencies to make the code work. First of all, you need **Keras**, the deep learning framework with which this model is built. It's the most essential dependency and can be installed by installing **TensorFlow 2.x** today, e.g. [2.4.0](https://www.machinecurve.com/index.php/2020/11/05/saying-hello-to-tensorflow-2-4-0/). It is then available as `tensorflow.keras`.
+If you wish to run this model on your machine, you'll need to install some dependencies to make the code work. First of all, you need **Keras**, the deep learning framework with which this model is built. It's the most essential dependency and can be installed by installing **TensorFlow 2.x** today, e.g. [2.4.0](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/saying-hello-to-tensorflow-2-4-0.md). It is then available as `tensorflow.keras`.
 
 Additionally, you'll need the de facto standard Python libraries Matplotlib, Numpy and Scikit-learn - they can be installed with `pip` quite easily.
 
@@ -220,7 +220,7 @@ model.add(Dense(2, activation='relu', kernel_initializer='he_uniform'))
 model.add(Dense(num_classes, activation='tanh'))
 ```
 
-More specifically, we use the Keras Sequential API which allows us to stack multiple layers on top of each other. We subsequently `add` the Dense or densely-connected layers; the first having four neurons, the second two, and the last `num_classes`, or three in our case. The hidden layers activate by means of the ReLU [activation function](https://www.machinecurve.com/index.php/2019/09/04/relu-sigmoid-and-tanh-todays-most-used-activation-functions/) and hence are initialized with [He uniform init](https://www.machinecurve.com/index.php/2019/09/16/he-xavier-initialization-activation-functions-choose-wisely/). The last layer activates with tanh.
+More specifically, we use the Keras Sequential API which allows us to stack multiple layers on top of each other. We subsequently `add` the Dense or densely-connected layers; the first having four neurons, the second two, and the last `num_classes`, or three in our case. The hidden layers activate by means of the ReLU [activation function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md) and hence are initialized with [He uniform init](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/he-xavier-initialization-activation-functions-choose-wisely.md). The last layer activates with tanh.
 
 ### Model configuration & training
 
@@ -232,7 +232,7 @@ model.compile(loss=loss_function_used, optimizer=optimizer_used, metrics=additio
 history = model.fit(X_training, Targets_training, epochs=num_epochs, batch_size=batch_size, verbose=1, validation_split=validation_split)
 ```
 
-It's as simple as calling `model.compile` with the settings that we configured under model configuration, followed by `model.fit` which fits the training data to the model architecture specified above. The training history is saved in the `history` object which we can use for [visualization purposes](https://www.machinecurve.com/index.php/2019/10/08/how-to-visualize-the-training-process-in-keras/).
+It's as simple as calling `model.compile` with the settings that we configured under model configuration, followed by `model.fit` which fits the training data to the model architecture specified above. The training history is saved in the `history` object which we can use for [visualization purposes](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-training-process-in-keras.md).
 
 Next, we must add some more code for testing the model's ability to generalize to data it hasn't seen before.
 
@@ -254,7 +254,7 @@ What it will do is this: it takes the testing data (both features and targets) a
 
 ### Visualizing the decision boundary
 
-[Visualizing the decision boundaries](https://www.machinecurve.com/index.php/2019/10/11/how-to-visualize-the-decision-boundary-for-your-keras-model/) of the model (remember, we have a three-class classification problem!) is the next step.
+[Visualizing the decision boundaries](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-decision-boundary-for-your-keras-model.md) of the model (remember, we have a three-class classification problem!) is the next step.
 
 I must admit, I had a little help from dr. Sebastian Raschka here, the creator of Mlxtend (also see [https://github.com/rasbt/mlxtend/issues/607](https://github.com/rasbt/mlxtend/issues/607)). As noted before, we had to convert our targets into categorical format, or e.g. \[latex\]target = 2\[/latex\] into \[latex\]target = \[0, 0, 1\]\[/latex\]. Mlxtend does not natively support this, but fortunately, Raschka helped out by creating a helper class that embeds the model yet converts the way it makes predictions (back into non-categorical format). This looks as follows:
 
@@ -289,7 +289,7 @@ plt.show()
 
 ### Visualizing the training process
 
-Finally, we can [visualize the training process](https://www.machinecurve.com/index.php/2019/10/08/how-to-visualize-the-training-process-in-keras/) itself by adding some extra code - which essentially plots the Keras `history` object with Matplotlib:
+Finally, we can [visualize the training process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-training-process-in-keras.md) itself by adding some extra code - which essentially plots the Keras `history` object with Matplotlib:
 
 ```
 # Visualize training process
@@ -509,6 +509,6 @@ Raschka, S. (n.d.). Home - mlxtend. Retrieved from [http://rasbt.github.io/mlxt
 
 Raschka, S. (2018). MLxtend: Providing machine learning and data science utilities and extensions to Python’s scientific computing stack. _Journal of Open Source Software_, _3_(24), 638. [doi:10.21105/joss.00638](https://joss.theoj.org/papers/10.21105/joss.00638)
 
-About loss and loss functions – MachineCurve. (2019, October 15). Retrieved from [https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/)
+About loss and loss functions – MachineCurve. (2019, October 15). Retrieved from [https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md)
 
 Keras. (n.d.). Losses. Retrieved from [http://keras.io/losses](http://keras.io/losses)

@@ -13,7 +13,7 @@ tags:
 
 Machine learning (and consequently deep learning) can be used to train computers to see things. We know that machine learning is about feeding examples to machines, after which they derive the patterns in these examples themselves. Consequently, we can see that using machine learning for computer vision equals showing machines enough examples so that they can learn to recognize them on their own, for new data.
 
-In deep learning, we use [deep neural networks](https://machinecurve.com/index.php/2018/11/23/what-is-deep-learning-exactly/) to learn machines to recognize patterns on their own.
+In deep learning, we use [deep neural networks](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-deep-learning-exactly.md) to learn machines to recognize patterns on their own.
 
 But not every class of deep learning algorithms is suitable for computer vision, for reasons that will be explained later in this blog.
 
@@ -37,7 +37,7 @@ In this blog, I would like to explain the generic concepts behind CNNs in more d
 
 ## The differences between regular neural networks and convolutional ones
 
-CNNs are quite similar to 'regular' neural networks: it's a network of neurons, which receive input, transform the input using mathematical transformations and [preferably](https://machinecurve.com/index.php/2018/11/23/what-is-deep-learning-exactly/) a non-linear activation function, and they often end in the form of a classifier/regressor.
+CNNs are quite similar to 'regular' neural networks: it's a network of neurons, which receive input, transform the input using mathematical transformations and [preferably](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-deep-learning-exactly.md) a non-linear activation function, and they often end in the form of a classifier/regressor.
 
 But they are different in the sense that they assume that the input is an image.
 
@@ -53,7 +53,7 @@ In order to build our knowledge, we must take one small step back before we can 
 
 ### Layer structure in a normal neural network
 
-As you may recognize from our previous post on [what deep learning is](https://machinecurve.com/index.php/2018/11/23/what-is-deep-learning-exactly/), such a neural network consists of layers: in its simplest form one input layer, one or multiple hidden layers, and one output layer.
+As you may recognize from our previous post on [what deep learning is](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-deep-learning-exactly.md), such a neural network consists of layers: in its simplest form one input layer, one or multiple hidden layers, and one output layer.
 
 The neurons are structured vertically and are interconnected. This means that the output from one neuron in the input layers goes to every neuron in the subsequent layer. This process happens for every layer, as you can recognize in the model above.
 
@@ -81,7 +81,7 @@ I will next cover the components of a CNN, including these convolutional layers!
 
 ## CNN components
 
-Convolutional neural networks share the characteristics of [multilayer perceptrons](https://www.machinecurve.com/index.php/2019/07/27/how-to-create-a-basic-mlp-classifier-with-the-keras-sequential-api/) (and may be said to be composed of individual MLPs, although this analogy remains a bit vague): they have one input layer, one output layer and a set of - at minimum one - hidden layer(s) in between.
+Convolutional neural networks share the characteristics of [multilayer perceptrons](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-basic-mlp-classifier-with-the-keras-sequential-api.md) (and may be said to be composed of individual MLPs, although this analogy remains a bit vague): they have one input layer, one output layer and a set of - at minimum one - hidden layer(s) in between.
 
 Like I wrote before, CNNs are composed of various 'components'. A component equals at least one layer in the CNN. Now, what are these components? Here they are, in short:
 
@@ -131,9 +131,9 @@ One has to start somewhere, doesn't he?
 
 An [answer](https://stackoverflow.com/questions/48388810/what-is-the-kind-of-filter-does-keras-uses-for-conv2d-in-cnn) on StackOverflow provided the solution to my confusion. It goes like this when training a CNN: first, for every convolutional layer, the filter is initialized in some way. This may be done randomly, but different initialization methods for CNNs exist.
 
-It then trains once and calculates the so-called '[loss value](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/)', i.e. the difference between the real world and what the model predicted.
+It then trains once and calculates the so-called '[loss value](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md)', i.e. the difference between the real world and what the model predicted.
 
-Based on this loss value, the filter [is changed a tiny bit](https://www.machinecurve.com/index.php/2019/10/24/gradient-descent-and-its-variants/), after which the same thing starts again.
+Based on this loss value, the filter [is changed a tiny bit](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md), after which the same thing starts again.
 
 \[ad\]
 
@@ -285,7 +285,7 @@ In our case, we simply used one filter, but obviously, multiple ones are used. B
 
 #### CNNs make images more abstract, why is that?
 
-From our blog about [what deep learning is](https://machinecurve.com/index.php/2018/11/23/what-is-deep-learning-exactly/) we learnt that neural networks make representations more abstract when one moves through the network and moves to the right.
+From our blog about [what deep learning is](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-deep-learning-exactly.md) we learnt that neural networks make representations more abstract when one moves through the network and moves to the right.
 
 In convolutional neural networks, this is also the case.
 
@@ -315,19 +315,19 @@ If we would use a linear machine learning model, we would get into trouble. Ther
 
 Yes, maybe the cosine and sine functions come to mind - but let's stop here, because these are no lines.
 
-Deep neural networks use some kind of [nonlinear activation function](https://machinecurve.com/index.php/2018/11/23/what-is-deep-learning-exactly/) to process more advanced, non-linear data.
+Deep neural networks use some kind of [nonlinear activation function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-deep-learning-exactly.md) to process more advanced, non-linear data.
 
 But convolutional layers do not provide this kind of non-linearity. What they simply do is to compute element-wise multiplications between a filter matrix and a matrix that contains a part of an image.
 
 We would thus need to add some non-linearity to our model.
 
-We use **non-linearity layers** for this, and we put them directly after the convolutional layer. Multiple non-linearity layer types exist, of which these [are most widely used](https://www.machinecurve.com/index.php/2019/09/04/relu-sigmoid-and-tanh-todays-most-used-activation-functions/):
+We use **non-linearity layers** for this, and we put them directly after the convolutional layer. Multiple non-linearity layer types exist, of which these [are most widely used](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md):
 
 - Rectified Linear Unit (ReLU)
 - Sigmoid
 - Tanh
 
-The preferable non-linear layer of choice these days is the [ReLu](https://www.machinecurve.com/index.php/2019/09/04/relu-sigmoid-and-tanh-todays-most-used-activation-functions/#rectified-linear-unit-relu) layer, though. Researchers have identified that models using these type of activation functions (non-linear layers) are faster to train, which saves computational resources. This does not mean that sigmoid and tanh based CNNs are useless, possibly even the contrary. However, it will take longer to train, and for most tasks this would not be necessary, as ReLu would perform fine for them. Please note that a wide variety of activation functions [is available these days](https://www.machinecurve.com/index.php/2020/01/24/overview-of-activation-functions-for-neural-networks/). Click the link for an overview. It also includes activation functions that attempt to improve the ReLU activation function mentioned above.
+The preferable non-linear layer of choice these days is the [ReLu](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions/#rectified-linear-unit-relu) layer, though. Researchers have identified that models using these type of activation functions (non-linear layers) are faster to train, which saves computational resources. This does not mean that sigmoid and tanh based CNNs are useless, possibly even the contrary. However, it will take longer to train, and for most tasks this would not be necessary, as ReLu would perform fine for them. Please note that a wide variety of activation functions [is available these days](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/overview-of-activation-functions-for-neural-networks.md). Click the link for an overview. It also includes activation functions that attempt to improve the ReLU activation function mentioned above.
 
 \[ad\]
 
@@ -345,7 +345,7 @@ The larger the input of a convolutional layer, the larger the convolutional oper
 
 For the sake of computational resources, we would thus need to reduce the dimensions of the output of a convolutional layer.
 
-And here is where [pooling layers](https://www.machinecurve.com/index.php/2020/01/30/what-are-max-pooling-average-pooling-global-max-pooling-and-global-average-pooling/) come into view.
+And here is where [pooling layers](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-are-max-pooling-average-pooling-global-max-pooling-and-global-average-pooling.md) come into view.
 
 Pooling layers will allow us to move over the output of the convolutional layer (and possibly, the ReLu layer) i.e. the activation map, and make it smaller.
 
@@ -395,7 +395,7 @@ Since we're talking about convolutional neural networks, the convolutional layer
 
 This means that we will most probably start with a convolutional layer, which takes the image as input, and converts the input to an activation map with learnt filters.
 
-We will then use a [ReLu](https://www.machinecurve.com/index.php/2019/09/09/implementing-relu-sigmoid-and-tanh-in-keras/) layer to apply some non-linearity to the image.
+We will then use a [ReLu](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/implementing-relu-sigmoid-and-tanh-in-keras.md) layer to apply some non-linearity to the image.
 
 We then arrive at a crossroad.
 

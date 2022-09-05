@@ -28,7 +28,7 @@ While it's a relatively old technique, its concepts are still useful today (e.g.
 
 Are you ready? Let's take a look! 😎
 
-- If you want to build a neural network using greedy layer-wise training with PyTorch[](https://www.machinecurve.com/index.php/mastering-keras/), [take a look at this article](https://www.machinecurve.com/index.php/2022/01/24/greedy-layer-wise-training-of-deep-networks-a-pytorch-example/).
+- If you want to build a neural network using greedy layer-wise training with PyTorch[](https://web.archive.org/web/https://www.machinecurve.com/index.php/mastering-keras.md), [take a look at this article](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/greedy-layer-wise-training-of-deep-networks-a-pytorch-example.md).
 
 * * *
 
@@ -44,13 +44,13 @@ For example, we can thank nonlinear activation functions like ReLU for this.
 
 However, there was a time - think before 2007 - when these improvements were not available yet. At least, if we take ReLU as an example, we know that it has been around since the 1960s, but it was only until 2011 when renewed interest emerged because it was found that using it improves neural network performance (Wikipedia, 2012).
 
-In 2007, however, people employing deep neural networks ran into many issues that all boiled down to the fact that the resulting networks didn't perform. A key issue however was the **[vanishing gradients problem](https://www.machinecurve.com/index.php/2019/08/30/random-initialization-vanishing-and-exploding-gradients/)**, which means that for deeper networks the most upstream layers didn't receive a sufficient gradient because [error propagation with Sigmoid and Tanh](https://www.machinecurve.com/index.php/2019/08/30/random-initialization-vanishing-and-exploding-gradients/#vanishing-gradients) resulted in very small gradients, and hence slow learning.
+In 2007, however, people employing deep neural networks ran into many issues that all boiled down to the fact that the resulting networks didn't perform. A key issue however was the **[vanishing gradients problem](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/random-initialization-vanishing-and-exploding-gradients.md)**, which means that for deeper networks the most upstream layers didn't receive a sufficient gradient because [error propagation with Sigmoid and Tanh](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/random-initialization-vanishing-and-exploding-gradients/#vanishing-gradients) resulted in very small gradients, and hence slow learning.
 
-In other words, there was a limit to how deep networks could become in order to remain trainable, while they can be [universal function approximators](https://www.machinecurve.com/index.php/2019/07/18/can-neural-networks-approximate-mathematical-functions/) in theory.
+In other words, there was a limit to how deep networks could become in order to remain trainable, while they can be [universal function approximators](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/can-neural-networks-approximate-mathematical-functions.md) in theory.
 
 Thanks to a [paper](https://proceedings.neurips.cc/paper/2006/file/5da713a690c067105aeb2fae32403405-Paper.pdf) by Bengio et al. from 2007, **greedy layer-wise (pre)training** of a neural network renewed interest in deep networks. Although it sounds very complex, it boils down to one simple observation:
 
-**A deep network is trained once with a hidden layer; then a second hidden layer is added and training is repeated; a third is added and training is repeated, and so forth.** This process is repeated until your target number of layers is reached. Obviously, you can set an absolute target number of layers, or adapt dynamically based on [test performance](https://www.machinecurve.com/index.php/2020/11/03/how-to-evaluate-a-keras-model-with-model-evaluate/): if the model does no longer improve for e.g. 3 times, it's possible that this happens due to vanishing gradients (at least, then, when ReLU was not yet widely used).
+**A deep network is trained once with a hidden layer; then a second hidden layer is added and training is repeated; a third is added and training is repeated, and so forth.** This process is repeated until your target number of layers is reached. Obviously, you can set an absolute target number of layers, or adapt dynamically based on [test performance](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-evaluate-a-keras-model-with-model-evaluate.md): if the model does no longer improve for e.g. 3 times, it's possible that this happens due to vanishing gradients (at least, then, when ReLU was not yet widely used).
 
 ![](images/greedy.drawio-1024x336.png)
 
@@ -65,13 +65,13 @@ Greedy layer-wise training can be performed in four ways:
 
 Now that you understand what greedy layer-wise training is, let's take a look at how you can harness this approach to training a neural network using TensorFlow and Keras.
 
-The first thing you'll need to do is to ensure that you have [installed TensorFlow](https://www.tensorflow.org/install). Then, create a Python file (e.g. `greedy.py`) or open up a [Jupyter Notebook](https://www.machinecurve.com/index.php/2020/10/07/easy-install-of-jupyter-notebook-with-tensorflow-and-docker/) and let's write some code!
+The first thing you'll need to do is to ensure that you have [installed TensorFlow](https://www.tensorflow.org/install). Then, create a Python file (e.g. `greedy.py`) or open up a [Jupyter Notebook](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/easy-install-of-jupyter-notebook-with-tensorflow-and-docker.md) and let's write some code!
 
 ### Python imports
 
 First of all, you'll need a few imports. Obviously, you'll import `tensorflow`. This is followed by importing the CIFAR-10 dataset, with which we'll train today's neural network. We use the Keras Sequential API and the `Dense`, `Dropout` and `Flatten` layers.
 
-Do note that in the case of images, it would be best to create a [Convolutional Neural Network](https://www.machinecurve.com/index.php/2021/07/08/convolutional-neural-networks-with-pytorch/). Instead, for the sake of simplicity, we will be [creating an MLP](https://www.machinecurve.com/index.php/2019/07/27/how-to-create-a-basic-mlp-classifier-with-the-keras-sequential-api/) instead.
+Do note that in the case of images, it would be best to create a [Convolutional Neural Network](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/convolutional-neural-networks-with-pytorch.md). Instead, for the sake of simplicity, we will be [creating an MLP](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-basic-mlp-classifier-with-the-keras-sequential-api.md) instead.
 
 ```
 import tensorflow
@@ -95,7 +95,7 @@ def get_global_configuration():
 
 ### Model configuration
 
-Then, we add the model configuration definition - `get_model_configuration`. It has the model-specific elements, such as image size, number of classes present in the dataset, and so forth. These all speak for themselves if you have worked with deep learning models before. If not, [take a look here](https://www.machinecurve.com/index.php/2019/07/27/how-to-create-a-basic-mlp-classifier-with-the-keras-sequential-api/).
+Then, we add the model configuration definition - `get_model_configuration`. It has the model-specific elements, such as image size, number of classes present in the dataset, and so forth. These all speak for themselves if you have worked with deep learning models before. If not, [take a look here](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-basic-mlp-classifier-with-the-keras-sequential-api.md).
 
 ```
 def get_model_configuration():
@@ -117,8 +117,8 @@ Next up is a definition for retrieving the dataset, after it has been preprocess
 - Loading the relevant model configuration: image size and the number of classes. The `_` represents variables that are returned by the definition, but which we won't need here.
 - Loading the `cifar10` dataset. Note that it returns training and testing data; both inputs and targets.
 - Reshaping the data so that it fits the `(32, 32, 3)` structure of a CIFAR10 sample well.
-- Parsing numbers as floats, benefiting training, and converting them into the `[0, 1]` range, also [benefiting the training process](https://www.machinecurve.com/index.php/2019/08/30/random-initialization-vanishing-and-exploding-gradients/).
-- Converting target vectors (targets here are simple integers) into [categorical targets](https://www.machinecurve.com/index.php/2020/11/24/one-hot-encoding-for-machine-learning-with-tensorflow-and-keras/) by means of one-hot encoding.
+- Parsing numbers as floats, benefiting training, and converting them into the `[0, 1]` range, also [benefiting the training process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/random-initialization-vanishing-and-exploding-gradients.md).
+- Converting target vectors (targets here are simple integers) into [categorical targets](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/one-hot-encoding-for-machine-learning-with-tensorflow-and-keras.md) by means of one-hot encoding.
 - Finally, returning all the data elements!
 
 ```
@@ -157,7 +157,7 @@ Now that we have created definitions for configuration and dataset loading, it's
 
 First of all, you will also retrieve relevant model configuration here, being the number of classes, while leaving the rest as -is.
 
-Then, you create a simple Keras `model` using the `Sequential` API. The first thing that is done is flattening the 3D sample into an 1D array, because `Dense` layers can only handle one-dimensional data. Then, you add a `Dense` intermediate layer that is [ReLU activated](https://www.machinecurve.com/index.php/2021/01/21/using-relu-sigmoid-and-tanh-with-pytorch-ignite-and-lightning/), followed by a [Softmax activated](https://www.machinecurve.com/index.php/2020/01/08/how-does-the-softmax-activation-function-work/) output layer.
+Then, you create a simple Keras `model` using the `Sequential` API. The first thing that is done is flattening the 3D sample into an 1D array, because `Dense` layers can only handle one-dimensional data. Then, you add a `Dense` intermediate layer that is [ReLU activated](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/using-relu-sigmoid-and-tanh-with-pytorch-ignite-and-lightning.md), followed by a [Softmax activated](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-does-the-softmax-activation-function-work.md) output layer.
 
 Finally, you return the base model.
 

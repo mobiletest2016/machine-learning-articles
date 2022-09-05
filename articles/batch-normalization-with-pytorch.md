@@ -16,7 +16,7 @@ tags:
 
 One of the key elements that is considered to be a good practice in a neural network is a technique called Batch Normalization. Allowing your neural network to use normalized inputs across all the layers, the technique can ensure that models converge faster and hence require less computational resources to be trained.
 
-In a different tutorial, we showed how you can implement [Batch Normalization with TensorFlow and Keras](https://www.machinecurve.com/index.php/2020/01/15/how-to-use-batch-normalization-with-keras/). This tutorial focuses on **PyTorch** instead. After reading it, you will understand:
+In a different tutorial, we showed how you can implement [Batch Normalization with TensorFlow and Keras](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-batch-normalization-with-keras.md). This tutorial focuses on **PyTorch** instead. After reading it, you will understand:
 
 - **What Batch Normalization does at a high level, with references to more detailed articles.**
 - **The differences between `nn.BatchNorm1d` and `nn.BatchNorm2d` in PyTorch.**
@@ -150,7 +150,7 @@ And although it can learn to reverse to the more generic process over time, you 
 
 ## BatchNormalization with PyTorch
 
-If you wish to understand Batch Normalization in more detail, I recommend reading our [dedicated article about Batch Normalization](https://www.machinecurve.com/index.php/2020/01/14/what-is-batch-normalization-for-training-neural-networks/). Here, you will continue implementing Batch Normalization with the PyTorch library for deep learning. This involves a few steps:
+If you wish to understand Batch Normalization in more detail, I recommend reading our [dedicated article about Batch Normalization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-batch-normalization-for-training-neural-networks.md). Here, you will continue implementing Batch Normalization with the PyTorch library for deep learning. This involves a few steps:
 
 1. Taking a look at the differences between `nn.BatchNorm2d` and `nn.BatchNorm1d`.
 2. Writing your neural network and constructing your Batch Normalization-impacted training loop.
@@ -194,9 +194,9 @@ Indeed, images do.
 
 A "2D or 3D input" goes as follows: \[latex\](N, C, L)\[/latex\] (here, the C is optional).
 
-`nn.BatchNorm1d` represents lower-dimensional inputs: a number of inputs, possibly a number of channels and a content per object. These are regular, one-dimensional arrays, like the ones produced by [Dense layers](https://www.machinecurve.com/index.php/2019/07/27/how-to-create-a-basic-mlp-classifier-with-the-keras-sequential-api/) in a neural network.
+`nn.BatchNorm1d` represents lower-dimensional inputs: a number of inputs, possibly a number of channels and a content per object. These are regular, one-dimensional arrays, like the ones produced by [Dense layers](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-basic-mlp-classifier-with-the-keras-sequential-api.md) in a neural network.
 
-Okay: we now know that we must apply `nn.BatchNorm2d` to layers that handle images. Primarily, these are [Convolutional layers](https://www.machinecurve.com/index.php/2018/12/07/convolutional-neural-networks-and-their-components-for-computer-vision/), which slide over images in order to generate a more abstract representation of them. `nn.BatchNorm1d` can be used with Dense layers that are stacked on top of the Convolutional ones in order to generate classifications.
+Okay: we now know that we must apply `nn.BatchNorm2d` to layers that handle images. Primarily, these are [Convolutional layers](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/convolutional-neural-networks-and-their-components-for-computer-vision.md), which slide over images in order to generate a more abstract representation of them. `nn.BatchNorm1d` can be used with Dense layers that are stacked on top of the Convolutional ones in order to generate classifications.
 
 #### Where to use BatchNormalization in your neural network
 
@@ -218,7 +218,7 @@ Okay, we now know the following things...
 - Which types of Batch Normalization we need for what type of layer.
 - Where to apply Batch Normalization in your neural network.
 
-Time to talk about the core of this tutorial: implementing Batch Normalization in your PyTorch based neural network. Applying Batch Normalization to a PyTorch based [neural network](https://www.machinecurve.com/index.php/2021/01/26/creating-a-multilayer-perceptron-with-pytorch-and-lightning/) involves just three steps:
+Time to talk about the core of this tutorial: implementing Batch Normalization in your PyTorch based neural network. Applying Batch Normalization to a PyTorch based [neural network](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/creating-a-multilayer-perceptron-with-pytorch-and-lightning.md) involves just three steps:
 
 1. Stating the imports.
 2. Defining the `nn.Module`, which includes the application of Batch Normalization.
@@ -279,7 +279,7 @@ class MLP(nn.Module):
 
 Next up is writing the training loop. We're not going to cover it to a great extent here, because already wrote about it in our dedicated article about getting started with a first PyTorch model:
 
-- [Getting started with PyTorch](https://www.machinecurve.com/index.php/2021/01/13/getting-started-with-pytorch/)
+- [Getting started with PyTorch](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/getting-started-with-pytorch.md)
 
 However, to summarize briefly what happens, here you go:
 
@@ -400,7 +400,7 @@ After reading it, you now understand...
 - **The differences between `nn.BatchNorm1d` and `nn.BatchNorm2d` in PyTorch.**
 - **How you can implement Batch Normalization with PyTorch.**
 
-Great! Your next step may be to enhance your training process even further. Take a look at our article about [K-fold Cross Validation](https://www.machinecurve.com/index.php/2021/02/03/how-to-use-k-fold-cross-validation-with-pytorch/) for doing so.
+Great! Your next step may be to enhance your training process even further. Take a look at our article about [K-fold Cross Validation](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-k-fold-cross-validation-with-pytorch.md) for doing so.
 
 I hope that it was useful for your learning process! Please feel free to share what you have learned in the comments section 💬 I’d love to hear from you. Please do the same if you have any questions or other remarks.
 

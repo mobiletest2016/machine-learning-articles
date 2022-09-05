@@ -19,7 +19,7 @@ When you are training a Supervised Machine Learning model, you are effectively f
 
 However, some datasets cannot be expressed as a number natively. For example, when you have features that represent group membership - for example, a feature called _football club_ and where the contents can be _FC Barcelona, Manchester United_ or _AC Milan_ - the data is not numeric. Does this mean that we cannot use those for building a predictive model? No. On the contrary. We will show you how we can still use these features in TensorFlow and Keras models by using a technique called **one-hot encoding**. This article specifically focuses on that.
 
-It is structured as follows. Firstly, we will take a look at one-hot encoding in more detail. What is it? How does it relate to _categorical crossentropy loss_, a type of loss that is used for training multiclass Neural Networks? Those are the questions that will provide the necessary context for applying one-hot encoding to a dataset. The latter is what we will show then, by giving you an example of applying one-hot encoding to a [Keras dataset](https://www.machinecurve.com/index.php/2019/12/31/exploring-the-keras-datasets/), covering how to use `to_categorical` when training a Neural Network step by step.
+It is structured as follows. Firstly, we will take a look at one-hot encoding in more detail. What is it? How does it relate to _categorical crossentropy loss_, a type of loss that is used for training multiclass Neural Networks? Those are the questions that will provide the necessary context for applying one-hot encoding to a dataset. The latter is what we will show then, by giving you an example of applying one-hot encoding to a [Keras dataset](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets.md), covering how to use `to_categorical` when training a Neural Network step by step.
 
 Let's take a look! 😎
 
@@ -33,7 +33,7 @@ Let's take a look! 😎
 
 Before we dive into any practical part, I always tend to find it important that we know about what we are building. Hence, I think that it's important that we take a look at the concept of **one-hot encoding** in more detail first, and why it must be applied.
 
-If you have read some other articles on MachineCurve (if not: [click](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/)), you know that optimizing a Neural Network involves three main steps:
+If you have read some other articles on MachineCurve (if not: [click](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md)), you know that optimizing a Neural Network involves three main steps:
 
 1. Feeding samples to the model, generating predictions. We call this the _forward pass_.
 2. Comparing the predictions with the corresponding labels for the samples, also known as the _ground truth_. This results in a score illustrating how bad the model performs, also called the _loss_.
@@ -41,7 +41,7 @@ If you have read some other articles on MachineCurve (if not: [click](https://ww
 
 ![](images/feed-1024x404.jpg)
 
-We also know that step (1), feeding forward the samples through the model, involves a system of linear computations (\[latex\]\\textbf{w} \\times \\textbf{x} + b\[/latex\]) and mapping those to [nonlinear outputs](https://www.machinecurve.com/index.php/2020/10/29/why-nonlinear-activation-functions-improve-ml-performance-with-tensorflow-example/). Here, \[latex\]\\textbf{w}\[/latex\] represents the so-called _weights vector_, which captures (parts of) the patterns that have been learned by the Machine Learning model. \[latex\]\\textbf{x}\[/latex\] is also called the feature vector and represents a _row_ from the input dataset. Bias is expressed as \[latex\]b\[/latex\], and the activation function is often [Rectified Linear Unit](https://www.machinecurve.com/index.php/2019/09/04/relu-sigmoid-and-tanh-todays-most-used-activation-functions/) these days.
+We also know that step (1), feeding forward the samples through the model, involves a system of linear computations (\[latex\]\\textbf{w} \\times \\textbf{x} + b\[/latex\]) and mapping those to [nonlinear outputs](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-nonlinear-activation-functions-improve-ml-performance-with-tensorflow-example.md). Here, \[latex\]\\textbf{w}\[/latex\] represents the so-called _weights vector_, which captures (parts of) the patterns that have been learned by the Machine Learning model. \[latex\]\\textbf{x}\[/latex\] is also called the feature vector and represents a _row_ from the input dataset. Bias is expressed as \[latex\]b\[/latex\], and the activation function is often [Rectified Linear Unit](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md) these days.
 
 ![](images/layer-act-1024x227.png)
 
@@ -80,15 +80,15 @@ If we want to express more categories, we can simply add more bits. E.g. if we w
 
 ### Training Neural Networks with Categorical Crossentropy Loss
 
-When we are training a Neural Network with TensorFlow, we always use `categorical_crossentropy_loss` when we are working with categorical data (and often, are trying to solve a [multiclass classification problem](https://www.machinecurve.com/index.php/2020/10/19/3-variants-of-classification-problems-in-machine-learning/)).
+When we are training a Neural Network with TensorFlow, we always use `categorical_crossentropy_loss` when we are working with categorical data (and often, are trying to solve a [multiclass classification problem](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/3-variants-of-classification-problems-in-machine-learning.md)).
 
-As we can read on the page about [loss functions](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#categorical-crossentropy), **categorical crossentropy loss** uses the prediction from our model for the true target to compute _how bad the model performs_. As we can read on that page as well, we see that this loss function requires data to be categorical - and hence, one-hot encoded.
+As we can read on the page about [loss functions](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#categorical-crossentropy), **categorical crossentropy loss** uses the prediction from our model for the true target to compute _how bad the model performs_. As we can read on that page as well, we see that this loss function requires data to be categorical - and hence, one-hot encoded.
 
 ### How One-Hot Encoding fits CCE Loss
 
 For this reason, it is desirable to work with _categorical_ (and hence one-hot encoded) target data when we are using categorical crossentropy loss. This requires that we convert the targets into this format prior to training the Neural Network.
 
-If we don't have one-hot encoded targets in the dataset, but integers instead to give just one example, it could be a good idea to use a different loss function. For example, [sparse categorical crossentropy loss](https://www.machinecurve.com/index.php/2019/10/06/how-to-use-sparse-categorical-crossentropy-in-keras/) works with categorical targets where the targets are expressed as integer values, to give just an example. If you have a binary classification problem, and hence work with a [Sigmoid activation function](https://www.machinecurve.com/index.php/2019/09/04/relu-sigmoid-and-tanh-todays-most-used-activation-functions/) generating a prediction \[latex\] p \\in \[0, 1\]\[/latex\], you will want to use [binary crossentropy loss](https://www.machinecurve.com/index.php/2019/10/22/how-to-use-binary-categorical-crossentropy-with-keras/) instead.
+If we don't have one-hot encoded targets in the dataset, but integers instead to give just one example, it could be a good idea to use a different loss function. For example, [sparse categorical crossentropy loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-sparse-categorical-crossentropy-in-keras.md) works with categorical targets where the targets are expressed as integer values, to give just an example. If you have a binary classification problem, and hence work with a [Sigmoid activation function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md) generating a prediction \[latex\] p \\in \[0, 1\]\[/latex\], you will want to use [binary crossentropy loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-binary-categorical-crossentropy-with-keras.md) instead.
 
 One simple rule to remember: use categorical crossentropy loss when your Neural Network dataset has one-hot encoded target values!
 
@@ -98,7 +98,7 @@ Let's now take a look at how this works with a real example.
 
 ## Using TensorFlow and Keras for One-Hot Encoding
 
-TensorFlow is a widely used Machine Learning library for creating Neural Networks. Having been around for a while, it is one of the primary elements of the toolkit of a Machine Learning engineer (besides libraries like [Scikit-learn](https://www.machinecurve.com/index.php/how-to-use-scikit-learn-for-machine-learning-with-python-mastering-scikit/) and PyTorch). I'm quite fond of the library and have been using it for some time now. One of the main benefits is that it makes the life of Machine Learning engineers much easier.
+TensorFlow is a widely used Machine Learning library for creating Neural Networks. Having been around for a while, it is one of the primary elements of the toolkit of a Machine Learning engineer (besides libraries like [Scikit-learn](https://web.archive.org/web/https://www.machinecurve.com/index.php/how-to-use-scikit-learn-for-machine-learning-with-python-mastering-scikit/) and PyTorch). I'm quite fond of the library and have been using it for some time now. One of the main benefits is that it makes the life of Machine Learning engineers much easier.
 
 > TensorFlow is an end-to-end open source platform for machine learning. It has a comprehensive, flexible ecosystem of tools, libraries and community resources that lets researchers push the state-of-the-art in ML and developers easily build and deploy ML powered applications.
 > 
@@ -108,13 +108,13 @@ The quote above states that "developers \[can\] easily build (...) ML powered ap
 
 The goal: speeding up iteration, as engineers should not have to worry about code, but rather about the principles - and hence the model structure - behind the code.
 
-Today, TensorFlow and Keras are tightly coupled and deeply integrated, and the difference between the two is vastly disappearing. We will now use the Keras API within TensorFlow (i.e., `tensorflow.keras`) to construct a [Convolutional Neural Network](https://www.machinecurve.com/index.php/2018/12/07/convolutional-neural-networks-and-their-components-for-computer-vision/) that is capable of classifying digits from [the MNIST dataset](https://www.machinecurve.com/index.php/2019/12/31/exploring-the-keras-datasets/). Let's go!
+Today, TensorFlow and Keras are tightly coupled and deeply integrated, and the difference between the two is vastly disappearing. We will now use the Keras API within TensorFlow (i.e., `tensorflow.keras`) to construct a [Convolutional Neural Network](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/convolutional-neural-networks-and-their-components-for-computer-vision.md) that is capable of classifying digits from [the MNIST dataset](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets.md). Let's go!
 
 ### Taking a look at the MNIST dataset
 
 The MNIST dataset? Although the odds are that you already know what this dataset is all about, there may be some readers who don't know about this dataset yet. As you can see below, it's a Computer Vision dataset - and it contains thousands of small grayscale images. More specifically, the images represent handwritten digits, and thus the numbers 0 to 9.
 
-It is one of the most widely used datasets in Machine Learning education because it is so easy to use (as [we shall see](https://www.machinecurve.com/index.php/2019/12/31/exploring-the-keras-datasets/), it is embedded into Keras as `tensorflow.keras.datasets.mnist`) and because the classifiers that are trained on it perform really well. For this reason, we will be using MNIST as well today.
+It is one of the most widely used datasets in Machine Learning education because it is so easy to use (as [we shall see](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets.md), it is embedded into Keras as `tensorflow.keras.datasets.mnist`) and because the classifiers that are trained on it perform really well. For this reason, we will be using MNIST as well today.
 
 ![](images/mnist-visualize.png)
 
@@ -139,7 +139,7 @@ If we run it, we see this text appear on screen after a while:
 (10000,)
 ```
 
-In other words, we can see that our [training set](https://www.machinecurve.com/index.php/2020/11/16/how-to-easily-create-a-train-test-split-for-your-machine-learning-model/) contains 60000 28x28 samples (as the shape of one input value seems to be \[latex\](28, 28)\[/latex\], we also see that our images are grayscale - if they were RGB, shape would have been \[latex\](28, 28, 3)\[/latex\] per sample and hence \[latex\](60000, 28, 28, 3)\[/latex\] for the whole array). Our testing set contains 10000 samples of the same format.
+In other words, we can see that our [training set](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-easily-create-a-train-test-split-for-your-machine-learning-model.md) contains 60000 28x28 samples (as the shape of one input value seems to be \[latex\](28, 28)\[/latex\], we also see that our images are grayscale - if they were RGB, shape would have been \[latex\](28, 28, 3)\[/latex\] per sample and hence \[latex\](60000, 28, 28, 3)\[/latex\] for the whole array). Our testing set contains 10000 samples of the same format.
 
 ### Inspecting a sample in more detail
 
@@ -160,11 +160,11 @@ The output is as follows:
 
 We can see that the _actual_ \[latex\]y\[/latex\] value for index 128 is 1 - meaning that it represents the number 1. The shape is \[latex\]()\[/latex\] and hence we are _really_ talking about a scalar value.
 
-If we would create a Neural Network, the best choice for this dataset would be to apply [sparse categorical crossentropy loss](https://www.machinecurve.com/index.php/2019/10/06/how-to-use-sparse-categorical-crossentropy-in-keras/) - for the simple reason that we don't have to apply one-hot encoding if we use that loss function. Because we do want to show you how one-hot encoding works with TensorFlow and Keras, we do use [categorical crossentropy loss](https://www.machinecurve.com/index.php/2019/10/17/how-to-use-categorical-multiclass-hinge-with-keras/) instead, so we must apply one-hot encoding to the samples.
+If we would create a Neural Network, the best choice for this dataset would be to apply [sparse categorical crossentropy loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-sparse-categorical-crossentropy-in-keras.md) - for the simple reason that we don't have to apply one-hot encoding if we use that loss function. Because we do want to show you how one-hot encoding works with TensorFlow and Keras, we do use [categorical crossentropy loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-categorical-multiclass-hinge-with-keras.md) instead, so we must apply one-hot encoding to the samples.
 
 ### Applying One-Hot Encoding to the samples
 
-If we need to convert our dataset into categorical format (and hence one-hot encoded format), we can do so using Scikit-learn's `OneHotEncoder` [module](https://www.machinecurve.com/index.php/2020/11/24/one-hot-encoding-for-machine-learning-with-python-and-scikit-learn/). However, TensorFlow also offers its own implementation: `tensorflow.keras.utils.to_categorical`. It's a utility function which allows us to convert integer targets into categorical and hence one-hot encoded ones.
+If we need to convert our dataset into categorical format (and hence one-hot encoded format), we can do so using Scikit-learn's `OneHotEncoder` [module](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/one-hot-encoding-for-machine-learning-with-python-and-scikit-learn.md). However, TensorFlow also offers its own implementation: `tensorflow.keras.utils.to_categorical`. It's a utility function which allows us to convert integer targets into categorical and hence one-hot encoded ones.
 
 And if the library that you are using for building your Neural Network offers a one-hot encoder out of the box, why use Scikit-learn's variant instead? There is nothing wrong with the latter, but there would be simply no point in doing so :)
 
@@ -214,7 +214,7 @@ y_train = to_categorical(y_train)
 y_test = to_categorical(y_test)
 ```
 
-We can now continue and add more code for constructing the actual ConvNet. Read [here](https://www.machinecurve.com/index.php/2019/09/17/how-to-create-a-cnn-classifier-with-keras/) if you wish to receive more instructions about doing this; we'll simply show the code next.
+We can now continue and add more code for constructing the actual ConvNet. Read [here](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras.md) if you wish to receive more instructions about doing this; we'll simply show the code next.
 
 ```
 # Imports

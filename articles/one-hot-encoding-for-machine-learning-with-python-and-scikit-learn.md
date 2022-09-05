@@ -51,15 +51,15 @@ On the right of the table, we also see the expression of the binary format into 
 
 ### Why apply One-Hot Encoding?
 
-Machine Learning models work with numeric data only. That is, they cannot natively accept text data and learn from it. This occurs because of the method with which Machine Learning models are trained. If you are training one in a supervised way, you namely feed forward samples through the model, which generates predictions. You then compare the predictions and the corresponding labels (called _ground truth_) and compute [how bad the model performs](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/). Then, you improve the model, and you repeat the cycle.
+Machine Learning models work with numeric data only. That is, they cannot natively accept text data and learn from it. This occurs because of the method with which Machine Learning models are trained. If you are training one in a supervised way, you namely feed forward samples through the model, which generates predictions. You then compare the predictions and the corresponding labels (called _ground truth_) and compute [how bad the model performs](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md). Then, you improve the model, and you repeat the cycle.
 
 ![](images/feed-1024x404.jpg)
 
 Of course, for the third step, there are many different approaches for improving a Machine Learning model. Many of them are dependent on the algorithm that you are using. In the case of Neural Networks, for example, the contribution of neurons to the loss function can be computed by a technique called backpropagation. If we know the contribution, we also know (by means of a concept called _gradients_, or the slope of loss change given some change in neuron parameters) into what direction we must change the weights if we want to improve the model.
 
-Then, using an [optimizer](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/), we can actually change the weights.
+Then, using an [optimizer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md), we can actually change the weights.
 
-Such operations do however require that data is available in numeric format. The neuron weights are expressed as numbers. For example, this can be a weights vector: \[latex\]\[2.61, 3.92, -2.4, 0.11, 1.11\]\[/latex\]. This also means that in step (1), feeding forward samples to models, computations must be made with respect to these weight vectors, in order to learn patterns. In fact, this is the case. An input vector \[latex\]\\textbf{x}\[/latex\] to a neuron is multiplied with the weights vector \[latex\]\\textbf{b}\[/latex\], after which a bias value - \[latex\]b\[/latex\] - is added. This output is then fed through an [activation function](https://www.machinecurve.com/index.php/2020/10/29/why-nonlinear-activation-functions-improve-ml-performance-with-tensorflow-example/) and serves as one of the output values of the Neural layer.
+Such operations do however require that data is available in numeric format. The neuron weights are expressed as numbers. For example, this can be a weights vector: \[latex\]\[2.61, 3.92, -2.4, 0.11, 1.11\]\[/latex\]. This also means that in step (1), feeding forward samples to models, computations must be made with respect to these weight vectors, in order to learn patterns. In fact, this is the case. An input vector \[latex\]\\textbf{x}\[/latex\] to a neuron is multiplied with the weights vector \[latex\]\\textbf{b}\[/latex\], after which a bias value - \[latex\]b\[/latex\] - is added. This output is then fed through an [activation function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-nonlinear-activation-functions-improve-ml-performance-with-tensorflow-example.md) and serves as one of the output values of the Neural layer.
 
 ![](images/layer-act-1024x227.png)
 
@@ -75,7 +75,7 @@ If you are somewhat creative, you can already start to see the relationships bet
 
 Let's take the _Group_ example from the previous section to illustrate how. The case is pretty simple, actually: we can represent the Group values as a set of two bits. For example, if the person is Unhealthy, the category can be expressed as \[latex\]\[0 \\ 1\]\[/latex\], while Healthy can be expressed as \[latex\]\[1 \\ 0\]\[/latex\]. Naturally, we see that we now have a numeric (vector based) representation of our categories, which we can use in our Machine Learning model.
 
-Long story short: one-hot encoding is of great help when solving [classification problems](https://www.machinecurve.com/index.php/2020/10/19/3-variants-of-classification-problems-in-machine-learning/).
+Long story short: one-hot encoding is of great help when solving [classification problems](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/3-variants-of-classification-problems-in-machine-learning.md).
 
 ### One-Hot Encoding and multidimensional settings
 
@@ -96,13 +96,13 @@ Applying one-hot encoding to the text can be done as follows:
 
 \[latex\]\[0, 0, 0, 0, 1\] \\rightarrow \\text{chris} \[/latex\]
 
-If your corpus is big, this will become problematic, because you get one-hot encoded vectors with _many_ dimensions (here, there are just five). Hence, one-hot encoding is as limited as it is promising: while it can help you fix the issue of textual data with a relatively lower-dimensional case, it is best not to use it when you have many categories or when you want to convert text into numbers. In those cases, learning an [Embedding](https://www.machinecurve.com/index.php/2020/03/03/classifying-imdb-sentiment-with-keras-and-embeddings-dropout-conv1d/) can be the way to go.
+If your corpus is big, this will become problematic, because you get one-hot encoded vectors with _many_ dimensions (here, there are just five). Hence, one-hot encoding is as limited as it is promising: while it can help you fix the issue of textual data with a relatively lower-dimensional case, it is best not to use it when you have many categories or when you want to convert text into numbers. In those cases, learning an [Embedding](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/classifying-imdb-sentiment-with-keras-and-embeddings-dropout-conv1d.md) can be the way to go.
 
 * * *
 
 ## A Python Example: One-Hot Encoding for Machine Learning
 
-Now that we know about one-hot encoding and how to apply it in theory, it's time to start using it in practice. Let's take a look at two settings and apply the `OneHotEncoder` from Scikit-learn. The first setting is a simple one: we simply one-hot encode an array with categorical values, representing the _Group_ feature from a few sections back. The second setting is a more real-world one, where we apply one-hot encoding to the TensorFlow/Keras based [MNIST dataset](https://www.machinecurve.com/index.php/2019/12/31/exploring-the-keras-datasets/).
+Now that we know about one-hot encoding and how to apply it in theory, it's time to start using it in practice. Let's take a look at two settings and apply the `OneHotEncoder` from Scikit-learn. The first setting is a simple one: we simply one-hot encode an array with categorical values, representing the _Group_ feature from a few sections back. The second setting is a more real-world one, where we apply one-hot encoding to the TensorFlow/Keras based [MNIST dataset](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets.md).
 
 Let's take a look.
 
@@ -139,7 +139,7 @@ Unhealthy one-hot encoded: [[0. 1.]]
 
 ### One-Hot Encoding Dataset Targets
 
-Let's now take a look at a real-world dataset. We can load the [MNIST dataset](https://www.machinecurve.com/index.php/2019/12/31/exploring-the-keras-datasets/#mnist-database-of-handwritten-digits), which is a dataset of handwritten numbers, as follows:
+Let's now take a look at a real-world dataset. We can load the [MNIST dataset](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets/#mnist-database-of-handwritten-digits), which is a dataset of handwritten numbers, as follows:
 
 ```
 from tensorflow.keras.datasets import mnist
@@ -158,7 +158,7 @@ from tensorflow.keras.datasets import mnist
 print(y_test[123])
 ```
 
-Outcome: `6`. Clearly, the input number belongs to class 6 (and hence represents the number 7, because the classes range from 0-9). However, this does not represent one-hot encoding! If we are to train our Neural network, we can use [sparse categorical crossentropy](https://www.machinecurve.com/index.php/2019/10/06/how-to-use-sparse-categorical-crossentropy-in-keras/) for computing [loss](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/) in this case. However, if we _do_ want to use [categorical crossentropy](https://www.machinecurve.com/index.php/2019/10/17/how-to-use-categorical-multiclass-hinge-with-keras/) instead (which makes no sense in this case, but we want to show one-hot encoding, so we go forward with it anyway), we must one-hot encode our feature vectors first.
+Outcome: `6`. Clearly, the input number belongs to class 6 (and hence represents the number 7, because the classes range from 0-9). However, this does not represent one-hot encoding! If we are to train our Neural network, we can use [sparse categorical crossentropy](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-sparse-categorical-crossentropy-in-keras.md) for computing [loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md) in this case. However, if we _do_ want to use [categorical crossentropy](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-categorical-multiclass-hinge-with-keras.md) instead (which makes no sense in this case, but we want to show one-hot encoding, so we go forward with it anyway), we must one-hot encode our feature vectors first.
 
 Let's see how we can do this with Scikit-learn.
 

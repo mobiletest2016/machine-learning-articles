@@ -10,7 +10,7 @@ tags:
   - "tensorflow"
 ---
 
-Being a data scientist could mean that you have the sexiest job of the 21st Century, according to some business literature. I'd argue that very similar things are true for those who research and engineer machine learning models, as breakthroughs in the areas can directly be captured. If you're familiar with deployment tools, you can even [deploy the model](https://www.machinecurve.com/index.php/2020/03/19/tutorial-how-to-deploy-your-convnet-classifier-with-keras-and-fastapi/) in the field, for example by means of a web service.
+Being a data scientist could mean that you have the sexiest job of the 21st Century, according to some business literature. I'd argue that very similar things are true for those who research and engineer machine learning models, as breakthroughs in the areas can directly be captured. If you're familiar with deployment tools, you can even [deploy the model](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tutorial-how-to-deploy-your-convnet-classifier-with-keras-and-fastapi.md) in the field, for example by means of a web service.
 
 In my experience, success factors of data science and machine learning projects - or any software project in general - include that runtime environments are shared. In the past, this meant that everyone had to install dependencies on their own systems. Then came Python environments, then came Anaconda, but today we will cover Jupyter Notebook. It's widely used in the data science community and therefore deserves a more prominent role on MachineCurve and in any future article I write.
 
@@ -157,7 +157,7 @@ Here, we can add some TensorFlow code, because recall that we ran a Docker conta
 
 We can now add Keras code for an actual Notebook. However, since we noted before that Notebooks can be easily distributed, it would possibly be preferable to show you the Notebook that I created - [it can be found here](https://github.com/christianversloot/easy-jupyter-notebook/blob/master/example-notebook.ipynb)! :) Note that you can also download it there, and import it into your own Jupyter Notebook environment.
 
-However, I've also added the code for a [simple MNIST classifier](https://www.machinecurve.com/index.php/2019/09/17/how-to-create-a-cnn-classifier-with-keras/) in the next section. Here's what our Notebook looks like right now:
+However, I've also added the code for a [simple MNIST classifier](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras.md) in the next section. Here's what our Notebook looks like right now:
 
 ![](images/image-5-1024x886.png)
 

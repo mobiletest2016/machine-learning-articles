@@ -13,9 +13,9 @@ tags:
 
 When you talk about Machine Learning in Natural Language Processing these days, all you hear is one thing - Transformers. Models based on this Deep Learning architecture have taken the NLP world by storm since 2017. In fact, they are the go-to approach today, and many of the approaches build on top of the original Transformer, one way or another.
 
-Transformers are however not simple. The original Transformer architecture is quite complex and the same is true for many of the spin-off architectures. For this reason, we will take a look at the vanilla Transformer architecture proposed by Vaswani et al. back in 2017. It lies at the basis of exploring many other Transformer architectures on [this page](https://www.machinecurve.com/index.php/getting-started-with-huggingface-transformers/). It won't be maths-heavy, but rather intuitive, so that many people can understand what is going on under the hood of a vanilla Transformer.
+Transformers are however not simple. The original Transformer architecture is quite complex and the same is true for many of the spin-off architectures. For this reason, we will take a look at the vanilla Transformer architecture proposed by Vaswani et al. back in 2017. It lies at the basis of exploring many other Transformer architectures on [this page](https://web.archive.org/web/https://www.machinecurve.com/index.php/getting-started-with-huggingface-transformers/). It won't be maths-heavy, but rather intuitive, so that many people can understand what is going on under the hood of a vanilla Transformer.
 
-The article is structured as follows. First, we'll take a look at why Transformers have emerged in the first place - by taking a look at the problems of their predecessors, primarily [LSTMs](https://www.machinecurve.com/index.php/2020/12/29/a-gentle-introduction-to-long-short-term-memory-networks-lstm/) and GRUs. Then, we're going to take a look at the Transformer architecture holistically, i.e. from a high level. This is followed by a more granular analysis of the architecture, as we will first take a look at the encoder segment and then at the decoder segment. Finally, we're going to cover how a Transformer can be trained.
+The article is structured as follows. First, we'll take a look at why Transformers have emerged in the first place - by taking a look at the problems of their predecessors, primarily [LSTMs](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/a-gentle-introduction-to-long-short-term-memory-networks-lstm.md) and GRUs. Then, we're going to take a look at the Transformer architecture holistically, i.e. from a high level. This is followed by a more granular analysis of the architecture, as we will first take a look at the encoder segment and then at the decoder segment. Finally, we're going to cover how a Transformer can be trained.
 
 Ready? Let's go! 😎
 
@@ -37,11 +37,11 @@ Recurrent networks have been around for some time. One of the first ones was a s
 
 While recurrent networks were able to boost the state-of-the-art in Natural Language Processing at the time, they also experienced a series of drawbacks / bottlenecks:
 
-1. Because of the way in which hidden states were passed, RNNs were highly sensitive to the [vanishing gradients problem](https://www.machinecurve.com/index.php/2019/08/30/random-initialization-vanishing-and-exploding-gradients/). Especially with longer sequences, the chain of gradients used for optimization can be so long that actual gradients in the first layers are really small. In other words, as with any network struck by vanishing gradients, the most upstream layers learn almost nothing.
+1. Because of the way in which hidden states were passed, RNNs were highly sensitive to the [vanishing gradients problem](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/random-initialization-vanishing-and-exploding-gradients.md). Especially with longer sequences, the chain of gradients used for optimization can be so long that actual gradients in the first layers are really small. In other words, as with any network struck by vanishing gradients, the most upstream layers learn almost nothing.
 2. The same is true for memory: the hidden state is passed to the next prediction step, meaning that most of the contextual information available is related to what the model has seen in the short term. With classic RNNs, models therefore face a long-term memory issue, in that they are good at short-term memory but very bad at longer-term memory.
 3. Processing happens sequentially. That is, each word in a phrase has to be passed through the recurrent network, after which a prediction is returned. As recurrent networks _can_ be intensive in terms of the computational requirements, it can take a while before an output prediction is generated. This is an inherent problem with recurrent networks.
 
-Fortunately, in the 2010s, **[Long Short-Term Memory](https://www.machinecurve.com/index.php/2020/12/29/a-gentle-introduction-to-long-short-term-memory-networks-lstm/)** networks (LSTMs, top right) and **Gated Recurrent Units** (GRUs, bottom) were researched and applied to resolve many of the three issues above. LSTMs in particular, through the cell like structure where memory is retained, are robust to the vanishing gradients problem. What's more, because memory is now maintained separately from the previous cell output (the \[latex\]c\_{t}\[/latex\] flow in the LSTM image below, for example), both are capable of storing longer-term memory.
+Fortunately, in the 2010s, **[Long Short-Term Memory](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/a-gentle-introduction-to-long-short-term-memory-networks-lstm.md)** networks (LSTMs, top right) and **Gated Recurrent Units** (GRUs, bottom) were researched and applied to resolve many of the three issues above. LSTMs in particular, through the cell like structure where memory is retained, are robust to the vanishing gradients problem. What's more, because memory is now maintained separately from the previous cell output (the \[latex\]c\_{t}\[/latex\] flow in the LSTM image below, for example), both are capable of storing longer-term memory.
 
 Especially when the **attention mechanism** was invented on top of it, where instead of the hidden state a weighted context vector is provided that weighs the outputs of all previous prediction steps, long-term memory issues were diminishing rapidly. The only standing problem remained that processing had to be performed sequentially, imposing a significant resource bottleneck on training a model for Natural Language Processing.
 
@@ -73,7 +73,7 @@ Source: Vaswani et al. (2017)
 As we can see, it has two intertwined segments:
 
 - An **encoder segment**, which takes inputs from the source language, generates an embedding for them, encodes positions, computes where each word has to attend to in a multi-context setting, and subsequently outputs some intermediary representation.
-- A **decoder segment**, which takes inputs from the target language, generates an embedding for them with encoded positions, computes where each word has to attend to, and subsequently combines encoder output with what it has produced so far. The outcome is a prediction for the next token, by means of a [Softmax](https://www.machinecurve.com/index.php/2020/01/08/how-does-the-softmax-activation-function-work/) and hence argmax class prediction (where each token, or word, is a class).
+- A **decoder segment**, which takes inputs from the target language, generates an embedding for them with encoded positions, computes where each word has to attend to, and subsequently combines encoder output with what it has produced so far. The outcome is a prediction for the next token, by means of a [Softmax](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-does-the-softmax-activation-function-work.md) and hence argmax class prediction (where each token, or word, is a class).
 
 The original Transformer is therefore a classic sequence-to-sequence model.
 
@@ -99,7 +99,7 @@ Let's now take a look at both segments in more detail.
 
 The encoder segment of a Transformer is responsible for converting inputs into some intermediary, high-dimensional representation. Visually, it looks as follows. The encoder segment is composed of a couple of individual components:
 
-- **Input Embeddings**, which convert tokenized inputs into vector format so that they can be used. The original work by Vaswani et al. (2017) utilizes [learned embeddings](https://www.machinecurve.com/index.php/2020/03/03/classifying-imdb-sentiment-with-keras-and-embeddings-dropout-conv1d/), meaning that the token-to-vector conversion process is learned along with the main Machine Learning task (i.e. learning the sequence-to-sequence model).
+- **Input Embeddings**, which convert tokenized inputs into vector format so that they can be used. The original work by Vaswani et al. (2017) utilizes [learned embeddings](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/classifying-imdb-sentiment-with-keras-and-embeddings-dropout-conv1d.md), meaning that the token-to-vector conversion process is learned along with the main Machine Learning task (i.e. learning the sequence-to-sequence model).
 - **Positional Encodings**, which slightly change the vector outputs of the embedding layer, adding positional information to these vectors.
 - **The actual encoder segment**, which learns to output an attended representation of the input vectors, and is composed of the following sub segments:
     - The **multi-head attention segment**, which performs multi-head self-attention, adds the residual connection and then performs layer normalization.
@@ -127,7 +127,7 @@ We hence have to find a way to express text in numbers. We can do this by means 
 
 Suppose that we have generated a word index with a Tokenizer on 45.000 distinct words. We then have a Python dictionary with 45.000 keys, so `len(keys) = 45000`. The next step would be to tokenize each phrase from the dataset, so that for example `["I", "go", "to", "the", "store"]` becomes `[1, 2, 39, 49, 128]`, and `["I", "will", "go", "now"]` becomes `[1, 589, 2, 37588]`. The numbers here are arbitrary of course and determined by the Tokenizer.
 
-Because these variables are categorical, we must express them in a different way - e.g. by means of [one-hot encoding](https://www.machinecurve.com/index.php/2020/11/24/one-hot-encoding-for-machine-learning-with-tensorflow-and-keras/) (KDNuggets, n.d). However, with very large word vocabularies, this is highly inefficient. For example, in our dictionary above, each token would be a 45.000-dimensional vector! Hence, for small vocabularies, one-hot encoding can be a good way for expressing text. For larger vocabularies, we need a different approach.
+Because these variables are categorical, we must express them in a different way - e.g. by means of [one-hot encoding](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/one-hot-encoding-for-machine-learning-with-tensorflow-and-keras.md) (KDNuggets, n.d). However, with very large word vocabularies, this is highly inefficient. For example, in our dictionary above, each token would be a 45.000-dimensional vector! Hence, for small vocabularies, one-hot encoding can be a good way for expressing text. For larger vocabularies, we need a different approach.
 
 #### Word embeddings
 
@@ -139,15 +139,15 @@ We can use **word embeddings** in that case:
 > 
 > Wikipedia (2014)
 
-In other words, if we can learn to map our tokens to vectors, we can possibly find a unique vector for each word in a much-lower dimensional space. We can see this in the visualization above. For 10.000 words, it becomes possible to visualize them in a three-dimensional space (with only small information loss by virtue of the application of [PCA](https://www.machinecurve.com/index.php/2020/12/07/introducing-pca-with-python-and-scikit-learn-for-machine-learning/)), whereas we would have used 10.000-dimensional vectors if we applied one-hot encoding.
+In other words, if we can learn to map our tokens to vectors, we can possibly find a unique vector for each word in a much-lower dimensional space. We can see this in the visualization above. For 10.000 words, it becomes possible to visualize them in a three-dimensional space (with only small information loss by virtue of the application of [PCA](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/introducing-pca-with-python-and-scikit-learn-for-machine-learning.md)), whereas we would have used 10.000-dimensional vectors if we applied one-hot encoding.
 
 [![](images/image-5-1024x648.png)](https://www.machinecurve.com/wp-content/uploads/2020/12/image-5.png)
 
-A plot from the Word2Vec 10K dataset, with three [principal components](https://www.machinecurve.com/index.php/2020/12/07/introducing-pca-with-python-and-scikit-learn-for-machine-learning/) plotted in a three-dimensional space, using the [Embedding projector](http://projector.tensorflow.org/). The word 'routine' is highlighted.
+A plot from the Word2Vec 10K dataset, with three [principal components](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/introducing-pca-with-python-and-scikit-learn-for-machine-learning.md) plotted in a three-dimensional space, using the [Embedding projector](http://projector.tensorflow.org.md). The word 'routine' is highlighted.
 
 #### Vanilla Transformers use learned input embeddings
 
-Vanilla Transformers use a [learned input embedding layer](https://www.machinecurve.com/index.php/2020/03/03/classifying-imdb-sentiment-with-keras-and-embeddings-dropout-conv1d/) (Vaswani et al., 2017). This means that the embedding is learned on the fly [rather than using a pretrained embedding](https://wikipedia2vec.github.io/wikipedia2vec/pretrained/), such as a pretrained Word2Vec embedding, which can also be an option. Learning the embedding on the fly ensures that each word can be mapped to a vector properly, improving effectiveness (not missing out any word).
+Vanilla Transformers use a [learned input embedding layer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/classifying-imdb-sentiment-with-keras-and-embeddings-dropout-conv1d.md) (Vaswani et al., 2017). This means that the embedding is learned on the fly [rather than using a pretrained embedding](https://wikipedia2vec.github.io/wikipedia2vec/pretrained.md), such as a pretrained Word2Vec embedding, which can also be an option. Learning the embedding on the fly ensures that each word can be mapped to a vector properly, improving effectiveness (not missing out any word).
 
 The learned embedding produces vectors of dimension \[latex\]d\_{\\text{model}}\[/latex\], where Vaswani et al. (2017) set \[latex\]d\_{\\text{model}} = 512\[/latex\]. \[latex\]d\_{\\text{model}}\[/latex\] is also the output of all the sub layers in the model.
 
@@ -224,7 +224,7 @@ A score matrix can look as follows:
 
 ![](images/Diagram-10-1.png)
 
-It illustrates the importance of certain words in a phrase given one word in a phrase in an absolute sense. However, they are not yet comparable. Traditionally, a [Softmax function](https://www.machinecurve.com/index.php/2020/01/08/how-does-the-softmax-activation-function-work/) can be used to generate (pseudo-)probabilities and hence make the values comparable.
+It illustrates the importance of certain words in a phrase given one word in a phrase in an absolute sense. However, they are not yet comparable. Traditionally, a [Softmax function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-does-the-softmax-activation-function-work.md) can be used to generate (pseudo-)probabilities and hence make the values comparable.
 
 However, if you take a look at the flow image above, you can see that prior to applying Softmax we first apply a scaling function. We apply this scaling because of the possible sensitivity of Softmax to vanishing gradients, which is what we don't want. We scale by dividing all values by \[latex\]\\sqrt{d\_k}\[/latex\], where \[latex\]d\_k\[/latex\] is the dimensionality of the queries and keys.
 
@@ -263,7 +263,7 @@ The output of the multi-head attention block is first added with the residual co
 
 #### Feed Forward layer
 
-After the layer normalization has been completed, the inputs are passed to a set of Feed Forward layers. Each position (i.e. token) is passed through this network individually, according to Vaswani et al. (2017): it "is applied to each position separately and identically". Each Feed Forward network contains two Linear layers with one [ReLU activation function](https://www.machinecurve.com/index.php/2019/09/09/implementing-relu-sigmoid-and-tanh-in-keras/) in between.
+After the layer normalization has been completed, the inputs are passed to a set of Feed Forward layers. Each position (i.e. token) is passed through this network individually, according to Vaswani et al. (2017): it "is applied to each position separately and identically". Each Feed Forward network contains two Linear layers with one [ReLU activation function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/implementing-relu-sigmoid-and-tanh-in-keras.md) in between.
 
 ![](images/Diagram-14-1.png)
 
@@ -285,7 +285,7 @@ Okay, so far we understand how the encoder segment works - i.e. how inputs are c
     - The **masked multi-head attention segment**, which performs multi-head self-attention on the outputs, but does so in a masked way, so that positions depend on the past only.
     - The **multi-head attention segment**, which performs multi-head self-attention on a combination of the (_encoded_) inputs and the outputs, so that the model learns to correlate encoded inputs with desired outputs.
     - The **feed forward segment**, which processes each token individually.
-- Finally, there is a **linear** layer which generates [logits](https://www.machinecurve.com/index.php/2020/01/08/how-does-the-softmax-activation-function-work/#logits-layer-and-logits) and a **Softmax** layer which generates [pseudoprobabilities](https://www.machinecurve.com/index.php/2020/01/08/how-does-the-softmax-activation-function-work/#logits-layer-and-logits). By taking the argmax value of this prediction, we know which token should be taken and added to the tokens already predicted.
+- Finally, there is a **linear** layer which generates [logits](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-does-the-softmax-activation-function-work/#logits-layer-and-logits) and a **Softmax** layer which generates [pseudoprobabilities](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-does-the-softmax-activation-function-work/#logits-layer-and-logits). By taking the argmax value of this prediction, we know which token should be taken and added to the tokens already predicted.
 
 Let's now take a look at each of the decoder's individual components in more detail.
 
@@ -311,7 +311,7 @@ The decoder segment is composed of three sub segments:
 - A **multi-head attention segment**, where self-attention is applied to the encoded inputs (serving as queries and keys) and the combination of masked multi-head attention outputs / input residual, being the gateway where encoded inputs and target outputs are merged.
 - A **feedforward segment**, which is applied position-wise to each token passed along.
 
-Finally, there is a small additional appendix - a **linear layer** and a **Softmax activation function**. These will take the output of the decoder segment and transform it into a logits output (i.e. a value based output for each of the tokens in the vocabulary) and a [pseudoprobability output](https://www.machinecurve.com/index.php/2020/01/08/how-does-the-softmax-activation-function-work/) which assigns probabilities to each of the possible token outputs given the logit values. By simply taking the \[latex\]\\text{argmax}\[/latex\] value from these outputs, we can identify the word that is the most likely prediction here.
+Finally, there is a small additional appendix - a **linear layer** and a **Softmax activation function**. These will take the output of the decoder segment and transform it into a logits output (i.e. a value based output for each of the tokens in the vocabulary) and a [pseudoprobability output](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-does-the-softmax-activation-function-work.md) which assigns probabilities to each of the possible token outputs given the logit values. By simply taking the \[latex\]\\text{argmax}\[/latex\] value from these outputs, we can identify the word that is the most likely prediction here.
 
 We'll take a look at all these aspects in more detail now.
 
@@ -381,7 +381,7 @@ Here, too, we add the residual and perform Layer Normalization before we move fo
 
 #### Feed Forward layer
 
-Like the encoder, a Feed Forward network composed of two linear layers and a [ReLu activation function](https://www.machinecurve.com/index.php/2019/09/04/relu-sigmoid-and-tanh-todays-most-used-activation-functions/) is applied position-wise.
+Like the encoder, a Feed Forward network composed of two linear layers and a [ReLu activation function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md) is applied position-wise.
 
 ![](images/Diagram-14-1.png)
 
@@ -391,7 +391,7 @@ The results of this network are added with another residual and subsequently a f
 
 #### Generating a token prediction
 
-After the residual was added and the layer was normalized (visible in the figure as **Add & Norm**), we can start working towards the actual prediction of a token (i.e., a word). This is achieved by means of a linear layer and a Softmax activation function. In this linaer layer, which shares the weight matrix with the embedding layers, logits are generated - i.e. the importance of each token given the encoded inputs and the decoded outputs. With a [Softmax function](https://www.machinecurve.com/index.php/2020/01/08/how-does-the-softmax-activation-function-work/), we can generate output (pseudo)probabilities for all the tokens in our vocabulary.
+After the residual was added and the layer was normalized (visible in the figure as **Add & Norm**), we can start working towards the actual prediction of a token (i.e., a word). This is achieved by means of a linear layer and a Softmax activation function. In this linaer layer, which shares the weight matrix with the embedding layers, logits are generated - i.e. the importance of each token given the encoded inputs and the decoded outputs. With a [Softmax function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-does-the-softmax-activation-function-work.md), we can generate output (pseudo)probabilities for all the tokens in our vocabulary.
 
 Selecting the token prediction is then really simple. By taking the maximum argument (\[latex\]\\text{argmax}\[/latex\]) value, we can select the token that should be predicted next given the inputs and outputs sent into the model.
 
@@ -403,7 +403,7 @@ Et voila, that's the architecture of a vanilla Transformer!
 
 ## Training a Transformer
 
-Vanilla Transformers are so-called **sequence-to-sequence** **models**, [converting input sequences into target sequences](https://www.machinecurve.com/index.php/2020/12/21/from-vanilla-rnns-to-transformers-a-history-of-seq2seq-learning/). This means that they should be trained on bilingual datasets if the task is machine translation.
+Vanilla Transformers are so-called **sequence-to-sequence** **models**, [converting input sequences into target sequences](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/from-vanilla-rnns-to-transformers-a-history-of-seq2seq-learning.md). This means that they should be trained on bilingual datasets if the task is machine translation.
 
 For example, Vaswani et al. (2017) have trained the vanilla Transformer on the WMT 2014 English-to-German translation dataset, i.e. training for a translation task.
 
@@ -431,7 +431,7 @@ The decoder segment works in a similar way, albeit a bit differently. First of a
 
 Vanilla Transformers are trained on bilingual datasets if they are used for translation tasks. An example of such datasets is the WMT 2014 English-to-German dataset, which contains English and German phrases; it was used by Vaswani et al. (2014) for training their Transformer.
 
-[Ask a question](https://www.machinecurve.com/index.php/add-machine-learning-question/)
+[Ask a question](https://web.archive.org/web/https://www.machinecurve.com/index.php/add-machine-learning-question/)
 
 Transformers have become prominent architectures since 2017 and are continuously being researched today. I hope that this article has helped you gain a better understanding of why they improve traditional approaches and, more importantly, how they work. If you have any questions, please feel free to ask them in the comments section below 💬 You can also click the **Ask Questions** button on the right. Please feel free to drop a message as well if you have comments or wish to put forward suggestions for improvement. I'm looking forward to hearing from you! 😎
 

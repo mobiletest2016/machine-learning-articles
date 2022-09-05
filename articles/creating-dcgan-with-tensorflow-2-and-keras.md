@@ -16,12 +16,12 @@ tags:
 
 Generative Machine Learning is a really interesting area of research that investigates how Machine Learning (and by consequence, Deep Learning) models can be used for _generative_ purposes. Or in other words, how models can learn to generate data, such as images, music and even works of art.
 
-While there are various ways to generate data (such as [VAEs](https://www.machinecurve.com/index.php/2019/12/30/how-to-create-a-variational-autoencoder-with-keras/)), [Generative Adversarial Networks](https://www.machinecurve.com/index.php/generative-adversarial-networks-explanations-examples/) are one of them. By allowing a Generator to generate data and a Discriminator to detect these fake images, both can learn to become better, after which the Generator can eventually trick the Discriminator better and better. And precisely that principle is what we will be using in today's article: we're going to create a _Deep Convolutional GAN_, or a GAN that primarily uses Convolutions to generate and discriminate data.
+While there are various ways to generate data (such as [VAEs](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-variational-autoencoder-with-keras.md)), [Generative Adversarial Networks](https://web.archive.org/web/https://www.machinecurve.com/index.php/generative-adversarial-networks-explanations-examples.md) are one of them. By allowing a Generator to generate data and a Discriminator to detect these fake images, both can learn to become better, after which the Generator can eventually trick the Discriminator better and better. And precisely that principle is what we will be using in today's article: we're going to create a _Deep Convolutional GAN_, or a GAN that primarily uses Convolutions to generate and discriminate data.
 
 In this article, you will…
 
 - **Briefly cover what a DCGAN is, to understand what is happening.**
-- **Learn to build a DCGAN with [TensorFlow 2 and Keras](https://www.machinecurve.com/index.php/mastering-keras/).**
+- **Learn to build a DCGAN with [TensorFlow 2 and Keras](https://web.archive.org/web/https://www.machinecurve.com/index.php/mastering-keras/).**
 - **See what happens when you train it on the MNIST dataset.**
 
 In other words, you’re going to build a model that can learn to output what’s on the right when beginning with what’s on the left:
@@ -39,7 +39,7 @@ In other words, you’re going to build a model that can learn to output what’
 
 ## What is a DCGAN?
 
-Compared to [_standard_ GANs](https://www.machinecurve.com/index.php/2021/03/23/generative-adversarial-networks-a-gentle-introduction/) (vanilla GANs / original GANs), DCGANs have a set of additional improvements:
+Compared to [_standard_ GANs](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/generative-adversarial-networks-a-gentle-introduction.md) (vanilla GANs / original GANs), DCGANs have a set of additional improvements:
 
 1. **A minimum of fully connected layers is used.**
 2. **Any pooling is replaced with learnt downsampling and upsampling.**
@@ -55,7 +55,7 @@ The structure of a GAN.
 
 ## Building a DCGAN with TensorFlow 2 and Keras - code examples & explanations
 
-Now that we understand what a DCGAN is, it's time to build one with TensorFlow 2 and Keras. [Click here for the PyTorch equivalent](https://www.machinecurve.com/index.php/2021/07/15/creating-dcgan-with-pytorch/). Note that any GAN is quite complex in terms of the code that has to be written. That's why you'll write quite a large amount of Python defs, which split the code into smaller parts that are combined together. Here are the definitions that will be written:
+Now that we understand what a DCGAN is, it's time to build one with TensorFlow 2 and Keras. [Click here for the PyTorch equivalent](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/creating-dcgan-with-pytorch.md). Note that any GAN is quite complex in terms of the code that has to be written. That's why you'll write quite a large amount of Python defs, which split the code into smaller parts that are combined together. Here are the definitions that will be written:
 
 - **Imports**
 - **Configuration variables**
@@ -100,7 +100,7 @@ You must now initialize a set of variables that will be used throughout the code
 - The **noise dimension** can be configured to set the number of dimensions of the noise vector that is input to the Generator.
 - The **unique run ID** represents a unique identifier that describes this training session, and is used when the models and sample images are saved.
 - **Print stats after batch** tells us how many mini batches should pass in an epoch before intermediary statistics are printed.
-- The **[optimizer](https://www.machinecurve.com/index.php/2019/10/24/gradient-descent-and-its-variants/) LR** and **optimizer Betas** give the Learning Rate and Beta values for the `AdamW` optimizer used in our GAN.
+- The **[optimizer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md) LR** and **optimizer Betas** give the Learning Rate and Beta values for the `AdamW` optimizer used in our GAN.
 - The **weight init standard deviation** represents the standard deviation that will be used in the weight init schema that you will create below.
 
 ```
@@ -122,7 +122,7 @@ Okay, now, after specifying the configuration options, it's time to do something
 
 As a next step, you will define and initialize the **loss function** that will be used for comparing predictions (from the Discriminator) with corresponding targets, a **weight initialization schema** that will be used for initializing the Generator and Discriminator layer kernels, and two **optimizers** for both generator and discriminator.
 
-We use [binary crossentropy loss](https://www.machinecurve.com/index.php/2019/10/22/how-to-use-binary-categorical-crossentropy-with-keras/) directly applied to the [logits](https://www.machinecurve.com/index.php/2020/01/08/how-does-the-softmax-activation-function-work/). This loss will be used to compare the outputs of the Discriminator on either the real or generated images (somewhere in the range `[0, 1]` with the true labels (either `0` or `1`)).
+We use [binary crossentropy loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-binary-categorical-crossentropy-with-keras.md) directly applied to the [logits](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-does-the-softmax-activation-function-work.md). This loss will be used to compare the outputs of the Discriminator on either the real or generated images (somewhere in the range `[0, 1]` with the true labels (either `0` or `1`)).
 
 A `RandomNormal` initializer is used in line with the Radford et al. (2015) paper. It is initialized with a `WEIGHT_INIT_STDDEV=0.02`.
 
@@ -708,7 +708,7 @@ What dataset will you apply this GAN to? :)
 In this article, we have...
 
 - **Briefly covered what a DCGAN is, to understand what is happening.**
-- **Learned to build a DCGAN with [TensorFlow 2 and Keras](https://www.machinecurve.com/index.php/mastering-keras/).**
+- **Learned to build a DCGAN with [TensorFlow 2 and Keras](https://web.archive.org/web/https://www.machinecurve.com/index.php/mastering-keras/).**
 - **Seen what happens when you train it on the MNIST dataset.**
 
 I hope that it was useful to you! Please make sure to leave any questions or other comments in the comments section below 💬 I'll try to respond when I can.

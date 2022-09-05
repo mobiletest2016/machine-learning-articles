@@ -32,7 +32,7 @@ I always think that a little bit of context must be provided before we move to t
 
 The context in this case would be as follows: why is weight initialization necessary in the first place?
 
-Although I primarily wrote on weight initialization [in another blog post](https://machinecurve.com/index.php/2019/08/22/what-is-weight-initialization/), I will briefly cover it here again.
+Although I primarily wrote on weight initialization [in another blog post](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-weight-initialization.md), I will briefly cover it here again.
 
 Put very simply, a neural network is composed of various neurons. Those neurons are a combination of a linear operation that I call _vector dot product plus bias_ and a possibly nonlinear operation called the _activation_.
 

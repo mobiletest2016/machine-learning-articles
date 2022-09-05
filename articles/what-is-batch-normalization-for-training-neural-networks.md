@@ -36,15 +36,15 @@ Are you ready? Let's go! 😎
 
 ## Internal covariate shift: a possible explanation of slow training and non-convergence
 
-Suppose that you have a neural network, such as this one that has been equipped with [Dropout neurons](https://www.machinecurve.com/index.php/2019/12/16/what-is-dropout-reduce-overfitting-in-your-neural-networks/):
+Suppose that you have a neural network, such as this one that has been equipped with [Dropout neurons](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-dropout-reduce-overfitting-in-your-neural-networks.md):
 
 [![](images/dropout.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/dropout.png)
 
-As you might recall from the [high-level supervised machine learning process](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#the-high-level-supervised-learning-process), training a neural network includes a _feedforward operation_ on your training set. During this operation, the data is fed to the neural network, which generates a prediction for each sample that can be compared to the _target data_, a.k.a. the ground truth.
+As you might recall from the [high-level supervised machine learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process), training a neural network includes a _feedforward operation_ on your training set. During this operation, the data is fed to the neural network, which generates a prediction for each sample that can be compared to the _target data_, a.k.a. the ground truth.
 
-This results in a [loss value](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#loss) that is computed by some [loss function](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#loss-functions).
+This results in a [loss value](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#loss) that is computed by some [loss function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#loss-functions).
 
-Based on the loss function, backpropagation will compute what is known as the _gradient_ to improve the loss, while [gradient descent](https://www.machinecurve.com/index.php/2019/10/24/gradient-descent-and-its-variants/) or an [adaptive optimizer](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/) will actually change the weights of the neurons of your neural network. Based on this change, the model is expected to perform better during the next iteration, in which the process is repeated.
+Based on the loss function, backpropagation will compute what is known as the _gradient_ to improve the loss, while [gradient descent](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md) or an [adaptive optimizer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md) will actually change the weights of the neurons of your neural network. Based on this change, the model is expected to perform better during the next iteration, in which the process is repeated.
 
 ### Changing input distributions
 
@@ -140,7 +140,7 @@ Linear regime of the nonlinearity? Represent the identity transform? What are th
 
 Let's decomplexify the rather academic English into a plainer variant.
 
-First, the "linear regime of the nonlinearity". Suppose that we're using the [Sigmoid activation function](https://www.machinecurve.com/index.php/2019/09/04/relu-sigmoid-and-tanh-todays-most-used-activation-functions/), which is a nonlinear activation function (a "nonlinearity") and was still quite common in 2015, when the Ioffe & Szegedy paper was written.
+First, the "linear regime of the nonlinearity". Suppose that we're using the [Sigmoid activation function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md), which is a nonlinear activation function (a "nonlinearity") and was still quite common in 2015, when the Ioffe & Szegedy paper was written.
 
 It looks like this:
 
@@ -180,7 +180,7 @@ Theoretically, there are some assumed benefits when using Batch Normalization in
 
 - The model is less sensitive to hyperparameter tuning. That is, whereas larger learning rates led to non-useful models previously, larger LRs are acceptable now.
 - Weight initialization is a tad less important now.
-- Dropout, which is used to [add noise to benefit training](https://www.machinecurve.com/index.php/2019/12/18/how-to-use-dropout-with-keras/), can be removed.
+- Dropout, which is used to [add noise to benefit training](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-dropout-with-keras.md), can be removed.
 
 ### Batch Normalization during inference
 

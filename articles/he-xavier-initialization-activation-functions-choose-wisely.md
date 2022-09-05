@@ -20,9 +20,9 @@ You're right, we focus on a niche within the overlap between weight initializati
 
 However, if you're interested in the other topics, feel free to also read these blogs:
 
-- [What is weight initialization?](https://machinecurve.com/index.php/2019/08/22/what-is-weight-initialization/)
-- [Random initialization: vanishing and exploding gradients](https://machinecurve.com/index.php/2019/08/30/random-initialization-vanishing-and-exploding-gradients/)
-- [ReLU, Sigmoid and Tanh: today's most used activation functions](https://machinecurve.com/index.php/2019/09/04/relu-sigmoid-and-tanh-todays-most-used-activation-functions/)
+- [What is weight initialization?](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-weight-initialization.md)
+- [Random initialization: vanishing and exploding gradients](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/random-initialization-vanishing-and-exploding-gradients.md)
+- [ReLU, Sigmoid and Tanh: today's most used activation functions](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md)
 
 Let's go! :-) After reading this article, you will understand...
 
@@ -62,7 +62,7 @@ During optimization, which occurs every time data is fed to the network (either 
 
 However, you'll need to start somewhere - the weights vectors cannot be empty once you start training. Hence, they must be initialized. _That's_ weight initialization.
 
-_Read more about initialization here: [What is weight initialization?](https://machinecurve.com/index.php/2019/08/22/what-is-weight-initialization/)_
+_Read more about initialization here: [What is weight initialization?](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-weight-initialization.md)_
 
 #### Initializers
 
@@ -82,7 +82,7 @@ When you initialize your weights randomly, the values are probably close to zero
 In both cases, your model will never reach its theoretical optimum. We'll see that He and Xavier initializers will substantially safeguard yourself from the vanishing and exploding gradients problems. However, let's briefly recap on activation functions first.
 
 _Read more about vanishing and exploding gradients here:_  
-_[Random initialization: vanishing and exploding gradients](https://machinecurve.com/index.php/2019/08/30/random-initialization-vanishing-and-exploding-gradients/)_
+_[Random initialization: vanishing and exploding gradients](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/random-initialization-vanishing-and-exploding-gradients.md)_
 
 ### What are activation functions?
 
@@ -104,7 +104,7 @@ An activation is a mathematical function that simply takes an input which may or
 
 In today's world, there are three widely used activation functions: Rectified Linear Unit (ReLU), Sigmoid and Tanh. ReLU is most widely used because it is an improvement over Sigmoid and Tanh. Nevertheless, improvement is still possible, as we can see by clicking the link below 👇
 
-_Read more about activation functions here: [ReLU, Sigmoid and Tanh: today’s most used activation functions](https://machinecurve.com/index.php/2019/09/04/relu-sigmoid-and-tanh-todays-most-used-activation-functions/)_
+_Read more about activation functions here: [ReLU, Sigmoid and Tanh: today’s most used activation functions](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md)_
 
 * * *
 
@@ -133,7 +133,7 @@ As you can see, there are two problems with the Sigmoid function and its behavio
 - When variance is really high, the _absolute value_ of the gradient will be low and the network will learn very slowly;
 - When variance is really _low_, the gradient will move in a very small range, and hence the network will also learn very slowly.
 
-This especially occurs when weights are drawn from a [standard normal distribution](https://machinecurve.com/index.php/2019/08/30/random-initialization-vanishing-and-exploding-gradients/), since weights will also be < 1 and > -1.
+This especially occurs when weights are drawn from a [standard normal distribution](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/random-initialization-vanishing-and-exploding-gradients.md), since weights will also be < 1 and > -1.
 
 Kumar argued that it's best to have variances of ≈ 1 through all layers. This way, slow learning can be mitigated quite successfully. The fun thing is, He and Xavier initialization attempt to ensure such variance in layer outputs by default. But first, a brief look into the sensitivity of ReLU.
 
@@ -141,7 +141,7 @@ Kumar argued that it's best to have variances of ≈ 1 through all layers. This 
 
 ### Why is ReLU less sensitive to this problem?
 
-In general, we therefore use [ReLU as our activation function of general choice](https://machinecurve.com/index.php/2019/09/04/relu-sigmoid-and-tanh-todays-most-used-activation-functions/).
+In general, we therefore use [ReLU as our activation function of general choice](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md).
 
 This is ReLU and its derivative:
 

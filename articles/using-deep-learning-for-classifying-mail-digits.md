@@ -16,7 +16,7 @@ tags:
   - "tensorflow"
 ---
 
-Deep Learning, the subset of Machine Learning which employs Deep Neural Networks for generating models, can be used for many things. Today, it's being used in Google Translate, in Uber's app, and in many [Computer Vision applications](https://www.machinecurve.com/index.php/2018/12/07/convolutional-neural-networks-and-their-components-for-computer-vision/). One of these examples is digit classification in mail delivery. This article will focus on this use case. We will teach you to build your own Neural Network for Digit Classification, but not with the MNIST dataset - which is a pretty common dataset. Rather, we'll be using the USPS Handwritten Digits Dataset, which is made available by scanning many pieces of mail and extracting the digits from them.
+Deep Learning, the subset of Machine Learning which employs Deep Neural Networks for generating models, can be used for many things. Today, it's being used in Google Translate, in Uber's app, and in many [Computer Vision applications](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/convolutional-neural-networks-and-their-components-for-computer-vision.md). One of these examples is digit classification in mail delivery. This article will focus on this use case. We will teach you to build your own Neural Network for Digit Classification, but not with the MNIST dataset - which is a pretty common dataset. Rather, we'll be using the USPS Handwritten Digits Dataset, which is made available by scanning many pieces of mail and extracting the digits from them.
 
 The article is structured as follows. Firstly, we'll be taking a look at mail digit classification. Why can it help in the first place? Then, we'll move on to our dataset, the USPS Handwritten Digits Dataset. We will show you how we can use [extra-keras-datasets](https://github.com/christianversloot/extra_keras_datasets) for easy loading of the dataset, and then explore it further. Once we are familiar with the dataset, we will build and train the Deep Learning model, using Python, TensorFlow and Keras. Then, we'll run it, and you will see how it performs.
 
@@ -95,11 +95,11 @@ Let's get to work! Open a code editor, create a file - e.g. `usps.py` - and we c
 
 As we said, the first thing we have to do is adding the imports.
 
-- First of all, we'll be using the [Extra Keras Datasets](https://www.machinecurve.com/index.php/2020/01/10/making-more-datasets-available-for-keras/) package for importing `usps`, i.e. the USPS Handwritten Digits Dataset.
+- First of all, we'll be using the [Extra Keras Datasets](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/making-more-datasets-available-for-keras.md) package for importing `usps`, i.e. the USPS Handwritten Digits Dataset.
 - We then import the `Sequential` Keras API, which is the foundation for our Keras model. Using this API, we can stack layers on top of each other, which jointly represent the Deep Learning model.
-- We will also use a few layers: we'll use [Convolutional ones](https://www.machinecurve.com/index.php/2018/12/07/convolutional-neural-networks-and-their-components-for-computer-vision/) (`Conv2D`) for 2D data (i.e., images), Densely-connected ones (for generating the actual predictions) and `Flatten` (Dense layers can't handle non-1D data, so we must flatten the outputs of our final Conv layers).
-- For optimization, we use the [Adam optimizer](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/#adam) (`tensorflow.keras.optimizers.Adam`) and for [loss](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/) we use `categorical_crossentropy` [loss](https://www.machinecurve.com/index.php/2019/10/22/how-to-use-binary-categorical-crossentropy-with-keras/).
-- Finally, because we use categorical crossentropy loss, we must [one-hot encode our targets](https://www.machinecurve.com/index.php/2020/11/24/one-hot-encoding-for-machine-learning-with-tensorflow-and-keras/). Using the `to_categorical` util, we can achieve this.
+- We will also use a few layers: we'll use [Convolutional ones](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/convolutional-neural-networks-and-their-components-for-computer-vision.md) (`Conv2D`) for 2D data (i.e., images), Densely-connected ones (for generating the actual predictions) and `Flatten` (Dense layers can't handle non-1D data, so we must flatten the outputs of our final Conv layers).
+- For optimization, we use the [Adam optimizer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound/#adam) (`tensorflow.keras.optimizers.Adam`) and for [loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md) we use `categorical_crossentropy` [loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-binary-categorical-crossentropy-with-keras.md).
+- Finally, because we use categorical crossentropy loss, we must [one-hot encode our targets](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/one-hot-encoding-for-machine-learning-with-tensorflow-and-keras.md). Using the `to_categorical` util, we can achieve this.
 
 ```
 from extra_keras_datasets import usps
@@ -114,11 +114,11 @@ from tensorflow.keras.utils import to_categorical
 
 Now that we have the imports, we can move on to specifying the configuration options. Strictly speaking, this step is not necessary, because it is possible to define all the options _within_ the later parts (compiling the model, fitting the data ...) as well. However, I think that listing them near the top of your model helps with clarity: you can immediately see how your model is configured. Next, we will therefore specify the configuration options for our ML model:
 
-- Fitting data goes [in batches](https://www.machinecurve.com/index.php/2019/10/24/gradient-descent-and-its-variants/) if you want to avoid exhausting your memory. That's why we have to specify a `batch_size`. We set it to 250 samples, meaning that our [forward pass](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#the-high-level-supervised-learning-process) moves 250 samples through the model, generates predictions, and then optimizes. When all batches have passed, the iteration - or epoch - is complete.
-- The number of iterations, or `no_epochs`, is set to 150. This means that our model will feed forward samples, generate predictions, and then optimize for 150 times. Is this a good number? We don't know up front. If you want to stop at precisely the good moment, [you can apply callbacks](https://www.machinecurve.com/index.php/2019/05/30/avoid-wasting-resources-with-earlystopping-and-modelcheckpoint-in-keras/), but for the purpose of this experiment, setting a fixed number of epochs will work well.
-- Some of the training data must be used for [validation purposes](https://www.machinecurve.com/index.php/2020/11/16/how-to-easily-create-a-train-test-split-for-your-machine-learning-model/). In other words, it must be used to steer the training process _while training is happening_, to preserve the testing set for true model evaluation. We therefore set `validation_split_size` to `0.20`, meaning that we use 20% of the training data for validation purposes.
+- Fitting data goes [in batches](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md) if you want to avoid exhausting your memory. That's why we have to specify a `batch_size`. We set it to 250 samples, meaning that our [forward pass](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process) moves 250 samples through the model, generates predictions, and then optimizes. When all batches have passed, the iteration - or epoch - is complete.
+- The number of iterations, or `no_epochs`, is set to 150. This means that our model will feed forward samples, generate predictions, and then optimize for 150 times. Is this a good number? We don't know up front. If you want to stop at precisely the good moment, [you can apply callbacks](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/avoid-wasting-resources-with-earlystopping-and-modelcheckpoint-in-keras.md), but for the purpose of this experiment, setting a fixed number of epochs will work well.
+- Some of the training data must be used for [validation purposes](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-easily-create-a-train-test-split-for-your-machine-learning-model.md). In other words, it must be used to steer the training process _while training is happening_, to preserve the testing set for true model evaluation. We therefore set `validation_split_size` to `0.20`, meaning that we use 20% of the training data for validation purposes.
 - We set `verbosity` to 1, which will instruct Keras to print all outputs on screen. This slows down the training process slightly, so it's best not to use it for production training settings (if you want small summaries, you can set `verbosity = 2`, otherwise I recommend `verbosity = 0`). However, for this experiment, we actually _want_ everything to be displayed on screen.
-- We use the [Adam optimizer](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/) and [categorical crossentropy loss](https://www.machinecurve.com/index.php/2019/10/22/how-to-use-binary-categorical-crossentropy-with-keras/) for the optimization process, and specify accuracy as an additional metric, because it is more intuitive for humans.
+- We use the [Adam optimizer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md) and [categorical crossentropy loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-binary-categorical-crossentropy-with-keras.md) for the optimization process, and specify accuracy as an additional metric, because it is more intuitive for humans.
 
 ```
 # Configuration options
@@ -133,7 +133,7 @@ additional_metrics = ['accuracy']
 
 ### Loading the dataset
 
-Now that we have specified the configuration options, it's time to load the dataset. Fortunately, with the [Extra Keras Datasets package](https://www.machinecurve.com/index.php/2020/01/10/making-more-datasets-available-for-keras/), this is really easy:
+Now that we have specified the configuration options, it's time to load the dataset. Fortunately, with the [Extra Keras Datasets package](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/making-more-datasets-available-for-keras.md), this is really easy:
 
 ```
 # Load dataset
@@ -144,9 +144,9 @@ If you don't have this package yet: it can be installed easily, using `pip insta
 
 Next, we have to do three things:
 
-- [Scale the data](https://www.machinecurve.com/index.php/2020/11/19/how-to-normalize-or-standardize-a-dataset-in-python/) to the \[latex\]\[0, 1\]\[/latex\] range, which helps the optimization process.
-- Reshape the 2D grayscale data (which has dimensions for `width` and `height` only) into a 3D object, because the [Conv2D](https://www.machinecurve.com/index.php/2019/09/17/how-to-create-a-cnn-classifier-with-keras/) accepts arrays with 3D inputs (`width`, `height` and `color channels` only). We'll therefore reshape each sample into `(width, height, 1)`, which does not change anything semantically.
-- Convert our target values to [one-hot encoded format](https://www.machinecurve.com/index.php/2020/11/24/one-hot-encoding-for-machine-learning-with-tensorflow-and-keras/), which makes them compatible with our usage of categorical crossentropy loss.
+- [Scale the data](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-normalize-or-standardize-a-dataset-in-python.md) to the \[latex\]\[0, 1\]\[/latex\] range, which helps the optimization process.
+- Reshape the 2D grayscale data (which has dimensions for `width` and `height` only) into a 3D object, because the [Conv2D](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras.md) accepts arrays with 3D inputs (`width`, `height` and `color channels` only). We'll therefore reshape each sample into `(width, height, 1)`, which does not change anything semantically.
+- Convert our target values to [one-hot encoded format](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/one-hot-encoding-for-machine-learning-with-tensorflow-and-keras.md), which makes them compatible with our usage of categorical crossentropy loss.
 
 Let's add these tasks to our code:
 
@@ -168,7 +168,7 @@ y_test  = to_categorical(y_test)
 
 It's now time to create the skeleton for our Neural network. This skeleton describes _what our model looks like_. It does however not create a model that we can use (we must compile it in the next section before we can use it).
 
-Recall that in a Neural network, we have an input layer, hidden layers and an output layer. In our model skeleton, we describe the structure of our hidden layers and our output layer. Keras [will construct the input layer for us](https://www.machinecurve.com/index.php/2020/04/05/how-to-find-the-value-for-keras-input_shape-input_dim/). What we must do, however, is showing Keras what it must look like. We'll therefore derive the input shape from one sample and specify it as the shape of our input layer shape later:
+Recall that in a Neural network, we have an input layer, hidden layers and an output layer. In our model skeleton, we describe the structure of our hidden layers and our output layer. Keras [will construct the input layer for us](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-find-the-value-for-keras-input_shape-input_dim.md). What we must do, however, is showing Keras what it must look like. We'll therefore derive the input shape from one sample and specify it as the shape of our input layer shape later:
 
 ```
 # Input shape
@@ -179,7 +179,7 @@ print(f'Input shape = {input_shape}')
 We can then create the model skeleton:
 
 - We first initialize the Sequential API into the `model` variable, giving us an empty model to work with.
-- We then stack a few layers on top of each other and indirectly on top of the `model` foundation by calling `model.add(...)`. Specifically, we use two Convolutional layers, then Flatten the feature maps generated by the last layer, and use Dense layers for the final prediction ([using Softmax](https://www.machinecurve.com/index.php/2020/01/08/how-does-the-softmax-activation-function-work/)).
+- We then stack a few layers on top of each other and indirectly on top of the `model` foundation by calling `model.add(...)`. Specifically, we use two Convolutional layers, then Flatten the feature maps generated by the last layer, and use Dense layers for the final prediction ([using Softmax](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-does-the-softmax-activation-function-work.md)).
 - Specifically note the `input_shape = input_shape` assignment in the first layer, telling Keras what the shape of an input sample looks like!
 
 ```
@@ -220,7 +220,7 @@ We explicitly fit the `(X_train, y_train)` data, applying the 80/20 validation s
 
 ### Evaluating the model
 
-Should we now run our Python code, we will see that our model starts training, and that it will eventually finish. However, doing that, we can only check whether our model works well _on training data_. As we know, [we cannot rely on that data](https://www.machinecurve.com/index.php/2020/11/16/how-to-easily-create-a-train-test-split-for-your-machine-learning-model/) if we want to [evaluate our model](https://www.machinecurve.com/index.php/2020/11/03/how-to-evaluate-a-keras-model-with-model-evaluate/), because it is like checking your own homework. We therefore have to use testing data for evaluation purposes, in order to find out how well our model really works.
+Should we now run our Python code, we will see that our model starts training, and that it will eventually finish. However, doing that, we can only check whether our model works well _on training data_. As we know, [we cannot rely on that data](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-easily-create-a-train-test-split-for-your-machine-learning-model.md) if we want to [evaluate our model](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-evaluate-a-keras-model-with-model-evaluate.md), because it is like checking your own homework. We therefore have to use testing data for evaluation purposes, in order to find out how well our model really works.
 
 We can easily perform a model evaluation step with the testing data, as follows:
 
@@ -236,7 +236,7 @@ print(f'Test loss: {score[0]} / Test accuracy: {score[1]}')
 
 Now that we have written code for configuration options, loading and preparing the dataset, constructing and compiling the model, and subsequently training and evaluating it, we can actually run the model.
 
-Therefore, save your `usps.py` file, open up a terminal where you have TensorFlow and [Extra Keras Datasets](https://www.machinecurve.com/index.php/2020/01/10/making-more-datasets-available-for-keras/) installed, and run `python usps.py`.
+Therefore, save your `usps.py` file, open up a terminal where you have TensorFlow and [Extra Keras Datasets](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/making-more-datasets-available-for-keras.md) installed, and run `python usps.py`.
 
 If the dataset hasn't been loaded onto your machine yet, you will first see a loading bar that illustrates the dataset download process. Then, you'll find that your model starts training.
 
@@ -269,7 +269,7 @@ Clearly, we can see that our model performs a bit worse with testing data, but s
 
 ## Summary
 
-In this article, we saw how we can create a Neural network for digits classification with TensorFlow and Keras. Contrary to many other articles, which use the [MNIST dataset](https://www.machinecurve.com/index.php/2019/12/31/exploring-the-keras-datasets/#mnist-database-of-handwritten-digits), we used a different one - the USPS Handwritten Digits Dataset, available through the Extra Keras Datasets package.
+In this article, we saw how we can create a Neural network for digits classification with TensorFlow and Keras. Contrary to many other articles, which use the [MNIST dataset](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets/#mnist-database-of-handwritten-digits), we used a different one - the USPS Handwritten Digits Dataset, available through the Extra Keras Datasets package.
 
 We firstly saw why digits classification can help in the mail distribution process. We then briefly looked at the dataset, and saw that it is composed of many handwritten digits, scanned from real, USPS-distributed mail. Then, we moved on to model construction, showing you how to build and train a TensorFlow/Keras model for digits classification with step-by-step examples. With the dataset and our Neural network, we achieved a 92.2% accuracy on our testing dataset.
 

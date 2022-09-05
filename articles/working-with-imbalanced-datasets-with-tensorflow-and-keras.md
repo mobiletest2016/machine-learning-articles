@@ -89,9 +89,9 @@ Let's now take a look at why you must be careful when creating a Machine Learnin
 
 ## What's wrong with imbalanced datasets?
 
-When training a neural network, you are performing [supervised learning](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#the-high-level-supervised-learning-process). This effectively involves feeding samples from a training dataset forward, generating predictions, which can be compared to the dataset's corresponding labels: the ground truth. This results in a **loss value** that can subsequently be used for [optimizing the model](https://www.machinecurve.com/index.php/2019/10/24/gradient-descent-and-its-variants/).
+When training a neural network, you are performing [supervised learning](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process). This effectively involves feeding samples from a training dataset forward, generating predictions, which can be compared to the dataset's corresponding labels: the ground truth. This results in a **loss value** that can subsequently be used for [optimizing the model](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md).
 
-There are [various loss functions](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/) that are used in neural networks. However, in addition to a loss value, we often use the **accuracy**. It is used because it is very intuitive to human beings, and can be defined as follows:
+There are [various loss functions](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md) that are used in neural networks. However, in addition to a loss value, we often use the **accuracy**. It is used because it is very intuitive to human beings, and can be defined as follows:
 
 \[latex\]Accuracy = \\frac{TP + TN}{TP + TN + FP + FN}\[/latex\]
 
@@ -229,7 +229,7 @@ Instead of changing your dataset, another approach to handling imbalanced datase
 
 Effectively, you're thus telling the training process to keep in mind that some samples come from an underrepresented class.
 
-Do note that applying class weights does not work adequately with [classic gradient descent](https://www.machinecurve.com/index.php/2019/10/24/gradient-descent-and-its-variants/) and others. However, if you use [Adam](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/), you will be fine (TensorFlow, n.d.).
+Do note that applying class weights does not work adequately with [classic gradient descent](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md) and others. However, if you use [Adam](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md), you will be fine (TensorFlow, n.d.).
 
 We can first compute the weights with Scikit-learn's `compute_class_weight` function.
 

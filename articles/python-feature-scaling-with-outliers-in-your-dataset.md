@@ -70,7 +70,7 @@ Often, if a variable has a big range, its variance is also bigger compared to va
 
 And variables with greater variance often contribute more significantly to the relationship of a predictive model, for the simple reason that they capture more possible values from the domain of input variables.
 
-Here's the catch, though: for feature extraction and selection, we often use algorithms like [Principal Component Analysis (PCA)](https://www.machinecurve.com/index.php/2020/12/07/introducing-pca-with-python-and-scikit-learn-for-machine-learning/), which are dependent on variable variance for extracting the variables that contribute most significantly to the spread of our dataset.
+Here's the catch, though: for feature extraction and selection, we often use algorithms like [Principal Component Analysis (PCA)](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/introducing-pca-with-python-and-scikit-learn-for-machine-learning.md), which are dependent on variable variance for extracting the variables that contribute most significantly to the spread of our dataset.
 
 But if the variable scales are incompatible and hence cannot be compared, the comparison and hence the application of Feature Selection algorithm is pointless.
 
@@ -82,19 +82,19 @@ Another reason why you should consider applying Feature Scaling is due to the co
 
 **Some Machine Learning algorithms are dependent on Feature Scaling should they converge to an optimal solution well, or converge at all.**
 
-For example, some algorithms utilize distance metrics for learning the [decision boundary](https://www.machinecurve.com/index.php/2019/10/11/how-to-visualize-the-decision-boundary-for-your-keras-model/) of the model. You can imagine that in a variable \[latex\]X\_1\[/latex\] with a range of \[latex\]\[0, 102500\]\[/latex\] the distances are much bigger compared to a variable \[latex\]X\_2\[/latex\] with a \[latex\]\[0, 1\]\[/latex\] range. Now, should they both be used in generating a prediction (e.g. in a relationship that looks like \[latex\]{{X\_1}, {X\_2}} \\rightarrow y\[/latex\], then much more emphasis will be put on the distances measured for \[latex\]X\_1\[/latex\].
+For example, some algorithms utilize distance metrics for learning the [decision boundary](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-decision-boundary-for-your-keras-model.md) of the model. You can imagine that in a variable \[latex\]X\_1\[/latex\] with a range of \[latex\]\[0, 102500\]\[/latex\] the distances are much bigger compared to a variable \[latex\]X\_2\[/latex\] with a \[latex\]\[0, 1\]\[/latex\] range. Now, should they both be used in generating a prediction (e.g. in a relationship that looks like \[latex\]{{X\_1}, {X\_2}} \\rightarrow y\[/latex\], then much more emphasis will be put on the distances measured for \[latex\]X\_1\[/latex\].
 
 This significantly distorts the impact of the other, smaller-range variables, and is another reason why you may wish to apply Feature Scaling.
 
 ### Regularization
 
-The third reason is related to [regularization](https://www.machinecurve.com/index.php/2020/01/26/which-regularizer-do-i-need-for-training-my-neural-network/), which is used for controlling the weights of the model. For example, L1 (Lasso) regularization ensures that models are sparse, by dropping out weights that contribute insignificantly, while L2 (Ridge) keeps weights small without making models sparse.
+The third reason is related to [regularization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/which-regularizer-do-i-need-for-training-my-neural-network.md), which is used for controlling the weights of the model. For example, L1 (Lasso) regularization ensures that models are sparse, by dropping out weights that contribute insignificantly, while L2 (Ridge) keeps weights small without making models sparse.
 
 Here's the catch when you use a non-scaled dataset with regularization: applying regularizers involves computing distance metrics. We saw above what happens when distance metrics are computed and the ranges of your variables vary significantly - things go south. In the case of regularization, we should ensure that Feature Scaling is applied, **which ensures that penalties are applied appropriately** (Wikipedia, 2011).
 
 ### Normalization and Standardization for Feature Scaling
 
-Above, we saw that Feature Scaling can be applied to [normalize or standardize](https://www.machinecurve.com/index.php/2020/11/19/how-to-normalize-or-standardize-a-dataset-in-python/) your features. As the names already suggest, there are two main candidates for normalization and standardization:
+Above, we saw that Feature Scaling can be applied to [normalize or standardize](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-normalize-or-standardize-a-dataset-in-python.md) your features. As the names already suggest, there are two main candidates for normalization and standardization:
 
 - **Min-max normalization:** here, the values are scaled to a \[latex\]\[0, 1\]\[/latex\] range (or possibly an \[latex\]\[a, b\]\[/latex\] range) using the minimum and maximum values. Although simple and very efficient, the means and standard deviations of the variables are still unequal, meaning that they remain a bit incompatible, although the situation improves a lot.
 - **Standardization** (or **z-score normalization**): here, for all variables, the mean is brought to zero and the standard deviation to one. This makes the scales fully compatible because the values now express the _differences from the mean in standard deviations_, which are always the same. The technique is best applied with Gaussian data, although it can also work with other data in many cases. Just see for yourself which one works best.
@@ -170,7 +170,7 @@ Using the `RobustScaler` in Scikit-learn, we can overcome this problem, by scali
 
 ### Using the RobustScaler with Python for Scikit-learn and TensorFlow models
 
-Applying Robust Scaling with the `RobustScaler` is really easy and works both for Scikit-learn and TensorFlow models. Suppose that we generate the originally Gaussian data from the plots above, and then stretch one of the axes by `2.63` and then stretch 20% of the data more by multiplying it with a number between \[latex\]\[10, 25\]\[/latex\]. We then have a dataset available in `X1` which is also what we would have when e.g. training a [Scikit-learn](https://www.machinecurve.com/index.php/2020/11/12/using-error-correcting-output-codes-for-multiclass-svm-classification/) or a [TensorFlow](https://www.machinecurve.com/index.php/2019/09/17/how-to-create-a-cnn-classifier-with-keras/) model.
+Applying Robust Scaling with the `RobustScaler` is really easy and works both for Scikit-learn and TensorFlow models. Suppose that we generate the originally Gaussian data from the plots above, and then stretch one of the axes by `2.63` and then stretch 20% of the data more by multiplying it with a number between \[latex\]\[10, 25\]\[/latex\]. We then have a dataset available in `X1` which is also what we would have when e.g. training a [Scikit-learn](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/using-error-correcting-output-codes-for-multiclass-svm-classification.md) or a [TensorFlow](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras.md) model.
 
 ```
 # Imports
@@ -247,4 +247,4 @@ Wikipedia. (2011, December 15). _Feature scaling_. Wikipedia, the free encyclop
 
 Scikit-learn. (n.d.). _Sklearn.preprocessing.RobustScaler — scikit-learn 0.23.2 documentation_. scikit-learn: machine learning in Python — scikit-learn 0.16.1 documentation. Retrieved November 19, 2020, from [https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.RobustScaler.html#sklearn.preprocessing.RobustScaler](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.RobustScaler.html#sklearn.preprocessing.RobustScaler)
 
-Scikit-learn. (2020, November 19). _How to normalize or standardize a dataset in Python? – MachineCurve_. MachineCurve. [https://www.machinecurve.com/index.php/2020/11/19/how-to-normalize-or-standardize-a-dataset-in-python/](https://www.machinecurve.com/index.php/2020/11/19/how-to-normalize-or-standardize-a-dataset-in-python/)
+Scikit-learn. (2020, November 19). _How to normalize or standardize a dataset in Python? – MachineCurve_. MachineCurve. [https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-normalize-or-standardize-a-dataset-in-python/](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-normalize-or-standardize-a-dataset-in-python.md)

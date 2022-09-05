@@ -15,7 +15,7 @@ And if every field works with data, are they different at all?
 
 If they are, do they overlap as well?
 
-In this article, I'll describe the differences between these fields from my perspective. As you may [read](https://www.machinecurve.com/index.php/about/), I have a background in business & IT and have started learning machine learning on my own. This was one of the first articles I wrote - and it helped me a lot in getting a proper understanding of the fields. Below, I'll first argue why I think that it's important to draw clear boundaries between these fieldsthis. I'll then write about each field individually.
+In this article, I'll describe the differences between these fields from my perspective. As you may [read](https://web.archive.org/web/https://www.machinecurve.com/index.php/about/), I have a background in business & IT and have started learning machine learning on my own. This was one of the first articles I wrote - and it helped me a lot in getting a proper understanding of the fields. Below, I'll first argue why I think that it's important to draw clear boundaries between these fieldsthis. I'll then write about each field individually.
 
 **Update February 2020** \- Added links to other MachineCurve blog posts.
 
@@ -25,7 +25,7 @@ In this article, I'll describe the differences between these fields from my pers
 
 ## **How I started with machine learning**
 
-When I [started to study machine learning](https://www.machinecurve.com/index.php/dissecting-deep-learning/), I first looked at various algorithms that are out there. But rather quickly, I was lost in a random forest (pun intended) full of algorithms. I realised that I needed to create a high-level overview first before I could dive into this extremely interesting world.
+When I [started to study machine learning](https://web.archive.org/web/https://www.machinecurve.com/index.php/dissecting-deep-learning/), I first looked at various algorithms that are out there. But rather quickly, I was lost in a random forest (pun intended) full of algorithms. I realised that I needed to create a high-level overview first before I could dive into this extremely interesting world.
 
 So I focused on making an overview of machine learning algorithms.
 
@@ -334,7 +334,7 @@ To summarise: machine learning is a part of artificial intelligence, but AI is n
 
 ## **Deep learning**
 
-Another buzzword that I see a lot is [_deep learning_](https://www.machinecurve.com/index.php/2018/11/23/what-is-deep-learning-exactly/). Questions that often arise are about the difference between deep learning and machine learning. Below, I'll discuss my views on these differences.
+Another buzzword that I see a lot is [_deep learning_](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-deep-learning-exactly.md). Questions that often arise are about the difference between deep learning and machine learning. Below, I'll discuss my views on these differences.
 
 ### **It's a part of machine learning**
 

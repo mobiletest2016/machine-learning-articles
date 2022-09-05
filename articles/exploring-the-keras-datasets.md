@@ -534,7 +534,7 @@ This is a selection of MNIST digits:
 
 [![](images/mnist.png)](https://www.machinecurve.com/wp-content/uploads/2019/07/mnist.png)
 
-There is a wide range of possibilities when using MNIST in educational machine learning settings. I use it a lot in my blogs here, on MachineCurve. For example, I've created a [variational autoencoder](https://www.machinecurve.com/index.php/2019/12/30/how-to-create-a-variational-autoencoder-with-keras/) with the MNIST dataset, which allowed me to generate new digits:
+There is a wide range of possibilities when using MNIST in educational machine learning settings. I use it a lot in my blogs here, on MachineCurve. For example, I've created a [variational autoencoder](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-variational-autoencoder-with-keras.md) with the MNIST dataset, which allowed me to generate new digits:
 
 [![](images/mnist_digits.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/mnist_digits.png)
 
@@ -666,7 +666,7 @@ for i in np.random.randint(0, len(x_train)-1, 30):
 
 Let's hope that Fashion MNIST or a similar dataset can play an actual role as a benchmark dataset in the machine learning community.
 
-Fun side note: with this dataset, it's also possible to create a [variational autoencoder](https://www.machinecurve.com/index.php/2019/12/24/what-is-a-variational-autoencoder-vae/) :) Visualizing the so-called latent space, or the distribution learnt by the autoencoder, shows that we can generate samples that are something in between a shoe and a boot, in between trouwsers and a t-shirt, and so on. Might be interesting for fashion designers 😋
+Fun side note: with this dataset, it's also possible to create a [variational autoencoder](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-a-variational-autoencoder-vae.md) :) Visualizing the so-called latent space, or the distribution learnt by the autoencoder, shows that we can generate samples that are something in between a shoe and a boot, in between trouwsers and a t-shirt, and so on. Might be interesting for fashion designers 😋
 
 [![](images/fmnist_dmax_plot.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/fmnist_dmax_plot.png)
 
@@ -745,7 +745,7 @@ These are all the variables present in the dataset (StatLib, n.d.):
 
 **MEDV** is the median value and hence the target variable, while the other variables describe the MEDV or median value of owner-occupied homes. Given the focus of the study ("hedonic housing prices and the demand for clean air", see Harrison & Rubinfeld 1978), it's clear why variables such as crime rate, retail acres and nitric oxides concentration are present.
 
-[(It does however seem to be the case that additional factors help determine house prices, as we found quite a high error rate when creating a neural network with this dataset. We didn't however explore which ones they are.)](https://www.machinecurve.com/index.php/2019/10/12/using-huber-loss-in-keras/)
+[(It does however seem to be the case that additional factors help determine house prices, as we found quite a high error rate when creating a neural network with this dataset. We didn't however explore which ones they are.)](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/using-huber-loss-in-keras.md)
 
 * * *
 

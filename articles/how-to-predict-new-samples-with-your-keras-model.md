@@ -63,15 +63,15 @@ print(predictions)
 
 Let's first take a look at the Keras model that we will be using today for showing you how to generate predictions for new data.
 
-It's an adaptation of the Convolutional Neural Network that we trained to demonstrate [how sparse categorical crossentropy loss works](https://www.machinecurve.com/index.php/2019/10/06/how-to-use-sparse-categorical-crossentropy-in-keras/). Today's one works for TensorFlow 2.0 and the integrated version of Keras; hence, I'd advise to use this variant instead of the traditional `keras` package.
+It's an adaptation of the Convolutional Neural Network that we trained to demonstrate [how sparse categorical crossentropy loss works](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-sparse-categorical-crossentropy-in-keras.md). Today's one works for TensorFlow 2.0 and the integrated version of Keras; hence, I'd advise to use this variant instead of the traditional `keras` package.
 
 [![](images/dig_4-300x225.png)](https://www.machinecurve.com/wp-content/uploads/2020/02/dig_4.png)
 
 Now, I won't cover all the steps describing _how_ this model is built - take a look at the link above if you wish to understand this in more detail. However, very briefly:
 
-- The model loads data from the EMNIST Digits dataset, which contains many samples of digits 0 to 9. To do this, we use our [Extra Keras Datasets](https://www.machinecurve.com/index.php/2020/01/10/making-more-datasets-available-for-keras/) package.
+- The model loads data from the EMNIST Digits dataset, which contains many samples of digits 0 to 9. To do this, we use our [Extra Keras Datasets](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/making-more-datasets-available-for-keras.md) package.
 - It prepares the data by reshaping it (adding the number of channels, which Keras requires), casting the data into the `float32` type, and scaling.
-- It creates the ConvNet architecture: three convolutional blocks with [Max Pooling](https://www.machinecurve.com/index.php/2020/01/30/what-are-max-pooling-average-pooling-global-max-pooling-and-global-average-pooling/) for spatial hierarchy and [Dropout](https://www.machinecurve.com/index.php/2019/12/18/how-to-use-dropout-with-keras/) against overfitting. Using Flatten, and Dense layers that end with a [Softmax activation](https://www.machinecurve.com/index.php/2020/01/08/how-does-the-softmax-activation-function-work/), we get a multiclass probability distribution.
+- It creates the ConvNet architecture: three convolutional blocks with [Max Pooling](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-are-max-pooling-average-pooling-global-max-pooling-and-global-average-pooling.md) for spatial hierarchy and [Dropout](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-dropout-with-keras.md) against overfitting. Using Flatten, and Dense layers that end with a [Softmax activation](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-does-the-softmax-activation-function-work.md), we get a multiclass probability distribution.
 - It compiles the model and fits the data.
 - Finally, it evaluates the model based on the test set.
 
@@ -146,7 +146,7 @@ If we want to generate new predictions for future data, it's important that we s
 
 Let's thus find a way to save our model!
 
-Fortunately, Keras offers a built-in facility for saving your models. Today, we do so using the new TensorFlow `SavedModel` approach. However, the former way of working is also still available. [Check out this post if you wish to check out saving models using both approaches in more detail](https://www.machinecurve.com/index.php/2020/02/14/how-to-save-and-load-a-model-with-keras/).
+Fortunately, Keras offers a built-in facility for saving your models. Today, we do so using the new TensorFlow `SavedModel` approach. However, the former way of working is also still available. [Check out this post if you wish to check out saving models using both approaches in more detail](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-save-and-load-a-model-with-keras.md).
 
 ### Saving
 
@@ -277,7 +277,7 @@ The output here seems to be a bit jibberish at first:
 
 Confused? 😕 Don't be!
 
-Remember that we used the [Softmax activation function](https://www.machinecurve.com/index.php/2020/01/08/how-does-the-softmax-activation-function-work/) when creating our model. This activation function doesn't compute _the prediction_, but rather a _discrete probability distribution over the target classes_. In simple English, this means that Softmax computes the probability that the input belongs to a particular class, for each class. The values in each row summate to 1 - or 100%, which is a characteristic of a valid probability distribution.
+Remember that we used the [Softmax activation function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-does-the-softmax-activation-function-work.md) when creating our model. This activation function doesn't compute _the prediction_, but rather a _discrete probability distribution over the target classes_. In simple English, this means that Softmax computes the probability that the input belongs to a particular class, for each class. The values in each row summate to 1 - or 100%, which is a characteristic of a valid probability distribution.
 
 Now, we can finalize our work by _actually_ finding out what our predicted classes are - by taking the `argmax` values (or "maximum argument", index of the maximum value) for each element in the list with predictions:
 
@@ -406,7 +406,7 @@ print(classes)
 
 In today's blog post, we looked at how to _generate predictions with a Keras model_. We did so by coding an example, which did a few things:
 
-- Load EMNIST digits from the [Extra Keras Datasets](https://www.machinecurve.com/index.php/2020/01/10/making-more-datasets-available-for-keras/) module.
+- Load EMNIST digits from the [Extra Keras Datasets](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/making-more-datasets-available-for-keras.md) module.
 - Prepare the data.
 - Define and train a Convolutional Neural Network for classification.
 - Save the model.
@@ -423,8 +423,8 @@ Thank you for reading MachineCurve today and happy engineering! 😎
 
 ## References
 
-MachineCurve. (2020, January 10). Making more datasets available for Keras. Retrieved from [https://www.machinecurve.com/index.php/2020/01/10/making-more-datasets-available-for-keras/](https://www.machinecurve.com/index.php/2020/01/10/making-more-datasets-available-for-keras/)
+MachineCurve. (2020, January 10). Making more datasets available for Keras. Retrieved from [https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/making-more-datasets-available-for-keras/](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/making-more-datasets-available-for-keras.md)
 
-MachineCurve. (2020, February 11). How to use sparse categorical crossentropy in Keras? Retrieved from [https://www.machinecurve.com/index.php/2019/10/06/how-to-use-sparse-categorical-crossentropy-in-keras/](https://www.machinecurve.com/index.php/2019/10/06/how-to-use-sparse-categorical-crossentropy-in-keras/)
+MachineCurve. (2020, February 11). How to use sparse categorical crossentropy in Keras? Retrieved from [https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-sparse-categorical-crossentropy-in-keras/](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-sparse-categorical-crossentropy-in-keras.md)
 
 Cohen, G., Afshar, S., Tapson, J., & van Schaik, A. (2017). EMNIST: an extension of MNIST to handwritten letters. Retrieved from [http://arxiv.org/abs/1702.05373](http://arxiv.org/abs/1702.05373)

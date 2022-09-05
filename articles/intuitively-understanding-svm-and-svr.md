@@ -43,13 +43,13 @@ Before neural networks, Support Vector Machines (SVMs) were very popular for gen
 
 Hyperplanes and data points. The [image](https://en.wikipedia.org/wiki/Support-vector_machine#/media/File:Svm_separating_hyperplanes_(SVG).svg)is not edited. Author: [Zack Weinberg](https://commons.wikimedia.org/w/index.php?title=User:ZackWeinberg&action=edit&redlink=1), derived from [Cyc's](https://commons.wikimedia.org/w/index.php?title=User:Cyc&action=edit&redlink=1) work. License: [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/legalcode)
 
-When you are training a Machine Learning model, there is a wide variety of algorithms to choose from. Today, neural networks are very popular methods for training a classification or regression model, but there are additional ones. Take Support Vector Machines, or their regression equivalent, Support Vector Regression. While these models have more [bias](https://www.machinecurve.com/index.php/2020/11/02/machine-learning-error-bias-variance-and-irreducible-error-with-python/) by design compared to neural networks, they might work better in cases where data is scarce.
+When you are training a Machine Learning model, there is a wide variety of algorithms to choose from. Today, neural networks are very popular methods for training a classification or regression model, but there are additional ones. Take Support Vector Machines, or their regression equivalent, Support Vector Regression. While these models have more [bias](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/machine-learning-error-bias-variance-and-irreducible-error-with-python.md) by design compared to neural networks, they might work better in cases where data is scarce.
 
 This article discusses in detail but intuitively how **Support Vector Machines** and **Support Vector Regression works**. Here, we'll already cover things briefly. If you look at the image on the right, you see a binary classification problem. In other words, a supervised learning problem. You see black and white circles. The goal of any machine learning model used for classification is to find a decision boundary, i.e. a line (or, more strictly, a N-1 dimensional object called hyperplane for the N-dimensional feature space; here N=2, so the hyperplane is a line) that can distinguish between the classes.
 
 Support Vector Machines (SVMs) here are so-called maximum-margin classifiers. This means that they will attempt to maximize the distance between the closest vectors of each class and the line. These closest vectors are called **support vectors**, and hence the name _Support Vector_ Machine. Hyperplane `H3` is best, as you can see it maximizes the equal distance between the two classes. It's better than `H2`, which is also capable of performing a classification but is not as good as `H3`, as well as better than `H1`, which is not capable of classifying at all.
 
-The problem with SVMs however is that they can **(1) only be used for binary classification and (2) require a kernel function provided by humans to learn data**. In other words, you'll have to provide some estimate about the structure of your data, and it will then only work for binary classification problems. At least, out of the box. By [combining various binary SVMs together](https://www.machinecurve.com/index.php/2020/11/11/creating-one-vs-rest-and-one-vs-one-svm-classifiers-with-scikit-learn/), you can still use it in a **multiclass way**.
+The problem with SVMs however is that they can **(1) only be used for binary classification and (2) require a kernel function provided by humans to learn data**. In other words, you'll have to provide some estimate about the structure of your data, and it will then only work for binary classification problems. At least, out of the box. By [combining various binary SVMs together](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/creating-one-vs-rest-and-one-vs-one-svm-classifiers-with-scikit-learn.md), you can still use it in a **multiclass way**.
 
 SVMs can also be used for regression; then, the goal is to estimate a hyperplane that can be used for regression. It works in a similar way, although in regression a so-called 'error tube' is added where errors are not penalized, reflecting the increased complexity of the problem (i.e. from a discrete problem with a few classes regression problems are continuous problems with infinite possible outcomes).
 
@@ -57,13 +57,13 @@ SVMs can also be used for regression; then, the goal is to estimate a hyperplane
 
 Also make sure to read the following articles if you are interested in SVMs and SVR:
 
-- [Creating a simple binary SVM classifier with Python and Scikit-learn](https://www.machinecurve.com/index.php/2020/05/03/creating-a-simple-binary-svm-classifier-with-python-and-scikit-learn/)
-- [How to visualize support vectors of your SVM classifier?](https://www.machinecurve.com/index.php/2020/05/05/how-to-visualize-support-vectors-of-your-svm-classifier/)
-- [Creating One-vs-Rest and One-vs-One SVM Classifiers with Scikit-learn](https://www.machinecurve.com/index.php/2020/11/11/creating-one-vs-rest-and-one-vs-one-svm-classifiers-with-scikit-learn/)
-- [Using Error-Correcting Output Codes with Scikit-learn for multiclass SVM classification](https://www.machinecurve.com/index.php/2020/11/12/using-error-correcting-output-codes-for-multiclass-svm-classification/)
-- [How to create a Multilabel SVM classifier with Scikit-learn](https://www.machinecurve.com/index.php/2020/11/12/how-to-create-a-multilabel-svm-classifier-with-scikit-learn/)
-- [How to perform Multioutput Regression with SVMs in Python](https://www.machinecurve.com/index.php/2020/11/17/how-to-perform-multioutput-regression-with-svms-in-python/)
-- [Using Radial Basis Functions for SVMs with Python and Scikit-learn](https://www.machinecurve.com/index.php/2020/11/25/using-radial-basis-functions-for-svms-with-python-and-scikit-learn/)
+- [Creating a simple binary SVM classifier with Python and Scikit-learn](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/creating-a-simple-binary-svm-classifier-with-python-and-scikit-learn.md)
+- [How to visualize support vectors of your SVM classifier?](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-support-vectors-of-your-svm-classifier.md)
+- [Creating One-vs-Rest and One-vs-One SVM Classifiers with Scikit-learn](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/creating-one-vs-rest-and-one-vs-one-svm-classifiers-with-scikit-learn.md)
+- [Using Error-Correcting Output Codes with Scikit-learn for multiclass SVM classification](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/using-error-correcting-output-codes-for-multiclass-svm-classification.md)
+- [How to create a Multilabel SVM classifier with Scikit-learn](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-multilabel-svm-classifier-with-scikit-learn.md)
+- [How to perform Multioutput Regression with SVMs in Python](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-perform-multioutput-regression-with-svms-in-python.md)
+- [Using Radial Basis Functions for SVMs with Python and Scikit-learn](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/using-radial-basis-functions-for-svms-with-python-and-scikit-learn.md)
 
 Let's now dive into SVMs and SVR more deeply! 🚀
 
@@ -107,7 +107,7 @@ In a different blog, I already explained what classification is:
 >   
 > Human classifiers _decide about which class an object (a tomato) belongs to._
 > 
-> [How to create a CNN classifier with Keras?](https://machinecurve.com/index.php/2019/09/17/how-to-create-a-cnn-classifier-with-keras/)
+> [How to create a CNN classifier with Keras?](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras.md)
 
 This can also be done by a machine learning model: the numbers behind the tomato images as features in a feature vector and the outcome (sellable or non-sellable) as targets.
 
@@ -127,7 +127,7 @@ Suppose that we have a dataset that is linearly separable:
 
 ![](images/linearly_separable_dataset-1.png)
 
-We can simply draw a line in between the two groups and separate the data. As we've seen for e.g. the [Rosenblatt Perceptron](https://machinecurve.com/index.php/2019/07/23/linking-maths-and-intuition-rosenblatts-perceptron-in-python/), it's then possible to classify new data points into the correct group, or class.
+We can simply draw a line in between the two groups and separate the data. As we've seen for e.g. the [Rosenblatt Perceptron](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/linking-maths-and-intuition-rosenblatts-perceptron-in-python.md), it's then possible to classify new data points into the correct group, or class.
 
 However, with much data, a linear classifier might not be such a good idea: every sample is taken into account for generating the decision boundary. What's more, linear classifiers do not find the _optimum decision boundary._ When data is linearly separable, _at least one_, but often many decision boundaries exist. Yet, which one is optimal?
 
@@ -238,13 +238,13 @@ I hope you've learnt something from this blog, or that it helped you understand 
 
 Also make sure to read the following articles if you are interested in SVMs and SVR:
 
-- [Creating a simple binary SVM classifier with Python and Scikit-learn](https://www.machinecurve.com/index.php/2020/05/03/creating-a-simple-binary-svm-classifier-with-python-and-scikit-learn/)
-- [How to visualize support vectors of your SVM classifier?](https://www.machinecurve.com/index.php/2020/05/05/how-to-visualize-support-vectors-of-your-svm-classifier/)
-- [Creating One-vs-Rest and One-vs-One SVM Classifiers with Scikit-learn](https://www.machinecurve.com/index.php/2020/11/11/creating-one-vs-rest-and-one-vs-one-svm-classifiers-with-scikit-learn/)
-- [Using Error-Correcting Output Codes with Scikit-learn for multiclass SVM classification](https://www.machinecurve.com/index.php/2020/11/12/using-error-correcting-output-codes-for-multiclass-svm-classification/)
-- [How to create a Multilabel SVM classifier with Scikit-learn](https://www.machinecurve.com/index.php/2020/11/12/how-to-create-a-multilabel-svm-classifier-with-scikit-learn/)
-- [How to perform Multioutput Regression with SVMs in Python](https://www.machinecurve.com/index.php/2020/11/17/how-to-perform-multioutput-regression-with-svms-in-python/)
-- [Using Radial Basis Functions for SVMs with Python and Scikit-learn](https://www.machinecurve.com/index.php/2020/11/25/using-radial-basis-functions-for-svms-with-python-and-scikit-learn/)
+- [Creating a simple binary SVM classifier with Python and Scikit-learn](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/creating-a-simple-binary-svm-classifier-with-python-and-scikit-learn.md)
+- [How to visualize support vectors of your SVM classifier?](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-support-vectors-of-your-svm-classifier.md)
+- [Creating One-vs-Rest and One-vs-One SVM Classifiers with Scikit-learn](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/creating-one-vs-rest-and-one-vs-one-svm-classifiers-with-scikit-learn.md)
+- [Using Error-Correcting Output Codes with Scikit-learn for multiclass SVM classification](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/using-error-correcting-output-codes-for-multiclass-svm-classification.md)
+- [How to create a Multilabel SVM classifier with Scikit-learn](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-multilabel-svm-classifier-with-scikit-learn.md)
+- [How to perform Multioutput Regression with SVMs in Python](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-perform-multioutput-regression-with-svms-in-python.md)
+- [Using Radial Basis Functions for SVMs with Python and Scikit-learn](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/using-radial-basis-functions-for-svms-with-python-and-scikit-learn.md)
 
 * * *
 

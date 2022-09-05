@@ -45,8 +45,8 @@ Source: [gwding/draw\_convnet](https://github.com/gwding/draw_convnet)
 
 We'll now briefly cover the inner workings of such a network, and why it can be a better tool for image problems. We don't cover this topic extensively, because this article focuses on building a ConvNet with PyTorch. If you wish to understand ConvNets in more detail, we'd love to point you to these articles:
 
-- [Convolutional Neural Networks and their components for computer vision](https://www.machinecurve.com/index.php/2018/12/07/convolutional-neural-networks-and-their-components-for-computer-vision/)
-- [How to build a ConvNet for CIFAR-10 and CIFAR-100 classification with Keras?](https://www.machinecurve.com/index.php/2020/02/09/how-to-build-a-convnet-for-cifar-10-and-cifar-100-classification-with-keras/#why-convolutional-neural-networks-suit-image-classification)
+- [Convolutional Neural Networks and their components for computer vision](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/convolutional-neural-networks-and-their-components-for-computer-vision.md)
+- [How to build a ConvNet for CIFAR-10 and CIFAR-100 classification with Keras?](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-build-a-convnet-for-cifar-10-and-cifar-100-classification-with-keras/#why-convolutional-neural-networks-suit-image-classification)
 
 ### A ConvNet, structured
 
@@ -56,7 +56,7 @@ Left of this layer, we can see two layers with Hidden units. These are called _F
 
 The presence of Convolutional layers (hello, captain obvious).
 
-On the left, we can see so-called **Convolution** layers followed by **[(Max) pooling](https://www.machinecurve.com/index.php/2020/01/30/what-are-max-pooling-average-pooling-global-max-pooling-and-global-average-pooling/)** layers. A _convolution_ can be defined as follows:
+On the left, we can see so-called **Convolution** layers followed by **[(Max) pooling](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-are-max-pooling-average-pooling-global-max-pooling-and-global-average-pooling.md)** layers. A _convolution_ can be defined as follows:
 
 > In [mathematics](https://en.wikipedia.org/wiki/Mathematics) (in particular, [functional analysis](https://en.wikipedia.org/wiki/Functional_analysis)), **convolution** is a [mathematical operation](https://en.wikipedia.org/wiki/Operation_(mathematics)) on two [functions](https://en.wikipedia.org/wiki/Function_(mathematics)) (_f_ and _g_) that produces a third function ({\\displaystyle f\*g}![f*g](https://wikimedia.org/api/rest_v1/media/math/render/svg/de088e4a3777d3b5d2787fdec81acd91e78a719e)) that expresses how the shape of one is modified by the other.
 > 

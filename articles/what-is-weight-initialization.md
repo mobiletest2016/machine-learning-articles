@@ -41,7 +41,7 @@ Another strategy - albeit a bit naïve - would be to initialize weights randomly
 
 ## The structure of a neural network
 
-Suppose that we're working with a relatively simple neural net, a [Multilayer Perceptron](https://machinecurve.com/index.php/2019/07/27/how-to-create-a-basic-mlp-classifier-with-the-keras-sequential-api/) (MLP).
+Suppose that we're working with a relatively simple neural net, a [Multilayer Perceptron](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-basic-mlp-classifier-with-the-keras-sequential-api.md) (MLP).
 
 An MLP looks as follows:
 

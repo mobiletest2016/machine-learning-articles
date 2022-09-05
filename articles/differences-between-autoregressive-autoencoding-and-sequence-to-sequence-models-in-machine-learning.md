@@ -14,7 +14,7 @@ tags:
   - "transformers"
 ---
 
-Transformers have changed the application of Machine Learning in Natural Language Processing. They have replaced [LSTMs](https://www.machinecurve.com/index.php/2020/12/29/a-gentle-introduction-to-long-short-term-memory-networks-lstm/) as state-of-the-art (SOTA) approaches in the wide variety of language and text related tasks that can be resolved by Machine Learning.
+Transformers have changed the application of Machine Learning in Natural Language Processing. They have replaced [LSTMs](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/a-gentle-introduction-to-long-short-term-memory-networks-lstm.md) as state-of-the-art (SOTA) approaches in the wide variety of language and text related tasks that can be resolved by Machine Learning.
 
 However, as we have seen before when paradigms shift towards different approaches, one breakthrough spawns a large amount of research and hence a large amount of small improvements. For example, we have seen this with ConvNets in computer vision: after the introduction of AlexNet in 2012, which won the ImageNet competition with an unprecedented advantage, a wide variety of convolutional architectures has been proposed, tested and built for image related tasks.
 
@@ -54,7 +54,7 @@ There are many applications of performing sequence-to-sequence learning.
 > 
 > Gehring et al. (2017)
 
-While this is not strictly necessary (e.g. think vanilla RNNs), most contemporary Seq2Seq models make use of an encoder-decoder architecture. In this architecture, an encoder is trained to convert input sequences into a hidden representation. Often, this is a [high-dimensional hidden state vector](https://www.machinecurve.com/index.php/2019/12/26/how-to-visualize-the-encoded-state-of-an-autoencoder-with-keras/).
+While this is not strictly necessary (e.g. think vanilla RNNs), most contemporary Seq2Seq models make use of an encoder-decoder architecture. In this architecture, an encoder is trained to convert input sequences into a hidden representation. Often, this is a [high-dimensional hidden state vector](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-encoded-state-of-an-autoencoder-with-keras.md).
 
 Subsequently, a trained decoder is applied, which is capable of changing the hidden state vector into some desired output.
 
@@ -76,9 +76,9 @@ We can then feed the high-dimensional representation into the decoder, which onc
 
 ### Original Transformer is a Seq2Seq model
 
-In a different article, [we introduced the original Transformer architecture](https://www.machinecurve.com/index.php/2020/12/28/introduction-to-transformers-in-machine-learning/), as proposed by Vaswani et al. back in 2017. Below, you will find a visualization of its architecture. Even though the flow is more vertical than in the example above, you can see that it is in essence an encoder-decoder architecture performing sequence-to-sequence learning:
+In a different article, [we introduced the original Transformer architecture](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/introduction-to-transformers-in-machine-learning.md), as proposed by Vaswani et al. back in 2017. Below, you will find a visualization of its architecture. Even though the flow is more vertical than in the example above, you can see that it is in essence an encoder-decoder architecture performing sequence-to-sequence learning:
 
-- We have **N encoder segments** that take inputs (in the form of a learned embedding) and encode it into a higher-dimensional intermediate representation (in the case of the original Transformer, it outputs a 512-dimensional [state vector](https://www.machinecurve.com/index.php/2020/12/28/introduction-to-transformers-in-machine-learning/#vanilla-transformers-use-learned-input-embeddings)). It takes either the previously encoded state as its input, or the source sequence (i.e., the phrase in English).
+- We have **N encoder segments** that take inputs (in the form of a learned embedding) and encode it into a higher-dimensional intermediate representation (in the case of the original Transformer, it outputs a 512-dimensional [state vector](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/introduction-to-transformers-in-machine-learning/#vanilla-transformers-use-learned-input-embeddings)). It takes either the previously encoded state as its input, or the source sequence (i.e., the phrase in English).
 - We have **N decoder segments** that take the final encoded state as the input, as well as the output of either the previous decoder segment or the target input sequence (i.e., the phrase in French).
 
 The encoder segments ensure that the inputs are converted into an abstract, high-dimensional intermediate representation. The decoder segments take this representation providing context about the input as well as the target sequence, and ensure that appropriate sequences in a target language can be predicted for those in a source language.
@@ -87,7 +87,7 @@ The original Transformer model, a.k.a. _vanilla_ or _classic_ Transformers, is t
 
 ![](images/Diagram-32-1-1024x991.png)
 
-Source: [Introduction to Transformers in Machine Learning](https://www.machinecurve.com/index.php/2020/12/28/introduction-to-transformers-in-machine-learning/), based on Vaswani et al. (2017)
+Source: [Introduction to Transformers in Machine Learning](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/introduction-to-transformers-in-machine-learning.md), based on Vaswani et al. (2017)
 
 * * *
 
@@ -117,7 +117,7 @@ After studying the original Transformer proposed by Vaswani et al. (2017), many 
 
 And they succeeded: Transformers can actually be used for autoregression and hence for text generation.
 
-The class of Transformers called **GPT** (indeed, even [GPT-2](https://openai.com/blog/better-language-models/) and [GPT-3](https://en.wikipedia.org/wiki/GPT-3)) is autoregressive (Radford et al., 2018). GPT is heavily inspired by the decoder segment of the original [Transformer](https://www.machinecurve.com/index.php/2020/12/28/introduction-to-transformers-in-machine-learning/), as we can see in the visualization on the right.
+The class of Transformers called **GPT** (indeed, even [GPT-2](https://openai.com/blog/better-language-models.md) and [GPT-3](https://en.wikipedia.org/wiki/GPT-3)) is autoregressive (Radford et al., 2018). GPT is heavily inspired by the decoder segment of the original [Transformer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/introduction-to-transformers-in-machine-learning.md), as we can see in the visualization on the right.
 
 - The input is first embedded. This embedding is a matrix (_position embedding matrix_) and hence the actual input is a vector with multiple tokens (meaning that it can be used time and time again, i.e., have an autoregressive property).
 - 12 decoder segments with masked multi-head attention segments, feedforward segments, and layer normalization segments interpret the input values.
@@ -148,7 +148,7 @@ Autoregressive models are very good when the goal is to model language - i.e., t
 
 An example of an autoencoding Transformer is the BERT model, proposed by Devlin et al. (2018). It first corrupts the inputs and aims to predict the original inputs and by consequence learns an encoding that can be used for downstream tasks.
 
-That's precisely the dogma used with BERT-like models: pretrain on an unsupervised dataset, after which it becomes possible to fine-tune the model on downstream tasks such as [question answering](https://www.machinecurve.com/index.php/2020/12/21/easy-question-answering-with-machine-learning-and-huggingface-transformers/).
+That's precisely the dogma used with BERT-like models: pretrain on an unsupervised dataset, after which it becomes possible to fine-tune the model on downstream tasks such as [question answering](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/easy-question-answering-with-machine-learning-and-huggingface-transformers.md).
 
 * * *
 
@@ -188,7 +188,7 @@ Autoencoding models corrupt textual inputs and generate the original inputs in r
 
 What makes things a bit more confusing is that saying whether we're performing a _Seq2Seq,_ an _autoregressive_ or an _autoencoding_ task does not depend on the architecture. Many state-of-the-art approaches such as GPT and BERT simply use parts of the original Transformer architecture. Rather, they adapt the training task to the task they want to perform: text generation or text understanding. Hence, whether a model is autoregressive or autoencoding therefore depends mostly on the task and by consequence the type of training.
 
-[Ask a question](https://www.machinecurve.com/index.php/add-machine-learning-question/)
+[Ask a question](https://web.archive.org/web/https://www.machinecurve.com/index.php/add-machine-learning-question/)
 
 I hope that you have learned something from this article. If you did, please feel free to leave a comment in the comments section 💬 I'd love to hear from you. Please do the same if you have remarks or suggestions for improvement. If you have questions, please click the **Ask Questions** button above, or leave a message below. Thank you for reading MachineCurve today and happy engineering! 😎
 

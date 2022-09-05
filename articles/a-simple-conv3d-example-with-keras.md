@@ -19,7 +19,7 @@ _The cover image is courtesy of [David de la Iglesia Castro](https://github.com/
 
 We all know about the computer vision applications which allow us to perform object detection, to name just one.
 
-How these Conv2D networks work [has been explained in another blog post.](https://www.machinecurve.com/index.php/2018/12/07/convolutional-neural-networks-and-their-components-for-computer-vision/)
+How these Conv2D networks work [has been explained in another blog post.](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/convolutional-neural-networks-and-their-components-for-computer-vision.md)
 
 For many applications, however, it's not enough to stick to two dimensions. Rather, the _height_ or _time_ dimension is also important. In videos, which are essentially many images stacked together, time is this third axis. It can however also be height or _number of layers_, in e.g. the layered image structure of an MRI scan. In both cases, the third axis intrinsically links the two-dimensional parts together, and hence cannot be ignored.
 
@@ -71,7 +71,7 @@ If you are familiar with convolutional neural networks, it's likely that you und
 
 A two-dimensional image, with multiple channels (three in the RGB input in the image above), is interpreted by a certain number (`N`) kernels of some size, in our case 3x3x3. The actual _interpretation_ happens because each kernel _slides over the input image_; literally, from the left to the right, then down a bit; from the left to the right, and so on. By means of element-wise multiplications, it generates a _feature map_ which is smaller than the original input, and in fact is a _more abstract summary_ of the original input image. Hence, by stacking multiple convolutional layers, it becomes possible to generate a very abstract representation of some input representing some _average object_, which allows us to classify them into groups.
 
-_For more information, I'd really recommend my other blog post, [Convolutional Neural Networks and their components for computer vision](https://www.machinecurve.com/index.php/2018/12/07/convolutional-neural-networks-and-their-components-for-computer-vision/)._
+_For more information, I'd really recommend my other blog post, [Convolutional Neural Networks and their components for computer vision](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/convolutional-neural-networks-and-their-components-for-computer-vision.md)._
 
 Now, with three-dimensional convolutional layers, things are different - but not too different. Instead of three dimensions in the input image (the two image dimensions and the _channels_ dimension, you'll have four: the two image dimensions, the time/height dimension, and the channels dimension). As such, the feature map is also three-dimensional. This means that the filters move in three dimensions instead of two: not only from left to right and from the top to the bottom, but also forward and backward. Three-dimensional convolutional layers will therefore be more expensive in terms of the required computational resources, but allow you to retrieve much richer insights.
 
@@ -83,7 +83,7 @@ Now that we understand them intuitively, let's see if we can build one!
 
 ...creating a machine learning requires a dataset with which the model can be trained.
 
-The **3D MNIST dataset** that is available at [Kaggle](https://www.kaggle.com/daavoo/3d-mnist) serves this purpose. It is an adaptation of the original MNIST dataset which we used to create e.g. the [regular CNN](https://www.machinecurve.com/index.php/2019/09/17/how-to-create-a-cnn-classifier-with-keras/). The authors of the dataset converted the two-dimensional data into 3D by means of point clouds, as follows:
+The **3D MNIST dataset** that is available at [Kaggle](https://www.kaggle.com/daavoo/3d-mnist) serves this purpose. It is an adaptation of the original MNIST dataset which we used to create e.g. the [regular CNN](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras.md). The authors of the dataset converted the two-dimensional data into 3D by means of point clouds, as follows:
 
 [![](images/mnist3d.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/10/mnist3d.jpg)
 
@@ -143,11 +143,11 @@ For most of them, I already explained why we need them. However, for the Keras o
 
 - We'll work with the **Sequential API**. It's the easiest way to structure your Keras layers (contrary to the Functional API), but it comes with a cost - you lose flexibility in terms of how data flows through your model, as you literally stack all layers. For this blog post, that doesn't matter, but it may be an idea to inform yourself about the differences between both APIs.
 - Next, we import some layers:
-    - The **Dense** layer represents the densely-connected layers ([MLP-like layers](https://www.machinecurve.com/index.php/2019/07/27/how-to-create-a-basic-mlp-classifier-with-the-keras-sequential-api/)) that we will use to classify the very abstract 3D convolutional feature maps into one of the buckets 0-9, for the digits 0-9.
+    - The **Dense** layer represents the densely-connected layers ([MLP-like layers](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-basic-mlp-classifier-with-the-keras-sequential-api.md)) that we will use to classify the very abstract 3D convolutional feature maps into one of the buckets 0-9, for the digits 0-9.
     - The **Flatten** layer will be used to convert the multidimensional feature map into a one-dimensional array, since only those can be handled by densely-connected layers.
     - The **Conv3D** layer, which was intuitively discussed above, will be used for performing the convolutional operations.
     - In between the convolutional layers, we apply three-dimensional max pooling with **MaxPooling3D** in order to down-sample the feature maps (or in plain English: making them smaller, presumably without losing information) which saves precious computational resources.
-- Finally, we import the `[to_categorical](https://www.machinecurve.com/index.php/2020/11/24/one-hot-encoding-for-machine-learning-with-tensorflow-and-keras/)` function. The [loss function](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/) we're using to compute _how bad the model performs_ during training, [categorical crossentropy](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#categorical-crossentropy), requires that we convert our integer target data (e.g. \[latex\]8\[/latex\] when it's an 8) into categorical vectors representing true/false values for class presence, e.g. \[latex\]\[0, 0, 0, 0, 0, 0, 0, 0, 1, 0\]\[/latex\] for class 8 over all classes 0-9. `to_categorical` converts the integer target data into categorical format.
+- Finally, we import the `[to_categorical](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/one-hot-encoding-for-machine-learning-with-tensorflow-and-keras.md)` function. The [loss function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md) we're using to compute _how bad the model performs_ during training, [categorical crossentropy](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#categorical-crossentropy), requires that we convert our integer target data (e.g. \[latex\]8\[/latex\] when it's an 8) into categorical vectors representing true/false values for class presence, e.g. \[latex\]\[0, 0, 0, 0, 0, 0, 0, 0, 1, 0\]\[/latex\] for class 8 over all classes 0-9. `to_categorical` converts the integer target data into categorical format.
 
 ### Model configuration
 
@@ -167,7 +167,7 @@ verbosity = 1
 Specifically, we configure the model as follows:
 
 - We use a **batch size** of 100 samples. This means that one hundred samples are fed forward through the network each time, generating predictions, computing loss, and optimization. The higher the batch size, the higher the efficiency with which the improvement gradient can be computed, but the more memory is required.
-- We use 30 **epochs**. One epoch, or full iteration, means that all samples are fed forward once, and that the process can start over again. It is possibly to [dynamically determine the number of epochs](https://www.machinecurve.com/index.php/2019/05/30/avoid-wasting-resources-with-earlystopping-and-modelcheckpoint-in-keras/), but for the sake of simplicity we just choose 30.
+- We use 30 **epochs**. One epoch, or full iteration, means that all samples are fed forward once, and that the process can start over again. It is possibly to [dynamically determine the number of epochs](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/avoid-wasting-resources-with-earlystopping-and-modelcheckpoint-in-keras.md), but for the sake of simplicity we just choose 30.
 - The **learning rate**, or the aggressiveness with which the optimizer (in our case, the Adam optimizer) will attempt to improve once the gradient is known, is set to 0.001.
 - We obviously have 10 classes (the digits 0 up to and including 9), so **no\_classes** is 10.
 - Twenty percent or 0.2 of the training data is used as validation data, so this defines our **validation\_split**.
@@ -197,7 +197,7 @@ def rgb_data_transform(data):
 
 The first helper function, `array_to_color`, was provided by the authors of the [3D MNIST dataset](https://www.kaggle.com/daavoo/3d-mnist) and courtesy goes out to them. What it does is this: the imported data will be of one channel only. This function converts the data into RGB format, and hence into three channels. This ensures resemblence with the original 2D scenario.
 
-Next, we use `rgb_data_transform`, which was created by machine learning students [Sam Berglin, Zheming Lian and Jiahui Jang](https://github.com/sberglin/Projects-and-Papers/blob/master/3D%20CNN/network_final_version.ipynb) at the University of Wisconsin-Madison. Under guidance of professor Sebastian Raschka, whose [Mlxtend](https://www.machinecurve.com/index.php/2019/10/11/how-to-visualize-the-decision-boundary-for-your-keras-model/) library we use quite often, they also created a 3D ConvNet for the 3D MNIST dataset, but then using PyTorch instead of Keras.
+Next, we use `rgb_data_transform`, which was created by machine learning students [Sam Berglin, Zheming Lian and Jiahui Jang](https://github.com/sberglin/Projects-and-Papers/blob/master/3D%20CNN/network_final_version.ipynb) at the University of Wisconsin-Madison. Under guidance of professor Sebastian Raschka, whose [Mlxtend](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-decision-boundary-for-your-keras-model.md) library we use quite often, they also created a 3D ConvNet for the 3D MNIST dataset, but then using PyTorch instead of Keras.
 
 The function reshapes the data, which per sample comes in a (4096,) shape (16x16x16 pixels = 4096 pixels), so in a one-dimensional array. Their function reshapes the data into three-channeled, four-dimensional 16x16x16x3 format, making use of `array_to_color`. The Conv3D function can now handle the data.
 
@@ -228,7 +228,7 @@ with h5py.File("./full_dataset_vectors.h5", "r") as hf:
     targets_test = to_categorical(targets_test).astype(np.integer)
 ```
 
-The first line containing `with` ensures that we open up the [HDF5](https://www.machinecurve.com/index.php/2020/04/13/how-to-use-h5py-and-keras-to-train-with-data-from-hdf5-files/) file as `hf`, which we can subsequently use to retrieve the data we need.
+The first line containing `with` ensures that we open up the [HDF5](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-h5py-and-keras-to-train-with-data-from-hdf5-files.md) file as `hf`, which we can subsequently use to retrieve the data we need.
 
 Specifically, we first load the training and testing data into two different variables: the `X`es for the feature vectors, the `targets` for the... well, unsurprisingly, targets 😄
 
@@ -256,7 +256,7 @@ model.add(Dense(no_classes, activation='softmax'))
 
 As discussed, we use the Keras Sequential API with Conv3D, MaxPooling3D, Flatten and Dense layers.
 
-Specifically, we use two three-dimensional convolutional layers with 3x3x3 kernels, ReLU [activation functions](https://www.machinecurve.com/index.php/2019/09/04/relu-sigmoid-and-tanh-todays-most-used-activation-functions/) and hence He uniform [init](https://www.machinecurve.com/index.php/2019/09/16/he-xavier-initialization-activation-functions-choose-wisely/).
+Specifically, we use two three-dimensional convolutional layers with 3x3x3 kernels, ReLU [activation functions](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md) and hence He uniform [init](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/he-xavier-initialization-activation-functions-choose-wisely.md).
 
 3D max pooling is applied with 2x2x2 pool sizes.
 
@@ -282,7 +282,7 @@ history = model.fit(X_train, targets_train,
 
 We first `compile` the model which essentially configures the architecture according to the hyperparameters that we set in the configuration section.
 
-Next, we `fit` the data to the model, using the other configuration settings set before. Fitting the data starts the training process. The output of this training process is stored in the `history` object which we can use for [visualization purposes](https://www.machinecurve.com/index.php/2019/10/08/how-to-visualize-the-training-process-in-keras/).
+Next, we `fit` the data to the model, using the other configuration settings set before. Fitting the data starts the training process. The output of this training process is stored in the `history` object which we can use for [visualization purposes](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-training-process-in-keras.md).
 
 ### Model evaluation
 
@@ -496,7 +496,7 @@ Now - we got a working Conv3D model with the 3D MNIST dataset, but can we improv
 
 ### Adding Dropout
 
-Adding [Dropout](https://www.machinecurve.com/index.php/2019/12/18/how-to-use-dropout-with-keras/) to the model architecture allows us to 'drop' random elements from the feature maps during training. Although this confuses the model, it disallows it to adapt too much to the training data:
+Adding [Dropout](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-dropout-with-keras.md) to the model architecture allows us to 'drop' random elements from the feature maps during training. Although this confuses the model, it disallows it to adapt too much to the training data:
 
 ```
 # Create the model
@@ -546,10 +546,10 @@ Kaggle. (n.d.). 3D MNIST. Retrieved from [https://www.kaggle.com/daavoo/3d-mnist
 
 GitHub. (2019, September 19). Kaggle/kaggle-api. Retrieved from [https://github.com/Kaggle/kaggle-api](https://github.com/Kaggle/kaggle-api)
 
-MachineCurve. (2019, May 30). Convolutional Neural Networks and their components for computer vision. Retrieved from [https://www.machinecurve.com/index.php/2018/12/07/convolutional-neural-networks-and-their-components-for-computer-vision/](https://www.machinecurve.com/index.php/2018/12/07/convolutional-neural-networks-and-their-components-for-computer-vision/)
+MachineCurve. (2019, May 30). Convolutional Neural Networks and their components for computer vision. Retrieved from [https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/convolutional-neural-networks-and-their-components-for-computer-vision/](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/convolutional-neural-networks-and-their-components-for-computer-vision.md)
 
-MachineCurve. (2019, September 23). Understanding separable convolutions. Retrieved from [https://www.machinecurve.com/index.php/2019/09/23/understanding-separable-convolutions/](https://www.machinecurve.com/index.php/2019/09/23/understanding-separable-convolutions/)
+MachineCurve. (2019, September 23). Understanding separable convolutions. Retrieved from [https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/understanding-separable-convolutions/](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/understanding-separable-convolutions.md)
 
-About loss and loss functions – MachineCurve. (2019, October 15). Retrieved from [https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/)
+About loss and loss functions – MachineCurve. (2019, October 15). Retrieved from [https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md)
 
-Avoid wasting resources with EarlyStopping and ModelCheckpoint in Keras – MachineCurve. (2019, June 3). Retrieved from [https://www.machinecurve.com/index.php/2019/05/30/avoid-wasting-resources-with-earlystopping-and-modelcheckpoint-in-keras/](https://www.machinecurve.com/index.php/2019/05/30/avoid-wasting-resources-with-earlystopping-and-modelcheckpoint-in-keras/)
+Avoid wasting resources with EarlyStopping and ModelCheckpoint in Keras – MachineCurve. (2019, June 3). Retrieved from [https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/avoid-wasting-resources-with-earlystopping-and-modelcheckpoint-in-keras/](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/avoid-wasting-resources-with-earlystopping-and-modelcheckpoint-in-keras.md)

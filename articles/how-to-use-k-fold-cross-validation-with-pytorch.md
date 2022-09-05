@@ -240,7 +240,7 @@ By comparing the subsequent predictions with the ground truth labels that are al
 
 However, we have to be cautious when evaluating our model. We cannot simply use the data that we trained the model with, to avoid becoming a student who grades their own homework.
 
-Because that is what would happen when you evaluated with your training data: as the model has learned to capture patterns related to that particular dataset, the model might perform poorly if these patterns were spurious and therefore not present within real-world data. Especially with [high-variance](https://www.machinecurve.com/index.php/2020/11/02/machine-learning-error-bias-variance-and-irreducible-error-with-python/) models, this can become a problem.
+Because that is what would happen when you evaluated with your training data: as the model has learned to capture patterns related to that particular dataset, the model might perform poorly if these patterns were spurious and therefore not present within real-world data. Especially with [high-variance](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/machine-learning-error-bias-variance-and-irreducible-error-with-python.md) models, this can become a problem.
 
 Instead, we evaluate models with that _test set_, which has been selected and contains samples not present within the training set. But how to construct this test set is another question. There are multiple methods for doing so. Let's take a look at a naïve strategy first. We then understand why we might apply K-fold Cross Validation instead.
 
@@ -448,7 +448,7 @@ Within the for loop, we first perform a `print` statement, indicating the curren
 - With the data loaders, you'll actually sample these samples from the full `dataset`. You can use any batch size that fits in memory, but a batch size of 10 works well in pretty much all of the cases.
 - After preparing the dataset for this particular fold, you initialize the neural network by initializing the class - using `SimpleConvNet()`.
 - Then, when the neural network is initialized, you can initialize the optimizer for this particular training session - in this case, we use Adam, with a `1e-4` learning rate.
-- In PyTorch, you'll have to define [your own training loop](https://www.machinecurve.com/index.php/2021/01/26/creating-a-multilayer-perceptron-with-pytorch-and-lightning/). It's relatively simple: you iterate over the number of epochs; within an epoch, over the minibatches; per minibatch, you perform the forward pass, the backward pass and subsequent optimization. That's what is happening here. Click the link if you want to understand this process in more detail.
+- In PyTorch, you'll have to define [your own training loop](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/creating-a-multilayer-perceptron-with-pytorch-and-lightning.md). It's relatively simple: you iterate over the number of epochs; within an epoch, over the minibatches; per minibatch, you perform the forward pass, the backward pass and subsequent optimization. That's what is happening here. Click the link if you want to understand this process in more detail.
 
 ```
   # K-fold Cross Validation model evaluation
@@ -519,7 +519,7 @@ Within the for loop, we first perform a `print` statement, indicating the curren
 
 #### Fold evaluation
 
-After training a model within a particular fold, you must evaluate it too. That's what we'll do next. First, we save the model - so that it will be usable for generating productions later, should you want to re-use it. We then perform [model evaluation activities](https://www.machinecurve.com/index.php/2021/01/27/testing-pytorch-and-lightning-models/) - iterating over the `testloader` and generating predictions for all the samples in the test batch/test part of the fold split. We compute accuracy after evaluation, `print` it on screen, and add it to the `results` dictionary for that particular fold.
+After training a model within a particular fold, you must evaluate it too. That's what we'll do next. First, we save the model - so that it will be usable for generating productions later, should you want to re-use it. We then perform [model evaluation activities](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/testing-pytorch-and-lightning-models.md) - iterating over the `testloader` and generating predictions for all the samples in the test batch/test part of the fold split. We compute accuracy after evaluation, `print` it on screen, and add it to the `results` dictionary for that particular fold.
 
 ```
 
@@ -866,7 +866,7 @@ This ensures that the distribution of the data was relatively equal across split
 
 Generally, what I would now do often is to retrain the model with the _full dataset_, without evaluation on a hold-out split (or with a really small one - e.g. 5%). We have already seen that it generalizes and that it does so across folds. We can now use all the data at hand to boost performance perhaps slightly further.
 
-I'd love to know what you think about this too, as this is a strategy that confused some people in my [K-fold Cross Validation for TensorFlow](https://www.machinecurve.com/index.php/2020/02/18/how-to-use-k-fold-cross-validation-with-keras/) tutorial.
+I'd love to know what you think about this too, as this is a strategy that confused some people in my [K-fold Cross Validation for TensorFlow](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-k-fold-cross-validation-with-keras.md) tutorial.
 
 * * *
 

@@ -50,7 +50,7 @@ Obviously, this was not possible until the era of computing. That is, only since
 
 ![](images/photo-of-head-bust-print-artwork-724994-1024x736.jpg)
 
-Initially, researchers like [Frank Rosenblatt](https://www.machinecurve.com/index.php/2019/07/23/linking-maths-and-intuition-rosenblatts-perceptron-in-python/) attempted to mimic the neural structure of the brain. As you likely know since you likely have some background in neural networks, or at least know what they are, our brains consist of individual neurons and "highways" - synapses - in between them.
+Initially, researchers like [Frank Rosenblatt](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/linking-maths-and-intuition-rosenblatts-perceptron-in-python.md) attempted to mimic the neural structure of the brain. As you likely know since you likely have some background in neural networks, or at least know what they are, our brains consist of individual neurons and "highways" - synapses - in between them.
 
 Neurons fire based on inputs, and by consequence trigger synapses to become stronger over time - allowing entire patterns of information processing to be shaped within the brain, giving humans the ability to think and act in very complex ways.
 
@@ -60,7 +60,7 @@ Whereas the so-called "Rosenblatt Perceptron" (click the link above if you want 
 
 A complex neural network. These and even more complex neural nets provide different layers of possibly non-linear functionality, and may thus be used in deep learning.
 
-What you see above is what is known as "fully connected neurons". Each neuron is connected to a neuron in the next layer, except for the input and output layer. Growing complexity means that the number of connections grows. This isn't good news, as this means that (1) the time required to train the network increases significantly and (2) the network is more prone to ["overfitting"](https://www.machinecurve.com/index.php/2019/12/16/what-is-dropout-reduce-overfitting-in-your-neural-networks/). Are there more efficient ways, perhaps?
+What you see above is what is known as "fully connected neurons". Each neuron is connected to a neuron in the next layer, except for the input and output layer. Growing complexity means that the number of connections grows. This isn't good news, as this means that (1) the time required to train the network increases significantly and (2) the network is more prone to ["overfitting"](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-dropout-reduce-overfitting-in-your-neural-networks.md). Are there more efficient ways, perhaps?
 
 ### What are convolutional neural networks?
 
@@ -99,12 +99,12 @@ Now, what does each attribute mean?
 - **Filters** represents the number of filters that should be learnt by the convolutional layer. From the schematic drawing above, you should understand that each filter slides over the input image, generating a "feature map" as output.
 - The **kernel size** represents the number of pixels in height and width that should be summarized, i.e. the two-dimensional width and height of the filter.
 - The **stride** tells us how the kernel jumps over the input image. If the stride is 1, it slides pixel by pixel. If it's two, it jumps one pixel. It jumps two with a stride of 3, and so on.
-- The **[padding](https://www.machinecurve.com/index.php/2020/02/07/what-is-padding-in-a-neural-network/)** tells us what happens when the kernels/filters don't fit, for example because the input image has a width and height that do not match with the combination of kernel size and stride.
+- The **[padding](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-padding-in-a-neural-network.md)** tells us what happens when the kernels/filters don't fit, for example because the input image has a width and height that do not match with the combination of kernel size and stride.
 - Depending on the backend you're using Keras with, the _channels_ (each image has image channels, e.g. 3 channels with Red-Green-Blue or RGB) are in the _first_ dimension or the _last_. Hence, the **data format** represents whether it's a channels first or channels last approach. With recent versions of Keras, which support TensorFlow only, this is no longer a concern.
 - If you're using dilated convolutions, the **dilation rate** can be specified as well.
-- The **[activation function](https://www.machinecurve.com/index.php/2019/06/11/why-you-shouldnt-use-a-linear-activation-function/)** to which the linear output of the Conv2D layer is fed to make it nonlinear can be specified too.
+- The **[activation function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-you-shouldnt-use-a-linear-activation-function.md)** to which the linear output of the Conv2D layer is fed to make it nonlinear can be specified too.
 - A **bias value** can be added to each layer in order to scale the learnt function vertically. This possibly improves training results. It can be configured here, especially if you _don't_ want to use biases. By default, it's enabled.
-- The **[initializer](https://www.machinecurve.com/index.php/2019/08/22/what-is-weight-initialization/)** for the kernels, the biases can be configured too, as well as **[regularizers](https://www.machinecurve.com/index.php/2020/01/23/how-to-use-l1-l2-and-elastic-net-regularization-with-keras/)** and **constraints**.
+- The **[initializer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-weight-initialization.md)** for the kernels, the biases can be configured too, as well as **[regularizers](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-l1-l2-and-elastic-net-regularization-with-keras.md)** and **constraints**.
 
 * * *
 
@@ -197,7 +197,7 @@ The principle here is as follows:
 - This representation can be used by **densely-connected layers** to generate a classification.
 - However, as Dense layers can only handle one-dimensional data, we have to convert the multidimensional feature map output by the final Conv2D layer into one-dimensional format first. We can do so with the **Flatten** layer.
 
-Next, we import the optimizer and the [loss function](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/). These will help us with improving the model: the [optimizer](https://www.machinecurve.com/index.php/2019/10/24/gradient-descent-and-its-variants/) adapts the weights, while the loss function computes the difference between the predictions and the ground truth of your training dataset. Loss functions are tailored to the problem you're trying to solve. For multiclass classification scenarios, which is what we're doing today, [categorical crossentropy loss](https://www.machinecurve.com/index.php/2019/10/17/how-to-use-categorical-multiclass-hinge-with-keras/) is a good choice. However, as our dataset targets are integers rather than vectors, we use the [sparse equivalent](https://www.machinecurve.com/index.php/2019/10/06/how-to-use-sparse-categorical-crossentropy-in-keras/).
+Next, we import the optimizer and the [loss function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md). These will help us with improving the model: the [optimizer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md) adapts the weights, while the loss function computes the difference between the predictions and the ground truth of your training dataset. Loss functions are tailored to the problem you're trying to solve. For multiclass classification scenarios, which is what we're doing today, [categorical crossentropy loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-categorical-multiclass-hinge-with-keras.md) is a good choice. However, as our dataset targets are integers rather than vectors, we use the [sparse equivalent](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-sparse-categorical-crossentropy-in-keras.md).
 
 ### The model configuration
 
@@ -208,7 +208,7 @@ Next up, the model configuration.
 - For the **loss function** and **optimizer**, we set the values that we just discussed.
 - As our dataset has 10 classes, we set **no\_classes** to 10.
 - We will train our model for 25 iterations, or **epochs**. Usually, the number of epochs is a very large number, but as this is an educational scenario, we keep it low. Experiment with a few settings to see how it works!
-- We use 20% of the training data for **validation purposes** - i.e., to see how well your model performs after each iteration. This helps spot whether our model is [overfitting](https://www.machinecurve.com/index.php/2019/12/16/what-is-dropout-reduce-overfitting-in-your-neural-networks/).
+- We use 20% of the training data for **validation purposes** - i.e., to see how well your model performs after each iteration. This helps spot whether our model is [overfitting](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-dropout-reduce-overfitting-in-your-neural-networks.md).
 - Finally, we set **verbosity** mode to 1 - or True, showing all the output on screen.
 
 ```
@@ -251,7 +251,7 @@ input_train = input_train / 255
 input_test = input_test / 255
 ```
 
-The first step, loading the data from the [Keras datasets wrapper](https://www.machinecurve.com/index.php/2019/12/31/exploring-the-keras-datasets/), should be clear. The same goes for _determining the shape of our data_ - which is done based on the configuration settings that we discussed earlier.
+The first step, loading the data from the [Keras datasets wrapper](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets.md), should be clear. The same goes for _determining the shape of our data_ - which is done based on the configuration settings that we discussed earlier.
 
 Now, for the other two steps, these are just technicalities. By casting our data into `float32`, the training process will presumably be faster if you run it on a GPU. Scaling the data ensures that we have smaller weight updates, benefiting the final outcome.
 
@@ -272,9 +272,9 @@ model.add(Dense(no_classes, activation='softmax'))
 
 First, we instantiate the `Sequential` API - literally laying the foundation on top of which we can stack layers.
 
-As you can see, we specify three `Conv2D` layers in sequential order, with 3x3 kernel sizes, [ReLU activation](https://www.machinecurve.com/index.php/2019/09/09/implementing-relu-sigmoid-and-tanh-in-keras/) and 32, 64 and 128 filters, respectively.
+As you can see, we specify three `Conv2D` layers in sequential order, with 3x3 kernel sizes, [ReLU activation](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/implementing-relu-sigmoid-and-tanh-in-keras.md) and 32, 64 and 128 filters, respectively.
 
-Next, we use Flatten, and have two Dense layers to generate the classification. The last layer doesn't activate with ReLU, but with Softmax instead. This allows us to generate [a true multiclass probability distribution](https://www.machinecurve.com/index.php/2020/01/08/how-does-the-softmax-activation-function-work/), which is what we need if we want to answer the question "which class is most likely?".
+Next, we use Flatten, and have two Dense layers to generate the classification. The last layer doesn't activate with ReLU, but with Softmax instead. This allows us to generate [a true multiclass probability distribution](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-does-the-softmax-activation-function-work.md), which is what we need if we want to answer the question "which class is most likely?".
 
 Now that we have specified the architecture, or the framework, we can _compile_ (or initialize) the model and _fit the data_ (i.e., start training).
 

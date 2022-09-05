@@ -11,7 +11,7 @@ tags:
   - "unsupervised-learning"
 ---
 
-Suppose that you have a dataset in which you want to discover groups, or clusters, that share certain characteristics. There are various unsupervised machine learning techniques that can be used to do this. As we've seen in other blogs, [K-means clustering](https://www.machinecurve.com/index.php/2020/04/16/how-to-perform-k-means-clustering-with-python-in-scikit/) and [Affinity Propagation](https://www.machinecurve.com/index.php/2020/04/18/how-to-perform-affinity-propagation-with-python-in-scikit/) can be used if you have good data or small data, respectively.
+Suppose that you have a dataset in which you want to discover groups, or clusters, that share certain characteristics. There are various unsupervised machine learning techniques that can be used to do this. As we've seen in other blogs, [K-means clustering](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-perform-k-means-clustering-with-python-in-scikit.md) and [Affinity Propagation](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-perform-affinity-propagation-with-python-in-scikit.md) can be used if you have good data or small data, respectively.
 
 But in both cases, _the clusters need to be separated_. Or you may need to configure the number of clusters in advance. Now, your machine learning problem may be such that none of those two criteria are met. What to do?
 

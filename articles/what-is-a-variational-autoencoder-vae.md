@@ -24,15 +24,15 @@ Sounds great, doesn't it?
 
 _Popularity of VAEs in [Google Trends](https://trends.google.com/trends/explore?date=today%205-y&q=variational%20autoencoder)._
 
-Like [GANs](https://www.machinecurve.com/index.php/2019/07/17/this-person-does-not-exist-how-does-it-work/), **Variational Autoencoders** **(VAEs)** can be used for this purpose. Being an adaptation of classic autoencoders, which are used for dimensionality reduction and input denoising, VAEs are _generative_. Unlike the classic ones, with VAEs you can use what they've learnt in order to generate _new samples_. Blends of images, predictions of the next video frame, synthetic music - the list goes on.
+Like [GANs](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/this-person-does-not-exist-how-does-it-work.md), **Variational Autoencoders** **(VAEs)** can be used for this purpose. Being an adaptation of classic autoencoders, which are used for dimensionality reduction and input denoising, VAEs are _generative_. Unlike the classic ones, with VAEs you can use what they've learnt in order to generate _new samples_. Blends of images, predictions of the next video frame, synthetic music - the list goes on.
 
 ..and on! VAEs have been rising in popularity over the last few years. Let's investigate them in more detail 😁
 
-In this blog post, we'll take a _generative_ view towards VAEs. Although strictly speaking, VAEs are autoencoders and can also be used for e.g. denoising, we already have posts about such applications - specifically for [image denoising](https://www.machinecurve.com/index.php/2019/12/20/building-an-image-denoiser-with-a-keras-autoencoder-neural-network/) and [signal denoising](https://www.machinecurve.com/index.php/2019/12/19/creating-a-signal-noise-removal-autoencoder-with-keras/). Here, we'll focus on how to use VAEs for generative purposes.
+In this blog post, we'll take a _generative_ view towards VAEs. Although strictly speaking, VAEs are autoencoders and can also be used for e.g. denoising, we already have posts about such applications - specifically for [image denoising](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/building-an-image-denoiser-with-a-keras-autoencoder-neural-network.md) and [signal denoising](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/creating-a-signal-noise-removal-autoencoder-with-keras.md). Here, we'll focus on how to use VAEs for generative purposes.
 
 This means first covering traditional (or, _vanilla_) autoencoders. What types do exist? And what are they used for? We'll see that they have very interesting applications. But we'll also find out what their limitations are. When your goal is to generate new content, it's difficult if not impossible to use these classic autoencoders. We'll also cover why this is the case.
 
-We then introduce Variational Autoencoders. We'll cover what they are, and how they are different from traditional autoencoders. The two primary differences - that samples are encoded as two vectors that represent a probability distribution over the latent space rather than a point in latent space _and_ that [Kullback-Leibler divergence](https://www.machinecurve.com/index.php/2019/12/21/how-to-use-kullback-leibler-divergence-kl-divergence-with-keras/) is added to optimization - will be covered in more detail. Through these, we'll see why VAEs are suitable for generating content.
+We then introduce Variational Autoencoders. We'll cover what they are, and how they are different from traditional autoencoders. The two primary differences - that samples are encoded as two vectors that represent a probability distribution over the latent space rather than a point in latent space _and_ that [Kullback-Leibler divergence](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-kullback-leibler-divergence-kl-divergence-with-keras.md) is added to optimization - will be covered in more detail. Through these, we'll see why VAEs are suitable for generating content.
 
 As an extra, this blog also includes some examples of data generated with VAEs.
 
@@ -64,11 +64,11 @@ Reconstructions may be the original images:
 
 [![](images/4-1.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/4-1.png)
 
-But autoencoders may also be used for [noise reduction](https://www.machinecurve.com/index.php/2019/12/20/building-an-image-denoiser-with-a-keras-autoencoder-neural-network/):
+But autoencoders may also be used for [noise reduction](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/building-an-image-denoiser-with-a-keras-autoencoder-neural-network.md):
 
 [![](images/1-5.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/1-5.png)
 
-The fun thing about autoencoders is that the encoder and decoder segments are _learnt_, because neural networks are used to implement them. They are trained together with the other parts of the network. Usually, the networks as a whole use loss functions such as Mean Squared Error or [Crossentropy loss](https://www.machinecurve.com/index.php/2019/10/22/how-to-use-binary-categorical-crossentropy-with-keras/) (Shafkat, 2018). This way, autoencoders will be very data-specific. This is good news when you wish to have e.g. a tailor-made denoiser, but becomes challenging when you want to use the learnt encoding across various projects. In those cases, e.g. generalized denoising functions such as mean/median sample removal may be more suitable to your problem.
+The fun thing about autoencoders is that the encoder and decoder segments are _learnt_, because neural networks are used to implement them. They are trained together with the other parts of the network. Usually, the networks as a whole use loss functions such as Mean Squared Error or [Crossentropy loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-binary-categorical-crossentropy-with-keras.md) (Shafkat, 2018). This way, autoencoders will be very data-specific. This is good news when you wish to have e.g. a tailor-made denoiser, but becomes challenging when you want to use the learnt encoding across various projects. In those cases, e.g. generalized denoising functions such as mean/median sample removal may be more suitable to your problem.
 
 Let's now take a look at classic autoencoders in more detail and how they are used, so that we can understand why they are problematic if we want to generate new content.
 
@@ -80,11 +80,11 @@ Jordan (2018B) defines multiple types of traditional autoencoders: among them, u
 
 [![](images/undercomplete.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/undercomplete.png)
 
-**Sparse autoencoders**, on the other hand, do have an equal number of neurons in their hidden layers compared to input and output neurons, only not all of them are used or do contribute to the training process (Jordan, 2018B). Regularization techniques like L1 regularization or [Dropout](https://www.machinecurve.com/index.php/2019/12/16/what-is-dropout-reduce-overfitting-in-your-neural-networks/) can serve this purpose, effectively creating the information bottleneck once more.
+**Sparse autoencoders**, on the other hand, do have an equal number of neurons in their hidden layers compared to input and output neurons, only not all of them are used or do contribute to the training process (Jordan, 2018B). Regularization techniques like L1 regularization or [Dropout](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-dropout-reduce-overfitting-in-your-neural-networks.md) can serve this purpose, effectively creating the information bottleneck once more.
 
 [![](images/sparse.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/sparse.png)
 
-When using **Denoising autoencoders**, the goal is no longer to _reconstruct the input data_. Rather, your goal has become _denoising the input data_ by learning the noise (Jordan, 2018B). This is achieved by adding noise to pure inputs, feeding them as samples, while having the original pure samples as targets. Minimizing reconstruction loss then involves learning noise. At MachineCurve, we have available examples for [signal noise](https://www.machinecurve.com/index.php/2019/12/19/creating-a-signal-noise-removal-autoencoder-with-keras/) and [image noise](https://www.machinecurve.com/index.php/2019/12/20/building-an-image-denoiser-with-a-keras-autoencoder-neural-network/).
+When using **Denoising autoencoders**, the goal is no longer to _reconstruct the input data_. Rather, your goal has become _denoising the input data_ by learning the noise (Jordan, 2018B). This is achieved by adding noise to pure inputs, feeding them as samples, while having the original pure samples as targets. Minimizing reconstruction loss then involves learning noise. At MachineCurve, we have available examples for [signal noise](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/creating-a-signal-noise-removal-autoencoder-with-keras.md) and [image noise](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/building-an-image-denoiser-with-a-keras-autoencoder-neural-network.md).
 
 [![](images/3-3.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/3-3.png)
 
@@ -95,7 +95,7 @@ While traditionally densely-connected layers (or Dense layers) have been used fo
 There are two main applications for traditional autoencoders (Keras Blog, n.d.):
 
 - **Noise removal**, as we've seen above.
-- **Dimensionality reduction**. As the _encoder segment_ learns representations of your input data with much lower dimensionality, the encoder segments of autoencoders are useful when you wish to perform dimensionality reduction. This can especially be handy when e.g. [PCA](https://www.machinecurve.com/index.php/2020/12/07/introducing-pca-with-python-and-scikit-learn-for-machine-learning/) doesn't work, but you suspect that nonlinear dimensionality reduction does (i.e. using neural networks with nonlinear activation functions).
+- **Dimensionality reduction**. As the _encoder segment_ learns representations of your input data with much lower dimensionality, the encoder segments of autoencoders are useful when you wish to perform dimensionality reduction. This can especially be handy when e.g. [PCA](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/introducing-pca-with-python-and-scikit-learn-for-machine-learning.md) doesn't work, but you suspect that nonlinear dimensionality reduction does (i.e. using neural networks with nonlinear activation functions).
 
 You may now think: I have an idea! 💡 It goes as follows:
 
@@ -172,7 +172,7 @@ To make a long story short: training an autoencoder that generates a latent spac
 
 ## Say hello to Variational Autoencoders (VAEs)!
 
-Let's now take a look at a class of autoencoders that _does work_ well with generative processes. It's the class of Variational Autoencoders, or VAEs. They are "powerful generative models" with "applications as diverse as generating fake human faces \[or producing purely synthetic music\]" (Shafkat, 2018). When comparing them with [GANs](https://www.machinecurve.com/index.php/2019/07/17/this-person-does-not-exist-how-does-it-work/), Variational Autoencoders are particularly useful when you wish to _adapt_ your data rather than _purely generating new data_, due to their structure (Shafkat, 2018).
+Let's now take a look at a class of autoencoders that _does work_ well with generative processes. It's the class of Variational Autoencoders, or VAEs. They are "powerful generative models" with "applications as diverse as generating fake human faces \[or producing purely synthetic music\]" (Shafkat, 2018). When comparing them with [GANs](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/this-person-does-not-exist-how-does-it-work.md), Variational Autoencoders are particularly useful when you wish to _adapt_ your data rather than _purely generating new data_, due to their structure (Shafkat, 2018).
 
 ### How are VAEs different from traditional autoencoders?
 
@@ -181,7 +181,7 @@ Let's now take a look at a class of autoencoders that _does work_ well with gene
 They achieve this through two main differences (Shafkat, 2018; Rocca, 2019; Jordan, 2018A):
 
 - Firstly, recall that classic autoencoders output one value per dimension when mapping input data to latent state. VAEs don't do this: rather, they output a Gaussian probability distribution with some mean \[latex\]\\mu\[/latex\] and standard deviation \[latex\]\\sigma\[/latex\] for every dimension. For example, when the latent state space has seven dimensions, you'd thus get seven probability distributions that together represent state, as a probability distribution across space.
-- Secondly, contrary to classic autoencoders - which minimize reconstruction loss only - VAEs minimize a combination of reconstruction loss and a probability comparison loss called [Kullback-Leibler divergence](https://www.machinecurve.com/index.php/2019/12/21/how-to-use-kullback-leibler-divergence-kl-divergence-with-keras/). This enforces the regularization we so deeply need.
+- Secondly, contrary to classic autoencoders - which minimize reconstruction loss only - VAEs minimize a combination of reconstruction loss and a probability comparison loss called [Kullback-Leibler divergence](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-kullback-leibler-divergence-kl-divergence-with-keras.md). This enforces the regularization we so deeply need.
 
 These two differences allow them to be both _continuous_ and, quite often, _complete_, making VAEs candidates for generative processes.
 
@@ -254,7 +254,7 @@ Thus:
 1. Training with reconstruction loss clusters samples that look like each other together. This means that each class is clustered together and samples from different classes that look alike are encoded close to each other. Hence, the _continuity_ principle is satisfied.
 2. However, there is no such thing that ensures that the clusters _do overlap to some extent, having attachment to each other_. In fact, it may be the case that in order to minimize reconstruction loss, the encoder will encode samples into disjoint clusters, i.e. clusters that _have no overlap!_ By consequence, we must say that the _completeness_ principle is still not satisfied.
 
-Fortunately, there is a workaround: adding the [Kullback-Leibler divergence](https://www.machinecurve.com/index.php/2019/12/21/how-to-use-kullback-leibler-divergence-kl-divergence-with-keras/) to the loss function. This divergence, which is also called KL divergence, essentially computes the "divergence" between two probability distributions (i.e., how much they look _not_ like each other).
+Fortunately, there is a workaround: adding the [Kullback-Leibler divergence](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-kullback-leibler-divergence-kl-divergence-with-keras.md) to the loss function. This divergence, which is also called KL divergence, essentially computes the "divergence" between two probability distributions (i.e., how much they look _not_ like each other).
 
 If we add it to the loss function (currently with reconstruction loss only) to be minimized by the neural network, and configure it to compare the probability distribution generated by the encoder with the standard Gaussian \[latex\]\\mathcal{N}(0, 1^{2})\\,\[/latex\], we get the following plot when retraining the model:
 
@@ -310,7 +310,7 @@ _The script to generate these plots was created by François Chollet and can be 
 
 Now, let's see if we can improve when we regularize even further.
 
-As with the Dropout best practices, [we applied Dropout](https://www.machinecurve.com/index.php/2019/12/16/what-is-dropout-reduce-overfitting-in-your-neural-networks/) with \[latex\]p = 0.5\[/latex\] in the hidden layers and max-norm regularization with \[latex\]maxnormvalue = 2.0\[/latex\]. It seems to improve the model's ability to discriminate between classes, which also becomes clear from the samples across latent space:
+As with the Dropout best practices, [we applied Dropout](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-dropout-reduce-overfitting-in-your-neural-networks.md) with \[latex\]p = 0.5\[/latex\] in the hidden layers and max-norm regularization with \[latex\]maxnormvalue = 2.0\[/latex\]. It seems to improve the model's ability to discriminate between classes, which also becomes clear from the samples across latent space:
 
 - [![](images/fmnist_dmax_space.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/fmnist_dmax_space.png)
     

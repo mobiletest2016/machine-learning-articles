@@ -63,7 +63,7 @@ Unfortunately, this never seemed to be possible. Until - for another workshop - 
 - A Machine Learning model that can **classify images** (or webcam streams) into one of user-configured classes.
 - A Machine Learning model that can **classify human poses** into one of user-configured classes.
 
-Teachable Machine thus only support [classification](https://www.machinecurve.com/index.php/2020/10/19/3-variants-of-classification-problems-in-machine-learning/) as of now, but its website suggests that more model types are added frequently.
+Teachable Machine thus only support [classification](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/3-variants-of-classification-problems-in-machine-learning.md) as of now, but its website suggests that more model types are added frequently.
 
 https://www.youtube.com/watch?v=T2qQGqZxkD0&feature=emb\_title
 
@@ -89,16 +89,16 @@ The web application then navigates to a page that lets you [create your own proj
 
 ### Deciding about your classes
 
-Then it's time to decide about the classes you're going to train with. Do you want to train a [binary classifier](https://www.machinecurve.com/index.php/2020/10/19/3-variants-of-classification-problems-in-machine-learning/#variant-1-binary-classification) and hence use [Sigmoid](https://www.machinecurve.com/index.php/2019/09/04/relu-sigmoid-and-tanh-todays-most-used-activation-functions/) for generating the prediction under the hood, or will you make it a [multiclass one](https://www.machinecurve.com/index.php/2020/10/19/3-variants-of-classification-problems-in-machine-learning/#variant-2-multiclass-classification) using [Softmax](https://www.machinecurve.com/index.php/2020/01/08/how-does-the-softmax-activation-function-work/)?
+Then it's time to decide about the classes you're going to train with. Do you want to train a [binary classifier](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/3-variants-of-classification-problems-in-machine-learning/#variant-1-binary-classification) and hence use [Sigmoid](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md) for generating the prediction under the hood, or will you make it a [multiclass one](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/3-variants-of-classification-problems-in-machine-learning/#variant-2-multiclass-classification) using [Softmax](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-does-the-softmax-activation-function-work.md)?
 
 Take some time to think about what you want. You could also pick one of these classes:
 
 - **Cup / no cup**, in case you have a a cup somewhere near you. Being a true engineer, powered by coffee, this is likely the case 😉☕
-- **Hot dog / No Hot dog**, which is [self-explanatory](https://www.machinecurve.com/index.php/2020/10/20/tutorial-building-a-hot-dog-not-hot-dog-classifier-with-tensorflow-and-keras/).
+- **Hot dog / No Hot dog**, which is [self-explanatory](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tutorial-building-a-hot-dog-not-hot-dog-classifier-with-tensorflow-and-keras.md).
 - **Cat / dog**, should you have two animals walking around in your house.
 - **Purple / red / green / blue**, if you have papers in various colors nearby.
 
-Let's now enter these classes. I'm going for the Hot Dog / No Hot Dog scenario, just like the [Hotdog Classifier](https://www.machinecurve.com/index.php/2020/10/20/tutorial-building-a-hot-dog-not-hot-dog-classifier-with-tensorflow-and-keras/).
+Let's now enter these classes. I'm going for the Hot Dog / No Hot Dog scenario, just like the [Hotdog Classifier](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tutorial-building-a-hot-dog-not-hot-dog-classifier-with-tensorflow-and-keras.md).
 
 ![](images/image-36-1024x468.png)
 
@@ -110,7 +110,7 @@ If you chose the scenario with > 2 classes, then you can use the 'Add a class' b
 
 ### Generating training data
 
-It's now time to generate training data. You can do so in multiple ways. If you have a dataset available (for example the [Hot Dog / Not Hot Dog dataset](https://www.machinecurve.com/index.php/2020/10/20/tutorial-building-a-hot-dog-not-hot-dog-classifier-with-tensorflow-and-keras/)), you can of course use that by clicking the 'Upload' button. You can also use your Webcam if you want to generate data yourself.
+It's now time to generate training data. You can do so in multiple ways. If you have a dataset available (for example the [Hot Dog / Not Hot Dog dataset](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tutorial-building-a-hot-dog-not-hot-dog-classifier-with-tensorflow-and-keras.md)), you can of course use that by clicking the 'Upload' button. You can also use your Webcam if you want to generate data yourself.
 
 ![](images/image-38.png)
 
@@ -130,7 +130,7 @@ Your screen should now look somewhat like this:
 
 ![](images/image-41-1024x468.png)
 
-Through the **Advanced** button, you can adapt the number of _epochs_ (i.e. number of iterations), the batch size (the poorer your hardware, the lower it should be) and the [Learning Rate](https://www.machinecurve.com/index.php/2019/11/06/what-is-a-learning-rate-in-a-neural-network/) - which should be fine at 0.001 in this setting. Generally, you don't want to tweak the settings, and click 'Train Model' straight away.
+Through the **Advanced** button, you can adapt the number of _epochs_ (i.e. number of iterations), the batch size (the poorer your hardware, the lower it should be) and the [Learning Rate](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-a-learning-rate-in-a-neural-network.md) - which should be fine at 0.001 in this setting. Generally, you don't want to tweak the settings, and click 'Train Model' straight away.
 
 So let's do that. The model then starts training.
 
@@ -156,7 +156,7 @@ Awesome! 😎
 
 ## Exporting your model to TensorFlow, TF.js or TF Lite
 
-Even better is that you can **export the model you just trained**. For example, you can [load it with TensorFlow](https://www.machinecurve.com/index.php/2020/02/14/how-to-save-and-load-a-model-with-keras/), run it in the web browser with [TensorFlow.js](https://www.tensorflow.org/js) or use it with [Model Optimization techniques in TensorFlow Lite](https://www.machinecurve.com/index.php/tag/model-optimization/). Simply click 'Export Model' and use the option you want - you'll even get a code example as part of the deal.
+Even better is that you can **export the model you just trained**. For example, you can [load it with TensorFlow](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-save-and-load-a-model-with-keras.md), run it in the web browser with [TensorFlow.js](https://www.tensorflow.org/js) or use it with [Model Optimization techniques in TensorFlow Lite](https://web.archive.org/web/https://www.machinecurve.com/index.php/tag/model-optimization.md). Simply click 'Export Model' and use the option you want - you'll even get a code example as part of the deal.
 
 ![](images/image-35.png)
 
@@ -164,7 +164,7 @@ Even better is that you can **export the model you just trained**. For example, 
 
 ## Summary
 
-In this relatively brief but in my opinion interesting article, we looked at a technique for training Machine Learning models from your web browser - Teachable Machine, a Google AI Experiment. It demonstrates that Machine Learning is not necessarily a domain for experts and that everyone can train models, if they understand the [basics](https://www.machinecurve.com/index.php/2020/10/19/3-variants-of-classification-problems-in-machine-learning/).
+In this relatively brief but in my opinion interesting article, we looked at a technique for training Machine Learning models from your web browser - Teachable Machine, a Google AI Experiment. It demonstrates that Machine Learning is not necessarily a domain for experts and that everyone can train models, if they understand the [basics](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/3-variants-of-classification-problems-in-machine-learning.md).
 
 It allows one to create a classification model for images, audio or human poses, to capture a training set directly from the web browser, and export the model to be ran with true TensorFlow, TF.js or TF Lite. It's a great tool for workshops, allowing people without any experiments to become very proud:
 

@@ -17,7 +17,7 @@ Rosenblatt is the inventor of the so-called **Rosenblatt Perceptron**, which is 
 
 The blogs I write on MachineCurve.com are educational in two ways. First, I use them to structure my thoughts on certain ML related topics. Second, if they help me, they could help others too. This blog is one of the best examples: it emerged from my struggle to identify **why it is difficult** to implement Rosenblatt's Perceptron with modern machine learning frameworks.
 
-Turns out that has to do with the means of optimizing one's model - a.k.a. the Perceptron Learning Rule vs [Stochastic Gradient Descent](https://www.machinecurve.com/index.php/2019/10/24/gradient-descent-and-its-variants/). I'm planning to dive into this question in detail in another blog. This article describes the work I preformed _before_ being able to answer it - or, programming a Perceptron myself, understanding how it attempts to find the best [decision boundary](https://www.machinecurve.com/index.php/2019/10/11/how-to-visualize-the-decision-boundary-for-your-keras-model/). It **provides a tutorial** for **implementing the Rosenblatt Perceptron yourself**.
+Turns out that has to do with the means of optimizing one's model - a.k.a. the Perceptron Learning Rule vs [Stochastic Gradient Descent](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md). I'm planning to dive into this question in detail in another blog. This article describes the work I preformed _before_ being able to answer it - or, programming a Perceptron myself, understanding how it attempts to find the best [decision boundary](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-decision-boundary-for-your-keras-model.md). It **provides a tutorial** for **implementing the Rosenblatt Perceptron yourself**.
 
 I will first introduce the Perceptron in detail by discussing some of its history as well as its mathematical foundations. Subsequently, I will move on to the Perceptron Learning Rule, demonstrating how it improves over time. This is followed by a Python based Perceptron implementation that is finally demonstrated with a real dataset.
 
@@ -76,9 +76,9 @@ class RBPerceptron:
 
 ## A small introduction - what is a Perceptron?
 
-A Perceptron is a [binary classifier](https://www.machinecurve.com/index.php/2020/10/19/3-variants-of-classification-problems-in-machine-learning/#variant-1-binary-classification) that was invented by [Frank Rosenblatt](https://en.wikipedia.org/wiki/Frank_Rosenblatt) in 1958, working on a research project for Cornell Aeronautical Laboratory that was US government funded. It was based on the recent advances with respect to mimicing the human brain, in particular the MCP architecture that was recently invented by McCulloch and Pitts.
+A Perceptron is a [binary classifier](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/3-variants-of-classification-problems-in-machine-learning/#variant-1-binary-classification) that was invented by [Frank Rosenblatt](https://en.wikipedia.org/wiki/Frank_Rosenblatt) in 1958, working on a research project for Cornell Aeronautical Laboratory that was US government funded. It was based on the recent advances with respect to mimicing the human brain, in particular the MCP architecture that was recently invented by McCulloch and Pitts.
 
-This architecture attempted to mimic the way neurons operate in the brain: given certain inputs, they fire, and their firing behavior can change over time. By [allowing the same to happen in an artificial neuron](https://www.machinecurve.com/index.php/2020/10/29/why-nonlinear-activation-functions-improve-ml-performance-with-tensorflow-example/#individual-neurons), researchers at the time argued, machines could become capable of approximating human intelligence.
+This architecture attempted to mimic the way neurons operate in the brain: given certain inputs, they fire, and their firing behavior can change over time. By [allowing the same to happen in an artificial neuron](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-nonlinear-activation-functions-improve-ml-performance-with-tensorflow-example/#individual-neurons), researchers at the time argued, machines could become capable of approximating human intelligence.
 
 ...well, that was a slight overestimation, I'd say 😄 Nevertheless, the Perceptron lies at the basis of where we've come today. It's therefore a very interesting topic to study deeper. Next, I will therefore scrutinize its mathematical building blocks, before moving on to implementing one in Python.
 
@@ -86,7 +86,7 @@ This architecture attempted to mimic the way neurons operate in the brain: given
 
 ### Mathematical building blocks
 
-When you [train a supervised machine learning model](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#the-high-level-supervised-learning-process), it must somehow capture the information that you're giving it. The Perceptron does this by means of a _[weights vector](https://www.machinecurve.com/index.php/2019/08/22/what-is-weight-initialization/)_, or `**w**` that determines the exact position of the [decision boundary](https://www.machinecurve.com/index.php/2019/10/11/how-to-visualize-the-decision-boundary-for-your-keras-model/) and is learnt from the data.
+When you [train a supervised machine learning model](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process), it must somehow capture the information that you're giving it. The Perceptron does this by means of a _[weights vector](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-weight-initialization.md)_, or `**w**` that determines the exact position of the [decision boundary](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-decision-boundary-for-your-keras-model.md) and is learnt from the data.
 
 If you input new data, say in an _input vector_ `**x**`, you'll simply have to pinpoint this vector with respect to the learnt weights, to decide on the class.
 
@@ -102,7 +102,7 @@ When you multiply two vectors, you're computing what is called a dot product. A 
 
 \\begin{equation} \\begin{split} &z=\\sum\_{i=1}^{n} w\_nx\_n + b \\\\ &= w\_1x\_1 + ... + w\_nx\_n + b \\\\ \\end{split} \\end{equation}
 
-When this output value is larger than 0, it's class 1, otherwise it's class 0. In other words: [binary classification](https://www.machinecurve.com/index.php/2020/10/19/3-variants-of-classification-problems-in-machine-learning/#variant-1-binary-classification).
+When this output value is larger than 0, it's class 1, otherwise it's class 0. In other words: [binary classification](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/3-variants-of-classification-problems-in-machine-learning/#variant-1-binary-classification).
 
 ### The Perceptron, visually
 
@@ -156,10 +156,10 @@ We'll use what is called the _Perceptron Learning Rule_ for that purpose. But fi
 
 We'll have to make a couple assumptions at first:
 
-1. There is the weights vector `w` which, at the beginning, is [uninitialized](https://www.machinecurve.com/index.php/2019/08/22/what-is-weight-initialization/).
+1. There is the weights vector `w` which, at the beginning, is [uninitialized](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-weight-initialization.md).
 2. You have a set of training values, such as \[latex\]T = \\{ (x\_1, d\_1), (x\_2, d\_2), ..., (x\_n, d\_n) \\}\[/latex\]. Here, \[latex\]x\_n\[/latex\] is a specific feature vector, while \[latex\]d\_n\[/latex\] is the corresponding target value.
 3. We ensure that \[latex\]w\_0 = b\[/latex\] and \[latex\]x\_0 = 1\[/latex\].
-4. We will have to configure a _[learning rate](https://www.machinecurve.com/index.php/2019/11/06/what-is-a-learning-rate-in-a-neural-network/)_ or \[latex\]r\[/latex\], or by how much the model weights improve. This is a number between 0 and 1. We use \[latex\]r = 0.1\[/latex\] in the Python code that follows next.
+4. We will have to configure a _[learning rate](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-a-learning-rate-in-a-neural-network.md)_ or \[latex\]r\[/latex\], or by how much the model weights improve. This is a number between 0 and 1. We use \[latex\]r = 0.1\[/latex\] in the Python code that follows next.
 
 This is the pseudocode:
 
@@ -171,7 +171,7 @@ This is the pseudocode:
 
 Or, in plain English:
 
-- First [initialize the weights](https://www.machinecurve.com/index.php/2019/08/22/what-is-weight-initialization/) randomly or to zeroes.
+- First [initialize the weights](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-weight-initialization.md) randomly or to zeroes.
 - Iterate over every feature in the data set.
 - Compute the output value.
 - Compare if it matches, and 'push' the weights into the right direction (i.e. the \[latex\]d\_n - d'\_n\[/latex\] part) slightly with respect to \[latex\]x\_\\text{n,i}\[/latex\], as much as the learning rate \[latex\]r\[/latex\] allows.
@@ -358,7 +358,7 @@ It should look like this:
 
 ![](images/linearly_separable_dataset-1.png)
 
-Let's next train our Perceptron with the entire [training set](https://www.machinecurve.com/index.php/2020/11/16/how-to-easily-create-a-train-test-split-for-your-machine-learning-model/) `X` and the corresponding desired targets `D`.
+Let's next train our Perceptron with the entire [training set](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-easily-create-a-train-test-split-for-your-machine-learning-model.md) `X` and the corresponding desired targets `D`.
 
 \[ad\]
 
@@ -375,7 +375,7 @@ Note that we use 600 epochs and set a learning rate of 0.1. Let's now train our 
 trained_model = rbp.train(X, D)
 ```
 
-The training process should be completed relatively quickly. We can now visualize the Perceptron and its [decision boundary](https://www.machinecurve.com/index.php/2019/10/11/how-to-visualize-the-decision-boundary-for-your-keras-model/) with a library called [mlxtend](http://rasbt.github.io/mlxtend/) - once again the credits for using this library go out to [Sebastian Raschka.](https://sebastianraschka.com/Articles/2015_singlelayer_neurons.html#artificial-neurons-and-the-mcculloch-pitts-model)
+The training process should be completed relatively quickly. We can now visualize the Perceptron and its [decision boundary](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-decision-boundary-for-your-keras-model.md) with a library called [mlxtend](http://rasbt.github.io/mlxtend.md) - once again the credits for using this library go out to [Sebastian Raschka.](https://sebastianraschka.com/Articles/2015_singlelayer_neurons.html#artificial-neurons-and-the-mcculloch-pitts-model)
 
 If you don't have it already, install it first by means of `pip install mlxtend`.
 

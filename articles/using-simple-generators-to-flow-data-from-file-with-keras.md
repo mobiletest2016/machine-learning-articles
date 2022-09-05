@@ -14,7 +14,7 @@ tags:
   - "machine-learning"
 ---
 
-During development of basic neural networks - such as the ones we build to show you how e.g. [Conv2D layers work](https://www.machinecurve.com/index.php/2020/03/30/how-to-use-conv2d-with-keras/) - we often load the whole dataset into memory. This is perfectly possible, because the datasets we're using are relatively small. For example, the MNIST dataset has only 60.000 samples in its _training_ part.
+During development of basic neural networks - such as the ones we build to show you how e.g. [Conv2D layers work](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-conv2d-with-keras.md) - we often load the whole dataset into memory. This is perfectly possible, because the datasets we're using are relatively small. For example, the MNIST dataset has only 60.000 samples in its _training_ part.
 
 Now, what if datasets are larger? Say, they are 1.000.000 samples, or even more? At some point, it might not be feasible or efficient to store all your samples in memory. Rather, you wish to 'stream' them from e.g. a file. How can we do this with Keras models? That's what we will cover in today's blog post.
 
@@ -150,7 +150,7 @@ def generate_arrays_from_file(path, batchsize):
 
 Now that we have specified our function for flowing data from file, we can create the architecture of our model. Today, our architecture will be pretty simple. In fact, it'll be a three-layered model, of which two layers are hidden - the latter one is the output layer, and the input layer is specified implicitly.
 
-As you can see by the number of output neurons for every layer, slowly but surely, an information bottleneck is created. We use [ReLU](https://www.machinecurve.com/index.php/2019/09/04/relu-sigmoid-and-tanh-todays-most-used-activation-functions/) for activating in the hidden layers, and `linear` for the final layer. This, in return, suggests that we're dealing with a regression scenario. Unsurprisingly: we are.
+As you can see by the number of output neurons for every layer, slowly but surely, an information bottleneck is created. We use [ReLU](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md) for activating in the hidden layers, and `linear` for the final layer. This, in return, suggests that we're dealing with a regression scenario. Unsurprisingly: we are.
 
 ```
 # Create the model
@@ -162,7 +162,7 @@ model.add(Dense(1, activation='linear'))
 
 ### Compiling the model
 
-This latter fact gets even more clear when we look at the `compile` function for our model. As our loss, we use the mean absolute error, which is a typical [loss function for regression problems](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#loss-functions-for-regression). Additionally, we specify the mean squared error, which is one too. Adam is [used for optimizing the model](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/#adam) - which is a common choice, especially when you don't really care about optimizers, as we do now (it's not the goal of today's blog post), Adam is an adequate choice.
+This latter fact gets even more clear when we look at the `compile` function for our model. As our loss, we use the mean absolute error, which is a typical [loss function for regression problems](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#loss-functions-for-regression). Additionally, we specify the mean squared error, which is one too. Adam is [used for optimizing the model](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound/#adam) - which is a common choice, especially when you don't really care about optimizers, as we do now (it's not the goal of today's blog post), Adam is an adequate choice.
 
 ```
 # Compile the model
@@ -251,7 +251,7 @@ However, we successfully completed our code! 🎉
 
 In the model above, I'm working with a generator that flows training data into the model during the forward pass executed by the `.fit` operation when training. Unsurprisingly, some people have asked in the comments section of this post if it is possible to use a generator for validation data too, and if so, how.
 
-Remember that validation data is used during the training process in order to identify whether the machine learning model [has started overfitting](https://www.machinecurve.com/index.php/2019/12/16/what-is-dropout-reduce-overfitting-in-your-neural-networks/#how-well-does-your-model-perform-underfitting-and-overfitting). Testing data, in the end, is used to test whether your model generalizes to data that it hasn't seen before.
+Remember that validation data is used during the training process in order to identify whether the machine learning model [has started overfitting](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-dropout-reduce-overfitting-in-your-neural-networks/#how-well-does-your-model-perform-underfitting-and-overfitting). Testing data, in the end, is used to test whether your model generalizes to data that it hasn't seen before.
 
 I thought this wouldn't be possible, as the TensorFlow documentation clearly states this:
 

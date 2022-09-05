@@ -19,7 +19,7 @@ Within computer vision, upsampling is a relatively common practice these days. W
 
 This is called Upsampling, and in today's tutorial you're going to learn how you can perform upsampling with the PyTorch deep learning library.
 
-Upsampling is commonly used within encoder-decoder architectures and within Generative Adversarial Networks, such as [StyleGAN](https://www.machinecurve.com/index.php/2021/12/27/stylegan-a-step-by-step-introduction/).
+Upsampling is commonly used within encoder-decoder architectures and within Generative Adversarial Networks, such as [StyleGAN](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/stylegan-a-step-by-step-introduction.md).
 
 In today's tutorial, we will take a look at three different things:
 
@@ -55,7 +55,7 @@ If you cannot distinguish between the approximation and the true image, upsampli
 
 ## Upsampling use: encoder-decoder architectures
 
-Below, you can see the architecture of the [StyleGAN](https://www.machinecurve.com/index.php/2021/12/27/stylegan-a-step-by-step-introduction/) generative adversarial network. The left side produces a so-called _latent vector_ which is used subsequently in the _synthesis network_ that produces an output picture:
+Below, you can see the architecture of the [StyleGAN](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/stylegan-a-step-by-step-introduction.md) generative adversarial network. The left side produces a so-called _latent vector_ which is used subsequently in the _synthesis network_ that produces an output picture:
 
 ![](images/sampling_normalization.png)
 
@@ -63,7 +63,7 @@ The synthesis network consists of a number of blocks that produce an image of a 
 
 Between each block, _upsampling_ takes place. After the last adaptive instance normalization element in each block, an upsample step is performed to increase the _current output_ to something larger than the image output of the next block. Using a Convolutional layer, important input features from the previous block are learned by the next block, to which noise and styles are then added for control and randomness in the image synthesis process.
 
-Read the [StyleGAN article](https://www.machinecurve.com/index.php/2021/12/27/stylegan-a-step-by-step-introduction/) for a deep dive into that specific GAN, but hopefully this makes it clear how upsampling can be used within your neural network! :)
+Read the [StyleGAN article](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/stylegan-a-step-by-step-introduction.md) for a deep dive into that specific GAN, but hopefully this makes it clear how upsampling can be used within your neural network! :)
 
 * * *
 

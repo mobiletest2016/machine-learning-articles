@@ -23,7 +23,7 @@ Fortunately, these days, many Machine Learning practitioners build great stuff _
 
 Visualizing the outputs of a Transformer 🤗 Really cool!
 
-Currently, two methods for visualizing how a Transformer works are supported. Relatively similar to the [saliency maps](https://www.machinecurve.com/index.php/2019/11/25/visualizing-keras-cnn-attention-saliency-maps/) that we know from ConvNets, Ecco can compute the importance of input tokens for the predicted output token, something known as **input saliency**. In addition, it's capable of visualizing how the neurons in Transformer networks activate using **neuron activation**.
+Currently, two methods for visualizing how a Transformer works are supported. Relatively similar to the [saliency maps](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/visualizing-keras-cnn-attention-saliency-maps.md) that we know from ConvNets, Ecco can compute the importance of input tokens for the predicted output token, something known as **input saliency**. In addition, it's capable of visualizing how the neurons in Transformer networks activate using **neuron activation**.
 
 In this tutorial, we will be looking at Ecco in more detail. After reading it, you will...
 
@@ -104,7 +104,7 @@ Another field in Machine Learning that is gaining a lot of traction in the past 
 
 While positive attention focused on the possible benefits of Machine Learning and how it could achieve a significant impact within company operations (by finding patterns that previously remained hidden in large datasets available within your organization), negative attention tended to argue that using a Machine Learning model is equal to using a black box.
 
-And there lies truth in both stories. While people can be overconfident about AI's impact, it's not exactly a black box, either: today, [many model visualization approaches](https://www.machinecurve.com/index.php/2019/12/03/visualize-keras-models-overview-of-visualization-methods-tools/) have been made available that can give insight in _why_ a model performs in a certain way.
+And there lies truth in both stories. While people can be overconfident about AI's impact, it's not exactly a black box, either: today, [many model visualization approaches](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/visualize-keras-models-overview-of-visualization-methods-tools.md) have been made available that can give insight in _why_ a model performs in a certain way.
 
 Today, this is even true for Transformer based models. Let's take a look at Ecco!
 
@@ -151,7 +151,7 @@ pip install ecco
 
 ## Visualizing token importance: input saliency
 
-If you've been a frequent reader of this website, you know that we have written another article about [visualizing attention of a ConvNet](https://www.machinecurve.com/index.php/2019/11/25/visualizing-keras-cnn-attention-saliency-maps/) with saliency maps. Such maps were defined as follows:
+If you've been a frequent reader of this website, you know that we have written another article about [visualizing attention of a ConvNet](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/visualizing-keras-cnn-attention-saliency-maps.md) with saliency maps. Such maps were defined as follows:
 
 > In computer vision, a saliency map is an image that shows each pixel‘s unique quality.
 > 
@@ -193,7 +193,7 @@ _Frameworks for Machine Learning include:_
 
 ### Code
 
-We can do so with the following code, which loads the pretrained `distilgpt2` model into Ecco using `transformers`, performs generation of 35 more tokens using the input text, and views input saliency. Run this in a [Jupyter Notebook](https://www.machinecurve.com/index.php/2020/10/07/easy-install-of-jupyter-notebook-with-tensorflow-and-docker/):
+We can do so with the following code, which loads the pretrained `distilgpt2` model into Ecco using `transformers`, performs generation of 35 more tokens using the input text, and views input saliency. Run this in a [Jupyter Notebook](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/easy-install-of-jupyter-notebook-with-tensorflow-and-docker.md):
 
 ```
 import ecco
@@ -290,7 +290,7 @@ In this tutorial, we introduced Ecco, a new library for visualizing the behavior
 
 Using the code examples, we have also demonstrated how Ecco can be used for visualizing your Transformer language model.
 
-[Ask a question](https://www.machinecurve.com/index.php/add-machine-learning-question/)
+[Ask a question](https://web.archive.org/web/https://www.machinecurve.com/index.php/add-machine-learning-question/)
 
 I hope that you have learned something from this tutorial! 😎 If you did, please feel free to leave a message in the comments section. Please do the same if you have any questions, or click the **Ask Questions** button on the right.
 

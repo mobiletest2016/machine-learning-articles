@@ -39,11 +39,11 @@ It contains an _encoder_, which transforms some high-dimensional input into lowe
 
 [![](images/2-300x225.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/2.png)
 
-_When autoencoders are used for reconstructing some input, [this is what you get](https://www.machinecurve.com/index.php/2019/12/10/conv2dtranspose-using-2d-transposed-convolutions-with-keras/)._
+_When autoencoders are used for reconstructing some input, [this is what you get](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/conv2dtranspose-using-2d-transposed-convolutions-with-keras.md)._
 
-(What you must understand is that traditional autoencoders a.k.a. vanilla autoencoders cannot be used for _generative_ activity, i.e. constructing new images from some encoded state, [like a GAN](https://www.machinecurve.com/index.php/2019/07/17/this-person-does-not-exist-how-does-it-work/). This has to do with the non-restrictiveness with which the encoder learns the latent/encoded state (Shafkat, 2018). Vanilla autoencoders can however perfectly be used for noise reduction (as we will do in this blog post) and dimensionality reduction purposes.)
+(What you must understand is that traditional autoencoders a.k.a. vanilla autoencoders cannot be used for _generative_ activity, i.e. constructing new images from some encoded state, [like a GAN](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/this-person-does-not-exist-how-does-it-work.md). This has to do with the non-restrictiveness with which the encoder learns the latent/encoded state (Shafkat, 2018). Vanilla autoencoders can however perfectly be used for noise reduction (as we will do in this blog post) and dimensionality reduction purposes.)
 
-Usually, neural networks are used for learning the encoder and the decoder. Depending on the data you'll feed it, different types of layers must be used. For example, for image data [or data that can be represented as image-like data](https://www.machinecurve.com/index.php/2019/12/19/creating-a-signal-noise-removal-autoencoder-with-keras/), you usually use two-dimensional convolutional layers for the encoder, and two-dimensional [transposed convolutions](https://www.machinecurve.com/index.php/2019/09/29/understanding-transposed-convolutions/) for the decoder segments. For simpler settings, you may choose to use Densely-connected a.k.a. Dense layers.
+Usually, neural networks are used for learning the encoder and the decoder. Depending on the data you'll feed it, different types of layers must be used. For example, for image data [or data that can be represented as image-like data](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/creating-a-signal-noise-removal-autoencoder-with-keras.md), you usually use two-dimensional convolutional layers for the encoder, and two-dimensional [transposed convolutions](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/understanding-transposed-convolutions.md) for the decoder segments. For simpler settings, you may choose to use Densely-connected a.k.a. Dense layers.
 
 ### Why autoencoders can be good denoisers
 
@@ -88,13 +88,13 @@ Today, we'll be trying to learn an _image noise remover_ (or _denoiser_) based o
 
 [![](images/explained-1-300x165.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/09/explained-1.jpg)
 
-_Read our blog post **["Understanding transposed convolutions"](https://www.machinecurve.com/index.php/2019/09/29/understanding-transposed-convolutions/)** if you wish to understand transposed convolutions in more detail. Check out **["Conv2DTranspose: using 2D transposed convolutions with Keras"](https://www.machinecurve.com/index.php/2019/12/10/conv2dtranspose-using-2d-transposed-convolutions-with-keras/)** if you wish to understand how to use them with Keras._
+_Read our blog post **["Understanding transposed convolutions"](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/understanding-transposed-convolutions.md)** if you wish to understand transposed convolutions in more detail. Check out **["Conv2DTranspose: using 2D transposed convolutions with Keras"](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/conv2dtranspose-using-2d-transposed-convolutions-with-keras.md)** if you wish to understand how to use them with Keras._
 
 Second: the model. As we're trying to remove noise from images, it makes sense to use **convolutional layers** for the encoder segment and **transposed convolutions** for the decoder segment.
 
 Below, you can see what it looks like. Obviously, it has an input layer, to receive the inputs, before the encoding and decoding segments are added.
 
-The two two-dimensional convolutional layers (Conv2D layers) form the part of the autoencoder that learn the encoder. The first layer learns 64 features and the other 32 features. A kernel size of 3x3 pixels is used, together with max-norm regularization (\[latex\]normsize = 2.0\[/latex\]). Since we use [ReLU activation](https://www.machinecurve.com/index.php/2019/09/09/implementing-relu-sigmoid-and-tanh-in-keras/), [we use He init](https://www.machinecurve.com/index.php/2019/09/16/he-xavier-initialization-activation-functions-choose-wisely/).
+The two two-dimensional convolutional layers (Conv2D layers) form the part of the autoencoder that learn the encoder. The first layer learns 64 features and the other 32 features. A kernel size of 3x3 pixels is used, together with max-norm regularization (\[latex\]normsize = 2.0\[/latex\]). Since we use [ReLU activation](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/implementing-relu-sigmoid-and-tanh-in-keras.md), [we use He init](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/he-xavier-initialization-activation-functions-choose-wisely.md).
 
 ![](images/model-6.png)
 
@@ -227,7 +227,7 @@ noisy_input_test = pure_test + noise_factor * noise_test
 
 ### Creating the model's architecture
 
-Next, as step five, we specify the architecture that we discussed earlier. Note that the last layer makes use of the Sigmoid activation function, which allows us to use [binary crossentropy loss](https://www.machinecurve.com/index.php/2019/10/22/how-to-use-binary-categorical-crossentropy-with-keras/).
+Next, as step five, we specify the architecture that we discussed earlier. Note that the last layer makes use of the Sigmoid activation function, which allows us to use [binary crossentropy loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-binary-categorical-crossentropy-with-keras.md).
 
 ```
 # Create the model
@@ -266,7 +266,7 @@ Train on 48000 samples, validate on 12000 samples
 
 ### Model compilation & starting the training process
 
-Step six: compiling the model and starting the training the process. Compiling the model is just a difficult combination of words for setting some configuration values; these are the so-called hyperparameters. We have to choose an optimizer ([for which we use the Adam optimizer](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/#adam) given its benefits compared with traditional SGD) and a [loss function](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/) (binary crossentropy loss).
+Step six: compiling the model and starting the training the process. Compiling the model is just a difficult combination of words for setting some configuration values; these are the so-called hyperparameters. We have to choose an optimizer ([for which we use the Adam optimizer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound/#adam) given its benefits compared with traditional SGD) and a [loss function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md) (binary crossentropy loss).
 
 ```
 # Compile and fit data

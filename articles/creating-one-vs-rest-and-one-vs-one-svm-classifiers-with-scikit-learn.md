@@ -12,7 +12,7 @@ tags:
   - "svm"
 ---
 
-Support Vector Machines (SVMs) are a class of Machine Learning algorithms that are used quite frequently these days. Named after their [method for learning a decision boundary](https://www.machinecurve.com/index.php/2019/09/20/intuitively-understanding-svm-and-svr/), SVMs are binary classifiers - meaning that they only work with a [0/1 class scenario](https://www.machinecurve.com/index.php/2020/10/19/3-variants-of-classification-problems-in-machine-learning/). In other words, it is not possible to create a multiclass classification scenario with an SVM natively.
+Support Vector Machines (SVMs) are a class of Machine Learning algorithms that are used quite frequently these days. Named after their [method for learning a decision boundary](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/intuitively-understanding-svm-and-svr.md), SVMs are binary classifiers - meaning that they only work with a [0/1 class scenario](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/3-variants-of-classification-problems-in-machine-learning.md). In other words, it is not possible to create a multiclass classification scenario with an SVM natively.
 
 Fortunately, there are some methods for allowing SVMs to be used with multiclass classification. In this article, we focus on two similar but slightly different ones: **one-vs-rest classification** and **one-vs-one classification**. Both involve the utilization of multiple binary SVM classifiers to finally get to a multiclass prediction. It is structured as follows. First, we'll look at multiclass classification in general. It serves as a brief recap, and gives us the necessary context for the rest of the article.
 
@@ -34,15 +34,15 @@ Classification can be visualized as an automated system that categorizes items t
 
 ![](images/whatisclassification5.png)
 
-There are [3 variants of classification](https://www.machinecurve.com/index.php/2020/10/19/3-variants-of-classification-problems-in-machine-learning/). In the _binary_ case, there are only two buckets - and hence two categories. This can be implemented with most machine learning algorithms. The other two cases - _multiclass_ and _multilabel_ classification, are different. In the multiclass case, we can assignitems into one of multiple (> 2) buckets; in the multilabel case, we can assign multiple labels to one instance.
+There are [3 variants of classification](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/3-variants-of-classification-problems-in-machine-learning.md). In the _binary_ case, there are only two buckets - and hence two categories. This can be implemented with most machine learning algorithms. The other two cases - _multiclass_ and _multilabel_ classification, are different. In the multiclass case, we can assignitems into one of multiple (> 2) buckets; in the multilabel case, we can assign multiple labels to one instance.
 
 > Multiclass classification can therefore be used in the setting where your classification dataset has more than two classes.
 > 
-> [3 Variants of Classification Problems in Machine Learning](https://www.machinecurve.com/index.php/2020/10/19/3-variants-of-classification-problems-in-machine-learning/)
+> [3 Variants of Classification Problems in Machine Learning](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/3-variants-of-classification-problems-in-machine-learning.md)
 
 Multiclass classification is reflected in the figure above. We clearly have no binary classifier: there are three buckets. We neither have a multilabel classifier: we assign items into buckets, rather than attaching multiple labels onto each item and then moving them into _one_ bucket.
 
-Implementing a multiclass classifier is easy when you are using Neural networks. When using [SVMs](https://www.machinecurve.com/index.php/2019/09/20/intuitively-understanding-svm-and-svr/), this is more difficult. Let's now take a look at why this cannot be done so easily.
+Implementing a multiclass classifier is easy when you are using Neural networks. When using [SVMs](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/intuitively-understanding-svm-and-svr.md), this is more difficult. Let's now take a look at why this cannot be done so easily.
 
 * * *
 
@@ -58,7 +58,7 @@ Spoiler alert: it's \[latex\]H\_3\[/latex\]. The reason why is because SVMs are 
 > 
 > Wikipedia (2005)
 
-To be more precise, it will not take into account the whole class - but rather the samples closest to the decision boundary, the so-called [support vectors](https://www.machinecurve.com/index.php/2020/05/05/how-to-visualize-support-vectors-of-your-svm-classifier/).
+To be more precise, it will not take into account the whole class - but rather the samples closest to the decision boundary, the so-called [support vectors](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-support-vectors-of-your-svm-classifier.md).
 
 ![](images/Svm_separating_hyperplanes_SVG.svg_-1024x886.png)
 
@@ -97,7 +97,7 @@ Training an One-vs-Rest classifier for our model actually involves creating thre
 - **OvR binary classifier 2:** `blue` vs `{yellow, red}`
 - **OvR binary classifier 3:** `red` vs `{blue, yellow}`
 
-Each binary classifier should predict a [class probability](https://www.machinecurve.com/index.php/2019/09/09/implementing-relu-sigmoid-and-tanh-in-keras/). Say that we can define the predictions for each binary classifier as `p1`, `p2` and `p3`, then the multiclass prediction that is the outcome of the OvR classifier is `argmax(p1, p2, p3)`. In other words, if the probability that it is yellow vs blue or red is `0.99`, blue vs yellow or red is `0.23`, red vs blue or yellow is `0.78`, then the outcome of the multiclass classifier is `0` a.k.a. yellow.
+Each binary classifier should predict a [class probability](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/implementing-relu-sigmoid-and-tanh-in-keras.md). Say that we can define the predictions for each binary classifier as `p1`, `p2` and `p3`, then the multiclass prediction that is the outcome of the OvR classifier is `argmax(p1, p2, p3)`. In other words, if the probability that it is yellow vs blue or red is `0.99`, blue vs yellow or red is `0.23`, red vs blue or yellow is `0.78`, then the outcome of the multiclass classifier is `0` a.k.a. yellow.
 
 ### One-vs-Rest in Scikit-learn: OneVsRestClassifier
 
@@ -119,7 +119,7 @@ num_classes = len(cluster_centers)
 X, y = make_blobs(n_samples = num_samples_total, centers = cluster_centers, n_features = num_classes, center_box=(0, 1), cluster_std = 0.30)
 ```
 
-We can now create a linear Support Vector Machine for classification with Scikit-learn's `sklearn.svm.LinearSVC` model type and a `OneVsRestClassifier` wrapper. Note that for evaluation purposes, we also generate a [confusion matrix](https://www.machinecurve.com/index.php/2020/05/05/how-to-create-a-confusion-matrix-with-scikit-learn/) and a [decision boundary plot](https://www.machinecurve.com/index.php/2019/10/11/how-to-visualize-the-decision-boundary-for-your-keras-model/) in the code below. For this reason, make sure that besides `sklearn` you also have `mlxtend` installed onto your system (or remove the code if not).
+We can now create a linear Support Vector Machine for classification with Scikit-learn's `sklearn.svm.LinearSVC` model type and a `OneVsRestClassifier` wrapper. Note that for evaluation purposes, we also generate a [confusion matrix](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-confusion-matrix-with-scikit-learn.md) and a [decision boundary plot](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-decision-boundary-for-your-keras-model.md) in the code below. For this reason, make sure that besides `sklearn` you also have `mlxtend` installed onto your system (or remove the code if not).
 
 ```
 import matplotlib.pyplot as plt
@@ -188,7 +188,7 @@ Here, the winner is the class that is picked the most. So, for example, if yello
 
 ### One-vs-One in Scikit-learn: OneVsOneClassifier
 
-Here is a simple example of using `OneVsOneClassifier` i.e. One-vs-One with Scikit-learn. Very similar to the One-vs-Rest setting, we can wrap a linear binary SVM into the wrapper, resulting in a set of classifiers being created, trained and subsequently used for multiclass predictions. Do note again that we are also generating a [confusion matrix](https://www.machinecurve.com/index.php/2020/05/05/how-to-create-a-confusion-matrix-with-scikit-learn/) and [decision boundary](https://www.machinecurve.com/index.php/2019/10/11/how-to-visualize-the-decision-boundary-for-your-keras-model/) and that by consequence `mlxtend` is required besides `sklearn`.
+Here is a simple example of using `OneVsOneClassifier` i.e. One-vs-One with Scikit-learn. Very similar to the One-vs-Rest setting, we can wrap a linear binary SVM into the wrapper, resulting in a set of classifiers being created, trained and subsequently used for multiclass predictions. Do note again that we are also generating a [confusion matrix](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-confusion-matrix-with-scikit-learn.md) and [decision boundary](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-decision-boundary-for-your-keras-model.md) and that by consequence `mlxtend` is required besides `sklearn`.
 
 ```
 import matplotlib.pyplot as plt

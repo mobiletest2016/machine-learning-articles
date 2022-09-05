@@ -38,7 +38,7 @@ Let's go! 😎
 
 ## On optimizing supervised machine learning models
 
-Let's take a look at the [high-level supervised machine learning process](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#the-high-level-supervised-learning-process):
+Let's take a look at the [high-level supervised machine learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process):
 
 ![](images/High-level-training-process-1024x973.jpg)
 
@@ -46,9 +46,9 @@ Training such models goes through a simple, sequential and cyclical process:
 
 1. The _features_, i.e. the inputs, predictors or independent variables, are fed to the machine learning model. The model will generate predictions for the data, e.g. the class it thinks that the features belong to.
 2. These predictions are compared with the _targets_, which represent the ground truth for the features. That is, they are the _actual_ classes in the classification scenario above.
-3. The difference between the predictions and the actual targets can be captured in the loss value. Depending on your machine learning problem, [you can choose from a wide range of loss functions](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#loss-functions).
+3. The difference between the predictions and the actual targets can be captured in the loss value. Depending on your machine learning problem, [you can choose from a wide range of loss functions](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#loss-functions).
 4. Based on the loss value, the model computes the best way of making it better - i.e., it computes gradients using backpropagation.
-5. Based on these gradients, an optimizer (such as [gradient descent](https://www.machinecurve.com/index.php/2019/10/24/gradient-descent-and-its-variants/) or [an adaptive optimizer](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/)) will adapt the model accordingly.
+5. Based on these gradients, an optimizer (such as [gradient descent](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md) or [an adaptive optimizer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md)) will adapt the model accordingly.
 6. The process starts again. Likely, and hopefully, the model performs slightly better this time.
 
 Once you're happy with the end results, you stop the machine learning process, and you have a model that can hopefully be used in production :)
@@ -89,7 +89,7 @@ This analogy also perfectly explains why the learning rate in the Adam example a
 
 Let's now build in a small intermezzo: the concepts of **overfitting** and **underfitting**, and checking for them by using validation and test loss.
 
-Often, before you train a model with all your data, you'll first evaluate your choice with [hold-out techniques or K-fold Cross Validation](https://www.machinecurve.com/index.php/2020/02/18/how-to-use-k-fold-cross-validation-with-keras/). These generate a dataset split between training data and testing data, which you'll need, as you're going to need to decide when the model is good enough.
+Often, before you train a model with all your data, you'll first evaluate your choice with [hold-out techniques or K-fold Cross Validation](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-k-fold-cross-validation-with-keras.md). These generate a dataset split between training data and testing data, which you'll need, as you're going to need to decide when the model is good enough.
 
 And good enough is the precise balance between _having it perform better_ and _having it perform too adequately._
 
@@ -101,9 +101,9 @@ You'll therefore always have to strike a balance between the model's predictive 
 
 Fortunately, it's possible to detect overfitting using a plot of your loss value (Smith, 2018). Always take your validation or test loss for this. Use your test loss if you don't split your _training_ data in true training and validation data (which is the case if you're simply evaluating models with e.g. K-fold Cross Validation). Use validation loss if you evaluate models and train the final one at once (requiring training, validation and testing data). In both cases, you ensure that you use data that the model has not seen before, avoiding that you - as a student - mark your own homework ;)
 
-This is especially useful when [you are using e.g. TensorBoard](https://www.machinecurve.com/index.php/2019/11/13/how-to-use-tensorboard-with-keras/), where you can inspect progress in real-time.
+This is especially useful when [you are using e.g. TensorBoard](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-tensorboard-with-keras.md), where you can inspect progress in real-time.
 
-However, it's also possible [to generate a plot when your training process finishes](https://www.machinecurve.com/index.php/2019/10/08/how-to-visualize-the-training-process-in-keras/). Such diagrams make things crisply clear:
+However, it's also possible [to generate a plot when your training process finishes](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-training-process-in-keras.md). Such diagrams make things crisply clear:
 
 [![](images/UnderOver.png)](https://www.machinecurve.com/wp-content/uploads/2020/02/UnderOver.png)
 
@@ -111,7 +111,7 @@ In the first part of the training process, the model's predictive performance is
 
 However, after about the 20th epoch, validation loss starts improving, while (you must assume this) _training_ loss still decreases. This means that while the model gets better and better in predicting the training data, it is getting worse in predicting the validation data. Hence, after the 20th epoch, _overfitting_ starts to occur.
 
-While you can reduce the impact of overfitting or delay it with [regularizers](https://www.machinecurve.com/index.php/2020/01/21/what-are-l1-l2-and-elastic-net-regularization-in-neural-networks/) and [Dropout](https://www.machinecurve.com/index.php/2019/12/16/what-is-dropout-reduce-overfitting-in-your-neural-networks/), it's clear that for this model and corresponding configuration, the optimum is achieved at the 20th epoch. What's important to understand here is that this optimum emerges _given the model architecture and configuration!_ If you changed the architecture, or configured it differently, you might e.g. delay overfitting or achieve even lower validation loss minimums. That's why training neural networks is more of an art than a science :)
+While you can reduce the impact of overfitting or delay it with [regularizers](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-are-l1-l2-and-elastic-net-regularization-in-neural-networks.md) and [Dropout](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-dropout-reduce-overfitting-in-your-neural-networks.md), it's clear that for this model and corresponding configuration, the optimum is achieved at the 20th epoch. What's important to understand here is that this optimum emerges _given the model architecture and configuration!_ If you changed the architecture, or configured it differently, you might e.g. delay overfitting or achieve even lower validation loss minimums. That's why training neural networks is more of an art than a science :)
 
 As choosing a learning rate setting impacts the loss significantly, it's good that it's clear what overfitting and underfitting are, and how you can spot them on a plot. Let's now take a look at _choosing a learning rate._
 
@@ -140,13 +140,13 @@ Here, the learning rate is set as a _constant_. It's a fixed value which is used
 
 Unfortunately, this doesn't produce an optimal learning process.
 
-Let's take a look at two other models that we trained [for another blog post](https://www.machinecurve.com/index.php/2020/01/31/reducing-trainable-parameters-with-a-dense-free-convnet-classifier/):
+Let's take a look at two other models that we trained [for another blog post](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/reducing-trainable-parameters-with-a-dense-free-convnet-classifier.md):
 
 [![](images/gap_loss.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/gap_loss.png)
 
 The model in orange clearly produces a low loss rapidly, and much faster than the model in blue. However, we can also observe some overfitting to occur after approximately the 10th epoch. Not so weird, given the fact that we trained for ten times longer than strictly necessary.
 
-Now, the rapid descent of the loss value and the increasingly slower pace of falling down are typical for machine learning settings which use optimizers like [gradient descent](https://www.machinecurve.com/index.php/2019/10/24/gradient-descent-and-its-variants/) or [adaptive ones](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/).
+Now, the rapid descent of the loss value and the increasingly slower pace of falling down are typical for machine learning settings which use optimizers like [gradient descent](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md) or [adaptive ones](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md).
 
 Why is this the case? And why is this important for a learning rate?
 
@@ -156,7 +156,7 @@ Let's dig a little bit deeper.
 
 Supervised machine learning models work with _model weights_: on initialization, models are configured to accept certain input data, and they create "weight vectors" in which they can store the numeric patterns they observe. Eventually, they multiply these vectors with the input vectors during training and production usage.
 
-Now, when you start training, it's often best practice to initialize your weight vectors randomly, or by using [approaches adapted to your model](https://www.machinecurve.com/index.php/2019/08/30/random-initialization-vanishing-and-exploding-gradients/).
+Now, when you start training, it's often best practice to initialize your weight vectors randomly, or by using [approaches adapted to your model](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/random-initialization-vanishing-and-exploding-gradients.md).
 
 For the forward pass (step 1 of the 6 steps outlined at the start), you can imagine that multiplying your input data with random weights will produce very poor results. Indeed, loss is likely high during the first few epochs. However, in this stage, it's also possible to make large steps towards accurate weights and hence adequate loss values. That's why you see loss descend so rapidly during the first few iterations of a supervised ML training process: it's looking for a global loss minimum very fast.
 
@@ -188,7 +188,7 @@ Let's now introduce the concept of a _decaying learning rate_. Eventually, we'll
 
 Instead of a fixed learning rate, wouldn't it be good if we could reduce it over time?
 
-That is, apply [learning rate decay](https://www.machinecurve.com/index.php/2019/11/11/problems-with-fixed-and-decaying-learning-rates/#what-is-learning-rate-decay)?
+That is, apply [learning rate decay](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/problems-with-fixed-and-decaying-learning-rates/#what-is-learning-rate-decay)?
 
 Indeed, this seems to be an approach to reducing the negative impact of a fixed learning rate. By using a so-called "decay scheme", which decides how the learning rate decays over time, you can exhibit control over the learning rate for an arbitrary epoch.
 
@@ -270,11 +270,11 @@ Now, keep your command prompt open, and generate a new file, e.g. `touch lr-find
 
 The first thing I always do is to import everything we need:
 
-- The [MNIST dataset](https://www.machinecurve.com/index.php/2019/12/31/exploring-the-keras-datasets/#mnist-database-of-handwritten-digits), which we'll use today;
+- The [MNIST dataset](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets/#mnist-database-of-handwritten-digits), which we'll use today;
 - The Sequential API, which allows us to stack layers nicely;
 - The Dense, Flatten, Conv2D and MaxPooling2D layers, as we'll find optimal learning rates for a ConvNet that classifies the MNIST data;
-- [Sparse categorical crossentropy](https://www.machinecurve.com/index.php/2019/10/06/how-to-use-sparse-categorical-crossentropy-in-keras/), which is our loss function for today;
-- The [SGD](https://www.machinecurve.com/index.php/2019/10/24/gradient-descent-and-its-variants/) and [Adam](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/) optimizers, for which we'll compute the optimum learning rates.
+- [Sparse categorical crossentropy](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-sparse-categorical-crossentropy-in-keras.md), which is our loss function for today;
+- The [SGD](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md) and [Adam](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md) optimizers, for which we'll compute the optimum learning rates.
 
 ```
 from tensorflow.keras.datasets import mnist
@@ -329,7 +329,7 @@ input_test = input_test / 255
 
 ### Model architecture
 
-Then, we specify the model architecture. It's not the most important thing for today, but here it is. It's a simple [ConvNet](https://www.machinecurve.com/index.php/2018/12/07/convolutional-neural-networks-and-their-components-for-computer-vision/) using [Max Pooling](https://www.machinecurve.com/index.php/2020/01/30/what-are-max-pooling-average-pooling-global-max-pooling-and-global-average-pooling/):
+Then, we specify the model architecture. It's not the most important thing for today, but here it is. It's a simple [ConvNet](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/convolutional-neural-networks-and-their-components-for-computer-vision.md) using [Max Pooling](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-are-max-pooling-average-pooling-global-max-pooling-and-global-average-pooling.md):
 
 ```
 # Create the model
@@ -449,7 +449,7 @@ Open up that command prompt again, `cd` to the folder where your `.py` file is l
 
 _Note that yours won't be exactly the same due to the fact that machine learning models are stochastic, e.g. due to random or pseudo-random initialization of your weight vectors during model initialization._
 
-The results are very clear: for this training setting, Adam performs substantially better. We can observe that it reaches a lower loss value compared to SGD (first plot), and that it does so in a much shorter time (second plot - the negative delta occurs at a lower learning rate). Likely, this is how we benefit from the fact that Adam performs [local parameter updates](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/#adam), whereas SGD does not. If we had to choose between these two optimizers, it would clearly be Adam with a learning rate of \[latex\]\\approx 10^{-3.95}\[/latex\].
+The results are very clear: for this training setting, Adam performs substantially better. We can observe that it reaches a lower loss value compared to SGD (first plot), and that it does so in a much shorter time (second plot - the negative delta occurs at a lower learning rate). Likely, this is how we benefit from the fact that Adam performs [local parameter updates](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound/#adam), whereas SGD does not. If we had to choose between these two optimizers, it would clearly be Adam with a learning rate of \[latex\]\\approx 10^{-3.95}\[/latex\].
 
 ### Full code
 

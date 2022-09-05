@@ -14,7 +14,7 @@ tags:
   - "tanh"
 ---
 
-In a recent tutorial, we looked at [widely used activation functions](https://machinecurve.com/index.php/2019/09/04/relu-sigmoid-and-tanh-todays-most-used-activation-functions/) in today's neural networks. More specifically, we checked out Rectified Linear Unit (ReLU), Sigmoid and Tanh (or hyperbolic tangent), together with their benefits and drawbacks.
+In a recent tutorial, we looked at [widely used activation functions](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md) in today's neural networks. More specifically, we checked out Rectified Linear Unit (ReLU), Sigmoid and Tanh (or hyperbolic tangent), together with their benefits and drawbacks.
 
 However, it all remained theory.
 
@@ -73,7 +73,7 @@ model.add(Dense(8, activation='tanh'))
 
 ## Recap: ReLU, Tanh and Sigmoid
 
-Before we begin, a small recap on the concept of an activation function and the [three widely ones used today](https://machinecurve.com/index.php/2019/09/04/relu-sigmoid-and-tanh-todays-most-used-activation-functions/).
+Before we begin, a small recap on the concept of an activation function and the [three widely ones used today](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md).
 
 Neural networks are composed of layers of individual neurons which can take vector data as input and subsequently either fire to some extent or remain silent.
 
@@ -85,7 +85,7 @@ This is not desirable because most real-world data is nonlinear in nature. For e
 
 Hence, activation functions are applied to neural networks: the linear output is first input into such a function before being emitted to the next layer. Since activation functions are nonlinear, the linear input will be transformed into nonlinear output. When applied to all neurons, the system as a whole becomes nonlinear, capable of learning from highly complex, nonlinear data.
 
-ReLU, Sigmoid and Tanh are today's most widely used activation functions. From these, ReLU is the most prominent one and the de facto standard one during deep learning projects because it is resistent against the [vanishing and exploding gradients](https://machinecurve.com/index.php/2019/08/30/random-initialization-vanishing-and-exploding-gradients/) problems, whereas Sigmoid and Tanh are not. Hence, it's good practice to start with ReLU and expand from there. However, this must always be done with its challenges in mind: ReLU is not perfect and is [continuously improved](https://machinecurve.com/index.php/2019/05/30/why-swish-could-perform-better-than-relu/).
+ReLU, Sigmoid and Tanh are today's most widely used activation functions. From these, ReLU is the most prominent one and the de facto standard one during deep learning projects because it is resistent against the [vanishing and exploding gradients](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/random-initialization-vanishing-and-exploding-gradients.md) problems, whereas Sigmoid and Tanh are not. Hence, it's good practice to start with ReLU and expand from there. However, this must always be done with its challenges in mind: ReLU is not perfect and is [continuously improved](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-swish-could-perform-better-than-relu.md).
 
 Now that we have a little background on these activation functions, we can introduce the dataset we're going to use to implement neural networks with ReLU, Sigmoid and Tanh in Keras.
 
@@ -93,7 +93,7 @@ Now that we have a little background on these activation functions, we can intro
 
 ## Today's dataset
 
-Today, we're going to use a dataset that we used before when discussing [Rosenblatt Perceptrons and Keras](https://machinecurve.com/index.php/2019/07/24/why-you-cant-truly-create-rosenblatts-perceptron-with-keras/): the **Pima Indians Diabetes Database**.
+Today, we're going to use a dataset that we used before when discussing [Rosenblatt Perceptrons and Keras](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-you-cant-truly-create-rosenblatts-perceptron-with-keras.md): the **Pima Indians Diabetes Database**.
 
 This is what it does:
 
@@ -122,7 +122,7 @@ For machine learning projects, it allows you to find correlations between (combi
 
 ## General model parts
 
-Today, we'll build a very simple model to illustrate our point. More specifically, we will create a [multilayer perceptron](https://machinecurve.com/index.php/2019/07/30/creating-an-mlp-for-regression-with-keras/) with Keras - but then three times, each time with a different activation function.
+Today, we'll build a very simple model to illustrate our point. More specifically, we will create a [multilayer perceptron](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/creating-an-mlp-for-regression-with-keras.md) with Keras - but then three times, each time with a different activation function.
 
 To do this, we'll start by creating three files - one per activation function: `relu.py`, `sigmoid.py` and `tanh.py`. In each, we'll add general parts that are shared across the model instances.
 
@@ -183,7 +183,7 @@ model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy']
 model.fit(X, Y, epochs=225, batch_size=25, verbose=1, validation_split=0.2)
 ```
 
-What we do first is adding the _final_ layer in the model: a Dense layer with one neuron and a Sigmoid activation function. This is what we need: since our classification problem is binary, we need one output neuron (that outputs a value between class 0 and class 1). The [Sigmoid](https://machinecurve.com/index.php/2019/09/04/relu-sigmoid-and-tanh-todays-most-used-activation-functions/) activation function allows us to do exactly that. Hence, we use it in our final layer too.
+What we do first is adding the _final_ layer in the model: a Dense layer with one neuron and a Sigmoid activation function. This is what we need: since our classification problem is binary, we need one output neuron (that outputs a value between class 0 and class 1). The [Sigmoid](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md) activation function allows us to do exactly that. Hence, we use it in our final layer too.
 
 Compiling the model with binary crossentropy (we have a binary classification problem), the Adam optimizer (an extension of stochastic gradient descent that allows local parameter optimization and adds momentum) and accuracy is what we do second.
 
@@ -211,7 +211,7 @@ It is therefore no surprise that changing the activation function is very easy i
 
 Today, Keras is tightly coupled to TensorFlow 2.0, and is still one of the key libraries for creating your neural networks. This article was adapted to reflect the latest changes in TensorFlow and works with any TensorFlow 2 version.
 
-What's best, if the activation function of your choice - for example [Swish](https://machinecurve.com/index.php/2019/05/30/why-swish-could-perform-better-than-relu/) - is not available, you can create it yourself and add it as a function. Take a look at the Swish post to find an example.
+What's best, if the activation function of your choice - for example [Swish](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-swish-could-perform-better-than-relu.md) - is not available, you can create it yourself and add it as a function. Take a look at the Swish post to find an example.
 
 ### Adding ReLU to your model
 

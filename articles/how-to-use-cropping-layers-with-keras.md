@@ -51,7 +51,7 @@ Instead, we'll perform _cropping_ in our neural network! Keras, the deep learnin
 
 ## Cropping in the Keras API
 
-Cropping often goes hand in hand with [Convolutional layers](https://www.machinecurve.com/index.php/2018/12/07/convolutional-neural-networks-and-their-components-for-computer-vision/), which themselves are used for feature extracting from one-dimensional (i.e. time), two-dimensional (i.e. spatial) or three-dimensional (i.e. 3D spatial or spatiotemporal a.k.a. spatial over time) data.
+Cropping often goes hand in hand with [Convolutional layers](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/convolutional-neural-networks-and-their-components-for-computer-vision.md), which themselves are used for feature extracting from one-dimensional (i.e. time), two-dimensional (i.e. spatial) or three-dimensional (i.e. 3D spatial or spatiotemporal a.k.a. spatial over time) data.
 
 Hence, it shouldn't surprise you that Keras offers three types of Cropping layers: `Cropping1D`, `Cropping2D` and `Cropping3D`, to be used with the dimensionality of your dataset and often the corresponding `Conv` layer(s) (Keras, n.d.).
 
@@ -97,7 +97,7 @@ Open up a code editor and create a file, e.g. `cropping2d.py`. Then, the first s
 
 - The `Sequential` API from `tensorflow.keras.models`, so we can stack everything together nicely.
 - The `Cropping2D` layer from `tensorflow.keras.layers`;
-- The `mnist` dataset from `tensorflow.keras.datasets`, i.e. the [Keras datasets module](https://www.machinecurve.com/index.php/2019/12/31/exploring-the-keras-datasets/).
+- The `mnist` dataset from `tensorflow.keras.datasets`, i.e. the [Keras datasets module](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets.md).
 - The `PyPlot` API from Matplotlib, for generating some plots.
 - Finally, `Numpy`, for number processing.
 
@@ -245,7 +245,7 @@ plt.show()
 
 [![](images/model_cropping2d-84x300.png)](https://www.machinecurve.com/wp-content/uploads/2020/02/model_cropping2d.png)
 
-Let's now make the example a little bit more complex. Rather than creating a model which allows an input image to be cropped, we'll apply Cropping layers to a [Convolutional Neural Network based classifier](https://www.machinecurve.com/index.php/2019/09/17/how-to-create-a-cnn-classifier-with-keras/) - in order to find out what it does in terms of performance when it is trained on the MNIST dataset.
+Let's now make the example a little bit more complex. Rather than creating a model which allows an input image to be cropped, we'll apply Cropping layers to a [Convolutional Neural Network based classifier](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras.md) - in order to find out what it does in terms of performance when it is trained on the MNIST dataset.
 
 On the right, you'll see the architecture that we will create today: a convolutional neural network that eventually leads to densely-connected layer based classification.
 
@@ -263,12 +263,12 @@ from tensorflow.keras.layers import Dense, Dropout, Flatten
 from tensorflow.keras.layers import Conv2D, MaxPooling2D, Cropping2D
 ```
 
-We import `tensorflow`, as we'll need it later to specify e.g. the [loss function](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/). Then, from `tensorflow.keras`, we import a couple of things:
+We import `tensorflow`, as we'll need it later to specify e.g. the [loss function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md). Then, from `tensorflow.keras`, we import a couple of things:
 
 - Firstly, from `.datasets`, we import the `mnist` dataset.
 - From `.models`, we import the `Sequential` API which will allow us to stack the layers quite nicely.
-- Then, from `.layers`, we import `Dense`, `Dropout` and `Flatten` - all necessary for the latter part (i.e. the classifier) of the model or for reducing overfitting (i.e. [Dropout](https://www.machinecurve.com/index.php/2019/12/18/how-to-use-dropout-with-keras/)).
-- Then, from `.layers`, we import the layers used for feature extracting: the `Conv2D` layer for the actual extraction, the `MaxPooling2D` layer for [downsampling and introducing translation invariance](https://www.machinecurve.com/index.php/2020/01/30/what-are-max-pooling-average-pooling-global-max-pooling-and-global-average-pooling/) and `Cropping2D` for cropping, obviously :)
+- Then, from `.layers`, we import `Dense`, `Dropout` and `Flatten` - all necessary for the latter part (i.e. the classifier) of the model or for reducing overfitting (i.e. [Dropout](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-dropout-with-keras.md)).
+- Then, from `.layers`, we import the layers used for feature extracting: the `Conv2D` layer for the actual extraction, the `MaxPooling2D` layer for [downsampling and introducing translation invariance](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-are-max-pooling-average-pooling-global-max-pooling-and-global-average-pooling.md) and `Cropping2D` for cropping, obviously :)
 
 ### Model configuration
 
@@ -284,13 +284,13 @@ validation_split = 0.2
 verbosity = 1
 ```
 
-As the MNIST digits have a width and height of 28 pixels, we set both `img_width` and `img_height` to 28. Then, the batch size is set to 250 - which is a fair balance between memory requirements and [gradient preciseness](https://www.machinecurve.com/index.php/2019/10/24/gradient-descent-and-its-variants/). The number of epochs is set to 25 - which is low, but which should be more than enough for a simple dataset like MNIST. The number of classes is set to 10, which equals the distinct number of digits present within the dataset - i.e. the digits 0 to 9.
+As the MNIST digits have a width and height of 28 pixels, we set both `img_width` and `img_height` to 28. Then, the batch size is set to 250 - which is a fair balance between memory requirements and [gradient preciseness](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md). The number of epochs is set to 25 - which is low, but which should be more than enough for a simple dataset like MNIST. The number of classes is set to 10, which equals the distinct number of digits present within the dataset - i.e. the digits 0 to 9.
 
 Finally, 20% of the training data is used for validation purposes (i.e. validating model performance for every epoch) and verbosity mode is set to True (through `1`), outputting everything in your terminal (and in my experience slightly slowing down the training process due to the speed of these operations - turn it off when you use it for real!).
 
 ### Loading and preparing data
 
-When the model configuration options are set, we can load the MNIST dataset. We do so by calling the `load_data()` definition that is present within the [Keras datasets module](https://www.machinecurve.com/index.php/2019/12/31/exploring-the-keras-datasets/):
+When the model configuration options are set, we can load the MNIST dataset. We do so by calling the `load_data()` definition that is present within the [Keras datasets module](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets.md):
 
 ```
 # Load MNIST dataset
@@ -306,7 +306,7 @@ input_test = input_test.reshape(input_test.shape[0], img_width, img_height, 1)
 input_shape = (img_width, img_height, 1)
 ```
 
-We subsequently cast the numbers into `float32` type. This makes learning more [precise](https://www.machinecurve.com/index.php/2020/09/16/tensorflow-model-optimization-an-introduction-to-quantization/#float32-in-your-ml-model-why-its-great):
+We subsequently cast the numbers into `float32` type. This makes learning more [precise](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tensorflow-model-optimization-an-introduction-to-quantization/#float32-in-your-ml-model-why-its-great):
 
 ```
 # Parse numbers as floats
@@ -322,7 +322,7 @@ input_train = input_train / 255
 input_test = input_test / 255
 ```
 
-The final step that is left is to convert the targets into categorical format through one-hot encoding, so that [categorical crossentropy](https://www.machinecurve.com/index.php/2019/10/22/how-to-use-binary-categorical-crossentropy-with-keras/) can be used:
+The final step that is left is to convert the targets into categorical format through one-hot encoding, so that [categorical crossentropy](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-binary-categorical-crossentropy-with-keras.md) can be used:
 
 ```
 # Convert target vectors to categorical targets
@@ -355,14 +355,14 @@ It works as follows:
 - We first add the `Cropping2D` layer we used in the simple example - so that our MNIST data will be cropped and that the "blank" box around it will be cut off.
 - Then, we feed the data into two convolutional blocks that are composed of `Conv2D`, `MaxPooling2D` and `Dropout` layers. Here, feature extraction, downsampling, ensuring translation invariance and reducing overfitting takes place - twice.
 - Subsequently, we flatten the highly dimensional outputs of the last convolutional block so that we can feed them to the `Dense` layers, for classification.
-- Each layer utilizes a [ReLU activation function](https://www.machinecurve.com/index.php/2019/09/04/relu-sigmoid-and-tanh-todays-most-used-activation-functions/) except for the last - which ensures that a multiclass probability distribution is generated by means of [Softmax](https://www.machinecurve.com/index.php/2020/01/08/how-does-the-softmax-activation-function-work/).
-- The Dropout rate is set to 0.25, which is relatively low - even better results may be achieved with a rate of 0.5; however, we set it to 0.25 in order to keep the model comparable to the classic CNN we created [in another blog post](https://www.machinecurve.com/index.php/2019/09/17/how-to-create-a-cnn-classifier-with-keras/).
-- The convolutional layers extract 32 and 64 [feature maps](https://www.machinecurve.com/index.php/2019/12/03/what-do-convnets-see-visualizing-filters-with-activation-maximization/), respectively - 32 relatively "generic" ones and 64 more "specific" ones to the data. We use 3x3 pixel kernels and 2x2 pools, reducing the size of the feature maps by 50% each time.
+- Each layer utilizes a [ReLU activation function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md) except for the last - which ensures that a multiclass probability distribution is generated by means of [Softmax](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-does-the-softmax-activation-function-work.md).
+- The Dropout rate is set to 0.25, which is relatively low - even better results may be achieved with a rate of 0.5; however, we set it to 0.25 in order to keep the model comparable to the classic CNN we created [in another blog post](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras.md).
+- The convolutional layers extract 32 and 64 [feature maps](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-do-convnets-see-visualizing-filters-with-activation-maximization.md), respectively - 32 relatively "generic" ones and 64 more "specific" ones to the data. We use 3x3 pixel kernels and 2x2 pools, reducing the size of the feature maps by 50% each time.
 - The first Dense layer has 256 neurons - and is already a "bottleneck" for the highly dimensional flattened data (this is a good thing). The second Dense layer is an even greater bottleneck and generates _ten_ outputs only, one "importance" score per class. Letting those flow through the Softmax activation function mentioned earlier ensures that you can talk about the final output in a probabalistic way, and pick the most likely class.
 
 ### Model compilation & data fitting
 
-The next step is model compilation, or "configuring" the model skeleton. For this, we use [categorical crossentropy loss](https://www.machinecurve.com/index.php/2019/10/22/how-to-use-binary-categorical-crossentropy-with-keras/) and the [Adam optimizer](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/#adam). Accuracy is added as a more intuitive metric.
+The next step is model compilation, or "configuring" the model skeleton. For this, we use [categorical crossentropy loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-binary-categorical-crossentropy-with-keras.md) and the [Adam optimizer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound/#adam). Accuracy is added as a more intuitive metric.
 
 ```
 # Compile the model
@@ -371,7 +371,7 @@ model.compile(loss=tensorflow.keras.losses.categorical_crossentropy,
               metrics=['accuracy'])
 ```
 
-Next, we `fit` the data to the model - and assign the output to the `history` object. With this object, it will be possible to [visualize e.g. the history of the training process](https://www.machinecurve.com/index.php/2019/10/08/how-to-visualize-the-training-process-in-keras/). Here, we also _actually_ set the configuration options that we set before.
+Next, we `fit` the data to the model - and assign the output to the `history` object. With this object, it will be possible to [visualize e.g. the history of the training process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-training-process-in-keras.md). Here, we also _actually_ set the configuration options that we set before.
 
 ```
 # Fit data to model
@@ -392,7 +392,7 @@ score = model.evaluate(input_test, target_test, verbose=0)
 print(f'Test loss: {score[0]} / Test accuracy: {score[1]}')
 ```
 
-...possibly, you can also add the code here if you wish to visualize [the history of your training process](https://www.machinecurve.com/index.php/2019/10/08/how-to-visualize-the-training-process-in-keras/).
+...possibly, you can also add the code here if you wish to visualize [the history of your training process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-training-process-in-keras.md).
 
 ### Comparing Cropped CNN to Uncropped CNN
 

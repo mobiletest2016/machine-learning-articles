@@ -188,7 +188,7 @@ In short, it's a network that is composed of the following components:
 - By consequence, an encoded state, which represents the encoding.
 - A _decoder_ function, which has also been learnt and attempts to decode the encoded state into what has been learnt. In our case, this was the reconstructed image, but it may also be something entirely different.
 
-There is a large number of autoencoder types, but if we are speaking about convolutional autoencoders, it's possible to build them with [transposed convolutions](https://www.machinecurve.com/index.php/2019/09/29/understanding-transposed-convolutions/) (in Keras: [Conv2DTranspose](https://www.machinecurve.com/index.php/2019/12/10/conv2dtranspose-using-2d-transposed-convolutions-with-keras/)) or with upsampling (UpSampling2D, what we saw above) and regular convolutions. Click the links if you wish to know more about this first approach. In this post, we'll cover the latter.
+There is a large number of autoencoder types, but if we are speaking about convolutional autoencoders, it's possible to build them with [transposed convolutions](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/understanding-transposed-convolutions.md) (in Keras: [Conv2DTranspose](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/conv2dtranspose-using-2d-transposed-convolutions-with-keras.md)) or with upsampling (UpSampling2D, what we saw above) and regular convolutions. Click the links if you wish to know more about this first approach. In this post, we'll cover the latter.
 
 ### How is UpSampling2D different from Conv2DTranspose?
 
@@ -220,7 +220,7 @@ That's what we will build, and it looks like this:
 
 ![](images/model-3-241x1024.png)
 
-We first use Conv2D and MaxPooling layers to downsample the image (i.e., the encoder part), and subsequently use UpSampling2D and Conv2D to upsample it into our desired format (i.e., the decoder part, which in our case attempts reconstructing the original input). Note that the upsampling and convolutional layer [must be used together](#why-upsampling2d-and-conv2d-must-be-used-together) due to its equality to [transposed convolutions](https://www.machinecurve.com/index.php/2019/12/10/conv2dtranspose-using-2d-transposed-convolutions-with-keras/). Note that traditionally, before Conv2DTranspose was available and fast enough, upsampling and Conv2D were really popular, and even used by François Chollet, the creator of the Keras framework (Keras Blog, n.d.).
+We first use Conv2D and MaxPooling layers to downsample the image (i.e., the encoder part), and subsequently use UpSampling2D and Conv2D to upsample it into our desired format (i.e., the decoder part, which in our case attempts reconstructing the original input). Note that the upsampling and convolutional layer [must be used together](#why-upsampling2d-and-conv2d-must-be-used-together) due to its equality to [transposed convolutions](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/conv2dtranspose-using-2d-transposed-convolutions-with-keras.md). Note that traditionally, before Conv2DTranspose was available and fast enough, upsampling and Conv2D were really popular, and even used by François Chollet, the creator of the Keras framework (Keras Blog, n.d.).
 
 Today, the general consensus is this: "While the transpose convolution is more efficient, the article advocates for upsampling + convolution since it does not suffer from the checkerboard artifact" (StackExchange, n.d.). For your practical settings, thus check whether you are sensitive to the checkerboard effect (TLDR: it happens more often when you have image-like data with very flashy colors, and high contrasts), and based on this choose which approach to use (TLDR: checkerboard effect with Conv2DTranspose can be avoided by configuring your stride and kernel size correctly, see Odena et al. 2016).
 
@@ -267,7 +267,7 @@ validation_split = 0.2
 verbosity = 1
 ```
 
-As we're using the MNIST dataset today (see image), we set width and height to 28 pixels. We use a 25 batch size, which allows us to capture slightly more of the gradient accuracy with respect to the balance between [batch gradient descent and stochastic gradient descent](https://www.machinecurve.com/index.php/2019/10/24/gradient-descent-and-its-variants/) (even though we don't use a GD-like optimizer, the effect must be similar). The number of classes is, by definition of the distinct number of digits available, ten - zero to nine. We use 20% of our training data for validation, and set verbosity to True, outputting everything on screen. While this slows down the training process slightly, it helps you understand and see what happens. Set it to False (zero) if you wish to see the outputs only.
+As we're using the MNIST dataset today (see image), we set width and height to 28 pixels. We use a 25 batch size, which allows us to capture slightly more of the gradient accuracy with respect to the balance between [batch gradient descent and stochastic gradient descent](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md) (even though we don't use a GD-like optimizer, the effect must be similar). The number of classes is, by definition of the distinct number of digits available, ten - zero to nine. We use 20% of our training data for validation, and set verbosity to True, outputting everything on screen. While this slows down the training process slightly, it helps you understand and see what happens. Set it to False (zero) if you wish to see the outputs only.
 
 [![](images/mnist.png)](https://www.machinecurve.com/wp-content/uploads/2019/07/mnist.png)
 
@@ -320,7 +320,7 @@ model.summary()
 
 We use the Conv2D, MaxPooling2D and UpSampling2D layers as defined before. What's important to note is that we use `bilinear` interpolation, which empirically does not produce different results from `nearest` interpolation - at least in this case.
 
-One more thing: as we activate with `relu`, [we must use He init](https://www.machinecurve.com/index.php/2019/09/16/he-xavier-initialization-activation-functions-choose-wisely/), and hence we do so.
+One more thing: as we activate with `relu`, [we must use He init](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/he-xavier-initialization-activation-functions-choose-wisely.md), and hence we do so.
 
 The `model.summary()` call generates a nice summary on the fly:
 
@@ -372,7 +372,7 @@ model.fit(input_train, input_train,
                 validation_split=validation_split)
 ```
 
-Compiling is done with the default choices - being the [Adam optimizer](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/) and [binary crossentropy loss](https://www.machinecurve.com/index.php/2019/10/22/how-to-use-binary-categorical-crossentropy-with-keras/). As we wish to reconstruct the original input, we set `input_train` to be both the _input_ and the _target_, and further configure the number of epochs, batch size and validation split as configured before.
+Compiling is done with the default choices - being the [Adam optimizer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md) and [binary crossentropy loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-binary-categorical-crossentropy-with-keras.md). As we wish to reconstruct the original input, we set `input_train` to be both the _input_ and the _target_, and further configure the number of epochs, batch size and validation split as configured before.
 
 ### Generating & visualizing reconstructions
 
@@ -494,7 +494,7 @@ for i in np.arange(0, num_reconstructions):
 
 Now open up a terminal, `cd` into the folder where your `upsampling2d.py` file is located, and execute `python upsampling2d.py`. When you have all the dependencies, you'll notice that the training process will start - possibly with a download of the MNIST dataset first.
 
-Once the training process finishes, it's likely that you'll arrive at a loss value of approximately 0.11. While this is quite good, it's a bit worse than the [Conv2DTranspose](https://www.machinecurve.com/index.php/2019/12/10/conv2dtranspose-using-2d-transposed-convolutions-with-keras/) we achieved of approximately 0.05.
+Once the training process finishes, it's likely that you'll arrive at a loss value of approximately 0.11. While this is quite good, it's a bit worse than the [Conv2DTranspose](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/conv2dtranspose-using-2d-transposed-convolutions-with-keras.md) we achieved of approximately 0.05.
 
 Visualizing the inputs and reconstructions produces this result:
 

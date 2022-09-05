@@ -327,7 +327,7 @@ Then run `streamlit run keras-image-datasets.py`. It should open up your browser
 
 ![](images/image-7-737x1024.png)
 
-You can use the selectors on top for customing the output image. With _Dataset_, you can pick one of the [image-based TensorFlow Keras datasets](https://www.machinecurve.com/index.php/2019/12/31/exploring-the-keras-datasets/). With _number of rows_ and _number of columns_, you can configure the output dimensions of your image. Finally, using _start at picture_, you can choose the index of the picture in the top left corner. All other images are the subsequent indices.
+You can use the selectors on top for customing the output image. With _Dataset_, you can pick one of the [image-based TensorFlow Keras datasets](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets.md). With _number of rows_ and _number of columns_, you can configure the output dimensions of your image. Finally, using _start at picture_, you can choose the index of the picture in the top left corner. All other images are the subsequent indices.
 
 For example, by switching to the Fashion MNIST dataset:
 

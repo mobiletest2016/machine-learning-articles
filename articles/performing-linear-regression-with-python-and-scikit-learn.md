@@ -61,7 +61,7 @@ In other words, we explore whether:
 
 Here, \[latex\]\\text{salary\_increase}\[/latex\] is a _continuous variable_, meaning that it can take any 'real value', i.e. any positive and negative number with decimals. Salary increases can be 0.00, even negative (if our salary would decrease, e.g. -0.05), or really positive if performed well (0.12 or 12% to give just one example).
 
-[Contrary to classification](https://www.machinecurve.com/index.php/2020/10/19/3-variants-of-classification-problems-in-machine-learning/), where we attempt to assign some inputs to one of multiple categories (and where hence the output is a _discrete_ variable), this is a regression problem. Generating a predictive model here thus means that we attempt to capture patterns which ensure us to make a mapping between input values and a real-valued outcome. In other words, we attempt to estimate the salary increase based on the input variables.
+[Contrary to classification](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/3-variants-of-classification-problems-in-machine-learning.md), where we attempt to assign some inputs to one of multiple categories (and where hence the output is a _discrete_ variable), this is a regression problem. Generating a predictive model here thus means that we attempt to capture patterns which ensure us to make a mapping between input values and a real-valued outcome. In other words, we attempt to estimate the salary increase based on the input variables.
 
 Here, the salary is the dependent variable, whereas the three others are the independent ones.
 
@@ -93,7 +93,7 @@ Above, you read that we will be using Ordinary Least Squares regression. Let's n
 
 ### How is Ordinary Least Squares Linear Regression performed?
 
-With Ordinary Least Squares regression, the goal is to minimize the sum of mean squared loss by means of some hyperplane. Recall the concept of a hyperplane from [Support Vector Machines](https://www.machinecurve.com/index.php/2020/11/25/using-radial-basis-functions-for-svms-with-python-and-scikit-learn/): if our feature space has \[latex\]N\[/latex\] dimensions, a hyperplane is \[latex\]N-1\[/latex\]-dimensional. In other words, in the image above, which shows a twodimensional feature space, our hyperplane is the line.
+With Ordinary Least Squares regression, the goal is to minimize the sum of mean squared loss by means of some hyperplane. Recall the concept of a hyperplane from [Support Vector Machines](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/using-radial-basis-functions-for-svms-with-python-and-scikit-learn.md): if our feature space has \[latex\]N\[/latex\] dimensions, a hyperplane is \[latex\]N-1\[/latex\]-dimensional. In other words, in the image above, which shows a twodimensional feature space, our hyperplane is the line.
 
 Indeed, regression always attempts to generate a hyperplane which allows us to produce real-valued output for the input vector that we provide.
 
@@ -212,7 +212,7 @@ Once we knew how OLS based Linear Regression works conceptually, we moved toward
 
 I hope that this article was useful to you and that you have learned something today! If you did, please feel free to share it in the comments section below 💬 If you have any questions, I'd love to hear from you through the **Ask a question** button, which allows you to ask your question to our readers.
 
-[Ask a question](https://www.machinecurve.com/index.php/add-machine-learning-question/)
+[Ask a question](https://web.archive.org/web/https://www.machinecurve.com/index.php/add-machine-learning-question/)
 
 Thank you for reading MachineCurve today and happy engineering! 😎
 

@@ -36,7 +36,7 @@ Training a Supervised Machine Learning model is conceptually really simple and i
 2. **Compare predictions and ground truth:** the predictions are compared with the _true_ labels corresponding to the samples, allowing us to identify how bad the model performs.
 3. **Improve:** based on the optimization metric, we can change the model's internals here and there, so that it (hopefully) performs better during the next iteration.
 
-Obviously, the entire process starts at (1) as well, and the process will halt until the _error score_ (the metric which identifies how bad the model performs) exceeds some threshold, after a certain (fixed) amount of iterations have passed, or when the model [no longer improves](https://www.machinecurve.com/index.php/2019/05/30/avoid-wasting-resources-with-earlystopping-and-modelcheckpoint-in-keras/).
+Obviously, the entire process starts at (1) as well, and the process will halt until the _error score_ (the metric which identifies how bad the model performs) exceeds some threshold, after a certain (fixed) amount of iterations have passed, or when the model [no longer improves](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/avoid-wasting-resources-with-earlystopping-and-modelcheckpoint-in-keras.md).
 
 ![](images/feed-1024x404.jpg)
 
@@ -50,7 +50,7 @@ And it is also why you will split your dataset into a **training dataset** and a
 
 Having a testing dataset partially helps you get rid of this problem!
 
-Common splits are 80% training data and 20% testing data, called **simple hold-out splits**, but [more advanced approaches](https://www.machinecurve.com/index.php/2020/02/18/how-to-use-k-fold-cross-validation-with-keras/) can also be used.
+Common splits are 80% training data and 20% testing data, called **simple hold-out splits**, but [more advanced approaches](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-k-fold-cross-validation-with-keras.md) can also be used.
 
 ![](images/feed-2.jpg)
 
@@ -60,7 +60,7 @@ Traditional Machine Learning algorithms, such as Support Vector Machines, attemp
 
 If you are training Neural networks, this is different. Here, the error function _is dependent on the neurons_, and hence, the data you fed forward can thus be used to trace back error to neurons that have significantly contributed to the error.
 
-By consequence, improvement in a Neural network is achieved by computing the improvement (gradient) and then applying it in a form of [gradient descent](https://www.machinecurve.com/index.php/2019/10/24/gradient-descent-and-its-variants/).
+By consequence, improvement in a Neural network is achieved by computing the improvement (gradient) and then applying it in a form of [gradient descent](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md).
 
 If you use the training set for both feeding data forward and improving the model, you're getting yourself into trouble again. Here's why: improvement will then be a butcher who checks their own meat. Just like with the training data and testing data, optimizing using training data will mean that you will _always_ tend to move towards capturing patterns present in the training set only. You don't want to touch the testing data until you have finished training, so you must figure out a different solution.
 
@@ -108,7 +108,7 @@ Here, we split the input data (`X/y`) into training data (`X_train; y_train`) an
 
 ### Train/test split for a multilabel dataset
 
-Suppose that we have a [multilabel dataset](https://www.machinecurve.com/index.php/2020/11/12/how-to-create-a-multilabel-svm-classifier-with-scikit-learn/):
+Suppose that we have a [multilabel dataset](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-multilabel-svm-classifier-with-scikit-learn.md):
 
 ```
 from sklearn.datasets import make_multilabel_classification
@@ -138,7 +138,7 @@ Here, too, we apply a 80/20 train/test split.
 
 ### Train/test split for HDF5 data
 
-In many cases, training data is available in HDF5 files - and [we can then load it using H5Py](https://www.machinecurve.com/index.php/2020/04/13/how-to-use-h5py-and-keras-to-train-with-data-from-hdf5-files/), with an example here:
+In many cases, training data is available in HDF5 files - and [we can then load it using H5Py](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-h5py-and-keras-to-train-with-data-from-hdf5-files.md), with an example here:
 
 ```
 import h5py
@@ -161,7 +161,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20, random
 
 ### Train/test splits for a tf.keras.datasets dataset
 
-Did you know that TensorFlow 2.x provides a variety of datasets by default, the so-called `tf.keras.datasets` [module](https://www.machinecurve.com/index.php/2019/12/31/exploring-the-keras-datasets/)?
+Did you know that TensorFlow 2.x provides a variety of datasets by default, the so-called `tf.keras.datasets` [module](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets.md)?
 
 Loading a dataset is really easy:
 

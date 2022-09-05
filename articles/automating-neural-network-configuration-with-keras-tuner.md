@@ -13,7 +13,7 @@ tags:
   - "training-process"
 ---
 
-Machine learning has been around for many decades now. Starting with the [Rosenblatt Perceptron](https://www.machinecurve.com/index.php/2019/07/23/linking-maths-and-intuition-rosenblatts-perceptron-in-python/) in the 1950s, followed by Multilayer Perceptrons and a variety of other machine learning techniques like [Support Vector Machines](https://www.machinecurve.com/index.php/2020/05/03/creating-a-simple-binary-svm-classifier-with-python-and-scikit-learn/), we have arrived in the age of deep neural networks since 2012.
+Machine learning has been around for many decades now. Starting with the [Rosenblatt Perceptron](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/linking-maths-and-intuition-rosenblatts-perceptron-in-python.md) in the 1950s, followed by Multilayer Perceptrons and a variety of other machine learning techniques like [Support Vector Machines](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/creating-a-simple-binary-svm-classifier-with-python-and-scikit-learn.md), we have arrived in the age of deep neural networks since 2012.
 
 In the last few years, we have seen an explosion of machine learning research: a wide variety of neural network architectures was invented, published, and the same goes for _tuning_ the neural networks - i.e., what set of hyperparameters works best given a certain problem scenario. That's why training a neural network is often considered to be more of an art than a science - intuition through experience often guides the deep learning engineer into picking the right configuration for their model.
 
@@ -33,19 +33,19 @@ We'll first cover the supervised machine learning process and illustrate hyperpa
 
 Let's take a step back. Before we can understand automated parameter and hyperparameter tuning, we must first take a look at what it is in the first place.
 
-That's why we'll take a look at the [high-level supervised machine learning process](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#the-high-level-supervised-learning-process) that we're using to explain how training a neural network works throughout this website.
+That's why we'll take a look at the [high-level supervised machine learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process) that we're using to explain how training a neural network works throughout this website.
 
 Here it is:
 
 [![](images/High-level-training-process-1024x973.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/09/High-level-training-process.jpg)
 
-In your machine learning workflow, you have selected or extracted features and targets for your model based on a priori analysis of your dataset - perhaps using dimensionality reduction techniques like [PCA](https://www.machinecurve.com/index.php/2020/12/07/introducing-pca-with-python-and-scikit-learn-for-machine-learning/). Using those features, you will be able to train your machine learning model - visible in green. You do so iteratively:
+In your machine learning workflow, you have selected or extracted features and targets for your model based on a priori analysis of your dataset - perhaps using dimensionality reduction techniques like [PCA](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/introducing-pca-with-python-and-scikit-learn-for-machine-learning.md). Using those features, you will be able to train your machine learning model - visible in green. You do so iteratively:
 
 - Before training starts, you initialize the weights of your neural network in a random or almost-random way;
 - In the _forward pass_, you'll feed all your samples (often, in minibatches) to the machine learning model, which generates predictions.
 - With a _loss function_, the predictions are compared to the true targets, and a loss value emerges.
 - Through backwards computation of the error contribution of particular neurons in the _backwards pass_, it becomes clear how much each neuron contributes to the error.
-- With an optimizer such as [Gradient Descent](https://www.machinecurve.com/index.php/2019/10/24/gradient-descent-and-its-variants/) or [Adaptive Optimization](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/), the weights are changed a tiny bit.
+- With an optimizer such as [Gradient Descent](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md) or [Adaptive Optimization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md), the weights are changed a tiny bit.
 - A new iteration starts, where we expect that the model performs a little bit better. This goes on until the model has improved sufficiently for it to be used in practice.
 
 ### Neural network architecture and configuration
@@ -58,7 +58,7 @@ If you look at how we build models, you'll generally see that doing so consists 
 
 ### Tuning parameters in your neural network
 
-In step (1), you add various layers of your neural network to the skeleton, such as the [Convolutional Neural Network](https://www.machinecurve.com/index.php/2020/03/30/how-to-use-conv2d-with-keras/) created here with Keras:
+In step (1), you add various layers of your neural network to the skeleton, such as the [Convolutional Neural Network](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-conv2d-with-keras.md) created here with Keras:
 
 ```
 # Create the model
@@ -81,7 +81,7 @@ Here, the architectural choices you make (such as the number of filters for a `C
 
 However, things don't end there. Rather, in step (2), you'll _configure_ the model during instantiation by setting a wide range of configuration options. Those options include, but are not limited to:
 
-- The **optimizer** that is used during training: e.g., whether you are using [Gradient Descent](https://www.machinecurve.com/index.php/2019/10/24/gradient-descent-and-its-variants/) or an adaptive optimizer like [Adam](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/#adam).
+- The **optimizer** that is used during training: e.g., whether you are using [Gradient Descent](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md) or an adaptive optimizer like [Adam](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound/#adam).
 - The **learning rate** that is used during optimization: i.e., what fraction of the error contribution found will be used for optimization for a particular neuron.
 - The **batch size** that will be used during the forward pass.
 - The **number of iterations** (or epochs) that will be used for training the neural network
@@ -153,13 +153,13 @@ We'll cover the various search strategies in more detail in that other blog post
 
 ## A basic example of using Keras Tuner
 
-Now let's take a look at using Keras Tuner for optimizing your Keras model. We will be building a simple ConvNet, [as we have seen in the Conv2D tutorial](https://www.machinecurve.com/index.php/2020/03/30/how-to-use-conv2d-with-keras/). We'll subsequently tune its hyperparameters with Keras Tuner for a limited number of epochs, and finally train the best model fully. We'll keep it simple: we're only going to construct a one-dimensional search space based on the learning rate for the Adam optimizer.
+Now let's take a look at using Keras Tuner for optimizing your Keras model. We will be building a simple ConvNet, [as we have seen in the Conv2D tutorial](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-conv2d-with-keras.md). We'll subsequently tune its hyperparameters with Keras Tuner for a limited number of epochs, and finally train the best model fully. We'll keep it simple: we're only going to construct a one-dimensional search space based on the learning rate for the Adam optimizer.
 
 Make sure that Keras Tuner is installed by executing `pip install -U keras-tuner` first in your machine learning environment :)
 
 ### Imports, model configuration, and loading the data
 
-Open up your IDE and create a file e.g. called `tuning.py`. Here, you're going to write down your code. We'll start with imports (such as `tensorflow.keras` and `kerastuner`), defining the model configuration options and loading the data. If you have no experience in doing so, I recommend that you first read the [Conv2D post](https://www.machinecurve.com/index.php/2020/03/30/how-to-use-conv2d-with-keras/) as I explain these things there in more detail. Here's the code that you'll add first:
+Open up your IDE and create a file e.g. called `tuning.py`. Here, you're going to write down your code. We'll start with imports (such as `tensorflow.keras` and `kerastuner`), defining the model configuration options and loading the data. If you have no experience in doing so, I recommend that you first read the [Conv2D post](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-conv2d-with-keras.md) as I explain these things there in more detail. Here's the code that you'll add first:
 
 ```
 from tensorflow.keras.datasets import mnist
@@ -201,7 +201,7 @@ In brief, what it does:
 
 - Load all the modules and libraries that you'll be using today.
 - Defining all the hyperparameters that we will not be tuning today, and other configuration options.
-- Loading the [MNIST dataset](https://www.machinecurve.com/index.php/2019/12/31/exploring-the-keras-datasets/), and reshaping it into Conv2D-compatible format.
+- Loading the [MNIST dataset](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets.md), and reshaping it into Conv2D-compatible format.
 - Cast the data into `float32` format which allows GPU owners to train their models faster.
 - Scaling the data into the \[latex\]\[0, 1\]\[/latex\] range which benefits the training process.
 

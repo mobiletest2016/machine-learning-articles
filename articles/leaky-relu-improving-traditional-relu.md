@@ -11,7 +11,7 @@ tags:
   - "relu"
 ---
 
-The **Leaky ReLU** is a type of [activation function](https://www.machinecurve.com/index.php/2019/09/04/relu-sigmoid-and-tanh-todays-most-used-activation-functions/) which comes across many machine learning blogs every now and then. It is suggested that it is an improvement of traditional ReLU and that it should be used more often.
+The **Leaky ReLU** is a type of [activation function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md) which comes across many machine learning blogs every now and then. It is suggested that it is an improvement of traditional ReLU and that it should be used more often.
 
 But how is it an improvement? How does Leaky ReLU work? In this blog, we'll take a look. We identify what ReLU does and why this may be problematic in some cases. We then introduce Leaky ReLU and argue why its design can help reduce the impact of the problems of traditional ReLU. Subsequently, we briefly look into whether it is actually better and why traditional ReLU is still in favor today.
 
@@ -35,11 +35,11 @@ Let's take a look 🚀
 
 ## Brief recap: what is ReLU and how does it work?
 
-Rectified Linear Unit, or ReLU, is one of the most common [activation functions](https://www.machinecurve.com/index.php/2019/09/04/relu-sigmoid-and-tanh-todays-most-used-activation-functions/) used in neural networks today. It is added to layers in neural networks to add _nonlinearity_, which is required to handle today's ever more complex and nonlinear datasets.
+Rectified Linear Unit, or ReLU, is one of the most common [activation functions](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md) used in neural networks today. It is added to layers in neural networks to add _nonlinearity_, which is required to handle today's ever more complex and nonlinear datasets.
 
-Each neuron computes a [dot product and adds a bias value](https://www.machinecurve.com/index.php/2019/07/23/linking-maths-and-intuition-rosenblatts-perceptron-in-python/) before the value is output to the neurons in the subsequent layer. These mathematical operations are linear in nature. This is not bad if we were training the model against a dataset that is linearly separable (in the case of classification) or where a line needs to be estimated (when regressing).
+Each neuron computes a [dot product and adds a bias value](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/linking-maths-and-intuition-rosenblatts-perceptron-in-python.md) before the value is output to the neurons in the subsequent layer. These mathematical operations are linear in nature. This is not bad if we were training the model against a dataset that is linearly separable (in the case of classification) or where a line needs to be estimated (when regressing).
 
-However, if data is nonlinear, we face problems. Linear neuron outputs ensure that the system as a whole, thus the entire neural network, behaves linearly. By consequence, it cannot handle such data, which is very common today: the MNIST dataset, which we used for showing how to build [classifiers in Keras](https://www.machinecurve.com/index.php/2019/09/17/how-to-create-a-cnn-classifier-with-keras/), is nonlinear - and it is one of the simpler ones!
+However, if data is nonlinear, we face problems. Linear neuron outputs ensure that the system as a whole, thus the entire neural network, behaves linearly. By consequence, it cannot handle such data, which is very common today: the MNIST dataset, which we used for showing how to build [classifiers in Keras](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras.md), is nonlinear - and it is one of the simpler ones!
 
 Activation functions come to the rescue by adding nonlinearity. They're placed directly after the neural outputs and do nothing else but converting some input to some output. Because the mathematical functions used are nonlinear, the output is nonlinear - which is exactly what we want, since now the system behaves nonlinearly and nonlinear data is supported!
 
@@ -57,7 +57,7 @@ For all values \[latex\]\\geq 0\[/latex\], it behaves linearly, but essentially 
 
 Hence, it can be used as a nonlinear activation function.
 
-It's grown very popular and may be the most popular activation used today - it is more popular than the older [Sigmoid and Tanh](https://www.machinecurve.com/index.php/2019/09/04/relu-sigmoid-and-tanh-todays-most-used-activation-functions/) activation functions - for the reason that it can be computed relatively inexpensively. Computing ReLU is equal to computing \[latex\]ReLU(x) = max(0, x)\[/latex\], which is much less expensive than the exponents or trigonometric operations necessary otherwise.
+It's grown very popular and may be the most popular activation used today - it is more popular than the older [Sigmoid and Tanh](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md) activation functions - for the reason that it can be computed relatively inexpensively. Computing ReLU is equal to computing \[latex\]ReLU(x) = max(0, x)\[/latex\], which is much less expensive than the exponents or trigonometric operations necessary otherwise.
 
 * * *
 

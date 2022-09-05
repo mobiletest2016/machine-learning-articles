@@ -31,7 +31,7 @@ Are you ready? Let's go! :)
 
 ## Recap: about Batch Normalization
 
-Before we start coding, let's take a brief look at [Batch Normalization](https://www.machinecurve.com/index.php/2020/01/14/what-is-batch-normalization-for-training-neural-networks/) again. We start off with a discussion about _internal covariate shift_ and how this affects the learning process. Subsequently, as the need for Batch Normalization will then be clear, we'll provide a recap on Batch Normalization itself to understand what it does.
+Before we start coding, let's take a brief look at [Batch Normalization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-batch-normalization-for-training-neural-networks.md) again. We start off with a discussion about _internal covariate shift_ and how this affects the learning process. Subsequently, as the need for Batch Normalization will then be clear, we'll provide a recap on Batch Normalization itself to understand what it does.
 
 ### Training a supervised ML model
 
@@ -39,14 +39,14 @@ Suppose that you have this neural network, which is composed of Dropout neurons:
 
 [![](images/dropout.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/dropout.png)
 
-Following the [high-level supervised machine learning process](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#the-high-level-supervised-learning-process), training such a neural network is a multi-step process:
+Following the [high-level supervised machine learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process), training such a neural network is a multi-step process:
 
 - Feeding your training data to the network in a _feedforward_ fashion, in which each layer processes your data further.
 - This leads to a prediction for every sample.
 - This prediction can be compared to the actual target value (the "ground truth"), to see how well the model performs.
-- How well, or strictly speaking how _bad_ the model performs is reflected in the _[loss value](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/)_.
+- How well, or strictly speaking how _bad_ the model performs is reflected in the _[loss value](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md)_.
 - Improving the neural network means firstly, identifying the necessary change in the weights of each neuron with respect to the loss value, and possibly with respect to the intermediate layers as well.
-- Secondly, by means of an optimizer like [gradient descent](https://www.machinecurve.com/index.php/2019/10/24/gradient-descent-and-its-variants/) or an [adaptive optimizer](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/), the weights get updated based on these necessary changes (also called gradients).
+- Secondly, by means of an optimizer like [gradient descent](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md) or an [adaptive optimizer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md), the weights get updated based on these necessary changes (also called gradients).
 
 ### Internal covariate shift
 
@@ -71,7 +71,7 @@ Every input \[latex\]x\_B{ ^{(k)}}\[/latex\] is normalized by first subtracting 
 
 With some activation functions (such as the Sigmoid activation function), normalizing inputs to have the \[latex\](0, 1)\[/latex\] distribution may result in a different issue: they'll activate almost linearly as they primarily activate in the linear segment of the activation function.
 
-[Here](https://www.machinecurve.com/index.php/2020/01/14/what-is-batch-normalization-for-training-neural-networks/#scaling-and-shifting), I explain this in more detail, and why this needs to be avoided.
+[Here](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-batch-normalization-for-training-neural-networks/#scaling-and-shifting), I explain this in more detail, and why this needs to be avoided.
 
 By _scaling_ the value with some \[latex\]\\gamma\[/latex\] and _shifting_ the value with some \[latex\]\\beta\[/latex\], this problem can be avoided. The values for these are learnt during training.
 
@@ -123,7 +123,7 @@ It is a drop-in replacement for the MNIST dataset:
 
 #### Using the `extra-keras-datasets` module
 
-We use the `extra-keras-datasets` module to load our dataset. This module, which we created and discussed [in a different blog post](https://www.machinecurve.com/index.php/2020/01/10/making-more-datasets-available-for-keras/), attempts to replicate the `keras.datasets` way of loading data into your machine learning projects, albeit with different datasets. As we believe that making more datasets easily available boosts adoption of a framework, especially by people who are just starting out, we've been making available additional datasets for Keras through this module. It may be worthwhile to check it out separately!
+We use the `extra-keras-datasets` module to load our dataset. This module, which we created and discussed [in a different blog post](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/making-more-datasets-available-for-keras.md), attempts to replicate the `keras.datasets` way of loading data into your machine learning projects, albeit with different datasets. As we believe that making more datasets easily available boosts adoption of a framework, especially by people who are just starting out, we've been making available additional datasets for Keras through this module. It may be worthwhile to check it out separately!
 
 Installing this module is required if you wish to run the model (if you don't, you may also replace it with `keras.datasets.mnist`), and can be done very easily:
 
@@ -145,7 +145,7 @@ And subsequently loading the data into the particular variables is also easy:
 
 ### The model architecture
 
-This is the architecture of today's model, which we generated with [Net2Vis](https://www.machinecurve.com/index.php/2020/01/07/visualizing-keras-neural-networks-with-net2vis-and-docker/) (Bäuerle & Ropinski, 2019):
+This is the architecture of today's model, which we generated with [Net2Vis](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/visualizing-keras-neural-networks-with-net2vis-and-docker.md) (Bäuerle & Ropinski, 2019):
 
 - [![](images/graph-1-1-1024x173.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/graph-1-1.png)
     
@@ -288,8 +288,8 @@ What this code does is create an instance of a `model` based on the `Sequential`
 
 Some things we haven't included in the architectural discussion before:
 
-- **Activation functions: for the intermediate layers**: we use the [ReLU activation function](https://www.machinecurve.com/index.php/2019/09/04/relu-sigmoid-and-tanh-todays-most-used-activation-functions/) in our convolutional and Dense layers, except for the last one. ReLU is the de facto standard activation function used today and we hence use it in our model. Given the small size of our dataset, we omit applying [He init](https://www.machinecurve.com/index.php/2019/09/16/he-xavier-initialization-activation-functions-choose-wisely/), which is preferred over Xavier/Glorot init when using ReLU.
-- **Activation function for the final layer:** in this layer, we're using the [Softmax activation function](https://www.machinecurve.com/index.php/2020/01/08/how-does-the-softmax-activation-function-work/), which generates a probability distribution over the target classes, from which we can select the most likely class.
+- **Activation functions: for the intermediate layers**: we use the [ReLU activation function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md) in our convolutional and Dense layers, except for the last one. ReLU is the de facto standard activation function used today and we hence use it in our model. Given the small size of our dataset, we omit applying [He init](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/he-xavier-initialization-activation-functions-choose-wisely.md), which is preferred over Xavier/Glorot init when using ReLU.
+- **Activation function for the final layer:** in this layer, we're using the [Softmax activation function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-does-the-softmax-activation-function-work.md), which generates a probability distribution over the target classes, from which we can select the most likely class.
 
 ### Model compilation & fitting data
 
@@ -302,7 +302,7 @@ model.compile(loss=tensorflow.keras.losses.sparse_categorical_crossentropy,
               metrics=['accuracy'])
 ```
 
-As you can see, model compilation is essentially _instantiating_ the model architecture we defined before with the model configuration we set before. We use [sparse categorical crossentropy loss](https://www.machinecurve.com/index.php/2019/10/06/how-to-use-sparse-categorical-crossentropy-in-keras/), which combines nicely with our integer target values - so that we don't have to convert these into categorical format before we start training. To optimize the model, we use the [Adam optimizer](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/#adam), and add accuracy as an additional metric.
+As you can see, model compilation is essentially _instantiating_ the model architecture we defined before with the model configuration we set before. We use [sparse categorical crossentropy loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-sparse-categorical-crossentropy-in-keras.md), which combines nicely with our integer target values - so that we don't have to convert these into categorical format before we start training. To optimize the model, we use the [Adam optimizer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound/#adam), and add accuracy as an additional metric.
 
 Then, we fit the data to our model, a.k.a. starting the training process:
 
@@ -317,7 +317,7 @@ history = model.fit(input_train, target_train,
 
 We fit the input training set with its corresponding targets, and train according to the preconfigured `batch_size` and `no_epochs`, with verbosity mode set to on and the `validation_split` set as before (i.e., to 20%).
 
-Note that the `history` object can be used for [visualizing the training process / the improvements over epochs](https://www.machinecurve.com/index.php/2019/10/08/how-to-visualize-the-training-process-in-keras/) later.
+Note that the `history` object can be used for [visualizing the training process / the improvements over epochs](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-training-process-in-keras.md) later.
 
 ### Generating evaluation metrics
 
@@ -410,7 +410,7 @@ print(f'Test loss: {score[0]} / Test accuracy: {score[1]}')
 
 To start training, open up a terminal which has the required software dependencies installed (i.e. `tensorflow` 2.0+ and the `extra-keras-datasets` module), `cd` to the folder where your Python file is located, and run it with e.g. `python model_batchnorm.py`.
 
-Most likely, the training process will then begin, and you should see the test results once it finishes. Here are the results over the epochs shown visually. They were generated by means of the `history` object (note that you must add [extra code](https://www.machinecurve.com/index.php/2019/10/08/how-to-visualize-the-training-process-in-keras/) to make this work):
+Most likely, the training process will then begin, and you should see the test results once it finishes. Here are the results over the epochs shown visually. They were generated by means of the `history` object (note that you must add [extra code](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-training-process-in-keras.md) to make this work):
 
 - [![](images/accuracy.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/accuracy.png)
     
@@ -439,7 +439,7 @@ Ioffe, S., & Szegedy, C. (2015). [Batch normalization: Accelerating deep network
 
 Bäuerle, A., & Ropinski, T. (2019). [Net2Vis: Transforming Deep Convolutional Networks into Publication-Ready Visualizations](https://arxiv.org/abs/1902.04394). arXiv preprint arXiv:1902.04394.
 
-MachineCurve. (2020, January 14). What is Batch Normalization for training neural networks? Retrieved from [https://www.machinecurve.com/index.php/2020/01/14/what-is-batch-normalization-for-training-neural-networks/](https://www.machinecurve.com/index.php/2020/01/14/what-is-batch-normalization-for-training-neural-networks/)
+MachineCurve. (2020, January 14). What is Batch Normalization for training neural networks? Retrieved from [https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-batch-normalization-for-training-neural-networks/](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-batch-normalization-for-training-neural-networks.md)
 
 Clanuwat, T., Bober-Irizar, M., Kitamoto, A., Lamb, A., Yamamoto, K., & Ha, D. (2018). Deep learning for classical Japanese literature. arXiv preprint arXiv:1812.01718. Retrieved from [https://arxiv.org/abs/1812.01718](https://arxiv.org/abs/1812.01718)
 

@@ -64,7 +64,7 @@ model.add(Conv2D(64, kernel_size=(3, 3), activation='relu', kernel_regularizer=t
 
 ## Recap: what are L1, L2 and Elastic Net Regularization?
 
-In our blog post ["What are L1, L2 and Elastic Net Regularization in neural networks?"](https://www.machinecurve.com/index.php/2020/01/21/what-are-l1-l2-and-elastic-net-regularization-in-neural-networks/), we looked at the concept of regularization and the L1, L2 and Elastic Net Regularizers. We'll implement these in this blog post, using the Keras deep learning framework.
+In our blog post ["What are L1, L2 and Elastic Net Regularization in neural networks?"](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-are-l1-l2-and-elastic-net-regularization-in-neural-networks.md), we looked at the concept of regularization and the L1, L2 and Elastic Net Regularizers. We'll implement these in this blog post, using the Keras deep learning framework.
 
 However, before we actually start looking into the Keras API and coding our Keras based example, it's important to understand the basics of regularization and the basics of the regularizers.
 
@@ -74,7 +74,7 @@ Here, we'll therefore cover these basics in order to provide a recap. Firstly, w
 
 Training a supervised machine learning model equals learning a mapping for a function \[latex\]\\hat{y}: f(\\textbf{x})\[/latex\], where \[latex\]\\textbf{x}\[/latex\] is an input vector and \[latex\]\\hat{y}\[/latex\] is the predicted output value. Given the fact that it's supervised, you have the "ground truth" \[latex\]y\[/latex\] available for all \[latex\]\\textbf{x}\[/latex\] in your training set and hence, your definition of a well-performing machine learning model is to achieve \[latex\]\\hat{y} \\approx y\[/latex\] for your entire training set.
 
-This can be achieved by going through the iterative [high-level supervised machine learning process](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#the-high-level-supervised-learning-process), which means that you feed your training set to the model, generate predictions, compare these with ground truth, summarize them in a [loss value](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#loss), which you then use to [optimize](https://www.machinecurve.com/index.php/2019/10/24/gradient-descent-and-its-variants/) the weights of your model, before starting a new iteration. This way, you might be able to find a mapping for which \[latex\]\\hat{y} \\approx y\[/latex\] is true to a great extent.
+This can be achieved by going through the iterative [high-level supervised machine learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process), which means that you feed your training set to the model, generate predictions, compare these with ground truth, summarize them in a [loss value](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#loss), which you then use to [optimize](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md) the weights of your model, before starting a new iteration. This way, you might be able to find a mapping for which \[latex\]\\hat{y} \\approx y\[/latex\] is true to a great extent.
 
 [![](images/poly_both.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/poly_both.png)
 
@@ -90,7 +90,7 @@ Yes, to some extent: by adding **a regularizer**, you may enforce the training p
 
 From above, we know that the supervised machine learning process produces some loss value. Let's now take a look at this loss value in a bit more detail, as it's important to understand what a regularizer does. The first step is to define the loss value at a high level; say, it's \[latex\]L(f, \\textbf{x}, y)\[/latex\], where \[latex\]f\[/latex\] is the model, \[latex\]\\textbf{x}\[/latex\] some input vector and \[latex\]y\[/latex\] the corresponding ground truth value.
 
-Now, the loss value is determined by a _loss function_. Loss functions provide a mathematical way of comparing two values. Exemplary ones are [binary crossentropy](https://www.machinecurve.com/index.php/2019/10/22/how-to-use-binary-categorical-crossentropy-with-keras/) (which compares a ground truth value with a predicted output) and [hinge loss](https://www.machinecurve.com/index.php/2019/10/15/how-to-use-hinge-squared-hinge-loss-with-keras/). But as we don't want to get into too much detail here, we simply define the output of the loss function as \[latex\]L\_{function}(f, \\textbf{x}, y)\[/latex\]. So:
+Now, the loss value is determined by a _loss function_. Loss functions provide a mathematical way of comparing two values. Exemplary ones are [binary crossentropy](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-binary-categorical-crossentropy-with-keras.md) (which compares a ground truth value with a predicted output) and [hinge loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-hinge-squared-hinge-loss-with-keras.md). But as we don't want to get into too much detail here, we simply define the output of the loss function as \[latex\]L\_{function}(f, \\textbf{x}, y)\[/latex\]. So:
 
 \[latex\] L(f, \\textbf{x}, y) = L\_{function}(f, \\textbf{x}, y)\[/latex\]
 
@@ -122,7 +122,7 @@ When L1 Regularization is applied to one of the layers of your neural network, \
 
 [![](images/l1_component.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/l1_component.png)
 
-Applying L1 regularization ensures that given a relatively constant \[latex\] L\_{function}(f, \\textbf{x}, y) \[/latex\] your weights take very small values of \[latex\]\\approx 0\[/latex\], as the L1 value for \[latex\]x = 0\[/latex\] is lowest. Indeed, likely, your weights will even [become _zero_](https://www.machinecurve.com/index.php/2020/01/21/what-are-l1-l2-and-elastic-net-regularization-in-neural-networks/#on-model-sparsity), due to the fact that the L1 derivative is constant. Applying L1 to your neural networks layers thus pushes them to drop out weights that do not contribute to their predictive power significantly enough, and thus leads to sparse models.
+Applying L1 regularization ensures that given a relatively constant \[latex\] L\_{function}(f, \\textbf{x}, y) \[/latex\] your weights take very small values of \[latex\]\\approx 0\[/latex\], as the L1 value for \[latex\]x = 0\[/latex\] is lowest. Indeed, likely, your weights will even [become _zero_](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-are-l1-l2-and-elastic-net-regularization-in-neural-networks/#on-model-sparsity), due to the fact that the L1 derivative is constant. Applying L1 to your neural networks layers thus pushes them to drop out weights that do not contribute to their predictive power significantly enough, and thus leads to sparse models.
 
 However, it may be that you don't want models to be sparse. This may be the case if you face the "small, fat data problem", where you don't have a lot of samples, but the samples you've got are high-dimensional. Another case would be correlative data: if your features contain weights which have high pairwise correlation coefficients, dropping out the effect of certain variables through dropping out weights would be a bad idea, as you would effectively lose information.
 
@@ -130,7 +130,7 @@ In this case, L2 regularization may be applied. For L2, \[latex\]R(f)\[/latex\] 
 
 [![](images/l2_comp.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/l2_comp.png)
 
-Applying L2 regularization does lead to models where the weights will get relatively small values, i.e. where they are simple. This is similar to applying L1 regularization. However, contrary to L1, L2 regularization [does not push your weights to be _exactly zero_](https://www.machinecurve.com/index.php/2020/01/21/what-are-l1-l2-and-elastic-net-regularization-in-neural-networks/#why-l1-yields-sparsity-and-l2-likely-does-not). This is also caused by the derivative: contrary to L1, where the derivative is a constant (it's either +1 or -1), the L2 derivative is \[latex\]2x\[/latex\]. This means that the closer you get to zero, the smaller the derivative gets, and hence the smaller the update. As with the case of dividing \[latex\]1\[/latex\] by \[latex\]2\[/latex\], then \[latex\]\\frac{1}{2}\[/latex\] by \[latex\]2\[/latex\], then \[latex\]\\frac{1}{4}\[/latex\] by \[latex\]2\[/latex\], and so on, you never reach _zero_, but the values get _really small_. For the situations where L1 cannot be applied, L2 is a good candidate for regularization.
+Applying L2 regularization does lead to models where the weights will get relatively small values, i.e. where they are simple. This is similar to applying L1 regularization. However, contrary to L1, L2 regularization [does not push your weights to be _exactly zero_](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-are-l1-l2-and-elastic-net-regularization-in-neural-networks/#why-l1-yields-sparsity-and-l2-likely-does-not). This is also caused by the derivative: contrary to L1, where the derivative is a constant (it's either +1 or -1), the L2 derivative is \[latex\]2x\[/latex\]. This means that the closer you get to zero, the smaller the derivative gets, and hence the smaller the update. As with the case of dividing \[latex\]1\[/latex\] by \[latex\]2\[/latex\], then \[latex\]\\frac{1}{2}\[/latex\] by \[latex\]2\[/latex\], then \[latex\]\\frac{1}{4}\[/latex\] by \[latex\]2\[/latex\], and so on, you never reach _zero_, but the values get _really small_. For the situations where L1 cannot be applied, L2 is a good candidate for regularization.
 
 ### Elastic Net Regularization
 
@@ -164,7 +164,7 @@ Secondly, for each layer, regularization can be performed on one (or all) of thr
 
 - The **kernel**, through `kernel_regularizer`, which applies regularization to the kernel a.k.a. the actual weights;
 - The **bias** value, through `bias_regularizer`, which applies regularization to the bias, which shifts the layer outputs;
-- The **activity** value, through `activity_regularizer`, which applies the regularizer to the _output of the layer_, i.e. the activation value (which is the combination of the weights + biases with the input vector, fed through the [activation function](https://www.machinecurve.com/index.php/2019/09/04/relu-sigmoid-and-tanh-todays-most-used-activation-functions/)) (Tonutti, 2017).
+- The **activity** value, through `activity_regularizer`, which applies the regularizer to the _output of the layer_, i.e. the activation value (which is the combination of the weights + biases with the input vector, fed through the [activation function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md)) (Tonutti, 2017).
 
 To each three, an instance of the `tensorflow.keras.regularizers.Regularizer` class can be supplied in order for regularization to work (TensorFlow, 2021). Soon, we'll cover the L1, L2 and Elastic Net instances of this class by means of an example, which are represented as follows (TensorFlow, 2021):
 
@@ -182,7 +182,7 @@ Let's now take a look at how the regularizers can be applied in a neural network
 
 ## Keras L1, L2 and Elastic Net Regularization examples
 
-Here's the model that we'll be creating today. It was generated with [Net2Vis](https://www.machinecurve.com/index.php/2020/01/07/visualizing-keras-neural-networks-with-net2vis-and-docker/), a cool web based visualization library for Keras models (Bäuerle & Ropinski, 2019):
+Here's the model that we'll be creating today. It was generated with [Net2Vis](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/visualizing-keras-neural-networks-with-net2vis-and-docker.md), a cool web based visualization library for Keras models (Bäuerle & Ropinski, 2019):
 
 - [![](images/graph-4.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/graph-4.png)
     
@@ -193,10 +193,10 @@ As you can see, it's a convolutional neural network. It takes 28 x 28 pixel imag
 
 **Read more:**
 
-- [Visualizing Keras neural networks with Net2Vis and Docker](https://www.machinecurve.com/index.php/2020/01/07/visualizing-keras-neural-networks-with-net2vis-and-docker/)
-- [How does the Softmax activation function work?](https://www.machinecurve.com/index.php/2020/01/08/how-does-the-softmax-activation-function-work/)
+- [Visualizing Keras neural networks with Net2Vis and Docker](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/visualizing-keras-neural-networks-with-net2vis-and-docker.md)
+- [How does the Softmax activation function work?](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-does-the-softmax-activation-function-work.md)
 
-The dataset that we'll be using today is the EMNIST dataset. It adds _letters_ to the traditional MNIST dataset, as you can see in the plot below. For this to work, we use the [Extra Keras Datasets](https://www.machinecurve.com/index.php/2020/01/10/making-more-datasets-available-for-keras/) module.
+The dataset that we'll be using today is the EMNIST dataset. It adds _letters_ to the traditional MNIST dataset, as you can see in the plot below. For this to work, we use the [Extra Keras Datasets](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/making-more-datasets-available-for-keras.md) module.
 
 [![](images/emnist-balanced.png)](https://github.com/christianversloot/extra_keras_datasets/raw/master/assets/emnist-balanced.png)
 
@@ -243,7 +243,7 @@ verbosity = 1
 
 ### Loading and preparing data
 
-The first step in loading the data is to use the [Extra Keras Datasets](https://www.machinecurve.com/index.php/2020/01/10/making-more-datasets-available-for-keras/) module and call `load_data()`:
+The first step in loading the data is to use the [Extra Keras Datasets](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/making-more-datasets-available-for-keras.md) module and call `load_data()`:
 
 ```
 # Load EMNIST dataset
@@ -274,7 +274,7 @@ input_train = input_train / 255
 input_test = input_test / 255
 ```
 
-Finally, we convert the targets into categorical format, which allows us to use [categorical crossentropy loss](https://www.machinecurve.com/index.php/2019/10/22/how-to-use-binary-categorical-crossentropy-with-keras/):
+Finally, we convert the targets into categorical format, which allows us to use [categorical crossentropy loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-binary-categorical-crossentropy-with-keras.md):
 
 ```
 # Convert target vectors to categorical targets
@@ -405,7 +405,7 @@ model.add(Dense(no_classes, activation='softmax', activity_regularizer=regulariz
 
 ### Compiling the model
 
-We then `compile` the model to use categorical crossentropy loss and the [Adam optimizer](https://www.machinecurve.com/index.php/2019/11/03/extensions-to-gradient-descent-from-momentum-to-adabound/#adam). Accuracy is added as an additional metric, which is more understandable to humans:
+We then `compile` the model to use categorical crossentropy loss and the [Adam optimizer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound/#adam). Accuracy is added as an additional metric, which is more understandable to humans:
 
 ```
 model.compile(loss=tensorflow.keras.losses.categorical_crossentropy,
@@ -436,7 +436,7 @@ score = model.evaluate(input_test, target_test, verbose=0)
 print(f'Test loss: {score[0]} / Test accuracy: {score[1]}')
 ```
 
-By means of the `history` object to which we assigned the output of `model.fit`, we can [visualize the training process](https://www.machinecurve.com/index.php/2019/10/08/how-to-visualize-the-training-process-in-keras/). This way, you can find out how the loss value and/or accuracy value has evolved over time, for both training and validation data. Here is the code that generates a plot for training/validation loss and training/validation accuracy values:
+By means of the `history` object to which we assigned the output of `model.fit`, we can [visualize the training process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-training-process-in-keras.md). This way, you can find out how the loss value and/or accuracy value has evolved over time, for both training and validation data. Here is the code that generates a plot for training/validation loss and training/validation accuracy values:
 
 ```
 # Plot history: Loss
@@ -560,7 +560,7 @@ The results, which were obtained with regularizers having \[latex\]\\lambda = 0.
 - **On extended L2 regularization:** to find out whether this effect gets stronger with an increased impact of the regularizer, we retrained the L2 Activity regularized model with \[latex\]\\lambda = 0.10\[/latex\]. The evaluation metrics : `Test loss: 0.5058084676620808 / Test accuracy: 0.8836702108383179`. Loss is clearly worse.
 - **On Elastic Net regularization:** here, results are poor as well. Apparently, here the false sparsity assumption also results in very poor data due to the L1 component of the Elastic Net regularizer. Fortunate that L2 works!
 
-Next, you'll find all the `history` based [plots of the training process](https://www.machinecurve.com/index.php/2019/10/08/how-to-visualize-the-training-process-in-keras/) for each regularizer / regularizer combination created above.
+Next, you'll find all the `history` based [plots of the training process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-training-process-in-keras.md) for each regularizer / regularizer combination created above.
 
 ### No regularization
 
@@ -638,7 +638,7 @@ Thank you for reading MachineCurve today and happy engineering! 😎
 
 Zou, H., & Hastie, T. (2005). Regularization and variable selection via the elastic net. _Journal of the royal statistical society: series B (statistical methodology)_, _67_(2), 301-320.
 
-MachineCurve. (2020, January 21). What are L1, L2 and Elastic Net Regularization in neural networks? Retrieved from [https://www.machinecurve.com/index.php/2020/01/21/what-are-l1-l2-and-elastic-net-regularization-in-neural-networks](https://www.machinecurve.com/index.php/2020/01/21/what-are-l1-l2-and-elastic-net-regularization-in-neural-networks)
+MachineCurve. (2020, January 21). What are L1, L2 and Elastic Net Regularization in neural networks? Retrieved from [https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-are-l1-l2-and-elastic-net-regularization-in-neural-networks](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-are-l1-l2-and-elastic-net-regularization-in-neural-networks)
 
 TensorFlow. (2021). _Module: Tf.keras.regularizers_. [https://www.tensorflow.org/api\_docs/python/tf/keras/regularizers](https://www.tensorflow.org/api_docs/python/tf/keras/regularizers)
 

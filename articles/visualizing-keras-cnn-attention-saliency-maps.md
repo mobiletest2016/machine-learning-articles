@@ -37,7 +37,7 @@ When you look at this text, it's likely that there are various objects that comp
 
 Yes: the text 😉
 
-Now suppose that you have trained a [ConvNet classifier](https://www.machinecurve.com/index.php/2019/09/17/how-to-create-a-cnn-classifier-with-keras/) which you can use to generate predictions for images. As discussed before, accuracy is high. But can you be certain that your classifier looks at the important aspects of an image when generating a prediction?
+Now suppose that you have trained a [ConvNet classifier](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras.md) which you can use to generate predictions for images. As discussed before, accuracy is high. But can you be certain that your classifier looks at the important aspects of an image when generating a prediction?
 
 For example, that - when being trained on pictures of cats and dogs - it really looks at the _animal_ for generating the predition, rather than the _environment_.
 
@@ -55,9 +55,9 @@ When building a model with Keras, you may wish to visualize the 'attention' of y
 
 Say hello to `keras-vis`, which [allows you to do precisely this](https://github.com/raghakot/keras-vis). The toolkit, which runs with your Keras model, allows you to visualize models in multiple ways:
 
-- By _[activation maximization](https://www.machinecurve.com/index.php/2019/11/18/visualizing-keras-model-inputs-with-activation-maximization/)_, essentially generating a 'perfect picture' of your classes.
+- By _[activation maximization](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/visualizing-keras-model-inputs-with-activation-maximization.md)_, essentially generating a 'perfect picture' of your classes.
 - By _saliency maps_, which we cover next.
-- By _[class activation maps](https://www.machinecurve.com/index.php/2019/11/28/visualizing-keras-cnn-attention-grad-cam-class-activation-maps/)_, which are heatmaps of where the model attends to.
+- By _[class activation maps](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/visualizing-keras-cnn-attention-grad-cam-class-activation-maps.md)_, which are heatmaps of where the model attends to.
 
 ## Using saliency maps to visualize attention at MNIST inputs
 
@@ -121,7 +121,7 @@ Preferably, you run all requirements in an Anaconda environment, given isolation
 
 Now that you know what is necessary to train the model and generate the saliency map visualizations, it's time to add a model.
 
-We simply add the [Keras CNN that we created in a different blog post](https://www.machinecurve.com/index.php/2019/09/17/how-to-create-a-cnn-classifier-with-keras/).
+We simply add the [Keras CNN that we created in a different blog post](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras.md).
 
 For the sake of brevity, I'm not repeating the explanation about the architecture and code blocks here. If you wish to understand this in more detail, please feel free to click the link above and read the other blog post - where you'll find all the details.
 

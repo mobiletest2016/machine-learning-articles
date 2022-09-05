@@ -15,7 +15,7 @@ tags:
   - "visualization"
 ---
 
-Deep learning models and especially neural networks have been used thoroughly over the past few years. There are many success cases in the press about the application of those models. One of the primary categories in which those are applied is the field of computer vision, mainly thanks to the 2012 revolution in [Convolutional Neural Networks](https://www.machinecurve.com/index.php/2018/12/07/convolutional-neural-networks-and-their-components-for-computer-vision/).
+Deep learning models and especially neural networks have been used thoroughly over the past few years. There are many success cases in the press about the application of those models. One of the primary categories in which those are applied is the field of computer vision, mainly thanks to the 2012 revolution in [Convolutional Neural Networks](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/convolutional-neural-networks-and-their-components-for-computer-vision.md).
 
 However, until recently, it was very difficult to understand how a neural network arrived at its outcome - i.e., its prediction.
 
@@ -25,7 +25,7 @@ Tf-explain is a framework for enhancing interpretability and explainability of A
 
 In this blog post, we'll look at one such technique: Activation Visualization. It does what the name suggests - for a layer in a ConvNet, it visualizes how an input is processed through that layer and what each subsequent feature map looks like.
 
-It is structured as follows. Firstly, we'll look at the conceptual nature of an activation - by taking a look at a layer of a ConvNet and how input is processed there, including why activation functions are necessary. Subsequently, we'll introduce `tf-explain` and provide a bit of background information. Following this, we'll implement a [Keras ConvNet](https://www.machinecurve.com/index.php/2020/03/30/how-to-use-conv2d-with-keras/) based on TensorFlow 2.x and perform Activation Visualization with `tf-explain` to show you how it works.
+It is structured as follows. Firstly, we'll look at the conceptual nature of an activation - by taking a look at a layer of a ConvNet and how input is processed there, including why activation functions are necessary. Subsequently, we'll introduce `tf-explain` and provide a bit of background information. Following this, we'll implement a [Keras ConvNet](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-conv2d-with-keras.md) based on TensorFlow 2.x and perform Activation Visualization with `tf-explain` to show you how it works.
 
 All code for doing so is included with the relevant steps and is broken down into small parts so that it will be very understandable. I hope this post will be useful for those who wish to use AI explainability techniques with Keras themselves. Let's go! :)
 
@@ -43,9 +43,9 @@ In this tutorial, we'll primarily focus on Convolutional Neural Networks, also c
 
 Now, what is a ConvNet?
 
-While we already have a [very detailed post on the matter](https://www.machinecurve.com/index.php/2018/12/07/convolutional-neural-networks-and-their-components-for-computer-vision/), let's repeat what is written there, here - but then briefly.
+While we already have a [very detailed post on the matter](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/convolutional-neural-networks-and-their-components-for-computer-vision.md), let's repeat what is written there, here - but then briefly.
 
-First of all, a Convolutional Neural Network is no special type of neural network - as with any, it's a set of trainable parameters which is trained through the [supervised machine learning process](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#the-high-level-supervised-learning-process) with its feedforward operation and subsequent gradient based optimization.
+First of all, a Convolutional Neural Network is no special type of neural network - as with any, it's a set of trainable parameters which is trained through the [supervised machine learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process) with its feedforward operation and subsequent gradient based optimization.
 
 Except for the fact that within Convolutional Neural Networks, parameters are structured a bit differently than in a regular fully connected network.
 
@@ -61,9 +61,9 @@ On the left, you see the `Inputs` layer, which accepts a 32 x 32 pixel image wit
 
 As you can see, in a loup-like structure, the inputs are reduced in size. This happens by means of the _convolution_ operation - which is a kernel of some by some pixels (5x5 in the `Inputs` layer) that slides over the entire input - horizontally and vertically. Doing so, it multiplies all the kernel images (the _learnt weights_) with the _input it covers_ in element-wise multiplications. The output represents the "loupe result" in the downstream layer. All outputs for an image combined is called a _feature map_, and often, as we can see here too, there are many kernels in a layer - resulting in many feature maps.
 
-Learning is ascribed to the kernels, which have trainable weights that can be adapted to respond to inputs. This happens in the [optimization part of the machine learning process](https://www.machinecurve.com/index.php/2019/10/04/about-loss-and-loss-functions/#backwards-pass). It closes the cycle between inputs, outputs and subsequent model improvement - it's really that simple conceptually ;-)
+Learning is ascribed to the kernels, which have trainable weights that can be adapted to respond to inputs. This happens in the [optimization part of the machine learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#backwards-pass). It closes the cycle between inputs, outputs and subsequent model improvement - it's really that simple conceptually ;-)
 
-As you can understand, the feature maps at the most downstream convolutional layer (possibly followed by [pooling layers](https://www.machinecurve.com/index.php/2020/01/30/what-are-max-pooling-average-pooling-global-max-pooling-and-global-average-pooling/)) are a very abstract representation of the original input image. This is beneficial in two ways:
+As you can understand, the feature maps at the most downstream convolutional layer (possibly followed by [pooling layers](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-are-max-pooling-average-pooling-global-max-pooling-and-global-average-pooling.md)) are a very abstract representation of the original input image. This is beneficial in two ways:
 
 1. Different images of the same object (such as two different cats) will quite resemble each other when they have been "louped" into very abstract format.
 2. The abstract representations are common representations of a particular class (such as "cat") and are thus useful for actual classification.
@@ -78,13 +78,13 @@ In a traditional neural network, the operation performed for some input vector \
 
 This multiplication is done on an element-wise basis, i.e. \[latex\]1.23 \\times \\mathbf{w\_1}\[/latex\], and so on. For ConvNets, things work a bit differently, but the point remains standing - **this operation is linear**.
 
-That's quite a problem, to say the least, for it doesn't matter how big your neural network is - if the chain of processing throughout all layers is linear, _[you can only handle linear data](https://www.machinecurve.com/index.php/2019/06/11/why-you-shouldnt-use-a-linear-activation-function/)_.
+That's quite a problem, to say the least, for it doesn't matter how big your neural network is - if the chain of processing throughout all layers is linear, _[you can only handle linear data](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-you-shouldnt-use-a-linear-activation-function.md)_.
 
 And pretty much all of today's data is nonlinear.
 
-The solution is simple and elegant: you can place an [activation function](https://www.machinecurve.com/index.php/2020/01/24/overview-of-activation-functions-for-neural-networks/) directly behind the output of the layer. This function, which is pretty much always nonlinear (such as \[latex\]sin(x)\[/latex\]), converts the linear output into something nonlinear and subsequently ensures that it is passed to the next layer for processing. This way, it is ensured that all processing is nonlinear - and suddenly it becomes possible to handle nonlinear datasets. The output of this function is what we will call the **activation**, hence the name activation function. Today, we'll be visualizing the activations of ConvNet layers.
+The solution is simple and elegant: you can place an [activation function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/overview-of-activation-functions-for-neural-networks.md) directly behind the output of the layer. This function, which is pretty much always nonlinear (such as \[latex\]sin(x)\[/latex\]), converts the linear output into something nonlinear and subsequently ensures that it is passed to the next layer for processing. This way, it is ensured that all processing is nonlinear - and suddenly it becomes possible to handle nonlinear datasets. The output of this function is what we will call the **activation**, hence the name activation function. Today, we'll be visualizing the activations of ConvNet layers.
 
-Today's most common activation function is the [Rectified Linear Unit (ReLU)](https://www.machinecurve.com/index.php/2019/09/04/relu-sigmoid-and-tanh-todays-most-used-activation-functions/). Other ones used still are [Tanh and Sigmoid](https://www.machinecurve.com/index.php/2019/09/04/relu-sigmoid-and-tanh-todays-most-used-activation-functions/), while there are also newer ones, such as [Leaky ReLU, PReLU, and Swish](https://www.machinecurve.com/index.php/2020/01/24/overview-of-activation-functions-for-neural-networks/). They all try to improve on top of each other. However, in most cases, ReLU suffices.
+Today's most common activation function is the [Rectified Linear Unit (ReLU)](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md). Other ones used still are [Tanh and Sigmoid](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md), while there are also newer ones, such as [Leaky ReLU, PReLU, and Swish](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/overview-of-activation-functions-for-neural-networks.md). They all try to improve on top of each other. However, in most cases, ReLU suffices.
 
 - [![](images/swish-1024x511.png)](https://www.machinecurve.com/wp-content/uploads/2019/05/swish.png)
     
@@ -129,21 +129,21 @@ Sounds really cool - and installation is simple: `pip install tf-explain`. That'
 
 ## Visualizing ConvNet activations with tf-explain and Keras
 
-Now that we understand what `tf-explain` is and what it does, we can actually do some work. Today, we will visualize the ConvNet activations with `tf-explain` for a simple ConvNet [created with Keras](https://www.machinecurve.com/index.php/2020/03/30/how-to-use-conv2d-with-keras/).
+Now that we understand what `tf-explain` is and what it does, we can actually do some work. Today, we will visualize the ConvNet activations with `tf-explain` for a simple ConvNet [created with Keras](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-conv2d-with-keras.md).
 
 Recall: in a ConvNet, activations are the outputs of layers, and our technique will allow us to see the feature maps that are generated by a Keras model.
 
 ### Today's model
 
-As the point of this blog post is to illustrate how `tf-explain` can be used for visualizing activations, I will not focus on creating the neural network itself. Instead, we have another blog post for that - being ["How to use Conv2D with Keras?"](https://www.machinecurve.com/index.php/2020/03/30/how-to-use-conv2d-with-keras/). Click the link to find a detailed, step-by-step explanation about the model that we will use in this blog post.
+As the point of this blog post is to illustrate how `tf-explain` can be used for visualizing activations, I will not focus on creating the neural network itself. Instead, we have another blog post for that - being ["How to use Conv2D with Keras?"](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-conv2d-with-keras.md). Click the link to find a detailed, step-by-step explanation about the model that we will use in this blog post.
 
-In short, our ConvNet will be able to classify the [CIFAR10 dataset](https://www.machinecurve.com/index.php/2019/12/31/exploring-the-keras-datasets/#cifar-10-small-image-classification):
+In short, our ConvNet will be able to classify the [CIFAR10 dataset](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets/#cifar-10-small-image-classification):
 
 [![](images/cifar10_visualized.png)](https://www.machinecurve.com/wp-content/uploads/2019/06/cifar10_visualized.png)
 
 As you can see, it is an image clasification dataset with 32x32 pixel RGB images of everyday objects. The images are distributed across 10 classes.
 
-Here's the full model code from the ["How to use Conv2D with Keras?"](https://www.machinecurve.com/index.php/2020/03/30/how-to-use-conv2d-with-keras/) post:
+Here's the full model code from the ["How to use Conv2D with Keras?"](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-conv2d-with-keras.md) post:
 
 ```
 from tensorflow.keras.datasets import cifar10
@@ -204,7 +204,7 @@ print(f'Test loss: {score[0]} / Test accuracy: {score[1]}')
 
 Now, there are two paths forward with respect to generating the Activation Visualizations with `tf-explain`:
 
-1. **Visualizing the activations during the training process.** This allows you to determine how your model's trainable parameters evolve during training, and whether you might have an intuitively better intermediate result that you better use as your final model. What's even better is that you can use [TensorBoard](https://www.machinecurve.com/index.php/2019/11/13/how-to-use-tensorboard-with-keras/) to track your visualizations _during_ training.
+1. **Visualizing the activations during the training process.** This allows you to determine how your model's trainable parameters evolve during training, and whether you might have an intuitively better intermediate result that you better use as your final model. What's even better is that you can use [TensorBoard](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-tensorboard-with-keras.md) to track your visualizations _during_ training.
 2. **Visualizing the activations after training.** This helps you determine whether your final model works well.
 
 Of course, we'll cover both variants next.
@@ -234,7 +234,7 @@ from tf_explain.callbacks.activations_visualization import ActivationsVisualizat
 
 #### Creating a Keras callback: the ActivationsVisualizationCallback
 
-As you could have guessed by now, using `tf-explain` during training works by means of _callbacks_. Those are pieces of functionality supported by Keras that run _while_ training, and can e.g. be used to [stop the training process and save data on the fly](https://www.machinecurve.com/index.php/2019/05/30/avoid-wasting-resources-with-earlystopping-and-modelcheckpoint-in-keras/).
+As you could have guessed by now, using `tf-explain` during training works by means of _callbacks_. Those are pieces of functionality supported by Keras that run _while_ training, and can e.g. be used to [stop the training process and save data on the fly](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/avoid-wasting-resources-with-earlystopping-and-modelcheckpoint-in-keras.md).
 
 So, in order to make this work, define a new callback just below the `model.compile` step:
 
@@ -262,7 +262,7 @@ In the callback, we specify a few things:
 
 Now, wait a second! Layers name? What is this?
 
-Well, in Keras, every layer gets assigned a name. Take a look at the [model summaries we can generate](https://www.machinecurve.com/index.php/2020/04/01/how-to-generate-a-summary-of-your-keras-model/), to give just one example. You'll see names like `conv2d_1` - but you can also provide your own. Let's do this, and replace the second `model.add` with:
+Well, in Keras, every layer gets assigned a name. Take a look at the [model summaries we can generate](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-generate-a-summary-of-your-keras-model.md), to give just one example. You'll see names like `conv2d_1` - but you can also provide your own. Let's do this, and replace the second `model.add` with:
 
 ```
 model.add(Conv2D(64, kernel_size=(3, 3), activation='relu', name='visualization_layer'))
@@ -384,7 +384,7 @@ When the training process has finished, you should see a file in your `./visuali
 
 It could be located in some folder with another timestamp based name.
 
-This could be odd, but it isn't. Recall from the introduction that _visualizations during training_ are generated in TFEvents format, and can be visualized using [TensorBoard](https://www.machinecurve.com/index.php/2019/11/13/how-to-use-tensorboard-with-keras/).
+This could be odd, but it isn't. Recall from the introduction that _visualizations during training_ are generated in TFEvents format, and can be visualized using [TensorBoard](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-tensorboard-with-keras.md).
 
 So let's do that. Open up your terminal again (possibly the same one as you trained your model in), `cd` to the folder where your `.py` file is located, and start TensorBoard:
 
@@ -482,7 +482,7 @@ Great, we have a running training process :) Once it finishes, your activation v
 
 ![](images/act.png)
 
-For the [MNIST dataset](https://www.machinecurve.com/index.php/2019/12/31/exploring-the-keras-datasets/#mnist-database-of-handwritten-digits), and a specific sample of number 4, it looks like this:
+For the [MNIST dataset](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets/#mnist-database-of-handwritten-digits), and a specific sample of number 4, it looks like this:
 
 ![](images/act-1.png)
 

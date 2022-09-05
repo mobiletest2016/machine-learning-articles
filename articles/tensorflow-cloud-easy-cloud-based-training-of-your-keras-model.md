@@ -36,7 +36,7 @@ Let's take a look! :)
 
 Deep learning has been very popular for eight years now, as of 2020. Especially in the fields of Computer Vision and Natural Language Processing, deep learning models have outperformed previously state-of-the-art non-ML approaches. In many cases
 
-For example, only today, I was impressed because the municipality of my nation's capital - Amsterdam - has trained and deployed deep learning models to detect garbage alongside the road, or to detect whether people maintain mandatory social distancing measures against the [COVID-19 pandemic](https://www.machinecurve.com/index.php/2020/03/17/help-fight-covid-19-participate-in-the-cord-19-challenge/). They in fact used a variety of open source frameworks and libraries, _and_ pretrained models - a great feat!
+For example, only today, I was impressed because the municipality of my nation's capital - Amsterdam - has trained and deployed deep learning models to detect garbage alongside the road, or to detect whether people maintain mandatory social distancing measures against the [COVID-19 pandemic](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/help-fight-covid-19-participate-in-the-cord-19-challenge.md). They in fact used a variety of open source frameworks and libraries, _and_ pretrained models - a great feat!
 
 Now, they also argued that training some of the models was costly in terms of the computational resources that are required. For example, in a case study where a data engineer showed how a model was created for detecting bicycle road signs on road pavement, he argued that approximately 150 GB of data was to be used for training. It cost three full hours to train the model on four NVIDIA Tesla V100 GPUs, which are one of the fastest currently on the market.
 
@@ -57,7 +57,7 @@ Google's offering for training deep learning models is embedded in the [Google C
 In fact, it supports multiple phases. At a high level, the AI Platform provides functionality for **preparing your dataset**, **building your model**, **validating your model** and **deploying your model**. Effectively, it allows you to do these things in the individual stages:
 
 - **Prepare stage:** labeling your dataset as well as storing and retrieving it to and from Google BigQuery.
-- **Build:** playing around with code in Notebooks, training your models on highly powered machines, and applying AutoML functionality for [training automation](https://www.machinecurve.com/index.php/2020/06/09/automating-neural-network-configuration-with-keras-tuner/).
+- **Build:** playing around with code in Notebooks, training your models on highly powered machines, and applying AutoML functionality for [training automation](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/automating-neural-network-configuration-with-keras-tuner.md).
 - **Validate:** once a model is trained, the AI Platform allows you to perform activities related to explainable AI, and black-box optimization with a tool called Vizier.
 - **Deploy:** once trained, validated and considered ready for production usage, a model can be deployed through Google too.
 
@@ -81,9 +81,9 @@ https://www.youtube.com/watch?v=HBqCpWldPII
 
 ### Automating models & applying them in the real world
 
-Here, with **automation**, Chollet means that developments like [automated hyperparameter tuning](https://www.machinecurve.com/index.php/2020/06/09/automating-neural-network-configuration-with-keras-tuner/), architecture search and even Automated Machine Learning (AutoML) will help commoditize the field of Machine Learning. Gone will be the days where practicing Deep Learning will be considered a field only accessible to people who are highly familiar with mathematics and complex programming. No, instead, the ML power user (and perhaps even the more introductory user!) will provide a dataset and desired model outcomes, and some automation program will find the best set of architectural and hyper-architectural principles to apply.
+Here, with **automation**, Chollet means that developments like [automated hyperparameter tuning](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/automating-neural-network-configuration-with-keras-tuner.md), architecture search and even Automated Machine Learning (AutoML) will help commoditize the field of Machine Learning. Gone will be the days where practicing Deep Learning will be considered a field only accessible to people who are highly familiar with mathematics and complex programming. No, instead, the ML power user (and perhaps even the more introductory user!) will provide a dataset and desired model outcomes, and some automation program will find the best set of architectural and hyper-architectural principles to apply.
 
-With **into the real world**, Chollet argues that future Keras developments will focus on getting Deep Learning models _out there_. By packaging data preprocessing with the model, to give just an example, models can be run in the field much more robustly. In addition, it's likely that edge equipment shall be used more often, requiring the need to [optimize models](https://www.machinecurve.com/index.php/tag/model-optimization/).
+With **into the real world**, Chollet argues that future Keras developments will focus on getting Deep Learning models _out there_. By packaging data preprocessing with the model, to give just an example, models can be run in the field much more robustly. In addition, it's likely that edge equipment shall be used more often, requiring the need to [optimize models](https://web.archive.org/web/https://www.machinecurve.com/index.php/tag/model-optimization/).
 
 And so on, and so on!
 
@@ -104,9 +104,9 @@ Let's now take a look at those APIs, or primarily, the TensorFlow Cloud `run` AP
 Within the `tensorflow_cloud` module that will be available upon installing TensorFlow Cloud (we will get to that later), a definition called `run` is available in order to let your model train in the cloud. This definition will do multiple things:
 
 1. Making your Keras code cloud ready (TensorFlow/cloud, n.d.)
-2. Packaging your model code into a [Docker container](https://www.machinecurve.com/index.php/2020/10/07/easy-install-of-jupyter-notebook-with-tensorflow-and-docker/#what-is-docker) which can be deployed in the cloud for training.
+2. Packaging your model code into a [Docker container](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/easy-install-of-jupyter-notebook-with-tensorflow-and-docker/#what-is-docker) which can be deployed in the cloud for training.
 3. Subsequently, deploying this container and training the model with the TensorFlow training (distribution) strategy of your choice.
-4. Write logs to a cloud-hosted [TensorBoard](https://www.machinecurve.com/index.php/2019/11/13/how-to-use-tensorboard-with-keras/).
+4. Write logs to a cloud-hosted [TensorBoard](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-tensorboard-with-keras.md).
 
 Here is the arguments list of the `def` - we'll describe the arguments soon, and show an example later in this article:
 
@@ -129,7 +129,7 @@ def run(
 
 Those are the arguments:
 
-- The **entry\_point** describes where TensorFlow Cloud must pick up your Python code (e.g. a file called `keras.py`) or your [Notebook](https://www.machinecurve.com/index.php/2020/10/07/easy-install-of-jupyter-notebook-with-tensorflow-and-docker/) (`*.ipynb`) for preprocessing and packaging it into a Docker container.
+- The **entry\_point** describes where TensorFlow Cloud must pick up your Python code (e.g. a file called `keras.py`) or your [Notebook](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/easy-install-of-jupyter-notebook-with-tensorflow-and-docker.md) (`*.ipynb`) for preprocessing and packaging it into a Docker container.
 - The **requirements\_txt** (optional) is the file path to a file called `requirements.txt` where you can specify additional `pip` packages to be installed.
 - The **docker\_config** (optional) allows you to configure additional settings for the Docker container. For example, by configuring the `base_image`, you can specify a custom Docker image to start with as base image, and with `image_build_bucket` you can specify a bucket where Google Cloud Platform stores the built container if you choose to build it in the cloud. It defaults to 'auto', which means that default settings are used.
 - The **distribution\_strategy** (optional) allows you to pick a training strategy for your cloud-based training. Those are distributed TensorFlow training strategies which we will cover in more detail later in this article. By default, it is set to 'auto', which means that an appropriate strategy is automatically inferred based on `chief_config`, `worker_config` and `worker_count`.
@@ -399,7 +399,7 @@ Let's take a look in more detail.
 
 ### Step 1: pick a Keras model to train
 
-For training our Keras model in the cloud, we need - well, a Keras model. The model below is a relatively simple [Convolutional Neural Network](https://www.machinecurve.com/index.php/2018/12/07/convolutional-neural-networks-and-their-components-for-computer-vision/), for the creation of which you can find a detailed article [here](https://www.machinecurve.com/index.php/2019/09/17/how-to-create-a-cnn-classifier-with-keras/). Within a few iterations, it can reach significant accuracies on the [MNIST dataset](https://www.machinecurve.com/index.php/2019/12/31/exploring-the-keras-datasets/). Precisely this simplicity is what makes the model easy to follow, and why it's good for an educational setting like this. Obviously, you wouldn't train such easy and simple models in the cloud normally.
+For training our Keras model in the cloud, we need - well, a Keras model. The model below is a relatively simple [Convolutional Neural Network](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/convolutional-neural-networks-and-their-components-for-computer-vision.md), for the creation of which you can find a detailed article [here](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras.md). Within a few iterations, it can reach significant accuracies on the [MNIST dataset](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets.md). Precisely this simplicity is what makes the model easy to follow, and why it's good for an educational setting like this. Obviously, you wouldn't train such easy and simple models in the cloud normally.
 
 Open up your code editor, create a file called `model.py`, and add the following code.
 
