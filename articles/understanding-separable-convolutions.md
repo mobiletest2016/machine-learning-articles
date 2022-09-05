@@ -45,7 +45,7 @@ Let's take a look! 🚀
 
 **Spatially separable convolutions** help solve this problem. They are convolutions that can be separated across their spatial axis, meaning that one large convolution (e.g. the original Conv layer) can be split into smaller ones that when convolved sequentially produce the same result. By consequence, the number of multiplications goes down, while getting the same resul.t
 
-[![This image has an empty alt attribute; its file name is CNNaltogether.png](images/CNNaltogether.png)](https://machinecurve.com/wp-content/uploads/2019/09/CNNaltogether.png)
+[![This image has an empty alt attribute; its file name is CNNaltogether.png](images/CNNaltogether.png)]
 
 The downside of these convolutions is that they cannot be used everywhere since only a minority of kernels is spatially separable. To the rescue here are **depthwise separable convolutions**. This technique simply splits convolutions differently, over a depthwise convolution and a pointwise convolution. The depthwise convolution applies the kernel to each individual channel layer only. The pointwise convolution then convolves over all channels at once, but only with a 1x1 kernel. As you can see in the image, you get the same result as with the original Conv layer, but at only 20% of the multiplications required. A substantial reduction!
 

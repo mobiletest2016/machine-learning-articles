@@ -38,7 +38,7 @@ This is problematic, as we don't want the prediction to be determined by the _ma
 
 Intuitively, the fix for this problem would be to "cut off" the table from each book. That is, we simply remove the edges, so that the cover of the book remains. It's a simple and elegant fix which is called "cropping". And indeed, it's the way forward - suppose that in this case, the "2" is the book and the surrounding blue is the table:
 
-- [![](images/crop_4.png)](https://www.machinecurve.com/wp-content/uploads/2020/02/crop_4.png)
+- [![](images/crop_4.png)]
     
 
 Cropping allows us to focus on the book alone rather than its unique combination with the table.
@@ -191,11 +191,11 @@ As you can see, there are no trainable parameters whatsoever - the `Cropping2D` 
 
 Then, three examples of the cropped inputs:
 
-- [![](images/crop_3.png)](https://www.machinecurve.com/wp-content/uploads/2020/02/crop_3.png)
+- [![](images/crop_3.png)]
     
-- [![](images/crop_2.png)](https://www.machinecurve.com/wp-content/uploads/2020/02/crop_2.png)
+- [![](images/crop_2.png)]
     
-- [![](images/crop_1.png)](https://www.machinecurve.com/wp-content/uploads/2020/02/crop_1.png)
+- [![](images/crop_1.png)]
     
 
 Indeed, the blank box around the digits has been removed! 😎
@@ -243,7 +243,7 @@ plt.show()
 
 ## Training a ConvNet with Cropping2D inputs
 
-[![](images/model_cropping2d-84x300.png)](https://www.machinecurve.com/wp-content/uploads/2020/02/model_cropping2d.png)
+[![](images/model_cropping2d-84x300.png)]
 
 Let's now make the example a little bit more complex. Rather than creating a model which allows an input image to be cropped, we'll apply Cropping layers to a [Convolutional Neural Network based classifier](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras.md) - in order to find out what it does in terms of performance when it is trained on the MNIST dataset.
 
@@ -398,9 +398,9 @@ print(f'Test loss: {score[0]} / Test accuracy: {score[1]}')
 
 To evaluate, we trained the CNN defined above with the 'classic' one - i.e., the one without cropped data - as a baseline model. Here are the results in terms of accuracies and loss values:
 
-- [![](images/classic_cropped_accuracy.png)](https://www.machinecurve.com/wp-content/uploads/2020/02/classic_cropped_accuracy.png)
+- [![](images/classic_cropped_accuracy.png)]
     
-- [![](images/classic_cropped_loss.png)](https://www.machinecurve.com/wp-content/uploads/2020/02/classic_cropped_loss.png)
+- [![](images/classic_cropped_loss.png)]
     
 
 As you can see, the cropped CNN performs worse on the validation dataset - although the difference is not _enormous_. The same is visible within the testing data:

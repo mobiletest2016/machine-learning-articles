@@ -290,7 +290,7 @@ plt.show()
 
 Result:
 
-[![](images/mnist_visualized.jpeg)](https://machinecurve.com/wp-content/uploads/2019/07/mnist_visualized.jpeg)
+[![](images/mnist_visualized.jpeg)]
 
 ### Creating the Multilayer Perceptron
 
@@ -322,7 +322,7 @@ As discussed before, the Keras Sequential API is used for creating the model. We
 - The second has 50 output neurons and activates by means of ReLU. You'll by now notice that we somehow funnel the information into a very dense format. This way, the model will be capable of learning the most important patterns, which helps generalizing to new data.
 - Finally, there's an output layer, which has `num_classes` output neurons and activates by means of `Softmax`. The number of neurons equals the number of scalars in your output vector. Since that data must be categorical for categorical cross entropy, and thus the number of scalar values in your target vector equals the number of classes, it makes sense why `num_classes` is used. Softmax, the activation function, is capable of generating a so-called multiclass probability distribution. That is, it computes the probability that a certain feature vector belongs to one class.
 
-[![](images/relu-1024x511.png)](https://machinecurve.com/wp-content/uploads/2019/05/relu.png)
+[![](images/relu-1024x511.png)]
 
 How Rectified Linear Unit a.k.a. ReLU activates.
 
@@ -382,7 +382,7 @@ Epoch 10/10
 
 Or, visually:
 
-[![](images/image-2.png)](https://machinecurve.com/wp-content/uploads/2019/07/image-2.png)
+[![](images/image-2.png)]
 
 As you can see, training loss decreases rapidly. This is perfectly normal, as the model always learns most during the early stages of optimization. Accuracies converge after only one epoch, and still improve during the 10th, albeit slightly.
 

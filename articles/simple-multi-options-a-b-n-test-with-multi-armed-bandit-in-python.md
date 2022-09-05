@@ -260,7 +260,7 @@ if __name__ == '__main__':
 
 Now, it's time to run the code. Quite quickly, you should observe the following:
 
-[![](images/ad-1024x521.png)](https://www.machinecurve.com/wp-content/uploads/2021/10/ad.png)
+[![](images/ad-1024x521.png)]
 
 After exploration, **advertisement 2** was the best-performing advertisement (with a CTR of `0.0288` or 2.88%). Recall that the best ad is actually **advertisement 3**, with a CTR of 3%. In this case, while the CTR is close, you could have done better!
 

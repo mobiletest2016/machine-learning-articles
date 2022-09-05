@@ -66,13 +66,13 @@ LSTMs fix this problem by separating _memory_ from the _hidden outputs_. An LSTM
 
 While many [nonlinear operations](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-nonlinear-activation-functions-improve-ml-performance-with-tensorflow-example.md) are present within the memory cell, the memory flow from \[latex\]c\[t-1\]\[/latex\] to \[latex\]c\[t\]\[/latex\] is _linear_ - the multiplication and addition operations are linear operations. By consequence, through a smart implementation, the gradient in this segment is always kept at `1.0` and hence vanishing gradients no longer occur. This aspect of the LSTM is therefore called a **Constant Error Carrousel**, or CEC.
 
-[![](images/LSTM-5.png)](https://www.machinecurve.com/wp-content/uploads/2020/12/LSTM-5.png)
+[![](images/LSTM-5.png)]
 
 ### How unidirectionality can limit your LSTM
 
 Suppose that you are processing the sequence \[latex\]\\text{I go eat now}\[/latex\] through an LSTM for the purpose of translating it into French. Recall that processing such data happens on a per-token basis; each token is fed through the LSTM cell which processes the input token and passes the hidden state on to itself. When unrolled (as if you utilize many copies of the same LSTM model), this process looks as follows:
 
-[![](images/unidirectional-1024x414.png)](https://www.machinecurve.com/wp-content/uploads/2021/01/unidirectional.png)
+[![](images/unidirectional-1024x414.png)]
 
 This immediately shows that LSTMs are unidirectional. In other words, the sequence is processed into one direction; here, from left to right. This makes common sense, as - except for a few languages - we read and write in a left-to-right fashion. For translation tasks, this is therefore not a problem, because you don't know what will be said in the future and hence have no business about knowing what will happen after your current input word.
 
@@ -86,7 +86,7 @@ In those cases, you might wish to use a Bidirectional LSTM instead. With such a 
 
 This provides more context for the tasks that require both directions for better understanding.
 
-[![](images/bidirectional-1024x414.png)](https://www.machinecurve.com/wp-content/uploads/2021/01/bidirectional.png)
+[![](images/bidirectional-1024x414.png)]
 
 While conceptually bidirectional LSTMs work in a bidirectional fashion, they are not bidirectional in practice. Rather, they are just two unidirectional LSTMs for which the output is combined. Outputs can be combined in multiple ways (TensorFlow, n.d.):
 

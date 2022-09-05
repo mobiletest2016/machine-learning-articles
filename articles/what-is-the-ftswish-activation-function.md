@@ -29,7 +29,7 @@ Are you ready? Let's go 😊
 
 When creating neural networks, you need to attach activation functions to the individual layers in order to make them work with nonlinear data. Inspiration for them can be traced back to biological neurons, which "fire" when their inputs are sufficiently large, and remain "silent" when they're not. Artificial activation functions tend to show the same behavior, albeit in much less complex ways.
 
-[![](images/1920px-Drawing_of_a_neuron.svg_-1024x397.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/1920px-Drawing_of_a_neuron.svg_.png)
+[![](images/1920px-Drawing_of_a_neuron.svg_-1024x397.png)]
 
 _Schematic drawing of a biological neuron. Source: Dana Scarinci Zabaleta at Wikipedia, licensed CC0_
 
@@ -62,7 +62,7 @@ Over the years, some new activation functions have emerged to deal with this pro
 - [Leaky ReLU: improving traditional ReLU](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/leaky-relu-improving-traditional-relu.md)
 - [Using Leaky ReLU with Keras](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/using-leaky-relu-with-keras.md)
 
-[![](images/leaky_relu.png)](https://www.machinecurve.com/wp-content/uploads/2019/10/leaky_relu.png)
+[![](images/leaky_relu.png)]
 
 The downside of Leaky ReLU is that the value for \[latex\]\\alpha\[/latex\] has to be set in advance. Even though an estimate can be made by pretraining with a small subset of your data serving as a validation set, it's still suboptimal. Fortunately, Leaky ReLU can be generalized into what is known as **Parametric ReLU**, or PReLU. The value for \[latex\]\\alpha\[/latex\] no longer needs to be set by the machine learning engineer, but instead is learnt during training through a few extra trainable parameters. Here too, the gradient for all \[latex\]x < 0\[/latex\] is (very likely, as a learnt \[latex\]\\alpha = 0\[/latex\] cannot be ignored) small but nonzero, so that the dying ReLU problem is avoided.
 
@@ -70,13 +70,13 @@ The downside of Leaky ReLU is that the value for \[latex\]\\alpha\[/latex\] has 
 
 Another activation function with which the dying ReLU problem can be avoided is the **Exponential Linear Unit**, or ELU. The creators of this activation function argue that both PReLU and Leaky ReLU still produce issues when inputs are _really_ _large_ and negative, because the negative side of the spectrum does not saturate to some value. They introduce ELU, which both resolves the dying ReLU problem and ensures saturation based on some \[latex\]\\alpha\[/latex\] value.
 
-[![](images/elu_avf.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/elu_avf.png)
+[![](images/elu_avf.png)]
 
 - [How to use ELU with Keras?](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-elu-with-keras.md)
 
 Another relatively popular new activation function is **Swish**, which really looks like ReLU but is somewhat different:
 
-[![](images/relu_swish-1024x511.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/relu_swish.png)
+[![](images/relu_swish-1024x511.png)]
 
 Firstly, it's smooth - which is expected to improve the loss surface during optimization (MachineCurve, 2019). Additionally, it saturates for large negative values, to zero - which is expected to still ensure that the activation function yields model sparsity. However, thirdly, it does produce small but nonzero (negative) outputs for small negative inputs, which is expected to help reduce the dying ReLU problem. Empirical tests with large datasets have shown that Swish may actually be beneficial in settings when larger neural networks are used.
 
@@ -88,7 +88,7 @@ Firstly, it's smooth - which is expected to improve the loss surface during opti
 
 Another activation function was introduced in a research paper entitled "[Flatten-T Swish: a thresholded ReLU-Swish-like activation function for deep learning](https://arxiv.org/abs/1812.06247)", by Chieng et al. (2018). **Flatten-T Swish**, or FTSwish, combines the ReLU and Sigmoid activation functions into a new one:
 
-[![](images/ftswish-1.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/ftswish-1.png)
+[![](images/ftswish-1.png)]
 
 FTSwish can be mathematically defined as follows:
 
@@ -106,7 +106,7 @@ This way, the authors expect that the function can _both_ benefit from ReLU's an
 
 Why both? Let's take a look at these gradients:
 
-[![](images/ftswish_deriv.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/ftswish_deriv.png)
+[![](images/ftswish_deriv.png)]
 
 _FTSwish derivative_
 
@@ -160,11 +160,11 @@ _________________________________________________________________
 
 These are the results:
 
-- [![](images/acc.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/acc.png)
+- [![](images/acc.png)]
     
-- [![](images/loss.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/loss.png)
+- [![](images/loss.png)]
     
-- [![](images/comp.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/comp.png)
+- [![](images/comp.png)]
     
 
 As we can see, FTSwish finds accuracies of 97%+. However, the loss values are slightly worse than the ones reported by training either ReLU or Swish.
@@ -203,11 +203,11 @@ _________________________________________________________________
 
 These are the results:
 
-- [![](images/acc-1.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/acc-1.png)
+- [![](images/acc-1.png)]
     
-- [![](images/loss-1.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/loss-1.png)
+- [![](images/loss-1.png)]
     
-- [![](images/combined.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/combined.png)
+- [![](images/combined.png)]
     
 
 Contrary to the MNIST case, we can see overfitting occur here, despite the application of Dropout. What's more, ReLU seems to perform consistently over time, whereas overfitting definitely occurs with Swish and FTSwish.
@@ -252,11 +252,11 @@ _________________________________________________________________
 
 These are the results:
 
-- [![](images/acc-2.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/acc-2.png)
+- [![](images/acc-2.png)]
     
-- [![](images/loss-2.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/loss-2.png)
+- [![](images/loss-2.png)]
     
-- [![](images/combined-1.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/combined-1.png)
+- [![](images/combined-1.png)]
     
 
 As we can see, the model starts overfitting quite soon, despite the application of Dropout. Overfitting is significantly worse compared to e.g. CIFAR-10, but this makes sense, as the number of samples per class is lower _and_ the number of classes is higher.

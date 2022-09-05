@@ -658,7 +658,7 @@ In that case, you can open a browser, navigate to http://localhost:6006, and see
 
 ...which opens with the Scalars tab:
 
-[![](images/image-1-1024x505.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/image-1.png)
+[![](images/image-1-1024x505.png)]
 
 This tab essentially shows you how the training process happened over time by showing you the [loss value](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions.md) (for [training and validation data](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-easily-create-a-train-test-split-for-your-machine-learning-model.md)) as well as other metrics. On the left, you can configure the charts.
 
@@ -666,7 +666,7 @@ This tab essentially shows you how the training process happened over time by sh
 
 Next, you can move to the Images tab:
 
-[![](images/image-2-1024x505.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/image-2.png)
+[![](images/image-2-1024x505.png)]
 
 This tab shows you the weight images that you could configure with `write_images`.
 
@@ -674,19 +674,19 @@ This tab shows you the weight images that you could configure with `write_images
 
 The Graphs tab shows you the network graph created by Keras when training your model:
 
-[![](images/image-6-1024x480.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/image-6.png)
+[![](images/image-6-1024x480.png)]
 
 ### TensorBoard Distributions tab
 
 The Distributions tab shows you how the weights and biases are distributed per iteration:
 
-[![](images/image-4-1024x505.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/image-4.png)
+[![](images/image-4-1024x505.png)]
 
 ### TensorBoard Histograms tab
 
 Finally, the Histograms tab shows the weights histograms which help you determine how the model learnt:
 
-[![](images/image-5-1024x505.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/image-5.png)
+[![](images/image-5-1024x505.png)]
 
 In the case of our model that learns to classify based on the [CIFAR10 dataset](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets.md), it becomes clear that it has primarily learnt by _slightly_ adapting the [weights](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-weight-initialization.md) of some models, and by _steering_ the biases quite substantially. This eventually reflects a 72.7% test accuracy.
 

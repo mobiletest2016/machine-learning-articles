@@ -101,7 +101,7 @@ Perhaps, we can first show this visually.
 
 This is what an autoencoder does at a high level:
 
-[![](images/Autoencoder.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/Autoencoder.png)
+[![](images/Autoencoder.png)]
 
 - One inputs an **input image** into the neural network.
 - This input image is fed through the **encoder** part of the network, which encodes the image into some **encoded state**. This state is often reduced in dimensionality.
@@ -127,7 +127,7 @@ Instead, for image-like data, a Conv-based autoencoder is more preferred - based
 
 As we'll use the MNIST dataset for showing how Conv2DTranspose works, which contains thousands of images of handwritten digits, we'll create a _simple_ Conv-based autoencoder today, using the Conv2DTranspose layers. Do note that I won't cover many of the autoencoder ideosyncrasies and will keep the autoencoder architecture really simple (only providing the _decoder_ function, keeping the encoder function hidden in the model), as today's goal is not to explain autoencoders, but to give a Conv2DTranspose example instead.
 
-[![](images/mnist.png)](https://www.machinecurve.com/wp-content/uploads/2019/07/mnist.png)
+[![](images/mnist.png)]
 
 ### What you'll need to run the model
 
@@ -312,21 +312,21 @@ Training our model yields a loss of approximately 0.05 - which is quite good, ye
 
 What's perhaps more important is to see whether it actually _works_ - by visualizing the reconstructions. I won't keep you waiting any longer - here they are:
 
-- [![](images/1.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/1.png)
+- [![](images/1.png)]
     
-- [![](images/2.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/2.png)
+- [![](images/2.png)]
     
-- [![](images/3.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/3.png)
+- [![](images/3.png)]
     
-- [![](images/4.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/4.png)
+- [![](images/4.png)]
     
-- [![](images/5.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/5.png)
+- [![](images/5.png)]
     
-- [![](images/6.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/6.png)
+- [![](images/6.png)]
     
-- [![](images/7.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/7.png)
+- [![](images/7.png)]
     
-- [![](images/8.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/8.png)
+- [![](images/8.png)]
     
 
 As you can see, using Conv2DTranspose for the decoder part worked pretty well! 😎

@@ -37,7 +37,7 @@ This is an autoencoder at a very high level:
 
 It contains an _encoder_, which transforms some high-dimensional input into lower-dimensional format, and a _decoder_, which can read the encoded state and convert it into something else. The encoded state is also called latent state.
 
-[![](images/2-300x225.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/2.png)
+[![](images/2-300x225.png)]
 
 _When autoencoders are used for reconstructing some input, [this is what you get](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/conv2dtranspose-using-2d-transposed-convolutions-with-keras.md)._
 
@@ -69,7 +69,7 @@ Subsequently, we cover the model and its architecture, and explain you why we us
 
 ### The data
 
-[![](images/mnist-300x133.png)](https://www.machinecurve.com/wp-content/uploads/2019/07/mnist.png)
+[![](images/mnist-300x133.png)]
 
 First: the data. If you follow MachineCurve blogs regularly, you must be familiar with the MNIST dataset by now.
 
@@ -79,14 +79,14 @@ The dataset contains 60.000 training samples and 10.000 testing samples.
 
 Today, we'll be trying to learn an _image noise remover_ (or _denoiser_) based on this dataset. This means that we'll have to add noise to the data, after which we can feed both the noisy and the pure data to an autoencoder which learns noise removal. For the sake of clarity, this is what a pure and a noisy sample looks like (with 55% of the generated amount of Gaussian noise of \[latex\](0, 1)\[/latex\] mean/stddev applied to the image):
 
-- [![](images/1-6.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/1-6.png)
+- [![](images/1-6.png)]
     
-- [![](images/2-4.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/2-4.png)
+- [![](images/2-4.png)]
     
 
 ### The model
 
-[![](images/explained-1-300x165.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/09/explained-1.jpg)
+[![](images/explained-1-300x165.jpg)]
 
 _Read our blog post **["Understanding transposed convolutions"](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/understanding-transposed-convolutions.md)** if you wish to understand transposed convolutions in more detail. Check out **["Conv2DTranspose: using 2D transposed convolutions with Keras"](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/conv2dtranspose-using-2d-transposed-convolutions-with-keras.md)** if you wish to understand how to use them with Keras._
 
@@ -122,7 +122,7 @@ All right, time to create some code 😁
 
 The first thing to do is to open up your Explorer, and to navigate to a folder of your choice. In this folder, create a new file, and call it e.g. `image_noise_autoencoder.py`. Now open this file in your code editor - and you're ready to start :)
 
-[![](images/model-6-187x300.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/model-6.png)
+[![](images/model-6-187x300.png)]
 
 Creating our model consists of multiple steps:
 
@@ -425,17 +425,17 @@ Next up, the interesting part - the results 😁
 
 And I must say that I'm really happy with how well the autoencoder has learnt to denoise MNIST images 🎉 With a loss value of \[latex\]\\approx 0.095\[/latex\], it performs quite well - but hey, it's better to see how it works visually. Therefore, let's skip to the example visualizations:
 
-- [![](images/1-5.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/1-5.png)
+- [![](images/1-5.png)]
     
-- [![](images/2-3.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/2-3.png)
+- [![](images/2-3.png)]
     
-- [![](images/3-3.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/3-3.png)
+- [![](images/3-3.png)]
     
-- [![](images/4-3.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/4-3.png)
+- [![](images/4-3.png)]
     
-- [![](images/5-2.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/5-2.png)
+- [![](images/5-2.png)]
     
-- [![](images/6-2.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/6-2.png)
+- [![](images/6-2.png)]
     
 
 I'm really happy with the results! 😎

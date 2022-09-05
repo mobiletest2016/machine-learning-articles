@@ -54,11 +54,11 @@ But downsampling _is_ necessary in order to achieve a spatial hierarchy like the
 
 Often, we take a look at pooling layers for this purpose. Pooling layers create a small "pool" of data (often a few by a few pixels), which slides over the input data. That's similar to convolutional layers - they do the same - but what happens _inside the pool_ is different. Rather than a pairwise multiplication between the input vector and the learnt weights vector (explaining the relative computational expensiveness of the layer sketched above), a cheap operation such as `max` is performed. Indeed, Max Pooling is one of the most widely used pooling layers:
 
-[![](images/Max-Pooling-1.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/Max-Pooling-1.png)
+[![](images/Max-Pooling-1.png)]
 
 As a result of these pools, their sliding process and the cheap operation, they achieve _downsampling_ as well - but in a much cheaper way:
 
-[![](images/Max-Pooling-2.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/Max-Pooling-2.png)
+[![](images/Max-Pooling-2.png)]
 
 _Side note: there are additional benefits when using Max Pooling. Take a look at the [blog post scrutinizing it in more detail](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-are-max-pooling-average-pooling-global-max-pooling-and-global-average-pooling/#max-pooling) if you wish to understand which ones they are._
 
@@ -71,7 +71,7 @@ Another form of pooling is the so-called Global Average Pooling. It's different 
 
 Visually, this looks as follows:
 
-[![](images/Global-Average-Pooling-2.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/Global-Average-Pooling-2.png)
+[![](images/Global-Average-Pooling-2.png)]
 
 ### Why can Global Average Pooling replace Dense layers in classifiers?
 
@@ -103,11 +103,11 @@ As today's dataset, we'll be using the KMNIST dataset from our [Extra Keras Data
 
 With regards to the dataset itself: the KMNIST dataset, as you can see, replaces MNIST digits with Japanese characters. It's a drop-in dataset for MNIST: it has the same number of output classes (10) and the same number of samples (60k in total for training).
 
-[![](images/kmnist-kmnist.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/kmnist-kmnist.png)
+[![](images/kmnist-kmnist.png)]
 
 ### Model architecture
 
-[![](images/model-137x300.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/model.png)
+[![](images/model-137x300.png)]
 
 Let's take a look at the model that we will be creating today: a [Convolutional Neural Network](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/convolutional-neural-networks-and-their-components-for-computer-vision.md) for image classification.
 
@@ -450,9 +450,9 @@ Classic: Test loss: 0.3033015901445908 / Test accuracy: 0.9617000222206116
 
 The plots of our training history also demonstrate that the performance of our models is converging towards each other. However, what is apparent is that the Global Average Pooling based model takes longer to arrive at loss values that are similar to the regular, classic CNN. Perhaps, this occurs because the trainable parameters in the Dense layers are omitted, and that the individual `Conv2D` layer added to capture the "classification" process with only 10 feature maps takes longer to learn.
 
-- [![](images/gap_loss.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/gap_loss.png)
+- [![](images/gap_loss.png)]
     
-- [![](images/gap_acc.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/gap_acc.png)
+- [![](images/gap_acc.png)]
     
 
 All in all, some pretty awesome results! 😎

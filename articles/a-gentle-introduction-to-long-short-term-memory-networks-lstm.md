@@ -76,7 +76,7 @@ Now here's the problem. Traditionally, to ensure that neural networks can [learn
 
 In other words, if we have to chain the derivative of Sigmoid across three time steps, our gradient gets close to zero quickly. Especially upstream layers i.e. upstream time steps are struck significantly by this problem, because they cease learning when sequences get too long. Say hello to the _vanishing gradients problem_!
 
-[![](images/sigmoid_deriv-1024x511.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/sigmoid_deriv.png)
+[![](images/sigmoid_deriv-1024x511.png)]
 
 * * *
 
@@ -95,7 +95,7 @@ Let's however first take a look at the architecture of a contemporary LSTM netwo
 
 All functionality within an LSTM is grouped into a cell-like structure called a **memory cell**. Similar to classic recurrent networks, the output of the cell flows back into the cell when the next prediction takes place. Or, when unrolled, like the recurrent network above, the output of one copy of an identical cell is passed to another copy of that cell. In the image below, this is visualized by the horizontal streams of _outputs_ \[latex\]h\[t\]\[/latex\] and of _memory_ \[latex\]c\[t\]\[/latex\].
 
-[![](images/LSTM-1024x657.png)](https://www.machinecurve.com/wp-content/uploads/2020/12/LSTM.png)
+[![](images/LSTM-1024x657.png)]
 
 An LSTM memory cell with a Forget Gate, Update Gate and Output Gate.
 
@@ -143,7 +143,7 @@ In other words, the current and previous input together with the learned weights
 
 The removal or forgetting process itself happens by means of a Hadamard matrix multiplication. The memory matrix is Hadamard multiplied with the outcome of the Sigmoid-activated matrix, meaning that all elements that should be reduced in strength are reduced, and all elements that must be retained are not impacted significantly. In other words, this gate allows us to learn what to forget based on certain combinations of previous outputs and current inputs.
 
-[![](images/sigmoid_deriv-1024x511.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/sigmoid_deriv.png)
+[![](images/sigmoid_deriv-1024x511.png)]
 
 ### Update gate (input gate)
 
@@ -159,13 +159,13 @@ Recall that this is our point in time:
 
 As you can see, it's composed of two components: a [Sigmoid activation](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md) of a joint learned weighted input based on the previous output \[latex\]h\[t-1\]\[/latex\] and current input \[latex\]x\[t\]\[/latex\] and a [Tanh activation](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md) that accepts another joint learned weighted input based on the two inputs. The outcomes of these activations are first Hadamard matrix multiplied, and subsequently added into memory by means of matrix addition.
 
-[![](images/LSTM-2-1024x657.png)](https://www.machinecurve.com/wp-content/uploads/2020/12/LSTM-2.png)
+[![](images/LSTM-2-1024x657.png)]
 
 I can imagine that it's still a bit vague what is happening here. Let's break down stuff even further. Here are the plots of both the Sigmoid and Tanh function and their derivatives.
 
-- [![](images/sigmoid_and_deriv-1024x511.jpeg)](https://www.machinecurve.com/wp-content/uploads/2019/09/sigmoid_and_deriv.jpeg)
+- [![](images/sigmoid_and_deriv-1024x511.jpeg)]
     
-- [![](images/tanh_and_deriv-1024x511.jpeg)](https://www.machinecurve.com/wp-content/uploads/2019/09/tanh_and_deriv.jpeg)
+- [![](images/tanh_and_deriv-1024x511.jpeg)]
     
 
 Let's first take a look at the **Tanh function**. As we can see, the function maps all inputs to a value between -1.0 and +1.0. In other words, it [normalizes](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-normalize-or-standardize-a-dataset-in-python.md) any input to the \[latex\]\[-1.0, 1.0\]\[/latex\] range. Feeding the joined weighted combination of previous outputs and current inputs to Tanh therefore ensures some normalization of input values. This benefits the stability of the training process. It doesn't however truly serve as an _update_, because with Tanh, all new information will be added.
@@ -189,7 +189,7 @@ Once again, we see a Tanh and Sigmoid activated Hadamard matrix multiplication. 
 
 Together, through a Hadamard matrix multiplication, they produce the output token that we are _hopefully_ looking for.
 
-[![](images/LSTM-3-1024x657.png)](https://www.machinecurve.com/wp-content/uploads/2020/12/LSTM-3.png)
+[![](images/LSTM-3-1024x657.png)]
 
 ### Why LSTMs don't suffer from vanishing gradients
 
@@ -227,7 +227,7 @@ This change compared to classic RNNs resolves the vanishing gradients problem in
 
 ## From LSTMs to Transformers
 
-[![](images/Diagram-32-1-1024x991.png)](https://www.machinecurve.com/wp-content/uploads/2020/12/Diagram-32-1.png)
+[![](images/Diagram-32-1-1024x991.png)]
 
 In the 2010s, LSTMs were the go-to type of network for sequence-to-sequence learning activities such as Machine Translation.
 

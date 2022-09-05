@@ -52,7 +52,7 @@ If we wish to understand transposed convolutions, we must be able to compare the
 
 Let's look at one:
 
-[![](images/conv-new.png)](https://www.machinecurve.com/wp-content/uploads/2020/03/conv-new.png)
+[![](images/conv-new.png)]
 
 More specifically, we're looking at a convolution of a one-channel image: this is likely a grayscale image. Normally, you would convolve over multiple channels, and you would likely use multiple kernels. For the sake of simplicity, our image has one channel and we use N = 1 kernels.
 
@@ -76,7 +76,7 @@ We call this "upsampling".
 
 Like this:
 
-[![](images/conv-new2.png)](https://www.machinecurve.com/wp-content/uploads/2020/03/conv-new2.png)
+[![](images/conv-new2.png)]
 
 You have multiple options.
 

@@ -92,7 +92,7 @@ In our post covering [traditional hinge loss](https://github.com/mobiletest2016/
 
 We'll do so as well in today's blog. Specifically, we create a dataset with three separable clusters that looks as follows:
 
-[![](images/mh_3.png)](https://www.machinecurve.com/wp-content/uploads/2019/10/mh_3.png)
+[![](images/mh_3.png)]
 
 How? Let's find out.
 
@@ -192,7 +192,7 @@ plt.show()
 
 ...which, as illustrated before, looks like this:
 
-[![](images/mh_3.png)](https://www.machinecurve.com/wp-content/uploads/2019/10/mh_3.png)
+[![](images/mh_3.png)]
 
 As illustrated before, this is what is generated 😎
 
@@ -379,11 +379,11 @@ Test results - Loss: 0.3260095896720886 - Accuracy: 99.80000257492065%
 
 In my case, it was able to achieve very high accuracy - 99.5% on the testing set and 99.8% on the training set! Indeed, the decision boundaries allow us to classify the majority of samples correctly:
 
-[![](images/mh_boundary-1024x587.png)](blob:https://www.machinecurve.com/195f7d77-e155-47f9-bbfc-057dff681520)
+[![](images/mh_boundary-1024x587.png)]
 
 ...and the training process looks like this:
 
-[![](images/mh_loss-1024x564.png)](blob:https://www.machinecurve.com/2cce0143-1950-47a5-abc4-5bff87ccb897)
+[![](images/mh_loss-1024x564.png)]
 
 Just after the first epoch, model performance pretty much maxed out.
 

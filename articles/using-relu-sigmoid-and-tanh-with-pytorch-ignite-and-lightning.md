@@ -171,11 +171,11 @@ While being very prominent, all of these functions come with drawbacks. These ar
 - Finally with respect to these two, the functions are more complex than that of ReLU, which essentially boils down to `[max(x, 0)](https://web.archive.org/web/https://www.machinecurve.com/index.php/question/why-does-relu-equal-max0-x/)`. Computing them is thus slower than when using ReLU.
 - While it seems to be the case that ReLU trumps all activation functions - and it surely generalizes to many problems and is really useful, partially due to its computational effectiveness - it has its own unique set of drawbacks. It's not smooth and therefore [not fully differentiable](https://web.archive.org/web/https://www.machinecurve.com/index.php/question/why-is-relu-not-differentiable-at-x-0.md), neural networks can start to [explode](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/random-initialization-vanishing-and-exploding-gradients.md) because there is no upper limit on the output, and using ReLU also means opening up yourself to the dying ReLU problem. Many activation functions attempting to resolve these problems have emerged, such as [Swish](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-swish-could-perform-better-than-relu.md), [PReLU](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-prelu-with-keras.md) and [Leaky ReLU](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/using-leaky-relu-with-keras.md) - and [there are many more](https://web.archive.org/web/https://www.machinecurve.com/index.php/tag/activation-function). But for some reason, they haven't been able to dethrone ReLU yet, and it is still widely used.
 
-- [![](images/tanh-1024x511.png)](https://www.machinecurve.com/wp-content/uploads/2019/05/tanh.png)
+- [![](images/tanh-1024x511.png)]
     
-- [![](images/relu-1024x511.png)](https://www.machinecurve.com/wp-content/uploads/2019/05/relu.png)
+- [![](images/relu-1024x511.png)]
     
-- [![](images/sigmoid-1024x511.png)](https://www.machinecurve.com/wp-content/uploads/2019/05/sigmoid.png)
+- [![](images/sigmoid-1024x511.png)]
     
 
 * * *

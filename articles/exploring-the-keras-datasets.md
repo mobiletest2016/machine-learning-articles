@@ -61,65 +61,65 @@ from tensorflow.keras.datasets import cifar10
 
 Let's now visualize 30 random samples from the CIFAR-10 dataset, to get an impression of what the images look like:
 
-- [![](images/834.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/834.jpg)
+- [![](images/834.jpg)]
     
-- [![](images/3576.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/3576.jpg)
+- [![](images/3576.jpg)]
     
-- [![](images/11312.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/11312.jpg)
+- [![](images/11312.jpg)]
     
-- [![](images/12403.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/12403.jpg)
+- [![](images/12403.jpg)]
     
-- [![](images/13749.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/13749.jpg)
+- [![](images/13749.jpg)]
     
-- [![](images/15330.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/15330.jpg)
+- [![](images/15330.jpg)]
     
-- [![](images/18017.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/18017.jpg)
+- [![](images/18017.jpg)]
     
-- [![](images/20619.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/20619.jpg)
+- [![](images/20619.jpg)]
     
-- [![](images/24100.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/24100.jpg)
+- [![](images/24100.jpg)]
     
-- [![](images/24854.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/24854.jpg)
+- [![](images/24854.jpg)]
     
-- [![](images/27447.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/27447.jpg)
+- [![](images/27447.jpg)]
     
-- [![](images/27569.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/27569.jpg)
+- [![](images/27569.jpg)]
     
-- [![](images/28222.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/28222.jpg)
+- [![](images/28222.jpg)]
     
-- [![](images/28291.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/28291.jpg)
+- [![](images/28291.jpg)]
     
-- [![](images/36144.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/36144.jpg)
+- [![](images/36144.jpg)]
     
-- [![](images/36450.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/36450.jpg)
+- [![](images/36450.jpg)]
     
-- [![](images/37591.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/37591.jpg)
+- [![](images/37591.jpg)]
     
-- [![](images/37932.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/37932.jpg)
+- [![](images/37932.jpg)]
     
-- [![](images/38151.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/38151.jpg)
+- [![](images/38151.jpg)]
     
-- [![](images/38333.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/38333.jpg)
+- [![](images/38333.jpg)]
     
-- [![](images/38811.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/38811.jpg)
+- [![](images/38811.jpg)]
     
-- [![](images/40969.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/40969.jpg)
+- [![](images/40969.jpg)]
     
-- [![](images/41192.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/41192.jpg)
+- [![](images/41192.jpg)]
     
-- [![](images/42180.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/42180.jpg)
+- [![](images/42180.jpg)]
     
-- [![](images/45028.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/45028.jpg)
+- [![](images/45028.jpg)]
     
-- [![](images/46818.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/46818.jpg)
+- [![](images/46818.jpg)]
     
-- [![](images/47308.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/47308.jpg)
+- [![](images/47308.jpg)]
     
-- [![](images/48003.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/48003.jpg)
+- [![](images/48003.jpg)]
     
-- [![](images/48715.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/48715.jpg)
+- [![](images/48715.jpg)]
     
-- [![](images/48975.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/48975.jpg)
+- [![](images/48975.jpg)]
     
 
 ```
@@ -178,65 +178,65 @@ These are the classes present within CIFAR-100 (Krizhevsky & Hinton, 2009):
 
 And here are, once again, 30 samples randomly drawn and visualized:
 
-- [![](images/1403.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/1403.jpg)
+- [![](images/1403.jpg)]
     
-- [![](images/1676.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/1676.jpg)
+- [![](images/1676.jpg)]
     
-- [![](images/1813.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/1813.jpg)
+- [![](images/1813.jpg)]
     
-- [![](images/3513.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/3513.jpg)
+- [![](images/3513.jpg)]
     
-- [![](images/5023.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/5023.jpg)
+- [![](images/5023.jpg)]
     
-- [![](images/6418.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/6418.jpg)
+- [![](images/6418.jpg)]
     
-- [![](images/10425.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/10425.jpg)
+- [![](images/10425.jpg)]
     
-- [![](images/15307.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/15307.jpg)
+- [![](images/15307.jpg)]
     
-- [![](images/15743.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/15743.jpg)
+- [![](images/15743.jpg)]
     
-- [![](images/18167.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/18167.jpg)
+- [![](images/18167.jpg)]
     
-- [![](images/21402.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/21402.jpg)
+- [![](images/21402.jpg)]
     
-- [![](images/26247.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/26247.jpg)
+- [![](images/26247.jpg)]
     
-- [![](images/26544.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/26544.jpg)
+- [![](images/26544.jpg)]
     
-- [![](images/27260.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/27260.jpg)
+- [![](images/27260.jpg)]
     
-- [![](images/27757.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/27757.jpg)
+- [![](images/27757.jpg)]
     
-- [![](images/27872.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/27872.jpg)
+- [![](images/27872.jpg)]
     
-- [![](images/29119.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/29119.jpg)
+- [![](images/29119.jpg)]
     
-- [![](images/29735.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/29735.jpg)
+- [![](images/29735.jpg)]
     
-- [![](images/30218.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/30218.jpg)
+- [![](images/30218.jpg)]
     
-- [![](images/33582.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/33582.jpg)
+- [![](images/33582.jpg)]
     
-- [![](images/34242.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/34242.jpg)
+- [![](images/34242.jpg)]
     
-- [![](images/34889.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/34889.jpg)
+- [![](images/34889.jpg)]
     
-- [![](images/35045.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/35045.jpg)
+- [![](images/35045.jpg)]
     
-- [![](images/35793.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/35793.jpg)
+- [![](images/35793.jpg)]
     
-- [![](images/39358.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/39358.jpg)
+- [![](images/39358.jpg)]
     
-- [![](images/41909.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/41909.jpg)
+- [![](images/41909.jpg)]
     
-- [![](images/42681.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/42681.jpg)
+- [![](images/42681.jpg)]
     
-- [![](images/43871.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/43871.jpg)
+- [![](images/43871.jpg)]
     
-- [![](images/49406.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/49406.jpg)
+- [![](images/49406.jpg)]
     
-- [![](images/49626.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/49626.jpg)
+- [![](images/49626.jpg)]
     
 
 ```
@@ -532,11 +532,11 @@ from tensorflow.keras.datasets import mnist
 
 This is a selection of MNIST digits:
 
-[![](images/mnist.png)](https://www.machinecurve.com/wp-content/uploads/2019/07/mnist.png)
+[![](images/mnist.png)]
 
 There is a wide range of possibilities when using MNIST in educational machine learning settings. I use it a lot in my blogs here, on MachineCurve. For example, I've created a [variational autoencoder](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-variational-autoencoder-with-keras.md) with the MNIST dataset, which allowed me to generate new digits:
 
-[![](images/mnist_digits.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/mnist_digits.png)
+[![](images/mnist_digits.png)]
 
 And so on! :)
 
@@ -566,65 +566,65 @@ However, the samples are different in nature. Rather than digits, they represent
 
 Visualizing 30 yields that the differences within this dataset are larger than with traditional MNIST. For example, compare the sneaker on the second row with the sneaker on the third. While both are sneakers, the second-row sneaker has a striped pattern, whereas the third-row sneaker does not:
 
-- [![](images/2558.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/2558.jpg)
+- [![](images/2558.jpg)]
     
-- [![](images/4798.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/4798.jpg)
+- [![](images/4798.jpg)]
     
-- [![](images/5436.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/5436.jpg)
+- [![](images/5436.jpg)]
     
-- [![](images/5726.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/5726.jpg)
+- [![](images/5726.jpg)]
     
-- [![](images/7333.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/7333.jpg)
+- [![](images/7333.jpg)]
     
-- [![](images/10305.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/10305.jpg)
+- [![](images/10305.jpg)]
     
-- [![](images/10539.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/10539.jpg)
+- [![](images/10539.jpg)]
     
-- [![](images/11515.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/11515.jpg)
+- [![](images/11515.jpg)]
     
-- [![](images/12365.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/12365.jpg)
+- [![](images/12365.jpg)]
     
-- [![](images/12481.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/12481.jpg)
+- [![](images/12481.jpg)]
     
-- [![](images/15294.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/15294.jpg)
+- [![](images/15294.jpg)]
     
-- [![](images/17749.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/17749.jpg)
+- [![](images/17749.jpg)]
     
-- [![](images/21752.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/21752.jpg)
+- [![](images/21752.jpg)]
     
-- [![](images/24085.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/24085.jpg)
+- [![](images/24085.jpg)]
     
-- [![](images/27809.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/27809.jpg)
+- [![](images/27809.jpg)]
     
-- [![](images/31184.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/31184.jpg)
+- [![](images/31184.jpg)]
     
-- [![](images/32057.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/32057.jpg)
+- [![](images/32057.jpg)]
     
-- [![](images/32091.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/32091.jpg)
+- [![](images/32091.jpg)]
     
-- [![](images/35707.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/35707.jpg)
+- [![](images/35707.jpg)]
     
-- [![](images/38876.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/38876.jpg)
+- [![](images/38876.jpg)]
     
-- [![](images/40360.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/40360.jpg)
+- [![](images/40360.jpg)]
     
-- [![](images/49002.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/49002.jpg)
+- [![](images/49002.jpg)]
     
-- [![](images/49065.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/49065.jpg)
+- [![](images/49065.jpg)]
     
-- [![](images/50830.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/50830.jpg)
+- [![](images/50830.jpg)]
     
-- [![](images/51660.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/51660.jpg)
+- [![](images/51660.jpg)]
     
-- [![](images/54277.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/54277.jpg)
+- [![](images/54277.jpg)]
     
-- [![](images/54650.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/54650.jpg)
+- [![](images/54650.jpg)]
     
-- [![](images/56116.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/56116.jpg)
+- [![](images/56116.jpg)]
     
-- [![](images/56334.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/56334.jpg)
+- [![](images/56334.jpg)]
     
-- [![](images/58299.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/58299.jpg)
+- [![](images/58299.jpg)]
     
 
 ```
@@ -668,7 +668,7 @@ Let's hope that Fashion MNIST or a similar dataset can play an actual role as a 
 
 Fun side note: with this dataset, it's also possible to create a [variational autoencoder](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-a-variational-autoencoder-vae.md) :) Visualizing the so-called latent space, or the distribution learnt by the autoencoder, shows that we can generate samples that are something in between a shoe and a boot, in between trouwsers and a t-shirt, and so on. Might be interesting for fashion designers 😋
 
-[![](images/fmnist_dmax_plot.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/fmnist_dmax_plot.png)
+[![](images/fmnist_dmax_plot.png)]
 
 * * *
 
@@ -695,7 +695,7 @@ DescribeResult(nobs=506, minmax=(5.0, 50.0), mean=22.53280632411067, variance=84
 
 Given this box plot of the training _and_ testing data combined, outliers are primarily present in the upper segment:
 
-[![](images/boxplot.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/boxplot.jpg)
+[![](images/boxplot.jpg)]
 
 Code for generating the summary and the box plot:
 

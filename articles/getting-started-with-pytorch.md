@@ -93,7 +93,7 @@ if __name__ == '__main__':
 
 Today, when you want to create a deep learning model, you can choose **[PyTorch](https://pytorch.org/)** as the library of your choice. This library, which was released in September 2016 by Facebook, has become one of the two leading deep learning libraries. It is used by many researchers varying from academia to engineering, and is updated frequently.
 
-[![](images/image-5-1024x487.png)](https://www.machinecurve.com/wp-content/uploads/2021/01/image-5.png)
+[![](images/image-5-1024x487.png)]
 
 The website of PyTorch Lightning
 

@@ -43,7 +43,7 @@ But they can also be used to demonstrate model performance in a visual way.
 
 Here is an example of a confusion matrix:
 
-[![](images/cf_matrix.png)](https://www.machinecurve.com/wp-content/uploads/2020/05/cf_matrix.png)
+[![](images/cf_matrix.png)]
 
 To be more precise, it is a _normalized_ confusion matrix. Its axes describe two measures:
 
@@ -60,11 +60,11 @@ It's also possible to start from a prediction point of view. In this case, the q
 
 Most preferably, the entire set of true labels is equal to the set of predicted labels. In those cases, you would see zeros everywhere except for the line from the top left to the bottom right. In practice, however, this does not happen often. Likely, the plot is much more scattered, like this SVM classifier where many supporrt vectors are necessary to draw [a decision boundary](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-decision-boundary-for-your-keras-model.md) that _does not work perfectly, but adequately enough:_
 
-- [![](images/likethis.png)](https://www.machinecurve.com/wp-content/uploads/2020/05/likethis.png)
+- [![](images/likethis.png)]
     
-- [![](images/likethis2.png)](https://www.machinecurve.com/wp-content/uploads/2020/05/likethis2.png)
+- [![](images/likethis2.png)]
     
-- [![](images/likekthis3.png)](https://www.machinecurve.com/wp-content/uploads/2020/05/likekthis3.png)
+- [![](images/likekthis3.png)]
     
 
 * * *
@@ -179,7 +179,7 @@ First of all, the number of features is low: only two - as our data is two-dimen
 
 Next, when inspecting the data from a closer point of view, I can see a gap between what seem to be blobs of data (it is also slightly visible in the diagram above):
 
-[![](images/possibly_separable.png)](https://www.machinecurve.com/wp-content/uploads/2020/05/possibly_separable.png)
+[![](images/possibly_separable.png)]
 
 This suggests that the data may be separable, and possibly even linearly so (yes, of course, I know this is the case ;-) ).
 
@@ -243,7 +243,7 @@ plt.show()
 
 Normalization, here, involves converting back the data into the \[0, 1\] format above. If you leave out normalization, you get the number of samples that are part of that prediction:
 
-[![](images/samples-1.png)](https://www.machinecurve.com/wp-content/uploads/2020/05/samples-1.png)
+[![](images/samples-1.png)]
 
 Here are some other visualizations that help us explain the confusion matrix (for the [boundary plot](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-decision-boundary-for-your-keras-model.md), you need to install Mlxtend with `pip install mlxtend`):
 

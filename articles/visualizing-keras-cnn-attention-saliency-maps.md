@@ -77,7 +77,7 @@ Now, how do we implement this? Let's give it a try for the MNIST dataset.
 
 We're going to use a very straight-forward dataset today: the MNIST dataset. This dataset, which stands for _Modified National Institute of Standards and Technology_ dataset, contains thousands of 28x28 pixel handwritten digits, like this:
 
-[![](images/mnist.png)](https://www.machinecurve.com/wp-content/uploads/2019/07/mnist.png)
+[![](images/mnist.png)]
 
 Given the simplicity of the dataset, the deep integration with various Python frameworks for deep learning - including Keras - and the ease of which good results can be obtained, it's one of the better datasets for educational purposes.
 
@@ -319,19 +319,19 @@ That's great.
 
 Next, you should find visualizations popping up your screen:
 
-- [![](images/sal1.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/sal1.png)
+- [![](images/sal1.png)]
     
-- [![](images/sal1-2.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/sal1-2.png)
+- [![](images/sal1-2.png)]
     
-- [![](images/sal2.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/sal2.png)
+- [![](images/sal2.png)]
     
-- [![](images/sal3.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/sal3.png)
+- [![](images/sal3.png)]
     
-- [![](images/sal7.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/sal7.png)
+- [![](images/sal7.png)]
     
-- [![](images/sal7-2.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/sal7-2.png)
+- [![](images/sal7-2.png)]
     
-- [![](images/sal9.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/sal9.png)
+- [![](images/sal9.png)]
     
 
 ...which show you where the model attends to when generating a class prediction 😎

@@ -62,7 +62,7 @@ It's to visualize the **encoded state**, when a sample is fed to the autoencoder
 
 This can be useful in situations when you use autoencoders for dimensionality reduction, and you consider the encoded states to be features for e.g. [Support Vector Machines](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/intuitively-understanding-svm-and-svr.md). In those cases, you may wish to look at your encoded states in order to find whether dimensions must be added or dropped, and so on. In other words, you wish to generate images like this one:
 
-[![](images/encoded-state-1024x511.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/encoded-state.png)
+[![](images/encoded-state-1024x511.png)]
 
 Fortunately, this is possible! 🎉
 
@@ -413,13 +413,13 @@ The results are pretty awesome.
 
 This is the first visualization we'll get:
 
-[![](images/reconstruction.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/reconstruction.png)
+[![](images/reconstruction.png)]
 
 As you can see, the MNIST dataset is so discriminative that even with a simple structure (Dense layers only!), the autoencoder is capable of generating accurate reconstructions 😊
 
 Next, the visualization of the encoded state - which is, once again, why you're here. Here you go:
 
-[![](images/encoded-state-1024x511.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/encoded-state.png)
+[![](images/encoded-state-1024x511.png)]
 
 Looks good to me! 😎
 
@@ -653,14 +653,14 @@ Time for some results :-)
 
 As with the Functional API version, the Sequential API based autoencoder learns to reconstruct the inputs pretty accurately. Additionally, you'll also get a visualization of the encoded state:
 
-- [![](images/sequential_rec.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/sequential_rec.png)
+- [![](images/sequential_rec.png)]
     
-- [![](images/sequential_encodedstate-1024x511.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/sequential_encodedstate.png)
+- [![](images/sequential_encodedstate-1024x511.png)]
     
 
 This time, as indicated before, you'll also get an extra visualization - being what is output by the decoder before it's reshaped into 28 x 28 pixels format. It's simply the way Keract works, and given the relative inflexibility of the Sequential API there's not much we can do about it.
 
-[![](images/sequential_output-1024x511.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/sequential_output.png)
+[![](images/sequential_output-1024x511.png)]
 
 Mission achieved! 🎉
 

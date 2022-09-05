@@ -66,9 +66,9 @@ plt.show()
 
 It looks as follows.
 
-- [![](images/insurance.png)](https://www.machinecurve.com/wp-content/uploads/2020/11/insurance.png)
+- [![](images/insurance.png)]
     
-- [![](images/insurancedensity.png)](https://www.machinecurve.com/wp-content/uploads/2020/11/insurancedensity.png)
+- [![](images/insurancedensity.png)]
     
 
 ### Finding class imbalance

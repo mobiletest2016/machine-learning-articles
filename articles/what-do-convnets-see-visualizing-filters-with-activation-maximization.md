@@ -252,85 +252,85 @@ In my case, these were the results:
 
 For the first Conv layer in the first Conv block, the results are not very detailed. However, filters clearly distinguish from each other, as can be seen from the results:
 
-- [![](images/block1_conv1_2.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/block1_conv1_2.jpg)
+- [![](images/block1_conv1_2.jpg)]
     
-- [![](images/block1_conv1_5.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/block1_conv1_5.jpg)
+- [![](images/block1_conv1_5.jpg)]
     
-- [![](images/block1_conv1_11.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/block1_conv1_11.jpg)
+- [![](images/block1_conv1_11.jpg)]
     
-- [![](images/block1_conv1_12.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/block1_conv1_12.jpg)
+- [![](images/block1_conv1_12.jpg)]
     
-- [![](images/block1_conv1_15.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/block1_conv1_15.jpg)
+- [![](images/block1_conv1_15.jpg)]
     
-- [![](images/block1_conv1_25.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/block1_conv1_25.jpg)
+- [![](images/block1_conv1_25.jpg)]
     
 
 ### Block2Conv1
 
 In the second block, a little bit more detail becomes visible. Certain stretched patterns seem to be learnt by the filters.
 
-- [![](images/block2_conv1_26.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/block2_conv1_26.jpg)
+- [![](images/block2_conv1_26.jpg)]
     
-- [![](images/block2_conv1_33.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/block2_conv1_33.jpg)
+- [![](images/block2_conv1_33.jpg)]
     
-- [![](images/block2_conv1_39.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/block2_conv1_39.jpg)
+- [![](images/block2_conv1_39.jpg)]
     
-- [![](images/block2_conv1_84.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/block2_conv1_84.jpg)
+- [![](images/block2_conv1_84.jpg)]
     
-- [![](images/block2_conv1_97.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/block2_conv1_97.jpg)
+- [![](images/block2_conv1_97.jpg)]
     
-- [![](images/block2_conv1_100.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/block2_conv1_100.jpg)
+- [![](images/block2_conv1_100.jpg)]
     
 
 ### Block3Conv2
 
 This gets even clearer in the third block. The stretches are now combined with clear patterns, and even blocky representations, like in the center-bottom visualization.
 
-- [![](images/block3_conv2_3.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/block3_conv2_3.jpg)
+- [![](images/block3_conv2_3.jpg)]
     
-- [![](images/block3_conv2_17.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/block3_conv2_17.jpg)
+- [![](images/block3_conv2_17.jpg)]
     
-- [![](images/block3_conv2_21.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/block3_conv2_21.jpg)
+- [![](images/block3_conv2_21.jpg)]
     
-- [![](images/block3_conv2_123.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/block3_conv2_123.jpg)
+- [![](images/block3_conv2_123.jpg)]
     
-- [![](images/block3_conv2_162.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/block3_conv2_162.jpg)
+- [![](images/block3_conv2_162.jpg)]
     
-- [![](images/block3_conv2_185.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/block3_conv2_185.jpg)
+- [![](images/block3_conv2_185.jpg)]
     
 
 ### Block4Conv1
 
 Details become visible in the fourth convolutional block. It's still difficult to identify real objects in these visualizations, though.
 
-- [![](images/block4_conv1_69.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/block4_conv1_69.jpg)
+- [![](images/block4_conv1_69.jpg)]
     
-- [![](images/block4_conv1_78.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/block4_conv1_78.jpg)
+- [![](images/block4_conv1_78.jpg)]
     
-- [![](images/block4_conv1_97.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/block4_conv1_97.jpg)
+- [![](images/block4_conv1_97.jpg)]
     
-- [![](images/block4_conv1_100.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/block4_conv1_100.jpg)
+- [![](images/block4_conv1_100.jpg)]
     
-- [![](images/block4_conv1_294.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/block4_conv1_294.jpg)
+- [![](images/block4_conv1_294.jpg)]
     
-- [![](images/block4_conv1_461.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/block4_conv1_461.jpg)
+- [![](images/block4_conv1_461.jpg)]
     
 
 ### Block5Conv2
 
 This latter becomes possible in the visualizations generated from the fifth block. We see eyes and other shapes, which clearly resemble the objects that this model was trained to identify.
 
-- [![](images/block5_conv2_53.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/block5_conv2_53.jpg)
+- [![](images/block5_conv2_53.jpg)]
     
-- [![](images/block5_conv2_136.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/block5_conv2_136.jpg)
+- [![](images/block5_conv2_136.jpg)]
     
-- [![](images/block5_conv2_222.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/block5_conv2_222.jpg)
+- [![](images/block5_conv2_222.jpg)]
     
-- [![](images/block5_conv2_247.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/block5_conv2_247.jpg)
+- [![](images/block5_conv2_247.jpg)]
     
-- [![](images/block5_conv2_479.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/block5_conv2_479.jpg)
+- [![](images/block5_conv2_479.jpg)]
     
-- [![](images/block5_conv2_480.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/block5_conv2_480.jpg)
+- [![](images/block5_conv2_480.jpg)]
     
 
 This clearly illustrates that the model learns very detailed patterns near the output, i.e. in the final layers of the model, whereas more global and abstract ones are learnt in the early layers. It now makes perfect sense why the first two or perhaps three layers of ImageNet trained models are often used in practical settings in order to boost training accuracy: the patterns that are learnt are so general that they do not necessarily represent the _object in question_, but rather the _shape in question_. While both the sun, a football and a volleyball are round, we don't know whether an input is any of those in the first few layers. We do know, however, that it's _round_.

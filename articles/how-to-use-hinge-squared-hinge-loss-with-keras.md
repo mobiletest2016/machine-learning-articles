@@ -78,7 +78,7 @@ This means that:
 
 This looks as follows if the target is \[latex\]+1\[/latex\] - for all targets >= 1, loss is zero (the prediction is correct or even overly correct), whereas loss increases when the predictions are incorrect.
 
-[![](images/hinge_loss-1024x507.jpeg)](https://www.machinecurve.com/wp-content/uploads/2019/10/hinge_loss.jpeg)
+[![](images/hinge_loss-1024x507.jpeg)]
 
 What effectively happens is that hinge loss will attempt to maximize the decision boundary between the two groups that must be discriminated in your machine learning problem. In that way, it looks somewhat like how [Support Vector Machines](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/intuitively-understanding-svm-and-svr.md) work, but it's also kind of different (e.g., with hinge loss in Keras there is no such thing as support vectors).
 
@@ -86,7 +86,7 @@ What effectively happens is that hinge loss will attempt to maximize the decisio
 
 Suppose that you need to draw a very fine decision boundary. In that case, you wish to punish larger errors more significantly than smaller errors. **Squared hinge loss** may then be what you are looking for, especially when you already considered the hinge loss function for your machine learning problem.
 
-[![](images/hinge_squared-1024x511.png)](blob:https://www.machinecurve.com/df9d5f50-e0bb-4acd-9dbb-042de634b54d)
+[![](images/hinge_squared-1024x511.png)]
 
 Squared hinge loss is nothing else but a square of the output of the hinge's \[latex\]max(...)\[/latex\] function. It generates a loss function as illustrated above, compared to regular hinge loss.
 
@@ -183,7 +183,7 @@ plt.show()
 
 This looks as follows:
 
-[![](images/hinge_nonlienar.png)](https://www.machinecurve.com/wp-content/uploads/2019/10/hinge_nonlienar.png)
+[![](images/hinge_nonlienar.png)]
 
 As you can see, we have generated two circles that are composed of individual data points: a large one and a smaller one. These are perfectly separable, although not linearly.
 
@@ -229,7 +229,7 @@ The layers activate with [Rectified Linear Unit](https://github.com/mobiletest20
 
 Tanh indeed precisely does this -- converting a linear value to a range close to \[-1, +1\], namely (-1, +1) - the actual ones are not included here, but this doesn't matter much. It looks like this:
 
-[![](images/tanh-1024x511.png)](https://www.machinecurve.com/wp-content/uploads/2019/05/tanh.png)
+[![](images/tanh-1024x511.png)]
 
 The kernels of the ReLU activating layers are initialized with He uniform init instead of Glorot init for the reason that this approach [works better](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/he-xavier-initialization-activation-functions-choose-wisely.md) mathematically.
 
@@ -304,11 +304,11 @@ These are the results.
 
 For hinge loss, we quite unsurprisingly found that validation accuracy went to 100% immediately. This is indeed unsurprising because the dataset is quite well separable (the distance between circles is large), the model was made quite capable of interpreting relatively complex data, and a relatively aggressive learning rate was set. This is the visualization of the training process using a **logarithmic scale**:
 
-[![](images/logarithmic_performance-1024x537.png)](https://www.machinecurve.com/wp-content/uploads/2019/10/logarithmic_performance.png)
+[![](images/logarithmic_performance-1024x537.png)]
 
 The decision boundary:
 
-[![](images/hinge_db.png)](https://www.machinecurve.com/wp-content/uploads/2019/10/hinge_db.png)
+[![](images/hinge_db.png)]
 
 Or in plain text:
 

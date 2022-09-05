@@ -31,7 +31,7 @@ Convolutional layers induce spatial hierarchy. That is, generally speaking, they
 
 However, sometimes you don't want this to happen: you want the size of your input data to stay the same. In that case, padding can help by adding [zeros, constants or different numbers around the reduced input](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-padding-in-a-neural-network.md). This way, the size of your input data remains the same.
 
-[![](images/reflection_pad.jpg)](https://www.machinecurve.com/wp-content/uploads/2020/02/reflection_pad.jpg)
+[![](images/reflection_pad.jpg)]
 
 [Reflection padding](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-padding-in-a-neural-network/#reflection-padding) can be used for this purpose.
 

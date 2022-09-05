@@ -105,7 +105,7 @@ This is especially useful when [you are using e.g. TensorBoard](https://github.c
 
 However, it's also possible [to generate a plot when your training process finishes](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-training-process-in-keras.md). Such diagrams make things crisply clear:
 
-[![](images/UnderOver.png)](https://www.machinecurve.com/wp-content/uploads/2020/02/UnderOver.png)
+[![](images/UnderOver.png)]
 
 In the first part of the training process, the model's predictive performance is clearly improving. Hence, it is _underfit_ during that stage - and additional epochs can improve model performance.
 
@@ -142,7 +142,7 @@ Unfortunately, this doesn't produce an optimal learning process.
 
 Let's take a look at two other models that we trained [for another blog post](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/reducing-trainable-parameters-with-a-dense-free-convnet-classifier.md):
 
-[![](images/gap_loss.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/gap_loss.png)
+[![](images/gap_loss.png)]
 
 The model in orange clearly produces a low loss rapidly, and much faster than the model in blue. However, we can also observe some overfitting to occur after approximately the 10th epoch. Not so weird, given the fact that we trained for ten times longer than strictly necessary.
 
@@ -194,13 +194,13 @@ Indeed, this seems to be an approach to reducing the negative impact of a fixed 
 
 There are many decay schemes available, and here are four examples:
 
-- [![](images/linear_decay.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/linear_decay.png)
+- [![](images/linear_decay.png)]
     
-- [![](images/step_decay.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/step_decay.png)
+- [![](images/step_decay.png)]
     
-- [![](images/exponential_decay.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/exponential_decay.png)
+- [![](images/exponential_decay.png)]
     
-- [![](images/time_decay.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/time_decay.png)
+- [![](images/time_decay.png)]
     
 
 Linear decay allows you to start with a large learning rate, decay it pretty rapidly, and then keeping it balanced at a static one. Together with step decay, which keeps your learning rate fixed for a set number of epochs, these learning rates are not smooth.
@@ -237,9 +237,9 @@ Therefore, we'll simply pick a value just a tiny bit to the left of the loss min
 
 One such Learning Rate Range Test could, theoretically, yield the following plot:
 
-- [![](images/sgd_only_v-1024x537.png)](https://www.machinecurve.com/wp-content/uploads/2020/02/sgd_only_v.png)
+- [![](images/sgd_only_v-1024x537.png)]
     
-- [![](images/sgd_only-1024x537.png)](https://www.machinecurve.com/wp-content/uploads/2020/02/sgd_only.png)
+- [![](images/sgd_only-1024x537.png)]
     
 
 It's a real plot generated with a ConvNet tested for MNIST data.
@@ -442,9 +442,9 @@ All right, you should now have a model that runs! :)
 
 Open up that command prompt again, `cd` to the folder where your `.py` file is located (if you're not already there :) ), and run e.g. `python lr-finder.py`. You should see the epochs begin, and once they finish, two plots similar to these ones should pop up sequentially:
 
-- [![](images/lrt_losses-1024x537.png)](https://www.machinecurve.com/wp-content/uploads/2020/02/lrt_losses.png)
+- [![](images/lrt_losses-1024x537.png)]
     
-- [![](images/lrt_loss_deltas-1024x537.png)](https://www.machinecurve.com/wp-content/uploads/2020/02/lrt_loss_deltas.png)
+- [![](images/lrt_loss_deltas-1024x537.png)]
     
 
 _Note that yours won't be exactly the same due to the fact that machine learning models are stochastic, e.g. due to random or pseudo-random initialization of your weight vectors during model initialization._

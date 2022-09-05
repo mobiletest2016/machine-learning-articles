@@ -308,7 +308,7 @@ I'll send this MNIST sample, as my model was trained on the MNIST dataset:
 
 Specifying all the details:
 
-[![](images/image-2-1024x248.png)](https://www.machinecurve.com/wp-content/uploads/2020/03/image-2.png)
+[![](images/image-2-1024x248.png)]
 
 Results in this output:
 

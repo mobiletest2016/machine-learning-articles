@@ -21,7 +21,7 @@ Various mathematical tricks exist to filter out noise from a signal. When noise 
 
 However, these tricks work by knowing a few things about the noise up front. In many cases, the exact shape of your noise is unknown or cannot be estimated because it is relatively hidden. In those cases, the solution may lie in _learning_ the noise from example data.
 
-[![](images/x2noise-300x225.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/x2noise.png)
+[![](images/x2noise-300x225.png)]
 
 _A noisy \[latex\]x^2\[/latex\] sample. We'll try to remove the noise with an autoencoder._
 
@@ -55,7 +55,7 @@ In our blog post **"Conv2DTranspose: using 2D transposed convolutions with Keras
 
 We can visualize the flow of an autoencoder as follows:
 
-[![](images/Autoencoder.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/Autoencoder.png)
+[![](images/Autoencoder.png)]
 
 Autoencoders are composed of two parts: an _encoder_, which encodes some input into encoded state, and a _decoder_ which can decode the encoded state into another format. This can be a reconstruction of the original input, as we can see in the plot below, but it can also be something different.
 
@@ -87,11 +87,11 @@ In the next part, we'll show you how to use the Keras deep learning framework fo
 
 First, the data. As _pure signals_ (and hence autoencoder targets), we're using pure \[latex\]x^2\[/latex\] samples from a small domain. When plotted, a sample looks like this:
 
-[![](images/x2sample.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/x2sample.png)
+[![](images/x2sample.png)]
 
 For today's model, we use 100.000 samples. To each of them, we add Gaussian noise - or random noise. While the global shape remains present, it's clear that the plots become noisy:
 
-[![](images/x2noise.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/x2noise.png)
+[![](images/x2noise.png)]
 
 ### The model
 
@@ -134,7 +134,7 @@ Let's now start with the first part - generating the pure waveforms! Open up you
 
 ## Generating pure waveforms
 
-[![](images/x2sample-300x225.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/x2sample.png)
+[![](images/x2sample-300x225.png)]
 
 Generating pure waveforms consists of the following steps, in order to generate visualizations like the one shown on the right:
 
@@ -311,7 +311,7 @@ for i in range(0, num_samples_visualize):
 
 The second part: adding noise to the 100k pure waveforms we generated in the previous step.
 
-[![](images/x2noise-300x225.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/x2noise.png)
+[![](images/x2noise-300x225.png)]
 
 It's composed of these individual steps:
 
@@ -438,7 +438,7 @@ for i in range(0, num_samples_visualize):
 
 ## Creating the autoencoder
 
-[![](images/model-5-187x300.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/model-5.png)
+[![](images/model-5-187x300.png)]
 
 It's now time for the interesting stuff: creating the autoencoder 🤗
 
@@ -510,7 +510,7 @@ x_val_pure, y_val_pure = data_pure[:,0], data_pure[:,1]
 
 Next, we'll reshape the data. We do so for each sample. This includes the following steps:
 
-[![](images/bce-1-300x123.png)](https://www.machinecurve.com/wp-content/uploads/2019/10/bce-1.png)
+[![](images/bce-1-300x123.png)]
 
 _Binary crossentropy loss values for target = 1, in the prediction range \[0, 1\]._
 
@@ -736,13 +736,13 @@ After the fifth epoch, validation loss \[latex\]\\approx 0.3556\[/latex\]. This 
 
 Here they are:
 
-- [![](images/1-2-1024x537.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/1-2.png)
+- [![](images/1-2-1024x537.png)]
     
-- [![](images/2-2-1024x537.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/2-2.png)
+- [![](images/2-2-1024x537.png)]
     
-- [![](images/3-2-1024x537.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/3-2.png)
+- [![](images/3-2-1024x537.png)]
     
-- [![](images/4-2-1024x537.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/4-2.png)
+- [![](images/4-2-1024x537.png)]
     
 
 Clearly, the autoencoder has learnt to remove much of the noise. As you can see, the denoised samples are not entirely noise-free, but it's a lot better. Some nice results! 😎

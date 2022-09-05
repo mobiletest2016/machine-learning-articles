@@ -125,7 +125,7 @@ For this reason, we'll invent a model evaluation scenario first.
 
 Say that we're training a few models to classify images of digits. We train a [Support Vector Machine](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/intuitively-understanding-svm-and-svr.md) (SVM), a [Convolutional Neural Network](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/convolutional-neural-networks-and-their-components-for-computer-vision.md) (CNN) and a [Densely-connected Neural Network](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-basic-mlp-classifier-with-the-keras-sequential-api.md) (DNN) and of course, hope that each of them predicts "5" in this scenario:
 
-[![](images/EvaluationScenario-1024x366.png)](https://www.machinecurve.com/wp-content/uploads/2020/02/EvaluationScenario.png)
+[![](images/EvaluationScenario-1024x366.png)]
 
 Our goal here is to use the model that performs best in production, a.k.a. "really using it" :)
 
@@ -141,7 +141,7 @@ Now, we'll get to the core of our point - i.e., why we need to generate splits b
 
 We'll require an understanding of the high-level supervised machine learning process for this purpose:
 
-[![](images/High-level-training-process-1024x973.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/09/High-level-training-process.jpg)
+[![](images/High-level-training-process-1024x973.jpg)]
 
 It can be read as follows:
 
@@ -164,7 +164,7 @@ Say that you've got a dataset of 10.000 samples. It hasn't been split into a tra
 
 We can thus simply draw a boundary at 8.000 samples, like this:
 
-[![](images/Traintest.png)](https://www.machinecurve.com/wp-content/uploads/2020/02/Traintest.png)
+[![](images/Traintest.png)]
 
 We call this _simple hold-out split_, as we simply "hold out" the last 2.000 samples (Chollet, 2017).
 
@@ -184,7 +184,7 @@ A more expensive and less naïve approach would be to perform K-fold Cross Valid
 
 For example, this would be the scenario for our dataset with \[latex\]K = 5\[/latex\] (i.e., once again the 80/20 split, but then 5 times!):
 
-[![](images/KTraintest.png)](https://www.machinecurve.com/wp-content/uploads/2020/02/KTraintest.png)
+[![](images/KTraintest.png)]
 
 For each split, the same model is trained, and performance is displayed per fold. For evaluation purposes, you can obviously also average it across all folds. While this produces better estimates, K-fold Cross Validation also increases training cost: in the \[latex\]K = 5\[/latex\] scenario above, the model must be trained for 5 times.
 
@@ -225,7 +225,7 @@ Now, today's model.
 
 We'll be using a [convolutional neural network](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/convolutional-neural-networks-and-their-components-for-computer-vision.md) that can be used to classify CIFAR-10 images into a set of 10 classes. The images are varied, as you can see here:
 
-[![](images/cifar10_images.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/cifar10_images.png)
+[![](images/cifar10_images.png)]
 
 Now, my goal is not to replicate the process of creating the model here, as we already did that in our blog post ["How to build a ConvNet for CIFAR-10 and CIFAR-100 classification with Keras?"](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-build-a-convnet-for-cifar-10-and-cifar-100-classification-with-keras.md). Take a look at that post if you wish to understand the steps that lead to the model below.
 

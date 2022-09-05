@@ -161,7 +161,7 @@ if __name__ == '__main__':
 
 After upsampling, this is what the inputs look like:
 
-[![](images/afterupsampling-1024x535.png)](https://www.machinecurve.com/wp-content/uploads/2021/12/afterupsampling.png)
+[![](images/afterupsampling-1024x535.png)]
 
 On the left, you can see the image before upsampling. On the right, the image after upsampling.
 

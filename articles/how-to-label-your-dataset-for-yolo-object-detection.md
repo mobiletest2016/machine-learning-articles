@@ -83,9 +83,9 @@ From top to bottom, left to right, this is what the blocks do:
 
 Say that we have a dataset that includes the following two pictures:
 
-- [![](images/pexels-ashley-williams-685382-1024x604.jpg)](https://www.machinecurve.com/wp-content/uploads/2021/03/pexels-ashley-williams-685382.jpg)
+- [![](images/pexels-ashley-williams-685382-1024x604.jpg)]
     
-- [![](images/pexels-helena-lopes-1015568-1024x683.jpg)](https://www.machinecurve.com/wp-content/uploads/2021/03/pexels-helena-lopes-1015568.jpg)
+- [![](images/pexels-helena-lopes-1015568-1024x683.jpg)]
     
 
 Source: pexels.com, Pexels License

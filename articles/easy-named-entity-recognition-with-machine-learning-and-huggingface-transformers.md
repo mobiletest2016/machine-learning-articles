@@ -91,7 +91,7 @@ In other words, NLP models have moved from sequential processing to parallel pro
 
 Among others, models like BERT and GPT have been introduced. They use (parts of, i.e. only the encoder or decoder) the original Transformer architecture and apply their own elements on top of it, then train it to achieve great performance. But how does training happen? Let's take a look at the common approach followed by Transformers, which is called pretraining-finetuning.
 
-[![](images/Diagram-32-1-1024x991.png)](https://www.machinecurve.com/wp-content/uploads/2020/12/Diagram-32-1.png)
+[![](images/Diagram-32-1-1024x991.png)]
 
 An overview of the Transformer architecture. Source: Vaswani et al. (2017)
 

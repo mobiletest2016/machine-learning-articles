@@ -156,7 +156,7 @@ We'll now briefly look at a different question: **why use crossentropy loss and 
 
 Here, we see hinge loss and binary crossentropy loss plotted together:
 
-[![](images/hinge_binary-1024x524.png)](https://www.machinecurve.com/wp-content/uploads/2019/10/hinge_binary.png)
+[![](images/hinge_binary-1024x524.png)]
 
 Although you'll have to find out which one works best for your ML problem by means of experimentation, these are some points as to the differences of hinge loss and crossentropy loss:
 
@@ -202,7 +202,7 @@ Before we proceed to dissecting the code, we'll show you the datasets first.
 
 This is the _circles_ dataset from our _binary_ classification scenario:
 
-[![](images/22_bce_circles.png)](https://www.machinecurve.com/wp-content/uploads/2019/10/22_bce_circles.png)
+[![](images/22_bce_circles.png)]
 
 And this is the _clusters_ one from our _multiclass_ scenario:
 
@@ -275,7 +275,7 @@ plt.show()
 
 These Matplotlib calls produce the visualization that we saw before:
 
-[![](images/22_bce_circles.png)](https://www.machinecurve.com/wp-content/uploads/2019/10/22_bce_circles.png)
+[![](images/22_bce_circles.png)]
 
 The only thing left before we can create the model architecture is the specification of the _shape_ of our input feature vector. Shape is meant literally here: what does the vector look like? How many dimensions does the vector have and how many elements will be covered by each dimension? Images, for example, are two-dimensional, videos three-dimensional and sound waves one-dimensional.
 
@@ -307,7 +307,7 @@ A similar design is used for the second layer, although our data will be slightl
 
 The final layer has just one output neuron, which produces one value - indeed, that prediction between zero and one. The Sigmoid function is capable of producing this output: with a range of (0, 1), it converts any input to a value in that interval. We now have an architecture that allows us to separate two classes. Let's move on to model configuration.
 
-[![](images/sigmoid-1024x511.png)](https://www.machinecurve.com/wp-content/uploads/2019/05/sigmoid.png)
+[![](images/sigmoid-1024x511.png)]
 
 The Sigmoid activation function produces outputs between zero and one.
 
@@ -367,11 +367,11 @@ Now that we have the full code, we can actually run it to find out how well it p
 
 The training process will then start and eventually finish, while you'll see a visualization of the data you generated first. The outputs will be something like this:
 
-[![](images/22_bce_db.png)](https://www.machinecurve.com/wp-content/uploads/2019/10/22_bce_db.png)
+[![](images/22_bce_db.png)]
 
 As you can see, with binary crossentropy, the Keras model has learnt to generate a decision boundary that allows us to distinguish between both classes accurately. This is unsurprising, since we allowed the circles to be very well separable, and this is represented in model history:
 
-[![](images/22_bce_history.png)](https://www.machinecurve.com/wp-content/uploads/2019/10/22_bce_history.png)
+[![](images/22_bce_history.png)]
 
 ... when 30 epochs passed, the model was still improving, also when tested with validation data. Hence, it was not overfitting yet - unsurprising again given the separability of our circles. This was once again confirmed by the _test set evaluation_ which produced an accuracy of 100% - as illustrated in the plot with the decision boundary.
 
@@ -620,13 +620,13 @@ plt.show()
 
 As you can see in the decision plot visualization, the categorical crossentropy based model has been able to distinguish between the four classes quite accurately:
 
-[![](images/22_cce_db.png)](https://www.machinecurve.com/wp-content/uploads/2019/10/22_cce_db.png)
+[![](images/22_cce_db.png)]
 
 Only in the orange and read areas, there were some misclassifications. But well, that happens!
 
 Loss is also going down, although less smoothly:
 
-[![](images/22_cce_history.png)](https://www.machinecurve.com/wp-content/uploads/2019/10/22_cce_history.png)
+[![](images/22_cce_history.png)]
 
 All in all, I'm happy with the performance of this model too 😄
 

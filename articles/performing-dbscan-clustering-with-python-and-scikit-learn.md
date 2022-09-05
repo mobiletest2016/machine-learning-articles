@@ -357,9 +357,9 @@ plt.ylabel('Axis X[1]')
 plt.show()
 ```
 
-- [![](images/noisy.png)](https://www.machinecurve.com/wp-content/uploads/2020/12/noisy.png)
+- [![](images/noisy.png)]
     
-- [![](images/noiseremoved.png)](https://www.machinecurve.com/wp-content/uploads/2020/12/noiseremoved.png)
+- [![](images/noiseremoved.png)]
     
 
 * * *

@@ -616,11 +616,11 @@ Those URLs were made shorter on purpose.
 
 When doing so, you'll first see that your job starts running. It can take a while for the job to prepare, but eventually it will start:
 
-[![](images/image-17-1024x428.png)](https://www.machinecurve.com/wp-content/uploads/2020/10/image-17.png)
+[![](images/image-17-1024x428.png)]
 
 With the second URL, you can follow the logs in real-time:
 
-[![](images/image-18-1024x470.png)](https://www.machinecurve.com/wp-content/uploads/2020/10/image-18.png)
+[![](images/image-18-1024x470.png)]
 
 Clearly, the MNIST-based model rushed through the 100 epochs, as expected. It was able to perform epochs of 40k samples with < 1 second per epoch. That's truly impressive!
 

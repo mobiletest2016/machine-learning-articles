@@ -39,15 +39,15 @@ If you are already familiar with variational autoencoders or wish to find the im
 
 Contrary to a [normal autoencoder](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-a-variational-autoencoder-vae/#about-normal-autoencoders), which learns to encode some input into a point in _latent space_, Variational Autoencoders (VAEs) learn to encode multivariate probability distributions into latent space, given their configuration usually Gaussian ones:
 
-[![](images/vae-encoder-decoder-1024x229.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/vae-encoder-decoder.png)
+[![](images/vae-encoder-decoder-1024x229.png)]
 
 Sampling from the distribution gives a point in latent space that, given the distribution, is oriented around some mean value \[latex\]\\mu\[/latex\] and standard deviation \[latex\]\\sigma\[/latex\], like the points in this two-dimensional distribution:
 
-[![](images/MultivariateNormal.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/MultivariateNormal.png)
+[![](images/MultivariateNormal.png)]
 
 Combining this with a [Kullback-Leibler divergence segment](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-kullback-leibler-divergence-kl-divergence-with-keras.md) in the loss function leads to a latent space that is both _continuous_ and _complete_: for every point sampled close to the distribution's mean and standard deviation (which is in our case the standard normal distribution) the output should be both _similar to samples around that sample_ and _should make sense_.
 
-[![](images/vae_space.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/vae_space.png)
+[![](images/vae_space.png)]
 
 _Continuity and completeness in the latent space._
 
@@ -55,7 +55,7 @@ _Continuity and completeness in the latent space._
 
 Besides the regular stuff one can do with an autoencoder (like denoising and dimensionality reduction), the principles of a VAE outlined above allow us to use variational autoencoders for generative purposes.
 
-[![](images/fmnist_dmax_plot.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/fmnist_dmax_plot.png)
+[![](images/fmnist_dmax_plot.png)]
 
 _Samples generated with a VAE trained on the Fashion MNIST dataset._
 
@@ -73,7 +73,7 @@ Today, we'll use the [Keras](https://keras.io) deep learning framework for creat
 
 The MNIST dataset will be used for training the autoencoder. This dataset contains thousands of 28 x 28 pixel images of handwritten digits, as we can see below. As such, our autoencoder will learn the distribution of handwritten digits across (two)dimensional latent space, which we can then use to manipulate samples into a format we like.
 
-[![](images/mnist.png)](https://www.machinecurve.com/wp-content/uploads/2019/07/mnist.png)
+[![](images/mnist.png)]
 
 _Samples from the MNIST dataset_
 
@@ -736,11 +736,11 @@ Now, time for the results :)
 
 Training the model for 100 epochs yields this visualization of the latent space:
 
-[![](images/mnist_100_latentspace.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/mnist_100_latentspace.png)
+[![](images/mnist_100_latentspace.png)]
 
 As we can see, around \[latex\](0, 0)\[/latex\] our latent space is pretty continuous as well as complete. Somewhere around \[latex\](0, -1.5)\[/latex\] we see some holes, as well as near the edges (e.g. \[latex\](3, -3)\[/latex\]). We can see these issues in the actual sampling too:
 
-[![](images/mnist_digits.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/mnist_digits.png)
+[![](images/mnist_digits.png)]
 
 Especially in the right corners, we see the issue with completeness, which yield outputs that do not make sense. Some issues with continuity are visible wherever the samples are _blurred_. However, generally speaking, I'm quite happy with the results! 😎
 
@@ -811,18 +811,18 @@ Non-trainable params: 403,752
 
 However, even after training it for only 5 epochs, results have become considerably better:
 
-[![](images/latent-space-visualized.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/latent-space-visualized.png)
+[![](images/latent-space-visualized.png)]
 
 Latent space (left) also looks better compared to our initial VAE (right):
 
-- [![](images/latent-space-without-outliers.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/latent-space-without-outliers.png)
+- [![](images/latent-space-without-outliers.png)]
     
-- [![](images/mnist_100_latentspace.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/mnist_100_latentspace.png)
+- [![](images/mnist_100_latentspace.png)]
     
 
 However, what is interesting, is that the left one is a _zoom_, actually, as we also have some outliers now:
 
-[![](images/latent-space-with-outliers.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/latent-space-with-outliers.png)
+[![](images/latent-space-with-outliers.png)]
 
 Interesting result :)
 

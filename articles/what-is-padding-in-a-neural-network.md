@@ -40,7 +40,7 @@ Now, in order to find out about how padding works, we need to study the internal
 
 Here you've got one, although it's very generic:
 
-[![](images/CNN.png)](https://www.machinecurve.com/wp-content/uploads/2019/09/CNN.png)
+[![](images/CNN.png)]
 
 What you see on the left is an RGB input image - width \[latex\]W\[/latex\], height \[latex\]H\[/latex\] and three channels. Hence, this layer is likely the _first layer in your model_; in any other scenario, you'd have feature maps as the input to your layer.
 
@@ -54,7 +54,7 @@ Through these weights, as you may guess, the model learns to detect the presence
 
 ### Conv layers might induce spatial hierarchy
 
-[![](images/pad-nopad-conv-1-300x300.jpg)](https://www.machinecurve.com/wp-content/uploads/2020/02/pad-nopad-conv-1.jpg)
+[![](images/pad-nopad-conv-1-300x300.jpg)]
 
 If the width and/or height of your kernels is \[latex\]> 1\[/latex\], you'll see that the width and height of the feature map being output gets smaller. This occurs due to the fact that the feature map slides over the input and computes the element-wise multiplications, but is too large in order to inspect the "edges" of the input. This is illustrated in the image to the right, where the "red" position is impossible to take and the "green" one is part of the path of the convolution operation.
 
@@ -78,7 +78,7 @@ conv2d_1 (Conv2D)            (None, 11, 11, 64)        18496
 
 We call this _a spatial hierarchy._ Indeed, convolutional layers may cause a "hierarchy"-like flow of data through the model. Here, you have a schematic representation of a substantial hierarchy and a less substantial one - which is often considered to be _less efficient_:
 
-[![](images/hierarchies.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/hierarchies.png)
+[![](images/hierarchies.png)]
 
 ### Padding avoids the loss of spatial dimensions
 
@@ -90,11 +90,11 @@ That's not what we want when we create an autoencoder. We want the original outp
 
 Padding helps you solve this problem. Applying it effectively adds "space" around your input data or your feature map - or, more precisely, "extra rows and columns" \[with some instantiation\] (Chollet, 2017).
 
-[![](images/pad-nopad.jpg)](https://www.machinecurve.com/wp-content/uploads/2020/02/pad-nopad.jpg)
+[![](images/pad-nopad.jpg)]
 
 The consequences of this fact are rather pleasurable, as we can see in the example below.
 
-[![](images/pad-nopad-conv.jpg)](https://www.machinecurve.com/wp-content/uploads/2020/02/pad-nopad-conv.jpg)
+[![](images/pad-nopad-conv.jpg)]
 
 Adding the "extra space" now allows us to capture the position we previously couldn't capture, and allows us to detect features in the "edges" of your input. This is great! 😊
 
@@ -115,7 +115,7 @@ Please note that the discussion next doesn't contain any Python code. We'll cove
 
 ### Valid padding / no padding
 
-[![](images/validpad-300x300.jpg)](https://www.machinecurve.com/wp-content/uploads/2020/02/validpad.jpg)
+[![](images/validpad-300x300.jpg)]
 
 Valid padding simply means "no padding" (Keras, n.d.).
 
@@ -129,13 +129,13 @@ Another option would be "same padding", also known as "zero padding". Here, the 
 
 Side note: in Keras, there is an inconsistency between backends (i.e., TensorFlow, Theano and CNTK) [as described here](https://github.com/keras-team/keras/pull/9473#issuecomment-372166860) (Keras, n.d.). However, with TensorFlow 2.0 being the "recommended choice" these days, this shouldn't be too much of a problem.
 
-[![](images/same-pad.jpg)](https://www.machinecurve.com/wp-content/uploads/2020/02/same-pad.jpg)
+[![](images/same-pad.jpg)]
 
 ### Constant padding
 
 A type of padding that really resembles same padding is _constant padding_. Here, the outcome can be the same - the output will have the same shape as the input. However, rather than "zeros" - which is what same padding does - constant padding allows you to pad with a user-specified constant value (PyTorch, n.d.). In PyTorch, it is also possible to specify the padding at the boundary level (e.g. pad on the left and the top but not on the right and at the bottom). This obviously breaks with _same padding_ covered earlier; be aware of this.
 
-[![](images/constantpad.jpg)](https://www.machinecurve.com/wp-content/uploads/2020/02/constantpad.jpg)
+[![](images/constantpad.jpg)]
 
 ### Causal padding
 
@@ -147,7 +147,7 @@ It's possible to create a model that can handle this by means of a `Conv1D` laye
 
 But what about the first two targets?
 
-[![](images/Causalpad-3-1024x429.jpg)](https://www.machinecurve.com/wp-content/uploads/2020/02/Causalpad-3.jpg)
+[![](images/Causalpad-3-1024x429.jpg)]
 
 Although they are valid targets, the _inputs_ are incomplete - that is, there is insufficient input data available in order to successfully use them in the training process (The Blog, n.d.). For the second target, _one_ input - visible in gray - is missing (whereas the second is actually there), while for the first target both aren't there.
 
@@ -155,7 +155,7 @@ For the first target, there is no real hope for success (as we don't have any in
 
 Causal padding on the `Conv1D` layer allows you to include the partial information in your training process. By padding your input dataset with zeros at the front, a causal mapping to the first, missed-out targets can be made (Keras, n.d.; The Blog, n.d.). While the first target will be useless for training, the second can now be used based on the partial information that we have:
 
-[![](images/Causalpad-4-1024x262.jpg)](https://www.machinecurve.com/wp-content/uploads/2020/02/Causalpad-4.jpg)
+[![](images/Causalpad-4-1024x262.jpg)]
 
 ### Reflection padding
 
@@ -167,7 +167,7 @@ For example, if you look at the image below, for the first row of the yellow box
 - In the opposite direction, you get a mirrored effect. Having a 3 at the edge, you'll once again find the 5 (as it's the center value) but the second value for padding will be a 1.
 - And so on!
 
-[![](images/reflection_pad.jpg)](https://www.machinecurve.com/wp-content/uploads/2020/02/reflection_pad.jpg)
+[![](images/reflection_pad.jpg)]
 
 Reflective padding seems to improve the empirical performance of your model (Physincubus, n.d.). Possibly, this occurs because of how "zero" based padding (i.e., the "same" padding) and "constant" based padding alter the distribution of your dataset:
 
@@ -175,9 +175,9 @@ https://twitter.com/karpathy/status/720622989289644033
 
 This becomes clear when we actually visualize the padding when it is applied:
 
-- [![](images/zero_padding.png)](https://www.machinecurve.com/wp-content/uploads/2020/02/zero_padding.png)
+- [![](images/zero_padding.png)]
     
-- [![](images/reflection.png)](https://www.machinecurve.com/wp-content/uploads/2020/02/reflection.png)
+- [![](images/reflection.png)]
     
 
 ### Replication padding / symmetric padding
@@ -191,9 +191,9 @@ Replication padding looks like reflection padding, but is slightly different (Te
 
 As with reflection padding, replication padding attempts to reduce the impact of "zero" and "constant" padding on the quality of your data by using "plausible data values by re-using what is along the borders of the input" (Liu et al., 2018):
 
-- [![](images/zero_padding.png)](https://www.machinecurve.com/wp-content/uploads/2020/02/zero_padding.png)
+- [![](images/zero_padding.png)]
     
-- [![](images/replication.png)](https://www.machinecurve.com/wp-content/uploads/2020/02/replication.png)
+- [![](images/replication.png)]
     
 
 * * *

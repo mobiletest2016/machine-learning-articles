@@ -111,7 +111,7 @@ With approximately 500.000 words in the English vocabulary, you get the point ab
 
 Now, what may work better is a so-called **word embedding**:
 
-[![](images/T-SNE_visualisation_of_word_embeddings_generated_using_19th_century_literature-1024x695.png)](https://www.machinecurve.com/wp-content/uploads/2020/03/T-SNE_visualisation_of_word_embeddings_generated_using_19th_century_literature.png)
+[![](images/T-SNE_visualisation_of_word_embeddings_generated_using_19th_century_literature-1024x695.png)]
 
 By [Siobhán Grayson](Siobhangrayson&action=edit&redlink=1) - Own work, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0), [Link](https://commons.wikimedia.org/w/index.php?curid=64541584)
 
@@ -435,9 +435,9 @@ While this is bad - and perhaps can be overcome by tuning learning rates, using 
 
 Instead, the scope of our blog post - to create an IMDB sentiment classifier - was achieved :)
 
-- [![](images/emb_loss.png)](https://www.machinecurve.com/wp-content/uploads/2020/03/emb_loss.png)
+- [![](images/emb_loss.png)]
     
-- [![](images/emb_acc.png)](https://www.machinecurve.com/wp-content/uploads/2020/03/emb_acc.png)
+- [![](images/emb_acc.png)]
     
 
 ### Generating new predictions

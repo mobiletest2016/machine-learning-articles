@@ -37,7 +37,7 @@ Secondly, the derivative of Sigmoid has a maximum output of \[latex\]\\approx 0.
 
 Hence, for today's ML projects: it's perfectly fine to use Sigmoid, if you consider its limitations and know that possibly better activation functions are available.
 
-[![](images/sigmoid_and_deriv-1024x511.jpeg)](https://www.machinecurve.com/wp-content/uploads/2019/09/sigmoid_and_deriv.jpeg)
+[![](images/sigmoid_and_deriv-1024x511.jpeg)]
 
 **Read more:** [ReLU, Sigmoid and Tanh: today’s most used activation functions](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions/#sigmoid)
 
@@ -49,7 +49,7 @@ Another commonly used activation function known and used since many years is the
 
 Even though it _does_ provide symmetry around the origin, it's still sensitive to vanishing gradients. The next activation function was identified to counter this problem.
 
-[![](images/tanh_and_deriv-1024x511.jpeg)](https://www.machinecurve.com/wp-content/uploads/2019/09/tanh_and_deriv.jpeg)
+[![](images/tanh_and_deriv-1024x511.jpeg)]
 
 **Read more:** [ReLU, Sigmoid and Tanh: today’s most used activation functions](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions/#tangens-hyperbolicus-tanh)
 
@@ -65,7 +65,7 @@ It's bad because we're now opening ourselves to an entirely new problem: the _dy
 
 Nevertheless, ReLU is still the way to go in many cases these days.
 
-[![](images/relu_and_deriv-1024x511.jpeg)](https://www.machinecurve.com/wp-content/uploads/2019/09/relu_and_deriv.jpeg)
+[![](images/relu_and_deriv-1024x511.jpeg)]
 
 **Read more:** [ReLU, Sigmoid and Tanh: today’s most used activation functions](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions/#rectified-linear-unit-relu)
 
@@ -77,7 +77,7 @@ Now onto some fixes for the dying ReLU problem. Leaky ReLU is the first: by mean
 
 As a result, the gradient for the negative domain is no longer zero, and the neurons no longer die off. This comes at the cost of non-sparse models, and does not always work (especially because you use simple models, it doesn't really work better than traditional ReLU in my experience), but empirical tests have shown quite some success in larger cases. Worth a try!
 
-[![](images/leaky_relu.png)](https://www.machinecurve.com/wp-content/uploads/2019/10/leaky_relu.png)
+[![](images/leaky_relu.png)]
 
 **Read more:** [Using Leaky ReLU with Keras](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/using-leaky-relu-with-keras.md)
 
@@ -103,7 +103,7 @@ What does this mean? Put very simply, the fact that the negative domain produces
 
 For this reason, the authors propose ELU: an activation function that looks like ReLU, has nonzero outputs for the negative domain, yet (together with its gradient) saturates to some value (which can be configured with an \[latex\]\\alpha\[/latex\] parameter), so that the model is protected from the impact of noise.
 
-[![](images/elu_avf.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/elu_avf.png)
+[![](images/elu_avf.png)]
 
 **Read more:** [How to use ELU with Keras?](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-elu-with-keras.md)
 
@@ -125,7 +125,7 @@ Softmax is quite widely used in classification, and especially when you're tryin
 
 Back to the ReLU-like activation functions. Another activation function which attempts to mimic ReLU is the Swish activation function, which was invented by a Google Brain team. It ensures both ReLU style activations for the positive domain, introduces smoothness around \[latex\]x \\approx 0\[/latex\], then also allows negative inputs close to the origin result in negative outputs, but saturates to \[latex\]y \\approx 0\[/latex\] for large negative inputs. Quite understandably, Swish has produced quite good results in the authors' empirical tests. However, it is more computationally intensive than say ReLU, which may impact the resources you need for training (Deep Learning University, 2020). It can also be unstable, impacting the training process. Therefore, proceed with caution.
 
-[![](images/swish_deriv-1024x511.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/swish_deriv.png)
+[![](images/swish_deriv-1024x511.png)]
 
 **Read more:** [Why Swish could perform better than ReLu](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/why-swish-could-perform-better-than-relu.md)
 
@@ -135,7 +135,7 @@ Back to the ReLU-like activation functions. Another activation function which at
 
 Another Swish style activation function is called Flatten-T Swish. Effectively combining the ReLU and Sigmoid activation functions into one, it attempts to resolve much of the issues related to traditional activation functions:
 
-[![](images/ftswish-1.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/ftswish-1.png)
+[![](images/ftswish-1.png)]
 
 **Read more:**
 

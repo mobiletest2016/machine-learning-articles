@@ -70,7 +70,7 @@ Let's first cover Logcosh loss intuitively.
 
 Don't be scared by the maths though, because we'll discuss Logcosh by means of its visualization - which is this one:
 
-[![](images/logcosh-1024x433.jpeg)](https://www.machinecurve.com/wp-content/uploads/2019/10/logcosh.jpeg)
+[![](images/logcosh-1024x433.jpeg)]
 
 As you can see, Logcosh loss for some target value (in this case, target = 0), is zero at the target value, and increases when the predicted value is further away from the target value.
 
@@ -317,9 +317,9 @@ We cannot say this with statistical significance, obviously, since for the two g
 
 Two nice plots are generated as well which see how the model improves - at large at first, but more slowly towards the end; just as it should be.
 
-[![](images/logcosh_loss.png)](https://www.machinecurve.com/wp-content/uploads/2019/10/logcosh_loss.png)
+[![](images/logcosh_loss.png)]
 
-[![](images/logcosh_mae.png)](https://www.machinecurve.com/wp-content/uploads/2019/10/logcosh_mae.png)
+[![](images/logcosh_mae.png)]
 
 * * *
 

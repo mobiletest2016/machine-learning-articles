@@ -64,7 +64,7 @@ There are many ways for computing the loss value. [Huber loss](https://github.co
 
 Huber loss looks like this:
 
-[![](images/huberloss-1024x580.jpeg)](https://www.machinecurve.com/wp-content/uploads/2019/10/huberloss.jpeg)
+[![](images/huberloss-1024x580.jpeg)]
 
 As you can see, for target = 0, the loss increases when the error increases. However, the speed with which it increases depends on this 𝛿 value. In fact, Grover (2019) writes about this as follows: **Huber loss approaches MAE when 𝛿 ~ 0 and MSE when 𝛿 ~ ∞ (large numbers.)**
 
@@ -150,7 +150,7 @@ plt.show()
 
 And next run it, to find this box plot:
 
-[![](images/boston_boxplot.png)](https://www.machinecurve.com/wp-content/uploads/2019/10/boston_boxplot.png)
+[![](images/boston_boxplot.png)]
 
 Note that we concatenated the _training data_ and the _testing data_ for this box plot. Although the plot hints to the fact that many outliers exist, and primarily at the high end of the statistical spectrum (which does make sense after all, since in life extremely high house prices are quite common whereas extremely low ones are not), we cannot yet conclude that the MSE may not be a good idea. We'll need to inspect the individual datasets too.
 
@@ -276,11 +276,11 @@ plt.show()
 
 Let's now take a look at how the model has optimized over the epochs with the Huber loss:
 
-[![](images/huber_loss_d1.5-1024x511.png)](https://www.machinecurve.com/wp-content/uploads/2019/10/huber_loss_d1.5.png)
+[![](images/huber_loss_d1.5-1024x511.png)]
 
 And with the MAE:
 
-[![](images/huber_loss_mae1.5-1024x511.png)](https://www.machinecurve.com/wp-content/uploads/2019/10/huber_loss_mae1.5.png)
+[![](images/huber_loss_mae1.5-1024x511.png)]
 
 We can see that overall, the model was still improving at the 250th epoch, although progress was stalling - which is perfectly normal in such a training process. The mean absolute error was approximately $3.639.
 

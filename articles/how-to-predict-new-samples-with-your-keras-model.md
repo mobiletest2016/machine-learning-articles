@@ -65,7 +65,7 @@ Let's first take a look at the Keras model that we will be using today for showi
 
 It's an adaptation of the Convolutional Neural Network that we trained to demonstrate [how sparse categorical crossentropy loss works](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-sparse-categorical-crossentropy-in-keras.md). Today's one works for TensorFlow 2.0 and the integrated version of Keras; hence, I'd advise to use this variant instead of the traditional `keras` package.
 
-[![](images/dig_4-300x225.png)](https://www.machinecurve.com/wp-content/uploads/2020/02/dig_4.png)
+[![](images/dig_4-300x225.png)]
 
 Now, I won't cover all the steps describing _how_ this model is built - take a look at the link above if you wish to understand this in more detail. However, very briefly:
 
@@ -212,13 +212,13 @@ for sample in use_samples:
 
 Here they are:
 
-- [![](images/dig_4.png)](https://www.machinecurve.com/wp-content/uploads/2020/02/dig_4.png)
+- [![](images/dig_4.png)]
     
-- [![](images/dig_2.png)](https://www.machinecurve.com/wp-content/uploads/2020/02/dig_2.png)
+- [![](images/dig_2.png)]
     
-- [![](images/dig_3.png)](https://www.machinecurve.com/wp-content/uploads/2020/02/dig_3.png)
+- [![](images/dig_3.png)]
     
-- [![](images/dig_1.png)](https://www.machinecurve.com/wp-content/uploads/2020/02/dig_1.png)
+- [![](images/dig_1.png)]
     
 
 We then extend this code so that we can actually store the samples temporarily for prediction later:
@@ -289,13 +289,13 @@ print(classes)
 
 This outputs `[6 8 0 6]`. Yeah! ✅ 🎉
 
-- [![](images/dig_4.png)](https://www.machinecurve.com/wp-content/uploads/2020/02/dig_4.png)
+- [![](images/dig_4.png)]
     
-- [![](images/dig_2.png)](https://www.machinecurve.com/wp-content/uploads/2020/02/dig_2.png)
+- [![](images/dig_2.png)]
     
-- [![](images/dig_3.png)](https://www.machinecurve.com/wp-content/uploads/2020/02/dig_3.png)
+- [![](images/dig_3.png)]
     
-- [![](images/dig_1.png)](https://www.machinecurve.com/wp-content/uploads/2020/02/dig_1.png)
+- [![](images/dig_1.png)]
     
 
 _Note that the code above trains with and predicts with both the training data. While this is bad practice when evaluating a model, it is acceptable when you're confident that your model generalizes to new data. I indeed am that it will generalize to new MNIST-like data, and hence I didn't make the split here._

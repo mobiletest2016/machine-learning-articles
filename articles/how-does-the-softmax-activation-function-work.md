@@ -41,13 +41,13 @@ What does "returning a probability distribution" mean? And why is this useful wh
 
 We'll have to take a look at the structure of a neural network in order to explain this. Suppose that we have a neural network, such as the - very high-level variant - one below:
 
-[![](images/logits.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/logits.png)
+[![](images/logits.png)]
 
 The final layer of the neural network, _without the activation function_, is what we call the **"logits layer"** (Wikipedia, 2003). It simply provides the final outputs for the neural network. In the case of a four-class multiclass classification problem, that will be four neurons - and hence, four outputs, as we can see above.
 
 Suppose that these are the outputs, or our **logits**:
 
-[![](images/logits_with_outputs.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/logits_with_outputs.png)
+[![](images/logits_with_outputs.png)]
 
 These essentially tell us something about our target classes, but from the outputs above, we can't make sense of it yet.... are they likelihoods? No, because can we have a negative one? Uh...
 
@@ -123,7 +123,7 @@ This, in return, allows us to "interpret them as probabilities" (Wikipedia, 2006
 
 Let's now go back to the initial scenario that we outlined above.
 
-[![](images/logits_with_outputs.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/logits_with_outputs.png)
+[![](images/logits_with_outputs.png)]
 
 We can now convert our logits into a discrete probability distribution:
 
@@ -143,7 +143,7 @@ Let's see if the outcome adheres to Kolmogorov's probability axioms that we disc
 
 In fact, for our logits scenario, any input would satisfy these values. First of all, the denominator for any of the inputs would be the same, so they are normalized into the \[latex\](0, 1)\[/latex\] range, summing together to 1. What's more, as we can see, due to the nature of the exponential function, any input indeed yields a nonzero real number when fed to the Softmax function:
 
-[![](images/softmax_logits.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/softmax_logits.png)
+[![](images/softmax_logits.png)]
 
 This also explains why our \[latex\]logit = 4.3\[/latex\] produces such a large probability of \[latex\]p \\approx 0.872661\[/latex\] :)
 
@@ -167,7 +167,7 @@ Finally, we're going to find out what this means for the optimization process, a
 
 Recall that we have a neural network with a logits layer that has these outputs:
 
-[![](images/logits_with_outputs.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/logits_with_outputs.png)
+[![](images/logits_with_outputs.png)]
 
 If you're thinking very strictly today, you may wonder about this: why don't we simply take the `argmax` value as our activation function? Doesn't it provide you with the same result?
 
@@ -260,7 +260,7 @@ Now, let's move from theory to practice - we're going to code!
 
 In fact, we're going to code an example model with Keras that makes use of the Softmax function for classification. More specifically, it's going to be a densely-connected neural network that will learn to classify samples into one of four classes. Fortunately (...and as intended 🤡), the training data (which we'll generate as part of the process) is separable in 2D space, albeit not linearly:
 
-[![](images/example_nonlinear.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/example_nonlinear.png)
+[![](images/example_nonlinear.png)]
 
 Time to open up your editor and start coding! 😎
 

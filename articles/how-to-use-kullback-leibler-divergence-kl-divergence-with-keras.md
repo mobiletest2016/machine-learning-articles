@@ -205,13 +205,13 @@ I ran the model twice, then changed to categorical crossentropy loss, and ran it
 
 In 25 epochs, performance is very similar. Therefore, I'd say you could use both if you're facing the choice when to use categoricall crossentropy or KL divergence.
 
-- [![](images/kld4.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/kld4.png)
+- [![](images/kld4.png)]
     
-- [![](images/kld3.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/kld3.png)
+- [![](images/kld3.png)]
     
-- [![](images/kld2.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/kld2.png)
+- [![](images/kld2.png)]
     
-- [![](images/kld1.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/kld1.png)
+- [![](images/kld1.png)]
     
 
 * * *

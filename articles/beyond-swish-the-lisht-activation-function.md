@@ -42,7 +42,7 @@ If we wish to understand the challenges of the Swish activation function, we mus
 - It's also smooth, compared to ReLU. Because of this, the [Swish loss landscape](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound.md) is smooth as well, which allows the optimizer to experience less oscillation. This might ensure faster convergence.
 - Small negative values are not zeroed out, which may help you catch certain patterns in your dataset in a better way.
 
-[![](images/relu_swish-1024x511.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/relu_swish.png)
+[![](images/relu_swish-1024x511.png)]
 
 How the ReLU and Swish activations activate. They are really similar, but Swish is smooth and allows the model to capture small negative inputs.
 
@@ -66,7 +66,7 @@ Lets very briefly recap the vanishing gradients problem for the unaware reader. 
 
 The activation function and its first-order derivative can be visualized as follows:
 
-[![](images/sigmoid_deriv-1024x511.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/sigmoid_deriv.png)
+[![](images/sigmoid_deriv-1024x511.png)]
 
 As you can see, computed gradients for Sigmoid will never be larger than \[latex\]\\approx 0.25\[/latex\], and in many cases the gradients will be very small.
 
@@ -78,7 +78,7 @@ While Sigmoid is one of the worst activation functions in terms of the vanishing
 
 We can generate the same plot for the Swish activation function (Serengil, 2018; Ramachandran, 2017):
 
-[![](images/swish_deriv-1024x511.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/swish_deriv.png)
+[![](images/swish_deriv-1024x511.png)]
 
 Even though the vanishing gradients problem is much less severe in case of Swish, only inputs of \[latex\]x >= 2\[/latex\] result in gradients of 1 and (sometimes) higher. In any other case, the gradient will still cause the chain to get smaller with increasing layers.
 
@@ -94,11 +94,11 @@ To reduce the impact of this problem, they introduce the LiSHT activation functi
 
 When we compare it with traditional ReLU and Swish, we get this plot:
 
-[![](images/lisht_visualized-1024x511.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/lisht_visualized.png)
+[![](images/lisht_visualized-1024x511.png)]
 
 And when we look at LiSHT in terms of the derivatives, this is what we see:
 
-[![](images/lisht_derivs-1024x511.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/lisht_derivs.png)
+[![](images/lisht_derivs-1024x511.png)]
 
 Essentially, LiSHT looks very much like Swish in terms of the first-order derivative. However, the range is expanded into the negative as well, which means that the vanishing gradient problem is reduced even further - at least in theory.
 

@@ -332,9 +332,9 @@ axes.set_ylim([-5, 20])
 plt.show()
 ```
 
-- [![](images/gauss0.png)](https://www.machinecurve.com/wp-content/uploads/2020/11/gauss0.png)
+- [![](images/gauss0.png)]
     
-- [![](images/gauss1.png)](https://www.machinecurve.com/wp-content/uploads/2020/11/gauss1.png)
+- [![](images/gauss1.png)]
     
 
 * * *

@@ -74,7 +74,7 @@ In their work, Lam et al. (2019) have tried to answer one question in particular
 
 And according to them, the answer is a **clear no** - better NLP models does not necessarily mean that models must be _bigger_. In their work, which is referenced below as Lam et al. (2019) including a link, they introduce **A Lite BERT**, nicely abbreviated to **ALBERT**. Let's now take a look at it in more detail, so that we understand why it is smaller and why it supposedly works just as well, and perhaps even better when scaled to the same number of parameters as BERT.
 
-[![](images/Diagram-6.png)](https://www.machinecurve.com/wp-content/uploads/2020/12/Diagram-6.png)
+[![](images/Diagram-6.png)]
 
 From the paper, we come to understand that ALBERT simply utilizes the [BERT architecture](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/intuitive-introduction-to-bert.md). This architecture, which itself is the [encoder segment from the original Transformer](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/introduction-to-transformers-in-machine-learning.md) (with only a few minor tweaks), is visible in the image on the right. It is changed in three key ways, which bring about a significant reduction in parameters:
 

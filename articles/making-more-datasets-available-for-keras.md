@@ -89,7 +89,7 @@ from extra-keras-datasets import emnist
 (input_train, target_train), (input_test, target_test) = emnist.load_data(type='balanced')
 ```
 
-[![](images/emnist-balanced.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/emnist-balanced.png)
+[![](images/emnist-balanced.png)]
 
 * * *
 
@@ -102,7 +102,7 @@ from extra-keras-datasets import emnist
 (input_train, target_train), (input_test, target_test) = emnist.load_data(type='byclass')
 ```
 
-[![](images/emnist-byclass.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/emnist-byclass.png)
+[![](images/emnist-byclass.png)]
 
 * * *
 
@@ -115,7 +115,7 @@ from extra-keras-datasets import emnist
 (input_train, target_train), (input_test, target_test) = emnist.load_data(type='bymerge')
 ```
 
-[![](images/emnist-bymerge.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/emnist-bymerge.png)
+[![](images/emnist-bymerge.png)]
 
 * * *
 
@@ -128,7 +128,7 @@ from extra-keras-datasets import emnist
 (input_train, target_train), (input_test, target_test) = emnist.load_data(type='digits')
 ```
 
-[![](images/emnist-digits.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/emnist-digits.png)
+[![](images/emnist-digits.png)]
 
 * * *
 
@@ -141,7 +141,7 @@ from extra-keras-datasets import emnist
 (input_train, target_train), (input_test, target_test) = emnist.load_data(type='letters')
 ```
 
-[![](images/emnist-letters.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/emnist-letters.png)
+[![](images/emnist-letters.png)]
 
 * * *
 
@@ -154,7 +154,7 @@ from extra-keras-datasets import emnist
 (input_train, target_train), (input_test, target_test) = emnist.load_data(type='mnist')
 ```
 
-[![](images/emnist-mnist.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/emnist-mnist.png)
+[![](images/emnist-mnist.png)]
 
 * * *
 
@@ -169,7 +169,7 @@ from extra-keras-datasets import kmnist
 (input_train, target_train), (input_test, target_test) = kmnist.load_data(type='kmnist')
 ```
 
-[![](images/kmnist-kmnist.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/kmnist-kmnist.png)
+[![](images/kmnist-kmnist.png)]
 
 * * *
 
@@ -182,7 +182,7 @@ from extra-keras-datasets import kmnist
 (input_train, target_train), (input_test, target_test) = kmnist.load_data(type='k49')
 ```
 
-[![](images/kmnist-k49.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/kmnist-k49.png)
+[![](images/kmnist-k49.png)]
 
 * * *
 
@@ -199,7 +199,7 @@ from extra-keras-datasets import svhn
 (input_train, target_train), (input_test, target_test) = svhn.load_data(type='normal')
 ```
 
-[![](images/svhn-normal.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/svhn-normal.png)
+[![](images/svhn-normal.png)]
 
 * * *
 
@@ -212,7 +212,7 @@ from extra-keras-datasets import svhn
 (input_train, target_train), (input_test, target_test) = svhn.load_data(type='extra')
 ```
 
-[![](images/svhn-extra.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/svhn-extra.png)
+[![](images/svhn-extra.png)]
 
 * * *
 
@@ -225,7 +225,7 @@ from extra-keras-datasets import stl10
 (input_train, target_train), (input_test, target_test) = stl10.load_data()
 ```
 
-[![](images/stl10-1.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/stl10-1.png)
+[![](images/stl10-1.png)]
 
 * * *
 

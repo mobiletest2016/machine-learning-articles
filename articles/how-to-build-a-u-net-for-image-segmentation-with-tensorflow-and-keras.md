@@ -1221,11 +1221,11 @@ Now, let's train our model! Open up a terminal, navigate to the location where y
 
 Training our U-Net yielded this performance for me when training it from scratch, i.e. with He initialized weights:
 
-[![](images/epoch_accuracy-1-1024x190.png)](https://www.machinecurve.com/wp-content/uploads/2022/01/epoch_accuracy-1.png)
+[![](images/epoch_accuracy-1-1024x190.png)]
 
 Training accuracy (orange) and validation accuracy (blue).
 
-[![](images/epoch_learning_rate-1-1024x192.png)](https://www.machinecurve.com/wp-content/uploads/2022/01/epoch_learning_rate-1.png)
+[![](images/epoch_learning_rate-1-1024x192.png)]
 
 The learning rate over the epochs. The learning rate schedule is clearly visible.
 
@@ -1233,17 +1233,17 @@ The learning rate over the epochs. The learning rate schedule is clearly visible
 
 Recall that after training, the model takes some examples from the testing set and outputs the results. Here's what your U-Net will produce:
 
-[![](images/1-1024x384.png)](https://www.machinecurve.com/wp-content/uploads/2022/01/1.png)
+[![](images/1-1024x384.png)]
 
-[![](images/2-1024x384.png)](https://www.machinecurve.com/wp-content/uploads/2022/01/2.png)
+[![](images/2-1024x384.png)]
 
-[![](images/3-1024x384.png)](https://www.machinecurve.com/wp-content/uploads/2022/01/3.png)
+[![](images/3-1024x384.png)]
 
-[![](images/4-1024x384.png)](https://www.machinecurve.com/wp-content/uploads/2022/01/4.png)
+[![](images/4-1024x384.png)]
 
-[![](images/5-1024x384.png)](https://www.machinecurve.com/wp-content/uploads/2022/01/5.png)
+[![](images/5-1024x384.png)]
 
-[![](images/6-1024x384.png)](https://www.machinecurve.com/wp-content/uploads/2022/01/6.png)
+[![](images/6-1024x384.png)]
 
 ### Improving model performance by model pretraining
 

@@ -66,7 +66,7 @@ A common thing in the software industry is the mantra that standards (and, by ex
 
 As mentioned, this does apply to technologies too. The open source Operating System Linux [has an enormous amount of variations](https://en.wikipedia.org/wiki/List_of_Linux_distributions) available, some of which remain open source, others of which are proprietary.
 
-[![](images/standards.png)](https://www.machinecurve.com/wp-content/uploads/2020/04/standards.png)
+[![](images/standards.png)]
 
 Source - [xkcd: Standards](https://xkcd.com/927/)
 
@@ -157,7 +157,7 @@ Before we start, there's just one thing we'll have to check first: SQL injection
 
 Let's take a look at this comic from xkcd, which is very popular in the world of programmers:
 
-[![](images/exploits_of_a_mom.png)](https://www.machinecurve.com/wp-content/uploads/2020/04/exploits_of_a_mom.png)
+[![](images/exploits_of_a_mom.png)]
 
 Source - [xkcd: Exploits of a Mom](https://xkcd.com/327/)
 
@@ -627,9 +627,9 @@ Time to go!
 
 Generating a new prediction is not done differently than [previously](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/tutorial-how-to-deploy-your-convnet-classifier-with-keras-and-fastapi/#running-the-deployed-model):
 
-[![](images/image-2-1024x248.png)](https://www.machinecurve.com/wp-content/uploads/2020/03/image-2.png)
+[![](images/image-2-1024x248.png)]
 
-[![](images/image-1.png)](https://www.machinecurve.com/wp-content/uploads/2020/03/image-1.png)
+[![](images/image-1.png)]
 
 Yielding the correct prediction indeed:
 
@@ -655,11 +655,11 @@ Yielding the correct prediction indeed:
 
 This time, though, it's also stored in the database:
 
-[![](images/image-4-1024x432.png)](https://www.machinecurve.com/wp-content/uploads/2020/04/image-4.png)
+[![](images/image-4-1024x432.png)]
 
 And so are the predictions:
 
-[![](images/image-5.png)](https://www.machinecurve.com/wp-content/uploads/2020/04/image-5.png)
+[![](images/image-5.png)]
 
 ### Retrieving the predictions
 
@@ -669,11 +669,11 @@ Time to check our next calls: retrieving all predictions and just one. As expect
 
 Whereas the `GET /prediction/{id}` call, say `GET /prediction/4`, nicely returns the prediction as well as the Base64 input image:
 
-[![](images/image-7.png)](https://www.machinecurve.com/wp-content/uploads/2020/04/image-7.png)
+[![](images/image-7.png)]
 
 Which, using an online [Base64 image decoder](https://codebeautify.org/base64-to-image-converter), can be converted into the original input again:
 
-[![](images/image-8-1024x616.png)](https://www.machinecurve.com/wp-content/uploads/2020/04/image-8.png)
+[![](images/image-8-1024x616.png)]
 
 Nice! We have a working database storage for our machine learning predictions! :)
 

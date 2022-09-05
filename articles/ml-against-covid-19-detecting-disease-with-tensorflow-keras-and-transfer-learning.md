@@ -25,7 +25,7 @@ Let's take a look! 😎
 
 ## COVID-19: some context, and how ML can help
 
-[![](images/49534865371_7219ecfbcd_k-1024x800.jpg)](https://www.machinecurve.com/wp-content/uploads/2020/11/49534865371_7219ecfbcd_k-scaled.jpg)
+[![](images/49534865371_7219ecfbcd_k-1024x800.jpg)]
 
 SARS-CoV-2 pictured by a transmission electron microscope. Credit: [NIAID](https://www.flickr.com/photos/niaid/49534865371/), license: [CC BY 2.0](https://creativecommons.org/licenses/by/2.0), no changes made.
 

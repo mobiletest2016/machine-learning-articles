@@ -20,7 +20,7 @@ If you've trained the neural network well, there's a chance that the output is t
 
 Sounds great, doesn't it?
 
-[![](images/image-300x203.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/image.png)
+[![](images/image-300x203.png)]
 
 _Popularity of VAEs in [Google Trends](https://trends.google.com/trends/explore?date=today%205-y&q=variational%20autoencoder)._
 
@@ -54,7 +54,7 @@ Before we can introduce Variational Autoencoders, it's wise to cover the general
 
 At a high level, this is the architecture of an autoencoder:
 
-[![](images/Autoencoder.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/Autoencoder.png)
+[![](images/Autoencoder.png)]
 
 It takes some data as input, encodes this input into an encoded (or latent) state and subsequently recreates the input, sometimes with slight differences (Jordan, 2018A).
 
@@ -62,11 +62,11 @@ Autoencoders have an _encoder segment_, which is the mapping between the input d
 
 Reconstructions may be the original images:
 
-[![](images/4-1.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/4-1.png)
+[![](images/4-1.png)]
 
 But autoencoders may also be used for [noise reduction](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/building-an-image-denoiser-with-a-keras-autoencoder-neural-network.md):
 
-[![](images/1-5.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/1-5.png)
+[![](images/1-5.png)]
 
 The fun thing about autoencoders is that the encoder and decoder segments are _learnt_, because neural networks are used to implement them. They are trained together with the other parts of the network. Usually, the networks as a whole use loss functions such as Mean Squared Error or [Crossentropy loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-binary-categorical-crossentropy-with-keras.md) (Shafkat, 2018). This way, autoencoders will be very data-specific. This is good news when you wish to have e.g. a tailor-made denoiser, but becomes challenging when you want to use the learnt encoding across various projects. In those cases, e.g. generalized denoising functions such as mean/median sample removal may be more suitable to your problem.
 
@@ -78,15 +78,15 @@ Jordan (2018B) defines multiple types of traditional autoencoders: among them, u
 
 **Undercomplete** autoencoders involve creating an information bottleneck, by having hidden layers with many fewer neurons than the input and output layers. This way, the neural network is forced to compress much information in fewer dimensions (Jordan, 2018B) - exactly the goal of an autoencoder when generating the encoding.
 
-[![](images/undercomplete.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/undercomplete.png)
+[![](images/undercomplete.png)]
 
 **Sparse autoencoders**, on the other hand, do have an equal number of neurons in their hidden layers compared to input and output neurons, only not all of them are used or do contribute to the training process (Jordan, 2018B). Regularization techniques like L1 regularization or [Dropout](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-dropout-reduce-overfitting-in-your-neural-networks.md) can serve this purpose, effectively creating the information bottleneck once more.
 
-[![](images/sparse.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/sparse.png)
+[![](images/sparse.png)]
 
 When using **Denoising autoencoders**, the goal is no longer to _reconstruct the input data_. Rather, your goal has become _denoising the input data_ by learning the noise (Jordan, 2018B). This is achieved by adding noise to pure inputs, feeding them as samples, while having the original pure samples as targets. Minimizing reconstruction loss then involves learning noise. At MachineCurve, we have available examples for [signal noise](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/creating-a-signal-noise-removal-autoencoder-with-keras.md) and [image noise](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/building-an-image-denoiser-with-a-keras-autoencoder-neural-network.md).
 
-[![](images/3-3.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/3-3.png)
+[![](images/3-3.png)]
 
 While traditionally densely-connected layers (or Dense layers) have been used for autoencoders, it's of course also possible to use **convolutional** or **recurrent** layers when creating them. The convolutional ones are useful when you're trying to work with image data or image-like data, while the recurrent ones can e.g. be used for discrete and sequential data such as text.
 
@@ -117,7 +117,7 @@ To illustrate the point, I've trained a classic autoencoder where the encoded st
 
 The plot of our encoded space - or latent space - looks as follows. Each color represents a class:
 
-[![](images/classic_autoencoder-1024x853.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/classic_autoencoder.png)
+[![](images/classic_autoencoder-1024x853.png)]
 
 Some classes (the zeroes and especially the ones) are discriminative enough in order to be mapped quite successfully. Others, such as nines, eights and sevens, are less discriminative. This explains the relatively high loss.
 
@@ -148,7 +148,7 @@ As you can see, however, I would find outputs like six, seven, one, two, ... any
 
 But is it complete?
 
-[![](images/classic_drawing-1024x853.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/classic_drawing.png)
+[![](images/classic_drawing-1024x853.png)]
 
 Nope, it's neither.
 
@@ -176,7 +176,7 @@ Let's now take a look at a class of autoencoders that _does work_ well with gene
 
 ### How are VAEs different from traditional autoencoders?
 
-[![](images/vae_mlp-300x180.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/vae_mlp.png)
+[![](images/vae_mlp-300x180.png)]
 
 They achieve this through two main differences (Shafkat, 2018; Rocca, 2019; Jordan, 2018A):
 
@@ -191,11 +191,11 @@ Let's now take a look at these differences in more detail :)
 
 Recall that classic autoencoders encode their inputs as a single point in some multidimensional space. Like this, for five-dimensional encoded space:
 
-[![](images/classic-autoencoder.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/classic-autoencoder.png)
+[![](images/classic-autoencoder.png)]
 
 VAEs don't do this, and this is their first difference: yes, they still encode inputs to some multidimensional space, but they encode inputs as a _distribution over the latent space_ (Rocca, 2019). As part of this, the encoder doesn't output _one vector_ of size \[latex\]N\[/latex\], but instead _two vectors_ of size \[latex\]N\[/latex\]. The first is a vector of means, \[latex\]\\mu\[/latex\], and the second a vector of standard deviations, \[latex\]\\sigma\[/latex\].
 
-[![](images/vae-encoder.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/vae-encoder.png)
+[![](images/vae-encoder.png)]
 
 The _encoder_ segment of our VAE is what Kingma & Welling (2013) call the _recognition model:_ it's a learnt approximation ("what must encoding \[latex\]z\[/latex\] be given input \[latex\]x\[/latex\]?") of the _true_ posterior \[latex\]p(z | x)\[/latex\]. Since the approximation is learnt, we don't know its exact distribution, but we _do_ know that the true posterior would be Gaussian, so that the \[latex\]z\[/latex\] from our true posterior would be \[latex\]z \\sim \\mathcal{N}(\\mu,\\,\\sigma^{2})\\,\[/latex\] ("z is part of a Gaussian a.k.a. normal distribution with mean \[latex\]\\mu\[/latex\] and standard deviation \[latex\]\\sigma\[/latex\]", Kingma & Welling 2013).
 
@@ -203,17 +203,17 @@ By consequence, we assume that the _approximated_ posterior distribution (the di
 
 So:
 
-[![](images/vae-encoder-x.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/vae-encoder-x.png)
+[![](images/vae-encoder-x.png)]
 
 When we know the encoding of our input, we can randomly sample from all the variables \[latex\]X\[/latex\], selecting a number from the distribution with which the encoding was made. We then feed this number to the decoder, which decodes it into - hopefully 😀 - interpretable output (Shafkat, 2018).
 
-[![](images/vae-encoder-decoder-1024x229.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/vae-encoder-decoder.png)
+[![](images/vae-encoder-decoder-1024x229.png)]
 
 The fact that we sample randomly means that what we feed to the decoder is different every time (i.e., at every epoch during training, and at every inference in production, Jordan 2018A). This means that the reconstructed output is slightly different every time (Shafkat, 2018).
 
 It's important to understand this property, which is visualized below for a two-dimensional latent space with two Gaussian distributions (red and blue) generating a range of possible sampled \[latex\]X\[/latex\]s (the area in green):
 
-[![](images/MultivariateNormal.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/MultivariateNormal.png)
+[![](images/MultivariateNormal.png)]
 
 _Even though this work is licensed under CC0, I'd wish to pay thanks to Wikipedia user 'BScan' for creating it: ["Illustration of a multivariate gaussian distribution and its marginals."](https://en.wikipedia.org/wiki/Multivariate_normal_distribution#/media/File:MultivariateNormal.png)_
 
@@ -258,7 +258,7 @@ Fortunately, there is a workaround: adding the [Kullback-Leibler divergence](htt
 
 If we add it to the loss function (currently with reconstruction loss only) to be minimized by the neural network, and configure it to compare the probability distribution generated by the encoder with the standard Gaussian \[latex\]\\mathcal{N}(0, 1^{2})\\,\[/latex\], we get the following plot when retraining the model:
 
-[![](images/rlkl_2d-1024x853.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/rlkl_2d.png)
+[![](images/rlkl_2d-1024x853.png)]
 
 It's clear that _continuity_ is still enforced: zeroes and ones are still on opposite sides of the latent space, while for example the values 6 and 8 are close together.
 
@@ -288,9 +288,9 @@ Let's now take a walk 😂
 
 When training a VAE with the MNIST dataset, this is the latent space (on the left) and the result of selecting points in this space randomly on the right (Keras Blog, n.d.). Clearly, the latent space is continuous _and_ complete, as the generated content shows.
 
-- [![](images/vae_space.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/vae_space.png)
+- [![](images/vae_space.png)]
     
-- [![](images/vae_mnist.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/vae_mnist.png)
+- [![](images/vae_mnist.png)]
     
 
 _The script to generate these plots was created by François Chollet and can be retrieved [here](https://github.com/keras-team/keras/blob/master/examples/variational_autoencoder.py)._
@@ -301,9 +301,9 @@ Great! 😎
 
 With quite some easy changes (effectively replacing all references to `mnist` with `fashion_mnist` in the script mentioned above), one can replace the MNIST dataset with the Fashion MNIST dataset. This should be harder for the model, because the fashion items are less discriminative than the original MNIST samples. I feel that indeed, the plot of the latent space is a bit flurrier than the plot of the original MNIST dataset - but still, random decodings of points in the latent space show that it works! 🎉
 
-- [![](images/fmnist_50_latsp.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/fmnist_50_latsp.png)
+- [![](images/fmnist_50_latsp.png)]
     
-- [![](images/fmnist_50_plot.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/fmnist_50_plot.png)
+- [![](images/fmnist_50_plot.png)]
     
 
 _The script to generate these plots was created by François Chollet and can be retrieved [here](https://keras.io/examples/variational_autoencoder_deconv/)._
@@ -312,9 +312,9 @@ Now, let's see if we can improve when we regularize even further.
 
 As with the Dropout best practices, [we applied Dropout](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-dropout-reduce-overfitting-in-your-neural-networks.md) with \[latex\]p = 0.5\[/latex\] in the hidden layers and max-norm regularization with \[latex\]maxnormvalue = 2.0\[/latex\]. It seems to improve the model's ability to discriminate between classes, which also becomes clear from the samples across latent space:
 
-- [![](images/fmnist_dmax_space.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/fmnist_dmax_space.png)
+- [![](images/fmnist_dmax_space.png)]
     
-- [![](images/fmnist_dmax_plot.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/fmnist_dmax_plot.png)
+- [![](images/fmnist_dmax_plot.png)]
     
 
 _The script to generate these plots was created by François Chollet and can be retrieved [here](https://keras.io/examples/variational_autoencoder_deconv/)._

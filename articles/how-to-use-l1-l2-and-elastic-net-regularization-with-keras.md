@@ -76,7 +76,7 @@ Training a supervised machine learning model equals learning a mapping for a fun
 
 This can be achieved by going through the iterative [high-level supervised machine learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process), which means that you feed your training set to the model, generate predictions, compare these with ground truth, summarize them in a [loss value](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#loss), which you then use to [optimize](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md) the weights of your model, before starting a new iteration. This way, you might be able to find a mapping for which \[latex\]\\hat{y} \\approx y\[/latex\] is true to a great extent.
 
-[![](images/poly_both.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/poly_both.png)
+[![](images/poly_both.png)]
 
 In the exemplary scenario of the blog post linked above, we did however see that many mappings can be learned based on your training data. In the plot above, this becomes clear with a simple polyfit: for a few blue training data samples, it may learn the orange mapping, but there's no guarantee that it doesn't learn the blue one instead.
 
@@ -120,7 +120,7 @@ Let's now take a look at two possible instantiations for \[latex\]R(f)\[/latex\]
 
 When L1 Regularization is applied to one of the layers of your neural network, \[latex\]R(f)\[/latex\] is instantiated as \[latex\] \\sum\_f{ \_{i=1}^{n}} | w\_i | \[/latex\], where \[latex\]w\_i\[/latex\] is the value for one of your \[latex\]n\[/latex\] weights in that particular layer. This instantiation computes the L1 norm for a vector, which is also called "taxicab norm" as it computes and adds together the lengths between the origin and the value along the axis for a particular dimension.
 
-[![](images/l1_component.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/l1_component.png)
+[![](images/l1_component.png)]
 
 Applying L1 regularization ensures that given a relatively constant \[latex\] L\_{function}(f, \\textbf{x}, y) \[/latex\] your weights take very small values of \[latex\]\\approx 0\[/latex\], as the L1 value for \[latex\]x = 0\[/latex\] is lowest. Indeed, likely, your weights will even [become _zero_](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-are-l1-l2-and-elastic-net-regularization-in-neural-networks/#on-model-sparsity), due to the fact that the L1 derivative is constant. Applying L1 to your neural networks layers thus pushes them to drop out weights that do not contribute to their predictive power significantly enough, and thus leads to sparse models.
 
@@ -128,7 +128,7 @@ However, it may be that you don't want models to be sparse. This may be the case
 
 In this case, L2 regularization may be applied. For L2, \[latex\]R(f)\[/latex\] is instantiated as \[latex\] \\sum\_f{ \_{i=1}^{n}} w\_i^2 \[/latex\], where \[latex\]w\_i\[/latex\] is the value for one of your \[latex\]n\[/latex\] weights in that particular layer. As it's quadratic, it produces a characteristic plot:
 
-[![](images/l2_comp.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/l2_comp.png)
+[![](images/l2_comp.png)]
 
 Applying L2 regularization does lead to models where the weights will get relatively small values, i.e. where they are simple. This is similar to applying L1 regularization. However, contrary to L1, L2 regularization [does not push your weights to be _exactly zero_](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-are-l1-l2-and-elastic-net-regularization-in-neural-networks/#why-l1-yields-sparsity-and-l2-likely-does-not). This is also caused by the derivative: contrary to L1, where the derivative is a constant (it's either +1 or -1), the L2 derivative is \[latex\]2x\[/latex\]. This means that the closer you get to zero, the smaller the derivative gets, and hence the smaller the update. As with the case of dividing \[latex\]1\[/latex\] by \[latex\]2\[/latex\], then \[latex\]\\frac{1}{2}\[/latex\] by \[latex\]2\[/latex\], then \[latex\]\\frac{1}{4}\[/latex\] by \[latex\]2\[/latex\], and so on, you never reach _zero_, but the values get _really small_. For the situations where L1 cannot be applied, L2 is a good candidate for regularization.
 
@@ -184,9 +184,9 @@ Let's now take a look at how the regularizers can be applied in a neural network
 
 Here's the model that we'll be creating today. It was generated with [Net2Vis](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/visualizing-keras-neural-networks-with-net2vis-and-docker.md), a cool web based visualization library for Keras models (Bäuerle & Ropinski, 2019):
 
-- [![](images/graph-4.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/graph-4.png)
+- [![](images/graph-4.png)]
     
-- [![](images/legend-2.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/legend-2.png)
+- [![](images/legend-2.png)]
     
 
 As you can see, it's a convolutional neural network. It takes 28 x 28 pixel images as input, learns 32 and 64 filters in two Conv2D layers and applies max pooling twice, together with some Dropout. These results are fed to the Dense layers through a Flattening operation; the Dense layers generate the final prediction, which is a classification operation to 47 output classes through a Softmax activation function.
@@ -564,60 +564,60 @@ Next, you'll find all the `history` based [plots of the training process](https:
 
 ### No regularization
 
-- [![](images/no_a.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/no_a.png)
+- [![](images/no_a.png)]
     
-- [![](images/no_l.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/no_l.png)
+- [![](images/no_l.png)]
     
 
 ### L1 Kernel/Bias regularization
 
-- [![](images/l1_kb_a.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/l1_kb_a.png)
+- [![](images/l1_kb_a.png)]
     
-- [![](images/l1_kb.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/l1_kb.png)
+- [![](images/l1_kb.png)]
     
 
 ### L1 Activity regularization
 
-- [![](images/l1_a_a.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/l1_a_a.png)
+- [![](images/l1_a_a.png)]
     
-- [![](images/l1_a.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/l1_a.png)
+- [![](images/l1_a.png)]
     
 
 ### L2 Kernel/Bias regularization
 
-- [![](images/l2_a.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/l2_a.png)
+- [![](images/l2_a.png)]
     
-- [![](images/l2_kb.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/l2_kb.png)
+- [![](images/l2_kb.png)]
     
 
 ### L2 Activity regularization
 
-- [![](images/l2_a_a.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/l2_a_a.png)
+- [![](images/l2_a_a.png)]
     
-- [![](images/l2_a_l.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/l2_a_l.png)
+- [![](images/l2_a_l.png)]
     
 
 ### Extended L2 Activity regularization
 
 Here, \[latex\]\\lambda = 0.10\[/latex\], to find out whether the increased impact of the regularizer improves the model.
 
-- [![](images/extended_a.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/extended_a.png)
+- [![](images/extended_a.png)]
     
-- [![](images/extended_l.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/extended_l.png)
+- [![](images/extended_l.png)]
     
 
 ### Elastic Net Kernel/Bias regularization
 
-- [![](images/l1l2_a.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/l1l2_a.png)
+- [![](images/l1l2_a.png)]
     
-- [![](images/l1l2_l.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/l1l2_l.png)
+- [![](images/l1l2_l.png)]
     
 
 ### Elastic Net Activity regularization
 
-- [![](images/l1_l2_a_a.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/l1_l2_a_a.png)
+- [![](images/l1_l2_a_a.png)]
     
-- [![](images/l1_l2_a.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/l1_l2_a.png)
+- [![](images/l1_l2_a.png)]
     
 
 * * *

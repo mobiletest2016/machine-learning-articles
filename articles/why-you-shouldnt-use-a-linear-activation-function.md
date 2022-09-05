@@ -45,7 +45,7 @@ One way of doing so is by using _gradients_ and _backpropagation_, the latter of
 
 And this often causes a really fast drop in loss at first, while it gets stable over time:
 
-[![](images/image-1024x223.png)](https://machinecurve.com/wp-content/uploads/2019/06/image.png)
+[![](images/image-1024x223.png)]
 
 An example from my [TensorBoard](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-tensorboard-with-keras.md)
 
@@ -59,7 +59,7 @@ But this is often a really bad idea.
 
 And it all has to do with the gradient of this linear activation function:
 
-[![](images/derivative_linear-1024x537.png)](https://machinecurve.com/wp-content/uploads/2019/06/derivative_linear.png)
+[![](images/derivative_linear-1024x537.png)]
 
 Yep, it's 1.
 

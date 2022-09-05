@@ -683,9 +683,9 @@ By tweaking with the `n` parameter in the configuration settings (like He et al.
 
 These are our results when training a ResNet-20 (`n = 3`) on the CIFAR-10 dataset. Training took approximately 45 minutes:
 
-[![](images/epoch_learning_rate-1024x192.png)](https://www.machinecurve.com/wp-content/uploads/2022/01/epoch_learning_rate.png)
+[![](images/epoch_learning_rate-1024x192.png)]
 
-[![](images/epoch_accuracy-1024x190.png)](https://www.machinecurve.com/wp-content/uploads/2022/01/epoch_accuracy.png)
+[![](images/epoch_accuracy-1024x190.png)]
 
 Clearly, the results of the learning rate scheduler are visible around epoch 90 and 135, both in terms of the learning rate applied (above) and accuracy (validation accuracy is blue; training accuracy is orange).
 

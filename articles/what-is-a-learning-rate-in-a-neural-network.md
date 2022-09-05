@@ -47,7 +47,7 @@ Let's go! 😊
 
 If we wish to understand what learning rates are and why they are there, we must first take a look at the [high-level machine learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process) for supervised learning scenarios:
 
-[![](images/High-level-training-process-1024x973.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/09/High-level-training-process.jpg)
+[![](images/High-level-training-process-1024x973.jpg)]
 
 ### Feeding data forward and computing loss
 
@@ -83,7 +83,7 @@ The example above depicts what is known as a _fixed learning rate_. You set the 
 
 And as we shall investigate more deeply in another blog, this is also the drawback of a fixed learning rate. As you know, neural networks learn exponentially during the first few epochs - and fixed learning rates may then be _too small_, which means that you waste resources in terms of opportunity cost.
 
-[![](images/huber_loss_d1.5-1024x511.png)](https://www.machinecurve.com/wp-content/uploads/2019/10/huber_loss_d1.5.png)
+[![](images/huber_loss_d1.5-1024x511.png)]
 
 Loss values for some training process. As you can see, substantial learning took place initially, changing into slower learning eventually.
 

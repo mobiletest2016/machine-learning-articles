@@ -46,7 +46,7 @@ Source: [Alisneaky on Wikipedia](https://commons.wikimedia.org/wiki/File:Kernel_
 
 ## Constructing an SVM with Python and Scikit-learn
 
-[![](images/separable_data.png)](https://www.machinecurve.com/wp-content/uploads/2020/05/separable_data.png)
+[![](images/separable_data.png)]
 
 _Today's dataset the SVM is trained on: clearly, two blobs of separable data are visible._
 
@@ -149,7 +149,7 @@ Of course, by leaving out the first `plt.scatter`, you can visualize the support
 
 Et voila - we have a nice plot of our support vectors:
 
-[![](images/support_vectors.png)](https://www.machinecurve.com/wp-content/uploads/2020/05/support_vectors.png)
+[![](images/support_vectors.png)]
 
 \[affiliatebox\]
 

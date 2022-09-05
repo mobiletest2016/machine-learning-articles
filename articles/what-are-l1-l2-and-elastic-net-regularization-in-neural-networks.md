@@ -40,7 +40,7 @@ This understanding brings us to the need for regularization.
 
 Say that you've got a dataset that contains points in a 2D space, like this small one:
 
-[![](images/points.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/points.png)
+[![](images/points.png)]
 
 Now suppose that these numbers are reported by some bank, which loans out money (the values on the x axis in $ of dollars). This has an impact on the weekly cash flow within a bank, attributed to the _loan_ and other factors (together represented by the y values).
 
@@ -50,7 +50,7 @@ Machine learning is used to generate a predictive model - a regression model, to
 
 After training, the model is brought to production, but soon enough the bank employees find out that it doesn't work. Upon analysis, the bank employees find that the actual _function_ learnt by the machine learning model is this one:
 
-[![](images/poly_large.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/poly_large.png)
+[![](images/poly_large.png)]
 
 The employees instantly know why their model does not work, using nothing more than common sense:
 
@@ -58,11 +58,11 @@ The employees instantly know why their model does not work, using nothing more t
 
 They'd rather have wanted something like this:
 
-[![](images/poly_small.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/poly_small.png)
+[![](images/poly_small.png)]
 
 Which, as you can see, makes a lot more sense:
 
-[![](images/poly_both.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/poly_both.png)
+[![](images/poly_both.png)]
 
 ### On training machine learning models
 
@@ -151,15 +151,15 @@ In terms of maths, this can be expressed as \[latex\] R(f) = \\sum\_f{ \_{i=1}^{
 
 Visually, and hence intuitively, the process goes as follows. Suppose that we have this two-dimensional vector \[latex\]\[2, 4\]\[/latex\]:
 
-[![](images/empty_vector.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/empty_vector.png)
+[![](images/empty_vector.png)]
 
 ...our formula would then produce a computation over two dimensions, for the first:
 
-[![](images/taxicab1.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/taxicab1.png)
+[![](images/taxicab1.png)]
 
 Then the second:
 
-[![](images/taxicab2.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/taxicab2.png)
+[![](images/taxicab2.png)]
 
 The L1 norm for our vector is thus 6, as you can see:
 
@@ -181,7 +181,7 @@ Say we had a negative vector instead, e.g. \[latex\]\[-1, -2.5\]\[/latex\]:
 
 As you can derive from the formula above, L1 Regularization takes some value related to the weights, and adds it to the same values for the other weights. As you know, "some value" is the absolute value of the weight or \[latex\]| w\_i |\[/latex\], and we take it for a reason:
 
-[![](images/l1_component.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/l1_component.png)
+[![](images/l1_component.png)]
 
 Taking the absolute value ensures that _negative values_ contribute to the regularization loss component as well, as the sign is removed and only the, well, absolute value remains. This way, L1 Regularization natively supports negative vectors as well, such as the one above.
 
@@ -193,7 +193,7 @@ But why is this the case? Let's take a closer look (Caspersen, n.d.; Neil G., n.
 
 This is the derivative for L1 Regularization:
 
-[![](images/l1_deriv.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/l1_deriv.png)
+[![](images/l1_deriv.png)]
 
 It's either -1 or +1, and is undefined at \[latex\]x = 0\[/latex\].
 
@@ -227,7 +227,7 @@ When added to the regularization equation, you get this:
 
 Visually, it looks as follows:
 
-[![](images/l2_comp.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/l2_comp.png)
+[![](images/l2_comp.png)]
 
 As you can see, L2 regularization also stimulates your values to approach zero (as the loss for the regularization component is zero when \[latex\]x = 0\[/latex\]), and hence stimulates them towards being very small values.
 
@@ -237,7 +237,7 @@ However, unlike L1 regularization, it does not push the values to be _exactly ze
 
 Let's recall the gradient for L1 regularization:
 
-[![](images/l1_deriv.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/l1_deriv.png)
+[![](images/l1_deriv.png)]
 
 Regardless of the value of \[latex\]x\[/latex\], the gradient is a constant - either plus or minus one.
 
@@ -290,7 +290,7 @@ With Elastic Net Regularization, the total value that is to be minimized thus be
 
 As you can see, for \[latex\]\\alpha = 1\[/latex\], Elastic Net performs Ridge (L2) regularization, while for \[latex\]\\alpha = 0\[/latex\] Lasso (L1) regularization is performed. Tuning the alpha parameter allows you to balance between the two regularizers, possibly based on prior knowledge about your dataset. Visually, we can see this here:
 
-[![](images/penalty-values.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/penalty-values.png)
+[![](images/penalty-values.png)]
 
 Do note that frameworks often allow you to specify \[latex\]\\lambda\_1\[/latex\] and \[latex\]\\lambda\_2\[/latex\] manually. The penalty term then equals:
 

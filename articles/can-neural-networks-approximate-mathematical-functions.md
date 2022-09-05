@@ -117,15 +117,15 @@ plt.show()
 
 When you plot the functions, you get pretty decent results for \[latex\]x^2\[/latex\]:
 
-[![](images/x2_approximated-1024x537.jpeg)](https://machinecurve.com/wp-content/uploads/2019/07/x2_approximated.jpeg)
+[![](images/x2_approximated-1024x537.jpeg)]
 
 For \[latex\]sin(x)\[/latex\], results are worse:
 
-[![](images/sinx_approximated-1024x537.jpeg)](https://machinecurve.com/wp-content/uploads/2019/07/sinx_approximated.jpeg)
+[![](images/sinx_approximated-1024x537.jpeg)]
 
 What you see is that it approximates the sine function quite appropriately for a _very small domain_, e.g. \[-5, +3\], but then loses track. We might improve the estimation by feeding it with _more_ samples, so we increase the number of random samples to 100.000, still at the interval \[-50, 50\]:
 
-[![](images/sinx_more_data-1024x537.jpeg)](https://machinecurve.com/wp-content/uploads/2019/07/sinx_more_data.jpeg)
+[![](images/sinx_more_data-1024x537.jpeg)]
 
 That's already much better, but still insufficient. Perhaps, the cause is different - e.g. we may achieve better results if we used something like sin(x) as an activation function. However, that's something for a next blog.
 
@@ -133,7 +133,7 @@ That's already much better, but still insufficient. Perhaps, the cause is differ
 
 And finally, this is what \[latex\]1/x\[/latex\] looks like:
 
-[![](images/1x_approximated-1024x537.jpeg)](https://machinecurve.com/wp-content/uploads/2019/07/1x_approximated.jpeg)
+[![](images/1x_approximated-1024x537.jpeg)]
 
 That one's getting closer again, but you can stee that it is not yet _highly accurate._
 
@@ -143,7 +143,7 @@ The experiment was quite interesting, actually.
 
 First, I noticed that you need more training data than I expected. For example, with only 1000 samples in my training set, the approximation gets substantially worse:
 
-[![](images/x2_1000-1024x537.jpeg)](https://machinecurve.com/wp-content/uploads/2019/07/x2_1000.jpeg)
+[![](images/x2_1000-1024x537.jpeg)]
 
 Second, not all the functions could be approximated properly. Particularly, the sine function was difficult to approximate.
 

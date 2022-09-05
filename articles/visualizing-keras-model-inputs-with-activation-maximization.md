@@ -181,7 +181,7 @@ This is what _activation maximization can do:_ **you visualize what a class in y
 
 In the case of the '4' mentioned above, that would be something like this:
 
-[![](images/4-1.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/4-1.png)
+[![](images/4-1.png)]
 
 * * *
 
@@ -358,50 +358,50 @@ Now, let's take a look what happens when we run our model. Obviously, it will fi
 
 And surprisingly, they are quite interpretable for humans! We can recognize numbers - especially 0, 1, 8 and 9 . Really cool! 😎
 
-- [![](images/0.png)](https://www.machinecurve.com/wp-content/uploads/2021/03/0.png)
+- [![](images/0.png)]
     
-- [![](images/1.png)](https://www.machinecurve.com/wp-content/uploads/2021/03/1.png)
+- [![](images/1.png)]
     
-- [![](images/2.png)](https://www.machinecurve.com/wp-content/uploads/2021/03/2.png)
+- [![](images/2.png)]
     
-- [![](images/3.png)](https://www.machinecurve.com/wp-content/uploads/2021/03/3.png)
+- [![](images/3.png)]
     
-- [![](images/4.png)](https://www.machinecurve.com/wp-content/uploads/2021/03/4.png)
+- [![](images/4.png)]
     
-- [![](images/5.png)](https://www.machinecurve.com/wp-content/uploads/2021/03/5.png)
+- [![](images/5.png)]
     
-- [![](images/6.png)](https://www.machinecurve.com/wp-content/uploads/2021/03/6.png)
+- [![](images/6.png)]
     
-- [![](images/7.png)](https://www.machinecurve.com/wp-content/uploads/2021/03/7.png)
+- [![](images/7.png)]
     
-- [![](images/8.png)](https://www.machinecurve.com/wp-content/uploads/2021/03/8.png)
+- [![](images/8.png)]
     
-- [![](images/9.png)](https://www.machinecurve.com/wp-content/uploads/2021/03/9.png)
+- [![](images/9.png)]
     
 
 ### Why swapping Softmax is necessary
 
 You already saw what happened when you don't swap Softmax for linear. However, for the sake of completeness, this is what you'll get for every class when you _don't_ swap Softmax:
 
-- [![](images/0-2.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/0-2.png)
+- [![](images/0-2.png)]
     
-- [![](images/1-2.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/1-2.png)
+- [![](images/1-2.png)]
     
-- [![](images/2-2.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/2-2.png)
+- [![](images/2-2.png)]
     
-- [![](images/3-2.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/3-2.png)
+- [![](images/3-2.png)]
     
-- [![](images/4-2.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/4-2.png)
+- [![](images/4-2.png)]
     
-- [![](images/5-2.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/5-2.png)
+- [![](images/5-2.png)]
     
-- [![](images/6-2.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/6-2.png)
+- [![](images/6-2.png)]
     
-- [![](images/7-2.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/7-2.png)
+- [![](images/7-2.png)]
     
-- [![](images/8-2.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/8-2.png)
+- [![](images/8-2.png)]
     
-- [![](images/9-2.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/9-2.png)
+- [![](images/9-2.png)]
     
 
 * * *
@@ -412,7 +412,7 @@ Let's now see what happens when we perform the same operation with the CIFAR10 d
 
 This is a random selection from CIFAR10:
 
-[![](images/cifar10_images.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/cifar10_images.png)
+[![](images/cifar10_images.png)]
 
 This is the code used for CIFAR10 visualization. It is really similar to the MNIST one above, so take a look there for explanations:
 
@@ -533,50 +533,50 @@ for i in range(0, len(images)):
 
 At 25 epochs, it's possible to detect the shapes of the objects very vaguely - I think this is especially visible at automobiles, deer, horses and trucks.
 
-- [![](images/airplane.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/airplane.png)
+- [![](images/airplane.png)]
     
-- [![](images/automobile.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/automobile.png)
+- [![](images/automobile.png)]
     
-- [![](images/bird.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/bird.png)
+- [![](images/bird.png)]
     
-- [![](images/cat.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/cat.png)
+- [![](images/cat.png)]
     
-- [![](images/deer.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/deer.png)
+- [![](images/deer.png)]
     
-- [![](images/dog.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/dog.png)
+- [![](images/dog.png)]
     
-- [![](images/frog.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/frog.png)
+- [![](images/frog.png)]
     
-- [![](images/horse.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/horse.png)
+- [![](images/horse.png)]
     
-- [![](images/ship.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/ship.png)
+- [![](images/ship.png)]
     
-- [![](images/truck.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/truck.png)
+- [![](images/truck.png)]
     
 
 ### Visualizations at 100 epochs
 
 At 100 epochs, the model specified above is overfitting quite severely - but nevertheless, these are the visualizations:
 
-- [![](images/airplane-1.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/airplane-1.png)
+- [![](images/airplane-1.png)]
     
-- [![](images/automobile-1.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/automobile-1.png)
+- [![](images/automobile-1.png)]
     
-- [![](images/bird-1.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/bird-1.png)
+- [![](images/bird-1.png)]
     
-- [![](images/cat-1.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/cat-1.png)
+- [![](images/cat-1.png)]
     
-- [![](images/deer-1.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/deer-1.png)
+- [![](images/deer-1.png)]
     
-- [![](images/dog-1.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/dog-1.png)
+- [![](images/dog-1.png)]
     
-- [![](images/frog-1.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/frog-1.png)
+- [![](images/frog-1.png)]
     
-- [![](images/horse-1.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/horse-1.png)
+- [![](images/horse-1.png)]
     
-- [![](images/ship-1.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/ship-1.png)
+- [![](images/ship-1.png)]
     
-- [![](images/truck-1.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/truck-1.png)
+- [![](images/truck-1.png)]
     
 
 Primarily, they have become 'sharper' - but not necessarily more detailed. Well, this is already questionable at first for a 32x32 pixel image, but also shows that you should not expect _magic_ to happen, despite the possible advantages of methods like activation maximization.

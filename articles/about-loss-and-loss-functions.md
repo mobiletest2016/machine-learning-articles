@@ -36,7 +36,7 @@ Before we can actually introduce the concept of loss, we'll have to take a look 
 
 Let's take a look at this training process, which is cyclical in nature.
 
-[![](images/High-level-training-process-1024x973.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/09/High-level-training-process.jpg)
+[![](images/High-level-training-process-1024x973.jpg)]
 
 ### Forward pass
 
@@ -180,7 +180,7 @@ This is the mathematical formula:
 
 And this the plot:
 
-[![](images/logcosh-1024x433.jpeg)](https://www.machinecurve.com/wp-content/uploads/2019/10/logcosh.jpeg)
+[![](images/logcosh-1024x433.jpeg)]
 
 Okay, now let's introduce some intuitive explanation.
 
@@ -205,7 +205,7 @@ Let's move on to **Huber loss**, which we already hinted about in the section ab
 
 Or, visually:
 
-[![](images/huberloss-1024x580.jpeg)](https://www.machinecurve.com/wp-content/uploads/2019/10/huberloss.jpeg)
+[![](images/huberloss-1024x580.jpeg)]
 
 When interpreting the formula, we see two parts:
 
@@ -284,7 +284,7 @@ That is: when the actual target meets the prediction, the loss is zero. Negative
 
 For `t = 1`, or \[latex\]1\[/latex\] is your target, hinge loss looks like this:
 
-[![](images/hinge_loss-1024x507.jpeg)](https://www.machinecurve.com/wp-content/uploads/2019/10/hinge_loss.jpeg)
+[![](images/hinge_loss-1024x507.jpeg)]
 
 Let's now consider three scenarios which can occur, given our target \[latex\]t = 1\[/latex\] (Kompella, 2017; Wikipedia, 2011):
 
@@ -341,7 +341,7 @@ This is its formula:
 
 It can be visualized in this way:
 
-[![](images/bce-1-1024x421.png)](blob:https://www.machinecurve.com/3ed39fd0-ad6b-45d4-a546-1fad50051cc9)
+[![](images/bce-1-1024x421.png)]
 
 And, like before, let's now explain it in more intuitive ways.
 
@@ -351,7 +351,7 @@ When you input both into the formula, loss will be computed related to the targe
 
 When the target is 0, you can see that the loss is mirrored - which is exactly what we want:
 
-[![](images/bce_t0-1024x459.png)](blob:https://www.machinecurve.com/59c5dd36-b3dc-49c8-bd2b-a40865b79063)
+[![](images/bce_t0-1024x459.png)]
 
 #### Categorical crossentropy
 
@@ -427,7 +427,7 @@ It performs in pretty much similar ways to regular categorical crossentropy loss
 
 Sometimes, machine learning problems involve the comparison between two probability distributions. An example comparison is the situation below, in which the question is _how much the uniform distribution differs from the Binomial(10, 0.2) distribution_.
 
-[![](images/kld.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/kld.png)
+[![](images/kld.png)]
 
 When you wish to compare two probability distributions, you can use the Kullback-Leibler divergence, a.k.a. KL divergence (Wikipedia, 2004):
 

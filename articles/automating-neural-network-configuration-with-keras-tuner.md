@@ -37,7 +37,7 @@ That's why we'll take a look at the [high-level supervised machine learning proc
 
 Here it is:
 
-[![](images/High-level-training-process-1024x973.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/09/High-level-training-process.jpg)
+[![](images/High-level-training-process-1024x973.jpg)]
 
 In your machine learning workflow, you have selected or extracted features and targets for your model based on a priori analysis of your dataset - perhaps using dimensionality reduction techniques like [PCA](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/introducing-pca-with-python-and-scikit-learn-for-machine-learning.md). Using those features, you will be able to train your machine learning model - visible in green. You do so iteratively:
 

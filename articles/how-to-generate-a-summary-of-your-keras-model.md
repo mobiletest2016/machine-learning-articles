@@ -159,7 +159,7 @@ Clearly, all the high-level building blocks are visible:
 - Next, we compile the skeleton into an actual model and subsequently start the training process.
 - Once training has finished, we evaluate and show the evaluation on screen.
 
-[![](images/cifar10_images.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/cifar10_images.png)
+[![](images/cifar10_images.png)]
 
 Now, how to add that summary?
 

@@ -34,7 +34,7 @@ Are you ready? Let's go! 😎
 
 Suppose that you are training a [convolutional neural network](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/convolutional-neural-networks-and-their-components-for-computer-vision.md), which is a type of neural network where so-called "convolutional layers" serve as feature extractors:
 
-[![](images/CNN-1.png)](https://www.machinecurve.com/wp-content/uploads/2019/09/CNN-1.png)
+[![](images/CNN-1.png)]
 
 In the drawing above, some input data (which is likely an RGB image) of height \[latex\]H\[/latex\] and width \[latex\]W\[/latex\] is fed to a convolutional layer. This layer, which slides (or "convolves") \[latex\]N\[/latex\] kernels of size 3x3x3 over the input, produces \[latex\]N\[/latex\] so-called "feature maps" as output. Through the _weights_ of the kernels, which have been [optimized](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md) based on the training dataset, the neural network learns to recognize featues in the input image.
 
@@ -58,7 +58,7 @@ The first type of padding that we'll make available for Keras: **constant paddin
 
 Let's take a look at what constant padding does by means of this schematic drawing:
 
-[![](images/constantpad.jpg)](https://www.machinecurve.com/wp-content/uploads/2020/02/constantpad.jpg)
+[![](images/constantpad.jpg)]
 
 As you can see, the feature maps that are the output of the `Conv2D` layer that is applied to the input data, are smaller than the input data itself. This is perfectly normal, and normally, one would apply [zero padding](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-padding-with-keras/#how-to-use-same-zero-padding-with-keras). However, can't we pad with a constant value \[latex\]c\[/latex\] instead of zeros?
 
@@ -104,11 +104,11 @@ The code above effectively defines a new layer type for Keras, which we call `Co
 
 Now, let's take a look at whether it works. If we applied `ConstantPadding1D` with `constant = 0` and `padding = (5, 4)` after a `Conv1D` layer with a `kernel_size = 10`, we should expect to see Zero Padding applied to 1D data:
 
-[![](images/zero_padding_1d-1-1024x147.png)](https://www.machinecurve.com/wp-content/uploads/2020/02/zero_padding_1d-1.png)
+[![](images/zero_padding_1d-1-1024x147.png)]
 
 Indeed, the left and the right of the padded feature map clearly show the zeroes being padded successfully. This is supported even more by the fact that if changed into `constant = 23`, the padding changes color, as expected:
 
-[![](images/23_pad_1d-1024x147.png)](https://www.machinecurve.com/wp-content/uploads/2020/02/23_pad_1d.png)
+[![](images/23_pad_1d-1024x147.png)]
 
 In both padding cases, note that the "left side" of the input is very dark, and that this darkness is also visible in the feature map. This provides some trust that it's the actual feature map that we visualize :)
 
@@ -150,11 +150,11 @@ The code is pretty similar to the one of `ConstantPadding1D`:
 
 Now, time for results :) Applying `ConstantPadding2D` with `constant = 0` equals Zero Padding:
 
-[![](images/zero_padding.png)](https://www.machinecurve.com/wp-content/uploads/2020/02/zero_padding.png)
+[![](images/zero_padding.png)]
 
 However, the strength of `ConstantPadding2D` over Keras built-in `ZeroPadding2D` is that you can use any constant, as with `ConstantPadding1D`. For example, with `constant = 23`, this is what you get:
 
-[![](images/constant23.png)](https://www.machinecurve.com/wp-content/uploads/2020/02/constant23.png)
+[![](images/constant23.png)]
 
 Great! :D
 
@@ -168,7 +168,7 @@ The second type of padding that we'll make available for Keras: **reflection pad
 
 In order to understand reflection padding, it's important that we first take a look at this schematic drawing of \[latex\](1, 2)\[/latex\] padding which, by coincidence ;-), we call "reflection padding":
 
-[![](images/reflection_pad.jpg)](https://www.machinecurve.com/wp-content/uploads/2020/02/reflection_pad.jpg)
+[![](images/reflection_pad.jpg)]
 
 Let's now take a look at the first row of our unpadded input, i.e. the yellow box. It's \[latex\]\[3, 5, 1\]\[/latex\]. Reflection padding essentially uses the contents of this row for padding the values directly next to it. For example, move to the right, i.e. from 3 to 1. Then, move one additional box to the right - you'll find a 5. Hey, that's the middle value of our row. Then, you'll find a 3. Hey, that's the first value! And so on. You see the same happening on the left, and on top.
 
@@ -208,7 +208,7 @@ Now, when we apply this padding to an 1D input, we can see how it works. Firstly
 
 However, what you'll also see, is that from the "max value" in your feature map at around 5, exact symmetry is visible on the left and on the right. This is indeed reflection padding in action!
 
-[![](images/reflection_1d-1024x147.png)](https://www.machinecurve.com/wp-content/uploads/2020/02/reflection_1d.png)
+[![](images/reflection_1d-1024x147.png)]
 
 ### Keras ReflectionPadding2D
 
@@ -242,7 +242,7 @@ The value for `compute_output_shape` is equal to `ConstantPadding2D`. So is the 
 
 ...except for the results, perhaps :) Using 2D data, the effect of reflection padding is even more visible. As you can see, with a relatively large kernel, the input is reduced to a more abstract feature map. However, the feature map has the same size as the input data, and shows perfect symmetry around the edges. Reflection padding in action! :)
 
-[![](images/reflection.png)](https://www.machinecurve.com/wp-content/uploads/2020/02/reflection.png)
+[![](images/reflection.png)]
 
 * * *
 
@@ -256,7 +256,7 @@ Replication padding is pretty similar to reflection padding, actually, and attem
 
 However, it does so in a slightly different way:
 
-[![](images/replication_pad.png)](https://www.machinecurve.com/wp-content/uploads/2020/02/replication_pad.png)
+[![](images/replication_pad.png)]
 
 Instead of a pure _reflection_, like Reflection Padding, _replication_ padding makes a copy of the input, reverses it, and then apply it. Take a look at the first row again: \[latex\]\[3, 5, 1\]\[/latex\] -> \[latex\]\[1, 5, 3\]\[/latex\], after which it's applied. In the results, you should thus see a more broad "transition zone" from _input_ to _padding_.
 
@@ -296,7 +296,7 @@ Now, let's take a look at the results :)
 
 Indeed, it's clear that the "transition zone" between input and padding is broader. Compared to reflection padding, the gray zone around position 5 is broader. This, obviously, is caused by the _copy_ instead of _reflection_ that replication padding makes:
 
-[![](images/replication_1d-1024x147.png)](https://www.machinecurve.com/wp-content/uploads/2020/02/replication_1d.png)
+[![](images/replication_1d-1024x147.png)]
 
 ### Keras ReplicationPadding2D
 
@@ -328,7 +328,7 @@ class ReplicationPadding2D(Layer):
 
 Here, the difference between replication and reflection padding is visible even better. The feature map is generated - i.e., it's more abstract than the input data - and it is padded smoothly. However, the "transition zone" is broader than with reflection padding - and this is clearly visible on the bottom right of the feature map:
 
-[![](images/replication.png)](https://www.machinecurve.com/wp-content/uploads/2020/02/replication.png)
+[![](images/replication.png)]
 
 * * *
 

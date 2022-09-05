@@ -36,7 +36,7 @@ Are you ready? Let's go! 😎
 
 Suppose that you're training a [convolutional neural network](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/convolutional-neural-networks-and-their-components-for-computer-vision.md). Your goal is to classify images from a dataset - say, the [SVHN](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/making-more-datasets-available-for-keras.md) one. The operation performed by the first convolutional layer in your neural network can be represented as follows:
 
-[![](images/CNN-1.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/09/CNN-1.jpg)
+[![](images/CNN-1.jpg)]
 
 The inputs for this layer are images, of height \[latex\]H\[/latex\], width \[latex\]W\[/latex\] and with three channels. Thus, they're likely RGB images. Using a 3x3x3 kernel, a convolution operation is performed over the input image, generating \[latex\]N\[/latex\] so-called "feature maps" of size \[latex\]H\_{fm} \\times W\_{fm}\[/latex\]. One feature map learns one particular feature present in the image. Through [activating](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-do-convnets-see-visualizing-filters-with-activation-maximization.md), these feature maps contribute to the outcome prediction during training, and for new data as well. \[latex\]N\[/latex\] can be configured by the machine learning engineer prior to starting the training process.
 
@@ -50,7 +50,7 @@ If we as humans were to do that, we would look at **both the details and the hig
 
 Now let's take a look at the concept of a feature map again. In the first layer, you learn a feature map based on very "concrete" aspects of the image. Here, the feature map consists of very low-level elements within the image, such as curves and edges, a.k.a. the **details**. However, we cannot see the **higher-level** **patterns** with just one convolutional layer. We need many, stacked together, to learn these patterns. This is also called building a spatial hierarchy (Chollet, 2017). Good spatial hierarchies summarize the data substantially when moving from bottom to top, and they're like a pyramid. Here's a good one versus a bad one:
 
-[![](images/hierarchies.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/hierarchies.png)
+[![](images/hierarchies.png)]
 
 _A good spatial hierarchy (left) versus a worse one (right)._
 
@@ -81,17 +81,17 @@ Let's take a look at Max Pooling first.
 
 Suppose that this is one of the 4 x 4 pixels feature maps from our ConvNet:
 
-[![](images/Max-Pooling.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/Max-Pooling.png)
+[![](images/Max-Pooling.png)]
 
 If we want to downsample it, we can use a pooling operation what is known as "max pooling" (more specifically, this is _two-dimensional_ max pooling). In this pooling operation, a \[latex\]H \\times W\[/latex\] "block" slides over the input data, where \[latex\]H\[/latex\] is the height and \[latex\]W\[/latex\] the width of the block. The stride (i.e. how much it steps during the sliding operation) is often equal to the pool size, so that its effect equals a reduction in height and width.
 
 For each block, or "pool", the operation simply involves computing the \[latex\]max\[/latex\] value, like this:
 
-[![](images/Max-Pooling-1.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/Max-Pooling-1.png)
+[![](images/Max-Pooling-1.png)]
 
 Doing so for each pool, we get a nicely downsampled outcome, greatly benefiting the spatial hierarchy we need:
 
-[![](images/Max-Pooling-2.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/Max-Pooling-2.png)
+[![](images/Max-Pooling-2.png)]
 
 ### How Max Pooling benefits translation invariance
 
@@ -127,11 +127,11 @@ Oops, now I already gave away what Average Pooling does :)
 
 Another type of pooling layers is the Average Pooling layer. Here, rather than a `max` value, the `avg` for each block is computed:
 
-[![](images/Average-Pooling.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/Average-Pooling.png)
+[![](images/Average-Pooling.png)]
 
 As you can see, the output is also different - and less extreme compared to Max Pooling:
 
-[![](images/Average-Pooling-1.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/Average-Pooling-1.png)
+[![](images/Average-Pooling-1.png)]
 
 Average Pooling is different from Max Pooling in the sense that it retains much information about the "less important" elements of a block, or pool. Whereas Max Pooling simply throws them away by picking the maximum value, Average Pooling blends them in. This can be useful in a variety of situations, where such information is useful. We'll see one in the next section.
 
@@ -161,11 +161,11 @@ If the position of objects is not important, Max Pooling seems to be the better 
 
 Another type of pooling layer is the Global Max Pooling layer. Here, we set the pool size equal to the input size, so that the `max` of the entire input is computed as the output value (Dernoncourt, 2017):
 
-[![](images/Global-Max-Pooling-3.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/Global-Max-Pooling-3.png)
+[![](images/Global-Max-Pooling-3.png)]
 
 Or, visualizing it differently:
 
-[![](images/Global-Max-Pooling-1.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/Global-Max-Pooling-1.png)
+[![](images/Global-Max-Pooling-1.png)]
 
 Global pooling layers can be used in a variety of cases. Primarily, it can be used to reduce the dimensionality of the feature maps output by some convolutional layer, to replace Flattening and sometimes even Dense layers in your classifier (Christlein et al., 2019). What's more, it can also be used for e.g. word spotting (Sudholt & Fink, 2016). This is due to the property that it allows detecting _noise_, and thus "large outputs" (e.g. the value 9 in the exmaple above). However, this is also one of the downsides of Global Max Pooling, and like the regular one, we next cover Global Average Pooling.
 
@@ -175,11 +175,11 @@ Global pooling layers can be used in a variety of cases. Primarily, it can be us
 
 When applying Global Average Pooling, the pool size is still set to the size of the layer input, but rather than the maximum, the average of the pool is taken:
 
-[![](images/Global-Average-Pooling-2.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/Global-Average-Pooling-2.png)
+[![](images/Global-Average-Pooling-2.png)]
 
 Or, once again when visualized differently:
 
-[![](images/Global-Average-Pooling-3.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/Global-Average-Pooling-3.png)
+[![](images/Global-Average-Pooling-3.png)]
 
 They're often used to replace the fully-connected or densely-connected layers in a classifier. Instead, the model ends with a convolutional layer that generates as many feature maps as the number of target classes, and applies global average pooling to each in order to convert each feature map into one value (Mudau, n.d.). As feature maps can recognize certain elements within the input data, the maps in the final layer effectively learn to "recognize" the presence of a particular class in this architecture. By feeding the values generated by global average pooling into a [Softmax activation function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-does-the-softmax-activation-function-work.md), you once again obtain the multiclass probability distribution that you want.
 

@@ -59,7 +59,7 @@ There exist two ways to achieve random initialization: by means of a normal dist
 
 This is the uniform distribution:
 
-[![](images/Uniform_Distribution_PDF_SVG.svg_-1024x732.png)](https://machinecurve.com/wp-content/uploads/2019/08/Uniform_Distribution_PDF_SVG.svg_.png)
+[![](images/Uniform_Distribution_PDF_SVG.svg_-1024x732.png)]
 
 The uniform distribution. Thanks to the creator of this [work](https://en.wikipedia.org/wiki/Uniform_distribution_(continuous)#/media/File:Uniform_Distribution_PDF_SVG.svg): © [IkamusumeFan](https://commons.wikimedia.org/wiki/User:IkamusumeFan)at Wikipedia, licensed under [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/legalcode).
 
@@ -83,7 +83,7 @@ The maximum value in this case is \[latex\]a\[/latex\] and the maximum value is 
 
 This is the normal distribution:
 
-[![](images/1920px-Normal_Distribution_PDF.svg_-1024x654.png)](https://machinecurve.com/wp-content/uploads/2019/08/1920px-Normal_Distribution_PDF.svg_.png)
+[![](images/1920px-Normal_Distribution_PDF.svg_-1024x654.png)]
 
 Credits: [Inductiveload at Wikipedia](https://commons.wikimedia.org/wiki/User:Inductiveload)
 

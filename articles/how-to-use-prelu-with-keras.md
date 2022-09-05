@@ -43,7 +43,7 @@ The output equals the input for all positive inputs, and zero for all others.
 
 This can be visualized as follows:
 
-[![](images/relu-1024x511.png)](https://www.machinecurve.com/wp-content/uploads/2019/05/relu.png)
+[![](images/relu-1024x511.png)]
 
 ### No vanishing gradients
 
@@ -51,7 +51,7 @@ During [optimization](https://github.com/mobiletest2016/machine-learning-article
 
 With traditional activation functions, such as the Sigmoid function, this gradient - which can be computed by letting the input pass through the first-order derivative of the original function - gets a lot smaller:
 
-[![](images/sigmoid_deriv-1024x511.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/sigmoid_deriv.png)
+[![](images/sigmoid_deriv-1024x511.png)]
 
 In fact, the maximum output for any input is \[latex\]\\approx 0.25\[/latex\], while in most cases it is even smaller.
 
@@ -61,7 +61,7 @@ You've just found out about the **[vanishing gradients problem](https://github.c
 
 Fortunately, ReLU does not suffer from this problem, as can be seen when its gradients are visualized:
 
-[![](images/derivatives-1024x511.png)](https://www.machinecurve.com/wp-content/uploads/2019/05/derivatives.png)
+[![](images/derivatives-1024x511.png)]
 
 The gradient is either _zero_ or _one_. No more vanishing gradients! 😁
 
@@ -110,7 +110,7 @@ This brings us to the following insights:
 - When they are learnt to _small values_, you effectively have Leaky ReLU (see the image below for an example).
 - In any other case, you benefit from the generalization: you don't have traditional ReLU nor Leaky ReLU, but have a variant that is better suited to your input data.
 
-[![](images/leaky_relu.png)](https://www.machinecurve.com/wp-content/uploads/2019/10/leaky_relu.png)
+[![](images/leaky_relu.png)]
 
 Learning the values for \[latex\]\\alpha\[/latex\] takes place by adding a few extra parameters to the network. In computational terms, the effects on resource requirements are negligible, and especially so in the channel-shared variant (meaning that only one parameter needs to be added). Traditional backpropagation is used for computing the alpha gradients, and optimization is performed with [momentum gradient descent](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/extensions-to-gradient-descent-from-momentum-to-adabound/#momentum) (He et al., 2015). In Keras, that would be the optimizer of your choice instead, I'd guess.
 
@@ -163,11 +163,11 @@ By default, only the `alpha_initializer` value is set, to zero initialization: i
 
 Today, we'll be creating a simple [ConvNet](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/convolutional-neural-networks-and-their-components-for-computer-vision.md). We use two convolutional blocks with MaxPooling and Dropout, followed by two densely-connected layers. The architecture is visualized next:
 
-[![](images/model-1.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/model-1.png)
+[![](images/model-1.png)]
 
 We'll be training our ConvNet so that it will become able to classify digits from the MNIST dataset. This dataset, which contains 28x28 pixels of handwritten digits, is quite extensive, yet simple enough to use in demonstrations & tutorials. It looks as follows:
 
-[![](images/mnist.png)](https://www.machinecurve.com/wp-content/uploads/2019/07/mnist.png)
+[![](images/mnist.png)]
 
 ### Model code
 
@@ -332,11 +332,11 @@ Test loss for Keras PReLU CNN: 0.030429376099322735 / Test accuracy: 0.992699980
 
 ...loss for traditional ReLU seems to be lower! This also becomes clear from the visualizations:
 
-- [![](images/acc.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/acc.png)
+- [![](images/acc.png)]
     
-- [![](images/loss.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/loss.png)
+- [![](images/loss.png)]
     
-- [![](images/comparison.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/comparison.png)
+- [![](images/comparison.png)]
     
 
 Hence, for alpha-zero initialization, we can say that PReLU does not necessarily perform better than traditional ReLU. Additionally, it results in more loss oscillations, although we cannot say for certain whether this isn't just bad luck. However, for small datasets, PReLU seems to be less important than for larger ones (given the nature of the dying ReLU and vanishing gradient problems).
@@ -352,11 +352,11 @@ Test loss for Keras ReLU CNN: 0.02390692584049343 / Test accuracy: 0.99269998073
 Test loss for Keras PReLU CNN: 0.030004095759327037 / Test accuracy: 0.9929999709129333
 ```
 
-- [![](images/acc-1.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/acc-1.png)
+- [![](images/acc-1.png)]
     
-- [![](images/loss-1.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/loss-1.png)
+- [![](images/loss-1.png)]
     
-- [![](images/comp.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/comp.png)
+- [![](images/comp.png)]
     
 
 Nevertheless, the loss function seems to oscillate less significantly than with our alpha-zeroes strategy. Final test loss is not significantly better in the 0.25 case, however. Additionally, we can still conclude that for smaller networks, PReLU does not significantly improve model performance.

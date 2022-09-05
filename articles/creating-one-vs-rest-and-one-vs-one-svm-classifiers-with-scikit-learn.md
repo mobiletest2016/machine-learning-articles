@@ -169,9 +169,9 @@ plt.show()
 
 As expected, since our data is linearly separable, running the model results in a confusion matrix and decision boundary plot which show perfect linear separation. Of course, this is never the case in the real world - but it illustrates that we _can_ create a multiclass SVM when using One-vs-Rest!
 
-- [![](images/ovr_conf.png)](https://www.machinecurve.com/wp-content/uploads/2020/11/ovr_conf.png)
+- [![](images/ovr_conf.png)]
     
-- [![](images/ovr_boundary.png)](https://www.machinecurve.com/wp-content/uploads/2020/11/ovr_boundary.png)
+- [![](images/ovr_boundary.png)]
     
 
 * * *

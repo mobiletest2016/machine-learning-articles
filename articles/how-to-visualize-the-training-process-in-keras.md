@@ -17,7 +17,7 @@ One way of achieving that is by exporting all the loss values and accuracies man
 
 Like I did a while ago 🙈
 
-[![](images/image-2.png)](https://www.machinecurve.com/wp-content/uploads/2019/07/image-2.png)
+[![](images/image-2.png)]
 
 It goes without saying that there are smarter ways for doing that. In today's blog, we'll cover how to visualize the training process in Keras - just like above, but then with a little piece of extra code. This blog covers precisely what you need in order to generate such plots, it discusses the Keras `History` object which contains the data you'll need and presents the visualization code.
 
@@ -209,7 +209,7 @@ plt.show()
 
 Note that since you defined MAE to be the official loss value (`loss='mean_absolute_error'`), you'll have to use `loss` and `val_loss` in the History object. Above, we additionally add labels, a title and a legend which eventually arrives at this:
 
-[![](images/mae-1024x565.png)](https://www.machinecurve.com/wp-content/uploads/2019/10/mae.png)
+[![](images/mae-1024x565.png)]
 
 ### Visualizing the MSE
 
@@ -228,7 +228,7 @@ plt.show()
 
 This is the output for our training process:
 
-[![](images/mse-1024x563.png)](https://www.machinecurve.com/wp-content/uploads/2019/10/mse.png)
+[![](images/mse-1024x563.png)]
 
 ### Interpreting the training process
 

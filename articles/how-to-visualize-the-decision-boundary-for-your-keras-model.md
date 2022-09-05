@@ -182,7 +182,7 @@ plt.show()
 
 Put simply, we generate a scatter plot with Matplotlib, which clearly shows linear separability for our dataset:
 
-[![](images/final_lin_sep.png)](blob:https://www.machinecurve.com/2f4d2ae3-1171-4ade-b5a8-3f164f3d5717)
+[![](images/final_lin_sep.png)]
 
 ### Model configuration, training & testing
 
@@ -427,7 +427,7 @@ X, targets = make_moons(n_samples = num_samples_total)
 
 What happens? Well, unlike the linearly separable data, two shapes resembling half moons are generated; they cannot be linearly separated, at least in regular feature space:
 
-[![](images/moons.png)](blob:https://www.machinecurve.com/4683f482-c683-4b5d-9959-7d3573547adb)
+[![](images/moons.png)]
 
 Running the code with these adaptations (the full code can be retrieved next) shows that the Keras model is actually able to perform hinge-loss based nonlinear separation pretty successfully:
 

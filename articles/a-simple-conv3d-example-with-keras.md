@@ -85,7 +85,7 @@ Now that we understand them intuitively, let's see if we can build one!
 
 The **3D MNIST dataset** that is available at [Kaggle](https://www.kaggle.com/daavoo/3d-mnist) serves this purpose. It is an adaptation of the original MNIST dataset which we used to create e.g. the [regular CNN](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras.md). The authors of the dataset converted the two-dimensional data into 3D by means of point clouds, as follows:
 
-[![](images/mnist3d.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/10/mnist3d.jpg)
+[![](images/mnist3d.jpg)]
 
 Courtesy of [David de la Iglesia Castro](https://github.com/daavoo?tab=repositories), the creator of the 3D MNIST dataset.
 
@@ -482,7 +482,7 @@ Test loss: 1.4300630502700806 / Test accuracy: 0.656000018119812
 
 We can derive a little bit more information from the diagram that we generated based on the `history` object:
 
-[![](images/3d_mnist_perf-1024x581.png)](https://www.machinecurve.com/wp-content/uploads/2019/10/3d_mnist_perf.png)
+[![](images/3d_mnist_perf-1024x581.png)]
 
 The first and most clear warning signal is the orange line, or the categorical crossentropy loss on the validation data. It's increasing, which means that the model is overfitting - or adapting too much to the training data. The blue line illustrates this even further, since loss is decreasing rapidly there, while the 'check' gets worse and worse.
 
@@ -520,7 +520,7 @@ from tensorflow.keras.layers import Dense, Flatten, Conv3D, MaxPooling3D, Dropou
 
 With Dropout, overfitting can be reduced:
 
-[![](images/with_dropout-1024x497.png)](https://www.machinecurve.com/wp-content/uploads/2019/10/with_dropout.png)
+[![](images/with_dropout-1024x497.png)]
 
 However, testing accuracy remains mediocre. This suggests that the model cannot further improve because the _quantity of data_ is too low. Perhaps, if more data were added, or when a process called Data Augmentation is used, we can improve performance even further. However, that's for another time! 😎
 

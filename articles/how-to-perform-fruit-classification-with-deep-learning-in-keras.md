@@ -122,11 +122,11 @@ After downloading and unpacking the dataset, we can see two folders that are of 
 
 Going one level deeper, here's (a part of) the contents of the Train folder:
 
-[![](images/image-1-1024x576.png)](https://www.machinecurve.com/wp-content/uploads/2020/04/image-1.png)
+[![](images/image-1-1024x576.png)]
 
 As you can see, the fruits are indeed stored nicely together - on a variety basis. That means that we can see, for instance, 'pear', 'pear abate', 'pear forelle', and so on. Opening up the folder for 'Banana' yields the following:
 
-[![](images/image-1024x584.png)](https://www.machinecurve.com/wp-content/uploads/2020/04/image.png)
+[![](images/image-1024x584.png)]
 
 Many bananas! 🍌
 

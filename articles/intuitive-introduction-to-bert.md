@@ -43,7 +43,7 @@ Of course, we start with a neural network thas has been initialized pseudorandom
 
 We do however often want to create a machine learning model that can perform one task really well. This is where _finetuning_ comes in: using a labeled corpus, which is often smaller, we can then train the pretrained model further, with an additional or replacing NLP task. The end result is a model that has been pretrained on the large unlabeled corpus and which is finetuned to a specific language task, such as summarization, text generation in a particular domain, or translation.
 
-[![](images/Diagram-39-1024x436.png)](https://www.machinecurve.com/wp-content/uploads/2020/12/Diagram-39.png)
+[![](images/Diagram-39-1024x436.png)]
 
 Finetuning-based approaches are different to feature-based approaches, which use pretrained models to generate features that are then used as features in a separate model. In other words, with finetuning, we train using the same model all the time, whereas in a feature-based approach we chain two models together in a pipeline, allowing joint training to occur.
 

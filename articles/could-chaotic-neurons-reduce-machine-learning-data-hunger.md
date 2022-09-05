@@ -45,7 +45,7 @@ The authors call each of those neurons a Chaotic Generalized Luroth Series neuro
 
 For the \[0, 1\] domain, it visually looks as follows:
 
-[![](images/1dmap-1024x511.png)](https://machinecurve.com/wp-content/uploads/2019/05/1dmap.png)
+[![](images/1dmap-1024x511.png)]
 
 Since this function is _topologically transitive_, chaotic behavior is introduced in model behavior. I do not have the background to fully grasp this behavior - but it is one of the essential characteristics of chaos, at least in mathematical terms. So for this work, let's just assume that it is, so we can focus on its implications for machine learning :-)
 
@@ -61,7 +61,7 @@ The formulae and the precise pseudo-code algorithm can be found [in the paper](h
 
 \[ad\]
 
-[![](images/GLS.png)](https://machinecurve.com/wp-content/uploads/2019/05/GLS.png)
+[![](images/GLS.png)]
 
 Inner workings of the four GLS neurons for the four-dimensional feature vector. x1 to x4 were initialized randomly in the domain of \[0, 1).
 
@@ -106,7 +106,7 @@ All right, after implementing the architecture, I could begin with testing. I te
 
 The [MNIST dataset](http://yann.lecun.com/exdb/mnist/) is a relatively straight-forward dataset which contains handwritten numbers. It's a great dataset if one intends to learn building machine learning models for image classification and it's therefore one of the standard data sets. It looks as follows:
 
-[![](images/mnist-visualize.png)](https://machinecurve.com/wp-content/uploads/2019/06/mnist-visualize.png)
+[![](images/mnist-visualize.png)]
 
 First, I created a fancy little test protocol in order to attempt to show that it can both predict and generalize. It is as follows —
 
@@ -116,7 +116,7 @@ First, I created a fancy little test protocol in order to attempt to show that i
 
 And then, there was a setback. I simply could not get it to work with the MNIST dataset. Well, the network worked, but its performance was poor: I achieved accuracies of 20% at max:
 
-[![](images/mnist-acc-poor-1024x537.png)](https://machinecurve.com/wp-content/uploads/2019/06/mnist-acc-poor.png)
+[![](images/mnist-acc-poor-1024x537.png)]
 
 Then I read [in the paper](https://arxiv.org/pdf/1905.12601.pdf) that it "may be the case that certain values of q may not work, but we can always find a `q` that works".
 
@@ -126,11 +126,11 @@ This is the result:
 
 \[ad\]
 
-[![](images/plot_for_mnist-1024x537.png)](https://machinecurve.com/wp-content/uploads/2019/06/plot_for_mnist.png)
+[![](images/plot_for_mnist-1024x537.png)]
 
 So indeed, it seems to be the case that model performance is very sensitive to the configurable parameters. The `q` I had configured seemed to produce a very low accuracy. Slightly altering the value for `q` yielded an entirely different result:
 
-[![](images/mnist_accs-1024x511.png)](https://machinecurve.com/wp-content/uploads/2019/05/mnist_accs.png)
+[![](images/mnist_accs-1024x511.png)]
 
 Accuracies of > 75% on the MNIST datasets with only 20+ training samples per class.
 
@@ -142,11 +142,11 @@ Next up is the [Iris dataset](https://www.kaggle.com/uciml/iris/downloads/Iris.c
 
 The search plot looks promising, with maximum accuracies of ≈ 98,5%:
 
-[![](images/iris-plot-1024x537.png)](https://machinecurve.com/wp-content/uploads/2019/06/iris-plot.png)
+[![](images/iris-plot-1024x537.png)]
 
 By zooming into this plot, I figured that one of the maximum accuracies, possibly the highest, occurs at `q = 0.50` and `b ≈ 0.55`. Let's train and see what happens:
 
-[![](images/iris-performance-1024x537.png)](https://machinecurve.com/wp-content/uploads/2019/06/iris-performance.png)
+[![](images/iris-performance-1024x537.png)]
 
 We can see that it performs well. Once again, we can support the authors' findings :) However, we must note that performance seems to deteriorate slightly when a relatively large number of samples is used for training (> 5 samples, which is > 10% of the entire number of samples available per class).
 
@@ -158,11 +158,11 @@ All right. We just tested the model architecture with two data sets which the au
 
 A dataset readily available within the Keras framework is the [CIFAR-10 dataset](https://www.cs.toronto.edu/~kriz/cifar.html). It contains many images for ten classes (airplane, automobile, bird, cat, deer, dog, frog, horse, ship, truck). It looks as follows:
 
-[![](images/cifar10_visualized.png)](https://machinecurve.com/wp-content/uploads/2019/06/cifar10_visualized.png)
+[![](images/cifar10_visualized.png)]
 
 The first step is running the Python code for finding the most optimum combination of `q` and `b`.
 
-[![](images/plot_for_cifar10-1024x511.png)](https://machinecurve.com/wp-content/uploads/2019/06/plot_for_cifar10.png)
+[![](images/plot_for_cifar10-1024x511.png)]
 
 Oops, relatively poor accuracies
 
@@ -187,11 +187,11 @@ The dataset is relatively imbalanced. Class 0, 'no diabetes', is present 500 tim
 
 Similar to the Iris dataset, I first normalized the individual values into the \[0, 1) interval. This should not change the underlying patterns whereas the dataset can now be input into the GLS neurons. Let's inspect the results for searching good `q`s and `b`s. I'll run it with 15 samples for training and 50 for testing.
 
-[![](images/pima-performance-1024x537.png)](https://machinecurve.com/wp-content/uploads/2019/06/pima-performance.png)
+[![](images/pima-performance-1024x537.png)]
 
 Once again, I'm impressed with the results of the network, this time on a dataset which was not tested by the authors previously. It seems that `b = 0.78` and `q = 0.47` must yield good results, and indeed:
 
-[![](images/pima-performance-2-1024x537.png)](https://machinecurve.com/wp-content/uploads/2019/06/pima-performance-2.png)
+[![](images/pima-performance-2-1024x537.png)]
 
 \[ad\]
 

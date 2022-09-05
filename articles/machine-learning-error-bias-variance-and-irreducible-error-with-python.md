@@ -133,7 +133,7 @@ And the opposite is also true. In fact, bias and variance are related. This is t
 
 If you compare generating a machine learning model with playing a game of throwing bull's eye, your optimal end result would be a darts board where all arrows are in the middle of the board:
 
-[![](images/darts-1.png)](https://www.machinecurve.com/wp-content/uploads/2020/11/darts-1.png)
+[![](images/darts-1.png)]
 
 In Machine Learning terms, this is a model with **low bias** and **low variance**.
 
@@ -146,7 +146,7 @@ In fact, we can extend the darts board to all four cases between low/high bias a
 - If your **bias is high** and your **variance is high**, the darts arrows will both be scattered and away from the center (ML: too sensitive _and_ not capable of generating precise predictions).
 - If your **bias is low** and your **variance is low**, your model is spot on without scattering. This is what you want.
 
-[![](images/darts-1024x925.png)](https://www.machinecurve.com/wp-content/uploads/2020/11/darts.png)
+[![](images/darts-1024x925.png)]
 
 The **trade-off** in the bias-variance trade-off means that you have to choose between giving up bias and giving up variance in order to generate a model that really works. If you choose a machine learning algorithm with more bias, it will often reduce variance, making it less sensitive to data. This can be good, unless the bias means that the model becomes too rigid. The opposite is also true: if you give up rigidity only to find the model show too much sensitivity, you've crossed the balance between bias and variance in the wrong direction.
 

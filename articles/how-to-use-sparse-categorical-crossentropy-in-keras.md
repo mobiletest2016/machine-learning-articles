@@ -107,7 +107,7 @@ What you see is obviously the categorical crossentropy formula. What it does is 
 
 For each class, it takes a look at the target observation of the class - i.e., whether the actual class matching the prediction in your training set is 0 or one. Additionally, it computes the (natural) logarithm of the prediction of the observation (the odds that it belongs to that class). From this, it follows that only one such value is relevant - the _actual_ target. For this, it simply computes the natural log value which increases significantly when it is further away from 1:
 
-[![](images/bce-1024x469.png)](https://www.machinecurve.com/wp-content/uploads/2019/10/bce.png)
+[![](images/bce-1024x469.png)]
 
 ### Sparse categorical crossentropy
 

@@ -737,70 +737,70 @@ You should see that the model starts iterating relatively quickly, even on CPU.
 
 During the first epochs, we see a quick improvement from the random noise into slightly recognizable numbers, when we open the files in the folder created for this training run:
 
-- [![](images/epoch0_batch0-1.jpg)](https://www.machinecurve.com/wp-content/uploads/2021/07/epoch0_batch0-1.jpg)
+- [![](images/epoch0_batch0-1.jpg)]
     
     Epoch 0, batch 0
     
-- [![](images/epoch0_batch50-1.jpg)](https://www.machinecurve.com/wp-content/uploads/2021/07/epoch0_batch50-1.jpg)
+- [![](images/epoch0_batch50-1.jpg)]
     
     Epoch 0, batch 50
     
-- [![](images/epoch1_batch0-1.jpg)](https://www.machinecurve.com/wp-content/uploads/2021/07/epoch1_batch0-1.jpg)
+- [![](images/epoch1_batch0-1.jpg)]
     
     Epoch 1, batch 0
     
-- [![](images/epoch1_batch50.jpg)](https://www.machinecurve.com/wp-content/uploads/2021/07/epoch1_batch50.jpg)
+- [![](images/epoch1_batch50.jpg)]
     
     Epoch 1, batch 50
     
-- [![](images/epoch2_batch0.jpg)](https://www.machinecurve.com/wp-content/uploads/2021/07/epoch2_batch0.jpg)
+- [![](images/epoch2_batch0.jpg)]
     
     Epoch 2, batch 0
     
-- [![](images/epoch2_batch50.jpg)](https://www.machinecurve.com/wp-content/uploads/2021/07/epoch2_batch50.jpg)
+- [![](images/epoch2_batch50.jpg)]
     
     Epoch 2, batch 50
     
-- [![](images/epoch3_batch0.jpg)](https://www.machinecurve.com/wp-content/uploads/2021/07/epoch3_batch0.jpg)
+- [![](images/epoch3_batch0.jpg)]
     
     Epoch 3, batch 0
     
-- [![](images/epoch3_batch50.jpg)](https://www.machinecurve.com/wp-content/uploads/2021/07/epoch3_batch50.jpg)
+- [![](images/epoch3_batch50.jpg)]
     
     Epoch 3, batch 50
     
 
 Over the course of subsequent epochs, the outputs start to improve, as more and more noise disappears:
 
-- [![](images/epoch18_batch0.jpg)](https://www.machinecurve.com/wp-content/uploads/2021/07/epoch18_batch0.jpg)
+- [![](images/epoch18_batch0.jpg)]
     
     Epoch 18, batch 0
     
-- [![](images/epoch18_batch50.jpg)](https://www.machinecurve.com/wp-content/uploads/2021/07/epoch18_batch50.jpg)
+- [![](images/epoch18_batch50.jpg)]
     
     Epoch 18, batch 50
     
-- [![](images/epoch25_batch0.jpg)](https://www.machinecurve.com/wp-content/uploads/2021/07/epoch25_batch0.jpg)
+- [![](images/epoch25_batch0.jpg)]
     
     Epoch 25, batch 0
     
-- [![](images/epoch25_batch50.jpg)](https://www.machinecurve.com/wp-content/uploads/2021/07/epoch25_batch50.jpg)
+- [![](images/epoch25_batch50.jpg)]
     
     Epoch 25, batch 50
     
-- [![](images/epoch30_batch0.jpg)](https://www.machinecurve.com/wp-content/uploads/2021/07/epoch30_batch0.jpg)
+- [![](images/epoch30_batch0.jpg)]
     
     Epoch 30, batch 0
     
-- [![](images/epoch30_batch50.jpg)](https://www.machinecurve.com/wp-content/uploads/2021/07/epoch30_batch50.jpg)
+- [![](images/epoch30_batch50.jpg)]
     
     Epoch 30, batch 50
     
-- [![](images/epoch36_batch0.jpg)](https://www.machinecurve.com/wp-content/uploads/2021/07/epoch36_batch0.jpg)
+- [![](images/epoch36_batch0.jpg)]
     
     Epoch 36, batch 0
     
-- [![](images/epoch36_batch50.jpg)](https://www.machinecurve.com/wp-content/uploads/2021/07/epoch36_batch50.jpg)
+- [![](images/epoch36_batch50.jpg)]
     
     Epoch 36, batch 50
     

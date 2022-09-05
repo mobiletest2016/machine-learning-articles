@@ -130,7 +130,7 @@ You will need the following dependencies installed on your system if you want to
 
 ### The dataset we're using
 
-[![](images/mnist.png)](https://www.machinecurve.com/wp-content/uploads/2019/07/mnist.png)
+[![](images/mnist.png)]
 
 To show how Leaky ReLU can be implemented, we're going to build a convolutional neural network image classifier that is [very similar to the one we created with traditional ReLU](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-create-a-cnn-classifier-with-keras.md).
 
@@ -379,9 +379,9 @@ Now, we can take a look at how our model performs. Additionally, since we also r
 
 Generally speaking, I'm quite satisfied with how the model performed during training. The curves for loss and accuracy are actually pretty normal - large improvements at first, slower improvements at last. Perhaps, the model already starts overfitting slightly, as validation loss is stable after the 10th epoch and perhaps already increasing _very lightly_. However, that's not (too) relevant for now.
 
-[![](images/lrr_lr_losses.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/lrr_lr_losses.png)
+[![](images/lrr_lr_losses.png)]
 
-[![](images/lrr_lr_accuracies.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/lrr_lr_accuracies.png)
+[![](images/lrr_lr_accuracies.png)]
 
 As we can observe from our evaluation metrics, test accuracy was 99.19% - that's really good!
 
@@ -393,9 +393,9 @@ Test loss for Keras ReLU CNN: 0.02855007330078265 / Test accuracy: 0.99190002679
 
 Comparing our Leaky ReLU model with traditional ReLU produced these results:
 
-[![](images/lrr_lrr_loss.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/lrr_lrr_loss.png)
+[![](images/lrr_lrr_loss.png)]
 
-[![](images/lrr_lrr_acc.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/lrr_lrr_acc.png)
+[![](images/lrr_lrr_acc.png)]
 
 With those evaluation metrics for testing:
 

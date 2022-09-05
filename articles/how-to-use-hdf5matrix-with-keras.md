@@ -94,7 +94,7 @@ They pretty much speak for themselves, so let's move on to training a Keras mode
 
 Today's dataset will be the MNIST one, which we know pretty well by now - it's a numbers dataset of handwritten digits:
 
-[![](images/mnist-visualize.png)](https://www.machinecurve.com/wp-content/uploads/2019/06/mnist-visualize.png)
+[![](images/mnist-visualize.png)]
 
 Now, let’s take a look if we can create a simple [Convolutional Neural Network](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-conv2d-with-keras.md) which operates with the [MNIST dataset](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets/#mnist-database-of-handwritten-digits), stored in HDF5 format.
 

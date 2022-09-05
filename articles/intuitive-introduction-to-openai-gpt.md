@@ -49,7 +49,7 @@ The approach has attracted significant interest because it demonstrates to impro
 
 Semi-supervised learning for natural language has been visualized in the figure below. In green, we can see three tasks: a pretraining task and two finetuning tasks. The pretraining task utilizes a large corpus of unlabeled text to pretrain the model. Using the pretrained model, we can then use different corpora that are task-oriented for finetuning. The outcome is a model that is finetuned to a specific task, but which benefits from pretraining significantly (Radford et al., 2018).
 
-[![](images/Diagram-39-1024x436.png)](https://www.machinecurve.com/wp-content/uploads/2020/12/Diagram-39.png)
+[![](images/Diagram-39-1024x436.png)]
 
 * * *
 
@@ -65,7 +65,7 @@ The encoder segment converts the original sequence into a hidden and intermediar
 
 The GPT based Transformer extends this work by simply taking the decoder segment and stacking it 12 times, like visualized here:
 
-[![](images/Diagram-37.png)](https://www.machinecurve.com/wp-content/uploads/2020/12/Diagram-37.png)
+[![](images/Diagram-37.png)]
 
 As you can see, it has both the masked multi-head attention segment, the feed forward segment, the residuals and their corresponding addition & layer normalization steps.
 
@@ -98,7 +98,7 @@ Source: Radford et al. (2018)
 
 This function is a really complex way of writing down the following:
 
-[![](images/bce-1-1024x421.png)](https://www.machinecurve.com/wp-content/uploads/2019/10/bce-1-1024x421.png)
+[![](images/bce-1-1024x421.png)]
 
 - For each token \[latex\]T\_i\[/latex\] (in the formula also called \[latex\]u\_i\[/latex\]) in the corpus \[latex\]U\[/latex\], [we compute log loss](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-use-binary-categorical-crossentropy-with-keras.md) of the probability that it occurs given the context window \[latex\]u\_{i-k} \\rightarrow u\_{1-1}\[/latex\], i.e. the \[latex\]k\[/latex\] tokens prior to token \[latex\]i\[/latex\].
 - In plain English, this means: we let the model output the probability that token \[latex\]u\_i\[/latex\] is the next token given the context window of length \[latex\]k\[/latex\], and compute log loss for this probability, indicating how off the prediction is.

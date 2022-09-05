@@ -150,7 +150,7 @@ from tensorflow.keras.models import Sequential, save_model
 
 After running the model, indeed, our `save_model` folder is now full of model files:
 
-[![](images/image.png)](https://www.machinecurve.com/wp-content/uploads/2020/02/image.png)
+[![](images/image.png)]
 
 ### Saving our model in HDF5 format
 

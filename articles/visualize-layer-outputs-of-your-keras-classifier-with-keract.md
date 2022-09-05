@@ -47,7 +47,7 @@ It is a set of simple yet powerful tools to visualize the outputs (and gradients
 
 Let's now implement Keract based visualization using a simple convolutional neural network that classifies the MNIST dataset 😀 As you likely know, this dataset contains thousands of 28x28 pixel images of handwritten digits, i.e. the numbers 0 to 9. Visualizing a subset of them produces this plot:
 
-[![](images/mnist.png)](https://www.machinecurve.com/wp-content/uploads/2019/07/mnist.png)
+[![](images/mnist.png)]
 
 Since the MNIST dataset is integrated with Keras by design, it's very easy to use it. Additionally, models often achieve very high accuracies quite simply, making it one of the better datasets when applying Keras for educational purposes.
 
@@ -57,7 +57,7 @@ Let's go! 😎
 
 This is the architecture of the model that we will create today:
 
-[![](images/model.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/model.png)
+[![](images/model.png)]
 
 The model's architecture from the input layer to the output Dense layer. Click [here](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-a-model-with-keras.md) if you want to understand how to make such plots yourself.
 
@@ -231,39 +231,39 @@ Let's now see whether we actually _see this happen_.
 
 This is the input image that is represented by `input_test[:1]`:
 
-[![](images/seven.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/seven.png)
+[![](images/seven.png)]
 
 When this is passed to the first layer, recall that **six feature maps** are generated that learn to detect a feature. Think of them as a "coloring mechanism": when you pass them the input they know to detect, the elements of the input picture that match these inputs will "light up", as if given some color.
 
 In our case, this is what lights up for each feature map when the _seven_ is passed to the first convolutional layer:
 
-[![](images/0_conv2d_1-1024x511.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/0_conv2d_1.png)
+[![](images/0_conv2d_1-1024x511.png)]
 
 As you can see, some feature maps detect the top of the seven, others the bottom, whereas others detect the inner edges, and so on. They all detect different features of your input image.
 
 The next layer is the Max Pooling layer:
 
-[![](images/1_maxpooling2d_1-1024x511.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/1_maxpooling2d_1.png)
+[![](images/1_maxpooling2d_1-1024x511.png)]
 
 Recall that this layer is used for _downsampling_, i.e., making the image smaller with (preferably) limited information loss. You can see this happening when you compare the visualization of the Max Pooling layer with the Conv2D one above: the activations learnt by the convolutional layer persist, but they get blocky and the total images get smaller. This is precisely what Max Pooling does.
 
 Next up, another convolutional layer:
 
-[![](images/2_conv2d_2-1024x511.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/2_conv2d_2.png)
+[![](images/2_conv2d_2-1024x511.png)]
 
 Here, **ten feature maps** are learnt, which learn to detect abstract features in the converted input image. Nevertheless, you can still detect how they activate for the number seven.
 
 Next up: the Flatten layer.
 
-[![](images/3_flatten-1024x511.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/3_flatten.png)
+[![](images/3_flatten-1024x511.png)]
 
 It simply converts the multidimensional input into a onedimensional output, being an array, or dots on a line segment. This is fed into a Dense layer which activates with the [ReLU activation function](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md):
 
-[![](images/4_dense-1024x511.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/4_dense.png)
+[![](images/4_dense-1024x511.png)]
 
 Finally, data arrives at the **Softmax layer**, which essentially generates a prediction. Perhaps unsurprisingly, you can see that all neurons are black (outputting **0**) while only one is **white, or 'one' or 'true'**. When counting the block size from left to right, you'll see that the model output is the **eight** digit - or, the number _seven_ (zero is the first digit) Bingo! 🎉
 
-[![](images/5_dense-1024x511.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/5_dense.png)
+[![](images/5_dense-1024x511.png)]
 
 ## Generating layer activation heatmaps
 
@@ -282,11 +282,11 @@ display_heatmaps(activations, keract_inputs, save=False)
 
 Resulting in slightly different visualizations _for only the convolutional and convolutional-related layers:_
 
-- [![](images/conv2d_1-1024x577.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/conv2d_1.png)
+- [![](images/conv2d_1-1024x577.png)]
     
-- [![](images/conv2d_2-1024x577.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/conv2d_2.png)
+- [![](images/conv2d_2-1024x577.png)]
     
-- [![](images/maxpooling-1024x577.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/maxpooling.png)
+- [![](images/maxpooling-1024x577.png)]
     
 
 ### You don't need ConvNets to use Keract

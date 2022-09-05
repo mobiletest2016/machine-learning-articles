@@ -167,7 +167,7 @@ Multiple norms exist, such as the L0 norm (which essentially tells you something
 
 This can be generalized to the _p-norm_, which essentially computes the L-norm for some \[latex\]p\[/latex\] (p = 2 is the Euclidian norm, and so on).
 
-[![](images/1280px-Manhattan_distance.svg_-1024x1024.png)](https://www.machinecurve.com/wp-content/uploads/2019/10/1280px-Manhattan_distance.svg_.png)
+[![](images/1280px-Manhattan_distance.svg_-1024x1024.png)]
 
 L1 norm (red, blue and yellow) versus L2 norm (green) / public domain.
 

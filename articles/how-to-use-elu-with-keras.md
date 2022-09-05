@@ -26,7 +26,7 @@ ELU, which we cover subsequently, attempts to resolve this problem by introducin
 
 Rectified Linear Unit, or [ReLU](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md) for short, is one of the most widely used activation functions these days. It works really well and due to the fact that it can be used across various machine learning problems it has grown into what it is today. It is also a really simple activation function, outputting zero for all \[latex\]x < 0\[/latex\] and outputting \[latex\]x\[/latex\] (i.e., the input) in all the other cases.
 
-[![](images/relu_and_deriv-1024x511.jpeg)](https://www.machinecurve.com/wp-content/uploads/2019/09/relu_and_deriv.jpeg)
+[![](images/relu_and_deriv-1024x511.jpeg)]
 
 Among others, this makes your model _sparse_, since many of the inputs result in neurons that are deactivated: only the important neurons will keep firing and playing a role in the training process.
 
@@ -42,7 +42,7 @@ The optimizer will _actually change the weights in order to improve the model_. 
 
 However, neural networks are layered, and their neurons - present in these layers - are linked to each other through artificial synapses. This means that if we wish to compute the gradient for a particular layer, we always have to take into account the gradients of the layers in between that particular layer and the loss value. We essentially have to compute the gradient while taking into account some layer, some other layer, (....and so on...) and finally the prediction error (a.k.a. loss value).
 
-[![](images/sigmoid_and_deriv-1024x511.jpeg)](https://www.machinecurve.com/wp-content/uploads/2019/09/sigmoid_and_deriv.jpeg)
+[![](images/sigmoid_and_deriv-1024x511.jpeg)]
 
 As can be seen from the plot, activation functions like the Sigmoid function produce gradients that cannot be more than 0.25 given any input. In most cases, the value is even smaller, converging to zero for large positive and large negative numbers.
 
@@ -50,7 +50,7 @@ This is bad, especially for really large networks - i.e., the ones that we see t
 
 Because when chaining the gradients together in these cases, you would for four layers in between find a gradient of (0.25^4) = 0.00390625 at max for the particular upstream layer. Welcome to what is called the **[vanishing gradients problem.](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/random-initialization-vanishing-and-exploding-gradients.md)** In those cases, upstream layers learn very slowly or do not converge at all, essentially wasting all your resources as you will never get the results you want.
 
-[![](images/relu_and_deriv-1024x511.jpeg)](https://www.machinecurve.com/wp-content/uploads/2019/09/relu_and_deriv.jpeg)
+[![](images/relu_and_deriv-1024x511.jpeg)]
 
 Fortunately, ReLU is not sensitive to the vanishing gradients problem - as can be seen from the plot above. The gradient is either zero or one. No more vanishing gradients 👯‍♂️
 
@@ -64,7 +64,7 @@ The fact that gradients are **one or zero** introduces an entirely new problem, 
 
 What is the dying ReLU problem? Let's take a look at the ReLU gradient again:
 
-[![](images/relu_and_deriv-1024x511.jpeg)](https://www.machinecurve.com/wp-content/uploads/2019/09/relu_and_deriv.jpeg)
+[![](images/relu_and_deriv-1024x511.jpeg)]
 
 The gradient is _either zero or one_.
 
@@ -91,7 +91,7 @@ Unfortunately, while they do contribute towards a better activation function, th
 
 In their paper "Fast and accurate deep network learning by exponential linear units", Clevert et al. (2015) argue that they introduce new issues. While they are not too sensitive to the vanishing gradients problem and remove the dying ReLU problem from the equation, they have no such thing as a "noise-rebust deactivation state" (Clevert et al, 2015).
 
-[![](images/leaky_relu.png)](https://www.machinecurve.com/wp-content/uploads/2019/10/leaky_relu.png)
+[![](images/leaky_relu.png)]
 
 What this means can be derived from the visualization above. For positive inputs, the Leaky ReLU activation function displayed behaves like traditional ReLU. For negative inputs, the outputs are small but nonzero. So far, so good.
 
@@ -117,11 +117,11 @@ Do note that according to the paper, \[latex\]\\alpha > 0\[/latex\] must hold fo
 
 This looks as follows:
 
-[![](images/elu_avf.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/elu_avf.png)
+[![](images/elu_avf.png)]
 
 And this is the gradient function:
 
-[![](images/elu_deriv.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/elu_deriv.png)
+[![](images/elu_deriv.png)]
 
 As you can see, the _vanishing gradients_ and the _dying neurons_ are gone (gradient plot) - and the function saturates to \[latex\]f(x) = -1.0\[/latex\], as configured with \[latex\]\\alpha = 1.0\[/latex\]. According to Clevert et al. (2015), this makes ELU "well suited for deep neural networks with many layers (...) \[enabling\] faster learning \[as well through mean activations close to zero\]".
 
@@ -288,11 +288,11 @@ Test loss for Keras ReLU CNN: 0.03084432035842483 / Test accuracy: 0.99150002002
 Test loss for Keras ELU CNN: 0.04917487791230358 / Test accuracy: 0.9905999898910522
 ```
 
-- [![](images/elu_acc.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/elu_acc.png)
+- [![](images/elu_acc.png)]
     
-- [![](images/elu_loss.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/elu_loss.png)
+- [![](images/elu_loss.png)]
     
-- [![](images/elu_relu.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/elu_relu.png)
+- [![](images/elu_relu.png)]
     
 
 ### ReLU/ELU with He init
@@ -304,11 +304,11 @@ Test loss for Keras ReLU CNN: 0.03047580350333262 / Test accuracy: 0.99180001020
 Test loss for Keras ELU CNN: 0.029303575038436554 / Test accuracy: 0.9922000169754028
 ```
 
-- [![](images/elu_he_loss.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/elu_he_loss.png)
+- [![](images/elu_he_loss.png)]
     
-- [![](images/elu_he_acc.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/elu_he_acc.png)
+- [![](images/elu_he_acc.png)]
     
-- [![](images/elu_he_relu.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/elu_he_relu.png)
+- [![](images/elu_he_relu.png)]
     
 
 ### ReLU & ELU, He init, 250 epochs
@@ -320,11 +320,11 @@ Test loss for Keras ReLU CNN: 0.042991068468006335 / Test accuracy: 0.9923999905
 Test loss for Keras ELU CNN: 0.08624260328077216 / Test accuracy: 0.9908999800682068
 ```
 
-- [![](images/long_elu_loss-1024x294.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/long_elu_loss.png)
+- [![](images/long_elu_loss-1024x294.png)]
     
-- [![](images/long_elu_acc-1024x294.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/long_elu_acc.png)
+- [![](images/long_elu_acc-1024x294.png)]
     
-- [![](images/long_elu_relu-1024x294.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/long_elu_relu.png)
+- [![](images/long_elu_relu-1024x294.png)]
     
 
 The results are both positive and negative. Yes, we do observe in line with the authors that ELU results in faster convergence and hence a sped-up training process, but we _also_ observe that overfitting occurs faster when ConvNets are trained with ELU. Hence, when considering ELU, you may wish to use [EarlyStopping with ModelCheckpointing](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/avoid-wasting-resources-with-earlystopping-and-modelcheckpoint-in-keras.md) in parallel to stop at precisely the correct point.

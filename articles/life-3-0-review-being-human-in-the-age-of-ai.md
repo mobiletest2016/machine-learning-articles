@@ -54,7 +54,7 @@ After invalidating many false assumptions about artificial general intelligence 
 
 Of course - artificial intelligence has been around for a while, and it already impacts today's world. Chapter 3 explores the impact of contemporary AI on society in its many forms. For example, AI can already benefit our financial markets, self-driving cars, and healthcare. But this spawns a new question: how can we ensure that AI is reliable, and that it does what we want? Life 3.0 further explores this question in terms of autonomous weapons, autonomous legal systems, as well as AI and our jobs. The interesting thing here is that these changes are already happening all around us. We're already having [medical robots](https://emerj.com/ai-sector-overviews/artificial-intelligence-medical-robotics/), [AI can already diagnose eye disease](https://ai.googleblog.com/2016/11/deep-learning-for-detection-of-diabetic.html) and many jobs [can disappear as a result of AI](https://www.drdouggreen.com/2018/16-jobs-that-will-disappear-in-the-next-20-years-due-to-artificial-intelligence-from-alux-com/). Even when you cannot agree with the rest of the book, which is (as we shall see) much more abstract, this chapter is _very real_.
 
-[![](images/cabinet-data-data-center-325229-1024x358.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/11/cabinet-data-data-center-325229.jpg)
+[![](images/cabinet-data-data-center-325229-1024x358.jpg)]
 
 ## Superintelligence: from intelligence explosion to cosmic exploration
 

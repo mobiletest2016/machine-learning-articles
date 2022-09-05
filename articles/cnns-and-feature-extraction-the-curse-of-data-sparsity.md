@@ -99,7 +99,7 @@ y[k] = 2* sum x[n]*cos(pi*k*(2n+1)/(2*N)), 0 <= k < N.
 
 This is what the numbers subsequently look like visually:
 
-[![](images/mnist_with_dct-1024x537.jpeg)](https://machinecurve.com/wp-content/uploads/2019/07/mnist_with_dct.jpeg)
+[![](images/mnist_with_dct-1024x537.jpeg)]
 
 DCTs generated for MNIST samples.
 

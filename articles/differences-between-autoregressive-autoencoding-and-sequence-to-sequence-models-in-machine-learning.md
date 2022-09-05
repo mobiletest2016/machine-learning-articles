@@ -40,7 +40,7 @@ Encoder-decoder architectures are composed of an **encoder** and a **decoder**. 
 
 However, if we add a decoder to the architecture, we can convert the high-dimensional representation into another sequence. This sequence can for example be a sentence written in English. Adding an encoder and a decoder allows us to build models that can transduce (i.e. map without losing semantics) 'one way' into 'another', e.g. German into English. By training the encoder and decoder together, we have created what is known as a sequence-to-sequence model. If we train one part only, we get either an autoregressive or an autoencoding model. We'll cover each now.
 
-[![](images/Diagram-33-1024x352.png)](https://www.machinecurve.com/wp-content/uploads/2020/12/Diagram-33.png)
+[![](images/Diagram-33-1024x352.png)]
 
 * * *
 
@@ -109,7 +109,7 @@ An autoregressive model can therefore be seen as a model that utilizes its previ
 
 ### Autoregressive Transformers
 
-[![](images/Diagram-37.png)](https://www.machinecurve.com/wp-content/uploads/2020/12/Diagram-37.png)
+[![](images/Diagram-37.png)]
 
 The GPT architecture (based on Radford et al., 2018)
 

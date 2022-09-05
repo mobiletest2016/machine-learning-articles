@@ -51,7 +51,7 @@ Now ReLU. It can be expressed as follows:
 
 And visualized in this way:
 
-[![](images/relu-1024x511.png)](https://www.machinecurve.com/wp-content/uploads/2019/05/relu.png)
+[![](images/relu-1024x511.png)]
 
 For all values \[latex\]\\geq 0\[/latex\], it behaves linearly, but essentially behaves nonlinearly by outputting zeroes for all negative inputs.
 
@@ -83,7 +83,7 @@ Mathematically, it is defined as follows (Maas et al., 2013):
 
 Leaky ReLU can be visualized as follows:
 
-[![](images/leaky_relu.png)](https://www.machinecurve.com/wp-content/uploads/2019/10/leaky_relu.png)
+[![](images/leaky_relu.png)]
 
 If you compare this with the image for traditional ReLU above, you'll see that for all \[latex\]inputs < 0\[/latex\], the outputs are slightly descending. The thesis is that these small numbers reduce the death of ReLU activated neurons. This way, you'll have to worry less about the initialization of your neural network and the normalization of your data. Although these topics remain important, they are slightly less critical.
 

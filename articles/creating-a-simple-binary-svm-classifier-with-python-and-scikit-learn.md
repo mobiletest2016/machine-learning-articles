@@ -43,7 +43,7 @@ Let's revisit that scenario that we discussed above.
 
 You are in your bedroom, because you've decided that you need to clean up your closet. It's time to renew it, which includes getting rid of all the clothing that you no longer wear - or maybe, even have grown out of, in either of two directions :)
 
-[![](images/assorted-clothes-996329-1-1024x683.jpg)](https://www.machinecurve.com/wp-content/uploads/2020/05/assorted-clothes-996329-1-scaled.jpg)
+[![](images/assorted-clothes-996329-1-1024x683.jpg)]
 
 Photographer: Kai Pilger / Pexels License
 
@@ -55,7 +55,7 @@ You would follow this process:
     2. **Discard** it;
 3. Put the item onto the pile of clothing that likely already exists, or at some assigned place for clothing assigned that particular choice if it's the first item you've assigned that decision to.
 
-[![](images/bin.png)](https://www.machinecurve.com/wp-content/uploads/2020/05/bin.png)
+[![](images/bin.png)]
 
 Translated into conceptual terms, this is what you have been doing:
 
@@ -116,7 +116,7 @@ Make sure that you have installed all the Python dependencies before you start c
 
 Let's go and generate a dataset :) Open up a code editor, create a file (such as `binary-svm.py`), and code away 👩‍💻
 
-[![](images/dataset.png)](https://www.machinecurve.com/wp-content/uploads/2020/05/dataset.png)
+[![](images/dataset.png)]
 
 _A plot of today's dataset._
 
@@ -203,7 +203,7 @@ plt.show()
 
 Et voila - if we run it, we get the plot (although in yours, the samples are at a different position, but relatively close to where mine are):
 
-[![](images/dataset.png)](https://www.machinecurve.com/wp-content/uploads/2020/05/dataset.png)
+[![](images/dataset.png)]
 
 #### Full code so far
 
@@ -257,7 +257,7 @@ As we've seen above, SVMs will attempt to find a **linear separation** between t
 
 In cases like this...
 
-[![](images/dataset.png)](https://www.machinecurve.com/wp-content/uploads/2020/05/dataset.png)
+[![](images/dataset.png)]
 
 ...this won't be too problematic :)
 
@@ -269,9 +269,9 @@ Whoops 👀
 
 We could use a **kernel** for this. Let's take a look - if we plot our 'moons' (the data looks similar to 2 moons) in 3D, we would get this:
 
-- [![](images/moons3d.png)](https://www.machinecurve.com/wp-content/uploads/2020/05/moons3d.png)
+- [![](images/moons3d.png)]
     
-- [![](images/moons3d1.png)](https://www.machinecurve.com/wp-content/uploads/2020/05/moons3d1.png)
+- [![](images/moons3d1.png)]
     
 
 Indeed, we still cannot separate them linearly - but the extra dimension shows you why a kernel is useful. In SVMs, kernel functions _map the function into another space, where the data becomes linearly separable_.
@@ -288,16 +288,16 @@ Any mathematical function can be used as a kernel function. Scikit-learn also su
 
 Here's an example of what would happen if we apply some customkernel to our moons:
 
-- [![](images/kernelized.png)](https://www.machinecurve.com/wp-content/uploads/2020/05/kernelized.png)
+- [![](images/kernelized.png)]
     
-- [![](images/kernelized1.png)](https://www.machinecurve.com/wp-content/uploads/2020/05/kernelized1.png)
+- [![](images/kernelized1.png)]
     
 
 As you can see, they are mapped onto the 3rd dimension differently than in our original setting. Still, they are not linearly separable - but you get the point.
 
 Fortunately, in our case, we have linearly separable data - check the plot again - so we choose `linear` as our kernel:
 
-[![](images/dataset.png)](https://www.machinecurve.com/wp-content/uploads/2020/05/dataset.png)
+[![](images/dataset.png)]
 
 #### Building the classifier
 
@@ -484,7 +484,7 @@ plt.show()
 
 This produces the following plot:
 
-[![](images/supportvectors.png)](https://www.machinecurve.com/wp-content/uploads/2020/05/supportvectors.png)
+[![](images/supportvectors.png)]
 
 Indeed, as we intuitively grasped, the linear separability of our dataset ensures that only limited support vectors are necessary to make the separation with highest margin - two, in our case.
 
@@ -576,7 +576,7 @@ plt.show()
 
 We get a very nice plot :)
 
-[![](images/boundary.png)](https://www.machinecurve.com/wp-content/uploads/2020/05/boundary.png)
+[![](images/boundary.png)]
 
 Nice :D
 

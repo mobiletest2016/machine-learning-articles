@@ -56,7 +56,7 @@ In their paper ["Dropout: A Simple Way to Prevent Neural Networks from Overfitti
 
 With Dropout, the training process essentially drops out neurons in a neural network. They are temporarily removed from the network, which can be visualized as follows:
 
-[![](images/dropout.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/dropout.png)
+[![](images/dropout.png)]
 
 Note that the connections or synapses are removed as well, and that hence no data flows through these neurons anymore.
 
@@ -132,7 +132,7 @@ With any improvement in machine learning, it's nice to have a theoretical improv
 
 Secondly, they checked how it performed with a variety of other regularizers (yielding the insight that max-norm regularization together with Dropout works best - but let's take a look at these results in more detail later), and thirdly, Srivastava et al. (2014) investigated which dropout rates (i.e., which parameter \[latex\]p\[/latex\]) work best and how data size impacts Dropout performance. Let's take a look!
 
-[![](images/mnist.png)](https://www.machinecurve.com/wp-content/uploads/2019/07/mnist.png)
+[![](images/mnist.png)]
 
 Samples from the MNIST dataset
 
@@ -147,7 +147,7 @@ The authors tested Dropout vs No Dropout on these standard datasets (Srivastava 
 - The **ImageNet** dataset, which contains many natural images.
 - The **Reuters RCV1** newswire articles dataset. This is a text dataset rather than an image dataset.
 
-[![](images/cifar10_images.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/cifar10_images.png)
+[![](images/cifar10_images.png)]
 
 Samples from the CIFAR10 dataset
 

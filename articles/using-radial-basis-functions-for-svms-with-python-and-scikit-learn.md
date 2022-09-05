@@ -42,7 +42,7 @@ And the only way we can do so is by showing when it does _not_ work as expected,
 
 ### Creating a linear classifier
 
-[![](images/classes-1.png)](https://www.machinecurve.com/wp-content/uploads/2020/11/classes-1.png)
+[![](images/classes-1.png)]
 
 Suppose that we have a dataset as the one pictured on the right. We can see two blobs of data that are linearly separable. In other words, we can draw a line which is capable of fully separating the two classes from each other.
 
@@ -110,9 +110,9 @@ After the model finishes training, we get two plots and an accuracy metric print
 Model accuracy: 1.0
 ```
 
-- [![](images/0cf.png)](https://www.machinecurve.com/wp-content/uploads/2020/11/0cf.png)
+- [![](images/0cf.png)]
     
-- [![](images/0db.png)](https://www.machinecurve.com/wp-content/uploads/2020/11/0db.png)
+- [![](images/0db.png)]
     
 
 We can see that our classifier works perfectly. Our confusion matrix illustrates that _all_ examples have been classified correctly, and the reason why becomes clear when looking at the decision boundary plot: _it can perfectly separate the blobs_.
@@ -123,7 +123,7 @@ But this is what we already expected, didn't we? ;-)
 
 Now suppose that instead we had a dataset that cannot be separated linearly, i.e. by drawing a line, like this one:
 
-[![](images/g1.png)](https://www.machinecurve.com/wp-content/uploads/2020/11/g1.png)
+[![](images/g1.png)]
 
 We can also try to use a linear Support Vector Machine by making a few changes to our model code.
 
@@ -174,9 +174,9 @@ Model accuracy: 0.6206060606060606
 
 Oops.
 
-- [![](images/2cf.png)](https://www.machinecurve.com/wp-content/uploads/2020/11/2cf.png)
+- [![](images/2cf.png)]
     
-- [![](images/2db.png)](https://www.machinecurve.com/wp-content/uploads/2020/11/2db.png)
+- [![](images/2db.png)]
     
 
 Even more oops.
@@ -251,7 +251,7 @@ In other words, the bigger the distance \[latex\]d(x\_i, x\_j)\[/latex\], the la
 
 Let's now apply the RBF kernel to our nonlinear dataset. Recall that our dataset looks as follows:
 
-[![](images/g1.png)](https://www.machinecurve.com/wp-content/uploads/2020/11/g1.png)
+[![](images/g1.png)]
 
 We can visualize what happens with our dataset in a third axis (which the SVM can use easily for linear separability with the kernel trick) with the following code.
 
@@ -305,11 +305,11 @@ plt.show()
 
 This is the outcome, visualized from three angles:
 
-- [![](images/rbf3.png)](https://www.machinecurve.com/wp-content/uploads/2020/11/rbf3.png)
+- [![](images/rbf3.png)]
     
-- [![](images/rbf2.png)](https://www.machinecurve.com/wp-content/uploads/2020/11/rbf2.png)
+- [![](images/rbf2.png)]
     
-- [![](images/rbf1.png)](https://www.machinecurve.com/wp-content/uploads/2020/11/rbf1.png)
+- [![](images/rbf1.png)]
     
 
 We recognize aspects from our sections above. For example, the RBF we used maps highest values to points closest to the origin, where the center of our dataset is. In addition, when we look at the data from above, we find back our original 2D Gaussian data. And clearly, in this three-dimensional space, we can even think about learning a hyperplane (a plane, in this case, because our space is now a cube) that can linearly separate much more of the data!
@@ -387,9 +387,9 @@ We're back at great performance, and the decision boundary clearly shows that we
 
 It will also work with data of various other shapes:
 
-- [![](images/4cm.png)](https://www.machinecurve.com/wp-content/uploads/2020/11/4cm.png)
+- [![](images/4cm.png)]
     
-- [![](images/4db.png)](https://www.machinecurve.com/wp-content/uploads/2020/11/4db.png)
+- [![](images/4db.png)]
     
 
 This is the power of Radial Basis Functions when they are used as kernel functions for your SVM classifier.

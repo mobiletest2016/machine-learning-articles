@@ -39,11 +39,11 @@ It's essentially a combination of the **ReLU** and **Sigmoid** activation functi
 
 It looks as follows:
 
-[![](images/ftswish-1.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/ftswish-1.png)
+[![](images/ftswish-1.png)]
 
 And indeed, it does resemble Swish in a way:
 
-[![](images/relu_swish-1024x511.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/relu_swish.png)
+[![](images/relu_swish-1024x511.png)]
 
 * * *
 
@@ -141,35 +141,35 @@ We next load the CIFAR-10 data:
 
 Which easily loads the CIFAR-10 samples into our training and testing variables:
 
-- [![](images/45028.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/45028.jpg)
+- [![](images/45028.jpg)]
     
-- [![](images/42180.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/42180.jpg)
+- [![](images/42180.jpg)]
     
-- [![](images/41192.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/41192.jpg)
+- [![](images/41192.jpg)]
     
-- [![](images/40969.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/40969.jpg)
+- [![](images/40969.jpg)]
     
-- [![](images/38811.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/38811.jpg)
+- [![](images/38811.jpg)]
     
-- [![](images/38333.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/38333.jpg)
+- [![](images/38333.jpg)]
     
-- [![](images/38151.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/38151.jpg)
+- [![](images/38151.jpg)]
     
-- [![](images/37932.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/37932.jpg)
+- [![](images/37932.jpg)]
     
-- [![](images/37591.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/37591.jpg)
+- [![](images/37591.jpg)]
     
-- [![](images/36450.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/36450.jpg)
+- [![](images/36450.jpg)]
     
-- [![](images/36144.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/36144.jpg)
+- [![](images/36144.jpg)]
     
-- [![](images/28291.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/28291.jpg)
+- [![](images/28291.jpg)]
     
-- [![](images/28222.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/28222.jpg)
+- [![](images/28222.jpg)]
     
-- [![](images/27569.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/27569.jpg)
+- [![](images/27569.jpg)]
     
-- [![](images/27447.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/27447.jpg)
+- [![](images/27447.jpg)]
     
 
 _A few CIFAR-10 samples._
@@ -428,9 +428,9 @@ But is it overfitting? Let's take a look at the visualizations.
 
 Visually, the training process looks as follows.
 
-- [![](images/f_loss.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/f_loss.png)
+- [![](images/f_loss.png)]
     
-- [![](images/f_acc.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/f_acc.png)
+- [![](images/f_acc.png)]
     
 
 Indeed: overfitting starts once the model seems to hit the 66% accuracy mark. Ever since, performance in terms of loss gets worse and worse. To fix this is not within the scope of this post, which was about FTSwish. However, what may be worthwhile is adding extra Conv2D layers, using Batch Normalization, or using data augmentation.

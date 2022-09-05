@@ -38,7 +38,7 @@ Are you ready? Let's go! 😎
 
 Suppose that you have a neural network, such as this one that has been equipped with [Dropout neurons](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-is-dropout-reduce-overfitting-in-your-neural-networks.md):
 
-[![](images/dropout.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/dropout.png)
+[![](images/dropout.png)]
 
 As you might recall from the [high-level supervised machine learning process](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/about-loss-and-loss-functions/#the-high-level-supervised-learning-process), training a neural network includes a _feedforward operation_ on your training set. During this operation, the data is fed to the neural network, which generates a prediction for each sample that can be compared to the _target data_, a.k.a. the ground truth.
 
@@ -144,7 +144,7 @@ First, the "linear regime of the nonlinearity". Suppose that we're using the [Si
 
 It looks like this:
 
-[![](images/sigmoid_and_deriv-1024x511.jpeg)](https://www.machinecurve.com/wp-content/uploads/2019/09/sigmoid_and_deriv.jpeg)
+[![](images/sigmoid_and_deriv-1024x511.jpeg)]
 
 Suppose that we've added it to some arbitrary layer.
 

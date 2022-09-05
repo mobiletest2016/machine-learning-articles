@@ -38,7 +38,7 @@ Let's take a look! 😎
 
 ## Quick Answer: How to see if your model is underfitting or overfitting?
 
-[![Finding optimal learning rates with the Learning Rate Range Test –  MachineCurve](images/UnderOver.png)](https://www.machinecurve.com/wp-content/uploads/2020/02/UnderOver.png)
+[![Finding optimal learning rates with the Learning Rate Range Test –  MachineCurve](images/UnderOver.png)]
 
 Use these steps to determine if your machine learning model, deep learning model or neural network is currently **underfit** or **overfit**.
 

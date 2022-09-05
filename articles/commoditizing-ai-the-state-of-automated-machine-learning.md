@@ -35,7 +35,7 @@ The first step is getting to know your data. What are its ideosyncrasies? What i
 
 Then, next question - which type of model must be used? Should we use Support Vector Machines with some kernel function that allows us to train SVMs for non-linear datasets? Or should we use neural networks instead? If so, what type of neural network?
 
-[![](images/confused-digital-nomad-electronics-874242-1024x682.jpg)](https://machinecurve.com/wp-content/uploads/2019/07/confused-digital-nomad-electronics-874242-1024x682.jpg)
+[![](images/confused-digital-nomad-electronics-874242-1024x682.jpg)]
 
 How ML engineers may feel every now and then.
 
@@ -139,7 +139,7 @@ Let's see if we can find some and compare them.
 
 The first system I found is called [Cloud AutoML](https://cloud.google.com/automl/) and is provided as a service by Google. It suggests that it uses Google's _Neural Architecture Search_. This yields the insight that it therefore specifically targets neural networks and attempts to find the best architecture with respect to the dataset. It focuses on computer vision, natural language processing and tabular data.
 
-[![](images/art-blue-skies-clouds-335907-1024x686.jpg)](https://machinecurve.com/wp-content/uploads/2019/07/art-blue-skies-clouds-335907.jpg)
+[![](images/art-blue-skies-clouds-335907-1024x686.jpg)]
 
 The cloud is often the place for automated machine learning, but this does not always have to be the case.
 

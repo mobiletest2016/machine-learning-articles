@@ -33,7 +33,7 @@ Are you ready? Let's go! :)
 
 Here we are again - a scenario where we have blobs of data. In this case, we have three clusters:
 
-[![](images/clusters.png)](https://www.machinecurve.com/wp-content/uploads/2020/04/clusters.png)
+[![](images/clusters.png)]
 
 If you look closely at those clusters, you'll see for every cluster that the number of points is highest around the centers of the cluster.
 

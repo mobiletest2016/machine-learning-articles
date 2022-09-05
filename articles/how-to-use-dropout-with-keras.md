@@ -73,7 +73,7 @@ Let's now take a look how to create a neural network with Keras that makes use o
 
 These are a few samples from the CIFAR-10 dataset, which we will use today:
 
-[![](images/cifar10_images.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/cifar10_images.png)
+[![](images/cifar10_images.png)]
 
 The CIFAR-10 dataset is one of the standard machine learning datasets and contains thousands of small natural images, divided in 10 classes. For example, it contains pictures of cats, trucks, and ships. It's one of the default choices when you want to show how certain models work.
 
@@ -335,9 +335,9 @@ The difference is enormous for the Dropout vs No dropout case, clearly demonstra
 
 The model with Dropout, however, shows no signs of overfitting, and loss keeps decreasing. You even end up with a model that significantly outperforms the no-Dropout case, even in terms of accuracy. That's great news - we didn't do all our work for nothing!
 
-- [![](images/acc-2-1024x528.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/acc-2.png)
+- [![](images/acc-2-1024x528.png)]
     
-- [![](images/loss-2-1024x528.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/loss-2.png)
+- [![](images/loss-2-1024x528.png)]
     
 
 ### Dropout with vs without Max-norm regularization
@@ -346,9 +346,9 @@ Let's now take a look what happens when we apply max-norm regularization versus 
 
 As you can see, the difference is less significant than with the Dropout/No-dropout case, but it still matters. Our \[latex\]norm = 2.0\[/latex\] max-norm regularization (i.e., our MaxNorm Keras constraint) ensures that overfitting does not happen, whereas the no-max-norm case starts overfitting slightly. Indeed, Srivastava et al.'s (2014) results can be confirmed: adding max-norm regularization to Dropout leads to even better performance.
 
-- [![](images/acc-3-1024x537.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/acc-3.png)
+- [![](images/acc-3-1024x537.png)]
     
-- [![](images/loss-3-1024x537.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/loss-3.png)
+- [![](images/loss-3-1024x537.png)]
     
 
 ### Dropout with Adam vs Dropout with SGD

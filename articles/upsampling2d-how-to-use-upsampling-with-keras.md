@@ -39,13 +39,13 @@ Suppose that you have the following list:
 
 That, in turn can be visualized as follows:
 
-[![](images/pre_up_plot.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/pre_up_plot.png)
+[![](images/pre_up_plot.png)]
 
 It's a bit blocky, isn't it?
 
 Wouldn't it be a good idea if we applied some _smoothing_ here, so that we could get something like this?
 
-[![](images/af_ups.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/af_ups.png)
+[![](images/af_ups.png)]
 
 That's a lot better, isn't it? 😊
 
@@ -125,7 +125,7 @@ plt.show()
 
 Which produces the following result:
 
-[![](images/simple_upsampling.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/simple_upsampling.png)
+[![](images/simple_upsampling.png)]
 
 Unsurprisingly, that's quite equal to the examples we saw above 😎
 
@@ -179,7 +179,7 @@ That makes sense, so let's take a look at one advanced application: autoencoders
 
 This is an autoencoder:
 
-[![](images/Autoencoder.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/Autoencoder.png)
+[![](images/Autoencoder.png)]
 
 In short, it's a network that is composed of the following components:
 
@@ -214,7 +214,7 @@ Let's now see if we can actually build the model with Keras!
 
 Remember that picture of the autoencoder?
 
-[![](images/Autoencoder.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/Autoencoder.png)
+[![](images/Autoencoder.png)]
 
 That's what we will build, and it looks like this:
 
@@ -269,7 +269,7 @@ verbosity = 1
 
 As we're using the MNIST dataset today (see image), we set width and height to 28 pixels. We use a 25 batch size, which allows us to capture slightly more of the gradient accuracy with respect to the balance between [batch gradient descent and stochastic gradient descent](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/gradient-descent-and-its-variants.md) (even though we don't use a GD-like optimizer, the effect must be similar). The number of classes is, by definition of the distinct number of digits available, ten - zero to nine. We use 20% of our training data for validation, and set verbosity to True, outputting everything on screen. While this slows down the training process slightly, it helps you understand and see what happens. Set it to False (zero) if you wish to see the outputs only.
 
-[![](images/mnist.png)](https://www.machinecurve.com/wp-content/uploads/2019/07/mnist.png)
+[![](images/mnist.png)]
 
 ### Loading & preparing data
 
@@ -498,21 +498,21 @@ Once the training process finishes, it's likely that you'll arrive at a loss val
 
 Visualizing the inputs and reconstructions produces this result:
 
-- [![](images/1-1.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/1-1.png)
+- [![](images/1-1.png)]
     
-- [![](images/2-1.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/2-1.png)
+- [![](images/2-1.png)]
     
-- [![](images/3-1.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/3-1.png)
+- [![](images/3-1.png)]
     
-- [![](images/4-1.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/4-1.png)
+- [![](images/4-1.png)]
     
-- [![](images/5-1.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/5-1.png)
+- [![](images/5-1.png)]
     
-- [![](images/6-1.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/6-1.png)
+- [![](images/6-1.png)]
     
-- [![](images/7-1.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/7-1.png)
+- [![](images/7-1.png)]
     
-- [![](images/8-1.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/8-1.png)
+- [![](images/8-1.png)]
     
 
 ### Comparison with Conv2DTranspose reconstructions
@@ -525,37 +525,37 @@ The answer, unfortunately, is yes - the differences in loss are visible.
 
 Take a look for yourself:
 
-- [![](images/8-1.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/8-1.png)
+- [![](images/8-1.png)]
     
-- [![](images/8.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/8.png)
+- [![](images/8.png)]
     
-- [![](images/7-1.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/7-1.png)
+- [![](images/7-1.png)]
     
-- [![](images/7.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/7.png)
+- [![](images/7.png)]
     
-- [![](images/6-1.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/6-1.png)
+- [![](images/6-1.png)]
     
-- [![](images/6.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/6.png)
+- [![](images/6.png)]
     
-- [![](images/5-1.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/5-1.png)
+- [![](images/5-1.png)]
     
-- [![](images/5.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/5.png)
+- [![](images/5.png)]
     
-- [![](images/4-1.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/4-1.png)
+- [![](images/4-1.png)]
     
-- [![](images/4.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/4.png)
+- [![](images/4.png)]
     
-- [![](images/3-1.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/3-1.png)
+- [![](images/3-1.png)]
     
-- [![](images/3.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/3.png)
+- [![](images/3.png)]
     
-- [![](images/2-1.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/2-1.png)
+- [![](images/2-1.png)]
     
-- [![](images/2.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/2.png)
+- [![](images/2.png)]
     
-- [![](images/1-1.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/1-1.png)
+- [![](images/1-1.png)]
     
-- [![](images/1.png)](https://www.machinecurve.com/wp-content/uploads/2019/12/1.png)
+- [![](images/1.png)]
     
 
 ### UpSampling2D vs Conv2DTranspose ease of use

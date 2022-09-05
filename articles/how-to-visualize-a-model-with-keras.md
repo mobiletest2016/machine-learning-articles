@@ -267,7 +267,7 @@ plot_model(model, to_file='model.png', rankdir='LR')
 
 Which gets you this:
 
-[![](images/model.png)](https://www.machinecurve.com/wp-content/uploads/2021/01/model.png)
+[![](images/model.png)]
 
 Awesome!
 

@@ -67,19 +67,19 @@ Now, which regularizers are out there? Let's take a look at the most common ones
 
 First of all, L1 Regularization, which is also called Lasso Regularization. By computing and summating the absolute values of weights, the so-called Taxicab norm (or L1 norm) is added to the loss value. This norm, which tells you something about the absolute distance across all dimensions that must be traveled from the origin to the tip of the weights vector, helps you to achieve simple models. What's more, because of the structure of the derivative (which produces constant values), weights that do not contribute sufficiently to the model essentially "drop out", as they are forced to become zero.
 
-[![](images/l1_component.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/l1_component.png)
+[![](images/l1_component.png)]
 
 #### L2 Regularization
 
 Secondly, there is L2 Regularization (a.k.a. Ridge Regularization), which is based on the summated squares of the weights. Although it does enforce simple models through small weight values, it doesn't produce sparse models, as the derivative - \[latex\]2x\[/latex\] - produces smaller and smaller gradients (and hence changes) when \[latex\]x\[/latex\] approaches zero. It can thus be useful to use L2 if you have correlative data, or when you think sparsity won't work for your ML problem at hand.
 
-[![](images/l2_comp.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/l2_comp.png)
+[![](images/l2_comp.png)]
 
 #### Elastic Net Regularization
 
 When you combine L1 and L2 Regularization, you get Elastic Net Regularization. As you can see, depending on some hyperparameter (or two, if you don't combine the lambdas into the single alpha parameter) that can be configured by the machine learning engineer, it takes the shape of L1, or L2, or something in between. If you don't know which regularizer to apply, it may be worthwhile to try Elastic Net first, especially when you think that regularization may improve model performance over no regularization.
 
-[![](images/penalty-values.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/penalty-values.png)
+[![](images/penalty-values.png)]
 
 * * *
 
@@ -98,7 +98,7 @@ In the next section, we'll analyze these questions individually, using more deta
 
 Now, here's the flowchart. Blue means that _a_ _question_ must be answered, yellow means that _an action_ must be taken, and green means that you've arrived at an _outcome_.
 
-[![](images/Which-regularizer-do-I-need-2-794x1024.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/Which-regularizer-do-I-need-2.png)
+[![](images/Which-regularizer-do-I-need-2-794x1024.png)]
 
 * * *
 
@@ -128,7 +128,7 @@ Do you have resources available for those validation activities?
 
 It's more of a business related question than a technical one. It isn't difficult to spawn an instance in the cloud with a well-performing GPU, nor is it to use your own dedicated one if available. However, do you have the time? What does it mean for project costs? Those questions need to be answered.
 
-[![](images/image-19-1024x239.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/image-19.png)
+[![](images/image-19-1024x239.png)]
 
 _Adding L2 Regularization to a Keras model._
 

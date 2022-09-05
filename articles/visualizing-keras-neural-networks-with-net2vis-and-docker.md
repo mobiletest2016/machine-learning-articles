@@ -42,7 +42,7 @@ However, when looking at the available tools and techniques for visualizing neur
 
 Hence, convinced that the current tool landscape is suboptimal, they set out and created [Net2Vis](https://github.com/viscom-ulm/Net2Vis), a web application for automatically visualizing your Keras neural networks.
 
-[![](images/image-4-1024x568.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/image-4.png)
+[![](images/image-4-1024x568.png)]
 
 * * *
 
@@ -160,7 +160,7 @@ When Net2Vis is running, you can access it from http://localhost:3000. When navi
 
 Let's now walk through each of these :)
 
-[![](images/image-4-1024x568.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/image-4.png)
+[![](images/image-4-1024x568.png)]
 
 ### The model we'll be visualizing today
 
@@ -205,11 +205,11 @@ def get_model():
 
 If you add it _(do note that the code editor can be sensitive at times; it's best to write your code in a regular editor, after which you select the code in Net2Vis, delete it entirely, and ctrl+c/ctrl+v your own code in the empty code editor)_, the default visualization should immediately change into something that resembles this:
 
-[![](images/image-7-1024x261.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/image-7.png)
+[![](images/image-7-1024x261.png)]
 
 That's good, because this is the ConvNet we just defined 👇
 
-[![](images/image-1.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/image-1.png)
+[![](images/image-1.png)]
 
 ### Interpreting visualizations
 
@@ -223,7 +223,7 @@ Indeed, the colors match the model code we just defined, so we've got the correc
 
 ### Configuring the plots
 
-[![](images/image-3-150x150.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/image-3.png)
+[![](images/image-3-150x150.png)]
 
 On the right side of the web application, there is a large amount of configuration options. Let's take a look at these.
 
@@ -235,15 +235,15 @@ It's possible to change these **minimum and maximum visualization heights**. By 
 
 For example, let's set the maximum height to 350 and the minimum height to 100:
 
-[![](images/image-9.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/image-9.png)
+[![](images/image-9.png)]
 
 It's also possible to do this with **minimum and maximum visualization widths** **of the individual layers** - say, we change them from 20/80 into 50/100:
 
-[![](images/image-10-1024x191.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/image-10.png)
+[![](images/image-10-1024x191.png)]
 
 Increasing or decreasing the **horizontal and vertical spacing** between individual layers is also possible. For example, here, the horizontal spacing was changed from 20 into 50:
 
-[![](images/image-11-1024x204.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/image-11.png)
+[![](images/image-11-1024x204.png)]
 
 (note that vertical spacing becomes useful when you have models that branch at one point in time and, possibly, join together later)
 
@@ -259,18 +259,18 @@ By selecting the color selector on the right, it's possible to select one out of
 - **Interpolation mode**, which uses "farthest point sampling (...) \[to find\] unused colors in hsv color space" (Bäuerle & Ropinski, 2019).
 - **Color blindness mode**, which also provides a palette, but instead provides only 8 colors to ensure that color blind people can sufficiently distinguish between layer colors (Bäuerle & Ropinski, 2019).
 
-- [![](images/graph-1.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/graph-1.png)
+- [![](images/graph-1.png)]
     
-- [![](images/graph.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/graph.png)
+- [![](images/graph.png)]
     
-- [![](images/grap1h.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/grap1h.png)
+- [![](images/grap1h.png)]
     
 
 _Palette (top), interpolation (middle) and color blindness mode (bottom)._
 
 By selecting 'Disable color', you activate monochromatic mode:
 
-[![](images/image-12.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/image-12.png)
+[![](images/image-12.png)]
 
 #### Custom plot color
 
@@ -280,11 +280,11 @@ By clicking on a layer, the palette for that particular layer type can be change
 
 So, beyond space, the user can also fully control the colors of their neural network visualizations with Net2Vis. I love it :)
 
-[![](images/image-13-1024x375.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/image-13.png)
+[![](images/image-13-1024x375.png)]
 
 #### Plot labels and extra details
 
-[![](images/image-5.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/image-5.png)
+[![](images/image-5.png)]
 
 And we're still not there yet :)
 
@@ -310,7 +310,7 @@ By selecting the _features label_, the number of features learnt per layer is sh
 
 ### Grouping layers
 
-[![](images/image-6.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/image-6.png)
+[![](images/image-6.png)]
 
 Before configuring layer shape and colors, however, you may wish to take a look at the functionality for grouping layers together.
 
@@ -320,7 +320,7 @@ This is especially useful if you have to visualize very large networks, and don'
 
 By clicking "automatically group", Net2Vis will attempt to find blocks by checking the sequences available within the graph. For example, it will find the convolutional blocks we identified in the plot manually:
 
-[![](images/image-18-1024x562.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/image-18.png)
+[![](images/image-18-1024x562.png)]
 
 What's best is that it automatically adapts the legend, and adds the group to it: purple = blue + yellow + brown, i.e. group = Conv2D + MaxPooling2D + Dropout. Great :)
 
@@ -328,7 +328,7 @@ What's best is that it automatically adapts the legend, and adds the group to it
 
 By clicking the download button in the blue top bar, your visualization will be downloaded to your computer:
 
-[![](images/image-2.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/image-2.png)
+[![](images/image-2.png)]
 
 It'll download a ZIP file containing:
 

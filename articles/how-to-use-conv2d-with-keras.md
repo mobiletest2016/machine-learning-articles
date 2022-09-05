@@ -56,7 +56,7 @@ Neurons fire based on inputs, and by consequence trigger synapses to become stro
 
 Whereas the so-called "Rosenblatt Perceptron" (click the link above if you want to know more) was just _one_ artificial neuron, today's neural networks are complex networks of many neurons, like this:
 
-[![](images/ComplexNeuralNetwork.png)](https://www.machinecurve.com/wp-content/uploads/2017/09/ComplexNeuralNetwork.png)
+[![](images/ComplexNeuralNetwork.png)]
 
 A complex neural network. These and even more complex neural nets provide different layers of possibly non-linear functionality, and may thus be used in deep learning.
 
@@ -231,7 +231,7 @@ But wait, what dataset will we be using?
 
 Let's take a look at the CIFAR10 dataset:
 
-[![](images/cifar10_images.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/cifar10_images.png)
+[![](images/cifar10_images.png)]
 
 These are just a few samples from this dataset - as you can see, it contains many common day classes such as truck, deer, and automobile. We'll load and prepare it as follows:
 

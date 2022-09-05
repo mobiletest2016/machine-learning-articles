@@ -72,7 +72,7 @@ Tensors can be multidimensional. That is, they are representations in "some" mat
 - A **rank-2 Tensor** is a matrix; it is a table of numbers;
 - A **rank-3 Tensor** is a cube of numbers.
 
-[![](images/rankshape.png)](https://www.machinecurve.com/wp-content/uploads/2020/04/rankshape.png)
+[![](images/rankshape.png)]
 
 From the image above, what follows with respect to shape:
 

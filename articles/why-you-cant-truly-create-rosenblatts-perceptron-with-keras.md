@@ -201,7 +201,7 @@ And you will see that the derivative is 0:
 
 What's even worse is that the derivative is _undefined_ for \[latex\]x = 0\[/latex\]. This is the case because a function must be differentiable. Since it 'steps' from 0 to 1 at \[latex\]x = 0\[/latex\], the function is not differentiable at this point, rendering the derivative to be undefined. This can be visualized as follows, but obviously then for \[latex\]x = 0\[/latex\]:
 
-[![](images/1024px-Right-continuous.svg_-1024x853.png)](https://machinecurve.com/wp-content/uploads/2019/07/1024px-Right-continuous.svg_.png)
+[![](images/1024px-Right-continuous.svg_-1024x853.png)]
 
 Crap. There goes my plan of creating a Rosenblatt Perceptron with Keras. What to do?
 
@@ -223,7 +223,7 @@ The first candidate is the Sigmoid function, which can be mathematically defined
 
 And visualized as follows:
 
-[![](images/sigmoid-1024x511.png)](https://machinecurve.com/wp-content/uploads/2019/05/sigmoid.png)
+[![](images/sigmoid-1024x511.png)]
 
 Across a slight interval around \[latex\]x = 0\[/latex\], the Sigmoid function transitions from 0 to 1. It's a differentiable function and is therefore suitable for this Perceptron.
 

@@ -132,11 +132,11 @@ Here, `t` is the target value (either `0.0` or `1.0` - recall that the classes a
 
 Visualized for the two possible targets and any value for `p` between 0 and 1, this is what BCE loss looks like:
 
-- [![](images/bce-1-1024x421.png)](https://www.machinecurve.com/wp-content/uploads/2019/10/bce-1-1024x421.png)
+- [![](images/bce-1-1024x421.png)]
     
     Binary crossentropy, target = 1
     
-- [![](images/bce_t0-1024x459.png)](https://www.machinecurve.com/wp-content/uploads/2019/10/bce_t0-1024x459.png)
+- [![](images/bce_t0-1024x459.png)]
     
     Binary crossentropy, target = 0
     

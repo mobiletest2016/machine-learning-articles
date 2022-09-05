@@ -91,7 +91,7 @@ Today, three activation functions are most widely used: the **Sigmoid** function
 
 Below, you'll see the (generic) **sigmoid** function, also known as the logistic curve:
 
-[![](images/sigmoid-1024x511.png)](https://machinecurve.com/wp-content/uploads/2019/05/sigmoid.png)
+[![](images/sigmoid-1024x511.png)]
 
 Mathematically, it can be represented as follows:
 
@@ -111,7 +111,7 @@ Additionally, and perhaps primarily, we use the Sigmoid function because it outp
 
 Another widely used activation function is the tangens hyperbolicus, or hyperbolic tangent / **tanh** function:
 
-[![](images/tanh-1024x511.png)](https://machinecurve.com/wp-content/uploads/2019/05/tanh.png)
+[![](images/tanh-1024x511.png)]
 
 It works similar to the Sigmoid function, but has some differences.
 
@@ -165,7 +165,7 @@ In order to improve on these observations, another activation was introduced. Th
 
 It looks as follows:
 
-[![](images/relu-1024x511.png)](https://machinecurve.com/wp-content/uploads/2019/05/relu.png)
+[![](images/relu-1024x511.png)]
 
 And can be represented as follows:
 

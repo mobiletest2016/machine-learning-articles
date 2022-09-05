@@ -84,7 +84,7 @@ Navigate to the [releases](https://github.com/lutzroeder/netron/releases) page o
 
 Netron will then open automatically, and you can also do so from e.g. the Start Menu.
 
-[![](images/image-3-1024x790.png)](https://www.machinecurve.com/wp-content/uploads/2020/02/image-3.png)
+[![](images/image-3-1024x790.png)]
 
 * * *
 
@@ -123,7 +123,7 @@ model.save('netron_model_mobilenetv2.h5')
 
 Now, open up Netron, and import the `netron_model_mobilenetv2.h5` file that can be found in the folder of your `netron.py` file. In no time, the model should open up on screen. When zooming in, the individual layers are clearly and beautifully visualized:
 
-[![](images/image-6-1024x779.png)](https://www.machinecurve.com/wp-content/uploads/2020/02/image-6.png)
+[![](images/image-6-1024x779.png)]
 
 Now, when you click on layers, additional information becomes visible on screen:
 
@@ -146,7 +146,7 @@ Each layer has its own unique set of characteristics.
 
 It's also possible to export visualizations by using the top menu, then the 'Export' menu button. This allows you to generate PNG images of the models. The only downside is that these architectures aren't very suitable for print, especially if they are very deep:
 
-[![](images/netron_model_mobilenetv2.png)](https://www.machinecurve.com/wp-content/uploads/2020/02/netron_model_mobilenetv2.png)
+[![](images/netron_model_mobilenetv2.png)]
 
 If you wish to use architecture visualizations in print or, more generally, in a horizontal fashion, use [Net2Vis](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/visualizing-keras-neural-networks-with-net2vis-and-docker.md) instead.
 

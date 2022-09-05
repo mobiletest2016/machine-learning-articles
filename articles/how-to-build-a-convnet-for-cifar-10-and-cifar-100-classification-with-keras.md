@@ -36,7 +36,7 @@ We all know that numbers are built from digits, and more specifically, the digit
 
 Now, say that we show you a few of these digits, handwritten ones:
 
-[![](images/emnist-mnist.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/emnist-mnist.png)
+[![](images/emnist-mnist.png)]
 
 Check out ["Making more datasets available for Keras"](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/making-more-datasets-available-for-keras.md) for this dataset.
 
@@ -59,7 +59,7 @@ Convolutional neural networks are composed of, among others, convolutional layer
 
 Here is what a convolutional layer does, and why it is such a good feature extractor, at a high level:
 
-[![](images/CNN.png)](https://www.machinecurve.com/wp-content/uploads/2019/09/CNN.png)
+[![](images/CNN.png)]
 
 The input to this convolutional layer is a \[latex\]H \\times W\[/latex\] image, where \[latex\]H\[/latex\] is the height and \[latex\]W\[/latex\] is the width of this image. These days, most images are RGB - red, green and blue - and hence have 3 image channels. This is not different in the scenario above.
 
@@ -67,7 +67,7 @@ Now, the convolutional layer works with \[latex\]N\[/latex\] so called "kernels"
 
 Now, this "kernel" (which is 5 x 5 pixels in the schematic drawing below) slides (or "convolves") over the input data. In doing so, for each position it takes, it multiplies the weight at some point with the corresponding pixel in your input data, element-wise. This means that all the individual multiplications are added together, and that the output of that particular kernel-input multiplication is 1 pixel:
 
-[![](images/Cnn_layer-1.jpg)](https://www.machinecurve.com/wp-content/uploads/2018/11/Cnn_layer-1.jpg)
+[![](images/Cnn_layer-1.jpg)]
 
 Now, sliding over the entire image horizontally and vertically, it produces many of such "outputs" - rendering the output on the right in the image above. This output, which is called a "feature map", is smaller than the input data, and essentially contains the input data in a more "abstract" fashion. Now, as there are \[latex\]N\[/latex\] kernels, there will be \[latex\]N\[/latex\] such feature maps produced by a convolutional layer.
 
@@ -95,9 +95,9 @@ What's more, it's still not "translation invariant", which means that it's also 
 
 Adding **pooling layers** may [help you resolve this issue](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-are-max-pooling-average-pooling-global-max-pooling-and-global-average-pooling.md). Similar to convolutional layers, pooling layers slide over the inputs, but instead of multiplying the parts with some learnt weights, they compute a hard value such as \[latex\]max()\[/latex\].
 
-- [![](images/Max-Pooling-1.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/Max-Pooling-1.png)
+- [![](images/Max-Pooling-1.png)]
     
-- [![](images/Max-Pooling-2.png)](https://www.machinecurve.com/wp-content/uploads/2020/01/Max-Pooling-2.png)
+- [![](images/Max-Pooling-2.png)]
     
 
 As you can see, a pooling layer - Max Pooling in the image above - substantially reduces the size of your feature map, and in this case takes the maximum value. What this means is this:
@@ -123,29 +123,29 @@ The **CIFAR-10 dataset** contains contains 60.000 32x32 pixel RGB images across 
 
 A few samples:
 
-- [![](images/10885.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/10885.jpg)
+- [![](images/10885.jpg)]
     
-- [![](images/18017.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/18017.jpg)
+- [![](images/18017.jpg)]
     
-- [![](images/15330.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/15330.jpg)
+- [![](images/15330.jpg)]
     
-- [![](images/13749.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/13749.jpg)
+- [![](images/13749.jpg)]
     
-- [![](images/12403.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/12403.jpg)
+- [![](images/12403.jpg)]
     
-- [![](images/11312.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/11312.jpg)
+- [![](images/11312.jpg)]
     
-- [![](images/3576.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/3576.jpg)
+- [![](images/3576.jpg)]
     
-- [![](images/834.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/834.jpg)
+- [![](images/834.jpg)]
     
-- [![](images/47056.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/47056.jpg)
+- [![](images/47056.jpg)]
     
-- [![](images/43819.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/43819.jpg)
+- [![](images/43819.jpg)]
     
-- [![](images/14650.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/14650.jpg)
+- [![](images/14650.jpg)]
     
-- [![](images/1523.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/1523.jpg)
+- [![](images/1523.jpg)]
     
 
 The dataset is split into 50.000 images for training and 10.000 images for testing purposes.
@@ -154,29 +154,29 @@ The dataset is split into 50.000 images for training and 10.000 images for testi
 
 **CIFAR-100** is effectively the "parent dataset" for the CIFAR-10 one. It contains many images across 100 non-overlapping classes. It also contains 60.000 samples in total, which means that each class only has 600 samples instead of 6.000 (as with the CIFAR-10 one).
 
-- [![](images/33582.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/33582.jpg)
+- [![](images/33582.jpg)]
     
-- [![](images/30218.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/30218.jpg)
+- [![](images/30218.jpg)]
     
-- [![](images/29735.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/29735.jpg)
+- [![](images/29735.jpg)]
     
-- [![](images/29119.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/29119.jpg)
+- [![](images/29119.jpg)]
     
-- [![](images/27872.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/27872.jpg)
+- [![](images/27872.jpg)]
     
-- [![](images/27757.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/27757.jpg)
+- [![](images/27757.jpg)]
     
-- [![](images/27260.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/27260.jpg)
+- [![](images/27260.jpg)]
     
-- [![](images/26544.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/26544.jpg)
+- [![](images/26544.jpg)]
     
-- [![](images/26247.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/26247.jpg)
+- [![](images/26247.jpg)]
     
-- [![](images/21402.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/21402.jpg)
+- [![](images/21402.jpg)]
     
-- [![](images/18167.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/18167.jpg)
+- [![](images/18167.jpg)]
     
-- [![](images/15743.jpg)](https://www.machinecurve.com/wp-content/uploads/2019/12/15743.jpg)
+- [![](images/15743.jpg)]
     
 
 These are the classes present within CIFAR-100 (Krizhevsky & Hinton, 2009):
@@ -450,9 +450,9 @@ This is a clear sign that our model is overfitting, or that it is highly adapted
 - [What are L1, L2 and Elastic Net Regularization in neural networks?](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/what-are-l1-l2-and-elastic-net-regularization-in-neural-networks.md)
 - [Avoid wasting resources with EarlyStopping and ModelCheckpoint in Keras](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/avoid-wasting-resources-with-earlystopping-and-modelcheckpoint-in-keras.md)
 
-- [![](images/val_acc.png)](https://www.machinecurve.com/wp-content/uploads/2020/02/val_acc.png)
+- [![](images/val_acc.png)]
     
-- [![](images/val_loss.png)](https://www.machinecurve.com/wp-content/uploads/2020/02/val_loss.png)
+- [![](images/val_loss.png)]
     
 
 * * *

@@ -139,11 +139,11 @@ LiSHT is a relatively new activation function, proposed by Roy et al. in their e
 
 Its formula - \[latex\]LiSHT(x) = x \\times tanh(x)\[/latex\] leads to the following visualization, where LiSHT is visualized in green:
 
-[![](images/lisht_visualized-1024x511.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/lisht_visualized.png)
+[![](images/lisht_visualized-1024x511.png)]
 
 In terms of the derivative, this has the effect that the _range_ of the derivative function - and hence the computed gradients - is expanded. This is expected to reduce the impact of the vanishing gradients problem. I'd recommend to read [MachineCurve's other blog post](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/beyond-swish-the-lisht-activation-function.md) for more information about the theoretical aspects of the LiSHT activation function.
 
-[![](images/lisht_derivs-1024x511.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/lisht_derivs.png)
+[![](images/lisht_derivs-1024x511.png)]
 
 * * *
 
@@ -187,7 +187,7 @@ A supervised machine learning model requires a dataset that can be used for trai
 
 This dataset contains thousands of handwritten digits - i.e., numbers between 0 and 9 - that are all 28 by 28 pixels. It is one of the standard datasets used in computer vision education for its simplicity and extensiveness, and hence is a good candidate for explaining how to create the model.
 
-[![](images/mnist-visualize.png)](https://www.machinecurve.com/wp-content/uploads/2019/06/mnist-visualize.png)
+[![](images/mnist-visualize.png)]
 
 What's even better: the Keras API contains a pointer to the MNIST dataset already. That is, we can import the data and assign it to Python variables quite easily - by calling `load_data` with some Keras function. This is also why it's good to use MNIST in an educational setting.
 
@@ -467,9 +467,9 @@ They thus do not say _everything_ about how well LiSHT performs, but give you an
 
 This is how well LiSHT performs as a baseline:
 
-[![](images/lisht_ce_loss.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/lisht_ce_loss.png)
+[![](images/lisht_ce_loss.png)]
 
-[![](images/lisht_accuracy.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/lisht_accuracy.png)
+[![](images/lisht_accuracy.png)]
 
 These graphs seem to be quite normal: fast-increasing/fast-decreasing accuracy and loss values at first, slowing down when the number of epochs increase. LiSHT also generalizes well with the MNIST dataset, achieving test accuracy of 99.2%.
 
@@ -481,9 +481,9 @@ Test loss: 0.02728017502297298 / Test accuracy: 0.9922000169754028
 
 I compared LiSHT with ReLU by training the same ConvNet with both LiSHT and ReLU, with exactly the same settings. These are the results:
 
-- [![](images/lisht_relu_acc.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/lisht_relu_acc.png)
+- [![](images/lisht_relu_acc.png)]
     
-- [![](images/lisht_relu_ce.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/lisht_relu_ce.png)
+- [![](images/lisht_relu_ce.png)]
     
 
 Results are close, but in terms of _validation_ loss and accuracy, ReLU seems to win from LiSHT.
@@ -501,9 +501,9 @@ This means that LiSHT and ReLU do not really produce different results in normal
 
 ### Comparing LiSHT to Leaky ReLU
 
-- [![](images/lisht_leaky_acc.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/lisht_leaky_acc.png)
+- [![](images/lisht_leaky_acc.png)]
     
-- [![](images/lisht_leaky_ce.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/lisht_leaky_ce.png)
+- [![](images/lisht_leaky_ce.png)]
     
 
 The differences are a bit larger when comparing LiSHT with Leaky ReLU. The new activation function performs better, as can be seen in the plots. This is also visible when testing the models with our test dataset:

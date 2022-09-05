@@ -131,33 +131,33 @@ The dataset provides daily rain and water levels for four reservoirs in the vici
 
 The lakes are located here:
 
-[![](images/image-10.png)](https://machinecurve.com/wp-content/uploads/2019/07/image-10.png)
+[![](images/image-10.png)]
 
 The lakes in the Chennai (Madras) area. Source: [Google Maps](https://goo.gl/maps/o5Ynbx6iMRg4KH8h6)
 
 For each of the four sites, the dataset provides two types of data. Firstly, it provides the daily amount of rain in millimeters (mm):
 
-[![](images/image-3-1024x414.png)](https://machinecurve.com/wp-content/uploads/2019/07/image-3.png)
+[![](images/image-3-1024x414.png)]
 
 Secondly, it provides the daily water levels in the reservoirs in millions of cubic feet. Every million is about 28.3 million litres, if that makes this chart more intuitive:
 
-[![](images/image-4-1024x415.png)](https://machinecurve.com/wp-content/uploads/2019/07/image-4.png)
+[![](images/image-4-1024x415.png)]
 
 ### The problem: increasing water shortage
 
 Poondi Reservoir is the most important water reservoir for Chennai (Wikipedia, 2015). Rather unfortunately, if you inspect the water levels for this reservoir and add a trend line, you'll see that they indeed decrease over the years:
 
-[![](images/image-5-1024x415.png)](https://machinecurve.com/wp-content/uploads/2019/07/image-5.png)
+[![](images/image-5-1024x415.png)]
 
   
 
 The same can be observed for the other reservoirs:
 
-[![](images/image-7-1024x415.png)](https://machinecurve.com/wp-content/uploads/2019/07/image-7.png)
+[![](images/image-7-1024x415.png)]
 
-[![](images/image-8-1024x415.png)](https://machinecurve.com/wp-content/uploads/2019/07/image-8.png)
+[![](images/image-8-1024x415.png)]
 
-[![](images/image-9-1024x415.png)](https://machinecurve.com/wp-content/uploads/2019/07/image-9.png)
+[![](images/image-9-1024x415.png)]
 
 Except for 2015, when there were [heavy floods](https://en.wikipedia.org/wiki/2015_South_Indian_floods) due to large amounts of rainfall, the reservoirs have been emptier than in the years before 2012. One of the primary reasons for this is that the monsoons have become less predictable over the last couple of years (NASA, 2019). By consequence, refilling those reservoirs becomes a challenging task, with real trouble starting this year.
 
@@ -165,13 +165,13 @@ Except for 2015, when there were [heavy floods](https://en.wikipedia.org/wiki/20
 
 This was Puzhal Lake (also known as the Red Hills Lake) on May 31, 2018:
 
-[![](images/chennai_oli_2018151.jpg)](https://machinecurve.com/wp-content/uploads/2019/07/chennai_oli_2018151.jpg)
+[![](images/chennai_oli_2018151.jpg)]
 
 Source: [NASA](https://earthobservatory.nasa.gov/images/145242/water-shortages-in-india)
 
 This was the situation in June 2019:
 
-[![](images/chennai_oli_2019170.jpg)](https://machinecurve.com/wp-content/uploads/2019/07/chennai_oli_2019170.jpg)
+[![](images/chennai_oli_2019170.jpg)]
 
 Source: [NASA](https://earthobservatory.nasa.gov/images/145242/water-shortages-in-india)
 
@@ -181,7 +181,7 @@ That's bad - and it is the perfect example of what is known as the [Chennai Wate
 
 This is also perfectly visible in the data. As you can see, the lakes had been filled only marginally after the 2018 Monsoons and were empty by June:
 
-[![](images/image-4-1024x415.png)](https://machinecurve.com/wp-content/uploads/2019/07/image-4.png)
+[![](images/image-4-1024x415.png)]
 
 Now that we have a feel for the dataset and the real problem that it presents, we could think of certain ways in which machine learning could potentially help the Chennai residents.
 

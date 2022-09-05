@@ -94,9 +94,9 @@ Wikipedia (2004) defines a saddle point as follows:
 
 Indeed, it's a point where the gradient is zero - while it's no minimum. Such points often look like this and have an upward direction from the front and towards the right, while having a downward one from the left and towards the end:
 
-- [![](images/Saddle_point.png)](https://www.machinecurve.com/wp-content/uploads/2020/02/Saddle_point.png)
+- [![](images/Saddle_point.png)]
     
-- [![](images/Saddle_Point_between_maxima.png)](https://www.machinecurve.com/wp-content/uploads/2020/02/Saddle_Point_between_maxima.png)
+- [![](images/Saddle_Point_between_maxima.png)]
     
 
 _Two landscapes with saddle points. On the left, it's most visible - while on the right, it's in between two maxima. | Left: By [Nicoguaro](//commons.wikimedia.org/wiki/User:Nicoguaro "User:Nicoguaro") - Own work, [CC BY 3.0](https://creativecommons.org/licenses/by/3.0 "Creative Commons Attribution 3.0"), [Link](https://commons.wikimedia.org/w/index.php?curid=20570051) | Right: By [Nicoguaro](//commons.wikimedia.org/wiki/User:Nicoguaro "User:Nicoguaro") - Own work, [CC BY 4.0](https://creativecommons.org/licenses/by/4.0 "Creative Commons Attribution 4.0"), [Link](https://commons.wikimedia.org/w/index.php?curid=48854962)_
@@ -135,15 +135,15 @@ Let's now take a look at some of these Cyclical Learning Rates.
 
 In his paper, Smith (2017) describes three types of CLRs. The first is a linear one, also known as a triangular one, which looks as follows:
 
-[![](images/triangular.png)](https://www.machinecurve.com/wp-content/uploads/2020/02/triangular.png)
+[![](images/triangular.png)]
 
 As you can see, the learning rate moves back and forth between a low one (\[latex\]bound\_{min} = 0.05\[/latex\]) and quite a high one (\[latex\]bound\_{max} = 1.50\[/latex\]). The same is true for the next one, except that movement is _smooth_ here - it's a sinusoidal one:
 
-[![](images/sinusoidal.png)](https://www.machinecurve.com/wp-content/uploads/2020/02/sinusoidal.png)
+[![](images/sinusoidal.png)]
 
 A third one reported in Smith (2017) is neither linear nor sinusoidal, but rather parabolic in nature:
 
-[![](images/parabolic.png)](https://www.machinecurve.com/wp-content/uploads/2020/02/parabolic.png)
+[![](images/parabolic.png)]
 
 All three of them share the characteristic that the learning rate moves back and forth between a _minimum_ and a _maximum_ bound, ensuring that saddle points and local minima can be escaped while your training process can truly reach global ones. Experiments with those various forms showed that results were equivalent. For the sake of simplicity, Smith (2017) thus chose to use triangular learning rates in the rest of his work.
 
@@ -153,7 +153,7 @@ All three of them share the characteristic that the learning rate moves back and
 
 In some cases, it's desirable to let the bounds decay over time (Smith, 2017). This ensures that the learning varies less and less once the epochs pass - that is, presumably, when you reach the global minimum. Below, you'll see an example for parabolic-like CLR with exponential bound decay. Another approach lets the learning rates decay in a triangular fashion, i.e. by cutting them in half after every iteration.
 
-[![](images/clr_decay.png)](https://www.machinecurve.com/wp-content/uploads/2020/02/clr_decay.png)
+[![](images/clr_decay.png)]
 
 ## Approach to using CLRs in your neural network
 
@@ -342,7 +342,7 @@ model.fit(input_train, target_train, batch_size=batch_size, callbacks=[lr_finder
 
 Now, when we run the Python file (i.e. `python base-model.py`), the training process for finding the optimal learning rate should begin. Once it finished, you should see a visualization pop up immediately which looks somewhat like this one:
 
-[![](images/lrf_mnist-1024x512.png)](https://www.machinecurve.com/wp-content/uploads/2020/02/lrf_mnist.png)
+[![](images/lrf_mnist-1024x512.png)]
 
 Interpreting this plot leads to the conclusion that a decrease in loss (i.e., model improvement) starts immediately - which means that we'll choose \[latex\]10^{-4}\[/latex\] as the lower bound for our cyclical learning rate.
 
@@ -374,7 +374,7 @@ mode='triangular'
 
 Clearly, our learning rate range is configured as we found it to be optimal. What's more, we specify the `clr_step_size` in line with the estimates provided by Smith (2017): within 2 to 10 times the number of iterations per epoch - i.e. the length of our training set divided by the batch size.
 
-[![](images/triangular-300x140.png)](https://www.machinecurve.com/wp-content/uploads/2020/02/triangular.png)
+[![](images/triangular-300x140.png)]
 
 The `mode` is set to triangular: that's equal to linear mode. We don't use `triangular2` or `exp_range`, which are also supported and would represent decaying bounds.
 

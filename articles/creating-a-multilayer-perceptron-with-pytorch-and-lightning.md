@@ -281,7 +281,7 @@ if __name__ == '__main__':
 
 #### Preparing the CIFAR-10 dataset and initializing dependencies
 
-[![](images/cifar10_visualized.png)](https://www.machinecurve.com/wp-content/uploads/2019/06/cifar10_visualized.png)
+[![](images/cifar10_visualized.png)]
 
 The next code we add involves preparing the CIFAR-10 dataset. Some samples from this dataset are visualized in the image on the right. The dataset contains 10 classes and has 60.000 32 by 32 pixel images, with 6000 images per class.
 

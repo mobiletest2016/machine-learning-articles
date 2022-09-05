@@ -45,7 +45,7 @@ First, we will create our baseline by training our CNN with the default learning
 
 This is a [visualization of the performance](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-training-process-in-keras.md) of the model with our baseline scenario:
 
-[![](images/fixed_lr_baseline.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/fixed_lr_baseline.png)
+[![](images/fixed_lr_baseline.png)]
 
 It actually shows a very normal learning curve: a steep descent during the first few epochs, after which the model gets close to the minimum (whether local or global!) and learning stabilizes. The final loss value on the training data is approximately 0.01 whereas it's 0.05 on the validation data - that's pretty good. Test accuracy, in this case, confirmed the results:
 
@@ -61,7 +61,7 @@ Now, what happens when we set the learning rate to \[latex\]0.5\[/latex\], which
 
 In the really large case, this is the result:
 
-[![](images/fixed_lr_really_large.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/fixed_lr_really_large.png)
+[![](images/fixed_lr_really_large.png)]
 
 ```
 Test loss: 2.3188612442016603 / Test accuracy: 0.10100000351667404
@@ -73,7 +73,7 @@ Now, what happens if we decrease the learning rate to a value that is still larg
 
 That is, we're now using a learning rate of \[latex\]0.01\[/latex\]:
 
-[![](images/fixed_lr_large.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/fixed_lr_large.png)
+[![](images/fixed_lr_large.png)]
 
 ```
 Test loss: 0.045392444870159344 / Test accuracy: 0.9887999892234802
@@ -84,7 +84,7 @@ Yes, we're finding convergence again with really good test accuracy! 😎
 ...but still, we're being impacted by the fact that the learning rate seems to be too large:
 
 - First, the test loss is approximately twice as high compared with the baseline scenario: 0.045 instead of 0.029. This likely occurs because the model cannot find the actual minimum, since the learning rate is too large and we overshoot our minimum every time.
-- Secondly, compared to the [baseline plot](https://www.machinecurve.com/wp-content/uploads/2019/11/fixed_lr_baseline.png), we can observe that our loss value oscillates more heavily. This is also the result of a less subtle learning rate, compared with the baseline scenario.
+- Secondly, compared to the [baseline plot], we can observe that our loss value oscillates more heavily. This is also the result of a less subtle learning rate, compared with the baseline scenario.
 
 All in all, comparing our baseline, we can see that while increasing the learning rate _may_ help you find convergence faster, _it may also be destructive for learning_. Choose wisely! Start with the default LR and perhaps increase it in small steps, [visualize training history](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/how-to-visualize-the-training-process-in-keras.md) and watch for oscillation in your plots, and stop slightly before this occurs.
 
@@ -98,7 +98,7 @@ Let's find out.
 
 We'll first use a learning rate of \[latex\]0.00001\[/latex\]. Note that our baseline learning rate is \[latex\]0.001\[/latex\], so ours is now 100 times smaller.
 
-[![](images/fixed_lr_small.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/fixed_lr_small.png)
+[![](images/fixed_lr_small.png)]
 
 ```
 Test loss: 0.17123142351806164 / Test accuracy: 0.9513999819755554
@@ -111,7 +111,7 @@ We can make a few observations here:
 
 This pattern gets even stronger when we decrease our learning rate again, once more 100 times. In fact, the steps are now too small in order to find model convergence quickly:
 
-[![](images/fixed_lr_really_small.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/fixed_lr_really_small.png)
+[![](images/fixed_lr_really_small.png)]
 
 ```
 Test loss: 2.2723510555267334 / Test accuracy: 0.16249999403953552
@@ -268,11 +268,11 @@ def time_decay(epoch):
   return td_lr 
 ```
 
-[![](images/time_decay.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/time_decay.png)
+[![](images/time_decay.png)]
 
 **Exponential decay** is similar to time decay, but - compare the plots! - is different. Contrary to time decay, which decays slowly at first, exponential decay decays fastest at first, only to decrease decay with increasing epochs. Similar to time decay, it's also smooth.
 
-[![](images/exponential_decay.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/exponential_decay.png)
+[![](images/exponential_decay.png)]
 
 As discussed, learning rate decay schemes do improve the learning process by reducing the impact of fixed learning rates. Nevertheless, decay schemes also come with their own set of peculiarities, of which two are primarily relevant: **setting the default learning rate in advance** is still necessary, while it's _not_ known in advance **which decay scheme is best**.
 
@@ -348,7 +348,7 @@ The concept is conceptually very easy:
 
 Like this:
 
-[![](images/clr.png)](blob:https://www.machinecurve.com/4f506139-515f-4c7a-b431-1f4a1927dc59)
+[![](images/clr.png)]
 
 The bounds can be determined by means of the LR Range Test: in the case above, e.g. \[latex\]10^-2\[/latex\] and \[latex\]10^-1\[/latex\].
 

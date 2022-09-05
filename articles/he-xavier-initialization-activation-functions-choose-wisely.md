@@ -124,7 +124,7 @@ In _[Why are deep neural networks hard to train?](http://neuralnetworksanddeeple
 
 Suppose that your neural networks are equipped with the Sigmoid activation function. The neuron outputs will flow through this function to become nonlinear, and the Sigmoid derivative will be used during optimization:
 
-[![](images/sigmoid_and_deriv-1024x511.jpeg)](https://machinecurve.com/wp-content/uploads/2019/09/sigmoid_and_deriv.jpeg)
+[![](images/sigmoid_and_deriv-1024x511.jpeg)]
 
 Sigmoid and its derivative
 
@@ -145,7 +145,7 @@ In general, we therefore use [ReLU as our activation function of general choice]
 
 This is ReLU and its derivative:
 
-[![](images/relu_and_deriv-1024x511.jpeg)](https://machinecurve.com/wp-content/uploads/2019/09/relu_and_deriv.jpeg)
+[![](images/relu_and_deriv-1024x511.jpeg)]
 
 As you can see, the derivative of ReLU behaves differently. If the original input is < 0, the derivative is 0, else it is 1. This observation emerges from the way ReLU is designed.
 

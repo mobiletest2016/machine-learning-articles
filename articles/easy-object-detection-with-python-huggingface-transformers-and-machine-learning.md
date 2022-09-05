@@ -237,7 +237,7 @@ Here's the result we got after running the object detection pipeline on our inpu
 
 Or, when zoomed in:
 
-[![](images/image-4-1024x455.png)](https://www.machinecurve.com/wp-content/uploads/2021/12/image-4.png)
+[![](images/image-4-1024x455.png)]
 
 * * *
 

@@ -65,14 +65,14 @@ As we covered in the [saliency maps blog post](https://github.com/mobiletest2016
 
 As you could see in the blog post, they work pretty well in telling you which parts of the image are used for generating the target prediction:
 
-[![](images/frog-2.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/frog-2.png)
+[![](images/frog-2.png)]
 
 However, we can find suggestions for improvement with respect to saliency maps (Selvaraju et al., 2017):
 
 - These maps, which the above authors call _pixel-space gradient visualizations,_ highlight many details in the image, but are not necessarily _class discriminative_ (see the MNIST image below).
 - This especially occurs when two similar but different classes occur in an image. In their paper, the authors provide an image of a cat and a dog, and the pixel based visualizations highlight both the cat and the dog for the 'dog' and 'cat' classes, respectively.
 
-[![](images/sal9.png)](https://www.machinecurve.com/wp-content/uploads/2019/11/sal9.png)
+[![](images/sal9.png)]
 
 We can't be 100% sure whether this activates because of a 9 or because of an 8.
 
@@ -99,7 +99,7 @@ Let's now see if we can implement this 😎
 
 In today's implementation, we will generate visualizations for predictions made with a model trained on the MNIST dataset. As you can see in the image below, this dataset contains many small images that represent handwritten digits. That is, we have ten classes: the numbers 0 to 9.
 
-[![](images/mnist.png)](https://www.machinecurve.com/wp-content/uploads/2019/07/mnist.png)
+[![](images/mnist.png)]
 
 ### What you'll need to run the models
 

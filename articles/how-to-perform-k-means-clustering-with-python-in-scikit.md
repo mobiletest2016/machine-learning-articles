@@ -81,13 +81,13 @@ plt.show()
 
 Suppose that we have a dataset \[latex\]X\[/latex\], which contains many n-dimensional vectors \[latex\]\\mathbf{x\_1} \\mathbf{x\_2}, ..., \\mathbf{x\_n}\[/latex\]. Say, \[latex\]n = 2\[/latex\], then \[latex\]\\mathbf{x\_1}\[/latex\] could be \[latex\]\[3.12, 4.14\]\[/latex\]. Mapping this one onto a two-dimensional space, i.e. a plane, gives this:
 
-[![](images/point.png)](https://www.machinecurve.com/wp-content/uploads/2020/04/point.png)
+[![](images/point.png)]
 
 Say that the vectors that we described abstractly above are structured in a way that they form "blobs", like we merged two datasets of temperature measurements - one with measurements from our thermostat, measuring indoor temperatures of ~20 degrees Celcius, the other with measurements from our fridge, of say ~4 degrees Celcius. The vertical axis shows the temperature of today, whereas the horizontal one displays the temperature at the same time yesterday.
 
 That would likely make the point above a fridge measured temperature. The whole set of measurements would be this:
 
-[![](images/clusters_2-1.png)](https://www.machinecurve.com/wp-content/uploads/2020/04/clusters_2-1.png)
+[![](images/clusters_2-1.png)]
 
 Now, suppose that we want to understand whether a sample belongs to the "fridge" cluster or the "room temperature" cluster. Visually, we can easily decide whether it's one or the other: there's enough space between the two blobs of data points to accurately assess whether it's been the fridge or the living room.
 
@@ -310,7 +310,7 @@ plt.show()
 
 The results are pretty clear, aren't they:
 
-[![](images/clustered.png)](https://www.machinecurve.com/wp-content/uploads/2020/04/clustered.png)
+[![](images/clustered.png)]
 
 Pretty much immediately (given the small number of samples and the fact that the blobs are highly separable), we have performed K-means clustering for the first time!
 

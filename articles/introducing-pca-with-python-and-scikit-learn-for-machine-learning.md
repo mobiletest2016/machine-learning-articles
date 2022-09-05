@@ -100,11 +100,11 @@ The result: a model tailored to your specific dataset, visible in the middle par
 
 In other words, training a Machine Learning model involves finding a good balance between a model that is underfit and a model that is overfit. Fortunately, many techniques are available [to help you with this](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/avoid-wasting-resources-with-earlystopping-and-modelcheckpoint-in-keras.md), but it's one of the most common problems in Supervised ML today.
 
-- [![](images/30under.png)](https://www.machinecurve.com/wp-content/uploads/2020/11/30under.png)
+- [![](images/30under.png)]
     
-- [![](images/30over.png)](https://www.machinecurve.com/wp-content/uploads/2020/11/30over.png)
+- [![](images/30over.png)]
     
-- [![](images/30good.png)](https://www.machinecurve.com/wp-content/uploads/2020/11/30good.png)
+- [![](images/30good.png)]
     
 
 On the left: a model that is underfit with respect to the data. In the middle: a model that is overfit with respect to the data. On the right: the fit that we were looking for.
@@ -367,11 +367,11 @@ plt.show()
 
 This yields the following plots, if we play with the dimensions:
 
-- [![](images/iris-mix.png)](https://www.machinecurve.com/wp-content/uploads/2020/12/iris-mix.png)
+- [![](images/iris-mix.png)]
     
-- [![](images/iris-petal.png)](https://www.machinecurve.com/wp-content/uploads/2020/12/iris-petal.png)
+- [![](images/iris-petal.png)]
     
-- [![](images/iris-sepal.png)](https://www.machinecurve.com/wp-content/uploads/2020/12/iris-sepal.png)
+- [![](images/iris-sepal.png)]
     
 
 The images illustrate that two of the Iris flowers cannot be linearly separated, but that this group _can_ be separated from the other Iris flower. Printing the shape yields the following:

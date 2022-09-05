@@ -637,11 +637,11 @@ _These photos and videos have been downloaded and used under a [Pexels License](
 
 ### On photos
 
-- [![](images/1o-1024x684.jpg)](https://www.machinecurve.com/wp-content/uploads/2021/01/1o-scaled.jpg)
+- [![](images/1o-1024x684.jpg)]
     
-- [![](images/3o-1024x557.jpg)](https://www.machinecurve.com/wp-content/uploads/2021/01/3o-scaled.jpg)
+- [![](images/3o-1024x557.jpg)]
     
-- [![](images/4o-1024x558.jpg)](https://www.machinecurve.com/wp-content/uploads/2021/01/4o-scaled.jpg)
+- [![](images/4o-1024x558.jpg)]
     
 
 ### On videos

@@ -86,13 +86,13 @@ The solution is simple and elegant: you can place an [activation function](https
 
 Today's most common activation function is the [Rectified Linear Unit (ReLU)](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md). Other ones used still are [Tanh and Sigmoid](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/relu-sigmoid-and-tanh-todays-most-used-activation-functions.md), while there are also newer ones, such as [Leaky ReLU, PReLU, and Swish](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/overview-of-activation-functions-for-neural-networks.md). They all try to improve on top of each other. However, in most cases, ReLU suffices.
 
-- [![](images/swish-1024x511.png)](https://www.machinecurve.com/wp-content/uploads/2019/05/swish.png)
+- [![](images/swish-1024x511.png)]
     
-- [![](images/sigmoid-1024x511.png)](https://www.machinecurve.com/wp-content/uploads/2019/05/sigmoid.png)
+- [![](images/sigmoid-1024x511.png)]
     
-- [![](images/tanh-1024x511.png)](https://www.machinecurve.com/wp-content/uploads/2019/05/tanh.png)
+- [![](images/tanh-1024x511.png)]
     
-- [![](images/relu-1024x511.png)](https://www.machinecurve.com/wp-content/uploads/2019/05/relu.png)
+- [![](images/relu-1024x511.png)]
     
 
 Common activation functions
@@ -139,7 +139,7 @@ As the point of this blog post is to illustrate how `tf-explain` can be used for
 
 In short, our ConvNet will be able to classify the [CIFAR10 dataset](https://github.com/mobiletest2016/machine-learning-articles/blob/master/articles/exploring-the-keras-datasets/#cifar-10-small-image-classification):
 
-[![](images/cifar10_visualized.png)](https://www.machinecurve.com/wp-content/uploads/2019/06/cifar10_visualized.png)
+[![](images/cifar10_visualized.png)]
 
 As you can see, it is an image clasification dataset with 32x32 pixel RGB images of everyday objects. The images are distributed across 10 classes.
 
